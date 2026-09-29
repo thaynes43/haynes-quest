@@ -1,0 +1,2141 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "gpt-6-astra max",
+  "approved_sheet_preserved": true,
+  "owner_review": "pending",
+  "method": "Parametric production topology from approved blockout; 24-ray mild baked contact shading and vertex colours; opaque nonmetallic PBR",
+  "props": {
+    "casita-terrace-wall": {
+      "triangles": 4524,
+      "materials": 3,
+      "parts": [
+        {
+          "name": "Zocalo base band",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Zocalo cream moulding",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Stucco body",
+          "colours": [
+            {
+              "hex": "#d9825b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "End pilaster right",
+          "colours": [
+            {
+              "hex": "#f1c28c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "End pilaster base right",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "End pilaster cap right",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Finial plinth right",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Finial ball right",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "End pilaster left",
+          "colours": [
+            {
+              "hex": "#f1c28c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "End pilaster base left",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "End pilaster cap left",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Finial plinth left",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Finial ball left",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Coping cap",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Barrel coping tiles (red)",
+          "colours": [
+            {
+              "hex": "#a94a32",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 308
+        },
+        {
+          "name": "Barrel coping tiles (clay)",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 280
+        },
+        {
+          "name": "Talavera band tiles cream",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 66
+        },
+        {
+          "name": "Talavera band tiles blue",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Talavera band tile motifs blue",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 154
+        },
+        {
+          "name": "Talavera band tile motifs gold",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 84
+        },
+        {
+          "name": "Talavera band tile motifs cream",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 160
+        },
+        {
+          "name": "Band line z1.45",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Band line z1.66",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Niche left niche backing",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 56
+        },
+        {
+          "name": "Niche left niche surround",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 116
+        },
+        {
+          "name": "Niche left niche sill",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Niche left candle 1 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Niche left candle 1 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Niche left candle 1 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Niche left candle 2 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Niche left candle 2 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Niche left candle 2 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Niche left candle 3 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Niche left candle 3 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Niche left candle 3 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Niche right niche backing",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 56
+        },
+        {
+          "name": "Niche right niche surround",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 116
+        },
+        {
+          "name": "Niche right niche sill",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Niche right candle 1 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Niche right candle 1 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Niche right candle 1 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Niche right candle 2 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Niche right candle 2 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Niche right candle 2 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Niche right candle 3 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Niche right candle 3 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Niche right candle 3 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Wall butterfly relief wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 208
+        },
+        {
+          "name": "Wall butterfly relief wings",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Wall butterfly relief wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Wall butterfly relief body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Wall butterfly relief head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Wall butterfly relief antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Wall butterfly relief antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Bougainvillea over the coping stem",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 140
+        },
+        {
+          "name": "Bougainvillea over the coping leaves",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 192
+        },
+        {
+          "name": "Bougainvillea over the coping blooms",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Bougainvillea strand 1 stem",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 128
+        },
+        {
+          "name": "Bougainvillea strand 1 leaves",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 176
+        },
+        {
+          "name": "Bougainvillea strand 1 blooms",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 88
+        },
+        {
+          "name": "Bougainvillea strand 2 stem",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 164
+        },
+        {
+          "name": "Bougainvillea strand 2 leaves",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 224
+        },
+        {
+          "name": "Bougainvillea strand 2 blooms",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 112
+        },
+        {
+          "name": "Bougainvillea strand 3 stem",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 92
+        },
+        {
+          "name": "Bougainvillea strand 3 leaves",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 128
+        },
+        {
+          "name": "Bougainvillea strand 3 blooms",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 64
+        }
+      ],
+      "bbox": {
+        "min": [
+          -2.4000000953674316,
+          0.0,
+          -0.34153681993484497
+        ],
+        "max": [
+          2.4000000953674316,
+          2.0,
+          0.34153681993484497
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        0.0015368163585662842,
+        -0.0
+      ],
+      "bytes": 153388,
+      "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c"
+    },
+    "flower-planter": {
+      "triangles": 4338,
+      "materials": 2,
+      "parts": [
+        {
+          "name": "Terracotta pot",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 912
+        },
+        {
+          "name": "Talavera band",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 672
+        },
+        {
+          "name": "Band ring z0.27",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 240
+        },
+        {
+          "name": "Band ring z0.41",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 240
+        },
+        {
+          "name": "Band diamonds",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 112
+        },
+        {
+          "name": "Band dots",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 32
+        },
+        {
+          "name": "Foliage mound",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 94
+        },
+        {
+          "name": "Foliage lumps",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 216
+        },
+        {
+          "name": "Leaves over the rim",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Tall flower stems",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 80
+        },
+        {
+          "name": "Orange six-petal marigolds",
+          "colours": [
+            {
+              "hex": "#f2a93b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 672
+        },
+        {
+          "name": "Marigold warm centers",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 112
+        },
+        {
+          "name": "Pink bloom petals",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 560
+        },
+        {
+          "name": "Bloom centres",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 112
+        },
+        {
+          "name": "Planter butterfly wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Planter butterfly wings",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Planter butterfly wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Planter butterfly body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Planter butterfly head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Planter butterfly antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Planter butterfly antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.5899999737739563,
+          0.0,
+          -0.5899999737739563
+        ],
+        "max": [
+          0.5899999737739563,
+          0.8942082524299622,
+          0.5899999737739563
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 131712,
+      "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27"
+    },
+    "patterned-door": {
+      "triangles": 2486,
+      "materials": 3,
+      "parts": [
+        {
+          "name": "Clay step",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Stucco surround",
+          "colours": [
+            {
+              "hex": "#f1c28c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 252
+        },
+        {
+          "name": "Opening backing",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 56
+        },
+        {
+          "name": "Door leaf left",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 128
+        },
+        {
+          "name": "Lower panel left",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Upper panel left",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Rosette petals left",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 24
+        },
+        {
+          "name": "Rosette centre left",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 4
+        },
+        {
+          "name": "Lattice diamonds left",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 42
+        },
+        {
+          "name": "Lattice dots left",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 32
+        },
+        {
+          "name": "Pull plate left",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 4
+        },
+        {
+          "name": "Ring pull left",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 240
+        },
+        {
+          "name": "Door leaf right",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 128
+        },
+        {
+          "name": "Lower panel right",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Upper panel right",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Rosette petals right",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 24
+        },
+        {
+          "name": "Rosette centre right",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 4
+        },
+        {
+          "name": "Lattice diamonds right",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 42
+        },
+        {
+          "name": "Lattice dots right",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 32
+        },
+        {
+          "name": "Pull plate right",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 4
+        },
+        {
+          "name": "Ring pull right",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 240
+        },
+        {
+          "name": "Gold seam astragal",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Transom sunburst rays",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 14
+        },
+        {
+          "name": "Transom butterfly wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Transom butterfly wings",
+          "colours": [
+            {
+              "hex": "#f2a93b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Transom butterfly wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Transom butterfly body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Transom butterfly head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Transom butterfly antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Transom butterfly antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Glow trim",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 188
+        },
+        {
+          "name": "Door surround tiles cream",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 90
+        },
+        {
+          "name": "Door surround tiles blue",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 72
+        },
+        {
+          "name": "Door surround tile motifs blue",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 210
+        },
+        {
+          "name": "Door surround tile motifs gold",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 108
+        },
+        {
+          "name": "Door surround tile motifs cream",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 192
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.800000011920929,
+          0.0,
+          -0.20000000298023224
+        ],
+        "max": [
+          0.800000011920929,
+          2.4000000953674316,
+          0.20000000298023224
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 97932,
+      "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc"
+    },
+    "butterfly-arch": {
+      "triangles": 4980,
+      "materials": 4,
+      "parts": [
+        {
+          "name": "Post base left",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post shaft left",
+          "colours": [
+            {
+              "hex": "#f1c28c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post capital band left",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post cap left",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post niche left niche backing",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 56
+        },
+        {
+          "name": "Post niche left niche surround",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 116
+        },
+        {
+          "name": "Post niche left niche sill",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post niche left candle 1 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Post niche left candle 1 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Post niche left candle 1 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Cap candle dish left",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Cap candle left wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Cap candle left wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Cap candle left flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Post base right",
+          "colours": [
+            {
+              "hex": "#2e8b73",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post shaft right",
+          "colours": [
+            {
+              "hex": "#f1c28c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post capital band right",
+          "colours": [
+            {
+              "hex": "#c4643f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post cap right",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post niche right niche backing",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 56
+        },
+        {
+          "name": "Post niche right niche surround",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 116
+        },
+        {
+          "name": "Post niche right niche sill",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post niche right candle 1 wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Post niche right candle 1 wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Post niche right candle 1 flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Cap candle dish right",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Cap candle right wax",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Cap candle right wick",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Cap candle right flame",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Arch posts tiles cream",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 72
+        },
+        {
+          "name": "Arch posts tiles blue",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 72
+        },
+        {
+          "name": "Arch posts tile motifs blue",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 168
+        },
+        {
+          "name": "Arch posts tile motifs gold",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Arch posts tile motifs cream",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 192
+        },
+        {
+          "name": "Foot bush leaves left",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 88
+        },
+        {
+          "name": "Foot bush blooms left",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Foot bush leaves right",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 88
+        },
+        {
+          "name": "Foot bush blooms right",
+          "colours": [
+            {
+              "hex": "#f2a93b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Vine arch",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 236
+        },
+        {
+          "name": "Twisting tendril",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 252
+        },
+        {
+          "name": "Vine leaves",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 480
+        },
+        {
+          "name": "Vine marigolds",
+          "colours": [
+            {
+              "hex": "#f2a93b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Vine blooms",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 224
+        },
+        {
+          "name": "Bougainvillea on the left post stem",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 188
+        },
+        {
+          "name": "Bougainvillea on the left post leaves",
+          "colours": [
+            {
+              "hex": "#3f9b4f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 256
+        },
+        {
+          "name": "Bougainvillea on the left post blooms",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 128
+        },
+        {
+          "name": "Crown butterfly wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 208
+        },
+        {
+          "name": "Crown butterfly wings",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 48
+        },
+        {
+          "name": "Crown butterfly wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Crown butterfly body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Crown butterfly head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Crown butterfly antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Crown butterfly antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly left wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Small butterfly left wings",
+          "colours": [
+            {
+              "hex": "#f2a93b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly left wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly left body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly left head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Small butterfly left antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly left antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly right wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Small butterfly right wings",
+          "colours": [
+            {
+              "hex": "#f2c14e",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly right wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly right body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly right head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Small butterfly right antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly right antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly pink wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Small butterfly pink wings",
+          "colours": [
+            {
+              "hex": "#e8487a",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly pink wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly pink body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly pink head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Small butterfly pink antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly pink antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly blue wing edges",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 96
+        },
+        {
+          "name": "Small butterfly blue wings",
+          "colours": [
+            {
+              "hex": "#4e8ab8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly blue wing spots",
+          "colours": [
+            {
+              "hex": "#f5e6c8",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly blue body",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Small butterfly blue head bloom",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 8
+        },
+        {
+          "name": "Small butterfly blue antenna 1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Small butterfly blue antenna -1",
+          "colours": [
+            {
+              "hex": "#3a2842",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        }
+      ],
+      "bbox": {
+        "min": [
+          -1.7408596277236938,
+          0.0,
+          -0.29350000619888306
+        ],
+        "max": [
+          1.7408596277236938,
+          3.1877999305725098,
+          0.29350000619888306
+        ]
+      },
+      "centering_offset_blender": [
+        0.01085960865020752,
+        0.0034999996423721313,
+        -0.0
+      ],
+      "bytes": 193420,
+      "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7"
+    }
+  }
+}

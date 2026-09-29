@@ -1,0 +1,182 @@
+{
+  "axes": "glTF metres, +Y up, front +Z, floor-centred origin",
+  "registry_boxes_unchanged": true,
+  "props": {
+    "casita-terrace-wall": {
+      "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "exact_gltf": {
+        "min": {
+          "x": -2.4,
+          "y": 0,
+          "z": -0.34154
+        },
+        "max": {
+          "x": 2.4,
+          "y": 2,
+          "z": 0.34154
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -2.4,
+          "y": 0,
+          "z": -0.342
+        },
+        "max": {
+          "x": 2.4,
+          "y": 2,
+          "z": 0.342
+        }
+      },
+      "size_m": {
+        "width": 4.8,
+        "height": 2,
+        "depth": 0.68307
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -2.4,
+          "y": 0,
+          "z": -0.35
+        },
+        "max": {
+          "x": 2.4,
+          "y": 2,
+          "z": 0.35
+        }
+      }
+    },
+    "flower-planter": {
+      "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "exact_gltf": {
+        "min": {
+          "x": -0.59,
+          "y": 0,
+          "z": -0.59
+        },
+        "max": {
+          "x": 0.59,
+          "y": 0.89421,
+          "z": 0.59
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.59,
+          "y": 0,
+          "z": -0.59
+        },
+        "max": {
+          "x": 0.59,
+          "y": 0.895,
+          "z": 0.59
+        }
+      },
+      "size_m": {
+        "width": 1.18,
+        "height": 0.89421,
+        "depth": 1.18
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.6,
+          "y": 0,
+          "z": -0.6
+        },
+        "max": {
+          "x": 0.6,
+          "y": 0.9,
+          "z": 0.6
+        }
+      }
+    },
+    "patterned-door": {
+      "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "exact_gltf": {
+        "min": {
+          "x": -0.8,
+          "y": 0,
+          "z": -0.2
+        },
+        "max": {
+          "x": 0.8,
+          "y": 2.4,
+          "z": 0.2
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.8,
+          "y": 0,
+          "z": -0.2
+        },
+        "max": {
+          "x": 0.8,
+          "y": 2.4,
+          "z": 0.2
+        }
+      },
+      "size_m": {
+        "width": 1.6,
+        "height": 2.4,
+        "depth": 0.4
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.8,
+          "y": 0,
+          "z": -0.2
+        },
+        "max": {
+          "x": 0.8,
+          "y": 2.4,
+          "z": 0.2
+        }
+      }
+    },
+    "butterfly-arch": {
+      "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "exact_gltf": {
+        "min": {
+          "x": -1.74086,
+          "y": 0,
+          "z": -0.2935
+        },
+        "max": {
+          "x": 1.74086,
+          "y": 3.1878,
+          "z": 0.2935
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -1.741,
+          "y": 0,
+          "z": -0.294
+        },
+        "max": {
+          "x": 1.741,
+          "y": 3.188,
+          "z": 0.294
+        }
+      },
+      "size_m": {
+        "width": 3.48172,
+        "height": 3.1878,
+        "depth": 0.587
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.8,
+          "y": 0,
+          "z": -0.3
+        },
+        "max": {
+          "x": 1.8,
+          "y": 3.2,
+          "z": 0.3
+        }
+      }
+    }
+  }
+}

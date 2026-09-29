@@ -2297,6 +2297,192 @@
       "pr": 136,
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/136",
       "implementationCommit": "7f33bf1"
+    },
+    {
+      "assetId": "casita-kit",
+      "version": "v001",
+      "role": "props",
+      "world": "B",
+      "chapter": 2,
+      "theme": "casita",
+      "glb": null,
+      "sha256": null,
+      "heightM": 3.1877999305725098,
+      "clips": [],
+      "props": [
+        {
+          "id": "casita-terrace-wall",
+          "glb": "docs/assets/media/casita-kit/v001/casita-terrace-wall.glb",
+          "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+          "bytes": 153388,
+          "triangles": 4524,
+          "materials": 3,
+          "bbox": {
+            "min": [
+              -2.4000000953674316,
+              0,
+              -0.34153681993484497
+            ],
+            "max": [
+              2.4000000953674316,
+              2,
+              0.34153681993484497
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -2.4,
+              0,
+              -0.35
+            ],
+            "max": [
+              2.4,
+              2,
+              0.35
+            ]
+          }
+        },
+        {
+          "id": "flower-planter",
+          "glb": "docs/assets/media/casita-kit/v001/flower-planter.glb",
+          "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+          "bytes": 131712,
+          "triangles": 4338,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -0.6,
+              0,
+              -0.6
+            ],
+            "max": [
+              0.6,
+              0.9,
+              0.6
+            ]
+          }
+        },
+        {
+          "id": "patterned-door",
+          "glb": "docs/assets/media/casita-kit/v001/patterned-door.glb",
+          "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+          "bytes": 97932,
+          "triangles": 2486,
+          "materials": 3,
+          "bbox": {
+            "min": [
+              -0.800000011920929,
+              0,
+              -0.20000000298023224
+            ],
+            "max": [
+              0.800000011920929,
+              2.4000000953674316,
+              0.20000000298023224
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -0.8,
+              0,
+              -0.2
+            ],
+            "max": [
+              0.8,
+              2.4,
+              0.2
+            ]
+          }
+        },
+        {
+          "id": "butterfly-arch",
+          "glb": "docs/assets/media/casita-kit/v001/butterfly-arch.glb",
+          "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+          "bytes": 193420,
+          "triangles": 4980,
+          "materials": 4,
+          "bbox": {
+            "min": [
+              -1.7408596277236938,
+              0,
+              -0.29350000619888306
+            ],
+            "max": [
+              1.7408596277236938,
+              3.1877999305725098,
+              0.29350000619888306
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -1.8,
+              0,
+              -0.3
+            ],
+            "max": [
+              1.8,
+              3.2,
+              0.3
+            ]
+          }
+        }
+      ],
+      "bounds": {
+        "convention": "glTF +Y up, front +Z; identity floor-centered roots. All four original planning boxes retained unchanged."
+      },
+      "review": "docs/assets/reviews/casita-kit/v001.md",
+      "manifest": "docs/assets/media/casita-kit/v001/sha256-manifest.json",
+      "master": "docs/assets/media/casita-kit/v001/casita-kit.blend",
+      "masterSha256": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+      "ownerReview": "pending",
+      "coordinatorReview": "passed September 29: corrected reference sheet, exact kit/reference comparison, six-petal orange flowers and B2 desktop planter/phone arch gameplay views",
+      "gameplayUse": "private-candidate under PRD-004 Q-03",
+      "sceneInstance": "blender-authoring-2 (instance 2)",
+      "prMerged": null,
+      "checks": {
+        "khronos": "0 errors and warnings on all four exact GLBs",
+        "blenderReimport": "all four exact files pass",
+        "threeAdapter": "32 rotation/scale probes plus all 36 actual B2 placements inside unchanged registry bounds; no walkable-surface overlap",
+        "chromium": "21 exact-GLB inspection views pass with no page/HTTP/GL errors",
+        "focusedTests": "8 passed: exact bytes/geometry, fixed boxes and 36 frozen placements, open arch, actual SceneAssets transforms and missing-file fallback",
+        "b2Camera": "Complete route: 29 legs, 4 ordinary fights and 1 boss fight, 3 memories, 0 recoveries; 12 desktop/phone camera probes and 17 captures; all four GLBs loaded, no page/console/HTTP/media errors",
+        "strictDocsMedia": "passed",
+        "studio": "4 cards and 8 desktop/phone static viewers load and orbit without overflow or browser errors",
+        "catalog": "102 entries, 144 thumbnails, 71 review pages, 73 exact model deliveries, 40 animated candidate viewer checks; all browser/delivery errors zero",
+        "fullSuite": "1900 passed, 34 skipped; 164 test files passed, 3 skipped",
+        "typecheck": "passed",
+        "lint": "passed",
+        "productionBuild": "passed",
+        "levelValidation": "passed",
+        "finalVerification": "docs/assets/media/casita-kit/v001/final-verification.json",
+        "artifactHashes": "177 version files plus the manifest match git inputs, the durable dev-env mirror and the Blender artifact PVC; the manifest intentionally excludes its own hash",
+        "mirrorReceipt": ".agents/evidence/casita-kit-mirror.json",
+        "finalIntakeRegression": "2 artwork-contract tests passed after the final manifest and inventory checksums were written"
+      },
+      "publication": {
+        "status": "pending coordinator PR review, merge and image publication; no deployment claim",
+        "runtimeIntegration": "Exact URLs and hashes in src/shared/theme-kits.ts. Existing B2 v5 placements: 9 walls (1.1x–1.6x), 20 planters (sixteen 2x/four 1.5x), 4 doors (1.2x–1.4x), 3 arches (1.4x/1.8x/3.4x). All origins Y=-1.4m; no template edit."
+      },
+      "sceneReleasedAt": "2026-09-29T05:48:21.021159+00:00",
+      "history": {
+        "originalPartialSheetSha256": "c3ff84d76d94cbb3bb81a6e1238216ce0ae1e0334ffcca88d3484968b63f9896",
+        "approvedCorrectedSheetSha256": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+        "recovery": "Stale historical active lease recorded before claim; live scene was released with no author jobs. Original September 26 sources, sheet and checkpoints preserved separately."
+      },
+      "rebasedOnto": "d78e146f6db2db7eb2393ec164baa06536bb71b1",
+      "implementationCommit": "fbe8b4428ee9d8d257dfd12d61434e696ec72cd1"
     }
   ]
 }

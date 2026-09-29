@@ -1,0 +1,508 @@
+{
+  "work_order": "WO111",
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "validator": {
+    "name": "Khronos glTF Validator",
+    "version": "2.0.0-dev.3.10"
+  },
+  "all_checks_pass": true,
+  "props": {
+    "casita-terrace-wall": {
+      "file": "casita-terrace-wall.glb",
+      "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "bytes": 153388,
+      "triangles": 4524,
+      "primitives": 3,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Casita satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        },
+        {
+          "name": "Casita lamp",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.36000001430511475
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -2.4000000953674316,
+          0,
+          -0.34153681993484497
+        ],
+        "max": [
+          2.4000000953674316,
+          2,
+          0.34153681993484497
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -2.4,
+          0,
+          -0.35
+        ],
+        "max": [
+          2.4,
+          2,
+          0.35
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "casita-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07, Sept 29; no generated concept",
+        "candidate_status": "WO111 casita-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "casita-terrace-wall"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "casita_identity": true,
+        "no_scene_lease_metadata": true,
+        "retains_sheet_height": true
+      },
+      "validator": {
+        "uri": "casita-terrace-wall.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T05:42:40.912Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 149976
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 3,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 3,
+          "totalVertexCount": 3412,
+          "totalTriangleCount": 4524,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "flower-planter": {
+      "file": "flower-planter.glb",
+      "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "bytes": 131712,
+      "triangles": 4338,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Casita satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.5899999737739563,
+          0,
+          -0.5899999737739563
+        ],
+        "max": [
+          0.5899999737739563,
+          0.8942082524299622,
+          0.5899999737739563
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -0.6,
+          0,
+          -0.6
+        ],
+        "max": [
+          0.6,
+          0.9,
+          0.6
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "casita-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07, Sept 29; no generated concept",
+        "candidate_status": "WO111 casita-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "flower-planter"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "casita_identity": true,
+        "no_scene_lease_metadata": true,
+        "retains_sheet_height": true
+      },
+      "validator": {
+        "uri": "flower-planter.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T05:42:40.918Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 129240
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 2867,
+          "totalTriangleCount": 4338,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "patterned-door": {
+      "file": "patterned-door.glb",
+      "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "bytes": 97932,
+      "triangles": 2486,
+      "primitives": 3,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Casita satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        },
+        {
+          "name": "Casita gloss",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.25999999046325684
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.800000011920929,
+          0,
+          -0.20000000298023224
+        ],
+        "max": [
+          0.800000011920929,
+          2.4000000953674316,
+          0.20000000298023224
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -0.8,
+          0,
+          -0.2
+        ],
+        "max": [
+          0.8,
+          2.4,
+          0.2
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "casita-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07, Sept 29; no generated concept",
+        "candidate_status": "WO111 casita-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "patterned-door"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "casita_identity": true,
+        "no_scene_lease_metadata": true,
+        "retains_sheet_height": true
+      },
+      "validator": {
+        "uri": "patterned-door.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T05:42:40.921Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 94620
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 3,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 3,
+          "totalVertexCount": 2214,
+          "totalTriangleCount": 2486,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "butterfly-arch": {
+      "file": "butterfly-arch.glb",
+      "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "bytes": 193420,
+      "triangles": 4980,
+      "primitives": 4,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Casita lamp",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.36000001430511475
+          }
+        },
+        {
+          "name": "Casita gloss",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.25999999046325684
+          }
+        },
+        {
+          "name": "Casita satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -1.7408596277236938,
+          0,
+          -0.29350000619888306
+        ],
+        "max": [
+          1.7408596277236938,
+          3.1877999305725098,
+          0.29350000619888306
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -1.8,
+          0,
+          -0.3
+        ],
+        "max": [
+          1.8,
+          3.2,
+          0.3
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "casita-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07, Sept 29; no generated concept",
+        "candidate_status": "WO111 casita-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "butterfly-arch"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "casita_identity": true,
+        "no_scene_lease_metadata": true,
+        "retains_sheet_height": true
+      },
+      "validator": {
+        "uri": "butterfly-arch.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T05:42:40.926Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 189144
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 4,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 4,
+          "totalVertexCount": 4424,
+          "totalTriangleCount": 4980,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    }
+  }
+}

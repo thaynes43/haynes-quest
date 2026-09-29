@@ -1,0 +1,396 @@
+{
+  "chapterId": "family-b2",
+  "routeId": "family-b2-casita",
+  "name": "The Magic House",
+  "theme": "casita",
+  "startAge": 2,
+  "growthMoves": [
+    "jump",
+    "high-jump"
+  ],
+  "appearanceStage": "infant",
+  "mediaFailed": 0,
+  "identities": [
+    {
+      "id": "family-b2-casita-encounter-1",
+      "role": "ordinary",
+      "asset": "bin-chicken"
+    },
+    {
+      "id": "family-b2-casita-encounter-2",
+      "role": "ordinary",
+      "asset": "bin-chicken"
+    },
+    {
+      "id": "family-b2-casita-encounter-3",
+      "role": "ordinary",
+      "asset": "bin-chicken"
+    },
+    {
+      "id": "family-b2-casita-encounter-4",
+      "role": "ordinary",
+      "asset": "bin-chicken"
+    },
+    {
+      "id": "family-b2-casita-boss",
+      "role": "boss",
+      "asset": "magic-house"
+    }
+  ],
+  "legs": [
+    {
+      "leg": "garden-gate->garden-path",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "garden-path->path-corner-west",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "path-corner-west->flagstone-bend",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "flagstone-bend->path-corner-east",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "path-corner-east->rose-walk",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "rose-walk->pot-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pot-1->pot-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pot-2->pot-3",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pot-3->flower-terrace",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "flower-terrace->sprinkler-alley",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "sprinkler-alley->petal-pad",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "detour 2",
+      "ok": true
+    },
+    {
+      "leg": "petal-pad->veranda-south",
+      "attempt": 1,
+      "mode": "bounce",
+      "planned": "launched",
+      "ok": true
+    },
+    {
+      "leg": "veranda-south->planter-hop-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "planter-hop-1->planter-hop-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "planter-hop-2->veranda-north",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "veranda-north->garden-lift",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "garden-lift->eave-balcony",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "eave-balcony->bloom-pad",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "bloom-pad->roof-west",
+      "attempt": 1,
+      "mode": "bounce",
+      "planned": "launched",
+      "ok": true
+    },
+    {
+      "leg": "roof-west->roof-walk",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "roof-walk->chimney-garden",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "detour 2",
+      "ok": true
+    },
+    {
+      "leg": "chimney-garden->dance-tile-1",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dance-tile-1->dance-tile-2",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dance-tile-2->dance-tile-3",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dance-tile-3->tile-rest",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tile-rest->dance-tile-4",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dance-tile-4->dance-tile-5",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dance-tile-5->sky-courtyard",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "sky-courtyard->sunset-overlook",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    }
+  ],
+  "recoveries": 0,
+  "fights": [
+    {
+      "slot": "ordinary-1",
+      "encounterId": "family-b2-casita-encounter-1",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-2",
+      "encounterId": "family-b2-casita-encounter-2",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-3",
+      "encounterId": "family-b2-casita-encounter-3",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-4",
+      "encounterId": "family-b2-casita-encounter-4",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "boss",
+      "encounterId": "family-b2-casita-boss",
+      "role": "boss",
+      "attacks": 4,
+      "bashes": 0,
+      "defeats": 0
+    }
+  ],
+  "pickups": [
+    "attack-tool",
+    "guard-tool"
+  ],
+  "memories": [
+    {
+      "slot": "minor-one",
+      "id": "family-b2-casita-memory-minor-one"
+    },
+    {
+      "slot": "minor-two",
+      "id": "family-b2-casita-memory-minor-two"
+    },
+    {
+      "slot": "major",
+      "id": "family-b2-casita-memory-major"
+    }
+  ],
+  "completed": true,
+  "stoppedAt": null,
+  "completion": {
+    "ageYears": 4,
+    "phase": "exploring",
+    "currentLevelId": "family-b3-stage",
+    "completedLevelIds": [
+      "family-b1-playroom",
+      "family-b2-casita"
+    ],
+    "recoveredIds": [
+      "family-b1-playroom-memory-minor-one",
+      "family-b1-playroom-memory-minor-two",
+      "family-b1-playroom-memory-major",
+      "family-b2-casita-memory-minor-one",
+      "family-b2-casita-memory-minor-two",
+      "family-b2-casita-memory-major"
+    ]
+  },
+  "screenshots": [
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-01-spawn.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-01-spawn-gate-arch-desktop.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-01-spawn-gate-arch-phone.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-01-spawn-path-bed-west-1-desktop.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-01-spawn-path-bed-west-1-phone.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-02-first-ordinary-fight.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-02-first-ordinary-fight-terrace-wall-west-1-desktop.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-02-first-ordinary-fight-terrace-wall-west-1-phone.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-02-mid-climb.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-02-mid-climb-balcony-door-desktop.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-02-mid-climb-balcony-door-phone.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-03-boss-arena.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-03-boss-arena-finish-arch-desktop.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-03-boss-arena-finish-arch-phone.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-03-boss-arena-court-wall-east-desktop.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-03-boss-arena-court-wall-east-phone.png",
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001/b2-camera/family-b2-04-finish.png"
+  ],
+  "frames": {
+    "frames": 2752,
+    "fineFrames": 2129,
+    "pageMs": 77504,
+    "wallMs": 33856
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "media": {
+    "/studio/assets/media/traveler-infant/v001/traveler-infant.glb": 200,
+    "/studio/assets/media/casita-kit/v001/butterfly-arch.glb": 200,
+    "/studio/assets/media/clearing-tree/v001/clearing-tree.glb": 200,
+    "/studio/assets/media/casita-kit/v001/flower-planter.glb": 200,
+    "/studio/assets/media/clearing-stone/v001/clearing-stone.glb": 200,
+    "/studio/assets/media/casita-kit/v001/casita-terrace-wall.glb": 200,
+    "/studio/assets/media/casita-kit/v001/patterned-door.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/windup-lantern.glb": 200,
+    "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb": 200,
+    "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": 200,
+    "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": 200,
+    "/studio/assets/media/loop-dancer/v001/loop-dancer.glb": 200,
+    "/studio/assets/media/prism-mimic/v001/prism-mimic.glb": 200,
+    "/studio/assets/media/trendweaver/v001/trendweaver.glb": 200,
+    "/studio/assets/media/bin-chicken/v001/bin-chicken.glb": 200,
+    "/studio/assets/media/magic-house/v001/magic-house.glb": 200,
+    "/studio/assets/media/arrival-landmark/v001/arrival-landmark.glb": 200,
+    "/studio/assets/media/blockling/v001/blockling.glb": 200,
+    "/studio/assets/media/signal-moth/v001/signal-moth.glb": 200,
+    "/studio/assets/media/buffer-baron/v001/buffer-baron.glb": 200,
+    "/studio/assets/media/demon-band-idol/v001/demon-band-idol.glb": 200,
+    "/studio/assets/media/bestie-pink/v001/bestie-pink.glb": 200,
+    "/studio/assets/media/bestie-black/v001/bestie-black.glb": 200,
+    "/studio/assets/media/traveler-child/v001/traveler-child.glb": 200
+  },
+  "scare": {
+    "declared": 0,
+    "expected": 0,
+    "live": 0,
+    "blackouts": 0,
+    "flickers": 0,
+    "watcherMoves": 0,
+    "watcherCreaks": 0,
+    "jumpScares": 0,
+    "events": [],
+    "closestSpots": {},
+    "shots": {}
+  },
+  "wallSeconds": 51,
+  "failure": null
+}

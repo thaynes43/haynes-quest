@@ -1,0 +1,27 @@
+{
+  "casita-terrace-wall": {
+    "glb_sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+    "views": {
+      "beauty": "71f58e7685559ce652a1648f6d1686b225c382958c5a141525e15d97281a9913"
+    }
+  },
+  "flower-planter": {
+    "glb_sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+    "views": {
+      "beauty": "bd6953f07356545e1aeaa73b12e7e0a6fa37d582996e54f4f6a68045dd30c40b",
+      "top": "f8238c3e19ce6d7dc9db72cf5e7d3f950a360ac4d6c097a9814058eb343157c7"
+    }
+  },
+  "patterned-door": {
+    "glb_sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+    "views": {
+      "beauty": "43afc4c28d9744ec7e6d3e4ad02e3c65f266fe6460dc74f7c2de145fd48143c2"
+    }
+  },
+  "butterfly-arch": {
+    "glb_sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+    "views": {
+      "beauty": "9ad1ccde1983320d29f86ec7884ecc24062028a05aabd00cfb922e15bc2879f6"
+    }
+  }
+}

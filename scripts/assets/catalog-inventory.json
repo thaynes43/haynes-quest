@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 98,
+    "entries": 102,
     "reference_sheet_entries": 8,
-    "model_entries": 69,
-    "model_files": 69,
+    "model_entries": 73,
+    "model_files": 73,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 67,
+    "completed_model_candidates": 71,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -4824,6 +4824,180 @@
         "docs/assets/media/rescue-harbor-kit/v001/three-inspection.json": "73002a6e7af230a710393839b408309b387b3d3201f6160b823544852a08fefa",
         "docs/assets/media/rescue-harbor-kit/v001/validation.json": "4d57839abb26479f68e3d7a4fb91f8fdc7b0622785f5bbce2b6c331b37003eaa",
         "docs/assets/media/rescue-harbor-kit/v001/visual-review.json": "80c790e7ffb18861e2a78d3077b822462c3f1548f1e89687988d6172e13fda0b"
+      }
+    },
+    {
+      "id": "casita-terrace-wall",
+      "title": "Casita terrace wall",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/casita-kit/v001.md#casita-terrace-wall",
+      "concept_images": [
+        "docs/assets/media/casita-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-beauty.png",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-front.png",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-side.png",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-back.png",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/casita-kit/v001/casita-terrace-wall.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+        "docs/assets/media/casita-kit/v001/casita-terrace-wall.glb": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+        "docs/assets/media/casita-kit/v001/final-verification.json": "ffe17eb646e3109d149236f39feb3d2d85c0c7c4a84abf3a70b904355c4ab05a",
+        "docs/assets/media/casita-kit/v001/provenance.json": "cbd502416de7d4fc5801f872e6ee3c140669803560c51a2f98360242de856beb",
+        "docs/assets/media/casita-kit/v001/rebase-verification.json": "7ff22995d91731c28d0075001f79cd4f2c5cc7aa5e977432e63915962d035c1f",
+        "docs/assets/media/casita-kit/v001/reference-sheet.png": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+        "docs/assets/media/casita-kit/v001/reimport.json": "33926cb48cd1cd180825e6b89837e97fd50608591d71d5d154c938cedeaf2e2e",
+        "docs/assets/media/casita-kit/v001/sha256-manifest.json": "896b9994575c49ed4d6d7105a64f22ba075d896e2b5870cf46397dee5dc45701",
+        "docs/assets/media/casita-kit/v001/source.json": "accf1c640cff4d990701c21361f050225f99696641535a6c03959995db1453f2",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-back.png": "52418e677e2128109c66777874ef304674d5fc08ae1f8d938116afd1242922f0",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-beauty.png": "1d8466a3a45d9887dac6311462c056d3683b1ca991e32f3a7375b39a633f446f",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-front.png": "be65cfc97b01287dfd608e25e6b155cfbbdd3b87af689b1d946e522d49837839",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-side.png": "68397c00edd8afcb8d229b37259b899c9274ad1f72db99cf1e8a313ae71b4872",
+        "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-threequarter.png": "462a2f4778875cea0b402da22fc2989b59435dd91d7bdd22b312961c228c3468",
+        "docs/assets/media/casita-kit/v001/three-inspection.json": "8a5e786d9e6d05670fe7509d51af021369738587dfeb198938ce6801ec89f3cf",
+        "docs/assets/media/casita-kit/v001/validation.json": "6c6cfc0aececf7180892c727e060bdaa39cdf1be0e339bcb7ae8f7fd82d05875",
+        "docs/assets/media/casita-kit/v001/visual-review.json": "d7bdaf6dd3c21a2fb9b18410fb13543dd45ddfbaa8ac4fe517f55eb3e7c1d62e"
+      }
+    },
+    {
+      "id": "flower-planter",
+      "title": "Casita flower planter",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/casita-kit/v001.md#flower-planter",
+      "concept_images": [
+        "docs/assets/media/casita-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-beauty.png",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-front.png",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-side.png",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-back.png",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-threequarter.png",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-top.png"
+      ],
+      "models": [
+        "docs/assets/media/casita-kit/v001/flower-planter.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+        "docs/assets/media/casita-kit/v001/final-verification.json": "ffe17eb646e3109d149236f39feb3d2d85c0c7c4a84abf3a70b904355c4ab05a",
+        "docs/assets/media/casita-kit/v001/flower-planter.glb": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+        "docs/assets/media/casita-kit/v001/provenance.json": "cbd502416de7d4fc5801f872e6ee3c140669803560c51a2f98360242de856beb",
+        "docs/assets/media/casita-kit/v001/rebase-verification.json": "7ff22995d91731c28d0075001f79cd4f2c5cc7aa5e977432e63915962d035c1f",
+        "docs/assets/media/casita-kit/v001/reference-sheet.png": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+        "docs/assets/media/casita-kit/v001/reimport.json": "33926cb48cd1cd180825e6b89837e97fd50608591d71d5d154c938cedeaf2e2e",
+        "docs/assets/media/casita-kit/v001/sha256-manifest.json": "896b9994575c49ed4d6d7105a64f22ba075d896e2b5870cf46397dee5dc45701",
+        "docs/assets/media/casita-kit/v001/source.json": "accf1c640cff4d990701c21361f050225f99696641535a6c03959995db1453f2",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-back.png": "1d624e8aa931836048f82e2b6e60e15d96b8459d7df92975bc8b0a65ef15ba9d",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-beauty.png": "b64e1de798bdbccf48dab5558b498a69dc5405259c8055776e0e9d3c9b46a33f",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-front.png": "b6bf95c75263589217cde14802babb256fe590ad020364e57ee9e4189a68310a",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-side.png": "2b0fdbd564fcd1f6c7098479684edd27fba5ba78fb642063ae946cb2aaf58a24",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-threequarter.png": "5351d32da7f849663fd0404b6e4239f132faf88a808942fad7b5ca9193cbc75c",
+        "docs/assets/media/casita-kit/v001/stills/flower-planter-top.png": "64bd32b13399433bb39df9e716f09f56704afc6674da6f60ab3d167ace8f1f12",
+        "docs/assets/media/casita-kit/v001/three-inspection.json": "8a5e786d9e6d05670fe7509d51af021369738587dfeb198938ce6801ec89f3cf",
+        "docs/assets/media/casita-kit/v001/validation.json": "6c6cfc0aececf7180892c727e060bdaa39cdf1be0e339bcb7ae8f7fd82d05875",
+        "docs/assets/media/casita-kit/v001/visual-review.json": "d7bdaf6dd3c21a2fb9b18410fb13543dd45ddfbaa8ac4fe517f55eb3e7c1d62e"
+      }
+    },
+    {
+      "id": "patterned-door",
+      "title": "Casita patterned door",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/casita-kit/v001.md#patterned-door",
+      "concept_images": [
+        "docs/assets/media/casita-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-beauty.png",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-front.png",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-side.png",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-back.png",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/casita-kit/v001/patterned-door.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+        "docs/assets/media/casita-kit/v001/final-verification.json": "ffe17eb646e3109d149236f39feb3d2d85c0c7c4a84abf3a70b904355c4ab05a",
+        "docs/assets/media/casita-kit/v001/patterned-door.glb": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+        "docs/assets/media/casita-kit/v001/provenance.json": "cbd502416de7d4fc5801f872e6ee3c140669803560c51a2f98360242de856beb",
+        "docs/assets/media/casita-kit/v001/rebase-verification.json": "7ff22995d91731c28d0075001f79cd4f2c5cc7aa5e977432e63915962d035c1f",
+        "docs/assets/media/casita-kit/v001/reference-sheet.png": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+        "docs/assets/media/casita-kit/v001/reimport.json": "33926cb48cd1cd180825e6b89837e97fd50608591d71d5d154c938cedeaf2e2e",
+        "docs/assets/media/casita-kit/v001/sha256-manifest.json": "896b9994575c49ed4d6d7105a64f22ba075d896e2b5870cf46397dee5dc45701",
+        "docs/assets/media/casita-kit/v001/source.json": "accf1c640cff4d990701c21361f050225f99696641535a6c03959995db1453f2",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-back.png": "df0e328c4173dfebc33f70aa9bc19f67bb0550129db94cafabadb7f6b5d10537",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-beauty.png": "6c855337076f58970b697b20e09edb29251b8eaa04589eed6fd05ec9082d8f15",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-front.png": "d80c91133dd9de95d1cdd54e7d89bc61c07b9cadd8919d1096265920b3563069",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-side.png": "723c22003875ebfafca95643b4ce40ecba09a951cac57b46b13eda77a9d29ffd",
+        "docs/assets/media/casita-kit/v001/stills/patterned-door-threequarter.png": "5d8e49090f7aa6a118e9657852d4e0e0c0810b0cd72510859bef8094fe0ad870",
+        "docs/assets/media/casita-kit/v001/three-inspection.json": "8a5e786d9e6d05670fe7509d51af021369738587dfeb198938ce6801ec89f3cf",
+        "docs/assets/media/casita-kit/v001/validation.json": "6c6cfc0aececf7180892c727e060bdaa39cdf1be0e339bcb7ae8f7fd82d05875",
+        "docs/assets/media/casita-kit/v001/visual-review.json": "d7bdaf6dd3c21a2fb9b18410fb13543dd45ddfbaa8ac4fe517f55eb3e7c1d62e"
+      }
+    },
+    {
+      "id": "butterfly-arch",
+      "title": "Candle-and-butterfly arch",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/casita-kit/v001.md#butterfly-arch",
+      "concept_images": [
+        "docs/assets/media/casita-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-beauty.png",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-front.png",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-side.png",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-back.png",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/casita-kit/v001/butterfly-arch.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/casita-kit/v001/butterfly-arch.glb": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+        "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+        "docs/assets/media/casita-kit/v001/final-verification.json": "ffe17eb646e3109d149236f39feb3d2d85c0c7c4a84abf3a70b904355c4ab05a",
+        "docs/assets/media/casita-kit/v001/provenance.json": "cbd502416de7d4fc5801f872e6ee3c140669803560c51a2f98360242de856beb",
+        "docs/assets/media/casita-kit/v001/rebase-verification.json": "7ff22995d91731c28d0075001f79cd4f2c5cc7aa5e977432e63915962d035c1f",
+        "docs/assets/media/casita-kit/v001/reference-sheet.png": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+        "docs/assets/media/casita-kit/v001/reimport.json": "33926cb48cd1cd180825e6b89837e97fd50608591d71d5d154c938cedeaf2e2e",
+        "docs/assets/media/casita-kit/v001/sha256-manifest.json": "896b9994575c49ed4d6d7105a64f22ba075d896e2b5870cf46397dee5dc45701",
+        "docs/assets/media/casita-kit/v001/source.json": "accf1c640cff4d990701c21361f050225f99696641535a6c03959995db1453f2",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-back.png": "54d5f3acb4ce39533b611309ce9ad94c8dc2cb13690f43132caaaeab088500e0",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-beauty.png": "de7bfb4fb09524787987ff30a7f1500eefe2c38cc9993348924f26550c626b49",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-front.png": "815e6c66fae95f94bcbc0b56c4f4c780e3d88352bf00e7b9529b541d68671f87",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-side.png": "fde9fd9082c735b951afaa765baed743cbdc615fa91893a88836e37edd6ee24a",
+        "docs/assets/media/casita-kit/v001/stills/butterfly-arch-threequarter.png": "5348cdb1c528718e30937e1084b2e91b0b965724bd96117964fb252da2253974",
+        "docs/assets/media/casita-kit/v001/three-inspection.json": "8a5e786d9e6d05670fe7509d51af021369738587dfeb198938ce6801ec89f3cf",
+        "docs/assets/media/casita-kit/v001/validation.json": "6c6cfc0aececf7180892c727e060bdaa39cdf1be0e339bcb7ae8f7fd82d05875",
+        "docs/assets/media/casita-kit/v001/visual-review.json": "d7bdaf6dd3c21a2fb9b18410fb13543dd45ddfbaa8ac4fe517f55eb3e7c1d62e"
       }
     }
   ],

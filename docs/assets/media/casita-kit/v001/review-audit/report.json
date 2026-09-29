@@ -1,0 +1,72 @@
+{
+  "browser": "153.0.8010.12",
+  "physicalDevice": false,
+  "results": [
+    {
+      "viewport": "desktop",
+      "id": "casita-terrace-wall",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "flower-planter",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "patterned-door",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "butterfly-arch",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "phone",
+      "id": "casita-terrace-wall",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "flower-planter",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "patterned-door",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "butterfly-arch",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    }
+  ],
+  "errors": [],
+  "outcome": "passed"
+}

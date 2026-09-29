@@ -1,0 +1,17 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "source_type": "Blender reference sheet, no generated concept",
+  "reference_author": "Claude Opus 5.5, September 26 2026",
+  "production_author": "GPT-6 Astra max, September 29 2026",
+  "sheet_completion": "Corrected planter clearance annotation only; prior geometry and source preserved",
+  "reference_sheet_sha256": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+  "partial_sheet_sha256": "c3ff84d76d94cbb3bb81a6e1238216ce0ae1e0334ffcca88d3484968b63f9896",
+  "partial_blockout_sha256": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+  "external_assets": [],
+  "private_media_used": false,
+  "owner_review": "pending",
+  "gameplay_use": "private-candidate under PRD-004 Q-03",
+  "coordinator_sheet_review": "approved September 29; retain kit direction and make orange planter blooms read as flowers"
+}

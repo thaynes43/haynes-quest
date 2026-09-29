@@ -17,6 +17,10 @@ Make amends rules. He offers no gap assist. Earlier templates keep their origina
 friendly residents. The exact candidate is reviewable in the studio; v6
 publication and Tom's final art review remain pending.
 
+## Magic House garden scenery
+
+The `casita` theme pins the four [Casita kit v001 candidates](reviews/casita-kit/v001.md): a tiled terrace wall, flower-filled planter, patterned door and candle-and-butterfly arch. The four planning boxes and all 36 B2 transforms stay unchanged. The complete synthetic B2 route passes with five fights, three memories and zero recoveries; desktop and phone camera views keep the traveler and route visible. Tom's exact-version review remains pending under PRD-004 Q-03. The release handoff records the deployed revision separately.
+
 ## How to play
 
 | Action | Touch | Keyboard and mouse |

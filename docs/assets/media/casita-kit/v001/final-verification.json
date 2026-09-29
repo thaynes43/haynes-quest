@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "base_commit": "d78e146f6db2db7eb2393ec164baa06536bb71b1",
+  "tested_scope": "Casita exact v001 production kit and registry integration after the helper merge; prior B2 camera evidence is linked to unchanged route and adapter bytes in rebase-verification.json",
+  "recorded_utc": "2026-09-29T06:19:20.732379+00:00",
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "coordinator_visual_review": "passed September 29: corrected sheet, exact kit/reference comparison, six-petal orange blooms, desktop planter and phone arch in B2 gameplay",
+  "local_checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "level_validation": "passed",
+    "strict_docs_and_media_links": "passed",
+    "full_suite": {
+      "outcome": "passed",
+      "test_files_passed": 164,
+      "test_files_skipped": 3,
+      "tests_passed": 1900,
+      "tests_skipped": 34,
+      "duration_seconds": 249.88,
+      "report": "checks/full-suite.txt",
+      "note": "Dedicated Postgres tests skip locally without QUEST_TEST_DATABASE_URL; CI supplies an isolated database."
+    },
+    "focused_tests": {
+      "passed": 8,
+      "scope": "Casita exact bytes/geometry, unchanged boxes/36 placements, open arch, real SceneAssets adapter, missing-file fallback"
+    },
+    "khronos": {
+      "files": 4,
+      "errors": 0,
+      "warnings": 0,
+      "report": "validation.json"
+    },
+    "blender_reimport": {
+      "outcome": "passed",
+      "files": 4,
+      "report": "reimport.json"
+    },
+    "three_adapter": {
+      "outcome": "passed",
+      "rotation_scale_probes": 32,
+      "actual_b2_placements": 36,
+      "report": "three-inspection.json"
+    },
+    "exact_glb_browser_views": {
+      "passed": 21,
+      "report": "stills/browser-inspection.json"
+    },
+    "desktop_phone_static_viewers": {
+      "passed": 8,
+      "report": "review-audit/report.json"
+    },
+    "b2_camera": {
+      "outcome": "passed",
+      "report": "b2-camera/report.json",
+      "route_legs": 29,
+      "ordinary_fights": 4,
+      "boss_fights": 1,
+      "memories": 3,
+      "recoveries": 0,
+      "camera_probes": 12,
+      "screenshots": 17,
+      "errors": 0,
+      "completed": true,
+      "advanced_to": "family-b3-stage",
+      "scope": "Normal public-input route through B2 completion; no teleport, player-state mutation, template edit or placement change",
+      "rendering": "Software draw calls thinned between full captures; server combat inputs paced by real time. No physical-device performance claim."
+    }
+  },
+  "full_catalog_audit": {
+    "outcome": "passed",
+    "report": "catalog-audit/report.json",
+    "overall_timeout_ms": 900000,
+    "started_utc": "2026-09-29T06:10:11.036Z",
+    "browser": {
+      "engine": "Chromium",
+      "version": "153.0.8010.12",
+      "rendering": "SwiftShader software (requested)"
+    },
+    "inventory_entries": 102,
+    "thumbnail_files": 144,
+    "review_pages": 71,
+    "exact_model_deliveries": 73,
+    "animated_candidate_viewer_checks": 40,
+    "errors": {
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0
+    },
+    "expected_metadata_preload_aborts": 12
+  },
+  "preserved_attempts": [
+    {
+      "report": "b2-camera/history/persistent-fixture-entry-failure.json",
+      "outcome": "Stopped before gameplay on a persistent fixture entry page. Repeated with the correct ephemeral fixture and completed B2."
+    },
+    {
+      "report": "catalog-audit/history/legacy-playtest-status-contract-failure.json",
+      "outcome": "Legacy assertion accepted only in-playtest wording. Updated family-era candidates to require the exact Tom-review/family-release label; complete audit then passed."
+    }
+  ],
+  "scene_release": {
+    "instance": "blender-authoring-2 (instance 2)",
+    "released_utc": "2026-09-29T05:48:21.021159+00:00",
+    "report": "scene-release.json",
+    "predecessor_source_and_export_hashes": "unchanged"
+  },
+  "browser_lease": "Chromium closed and released after catalog audit",
+  "physical_safari": "not tested",
+  "deployment": "pending coordinator review, merge and signed-image publication; no deployment performed by this lane"
+}

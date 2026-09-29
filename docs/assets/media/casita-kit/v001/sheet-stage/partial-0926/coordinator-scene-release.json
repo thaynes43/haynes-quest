@@ -1,0 +1,9 @@
+{
+ "scene_owner": "claude-opus-5-5 casita-kit reference-sheet subagent (session_016rSS1uA4XaroamTk1brNXn)",
+ "scene_lease": "active",
+ "work_order": "WO111",
+ "file": "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-kit-blockout.blend",
+ "dirty": false,
+ "checkpoint_sha256": "83948f259373abff0f4541f86a7404bb177c74e3ae6a99dc6af97bd8e2dd6375",
+ "checkpoint": "/workspace/haynes-quest/family-eras/casita-kit/v001/coordinator-handoff-checkpoint.blend"
+}

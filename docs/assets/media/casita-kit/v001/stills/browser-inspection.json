@@ -1,0 +1,814 @@
+{
+  "tool": "Chromium headless (Playwright) + three.js GLTFLoader, real WebGL raster via ANGLE SwiftShader; no physical-device claim",
+  "props": {
+    "casita-terrace-wall": {
+      "glb_sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 7,
+          "triangles": 9050,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.715081411668903,
+          "bounds": {
+            "min": [
+              -2.4000000953674316,
+              0,
+              -0.34153681993484497
+            ],
+            "max": [
+              2.4000000953674316,
+              2,
+              0.34153681993484497
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 7,
+          "triangles": 9050,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.715081411668903,
+          "bounds": {
+            "min": [
+              -2.4000000953674316,
+              0,
+              -0.34153681993484497
+            ],
+            "max": [
+              2.4000000953674316,
+              2,
+              0.34153681993484497
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 7,
+          "triangles": 9050,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.715081411668903,
+          "bounds": {
+            "min": [
+              -2.4000000953674316,
+              0,
+              -0.34153681993484497
+            ],
+            "max": [
+              2.4000000953674316,
+              2,
+              0.34153681993484497
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 7,
+          "triangles": 9050,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.715081411668903,
+          "bounds": {
+            "min": [
+              -2.4000000953674316,
+              0,
+              -0.34153681993484497
+            ],
+            "max": [
+              2.4000000953674316,
+              2,
+              0.34153681993484497
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 7,
+          "triangles": 9050,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.715081411668903,
+          "bounds": {
+            "min": [
+              -2.4000000953674316,
+              0,
+              -0.34153681993484497
+            ],
+            "max": [
+              2.4000000953674316,
+              2,
+              0.34153681993484497
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -28,
+          "elevation_deg": 16
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "flower-planter": {
+      "glb_sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 8678,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.9345122804762075,
+          "bounds": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 8678,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.9345122804762075,
+          "bounds": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 8678,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.9345122804762075,
+          "bounds": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 8678,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.9345122804762075,
+          "bounds": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "top": {
+          "view": "top",
+          "calls": 5,
+          "triangles": 8678,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.9345122804762075,
+          "bounds": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 8678,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.9345122804762075,
+          "bounds": {
+            "min": [
+              -0.5899999737739563,
+              0,
+              -0.5899999737739563
+            ],
+            "max": [
+              0.5899999737739563,
+              0.8942082524299622,
+              0.5899999737739563
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -32,
+          "elevation_deg": 38
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "patterned-door": {
+      "glb_sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 7,
+          "triangles": 4974,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.800000011920929,
+              0,
+              -0.20000000298023224
+            ],
+            "max": [
+              0.800000011920929,
+              2.4000000953674316,
+              0.20000000298023224
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 7,
+          "triangles": 4974,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.800000011920929,
+              0,
+              -0.20000000298023224
+            ],
+            "max": [
+              0.800000011920929,
+              2.4000000953674316,
+              0.20000000298023224
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 7,
+          "triangles": 4974,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.800000011920929,
+              0,
+              -0.20000000298023224
+            ],
+            "max": [
+              0.800000011920929,
+              2.4000000953674316,
+              0.20000000298023224
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 7,
+          "triangles": 4974,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.800000011920929,
+              0,
+              -0.20000000298023224
+            ],
+            "max": [
+              0.800000011920929,
+              2.4000000953674316,
+              0.20000000298023224
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 7,
+          "triangles": 4974,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.800000011920929,
+              0,
+              -0.20000000298023224
+            ],
+            "max": [
+              0.800000011920929,
+              2.4000000953674316,
+              0.20000000298023224
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -20,
+          "elevation_deg": 12
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "butterfly-arch": {
+      "glb_sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 9,
+          "triangles": 9962,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.9772788759134146,
+          "bounds": {
+            "min": [
+              -1.7408596277236938,
+              0,
+              -0.29350000619888306
+            ],
+            "max": [
+              1.7408596277236938,
+              3.1877999305725098,
+              0.29350000619888306
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 9,
+          "triangles": 9962,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.9772788759134146,
+          "bounds": {
+            "min": [
+              -1.7408596277236938,
+              0,
+              -0.29350000619888306
+            ],
+            "max": [
+              1.7408596277236938,
+              3.1877999305725098,
+              0.29350000619888306
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 9,
+          "triangles": 9962,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.9772788759134146,
+          "bounds": {
+            "min": [
+              -1.7408596277236938,
+              0,
+              -0.29350000619888306
+            ],
+            "max": [
+              1.7408596277236938,
+              3.1877999305725098,
+              0.29350000619888306
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 9,
+          "triangles": 9962,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.9772788759134146,
+          "bounds": {
+            "min": [
+              -1.7408596277236938,
+              0,
+              -0.29350000619888306
+            ],
+            "max": [
+              1.7408596277236938,
+              3.1877999305725098,
+              0.29350000619888306
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 9,
+          "triangles": 9962,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.9772788759134146,
+          "bounds": {
+            "min": [
+              -1.7408596277236938,
+              0,
+              -0.29350000619888306
+            ],
+            "max": [
+              1.7408596277236938,
+              3.1877999305725098,
+              0.29350000619888306
+            ]
+          },
+          "materials": [
+            {
+              "name": "Casita matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita lamp",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Casita satin",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -25,
+          "elevation_deg": 16
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    }
+  },
+  "browser": "153.0.8010.12",
+  "all_checks_pass": true
+}

@@ -1,0 +1,114 @@
+{
+  "part-measurements.json": {
+    "sha256": "2f44c9bef09d69249df9e101c180fe20468fb636b985370b401aa0f20dd72955",
+    "bytes": 9575
+  },
+  "casita-kit-blockout.blend1": {
+    "sha256": "18a8fd68261edbd7e48b4eda454ddf8946f0b661e87c879026dfd9e717f1edfe",
+    "bytes": 1359155
+  },
+  "coordinator-handoff-checkpoint.blend": {
+    "sha256": "83948f259373abff0f4541f86a7404bb177c74e3ae6a99dc6af97bd8e2dd6375",
+    "bytes": 21849109
+  },
+  "blockout-measurements.json": {
+    "sha256": "15e6ffa50af53561f30084f56d7f9a9dfc8a2d005c7ea575447cf7e5691d9171",
+    "bytes": 11131
+  },
+  "scene-lease.json": {
+    "sha256": "72d8bdd7fc8f6a4d610c7d14989f069ad133a5f78a054178ba8644bb035fd63b",
+    "bytes": 16661
+  },
+  "reference-sheet.png": {
+    "sha256": "c3ff84d76d94cbb3bb81a6e1238216ce0ae1e0334ffcca88d3484968b63f9896",
+    "bytes": 2262328
+  },
+  "casita-kit-reference-sheet-checkpoint.blend": {
+    "sha256": "724290118c41dca3fd494a498aac205f01aac1e91b3e2fc42c9727cc2799f964",
+    "bytes": 1982340
+  },
+  "casita-kit-blockout.blend": {
+    "sha256": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+    "bytes": 1373078
+  },
+  "sheet-render.json": {
+    "sha256": "6a67a35b94426860546d2befc3d5302378f0aeb2191875ba79f8ffe537249102",
+    "bytes": 2152
+  },
+  "claim-checkpoint.blend": {
+    "sha256": "10619c4b7014ab509fcb6430334bbb7b446ffee240cc31b4097c085e8684036f",
+    "bytes": 1412547
+  },
+  "coordinator-scene-release.json": {
+    "sha256": "802cef8714a93e08eb7e1b978093032d8ccbe9e63ecca52232b7dc0e9661c937",
+    "bytes": 462
+  },
+  "source/crops.py": {
+    "sha256": "f6a873bde5c8a6e5c02ecb99f6b9ceedca96478a01443ed76d995476bcb6f2e7",
+    "bytes": 2257
+  },
+  "source/sheet.py": {
+    "sha256": "8960b41c1c295ab85400450ac557bf59809c8a5bf568c6e4ed3bbcd56db0ab32",
+    "bytes": 18726
+  },
+  "source/measure_parts.py": {
+    "sha256": "dc9ed3e7e32afb393a3c3d44302be77e0c0f42bba92dcd95c5d46b035fd0ea03",
+    "bytes": 3576
+  },
+  "source/claim.py": {
+    "sha256": "3cea1796623815d098a1bc49f51aba63106d79ac25c2eabeec2af569a6d917ff",
+    "bytes": 3403
+  },
+  "source/final_render.py": {
+    "sha256": "94890ba6fea8295dd7ac680e7f6cab116ece229d79ff5db71d87d8679cd623a6",
+    "bytes": 1393
+  },
+  "source/build_blockout.py": {
+    "sha256": "86c7ac180ff1f5473082da48e5358aa569fb05a8f65f7ddad6d4f9df9c64f28a",
+    "bytes": 43267
+  },
+  "source/iterate_preview.py": {
+    "sha256": "36080687de0a46db3d60fa99c944e659a0c4361057524e6af7fe19f6dd24c903",
+    "bytes": 674
+  },
+  "preview/crop-butterfly-arch-three-quarter.png": {
+    "sha256": "dbb2159a8fc04304695086f206480bf5a8fda619ebc542e0d5a3d1b7c75ba962",
+    "bytes": 1048718
+  },
+  "preview/crop-flower-planter-front.png": {
+    "sha256": "80328ca9193f0e6608a486a8e1de797ffcb0d6878ff9633605ffeba2a1dda71c",
+    "bytes": 955683
+  },
+  "preview/crop-casita-terrace-wall-three-quarter.png": {
+    "sha256": "5d2ade423765ac579181248f96b4b09c67921e0854afcc16c8b61a192c7ed189",
+    "bytes": 1056068
+  },
+  "preview/crop-butterfly-arch-front.png": {
+    "sha256": "3c245aa3e6ae5dc79ca9e6ea2002f8a771beed368b62b1d75636d38bf42d65c1",
+    "bytes": 1049993
+  },
+  "preview/crop-patterned-door-front.png": {
+    "sha256": "0eb0173ffd00d2786c119335c4d873f9064349d04475a36a51cffd861c095f46",
+    "bytes": 1100038
+  },
+  "preview/crop-flower-planter-from-above.png": {
+    "sha256": "0e3e9e74ce48aa80c4e24ebc05c3280d5455ab7768106d373976a310839290a6",
+    "bytes": 1108046
+  },
+  "preview/sheet-full-draft.png": {
+    "sha256": "b65282e39032d7fcbb8a578b7a9f2aca215267c0e282fe6aaa403e6aa035e9a5",
+    "bytes": 2284183
+  },
+  "preview/crop-flower-planter-three-quarter.png": {
+    "sha256": "2f9ef1e500315e78235883033e668aa80a63b4da959383050b869a987d17dd66",
+    "bytes": 958114
+  },
+  "preview/crop-casita-terrace-wall-front.png": {
+    "sha256": "4e361f6fa0f08fb350be35c2f9858ac33f8bcf46792a620dfdf5d78e6844bb50",
+    "bytes": 969473
+  },
+  "preview/crop-patterned-door-three-quarter.png": {
+    "sha256": "3c958907e29e27f2a0c81046fcc27cc5885cd672af2755d0bf2e60b6a06bec8a",
+    "bytes": 1155011
+  }
+}

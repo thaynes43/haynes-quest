@@ -1,0 +1,39 @@
+{
+  "base_commit": "d78e146f6db2db7eb2393ec164baa06536bb71b1",
+  "commands": [
+    {
+      "command": "pnpm typecheck",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm lint",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm test",
+      "exit_code": 0,
+      "test_files_passed": 164,
+      "test_files_skipped": 3,
+      "tests_passed": 1900,
+      "tests_skipped": 34,
+      "elapsed_seconds": 249.88
+    },
+    {
+      "command": "pnpm levels:validate",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm build",
+      "exit_code": 0
+    },
+    {
+      "command": "scripts/docs/build.sh",
+      "exit_code": 0,
+      "markdown_files_checked": 323
+    }
+  ],
+  "notes": [
+    "Documentation uses the existing pinned MkDocs environment from the neighboring Rescue Harbor worktree without modifying that environment.",
+    "Postgres-only checks remain skipped without a dedicated test database; no production database is used."
+  ]
+}

@@ -1,0 +1,2488 @@
+{
+  "work_order": "WO111",
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "three_revision": "186",
+  "source": "family-world-b-v5 B2",
+  "adapter": "GLTFLoader.parseAsync exact bytes + SceneAssets.attachInstances (DecorScene path)",
+  "actual_placement_count": 36,
+  "all_checks_pass": true,
+  "props": {
+    "casita-terrace-wall": {
+      "file": "casita-terrace-wall.glb",
+      "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "bytes": 153388,
+      "triangles": 4524,
+      "meshes": 3,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita lamp",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -2.4,
+          "y": 0,
+          "z": -0.34154
+        },
+        "max": {
+          "x": 2.4,
+          "y": 2,
+          "z": 0.34154
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -2.4,
+          "y": 0,
+          "z": -0.342
+        },
+        "max": {
+          "x": 2.4,
+          "y": 2,
+          "z": 0.342
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -2.4,
+          "y": 0,
+          "z": -0.35
+        },
+        "max": {
+          "x": 2.4,
+          "y": 2,
+          "z": 0.35
+        }
+      },
+      "size_m": {
+        "width": 4.8,
+        "height": 2,
+        "depth": 0.68307
+      },
+      "adapter": {
+        "instanced_batches": 3,
+        "actual_b2_placements": 9,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "terrace-wall-west-1",
+            "rotationY": -1.5707963267948966,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -7.79069,
+                "y": -1.4,
+                "z": -29.94
+              },
+              "max": {
+                "x": -7.03931,
+                "y": 0.8,
+                "z": -24.66
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -7.8,
+                "y": -1.4,
+                "z": -29.94
+              },
+              "max": {
+                "x": -7.03,
+                "y": 0.8000000000000003,
+                "z": -24.66
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "terrace-wall-west-2",
+            "rotationY": -1.5707963267948966,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -7.79069,
+                "y": -1.4,
+                "z": -35.34
+              },
+              "max": {
+                "x": -7.03931,
+                "y": 0.8,
+                "z": -30.06
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -7.8,
+                "y": -1.4,
+                "z": -35.34
+              },
+              "max": {
+                "x": -7.03,
+                "y": 0.8000000000000003,
+                "z": -30.060000000000002
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "veranda-wall-1",
+            "rotationY": 0,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 22.92,
+                "y": -1.4,
+                "z": -22.95984
+              },
+              "max": {
+                "x": 28.68,
+                "y": 1,
+                "z": -22.14016
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 22.92,
+                "y": -1.4,
+                "z": -22.970000000000002
+              },
+              "max": {
+                "x": 28.68,
+                "y": 1,
+                "z": -22.13
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "veranda-wall-2",
+            "rotationY": 0,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 29.62,
+                "y": -1.4,
+                "z": -22.95984
+              },
+              "max": {
+                "x": 35.38,
+                "y": 1,
+                "z": -22.14016
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.62,
+                "y": -1.4,
+                "z": -22.970000000000002
+              },
+              "max": {
+                "x": 35.38,
+                "y": 1,
+                "z": -22.13
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "veranda-north-wall-east",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 39.19015,
+                "y": -1.4,
+                "z": -51.38
+              },
+              "max": {
+                "x": 40.00984,
+                "y": 1,
+                "z": -45.62
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 39.18,
+                "y": -1.4,
+                "z": -51.38
+              },
+              "max": {
+                "x": 40.02,
+                "y": 1,
+                "z": -45.62
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "chimney-wall-east-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 46.99016,
+                "y": -1.4,
+                "z": -58.98
+              },
+              "max": {
+                "x": 47.80985,
+                "y": 1,
+                "z": -53.22
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 46.98,
+                "y": -1.4,
+                "z": -58.980000000000004
+              },
+              "max": {
+                "x": 47.82,
+                "y": 1,
+                "z": -53.22
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "chimney-wall-east-2",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 46.99016,
+                "y": -1.4,
+                "z": -64.78
+              },
+              "max": {
+                "x": 47.80985,
+                "y": 1,
+                "z": -59.02
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 46.98,
+                "y": -1.4,
+                "z": -64.78
+              },
+              "max": {
+                "x": 47.82,
+                "y": 1,
+                "z": -59.019999999999996
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "court-wall-west",
+            "rotationY": 0,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": 33.06,
+                "y": -1.4,
+                "z": -88.15646
+              },
+              "max": {
+                "x": 40.74,
+                "y": 1.8,
+                "z": -87.06354
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 33.06,
+                "y": -1.4,
+                "z": -88.17
+              },
+              "max": {
+                "x": 40.739999999999995,
+                "y": 1.8000000000000003,
+                "z": -87.05
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "court-wall-east",
+            "rotationY": 0,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": 41.26,
+                "y": -1.4,
+                "z": -88.15646
+              },
+              "max": {
+                "x": 48.94,
+                "y": 1.8,
+                "z": -87.06354
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 41.260000000000005,
+                "y": -1.4,
+                "z": -88.17
+              },
+              "max": {
+                "x": 48.94,
+                "y": 1.8000000000000003,
+                "z": -87.05
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 17.6,
+                "y": -1.4,
+                "z": -20.34154
+              },
+              "max": {
+                "x": 22.4,
+                "y": 0.6,
+                "z": -19.65846
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 17.6,
+                "y": -1.4,
+                "z": -20.35
+              },
+              "max": {
+                "x": 22.4,
+                "y": 0.6000000000000001,
+                "z": -19.65
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.65846,
+                "y": -1.4,
+                "z": -27.4
+              },
+              "max": {
+                "x": 25.34154,
+                "y": 0.6,
+                "z": -22.6
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.65,
+                "y": -1.4,
+                "z": -27.4
+              },
+              "max": {
+                "x": 25.35,
+                "y": 0.6000000000000001,
+                "z": -22.6
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 27.6,
+                "y": -1.4,
+                "z": -30.34154
+              },
+              "max": {
+                "x": 32.4,
+                "y": 0.6,
+                "z": -29.65846
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 27.6,
+                "y": -1.4,
+                "z": -30.35
+              },
+              "max": {
+                "x": 32.4,
+                "y": 0.6000000000000001,
+                "z": -29.65
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.65846,
+                "y": -1.4,
+                "z": -37.4
+              },
+              "max": {
+                "x": 35.34154,
+                "y": 0.6,
+                "z": -32.6
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.65,
+                "y": -1.4,
+                "z": -37.4
+              },
+              "max": {
+                "x": 35.35,
+                "y": 0.6000000000000001,
+                "z": -32.6
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 17,
+                "y": -1.4,
+                "z": -20.42692
+              },
+              "max": {
+                "x": 23,
+                "y": 1.1,
+                "z": -19.57308
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 17,
+                "y": -1.4,
+                "z": -20.4375
+              },
+              "max": {
+                "x": 23,
+                "y": 1.1,
+                "z": -19.5625
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.57308,
+                "y": -1.4,
+                "z": -28
+              },
+              "max": {
+                "x": 25.42692,
+                "y": 1.1,
+                "z": -22
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.5625,
+                "y": -1.4,
+                "z": -28
+              },
+              "max": {
+                "x": 25.4375,
+                "y": 1.1,
+                "z": -22
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 27,
+                "y": -1.4,
+                "z": -30.42692
+              },
+              "max": {
+                "x": 33,
+                "y": 1.1,
+                "z": -29.57308
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 27,
+                "y": -1.4,
+                "z": -30.4375
+              },
+              "max": {
+                "x": 33,
+                "y": 1.1,
+                "z": -29.5625
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.57308,
+                "y": -1.4,
+                "z": -38
+              },
+              "max": {
+                "x": 35.42692,
+                "y": 1.1,
+                "z": -32
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.5625,
+                "y": -1.4,
+                "z": -38
+              },
+              "max": {
+                "x": 35.4375,
+                "y": 1.1,
+                "z": -32
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_b2_count": true,
+        "all_actual_origins_on_ground_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_b2_placement_inside_box": true,
+        "no_walkable_surface_overlap_in_actual_b2": true,
+        "retains_sheet_height": true
+      }
+    },
+    "flower-planter": {
+      "file": "flower-planter.glb",
+      "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "bytes": 131712,
+      "triangles": 4338,
+      "meshes": 2,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.59,
+          "y": 0,
+          "z": -0.59
+        },
+        "max": {
+          "x": 0.59,
+          "y": 0.89421,
+          "z": 0.59
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.59,
+          "y": 0,
+          "z": -0.59
+        },
+        "max": {
+          "x": 0.59,
+          "y": 0.895,
+          "z": 0.59
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.6,
+          "y": 0,
+          "z": -0.6
+        },
+        "max": {
+          "x": 0.6,
+          "y": 0.9,
+          "z": 0.6
+        }
+      },
+      "size_m": {
+        "width": 1.18,
+        "height": 0.89421,
+        "depth": 1.18
+      },
+      "adapter": {
+        "instanced_batches": 2,
+        "actual_b2_placements": 20,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "path-bed-west-1",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -18.33,
+                "y": -1.4,
+                "z": 4.32
+              },
+              "max": {
+                "x": -15.97,
+                "y": 0.38842,
+                "z": 6.68
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -18.349999999999998,
+                "y": -1.4,
+                "z": 4.3
+              },
+              "max": {
+                "x": -15.95,
+                "y": 0.40000000000000013,
+                "z": 6.7
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "path-bed-west-2",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -18.33,
+                "y": -1.4,
+                "z": 1.12
+              },
+              "max": {
+                "x": -15.97,
+                "y": 0.38842,
+                "z": 3.48
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -18.349999999999998,
+                "y": -1.4,
+                "z": 1.0999999999999999
+              },
+              "max": {
+                "x": -15.95,
+                "y": 0.40000000000000013,
+                "z": 3.5
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "path-bed-west-3",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -18.33,
+                "y": -1.4,
+                "z": -2.08
+              },
+              "max": {
+                "x": -15.97,
+                "y": 0.38842,
+                "z": 0.28
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -18.349999999999998,
+                "y": -1.4,
+                "z": -2.1
+              },
+              "max": {
+                "x": -15.95,
+                "y": 0.40000000000000013,
+                "z": 0.29999999999999993
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "path-bed-west-4",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -18.33,
+                "y": -1.4,
+                "z": -5.28
+              },
+              "max": {
+                "x": -15.97,
+                "y": 0.38842,
+                "z": -2.92
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -18.349999999999998,
+                "y": -1.4,
+                "z": -5.3
+              },
+              "max": {
+                "x": -15.95,
+                "y": 0.40000000000000013,
+                "z": -2.8999999999999995
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "path-bed-east-1",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -12.03,
+                "y": -1.4,
+                "z": 4.32
+              },
+              "max": {
+                "x": -9.67,
+                "y": 0.38842,
+                "z": 6.68
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -12.049999999999999,
+                "y": -1.4,
+                "z": 4.3
+              },
+              "max": {
+                "x": -9.65,
+                "y": 0.40000000000000013,
+                "z": 6.7
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "path-bed-east-2",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -12.03,
+                "y": -1.4,
+                "z": 1.12
+              },
+              "max": {
+                "x": -9.67,
+                "y": 0.38842,
+                "z": 3.48
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -12.049999999999999,
+                "y": -1.4,
+                "z": 1.0999999999999999
+              },
+              "max": {
+                "x": -9.65,
+                "y": 0.40000000000000013,
+                "z": 3.5
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "bend-bed-south-1",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -8.78,
+                "y": -1.4,
+                "z": -1.63
+              },
+              "max": {
+                "x": -6.42,
+                "y": 0.38842,
+                "z": 0.73
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -8.799999999999999,
+                "y": -1.4,
+                "z": -1.65
+              },
+              "max": {
+                "x": -6.3999999999999995,
+                "y": 0.40000000000000013,
+                "z": 0.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "bend-bed-south-2",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -5.58,
+                "y": -1.4,
+                "z": -1.63
+              },
+              "max": {
+                "x": -3.22,
+                "y": 0.38842,
+                "z": 0.73
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -5.6000000000000005,
+                "y": -1.4,
+                "z": -1.65
+              },
+              "max": {
+                "x": -3.2,
+                "y": 0.40000000000000013,
+                "z": 0.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "bend-bed-south-3",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -1.18,
+                "y": -1.4,
+                "z": -1.63
+              },
+              "max": {
+                "x": 1.18,
+                "y": 0.38842,
+                "z": 0.73
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -1.2,
+                "y": -1.4,
+                "z": -1.65
+              },
+              "max": {
+                "x": 1.2,
+                "y": 0.40000000000000013,
+                "z": 0.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "bend-bed-north-1",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -11.58,
+                "y": -1.4,
+                "z": -7.93
+              },
+              "max": {
+                "x": -9.22,
+                "y": 0.38842,
+                "z": -5.57
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -11.6,
+                "y": -1.4,
+                "z": -7.95
+              },
+              "max": {
+                "x": -9.200000000000001,
+                "y": 0.40000000000000013,
+                "z": -5.55
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "bend-bed-north-2",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -8.38,
+                "y": -1.4,
+                "z": -7.93
+              },
+              "max": {
+                "x": -6.02,
+                "y": 0.38842,
+                "z": -5.57
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -8.4,
+                "y": -1.4,
+                "z": -7.95
+              },
+              "max": {
+                "x": -6,
+                "y": 0.40000000000000013,
+                "z": -5.55
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "corner-bed-east",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 1.97,
+                "y": -1.4,
+                "z": -4.78
+              },
+              "max": {
+                "x": 4.33,
+                "y": 0.38842,
+                "z": -2.42
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 1.95,
+                "y": -1.4,
+                "z": -4.8
+              },
+              "max": {
+                "x": 4.35,
+                "y": 0.40000000000000013,
+                "z": -2.4000000000000004
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "rose-bed-west-1",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.33,
+                "y": -1.4,
+                "z": -9.78
+              },
+              "max": {
+                "x": -1.97,
+                "y": 0.38842,
+                "z": -7.42
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.35,
+                "y": -1.4,
+                "z": -9.799999999999999
+              },
+              "max": {
+                "x": -1.95,
+                "y": 0.40000000000000013,
+                "z": -7.3999999999999995
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "rose-bed-west-2",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.33,
+                "y": -1.4,
+                "z": -12.78
+              },
+              "max": {
+                "x": -1.97,
+                "y": 0.38842,
+                "z": -10.42
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.35,
+                "y": -1.4,
+                "z": -12.799999999999999
+              },
+              "max": {
+                "x": -1.95,
+                "y": 0.40000000000000013,
+                "z": -10.4
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "rose-bed-east-1",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 1.97,
+                "y": -1.4,
+                "z": -8.58
+              },
+              "max": {
+                "x": 4.33,
+                "y": 0.38842,
+                "z": -6.22
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 1.95,
+                "y": -1.4,
+                "z": -8.6
+              },
+              "max": {
+                "x": 4.35,
+                "y": 0.40000000000000013,
+                "z": -6.2
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "rose-bed-east-2",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 1.97,
+                "y": -1.4,
+                "z": -12.58
+              },
+              "max": {
+                "x": 4.33,
+                "y": 0.38842,
+                "z": -10.22
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 1.95,
+                "y": -1.4,
+                "z": -12.6
+              },
+              "max": {
+                "x": 4.35,
+                "y": 0.40000000000000013,
+                "z": -10.200000000000001
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "veranda-bed-1",
+            "rotationY": 0,
+            "scale": 1.5,
+            "bounds": {
+              "min": {
+                "x": 22.715,
+                "y": -1.4,
+                "z": -21.685
+              },
+              "max": {
+                "x": 24.485,
+                "y": -0.05869,
+                "z": -19.915
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 22.700000000000003,
+                "y": -1.4,
+                "z": -21.7
+              },
+              "max": {
+                "x": 24.5,
+                "y": -0.04999999999999982,
+                "z": -19.900000000000002
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "veranda-bed-2",
+            "rotationY": 0,
+            "scale": 1.5,
+            "bounds": {
+              "min": {
+                "x": 33.815,
+                "y": -1.4,
+                "z": -21.685
+              },
+              "max": {
+                "x": 35.585,
+                "y": -0.05869,
+                "z": -19.915
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 33.800000000000004,
+                "y": -1.4,
+                "z": -21.7
+              },
+              "max": {
+                "x": 35.6,
+                "y": -0.04999999999999982,
+                "z": -19.900000000000002
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "balcony-bed-west",
+            "rotationY": 0,
+            "scale": 1.5,
+            "bounds": {
+              "min": {
+                "x": 13.015,
+                "y": -1.4,
+                "z": -44.435
+              },
+              "max": {
+                "x": 14.785,
+                "y": -0.05869,
+                "z": -42.665
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 13,
+                "y": -1.4,
+                "z": -44.449999999999996
+              },
+              "max": {
+                "x": 14.8,
+                "y": -0.04999999999999982,
+                "z": -42.65
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "balcony-bed-east",
+            "rotationY": 0,
+            "scale": 1.5,
+            "bounds": {
+              "min": {
+                "x": 17.915,
+                "y": -1.4,
+                "z": -44.435
+              },
+              "max": {
+                "x": 19.685,
+                "y": -0.05869,
+                "z": -42.665
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 17.900000000000002,
+                "y": -1.4,
+                "z": -44.449999999999996
+              },
+              "max": {
+                "x": 19.7,
+                "y": -0.04999999999999982,
+                "z": -42.65
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 19.41,
+                "y": -1.4,
+                "z": -20.59
+              },
+              "max": {
+                "x": 20.59,
+                "y": -0.50579,
+                "z": -19.41
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.4,
+                "y": -1.4,
+                "z": -20.6
+              },
+              "max": {
+                "x": 20.6,
+                "y": -0.4999999999999999,
+                "z": -19.4
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.41,
+                "y": -1.4,
+                "z": -25.59
+              },
+              "max": {
+                "x": 25.59,
+                "y": -0.50579,
+                "z": -24.41
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.4,
+                "y": -1.4,
+                "z": -25.6
+              },
+              "max": {
+                "x": 25.6,
+                "y": -0.4999999999999999,
+                "z": -24.4
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 29.41,
+                "y": -1.4,
+                "z": -30.59
+              },
+              "max": {
+                "x": 30.59,
+                "y": -0.50579,
+                "z": -29.41
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.4,
+                "y": -1.4,
+                "z": -30.6
+              },
+              "max": {
+                "x": 30.6,
+                "y": -0.4999999999999999,
+                "z": -29.4
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.41,
+                "y": -1.4,
+                "z": -35.59
+              },
+              "max": {
+                "x": 35.59,
+                "y": -0.50579,
+                "z": -34.41
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.4,
+                "y": -1.4,
+                "z": -35.6
+              },
+              "max": {
+                "x": 35.6,
+                "y": -0.4999999999999999,
+                "z": -34.4
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 19.2625,
+                "y": -1.4,
+                "z": -20.7375
+              },
+              "max": {
+                "x": 20.7375,
+                "y": -0.28224,
+                "z": -19.2625
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.25,
+                "y": -1.4,
+                "z": -20.75
+              },
+              "max": {
+                "x": 20.75,
+                "y": -0.2749999999999999,
+                "z": -19.25
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.2625,
+                "y": -1.4,
+                "z": -25.7375
+              },
+              "max": {
+                "x": 25.7375,
+                "y": -0.28224,
+                "z": -24.2625
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.25,
+                "y": -1.4,
+                "z": -25.75
+              },
+              "max": {
+                "x": 25.75,
+                "y": -0.2749999999999999,
+                "z": -24.25
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 29.2625,
+                "y": -1.4,
+                "z": -30.7375
+              },
+              "max": {
+                "x": 30.7375,
+                "y": -0.28224,
+                "z": -29.2625
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.25,
+                "y": -1.4,
+                "z": -30.75
+              },
+              "max": {
+                "x": 30.75,
+                "y": -0.2749999999999999,
+                "z": -29.25
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.2625,
+                "y": -1.4,
+                "z": -35.7375
+              },
+              "max": {
+                "x": 35.7375,
+                "y": -0.28224,
+                "z": -34.2625
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.25,
+                "y": -1.4,
+                "z": -35.75
+              },
+              "max": {
+                "x": 35.75,
+                "y": -0.2749999999999999,
+                "z": -34.25
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_b2_count": true,
+        "all_actual_origins_on_ground_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_b2_placement_inside_box": true,
+        "no_walkable_surface_overlap_in_actual_b2": true,
+        "retains_sheet_height": true
+      }
+    },
+    "patterned-door": {
+      "file": "patterned-door.glb",
+      "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "bytes": 97932,
+      "triangles": 2486,
+      "meshes": 3,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita gloss",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.8,
+          "y": 0,
+          "z": -0.2
+        },
+        "max": {
+          "x": 0.8,
+          "y": 2.4,
+          "z": 0.2
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.8,
+          "y": 0,
+          "z": -0.2
+        },
+        "max": {
+          "x": 0.8,
+          "y": 2.4,
+          "z": 0.2
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.8,
+          "y": 0,
+          "z": -0.2
+        },
+        "max": {
+          "x": 0.8,
+          "y": 2.4,
+          "z": 0.2
+        }
+      },
+      "size_m": {
+        "width": 1.6,
+        "height": 2.4,
+        "depth": 0.4
+      },
+      "adapter": {
+        "instanced_batches": 3,
+        "actual_b2_placements": 4,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "veranda-door",
+            "rotationY": 0,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 28.19,
+                "y": -1.4,
+                "z": -22.14
+              },
+              "max": {
+                "x": 30.11,
+                "y": 1.48,
+                "z": -21.66
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.189999999999998,
+                "y": -1.4,
+                "z": -22.139999999999997
+              },
+              "max": {
+                "x": 30.11,
+                "y": 1.48,
+                "z": -21.66
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "balcony-door",
+            "rotationY": 0,
+            "scale": 1.3,
+            "bounds": {
+              "min": {
+                "x": 15.31,
+                "y": -1.4,
+                "z": -44.45
+              },
+              "max": {
+                "x": 17.39,
+                "y": 1.72,
+                "z": -43.93
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 15.310000000000002,
+                "y": -1.4,
+                "z": -44.449999999999996
+              },
+              "max": {
+                "x": 17.39,
+                "y": 1.7200000000000002,
+                "z": -43.93
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "chimney-door",
+            "rotationY": 0,
+            "scale": 1.4,
+            "bounds": {
+              "min": {
+                "x": 41.88,
+                "y": -1.4,
+                "z": -52.95
+              },
+              "max": {
+                "x": 44.12,
+                "y": 1.96,
+                "z": -52.39
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 41.88,
+                "y": -1.4,
+                "z": -52.95
+              },
+              "max": {
+                "x": 44.12,
+                "y": 1.96,
+                "z": -52.39
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "rest-door",
+            "rotationY": 0,
+            "scale": 1.2,
+            "bounds": {
+              "min": {
+                "x": 40.04,
+                "y": -1.4,
+                "z": -75.75
+              },
+              "max": {
+                "x": 41.96,
+                "y": 1.48,
+                "z": -75.27
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 40.04,
+                "y": -1.4,
+                "z": -75.75
+              },
+              "max": {
+                "x": 41.96,
+                "y": 1.48,
+                "z": -75.27000000000001
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 19.2,
+                "y": -1.4,
+                "z": -20.2
+              },
+              "max": {
+                "x": 20.8,
+                "y": 1,
+                "z": -19.8
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.2,
+                "y": -1.4,
+                "z": -20.2
+              },
+              "max": {
+                "x": 20.8,
+                "y": 1,
+                "z": -19.8
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.8,
+                "y": -1.4,
+                "z": -25.8
+              },
+              "max": {
+                "x": 25.2,
+                "y": 1,
+                "z": -24.2
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.8,
+                "y": -1.4,
+                "z": -25.8
+              },
+              "max": {
+                "x": 25.2,
+                "y": 1,
+                "z": -24.2
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 29.2,
+                "y": -1.4,
+                "z": -30.2
+              },
+              "max": {
+                "x": 30.8,
+                "y": 1,
+                "z": -29.8
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.2,
+                "y": -1.4,
+                "z": -30.2
+              },
+              "max": {
+                "x": 30.8,
+                "y": 1,
+                "z": -29.8
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.8,
+                "y": -1.4,
+                "z": -35.8
+              },
+              "max": {
+                "x": 35.2,
+                "y": 1,
+                "z": -34.2
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.8,
+                "y": -1.4,
+                "z": -35.8
+              },
+              "max": {
+                "x": 35.2,
+                "y": 1,
+                "z": -34.2
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 19,
+                "y": -1.4,
+                "z": -20.25
+              },
+              "max": {
+                "x": 21,
+                "y": 1.6,
+                "z": -19.75
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19,
+                "y": -1.4,
+                "z": -20.25
+              },
+              "max": {
+                "x": 21,
+                "y": 1.6,
+                "z": -19.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.75,
+                "y": -1.4,
+                "z": -26
+              },
+              "max": {
+                "x": 25.25,
+                "y": 1.6,
+                "z": -24
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.75,
+                "y": -1.4,
+                "z": -26
+              },
+              "max": {
+                "x": 25.25,
+                "y": 1.6,
+                "z": -24
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 29,
+                "y": -1.4,
+                "z": -30.25
+              },
+              "max": {
+                "x": 31,
+                "y": 1.6,
+                "z": -29.75
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29,
+                "y": -1.4,
+                "z": -30.25
+              },
+              "max": {
+                "x": 31,
+                "y": 1.6,
+                "z": -29.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.75,
+                "y": -1.4,
+                "z": -36
+              },
+              "max": {
+                "x": 35.25,
+                "y": 1.6,
+                "z": -34
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.75,
+                "y": -1.4,
+                "z": -36
+              },
+              "max": {
+                "x": 35.25,
+                "y": 1.6,
+                "z": -34
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_b2_count": true,
+        "all_actual_origins_on_ground_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_b2_placement_inside_box": true,
+        "no_walkable_surface_overlap_in_actual_b2": true,
+        "retains_sheet_height": true
+      }
+    },
+    "butterfly-arch": {
+      "file": "butterfly-arch.glb",
+      "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "bytes": 193420,
+      "triangles": 4980,
+      "meshes": 4,
+      "materials": [
+        {
+          "name": "Casita matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita lamp",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita gloss",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Casita satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -1.74086,
+          "y": 0,
+          "z": -0.2935
+        },
+        "max": {
+          "x": 1.74086,
+          "y": 3.1878,
+          "z": 0.2935
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -1.741,
+          "y": 0,
+          "z": -0.294
+        },
+        "max": {
+          "x": 1.741,
+          "y": 3.188,
+          "z": 0.294
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.8,
+          "y": 0,
+          "z": -0.3
+        },
+        "max": {
+          "x": 1.8,
+          "y": 3.2,
+          "z": 0.3
+        }
+      },
+      "size_m": {
+        "width": 3.48172,
+        "height": 3.1878,
+        "depth": 0.587
+      },
+      "adapter": {
+        "instanced_batches": 4,
+        "actual_b2_placements": 3,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "gate-arch",
+            "rotationY": 0,
+            "scale": 1.4,
+            "bounds": {
+              "min": {
+                "x": -9.0372,
+                "y": -1.4,
+                "z": 9.5891
+              },
+              "max": {
+                "x": -4.1628,
+                "y": 3.06292,
+                "z": 10.4109
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -9.12,
+                "y": -1.4,
+                "z": 9.58
+              },
+              "max": {
+                "x": -4.08,
+                "y": 3.0799999999999996,
+                "z": 10.42
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "golden-arch",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.8,
+            "bounds": {
+              "min": {
+                "x": 2.0717,
+                "y": -1.4,
+                "z": -50.33355
+              },
+              "max": {
+                "x": 3.1283,
+                "y": 4.33804,
+                "z": -44.06645
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 2.06,
+                "y": -1.4,
+                "z": -50.440000000000005
+              },
+              "max": {
+                "x": 3.14,
+                "y": 4.360000000000001,
+                "z": -43.96
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "finish-arch",
+            "rotationY": 0,
+            "scale": 3.4,
+            "bounds": {
+              "min": {
+                "x": 35.08108,
+                "y": -1.4,
+                "z": -115.2979
+              },
+              "max": {
+                "x": 46.91892,
+                "y": 9.43852,
+                "z": -113.3021
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.88,
+                "y": -1.4,
+                "z": -115.32
+              },
+              "max": {
+                "x": 47.12,
+                "y": 9.48,
+                "z": -113.28
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 18.25914,
+                "y": -1.4,
+                "z": -20.2935
+              },
+              "max": {
+                "x": 21.74086,
+                "y": 1.7878,
+                "z": -19.7065
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.2,
+                "y": -1.4,
+                "z": -20.3
+              },
+              "max": {
+                "x": 21.8,
+                "y": 1.8000000000000003,
+                "z": -19.7
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.7065,
+                "y": -1.4,
+                "z": -26.74086
+              },
+              "max": {
+                "x": 25.2935,
+                "y": 1.7878,
+                "z": -23.25914
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.7,
+                "y": -1.4,
+                "z": -26.8
+              },
+              "max": {
+                "x": 25.3,
+                "y": 1.8000000000000003,
+                "z": -23.2
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 28.25914,
+                "y": -1.4,
+                "z": -30.2935
+              },
+              "max": {
+                "x": 31.74086,
+                "y": 1.7878,
+                "z": -29.7065
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.2,
+                "y": -1.4,
+                "z": -30.3
+              },
+              "max": {
+                "x": 31.8,
+                "y": 1.8000000000000003,
+                "z": -29.7
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.7065,
+                "y": -1.4,
+                "z": -36.74086
+              },
+              "max": {
+                "x": 35.2935,
+                "y": 1.7878,
+                "z": -33.25914
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.7,
+                "y": -1.4,
+                "z": -36.8
+              },
+              "max": {
+                "x": 35.3,
+                "y": 1.8000000000000003,
+                "z": -33.2
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 17.82393,
+                "y": -1.4,
+                "z": -20.36688
+              },
+              "max": {
+                "x": 22.17607,
+                "y": 2.58475,
+                "z": -19.63312
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 17.75,
+                "y": -1.4,
+                "z": -20.375
+              },
+              "max": {
+                "x": 22.25,
+                "y": 2.6,
+                "z": -19.625
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.63312,
+                "y": -1.4,
+                "z": -27.17607
+              },
+              "max": {
+                "x": 25.36688,
+                "y": 2.58475,
+                "z": -22.82393
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.625,
+                "y": -1.4,
+                "z": -27.25
+              },
+              "max": {
+                "x": 25.375,
+                "y": 2.6,
+                "z": -22.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 27.82393,
+                "y": -1.4,
+                "z": -30.36688
+              },
+              "max": {
+                "x": 32.17607,
+                "y": 2.58475,
+                "z": -29.63312
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 27.75,
+                "y": -1.4,
+                "z": -30.375
+              },
+              "max": {
+                "x": 32.25,
+                "y": 2.6,
+                "z": -29.625
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.63312,
+                "y": -1.4,
+                "z": -37.17607
+              },
+              "max": {
+                "x": 35.36688,
+                "y": 2.58475,
+                "z": -32.82393
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.625,
+                "y": -1.4,
+                "z": -37.25
+              },
+              "max": {
+                "x": 35.375,
+                "y": 2.6,
+                "z": -32.75
+              }
+            },
+            "inside": true,
+            "route_overlaps": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_b2_count": true,
+        "all_actual_origins_on_ground_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_b2_placement_inside_box": true,
+        "no_walkable_surface_overlap_in_actual_b2": true,
+        "retains_sheet_height": true
+      }
+    }
+  }
+}
