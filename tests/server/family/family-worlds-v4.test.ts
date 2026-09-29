@@ -65,7 +65,7 @@ describe.each(Object.keys(WORLDS) as WorldId[])('%s@v4', (world) => {
   const v4 = registry.require(world, 'v4');
 
   it('is registered beside the frozen v1 to v3, whose fingerprints are unchanged', () => {
-    expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(['v1', 'v2', 'v3', 'v4']);
+    expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(['v1', 'v2', 'v3', 'v4', 'v5']);
     for (const version of ['v1', 'v2', 'v3']) expect(registry.require(world, version).fingerprint).toBe(FROZEN_FINGERPRINTS[`${world}@${version}`]);
     expect(v4.fingerprint).toMatch(/^[0-9a-f]{64}$/);
     expect(Object.values(FROZEN_FINGERPRINTS)).not.toContain(v4.fingerprint);
@@ -104,10 +104,10 @@ describe.each(Object.keys(WORLDS) as WorldId[])('%s@v4', (world) => {
     expect(pair.offeredFor(first, HARNESS_TODAY).map((entry) => entry.version)).toEqual(['v3', 'v4']);
     expect(pair.offeredFor(last, HARNESS_TODAY).map((entry) => entry.version)).toEqual(['v3', 'v4']);
     expect(pair.offeredFor(after, HARNESS_TODAY)).toEqual([]);
-    // v4 is the newest checked-in version, so it is every older version's update target.
+    // v5 supersedes v4; the historical v4 checks still prove its own content.
     for (const version of ['v1', 'v2', 'v3'])
-      expect(registry.newestUpgrade(world, version, spec.child.birthDate, HARNESS_TODAY)?.version, version).toBe('v4');
-    expect(registry.newestUpgrade(world, 'v4', spec.child.birthDate, HARNESS_TODAY)).toBeNull();
+      expect(registry.newestUpgrade(world, version, spec.child.birthDate, HARNESS_TODAY)?.version, version).toBe('v5');
+    expect(registry.newestUpgrade(world, 'v4', spec.child.birthDate, HARNESS_TODAY)?.version).toBe('v5');
   });
 
   it('rebases onto the synthetic birthday exactly as v3 does', () => {

@@ -28,7 +28,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Family eras {#family-eras}
 
-Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open.
+Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. The five remaining Hero City, Big Stage and Casino bonus models are registered for the pending v5 templates; the live v4 journeys still show placeholder art in those slots until the checked release is published.
 
 ### World A · Chapter 1
 
@@ -160,7 +160,7 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 
 ### [Inator Monster](reviews/inator-monster/v001.md)
 
-<span class="catalog-state">3D boss · v001 · Awaiting Tom's review · used in the family release</span>
+<span class="catalog-state">3D boss · v001 · Prepared for v5 private gameplay · awaiting Tom's exact-version review</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/41055a7f0d677d04.webp" alt="Blender reference sheet of the inator monster in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
@@ -172,7 +172,7 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 
 ### [Putty Grunt](reviews/putty-grunt/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Prepared for v5 private gameplay · awaiting Tom's exact-version review</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/bc326ff39ab6e825.webp" alt="Blender reference sheet of the putty grunt in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
@@ -184,7 +184,7 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 
 ### [Lab Robot](reviews/lab-robot/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Prepared for v5 private gameplay · awaiting Tom's exact-version review</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/e3cbf79b20fa13dd.webp" alt="Blender reference sheet of the lab robot in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
@@ -202,7 +202,7 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 
 ### [Radio Host Showman](reviews/radio-host-showman/v001.md)
 
-<span class="catalog-state">3D bonus enemy · v001 · Awaiting Tom's review · used in the family release</span>
+<span class="catalog-state">3D bonus enemy · v001 · Prepared for v5 private gameplay · awaiting Tom's exact-version review</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/652b728fcf8d6965.webp" alt="Blender reference sheet of the radio host showman in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
@@ -328,7 +328,7 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 
 ### [Demon Band Idol](reviews/demon-band-idol/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Prepared for v5 private gameplay · awaiting Tom's exact-version review</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/b6b3096ac1fc1e7a.webp" alt="Blender reference sheet of the demon band idol in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 

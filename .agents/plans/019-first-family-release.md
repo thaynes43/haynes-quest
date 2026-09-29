@@ -63,7 +63,7 @@ A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It ke
 ## Progress (September 27, weekend handoff)
 
 - **Live:** main `e976281`. Both children are on template v4 / publication r4: real photos, growth moves, scary moments, 14 sound cues, 8 era models in gameplay and the Toon Clubhouse kit.
-- **Merged but not yet in gameplay** (needs catalog v11 + template v5): Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol, Radio Host Showman.
+- **Prepared but not yet deployed:** catalog v11 and template v5 register Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman. The checked image and both children's v5 publications remain pending. Tom's exact-version reviews remain open under PRD-004 Q-03.
 - **Pending:**
   - the web-slinger helper model (checkpointed);
   - the playroom and rescue-harbor kit sheets (unreviewed), the casita sheet (partial) and the rooftop kit (not started);

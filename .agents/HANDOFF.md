@@ -38,8 +38,8 @@ Read this section first. [PLAN-019](plans/019-first-family-release.md) is **In p
 
 ### Next, in priority order
 
-1. **Register the merged Hero City, Big Stage and Casino bonus models in gameplay.** Inator Monster (A3 boss), Putty Grunt (A3 ordinary-a), Lab Robot (A3 ordinary-b), Demon Band Idol (B3 ordinaries) and Radio Host Showman (A4 bonus) are merged assets but still project candidates. Add `parody-catalog-v11` and `family-world-{a,b}@v5` (v10/v3 is the pattern, PR111), deploy, then `set-template @v5` + `publish` for both children.
-2. **Scripted jump scares** in A4, per Tom's ruling on #123: 2–3 set-piece lunges only when standing safely, as template v5+.
+1. **Finish the v5 checked release.** `parody-catalog-v11` and the separate `family-world-{a,b}@v5` generators register Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman as exact v001 private gameplay candidates; v1–v4 remain frozen. The code, catalog and tests are prepared in an unmerged branch, so live children remain on v4/r4. After CI, merge, pin and verify the signed image and media, then `set-template @v5` + `publish` for both children. Their exact-version owner reviews are pending; PRD-004 Q-03 permits labeled private candidates before review.
+2. **Finish scripted jump scares** in A4 v5, per Tom's ruling on #123: 2–3 set-piece lunges only when standing safely. The engine and template work are coordinated separately and remain pre-release.
 3. **Prop kits:**
    - Playroom and rescue-harbor sheets are rendered but **not yet reviewed**.
    - The casita sheet is partial (checkpoint above).

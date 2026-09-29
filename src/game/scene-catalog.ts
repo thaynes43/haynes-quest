@@ -29,6 +29,12 @@ const parodyMotion: Record<
   "magic-house": { contactFraction: 0.625, height: 2.898 },
   "mischief-kitten": { contactFraction: 0.625, height: 0.9186895485603485 },
   "bin-chicken": { contactFraction: 0.625, height: 1.2570000538098558 },
+  // parody-catalog-v11: exact WO111 v001 exports, contact at 1.25 s.
+  "inator-monster": { contactFraction: 0.625, height: 3.216711139418322 },
+  "putty-grunt": { contactFraction: 0.625, height: 1.4005481542008216 },
+  "demon-band-idol": { contactFraction: 0.625, height: 1.3958640411922474 },
+  "radio-host-showman": { contactFraction: 0.625, height: 2.0030001423669983 },
+  "lab-robot": { contactFraction: 0.625, height: 1.2918970584869385 },
 };
 
 interface ParodyArtworkBase {

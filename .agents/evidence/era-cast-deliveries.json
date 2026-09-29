@@ -947,7 +947,7 @@
       "prMerged": "9666be518e2be4353e4586f6c54e04b3a00d3732",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v3 (like the frozen v1 and v2) fills the A·3 boss slot with The Monster-inator project candidate (inator-monster), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 3.2167}, or 2.49 for the monster mass alone"
+        "runtimeIntegration": "Prepared in parody-catalog-v11 and family-world-a/b@v5: World A A3 boss uses the exact inator-monster@v001 GLB. Awaiting checked image deployment and family publication; Tom's exact-version review remains pending under PRD-004 Q-03."
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/112",
       "masterSha256": "72542af836a6f6ba7284fab4584f339646f69145c6e39b9fa9eff1ee17f00f96",
@@ -1063,7 +1063,7 @@
       "prMerged": "22002728e2f6d8598705d233ec0cbf45676bcaf6",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-b@v3 (like the frozen v1 and v2) fills the four B·3 ordinary slots with the Demon Idol project candidate (demon-band-idol), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.3959}"
+        "runtimeIntegration": "Prepared in parody-catalog-v11 and family-world-a/b@v5: World B B3 ordinary-1 through ordinary-4 uses the exact demon-band-idol@v001 GLB. Awaiting checked image deployment and family publication; Tom's exact-version review remains pending under PRD-004 Q-03."
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/114",
       "masterSha256": "b11910f9d2510b529e41d88cbbc01edc041161c53bac0d948f2f238f5cdc00c9",
@@ -1497,7 +1497,7 @@
       "prMerged": "010f374e6cb7bdefb27dc0d2e2ab172a066b052d",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v3 (like the frozen v1 and v2) fills two of the four A·3 ordinary slots (ordinary-1 and ordinary-3) with the Putty Grunt project candidate (putty-grunt), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.4005}, or 1.3787 for the guard pose every clip except move starts from"
+        "runtimeIntegration": "Prepared in parody-catalog-v11 and family-world-a/b@v5: World A A3 ordinary-1 and ordinary-3 uses the exact putty-grunt@v001 GLB. Awaiting checked image deployment and family publication; Tom's exact-version review remains pending under PRD-004 Q-03."
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/117",
       "masterSha256": "2cbe214c654a8c05e57ef25f6c72f5eb6a5a032c7f85c3d8992a330a7a80e273",
@@ -1627,7 +1627,7 @@
       "prMerged": "45fcc4f99d2f862573eb21ac4fa7c25e1bc02b55",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v4 (like the frozen v1 to v3) fills the A·4 optional bonus slot (bonus-1) with the Radio Showman project candidate (radio-host-showman, role ordinary, behavior preset ordinary-a), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 2.0030001423669983}. At 2.0 m he follows his own brief, above the WO111 0.8-1.4 m ordinary band; scale uniformly at integration if the slot needs ordinary sizing. src/game/scare.ts already keys the D-06 radio-static cue on this id, including the frozen editor-candidate id, and v4 sets A·4 to scare level 2."
+        "runtimeIntegration": "Prepared in parody-catalog-v11 and family-world-a/b@v5: World A A4 bonus-1 uses the exact radio-host-showman@v001 GLB. Awaiting checked image deployment and family publication; Tom's exact-version review remains pending under PRD-004 Q-03."
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/121",
       "masterSha256": "42a329e9fbcf3801048c79c96bfce337ab0d6b2953bb2b5f37ba77ed1a06ff55",
@@ -1753,10 +1753,10 @@
       "sceneReleasedAt": "2026-09-26T23:30:56.513530+00:00",
       "manifest": "docs/assets/media/lab-robot/v001/sha256-manifest.json",
       "pr": 124,
-      "prMerged": null,
+      "prMerged": "e976281dd406a7141fc5219c0e84405ee9937253",
       "publication": {
         "status": "pending checked image publication",
-        "runtimeIntegration": "PLAN-019 coordinator-owned; family-world-a@v4 (like the frozen v1 to v3) fills two of the four A·3 ordinary slots (ordinary-2 and ordinary-4) and the optional bonus slot (bonus-1) with the Lab Robot project candidate (lab-robot, role ordinary, behavior preset ordinary-b), which renders neutral placeholder art until a catalog version registers this model; suggested scene-catalog entry {contactFraction: 0.625, height: 1.2919}. v4 sets A·3 (Hero City) to scare level 1. The sheet notes' beep-beep warning cue before move and attack is not made; it belongs to the audio lane (DESIGN-008)."
+        "runtimeIntegration": "Prepared in parody-catalog-v11 and family-world-a/b@v5: World A A3 ordinary-2, ordinary-4 and bonus-1 uses the exact lab-robot@v001 GLB. Awaiting checked image deployment and family publication; Tom's exact-version review remains pending under PRD-004 Q-03."
       },
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/124",
       "masterSha256": "94751fa7a568b5406dd5af8624b72f2e4d76e3b5931e9c338f3e1fa0c56a0e6a",

@@ -157,6 +157,8 @@ node dist/server/admin.js set-template --child <child id> --template family-worl
 node dist/server/admin.js publish --child <child id>                                      # publication <id> rN ...
 ```
 
+The next checked release adds `family-world-a@v5` and `family-world-b@v5` on `parody-catalog-v11`, with five exact model candidates and A4's scripted scare spots. Once its signed image and media pass hosted checks, run the same `set-template` and `publish` sequence for both children with `@v5`. Expect 12/12 and 9/9 carried photos when their chapter choices still fit. The live children remain on v4 until those commands succeed; Tom's exact-version model reviews remain pending under PRD-004 Q-03.
+
 The family screens live in `src/client/family/`: the household home with its journey cards, administrator setup, **Add a child** and the Memories screen. Their strings are `// COPY:` placeholders. The synthetic browser journey runs the real client and family routes against a fake session cookie and an in-process fake Immich, and exercises no real sign-in or photos. Start a fresh harness for each run:
 
 ```bash

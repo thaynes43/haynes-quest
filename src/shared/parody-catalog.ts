@@ -12,6 +12,7 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v8",
   "parody-catalog-v9",
   "parody-catalog-v10",
+  "parody-catalog-v11",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
@@ -29,8 +30,7 @@ export type ParodyPeriodId =
 /**
  * Family-world era periods (DESIGN-026). A cast member whose WO111 Blender
  * model has landed is a frozen catalog entry (the first two in
- * parody-catalog-v8, six more in v10); the rest stay project enemy candidates
- * with neutral placeholder art.
+ * parody-catalog-v8, six more in v10, five more in v11).
  */
 export const FAMILY_ERA_PERIOD_IDS = [
   "toon-clubhouse-v1",
@@ -595,6 +595,45 @@ const PARODY_CANDIDATES_V10: readonly ParodyCatalogEntry[] = Object.freeze([
   }),
 ]);
 
+/**
+ * V11 registers the five remaining merged family-era models. Their exact v001
+ * owner reviews remain pending; PRD-004 Q-03 permits labeled candidates in
+ * the private family release. V10 and every earlier catalog remain immutable.
+ */
+const PARODY_CANDIDATES_V11: readonly ParodyCatalogEntry[] = Object.freeze([
+  ...PARODY_CANDIDATES_V10,
+  familyEraEntry({
+    id: "inator-monster", title: "The Monster-inator",
+    reference: "a cartoon evil scientist riding his giant rubber-suit monster",
+    role: "boss", kind: "boss", periodId: "hero-city-v1",
+    eligibleFrom: "2018-12-14", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "demon-band-idol", title: "Demon Idol",
+    reference: "a sparkly demon boy-band idol",
+    role: "ordinary", kind: "ordinary-a", periodId: "besties-obby-v1",
+    eligibleFrom: BESTIES_PARENT_LOCK_FROM, eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "putty-grunt", title: "Putty Grunt",
+    reference: "clay foot-soldier from morphing-hero shows",
+    role: "ordinary", kind: "ordinary-a", periodId: "hero-city-v1",
+    eligibleFrom: "2018-12-14", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "radio-host-showman", title: "The Radio Showman",
+    reference: "a dapper vintage radio-show host",
+    role: "ordinary", kind: "ordinary-a", periodId: "rat-casino-v1",
+    eligibleFrom: "2019-10-28", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "lab-robot", title: "Lab Robot",
+    reference: "the scientist's runaway lab robot",
+    role: "ordinary", kind: "ordinary-b", periodId: "hero-city-v1",
+    eligibleFrom: "2018-12-14", eligibleThrough: "2026-12-31",
+  }),
+]);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -608,6 +647,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v8": PARODY_CANDIDATES_V8,
   "parody-catalog-v9": PARODY_CANDIDATES_V9,
   "parody-catalog-v10": PARODY_CANDIDATES_V10,
+  "parody-catalog-v11": PARODY_CANDIDATES_V11,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();

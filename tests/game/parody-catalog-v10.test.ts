@@ -192,8 +192,8 @@ describe("parody-catalog-v10", () => {
   const v9 = PARODY_CATALOGS["parody-catalog-v9"];
   const v10 = PARODY_CATALOGS["parody-catalog-v10"];
 
-  it("is the newest catalog and an editor catalog", () => {
-    expect(PARODY_CATALOG_VERSIONS.at(-1)).toBe("parody-catalog-v10");
+  it("remains a registered editor catalog", () => {
+    expect(PARODY_CATALOG_VERSIONS).toContain("parody-catalog-v10");
     expect(LEVEL_EDITOR_CATALOG_VERSIONS).toEqual([
       "parody-catalog-v5",
       "parody-catalog-v6",
@@ -201,6 +201,7 @@ describe("parody-catalog-v10", () => {
       "parody-catalog-v8",
       "parody-catalog-v9",
       "parody-catalog-v10",
+      "parody-catalog-v11",
     ]);
   });
 
@@ -220,7 +221,7 @@ describe("parody-catalog-v10", () => {
       expect(addition.relevanceLock).toBeUndefined();
       expect(addition.referenceAvailableBy).toBe(addition.eligibleFrom);
       expect(addition.assetId).toBe(addition.id);
-      for (const version of PARODY_CATALOG_VERSIONS.slice(0, -1))
+      for (const version of PARODY_CATALOG_VERSIONS.slice(0, PARODY_CATALOG_VERSIONS.indexOf("parody-catalog-v10")))
         expect(PARODY_CATALOGS[version].some((entry) => entry.id === addition.id), version).toBe(false);
     }
   });
@@ -284,7 +285,7 @@ describe("parody-catalog-v10", () => {
     ]);
     expect(entryIds(levelEditorPreparedBonusEnemies("parody-catalog-v10"))).not.toContain("rival-mayor");
     expect(entryIds(levelEditorPreparedBonusEnemies("parody-catalog-v10"))).not.toContain("magic-house");
-    for (const version of LEVEL_EDITOR_CATALOG_VERSIONS.slice(0, -1))
+    for (const version of LEVEL_EDITOR_CATALOG_VERSIONS.slice(0, LEVEL_EDITOR_CATALOG_VERSIONS.indexOf("parody-catalog-v10")))
       for (const entry of V10_ADDITIONS)
         expect(ids(levelEditorPreparedEnemies(version)), version).not.toContain(`${entry.id}@v001`);
   });
