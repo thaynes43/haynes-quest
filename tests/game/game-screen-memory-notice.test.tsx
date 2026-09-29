@@ -311,10 +311,25 @@ describe("Peripheral memory feedback and automatic recovery", () => {
   it("shows the new chapter's two-fight boss objective as wins are confirmed", async () => {
     const save = routeMemorySave();
     save.adventure!.activeLevel!.bossPrerequisiteDefeats = 2;
-    await renderRoute(save);
+    const handle = await renderRoute(save);
     const objective = () => container.querySelector(".fight-objective");
     expect(objective()?.textContent).toContain("Boss: beat 2 foes");
     expect(objective()?.textContent).toContain("0/2");
+    await act(async () =>
+      container
+        .querySelector<HTMLButtonElement>(".fight-return-button")
+        ?.click(),
+    );
+    expect(handle.returnToChapterStart).toHaveBeenCalledTimes(1);
+    await act(async () =>
+      options!.onStatus?.({
+        ...status(),
+        nearLockedBossId: save.adventure!.activeLevel!.encounters.find(
+          (enemy) => enemy.role === "boss",
+        )!.id,
+      }),
+    );
+    expect(objective()?.textContent).toContain("Boss locked · 2 foes left");
 
     let current = save;
     for (const winCount of [1, 2]) {
@@ -341,6 +356,7 @@ describe("Peripheral memory feedback and automatic recovery", () => {
       current = next;
     }
     expect(objective()?.textContent).toContain("Boss unlocked!");
+    expect(container.querySelector(".fight-return-button")).toBeNull();
   });
 
   it("shows boss health only after the fight engages", async () => {

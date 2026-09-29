@@ -855,11 +855,24 @@ function Adventure({
               <span>
                 {ordinaryWins >= bossRequiredWins
                   ? "Boss unlocked!"
-                  : `Boss: beat ${bossRequiredWins} foes`}
+                  : status?.nearLockedBossId
+                    ? `Boss locked · ${bossRequiredWins - ordinaryWins} ${bossRequiredWins - ordinaryWins === 1 ? "foe" : "foes"} left`
+                    : `Boss: beat ${bossRequiredWins} foes`}
               </span>
               <b>
                 {Math.min(ordinaryWins, bossRequiredWins)}/{bossRequiredWins}
               </b>
+              {ordinaryWins < bossRequiredWins && (
+                <button
+                  type="button"
+                  className="fight-return-button"
+                  aria-label="Return to chapter start"
+                  disabled={busy}
+                  onClick={() => game.current?.returnToChapterStart()}
+                >
+                  ↶ Return to start
+                </button>
+              )}
             </div>
           )}
         {routeMemories && view.phase === "memory-released" && (

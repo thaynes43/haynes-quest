@@ -1913,6 +1913,7 @@ footer {
 }
 .fight-objective {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
   margin: 8px 0;
@@ -1930,6 +1931,27 @@ footer {
 .fight-objective b {
   white-space: nowrap;
   color: #ffe0a2;
+}
+.fight-return-button {
+  flex: 0 0 100%;
+  min-height: 34px;
+  margin-top: 2px;
+  border: 1px solid #d8f3d1;
+  border-radius: 7px;
+  background: #26675dcf;
+  color: #f9ffe8;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.fight-return-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.fight-return-button:disabled {
+  opacity: 0.5;
 }
 .era-objective {
   pointer-events: none;
