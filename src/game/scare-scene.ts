@@ -33,7 +33,8 @@ export const SCARE_FOG_SCALE = Object.freeze({
   2: Object.freeze({ near: 0.35, far: 0.5 }),
 });
 const COLD_NIGHT = 0x0e1524;
-const COLD_MIX = 0.62;
+/** Level 2 pushes the sky and fog farther toward cold night than level 1. */
+const COLD_MIX = Object.freeze({ 1: 0.62, 2: 0.82 } as const);
 const EYE_COLOR = 0xff3b2e;
 /** Level 2 eyes: a faint ember between scares, flaring in flickers and blackouts. */
 const EYE_DIM = 0.45;
@@ -113,7 +114,7 @@ export class ScareVisuals {
       this.scene.background instanceof THREE.Color
         ? this.scene.background
         : new THREE.Color(0x000000);
-    this.night.copy(background).lerp(new THREE.Color(COLD_NIGHT), COLD_MIX);
+    this.night.copy(background).lerp(new THREE.Color(COLD_NIGHT), COLD_MIX[this.level]);
     const fog = this.scene.fog instanceof THREE.Fog ? this.scene.fog : null;
     if (fog) {
       fog.near *= SCARE_FOG_SCALE[this.level].near;
