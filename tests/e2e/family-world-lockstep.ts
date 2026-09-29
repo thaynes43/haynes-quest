@@ -26,7 +26,8 @@
  *
  * Screenshots: spawn, the first ordinary fight (taken beside the enemy before
  * the first strike), mid-climb, the boss arena (beside the boss) and finish.
- * `QUEST_E2E_UNTIL=boss-arena` bounds a run to a cast check: each chapter
+ * `QUEST_E2E_UNTIL=first-fight` stops after the first ordinary fight screenshot,
+ * before the first strike. `QUEST_E2E_UNTIL=boss-arena` bounds a run to a cast check: each chapter
  * stops once the boss-arena screenshot is taken, and a stop there counts as a
  * pass. `QUEST_E2E_UNTIL=spawn` bounds it to a load check: the chapter stops
  * after its spawn screenshots and `QUEST_E2E_SPAWN_IDLE` seconds standing.
@@ -55,7 +56,7 @@
  *   QUEST_E2E_RUN_LABEL  report folder under test-results/family-world (default candidate)
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
  *   QUEST_E2E_SCALE      device scale while playing (default 0.25; screenshots use 1)
- *   QUEST_E2E_UNTIL      complete (default), boss-arena, spawn or watcher-probe
+ *   QUEST_E2E_UNTIL      complete (default), first-fight, boss-arena, spawn or watcher-probe
  *   QUEST_E2E_SPAWN_IDLE seconds of page time to stand at spawn for QUEST_E2E_UNTIL=spawn (default 20)
  *   QUEST_E2E_SCARY_MOMENTS on (default) or off
  *   QUEST_E2E_JUMP_SCARE encounter slot to be knocked out by (default none)
@@ -110,8 +111,8 @@ const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);
 assert.ok(playScale >= 0.1 && playScale <= 1, "QUEST_E2E_SCALE must be 0.1 to 1");
 const until = process.env.QUEST_E2E_UNTIL ?? "complete";
 assert.ok(
-  ["complete", "boss-arena", "spawn", "watcher-probe"].includes(until),
-  "QUEST_E2E_UNTIL must be complete, boss-arena, spawn or watcher-probe",
+  ["complete", "first-fight", "boss-arena", "spawn", "watcher-probe"].includes(until),
+  "QUEST_E2E_UNTIL must be complete, first-fight, boss-arena, spawn or watcher-probe",
 );
 const spawnIdleSeconds = Number(process.env.QUEST_E2E_SPAWN_IDLE ?? 20);
 assert.ok(spawnIdleSeconds >= 0 && spawnIdleSeconds <= 300, "QUEST_E2E_SPAWN_IDLE must be 0 to 300");
@@ -1395,6 +1396,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
               } else if (!firstOrdinaryShot) {
                 firstOrdinaryShot = true;
                 await shot("02-first-ordinary-fight");
+                if (until === "first-fight") throw new StopAt("first-fight");
               }
             },
             slot === jumpScareSlot && !knockoutForced

@@ -45,6 +45,7 @@ import {
 } from "./world-themes";
 import { effectiveScareLevel, type ScareLunge } from "./scare";
 import { modelFrameBounds, ScareVisuals, watcherPoseRoll } from "./scare-scene";
+import { ScenicCameraOcclusion } from "./camera-occlusion";
 
 type PhotoState = {
   url: string;
@@ -146,6 +147,7 @@ export class GardenScene {
   private readonly sightDirection = new THREE.Vector3();
   private readonly target = new THREE.Vector3();
   private readonly desiredCamera = new THREE.Vector3();
+  private readonly scenicCameraOcclusion = new ScenicCameraOcclusion();
   private world = new THREE.Group();
   private traveler = new THREE.Group();
   private avatarVisual = new THREE.Group();
@@ -291,6 +293,7 @@ export class GardenScene {
   }
 
   rebuildRoute(level: LevelLayout, save: SaveView): void {
+    this.scenicCameraOcclusion.clear();
     this.routeGeneration += 1;
     this.unsupportedContentCount = 0;
     this.scareVisuals?.dispose();
@@ -1167,6 +1170,8 @@ export class GardenScene {
     this.camera.lookAt(this.target);
     const lunge = frame?.scare?.lunge;
     if (lunge) this.frameLunge(lunge, frame.enemies);
+    if (lunge) this.scenicCameraOcclusion.clear();
+    else this.scenicCameraOcclusion.update(this.camera.position, this.target, this.practicalRoots());
     this.sun.position.set(position.x - 7, 13, position.z + 6);
     this.sun.target.position.set(position.x, 0, position.z - 4);
     for (const pickup of this.pickups.values()) {
@@ -1240,6 +1245,7 @@ export class GardenScene {
 
   dispose(): void {
     if (this.disposed) return;
+    this.scenicCameraOcclusion.clear();
     this.disposed = true;
     this.routeGeneration++;
     this.avatarGeneration++;
