@@ -15,8 +15,13 @@
       "passed": 158,
       "scope": "Rooftop City, A3 and theme registry"
     },
-    "full_suite": "running",
-    "strict_docs_and_media_links": "pending",
+    "full_suite": {
+      "outcome": "initial run failed one obsolete no-GLB expectation; corrected file passes 20 tests; final combined-base run pending",
+      "tests_passed": 1893,
+      "tests_failed": 1,
+      "tests_skipped": 34
+    },
+    "strict_docs_and_media_links": "passed",
     "khronos": {
       "files": 4,
       "errors": 0,
@@ -52,7 +57,12 @@
     }
   },
   "full_catalog_audit": "pending final merged-base rebase",
-  "desktop_phone_static_viewers": "pending",
+  "desktop_phone_static_viewers": {
+    "outcome": "passed",
+    "viewers": 8,
+    "errors": 0,
+    "report": "review-audit/report.json"
+  },
   "scene_release": {
     "instance": "blender-authoring-2",
     "released_utc": "2026-09-29T06:11:06.741969+00:00",

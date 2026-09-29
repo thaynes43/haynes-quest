@@ -20,10 +20,15 @@ for id,title in IDS.items():
         'thumbnail':None,'version':'v001','state':"completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
         'gameplay_use':'private-candidate','checksums':{s:sha(Path(s)) for s in sorted(sources)}})
 for k in ('entries','model_entries','model_files','completed_model_candidates'):inventory['counts'][k]+=added
-p.write_text(json.dumps(inventory,indent=2)+'\n')
+p.write_text(json.dumps(inventory,indent=2,ensure_ascii=False)+'\n')
 for file in ('tests/game/playtest-artwork-contract.test.ts','tests/e2e/visual-catalog.mjs'):
     p=Path(file);s=p.read_text()
     for k,v in inventory['counts'].items():s=re.sub(r'(?m)^(\s*'+k+r': )\d+,',lambda m:m[1]+str(v)+',',s)
+    if file.endswith('visual-catalog.mjs'):
+        manifest=Path('docs/assets/media/catalog-thumbnails/v001/manifest.json')
+        if manifest.exists():
+            total=len(json.loads(manifest.read_text())['files'])
+            s=re.sub(r'const expectedThumbnailFiles = \d+;',f'const expectedThumbnailFiles = {total};',s)
     p.write_text(s)
 p=Path('docs/assets/catalog.md');s=p.read_text()
 s=re.sub(r'\*\*\d+ completed models',f'**{inventory["counts"]["completed_model_candidates"]} completed models',s)

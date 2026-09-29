@@ -1,0 +1,72 @@
+{
+  "browser": "153.0.8010.12",
+  "physicalDevice": false,
+  "results": [
+    {
+      "viewport": "desktop",
+      "id": "water-tower",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "rooftop-ac-unit",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "crane-hook",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "billboard-frame",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "phone",
+      "id": "water-tower",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "rooftop-ac-unit",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "crane-hook",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "billboard-frame",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    }
+  ],
+  "errors": [],
+  "outcome": "passed"
+}

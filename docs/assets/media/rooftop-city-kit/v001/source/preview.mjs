@@ -2,9 +2,8 @@
  * Copy into a haynes-quest worktree at scripts/assets/rooftop-city-kit/v001/ and run from the repo root:
  *   node scripts/assets/rooftop-city-kit/v001/preview.mjs <artifact-dir> <out-dir>
  * Real WebGL raster in headless Chromium (ANGLE SwiftShader) through three.js GLTFLoader, one page per prop.
- * Matched views (orthographic, one scale per prop, level camera) follow the reference sheets: front (+Z), side (front
- * toward the viewer's right), back, three-quarter (front-left camera, as the sheet's +45 deg turn); plus an elevated
- * perspective beauty from the front-right matching the concept draft's three-quarter. No physical-device claim. */
+ * Inspection views are front (+Z), side, back and a level front-right three-quarter, plus an elevated
+ * perspective beauty. The reference is a Blender construction sheet, not a generated concept. No device claim. */
 import {createServer} from 'node:http';
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import path from 'node:path';
