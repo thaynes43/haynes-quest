@@ -1911,6 +1911,26 @@ footer {
   font-size: 12px;
   line-height: 1.4;
 }
+.fight-objective {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+  padding: 7px 9px;
+  border: 1px solid #ffe2a17a;
+  border-radius: 8px;
+  background: #744b2d99;
+  color: #fff0d4;
+  font-size: 11px;
+  line-height: 1.15;
+}
+.fight-objective > span:nth-child(2) {
+  flex: 1;
+}
+.fight-objective b {
+  white-space: nowrap;
+  color: #ffe0a2;
+}
 .era-objective {
   pointer-events: none;
   position: absolute;

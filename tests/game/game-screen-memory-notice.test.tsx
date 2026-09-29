@@ -307,6 +307,41 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     expect(container.querySelector(".combat-attack")).not.toBeNull();
   });
 
+  it("shows the new chapter's two-fight boss objective as wins are confirmed", async () => {
+    const save = routeMemorySave();
+    save.adventure!.activeLevel!.bossPrerequisiteDefeats = 2;
+    await renderRoute(save);
+    const objective = () => container.querySelector(".fight-objective");
+    expect(objective()?.textContent).toContain("Boss: beat 2 foes");
+    expect(objective()?.textContent).toContain("0/2");
+
+    let current = save;
+    for (const winCount of [1, 2]) {
+      const next = structuredClone(current);
+      next.revision += 1;
+      const ordinary = next.adventure!.activeLevel!.encounters.filter(
+        (enemy) => enemy.role === "ordinary",
+      )[winCount - 1]!;
+      ordinary.hp = 0;
+      ordinary.defeated = true;
+      mocks.api.mockResolvedValueOnce(next);
+      await act(async () => {
+        await options!.onAction({
+          actionId: `11111111-1111-4111-8111-11111111111${winCount}`,
+          expectedRevision: current.revision,
+          action: {
+            type: "attack",
+            levelId,
+            encounterId: ordinary.id,
+          },
+        });
+      });
+      expect(objective()?.textContent).toContain(`${winCount}/2`);
+      current = next;
+    }
+    expect(objective()?.textContent).toContain("Boss unlocked!");
+  });
+
   it("shows boss health only after the fight engages", async () => {
     const save = routeMemorySave();
     save.adventure!.activeLevel!.encounters.find(

@@ -332,6 +332,11 @@ function Adventure({
     .filter((item) => item.kind === "guard-tool" && item.collected)
     .sort((a, b) => b.tier - a.tier)[0];
   const boss = level?.encounters.find((enemy) => enemy.role === "boss");
+  const bossRequiredWins = level?.bossPrerequisiteDefeats ?? 0;
+  const ordinaryWins =
+    level?.encounters.filter(
+      (enemy) => enemy.role === "ordinary" && enemy.defeated,
+    ).length ?? 0;
   const nearbyPickup = level?.pickups.find(
     (pickup) => pickup.pickupId === status?.nearPickupId,
   );
@@ -842,6 +847,21 @@ function Adventure({
             <b aria-hidden="true">{minorCount} / 2</b>
           </div>
         )}
+        {bossRequiredWins > 0 &&
+          view.phase === "exploring" &&
+          !boss?.defeated && (
+            <div className="fight-objective" role="status">
+              <span aria-hidden="true">⚔</span>
+              <span>
+                {ordinaryWins >= bossRequiredWins
+                  ? "Boss unlocked!"
+                  : `Boss: beat ${bossRequiredWins} foes`}
+              </span>
+              <b>
+                {Math.min(ordinaryWins, bossRequiredWins)}/{bossRequiredWins}
+              </b>
+            </div>
+          )}
         {routeMemories && view.phase === "memory-released" && (
           <p className="memory-next-step" role="status">
             {missingMinorCount > 0
