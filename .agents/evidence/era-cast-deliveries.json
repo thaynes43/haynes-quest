@@ -2133,6 +2133,154 @@
       "pr": 135,
       "prUrl": "https://github.com/thaynes43/haynes-quest/pull/135",
       "implementationCommit": "361bf37"
+    },
+    {
+      "assetId": "web-slinger-helper",
+      "version": "v001",
+      "role": "friendly",
+      "world": "A",
+      "chapter": 3,
+      "glb": "docs/assets/media/web-slinger-helper/v001/web-slinger-helper.glb",
+      "sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+      "heightM": 1.1938401043426174,
+      "bounds": {
+        "convention": "glTF +Y up, forward -Z; stationary floor-centered root",
+        "rest": {
+          "min": [
+            -0.456819309532218,
+            0.0030000647020955924,
+            -0.19735909573956723
+          ],
+          "max": [
+            0.456819309532218,
+            1.1938401043426174,
+            0.1780000066368746
+          ]
+        },
+        "idle": {
+          "min": [
+            -0.33446647137604435,
+            0.003000214250868821,
+            -0.1973590970349446
+          ],
+          "max": [
+            0.385741636821598,
+            1.1917646676021116,
+            0.17800000585668202
+          ]
+        },
+        "animated": {
+          "min": [
+            -0.456819309532218,
+            0.001313448579116634,
+            -0.4989295749286611
+          ],
+          "max": [
+            0.46724795955818066,
+            1.2860457287572613,
+            0.34771769341416287
+          ]
+        },
+        "culling": {
+          "min": [
+            -0.462,
+            -0.004,
+            -0.504
+          ],
+          "max": [
+            0.473,
+            1.292,
+            0.353
+          ]
+        }
+      },
+      "attackContactS": 1.25,
+      "clips": [
+        {
+          "name": "idle",
+          "duration_s": 3.0,
+          "loop": true,
+          "clamp_when_finished": false,
+          "frames": 91,
+          "fps": 30,
+          "contact_time_s": null,
+          "contact_fraction": null,
+          "held_final_pose_from_s": null,
+          "ends_on_sheet_pose": true
+        },
+        {
+          "name": "move",
+          "duration_s": 1.0,
+          "loop": true,
+          "clamp_when_finished": false,
+          "frames": 31,
+          "fps": 30,
+          "contact_time_s": null,
+          "contact_fraction": null,
+          "held_final_pose_from_s": null,
+          "ends_on_sheet_pose": false
+        },
+        {
+          "name": "attack",
+          "duration_s": 2.0,
+          "loop": false,
+          "clamp_when_finished": true,
+          "frames": 61,
+          "fps": 30,
+          "contact_time_s": 1.25,
+          "contact_fraction": 0.625,
+          "held_final_pose_from_s": null,
+          "ends_on_sheet_pose": true
+        },
+        {
+          "name": "hit",
+          "duration_s": 0.6,
+          "loop": false,
+          "clamp_when_finished": true,
+          "frames": 19,
+          "fps": 30,
+          "contact_time_s": null,
+          "contact_fraction": null,
+          "held_final_pose_from_s": null,
+          "ends_on_sheet_pose": true
+        },
+        {
+          "name": "defeat",
+          "duration_s": 2.0,
+          "loop": false,
+          "clamp_when_finished": true,
+          "frames": 61,
+          "fps": 30,
+          "contact_time_s": null,
+          "contact_fraction": null,
+          "held_final_pose_from_s": 1.6,
+          "ends_on_sheet_pose": false
+        }
+      ],
+      "review": "docs/assets/reviews/web-slinger-helper/v001.md",
+      "manifest": "docs/assets/media/web-slinger-helper/v001/sha256-manifest.json",
+      "master": "docs/assets/media/web-slinger-helper/v001/web-slinger-helper.blend",
+      "masterSha256": "89c1008dfe2e95af8c8d1adb02da85ebaf11d96652a553679f577a97fc04ef42",
+      "ownerReview": "pending",
+      "coordinatorReview": "Driving Astra selected approved sheet, fresh idle render, five-clip exact-export sheet and 35% attack strip on September 29",
+      "gameplayUse": "private-candidate under PRD-004 Q-03; prepared for family-world-a@v6 friendly-2 in Hero City",
+      "sceneInstance": "blender-authoring (instance 1, primary)",
+      "sceneReleasedAt": "2026-09-29T04:58:09.636074+00:00",
+      "priorFamilyEraFilesUnchanged": 96,
+      "prMerged": null,
+      "checks": {
+        "khronos": "0 errors, warnings, infos and hints",
+        "threeFriendlyRuntime": "39 checks pass; exact helper URL, 60 Hz vertices, idle/hit/held defeat/reload/amends, culling bounds applied to both primitives",
+        "blenderAttachments": "all 8 checks pass; 27 listed pairs, 263 authored frames; recorded rope-opening overlap excluded",
+        "chromium": "all five clips at normal and 35% scale; 0 console/HTTP/WebGL errors",
+        "artifactManifest": "168 exact hashes checked during catalog intake"
+      },
+      "publication": {
+        "status": "pending coordinator PR review, merge and deployment",
+        "friendlyCatalog": "friendly-catalog-v2",
+        "template": "family-world-a@v6",
+        "frozenHistory": "friendly-catalog-v1 and family-world-a@v1-v5 unchanged"
+      }
     }
   ]
 }

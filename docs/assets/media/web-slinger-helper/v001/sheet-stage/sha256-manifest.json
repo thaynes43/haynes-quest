@@ -1,0 +1,212 @@
+{
+  "work_order": "WO111",
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "status": "sheet-ready",
+  "source": "Blender reference sheet, no generated concept",
+  "blender_instance": "blender-authoring (instance 1, primary)",
+  "remote_dir": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001",
+  "durable_dir": "/home/dev/artifacts/haynes-quest/family-eras/web-slinger-helper/v001",
+  "glb_sha256": "none",
+  "scene_released_utc": "2026-09-26T19:04:06.800778+00:00",
+  "generated_utc": "2026-09-26T19:04:21.980445+00:00",
+  "notes": [
+    "remote *.blend1 files are Blender automatic backups of earlier blockout saves and are not copied: web-slinger-helper-blockout.blend1",
+    "claim-checkpoint.blend is a copy of the released predecessor (lab-robot v001) live scene taken at claim time, kept for recovery.",
+    "web-slinger-helper-reference-sheet-checkpoint.blend is the sheet scene saved right after the final render, before the release stamp.",
+    "preview/sheet-preview.png is the last half-size iteration preview of the same final scene; reference-sheet.png is the final 2048x1024 render.",
+    "local_only files are the local MCP runner and helpers (source/run.py, source/transfer.py, source/upload_notes.py, source/collect.py, source/fetchprev.py), never executed inside Blender.",
+    "The artifact route serves neither .py nor .md, so source/*.py and reference-notes.md were uploaded from these local bytes with a sha256 check; the manifest confirms each against the remote listing."
+  ],
+  "files": {
+    "blockout-measurements.json": {
+      "sha256": "33fe3868892b4c58b6e4db26dd8da59e4bfb56f383064e7d5601ed718982e977",
+      "bytes": 1247,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "claim-checkpoint.blend": {
+      "sha256": "261b2f56ee86d62c2d2347d5cfd9190a5d2dc7b6cc0d408a7a6e97ef16c4bb54",
+      "bytes": 983533,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "live-scene-release.blend": {
+      "sha256": "a9704bebbbbdaeede16c95b464990fbaa612e4ec400110dbd47ea0fbea07919d",
+      "bytes": 1297572,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "part-measurements.json": {
+      "sha256": "66b1ee82c21d634a59f3469074f0141061f6c7db250a7b174ae7124a7961494c",
+      "bytes": 7318,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-back.png": {
+      "sha256": "100f298f1673f6b4e8764a56d15ab28322f5ba322d1ed2016f899e676d46e19e",
+      "bytes": 972828,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-face-front.png": {
+      "sha256": "d8ab9f23057133204272b84b5bd6875fa4f34b86ef162c05f74954ed16f2bd26",
+      "bytes": 1131103,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-face-three-quarter.png": {
+      "sha256": "29e35076803f6d7ae719d6b2372aa5f00c55fec702d5ee2c1b72a7e412eeee70",
+      "bytes": 1096232,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-front.png": {
+      "sha256": "5b5c2a8d7c3039774b148499813b672eeb8dbc76d85364e9c63daba1359d99fd",
+      "bytes": 1039586,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-side.png": {
+      "sha256": "cec06ae296da76bc02a800b674522491fd3e3d417326085368efd68bb8799248",
+      "bytes": 939391,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/crop-three-quarter.png": {
+      "sha256": "f6552b3e88cc7a2b24aa9c2f2074f9caff8a8ad78595397070ae7be3e22379da",
+      "bytes": 980377,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "preview/sheet-preview.png": {
+      "sha256": "3a9a44f9bbac93e6a6b9cad94ce587c653bafd546a080cf4a729576fbffe7d9a",
+      "bytes": 568197,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "reference-notes.md": {
+      "sha256": "0ea718598806c763613b69af8d2a2265b5c044b7f4e6607ce030d1cc6c8531ed",
+      "bytes": 20355,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "reference-sheet.png": {
+      "sha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+      "bytes": 2047456,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "scene-lease.json": {
+      "sha256": "c77e38b9f4a3de2acc6b22ceda716ffbb9416bce15be2a4300187f4dcf0dd4f4",
+      "bytes": 16918,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "scene-release.json": {
+      "sha256": "5760daff0c55581ceca900078ad72e89893efd07d654d19287d149561dfcacab",
+      "bytes": 17041,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "sheet-render.json": {
+      "sha256": "f343e842d41d6e7e4982cdb5722541dc9e2e3584feab8e1ba28cbc67f82f9258",
+      "bytes": 973,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "source/build_blockout.py": {
+      "sha256": "bf6a094aadb338d6105a35621566221a3b935ff7cdb972f24e6296e9d9c8927b",
+      "bytes": 35455,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/claim.py": {
+      "sha256": "11ce3911559688272c2bd3c5aba58760bbe96a5e4c2591414483e3deb74255a3",
+      "bytes": 3441,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/crops.py": {
+      "sha256": "c285812294bb39da4ba3277ff8638bfc8ff8f2a5866067592a7ed2682b13c469",
+      "bytes": 2473,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/final_render.py": {
+      "sha256": "071b9ab0683e811a10a9e145e7996f945621d3202ed6c8cb540b72f85b44556d",
+      "bytes": 710,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/iterate_preview.py": {
+      "sha256": "4b432c2e5850eecf8d1cd996d9019c828f2bdf33dd47a97844fead53df9bf667",
+      "bytes": 616,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/measure_parts.py": {
+      "sha256": "b5ae50a3bbd90913c626bb4004dd9e7f1c60951e70b3852350996d8e87e22779",
+      "bytes": 3576,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/release.py": {
+      "sha256": "95117186155d850a81fcde725402548d2d11b5f3ec1344501499c12c7454f19c",
+      "bytes": 4089,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "source/sheet.py": {
+      "sha256": "de505d62714503c0dcc367effffaea32fec363be64819eba6d380a61b1d30e7e",
+      "bytes": 13895,
+      "remote_match": true,
+      "transfer": "uploaded from local (artifact route does not serve .py/.md)"
+    },
+    "web-slinger-helper-blockout.blend": {
+      "sha256": "68b4e49d2b9ab8d2d26740ffd61b2c45abdb20cbef0ac772dcd9c06ed23bc505",
+      "bytes": 1134206,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "web-slinger-helper-reference-sheet-checkpoint.blend": {
+      "sha256": "575bbb844c86791ac36c9010a69407aec9764eff20a14d74e7b85f5c915c46b1",
+      "bytes": 1293159,
+      "remote_match": true,
+      "transfer": "downloaded"
+    },
+    "web-slinger-helper-reference-sheet.blend": {
+      "sha256": "359e560e2a0cdd58aff1f321d5a72253a0d26f26d20b68c15966df249c3f53bc",
+      "bytes": 1297565,
+      "remote_match": true,
+      "transfer": "downloaded"
+    }
+  },
+  "local_only": {
+    "source/collect.py": {
+      "sha256": "07ec31e6854726d15e2db2cb4c1f8d8a4cee5cf187dfe9a822223717b72428d3",
+      "bytes": 4373,
+      "remote_match": false
+    },
+    "source/fetchprev.py": {
+      "sha256": "7e09b4b981cb38e985b6a624c529b34fb7d926bcd9a7d322311f28bcae843902",
+      "bytes": 376,
+      "remote_match": false
+    },
+    "source/run.py": {
+      "sha256": "5a71ed2e9b27f9311dd38682f093217d4358109b1e0a00a6a608cfea07c7a934",
+      "bytes": 1257,
+      "remote_match": false
+    },
+    "source/transfer.py": {
+      "sha256": "10223b37347e55c17debcbb6bc201a448528099a62d8ec756f34c49909c1be6e",
+      "bytes": 4508,
+      "remote_match": false
+    },
+    "source/upload_notes.py": {
+      "sha256": "de2c7c9da78cf4b197b48fbd47a32447e2a7f47bcf7ec949c899fc4380347e26",
+      "bytes": 375,
+      "remote_match": false
+    }
+  }
+}

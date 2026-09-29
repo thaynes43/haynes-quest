@@ -1,0 +1,85 @@
+{
+  "work_order": "WO111",
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "role": "friendly helper (DESIGN-013): heals the player, never an enemy",
+  "created_utc": "2026-09-29T04:56:06.033016+00:00",
+  "glb_sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "method": "Exact GLTFLoader; all exported skin vertices at 60 Hz; SkeletonUtils clone; src/game/friendly-scene.ts FriendlyScene driven through the real SceneAssets.attach loader at the registered web-slinger-helper v001 URL. Rotation/scale-only joints are checked as fixed local pivots; the hips carry every translation. No physical-device or universal triangle-collision proof (the Blender attachment audit covers listed part pairs).",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.456819309532218,
+      0.0030000647020955924,
+      -0.19735909573956723
+    ],
+    "max": [
+      0.456819309532218,
+      1.1938401043426174,
+      0.1780000066368746
+    ]
+  },
+  "dimensions_width_height_depth_m": [
+    0.913638619064436,
+    1.1908400396405219,
+    0.3753591023764418
+  ],
+  "height_m": 1.1938401043426174,
+  "sheet_pose_height_m": 1.1917646676021116,
+  "sheet_pose_bounds_y_up": {
+    "min": [
+      -0.33446647137604435,
+      0.003000214250868821,
+      -0.1973590970349446
+    ],
+    "max": [
+      0.385741636821598,
+      1.1917646676021116,
+      0.17800000585668202
+    ]
+  },
+  "sheet_pose_dimensions_m": [
+    0.7202081081976424,
+    1.188764453351243,
+    0.37535910289162666
+  ],
+  "sole_clearance_m": 0.0030000647020955924,
+  "body_footprint_y_up": {
+    "min": [
+      -0.1548487451599613,
+      0.3700000250339502,
+      -0.12456243485212326
+    ],
+    "max": [
+      0.1548487451599613,
+      0.8110000360608054,
+      0.11905972615234656
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.456819309532218,
+      0.001313448579116634,
+      -0.4989295749286611
+    ],
+    "max": [
+      0.46724795955818066,
+      1.2860457287572613,
+      0.34771769341416287
+    ]
+  },
+  "safe_culling_envelope_y_up": {
+    "min": [
+      -0.462,
+      -0.004,
+      -0.504
+    ],
+    "max": [
+      0.473,
+      1.292,
+      0.353
+    ]
+  },
+  "defeat_held_hips_height_m": 0.12000000476837158,
+  "note": "glTF axes: +Y up, character faces -Z; his right hand (the wave) is +X. Root at the floor origin under the body centre. The bind pose holds the arms out in an A-pose (hence the 0.91 m rest width); the sheet pose is 0.720 m wide (the blockout measured 0.718 m)."
+}

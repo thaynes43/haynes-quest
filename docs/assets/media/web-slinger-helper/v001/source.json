@@ -1,0 +1,17 @@
+{
+  "assetId": "web-slinger-helper",
+  "version": "v001",
+  "kind": "Blender reference sheet, no generated concept",
+  "referenceSheet": "reference-sheet.png",
+  "referenceSheetSha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+  "referenceAuthor": "Claude Opus 5.5, September 26, 2026",
+  "modelAuthor": "GPT-6 Astra max, fresh Blender author, September 29, 2026",
+  "sourceCheckpoint": "7a4887a37db74297be5b9ebe851fae76e98ef371",
+  "modelGlbSha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "referenceApproval": "Coordinator approved sheet September 26; exact export and normal/small motion selected September 29. Tom exact-version review pending.",
+  "preservedEarlierStage": "The prior unfinished model and all its source files remain under model-stage-0926-preserved on both durable authoring stores. Sheet-stage records are published beside this asset.",
+  "imageGeneration": "None",
+  "familyMedia": "None",
+  "originality": "Original masked child hero with an open cobalt hood, cream dew-drop web, sunny stars, orange domino mask, heart-button cuffs and a web-rope coil. No copied franchise assets, costume, logo, face or audio.",
+  "status": "Awaiting Tom exact-version review; prepared private candidate for family-world-a@v6"
+}

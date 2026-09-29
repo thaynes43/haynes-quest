@@ -1,0 +1,58 @@
+{
+  "work_order": "WO111",
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "role": "friendly helper (DESIGN-013): heals the player, never an enemy",
+  "created_utc": "2026-09-29T04:56:06.033016+00:00",
+  "glb_sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "candidate_status": "Awaiting Tom's review \u00b7 used in the family release",
+  "authoring_agent": "GPT-6 Astra (gpt-6-astra, max), fresh WO111 Blender author on September 29. Approved reference sheet and unfinished source checkpoint were authored by Claude Opus 5.5 and are preserved separately.",
+  "authoring_tool": "Blender MCP execute_blender_code on the primary authoring service, instance 1 (blender-authoring), driven by a small streamable-HTTP JSON-RPC client (source/transfer.py). Instance 2 (blender-authoring-2) was not touched.",
+  "blender_version": "4.5.13 LTS",
+  "source_reference": {
+    "kind": "Blender reference sheet, no generated concept",
+    "file": "reference-sheet.png",
+    "sha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+    "notes": "reference-notes.md",
+    "notes_sha256": "0ea718598806c763613b69af8d2a2265b5c044b7f4e6607ce030d1cc6c8531ed",
+    "blockout_master": "web-slinger-helper-blockout.blend",
+    "blockout_sha256": "68b4e49d2b9ab8d2d26740ffd61b2c45abdb20cbef0ac772dcd9c06ed23bc505",
+    "coordinator_review": "Approved Sept 26 (SHEET-REVIEWS.md): a friendly masked kid hero with a dew-drop web hood, a star emblem, a domino mask, heart-button web-shooters and a web-rope coil. Clearly friendly and distinct from enemies. Friendly clips per DESIGN-013 and the set the runtime uses (src/game/friendly-scene.ts).",
+    "generator": "None. The sheet is a Cycles render of a procedural Blender blockout; no image-generation model was used for this asset."
+  },
+  "source_scripts": {
+    "animate.py": "a963228db8aef045e968b39e5fb2a23a1b274b31973d5f6e6705f16237e3c845",
+    "author_run.py": "787b2fd13f14c47f41ad3a1df7ae986e67459c4cb3b08a20a543c027103c69e2",
+    "bounds.json": "1329805a2de9fd893b5b2c765248c95a00c1aa415c6b92c185b048c43c374955",
+    "build.py": "f487263a3c01437d6ac187c124e9ad7a224970686521aa504cd70d3c438a6cb8",
+    "claim_model.py": "4add91761e3c5bdc9956abf204f20dad12b0ea56cb3246c2eff29f6b706e90ce",
+    "common.py": "127d4f90ca55ab9e94aee40388c5c66530e18021462204aa31fb7d96020d8079",
+    "compare.mjs": "dd75ec5d79594ca7cff7293df2f17d601087580fab504baa89f76e206cde7f40",
+    "cycle.sh": "dfc02f79a17b4c7a482570ae9bce6b04c1c6658b88d3b178f84323f94a3eaf7b",
+    "delivery.py": "ad1828246475eb30e9f6e5a719463dd0d110a6bc83c1e43ade160e2383aee4f8",
+    "grid.mjs": "232de005933ae02fc2f8c59dc6da699fc2de7c2761d0e391c1c3c05e53fa8769",
+    "inspect-attachments.py": "ef8dc04537af2a09c2a38858d52c957d54c680ecb59f3be7214e3eca7a0d64fd",
+    "inspect-three.mjs": "a0056e9d392a966dfd84052240cc7727eb2b2c7e8f61de376938ed1bc1125881",
+    "look.mjs": "9267911af6c199e00c2b17fc7c14d5bfbcde609a437dfaa9b1e91f6d60997db3",
+    "make-evidence.py": "5a93a9191972ce54d402280c13b40111bb669e759f3a344f59a9bdd4d7d6e867",
+    "paint.py": "2292a6584c7cb1c9498aa1b248a4aa60a8b1a3a39b12a1080e0644b908f73340",
+    "preview.mjs": "66ae4d3f5ce681cc731aeeab9a5b7e77f185d12386db0cbae4786a13c57b49f3",
+    "release_model.py": "e1d1323c60fcd90de94b42b13f3a4d3ecd5bab545b42c04f0ff4f01b8778fe84",
+    "render-blender.py": "0150f971bbf09474d5ae195cf43b2e5a87689423d375c71580ca3b01b24a66a1",
+    "rig.py": "8834924d5a6e32eb1c8f10493b2bf3b2375b4639ac1fb6c5c92924fe7c1bb357",
+    "run_validate.py": "499efeba2c783e758d7a6623502f93a346e804ceda369d90edd79cb0fc79b769",
+    "transfer.py": "dc2218b8063f8a151d7dce5d6bf49e3816af50cd4492147318f25a14a72a9b49",
+    "validate.mjs": "c6be9b7ad2031b020a49419e995ee260e4f0309fe4e7e9bd141bcb62f6c4fd76"
+  },
+  "original_work": [
+    "The preserved model-stage source introduced the topology, UVs, weights, 30-joint rig and five clips; this delivery rebuilt and rechecked them; the approved blockout supplied measured proportions, colours, parody hooks and (through its own construction functions) the hood opening, face, mask, eye, fringe, torso, belt, star, coil, cuff, heart and boot coordinates.",
+    "Original 1024 painted atlas generated with numpy in Blender Python (paint.py): the grin, teeth, tongue, blush and nose shade on the face, the dew-drop web on the hood (azimuthal crown map), the chest and back webs round the stars (torso front/back regions in the blockout arc-length coordinates), the iris, pupil and glints on the eyes and the finger grooves on the palms, all at the blockout decals' projected positions; flat sheet-colour tiles for everything else. No external texture.",
+    "Mesh, UV, transfer, validation and evidence utilities adapted from the WO111 demon-band-idol / rival-mayor / gadget-helper / golden-after-hours-rat scripts."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No copied franchise names, models, faces, logos, costumes, lettering, recordings or textures; no spider shape anywhere."
+  ],
+  "rights_note": "Original authored study. No exclusive-rights or franchise-endorsement claim.",
+  "scope": "Exact candidate, catalog and versioned friendly integration are prepared together. Owner exact-version review, physical-device acceptance and deployment remain separate."
+}
