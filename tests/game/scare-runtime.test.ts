@@ -553,6 +553,30 @@ describe("scary moments at runtime", () => {
       game.dispose();
     });
 
+    it("does not auto-collect a nearby pickup on the trigger frame", async () => {
+      const position = garden.anchors.pickups["attack-tool"].position;
+      const requests: GameplayActionRequest[] = [];
+      const { game, feedback } = start({
+        scare: 2,
+        scriptedScares: [{ ...spot(), position }],
+        spawn: position,
+        save: makeAuthoredSave({ routeId: ROUTE }),
+        onAction: (request, base) => {
+          requests.push(request);
+          return base;
+        },
+      });
+      expect(ofType(feedback, "jump-scare")).toHaveLength(1);
+      expect(requests).toEqual([]);
+      advance(450);
+      expect(requests).toEqual([]);
+      advance(500);
+      advance();
+      await flush();
+      expect(requests.some((request) => request.action.type === "collect-equipment")).toBe(true);
+      game.dispose();
+    });
+
     it("waits for safe footing and the shared cooldown before another set piece", () => {
       const spots = [spot("first"), spot("second")];
       const { game, feedback } = start({

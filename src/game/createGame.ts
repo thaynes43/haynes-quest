@@ -910,7 +910,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
     runtime.lunge = { encounterId, startedAt: now, durationMs, reducedMotion, scripted };
     runtime.jumpScares += 1;
     options.onFeedback?.({ type: "jump-scare", encounterId, durationMs });
-    if (scripted) combatNeedsFreshTelegraph = true;
+    if (scripted) {
+      combatNeedsFreshTelegraph = true;
+      attackBuffer.clear();
+    }
   };
 
   const scareFrame = (runtime: ScareRuntime, now: number): ScareFrame => {
@@ -1760,9 +1763,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
         if (launchedThisFrame) scare.director.noteLaunch();
         stepScare(scare, deltaSeconds, now);
       }
-      if (controller.recoveryRemaining <= 0) flushPendingHit();
-      const collectedByContact = performAutoInteraction(now);
-      if (actions.interact && !isRouteMemoryAdventure(save)) {
+      // A scripted close shot starts after physics. Do not collect a nearby
+      // memory or accept an attack in that same frame while the HUD is hidden.
+      const canAct = scare?.lunge?.scripted !== true;
+      if (canAct && controller.recoveryRemaining <= 0) flushPendingHit();
+      const collectedByContact = canAct && performAutoInteraction(now);
+      if (canAct && actions.interact && !isRouteMemoryAdventure(save)) {
         const pickupId = nearestPickupId();
         const memoryId = nearestMemoryId();
         const friendlyId = nearestFriendlyId();
@@ -1796,12 +1802,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
         }
       }
       const levelId = adventure.currentLevelId;
-      if (actions.attack && levelId) {
+      if (canAct && actions.attack && levelId) {
         if (shouldBufferAttack("primary", now, collectedByContact))
           holdAttack("primary", now);
         else if (!collectedByContact) pressAttack("primary", levelId);
       }
-      if (actions.guard && levelId) {
+      if (canAct && actions.guard && levelId) {
         if (isRouteMemoryAdventure(save)) {
           if (shouldBufferAttack("secondary", now, collectedByContact))
             holdAttack("secondary", now);
@@ -1813,7 +1819,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       const buffered =
         actions.attack || actions.guard ? null : attackBuffer.peek(now);
       if (
-        buffered &&
+        canAct && buffered &&
         levelId &&
         requestState.requestState !== "acting" &&
         now >= attackReadyAt(buffered)
