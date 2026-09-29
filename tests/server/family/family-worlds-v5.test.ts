@@ -65,6 +65,10 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
     expect(v5.ageBands).toEqual(v4.ageBands);
     expect(v5.project.enemyCandidates).toEqual([]);
     if (world === "family-world-a") {
+      expect(FAMILY_A4_V5_SCRIPTED_SCARES).toEqual([
+        { id: "foyer-ticket-flash", encounterSlot: "ordinary-1", position: { x: 0, y: 0, z: -2.5 }, radius: 1.3 },
+        { id: "rat-pit-runway-lunge", encounterSlot: "boss", position: { x: -25.5, y: 16.5, z: -139.5 }, radius: 1.8 },
+      ]);
       expect(v4.project.chapters[3]!.level.scriptedScares).toBeUndefined();
       expect(v5.project.chapters[3]!.level.scriptedScares).toEqual(FAMILY_A4_V5_SCRIPTED_SCARES);
       expect(v5.project.chapters[3]!.level.scare).toBe(2);

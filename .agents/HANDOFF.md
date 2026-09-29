@@ -39,7 +39,7 @@ Read this section first. [PLAN-019](plans/019-first-family-release.md) is **In p
 ### Next, in priority order
 
 1. **Finish the v5 checked release.** `parody-catalog-v11` and the separate `family-world-{a,b}@v5` generators register Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman as exact v001 private gameplay candidates; v1–v4 remain frozen. The code, catalog and tests are prepared in an unmerged branch, so live children remain on v4/r4. After CI, merge, pin and verify the signed image and media, then `set-template @v5` + `publish` for both children. Their exact-version owner reviews are pending; PRD-004 Q-03 permits labeled private candidates before review.
-2. **Ship scripted jump scares** in A4 v5, per Tom's ruling on #123. The separate engine change and three checked-in template placements are prepared together for the next release; both remain pre-deploy. Lunges fire only from safe standing decks.
+2. **Ship scripted jump scares** in A4 v5, per Tom's ruling on #123. The engine change is merged; two checked-in template placements are prepared for the next release and remain pre-deploy. The foyer set piece fires before the first fight, and the boss-runway set piece waits for safe standing footing and the shared 60-second gate.
 3. **Prop kits:**
    - Playroom and rescue-harbor sheets are rendered but **not yet reviewed**.
    - The casita sheet is partial (checkpoint above).

@@ -586,6 +586,7 @@ interface ChapterReport {
     watcherCreaks: number;
     jumpScares: number;
     events: Array<{ event: string; time: number } & Record<string, unknown>>;
+    closestSpots: Record<string, { distance: number; time: number; position: Live["position"]; grounded: boolean; supportId: string | null }>;
     shots: Record<string, { file: string; luma: number; time: number }>;
   };
   wallSeconds: number;
@@ -842,7 +843,10 @@ class ChapterPilot {
         planned: summary,
         ok,
       });
-      if (ok) return true;
+      if (ok) {
+        this.mark("leg:crossed", { label, time: Math.round(this.live.time * 100) / 100, position: this.live.position, supportId: this.live.supportId });
+        return true;
+      }
       this.mark("leg:retry", { label, attempt, supportId: this.live.supportId, recoveries: this.live.recoveries });
       await this.settle();
       if (this.live.supportId !== connection.from || this.platform(connection.from).bounce) return false;
@@ -1086,6 +1090,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       watcherCreaks: 0,
       jumpScares: 0,
       events: [],
+      closestSpots: {},
       shots: {},
     },
     wallSeconds: 0,
@@ -1273,12 +1278,36 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       return true;
     };
     const counted = { blackouts: 0, watcherMoves: 0, watcherCreaks: 0, jumpScares: 0 };
+    const insideScriptedSpots = new Map<string, boolean>();
     let lastLive: Live = opening;
     /** While the spawn watcher probe runs, it takes the watcher screenshots itself. */
     let probing = false;
     game.onFrame = async (live) => {
       const state = live.scare;
       if (!state) return;
+      for (const spot of document.scriptedScares ?? []) {
+        const distance = planar(live.position, spot.position);
+        const sameHeight = Math.abs(live.position.y - spot.position.y) <= 0.3;
+        if (sameHeight && distance < (scare.closestSpots[spot.id]?.distance ?? Number.POSITIVE_INFINITY))
+          scare.closestSpots[spot.id] = {
+            distance,
+            time: Math.round(live.time * 100) / 100,
+            position: { ...live.position },
+            grounded: live.grounded,
+            supportId: live.supportId,
+          };
+        const inside = distance <= spot.radius && sameHeight;
+        if (inside && !insideScriptedSpots.get(spot.id))
+          scareEvent("scripted-spot-enter", {
+            id: spot.id,
+            encounterSlot: spot.encounterSlot,
+            position: live.position,
+            grounded: live.grounded,
+            supportId: live.supportId,
+            jumpScares: state.jumpScares,
+          });
+        insideScriptedSpots.set(spot.id, inside);
+      }
       Object.assign(scare, {
         blackouts: state.blackouts,
         flickers: state.flickers,
@@ -1308,7 +1337,17 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       }
       if (state.jumpScares > counted.jumpScares) {
         counted.jumpScares = state.jumpScares;
-        scareEvent("jump-scare", { count: state.jumpScares, encounterId: state.lunge?.encounterId ?? null });
+        const encounter = live.encounters.find((entry) => entry.id === state.lunge?.encounterId);
+        scareEvent("jump-scare", {
+          count: state.jumpScares,
+          encounterId: state.lunge?.encounterId ?? null,
+          position: live.position,
+          grounded: live.grounded,
+          supportId: live.supportId,
+          playerHp: live.playerHp,
+          encounterHp: encounter?.hp ?? null,
+          encounterMaxHp: encounter?.maxHp ?? null,
+        });
       }
       lastLive = live;
       if (!scare.shots["02-blackout"] && state.blackout >= 0.95 && (state.blackoutElapsed ?? 9) <= 0.8)
@@ -1475,7 +1514,8 @@ for (const chapter of selected) {
   );
 }
 const failed = reports.filter(
-  (report) => !(report.completed || report.stoppedAt === until) || report.pageErrors.length > 0,
+  (report) => !(report.completed || report.stoppedAt === until) ||
+    report.pageErrors.length > 0 || report.consoleErrors.length > 0 || report.responseErrors.length > 0,
 );
 if (failed.length > 0) {
   for (const report of failed) console.error(`[${report.chapterId}] ${report.failure ?? report.pageErrors.join("; ")}`);
