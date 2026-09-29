@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "asset_id": "web-slinger-helper",
+  "version": "v001",
+  "base_commit": "489902a8b0e22bbaaea1e9cd0eb20f365610907c",
+  "implementation_commit": "949b604",
+  "tested_scope": "Exact helper GLB, immutable friendly roster and World A v6 integration in agent/hq-web-slinger-helper; final intake includes catalog and A3 captures.",
+  "recorded_utc": "2026-09-29T05:45:27.781834+00:00",
+  "glb_sha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "master_sha256": "89c1008dfe2e95af8c8d1adb02da85ebaf11d96652a553679f577a97fc04ef42",
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "coordinator_visual_review": "passed September 29: reference comparison, exact five-clip sheet, 35% attack preview, actual A3 desktop/phone idle, held defeat and amends views",
+  "runtime": {
+    "template": "family-world-a@v6",
+    "friendly_catalog": "friendly-catalog-v2",
+    "fingerprint": "6d0ce359bdb1eabfa1f93c413d247b802ab8417205e733fa9eb03d5159edeffc",
+    "unchanged_v5_fingerprint": "d52c71e4089ea5980fa849e1bc67337315e82f127c07da1af3fc240217c20f4e",
+    "placement": {
+      "chapter": "family-a3",
+      "slot": "friendly-2",
+      "platform": "satellite-roof",
+      "position": [
+        -55.9,
+        6.6,
+        -42.5
+      ]
+    },
+    "compatibility": "V1 catalog bytes and historical template geometry/fingerprints stay unchanged; absent pins select v1. Only A3 friendly-2 changes. Plan identity/fingerprint/pin and save-sidecar pins must agree. V5-to-v6 upgrade keeps all 12 photos and an edited caption.",
+    "mechanic": "Existing DESIGN-013 two-HP healing, deliberate harm and Make amends; no gap assist or hostile registration."
+  },
+  "local_checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "levels_validate": "passed",
+    "strict_docs_and_media_links": "passed",
+    "full_suite": {
+      "outcome": "passed",
+      "test_files_passed": 163,
+      "test_files_skipped": 3,
+      "tests_passed": 1892,
+      "tests_skipped": 34,
+      "duration_s": 282.01,
+      "note": "The first full run caught a missing runtimeIntegration description in the new delivery record. Added the truthful friendly integration description and a friendly-only exact-artifact regression; the complete rerun passed. Database-dependent tests are skipped locally without QUEST_TEST_DATABASE_URL; CI runs its configured Postgres checks."
+    },
+    "friendly_v6_focused_tests": {
+      "passed": 36,
+      "scope": "V6 roster/save validation, old template versions, heal/harm/amends/cooldowns and synthetic publication upgrade"
+    },
+    "final_artifact_contract_tests": {
+      "passed": 15,
+      "scope": "Family era artifact contract including helper exact bytes, hash, clips and friendly-only registration"
+    },
+    "khronos": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "hints": 0,
+      "report": "validation.json"
+    },
+    "three_friendly_runtime": {
+      "outcome": "passed",
+      "checks": 39,
+      "report": "three-inspection.json"
+    },
+    "blender_attachments": {
+      "outcome": "passed",
+      "checks": 8,
+      "pairs": 27,
+      "frames": 263,
+      "report": "attachment-inspection.json",
+      "limit": "Listed attachment pairs, with the three-frame rope-opening overlap documented; not universal collision proof."
+    },
+    "exact_glb_browser": {
+      "outcome": "passed",
+      "clips": 5,
+      "scales": [
+        "normal",
+        "35%"
+      ],
+      "report": "browser-inspection.json"
+    },
+    "review_page": {
+      "outcome": "passed",
+      "viewports": 2,
+      "captures": 4,
+      "report": "review-audit/report.json"
+    },
+    "a3_family_controls": {
+      "outcome": "passed",
+      "report": "family-a3/report.json",
+      "route_legs": 13,
+      "ordinary_fights": 2,
+      "recoveries": 0,
+      "screenshots": 11,
+      "errors": 0,
+      "wall_seconds": 40,
+      "assertions": [
+        "full-health gift preserved",
+        "normal attack ignored",
+        "deliberate harm applies first-hit penalty",
+        "defeat holds",
+        "Make amends restores",
+        "two-HP heal once only",
+        "reload preserves friendly state",
+        "hostile encounters unchanged"
+      ],
+      "scope": "Synthetic family publication entered through its real family card; seeded consistently at chapter A3, then normal route and public controls to the existing friendly anchor. Stops at the friendly; no chapter completion claim.",
+      "rendering": "Software GPU drawing disabled between full captures; simulation and public inputs still run, combat paced by real time. No physical-device performance claim."
+    }
+  },
+  "client_bundle": {
+    "file": "dist/client/assets/index-DJjmHDbc.js",
+    "bytes": 1543555,
+    "sha256": "f124c91617d1a8145aa9fd0708a80567f158be4a2e00471962eb9f64bcdd1b44"
+  },
+  "full_catalog_audit": {
+    "outcome": "passed",
+    "report": "catalog-audit/report.json",
+    "overall_timeout_ms": 900000,
+    "started_utc": "2026-09-29T05:35:36.364Z",
+    "browser": {
+      "engine": "Chromium",
+      "version": "153.0.8010.12",
+      "rendering": "SwiftShader software (requested)"
+    },
+    "inventory_entries": 98,
+    "thumbnail_files": 139,
+    "review_pages": 70,
+    "exact_model_deliveries": 69,
+    "animated_candidate_viewer_checks": 40,
+    "errors": {
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0
+    },
+    "expected_metadata_preload_aborts": 12
+  },
+  "artifact_storage": {
+    "author_manifest": "sha256-manifest.json",
+    "author_manifest_files": 168,
+    "author_manifest_sha256": "f31b0618ff65fe99d0dd1d2d81b00dc980cb1add2c1d73e1e033d6d55ddf5fa5",
+    "author_files": "All author-manifest files matched the Blender artifact PVC, durable dev-env mirror and repository media at scene release; intake rechecks the unchanged repository and durable mirror hashes.",
+    "intake_evidence": "A3, focused review, full catalog, final verification and audit source are later intake files, indexed in catalog-inventory.json and mirrored to the durable dev-env artifact directory. They are outside the immutable author manifest.",
+    "durable_mirror": "/home/dev/artifacts/haynes-quest/family-eras/web-slinger-helper/v001"
+  },
+  "scene_release": {
+    "instance": "blender-authoring (instance 1)",
+    "released_utc": "2026-09-29T04:58:09.636074+00:00",
+    "report": "scene-release.json",
+    "prior_family_era_model_and_master_files_unchanged": 96
+  },
+  "browser_lease": "Chromium closed and released to coordinator after the full catalog audit",
+  "physical_safari": "not tested",
+  "deployment": "pending coordinator PR review, merge and image publication"
+}

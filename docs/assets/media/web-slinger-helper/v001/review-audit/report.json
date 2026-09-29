@@ -1,0 +1,44 @@
+{
+  "origin": "http://127.0.0.1:4399",
+  "glbSha256": "f2896efa08de53c1a94b939930071a32efeb5320a7804d5eee48dbd085b4adc3",
+  "browser": "153.0.8010.12",
+  "screens": [
+    {
+      "name": "desktop",
+      "width": {
+        "viewport": 1440,
+        "content": 1440
+      },
+      "height": 1000,
+      "loaded": true,
+      "visible": true,
+      "clips": [
+        "attack",
+        "defeat",
+        "hit",
+        "idle",
+        "move"
+      ],
+      "src": "http://127.0.0.1:4399/assets/media/web-slinger-helper/v001/web-slinger-helper.glb"
+    },
+    {
+      "name": "phone",
+      "width": {
+        "viewport": 390,
+        "content": 390
+      },
+      "height": 844,
+      "loaded": true,
+      "visible": true,
+      "clips": [
+        "attack",
+        "defeat",
+        "hit",
+        "idle",
+        "move"
+      ],
+      "src": "http://127.0.0.1:4399/assets/media/web-slinger-helper/v001/web-slinger-helper.glb"
+    }
+  ],
+  "errors": []
+}

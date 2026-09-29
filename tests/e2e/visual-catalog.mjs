@@ -1958,7 +1958,7 @@ const report = {
   externalRequests: [],
   physicalSafari: "not tested",
   scope:
-    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten, Bin Chicken, Inator Monster, Demon Band Idol, Putty Grunt, Radio Host Showman and Lab Robot candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+    "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten, Bin Chicken, Inator Monster, Demon Band Idol, Putty Grunt, Radio Host Showman, Lab Robot and Web-slinger Helper candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
   harnessNotes: [
     "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
     "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits.",

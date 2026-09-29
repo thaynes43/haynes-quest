@@ -2262,7 +2262,7 @@
       "master": "docs/assets/media/web-slinger-helper/v001/web-slinger-helper.blend",
       "masterSha256": "89c1008dfe2e95af8c8d1adb02da85ebaf11d96652a553679f577a97fc04ef42",
       "ownerReview": "pending",
-      "coordinatorReview": "Driving Astra selected approved sheet, fresh idle render, five-clip exact-export sheet and 35% attack strip on September 29",
+      "coordinatorReview": "passed September 29: reference comparison, exact five-clip sheet, 35% attack preview, actual A3 desktop/phone idle, held defeat and amends views",
       "gameplayUse": "private-candidate under PRD-004 Q-03; prepared for family-world-a@v6 friendly-2 in Hero City",
       "sceneInstance": "blender-authoring (instance 1, primary)",
       "sceneReleasedAt": "2026-09-29T04:58:09.636074+00:00",
@@ -2273,13 +2273,26 @@
         "threeFriendlyRuntime": "39 checks pass; exact helper URL, 60 Hz vertices, idle/hit/held defeat/reload/amends, culling bounds applied to both primitives",
         "blenderAttachments": "all 8 checks pass; 27 listed pairs, 263 authored frames; recorded rope-opening overlap excluded",
         "chromium": "all five clips at normal and 35% scale; 0 console/HTTP/WebGL errors",
-        "artifactManifest": "168 exact hashes checked during catalog intake"
+        "artifactManifest": "168 exact hashes checked during catalog intake",
+        "a3FamilyControls": "13 route legs, 2 ordinary fights, 0 recoveries; normal controls verify healing/harm/amends/held defeat/reload and unchanged hostile state; 11 captures, 0 browser/media errors; stopped at friendly",
+        "reviewPage": "desktop and phone viewers pass, exact GLB loaded, five clips, no overflow/errors",
+        "catalog": "98 entries, 139 thumbnails, 70 review pages, 69 exact model deliveries and 40 animated candidate viewer checks; zero page, console, HTTP, request or external errors",
+        "fullSuite": "1892 passed, 34 skipped; 163 test files passed, 3 skipped",
+        "typecheck": "passed",
+        "lint": "passed",
+        "productionBuild": "passed",
+        "levelsValidate": "passed",
+        "strictDocsMedia": "passed",
+        "friendlyV6FocusedTests": "36 passed; frozen catalogs/templates, pin and sidecar validation, heal/harm/amends/cooldown, v5-to-v6 photo/caption preservation",
+        "finalArtifactContractTests": "15 passed, including friendly-only helper registration and exact model hash",
+        "finalVerification": "docs/assets/media/web-slinger-helper/v001/final-verification.json"
       },
       "publication": {
         "status": "pending coordinator PR review, merge and deployment",
         "friendlyCatalog": "friendly-catalog-v2",
         "template": "family-world-a@v6",
-        "frozenHistory": "friendly-catalog-v1 and family-world-a@v1-v5 unchanged"
+        "frozenHistory": "friendly-catalog-v1 and family-world-a@v1-v5 unchanged",
+        "runtimeIntegration": "Prepared in friendly-catalog-v2 and family-world-a@v6: only A3 friendly-2 uses web-slinger-helper@v001, at the unchanged satellite-roof anchor beside the vent bounce. Healing, deliberate harm and Make amends use DESIGN-013; no gap assist. Earlier friendly rosters and published journeys stay frozen. Awaiting coordinator merge and publication."
       }
     }
   ]
