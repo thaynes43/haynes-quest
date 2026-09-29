@@ -1085,7 +1085,7 @@ export class GardenScene {
         (item) => item.id === this.save.adventure?.equippedId,
       )?.tier ?? 1) > 1;
     const strikeHeight = this.stage === "infant" ? 0.45 : 0.78;
-    this.attackStreak.visible = !ranged && attackTime >= 0 && attackTime < 0.24;
+    this.attackStreak.visible = !ranged && attackTime >= 0 && attackTime < 0.32;
     if (this.attackStreak.visible) {
       const reach = Math.min(1, attackTime / 0.09);
       this.attackStreak.position.set(
@@ -1095,15 +1095,15 @@ export class GardenScene {
       );
       this.attackStreak.scale.set(1, 0.35 + reach * 1.05, 1);
       (this.attackStreak.material as THREE.MeshBasicMaterial).opacity =
-        0.85 * Math.min(1, (0.24 - attackTime) / 0.1);
+        0.85 * Math.min(1, (0.32 - attackTime) / 0.14);
     }
-    this.bashStreak.visible = secondaryTime >= 0 && secondaryTime < 0.25;
+    this.bashStreak.visible = secondaryTime >= 0 && secondaryTime < 0.34;
     if (this.bashStreak.visible) {
       const reach = Math.min(1, secondaryTime / 0.1);
       this.bashStreak.position.set(0, strikeHeight, -0.4 - reach * 0.58);
       this.bashStreak.scale.set(1 + reach * 0.2, 0.4 + reach * 1.1, 1);
       (this.bashStreak.material as THREE.MeshBasicMaterial).opacity =
-        0.75 * Math.min(1, (0.25 - secondaryTime) / 0.11);
+        0.75 * Math.min(1, (0.34 - secondaryTime) / 0.15);
     }
     this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
     const spellTarget =
