@@ -2458,10 +2458,18 @@
         "chromium": "21 exact-GLB inspection views pass with no page/HTTP/GL errors",
         "focusedTests": "8 passed: exact bytes/geometry, fixed boxes and 36 frozen placements, open arch, actual SceneAssets transforms and missing-file fallback",
         "b2Camera": "Complete route: 29 legs, 4 ordinary fights and 1 boss fight, 3 memories, 0 recoveries; 12 desktop/phone camera probes and 17 captures; all four GLBs loaded, no page/console/HTTP/media errors",
-        "strictDocsMedia": "first build passed; final rebased checks pending",
+        "strictDocsMedia": "passed",
         "studio": "4 cards and 8 desktop/phone static viewers load and orbit without overflow or browser errors",
-        "catalog": "pending final rebased inventory audit",
-        "fullSuite": "pending final rebased required checks"
+        "catalog": "102 entries, 144 thumbnails, 71 review pages, 73 exact model deliveries, 40 animated candidate viewer checks; all browser/delivery errors zero",
+        "fullSuite": "1900 passed, 34 skipped; 164 test files passed, 3 skipped",
+        "typecheck": "passed",
+        "lint": "passed",
+        "productionBuild": "passed",
+        "levelValidation": "passed",
+        "finalVerification": "docs/assets/media/casita-kit/v001/final-verification.json",
+        "artifactHashes": "177 version files plus the manifest match git inputs, the durable dev-env mirror and the Blender artifact PVC; the manifest intentionally excludes its own hash",
+        "mirrorReceipt": ".agents/evidence/casita-kit-mirror.json",
+        "finalIntakeRegression": "2 artwork-contract tests passed after the final manifest and inventory checksums were written"
       },
       "publication": {
         "status": "pending coordinator PR review, merge and image publication; no deployment claim",
@@ -2472,7 +2480,9 @@
         "originalPartialSheetSha256": "c3ff84d76d94cbb3bb81a6e1238216ce0ae1e0334ffcca88d3484968b63f9896",
         "approvedCorrectedSheetSha256": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
         "recovery": "Stale historical active lease recorded before claim; live scene was released with no author jobs. Original September 26 sources, sheet and checkpoints preserved separately."
-      }
+      },
+      "rebasedOnto": "d78e146f6db2db7eb2393ec164baa06536bb71b1",
+      "implementationCommit": "fbe8b4428ee9d8d257dfd12d61434e696ec72cd1"
     }
   ]
 }

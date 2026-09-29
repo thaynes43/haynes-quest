@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-29T06:09:13.904Z",
+  "catalogUrl": "http://127.0.0.1:4404/assets/catalog.html",
+  "inventory": "scripts/assets/catalog-inventory.json",
+  "browser": {
+    "engine": "Chromium",
+    "version": "153.0.8010.12",
+    "rendering": "SwiftShader software (requested)"
+  },
+  "landing": [],
+  "reviews": [],
+  "modelDeliveries": [],
+  "mascotCandidates": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "badResponses": [],
+  "failedRequests": [],
+  "expectedMetadataAborts": [],
+  "externalRequests": [],
+  "physicalSafari": "not tested",
+  "scope": "catalog delivery, responsive navigation, exact model files, Rat Casino mascot, Clubhouse Bully Cat, Gadget Helper, Honk Bus, Yes-Yes Veggie, Rival Mayor, Magic House, Mischief Kitten, Bin Chicken, Inator Monster, Demon Band Idol, Putty Grunt, Radio Host Showman, Lab Robot and Web-slinger Helper candidate viewers, Nap Captain partial-model interaction and separate Besties viewer interaction; no final art-quality claim",
+  "harnessNotes": [
+    "The current first inspiration image must be displayed inline; retained superseded concepts may instead remain reachable as local links.",
+    "Browser-cancelled preload=metadata requests are separated only for exact video URLs declared by an inspected review in the same browser scope; HTTP errors and every other request failure remain fatal, while video playback remains covered by earlier focused audits."
+  ],
+  "inventoryEntries": 102,
+  "thumbnailFiles": 144,
+  "outcome": "failed",
+  "failure": {
+    "name": "AssertionError",
+    "message": "catalog-desktop: casita-terrace-wall card records current gameplay use",
+    "stack": "AssertionError [ERR_ASSERTION]: catalog-desktop: casita-terrace-wall card records current gameplay use\n    at inspectLanding (file:///home/dev/work/hq-casita-kit/tests/e2e/visual-catalog.mjs:653:14)\n    at async file:///home/dev/work/hq-casita-kit/tests/e2e/visual-catalog.mjs:2023:7"
+  }
+}

@@ -652,7 +652,9 @@ async function inspectLanding(
       const cardState = cardInspections.find((entry) => entry.id === id)?.state;
       assert.match(
         cardState ?? "",
-        /in (?:private (?:Rat Casino )?)?playtest/i,
+        asset.category === "family-eras"
+          ? /Awaiting Tom's review · used in the family release/i
+          : /in (?:private (?:Rat Casino )?)?playtest/i,
         `${scope}: ${id} card records current gameplay use`,
       );
     }

@@ -154,9 +154,264 @@
       "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c"
     },
     {
+      "path": "catalog-audit/besties-review-phone.png",
+      "bytes": 2464003,
+      "sha256": "e2c9554258ed5befb809f89272d1393c833db2c60e9d929db3bc77e41d4c6ea8"
+    },
+    {
+      "path": "catalog-audit/bin-chicken-viewer-desktop.png",
+      "bytes": 157578,
+      "sha256": "75246dfd12ba6353eff506baf3acea0bca28c52d5ec20f9e5bcaa8cce67d6591"
+    },
+    {
+      "path": "catalog-audit/bin-chicken-viewer-phone.png",
+      "bytes": 73884,
+      "sha256": "fec2f8d328c5a1f0b6df584895cf7b4c9744bdd7abf43830242421fe3ab451af"
+    },
+    {
+      "path": "catalog-audit/catalog-desktop-viewport.png",
+      "bytes": 321685,
+      "sha256": "dbdff2a3faa030eec9a7e69e959062a8ed49c06695ba09efdb648d6d805b5380"
+    },
+    {
+      "path": "catalog-audit/catalog-desktop.png",
+      "bytes": 5893051,
+      "sha256": "94c9b6add249008532d71c19ab50afdee01e756bed554fb23bd0e865fdce5798"
+    },
+    {
+      "path": "catalog-audit/catalog-phone-viewport.png",
+      "bytes": 121110,
+      "sha256": "3d22126a9e8a86b5910e65acb54fc5ca7e43d300f426ab8be9e6573b9b4c88c7"
+    },
+    {
+      "path": "catalog-audit/catalog-phone.png",
+      "bytes": 6270440,
+      "sha256": "3b18740dc3344c895282a7a04762d53f30b6d8d27b8ac6e5cb80884acee90786"
+    },
+    {
+      "path": "catalog-audit/chick-flia-viewer-desktop.png",
+      "bytes": 206243,
+      "sha256": "4a19e38b8923780a84ea948deaae56a61767f3a63f4ce8c8bceeb8e188d200c3"
+    },
+    {
+      "path": "catalog-audit/chick-flia-viewer-phone.png",
+      "bytes": 96092,
+      "sha256": "8763319101d4abc090072ab58f1db16609417dd29e829f7d57c9365b68cd01a0"
+    },
+    {
+      "path": "catalog-audit/clubhouse-bully-cat-viewer-desktop.png",
+      "bytes": 189713,
+      "sha256": "2d6c07092246dee0c383730c8408d1f729aa719d2eeec3d8f2ed5d11aad44959"
+    },
+    {
+      "path": "catalog-audit/clubhouse-bully-cat-viewer-phone.png",
+      "bytes": 89108,
+      "sha256": "b8e06222d20344204ef3f0ec0fa28a1b0263183a348e9339514c0f8113ef5643"
+    },
+    {
+      "path": "catalog-audit/demon-band-idol-viewer-desktop.png",
+      "bytes": 172219,
+      "sha256": "326b57afd5b702e22b1601e8c2b7cc1365f5c41e3c53d41d455f40db47ace5c0"
+    },
+    {
+      "path": "catalog-audit/demon-band-idol-viewer-phone.png",
+      "bytes": 77367,
+      "sha256": "e05e102e28abc1bf24695f40c04ecf90bdbd02b3c991e0d9d6e9104c2e2b0daa"
+    },
+    {
+      "path": "catalog-audit/fox-card-shark-viewer-desktop.png",
+      "bytes": 208822,
+      "sha256": "64a4096303d451e9950598e9a0fc817f4bd91da013a0bcc5c6e744dbd5fcae8a"
+    },
+    {
+      "path": "catalog-audit/fox-card-shark-viewer-phone.png",
+      "bytes": 98085,
+      "sha256": "ef65f24b3a8d9ee15fab10a6f7b8556400c53d990766c8e6f419737d60976750"
+    },
+    {
+      "path": "catalog-audit/gadget-helper-viewer-desktop.png",
+      "bytes": 173114,
+      "sha256": "8237ad6743747e6a0ef53c425dd5b90e814d5f0124160438542807c1597d8d74"
+    },
+    {
+      "path": "catalog-audit/gadget-helper-viewer-phone.png",
+      "bytes": 79819,
+      "sha256": "10c971e6e59bff2f872bc2addfec0ff3429e7900f1625b8363d2c16ed140b437"
+    },
+    {
+      "path": "catalog-audit/golden-after-hours-rat-viewer-desktop.png",
+      "bytes": 216036,
+      "sha256": "d6ff666fd874277558ba9f09b5e193179b1fccd340b6248a853761dbe3b2372b"
+    },
+    {
+      "path": "catalog-audit/golden-after-hours-rat-viewer-phone.png",
+      "bytes": 100248,
+      "sha256": "04474bf691da100fb94f02d3375daeac2e3cbd805a25a18d22b81b4fb5d41500"
+    },
+    {
+      "path": "catalog-audit/history/legacy-playtest-status-contract-failure.json",
+      "bytes": 1943,
+      "sha256": "8f4098e0986f0bf9a7265f368b717aa15b5054d3f0dff05e680796a23630dbbc"
+    },
+    {
+      "path": "catalog-audit/honk-bus-viewer-desktop.png",
+      "bytes": 187984,
+      "sha256": "6f8929b192a29b87b82bbf01fd9fea7c3292232dea4edd2e3275af3495e13094"
+    },
+    {
+      "path": "catalog-audit/honk-bus-viewer-phone.png",
+      "bytes": 88695,
+      "sha256": "e7cb67bd38977e0406e8a2b3f86f3d4660991a05eb00f44522eac6b04f7f2d7b"
+    },
+    {
+      "path": "catalog-audit/inator-monster-viewer-desktop.png",
+      "bytes": 160600,
+      "sha256": "92edfe498a0f2323a2eaed5517b78b7552ce8e3551a7e13890ac06f8fad2b10e"
+    },
+    {
+      "path": "catalog-audit/inator-monster-viewer-phone.png",
+      "bytes": 73679,
+      "sha256": "47034950127154b0dc70ced89966048e3a55e96a6e0f4394db95c4c64bb2153d"
+    },
+    {
+      "path": "catalog-audit/jackrabbit-drummer-viewer-desktop.png",
+      "bytes": 204095,
+      "sha256": "4abe96ef49205bcf5871445d010fbc10ca669313004801126c106f3332dc8b3d"
+    },
+    {
+      "path": "catalog-audit/jackrabbit-drummer-viewer-phone.png",
+      "bytes": 96165,
+      "sha256": "a3299d4336b47a05c335b5b54b2aba34f7298e6c587dc75c2d5da1e1d0daf41d"
+    },
+    {
+      "path": "catalog-audit/lab-robot-viewer-desktop.png",
+      "bytes": 192682,
+      "sha256": "8a07424c60b9bb700212ed8d1973ac0dcfbd9dd5e9d0b16f3f0c03fc01997a18"
+    },
+    {
+      "path": "catalog-audit/lab-robot-viewer-phone.png",
+      "bytes": 88843,
+      "sha256": "227c9f118bc02d063e277e5ebef9b55da866838fc3af9b13ac311d9a0a6f1309"
+    },
+    {
+      "path": "catalog-audit/magic-house-viewer-desktop.png",
+      "bytes": 232037,
+      "sha256": "0625fbec3c0edf76eb47fc2226adea950536d04849f1db77bb307addd2ea0637"
+    },
+    {
+      "path": "catalog-audit/magic-house-viewer-phone.png",
+      "bytes": 116861,
+      "sha256": "b07381b79b22f71e1daa49e24a64ba9a5a93f8f92ed49a9afcfd3293849e4f0d"
+    },
+    {
+      "path": "catalog-audit/mischief-kitten-viewer-desktop.png",
+      "bytes": 194745,
+      "sha256": "f6af47889b158d275292a1a71e76749e9d03e3f3ace2feec0c21205167c7011e"
+    },
+    {
+      "path": "catalog-audit/mischief-kitten-viewer-phone.png",
+      "bytes": 92611,
+      "sha256": "449cba76bb1dd647819d892beab6396c5a0a289ec48b7e2fcbcb542988df299a"
+    },
+    {
+      "path": "catalog-audit/moth-projectionist-viewer-desktop.png",
+      "bytes": 222456,
+      "sha256": "7b1a6e7ca9df7b7c17a0c47cb076de288bc1bb741af0a8edd29358567dcfe2ec"
+    },
+    {
+      "path": "catalog-audit/moth-projectionist-viewer-phone.png",
+      "bytes": 103142,
+      "sha256": "5cc308ef963bda6870bef835d5de39a3a5c5d3ff3d80f4e16e4eb792f7ae3fe2"
+    },
+    {
+      "path": "catalog-audit/nap-captain-viewer-phone.png",
+      "bytes": 90324,
+      "sha256": "2926282139ec4cdd2d13e87cb2cdbef749ed3fefad96f6334fd867b708a26fa2"
+    },
+    {
+      "path": "catalog-audit/putty-grunt-viewer-desktop.png",
+      "bytes": 184510,
+      "sha256": "dd831f73c6735f802d26a49af5ff5d779ede4d2f142c07f0de880fc7192e0ccd"
+    },
+    {
+      "path": "catalog-audit/putty-grunt-viewer-phone.png",
+      "bytes": 79999,
+      "sha256": "e8e130e75962927de4301b957d1dbd40626827cc23704a306baab248eb75d452"
+    },
+    {
+      "path": "catalog-audit/radio-host-showman-viewer-desktop.png",
+      "bytes": 170179,
+      "sha256": "74c02436faf211fe6e571841a83d6ab7beac75df280935e7e15988ffbf4fd014"
+    },
+    {
+      "path": "catalog-audit/radio-host-showman-viewer-phone.png",
+      "bytes": 73693,
+      "sha256": "f2abd008ff1514df5ba31509a3ab163a1d3243dd762cf5663ee6f2b0697139be"
+    },
+    {
+      "path": "catalog-audit/rat-pit-boss-viewer-desktop.png",
+      "bytes": 211164,
+      "sha256": "5a440a5da4f8632338c566fe30ffb610f9b02bfab9576788d862943fac690737"
+    },
+    {
+      "path": "catalog-audit/rat-pit-boss-viewer-phone.png",
+      "bytes": 97240,
+      "sha256": "2558b96d2a8ab4bb8d2891a3b03999e360f9df0cf30a28e5bddd38f405c26405"
+    },
+    {
+      "path": "catalog-audit/report.json",
+      "bytes": 247809,
+      "sha256": "f4aaa819a7f7d49e71f84f2ddd8655dbc46b36085c21ede5fe37ff89fc2d41bb"
+    },
+    {
+      "path": "catalog-audit/rival-mayor-viewer-desktop.png",
+      "bytes": 166296,
+      "sha256": "8d0969de82ed2252d80af31a6170af7562592715bbb69868114bd17423a947b9"
+    },
+    {
+      "path": "catalog-audit/rival-mayor-viewer-phone.png",
+      "bytes": 79019,
+      "sha256": "082de06273111ccb3d3a85cb73c1309ad73d31a5483820db6043a87b38532cc3"
+    },
+    {
+      "path": "catalog-audit/web-slinger-helper-viewer-desktop.png",
+      "bytes": 182072,
+      "sha256": "ed4121d88f955db70d2c79a64e43c373b39a74ee9728be8ab6de88fe64c7ff84"
+    },
+    {
+      "path": "catalog-audit/web-slinger-helper-viewer-phone.png",
+      "bytes": 89770,
+      "sha256": "23dc954b8052226f1ffeeb4b22be27e377c63129efdb58d738c1ad34e4eb5b00"
+    },
+    {
+      "path": "catalog-audit/yes-yes-veggie-viewer-desktop.png",
+      "bytes": 247364,
+      "sha256": "ad0b4cf25cd6e8958a310298af4f14dd6a5609c209c789d9d6be00c0576b2e4a"
+    },
+    {
+      "path": "catalog-audit/yes-yes-veggie-viewer-phone.png",
+      "bytes": 118788,
+      "sha256": "486b7561622e7e1c863d1883d9f3247962c37f10ec6ba4158e1e4ce9f2c3731c"
+    },
+    {
+      "path": "checks/commands.json",
+      "bytes": 957,
+      "sha256": "57e333e6e1b5bd0b6ef945df8e61814fecce7ba2913ffa538df146c9067d857e"
+    },
+    {
+      "path": "checks/full-suite.txt",
+      "bytes": 759,
+      "sha256": "648ddea66974a4c0e32e27597c26f4973025ed47ced6d67ff2d4dc2566dd020b"
+    },
+    {
       "path": "construction.json",
       "bytes": 47341,
       "sha256": "c76eef76a1439f4a6b528dec2e129ea98e74d4e7c774191b29cada4043b245f4"
+    },
+    {
+      "path": "final-verification.json",
+      "bytes": 4283,
+      "sha256": "ffe17eb646e3109d149236f39feb3d2d85c0c7c4a84abf3a70b904355c4ab05a"
     },
     {
       "path": "flower-planter.glb",
@@ -187,6 +442,11 @@
       "path": "provenance.json",
       "bytes": 1759,
       "sha256": "cbd502416de7d4fc5801f872e6ee3c140669803560c51a2f98360242de856beb"
+    },
+    {
+      "path": "rebase-verification.json",
+      "bytes": 1132,
+      "sha256": "7ff22995d91731c28d0075001f79cd4f2c5cc7aa5e977432e63915962d035c1f"
     },
     {
       "path": "reference-notes.md",

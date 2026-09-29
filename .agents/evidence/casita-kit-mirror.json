@@ -1,0 +1,14 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "files_including_manifest": 178,
+  "manifest_sha256": "896b9994575c49ed4d6d7105a64f22ba075d896e2b5870cf46397dee5dc45701",
+  "all_public_files_match": true,
+  "locations": [
+    "/home/dev/work/hq-casita-kit/docs/assets/media/casita-kit/v001",
+    "/home/dev/artifacts/haynes-quest/family-eras/casita-kit/v001",
+    "/workspace/haynes-quest/family-eras/casita-kit/v001"
+  ],
+  "remote_instance": "blender-authoring-2",
+  "scope": "File synchronization only; live Blender scene is untouched; exact masters and GLBs may never be overwritten with differing bytes."
+}

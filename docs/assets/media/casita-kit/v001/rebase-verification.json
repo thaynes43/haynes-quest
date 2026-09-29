@@ -1,0 +1,22 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "tested_route_base": "489902a8b0e22bbaaea1e9cd0eb20f365610907c",
+  "rebased_onto": "d78e146f6db2db7eb2393ec164baa06536bb71b1",
+  "unchanged_route_and_adapter_sha256": {
+    "src/game/scene-assets.ts": "3935142f542151177d516435f5cc0559a8bdb4fffcd0a38eae89b7f27c7a839f",
+    "src/game/decor-scene.ts": "8de09233ddcdb101c8daf7508dbd04505a30e75238bb3e72680d4e8bf23a1e7b",
+    "scripts/levels/family/b2.ts": "fc9e2eff7bd6b4b6c3e803423191c99202cb52b99f63758dc7bd9f9f14797167",
+    "src/shared/levels/family-world-b-v5.json": "015d11a114e26d2c6a6d4ebd1117cf48ff93197c7201f9c2780b297f3da8c843"
+  },
+  "frozen_templates_changed": [],
+  "saved_publications_changed": false,
+  "casita_planning_boxes_changed": false,
+  "actual_b2_placements": 36,
+  "upstream_inventory_records_preserved": 98,
+  "upstream_thumbnail_records_preserved": 139,
+  "final_inventory_entries": 102,
+  "final_model_files": 73,
+  "final_thumbnail_files": 144,
+  "scope": "B2 route/camera evidence remains applicable after the helper rebase; only the four exact Casita registry URLs and hashes change runtime data."
+}
