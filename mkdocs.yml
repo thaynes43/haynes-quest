@@ -43,6 +43,7 @@ nav:
       - Versioned world projects: adrs/004-versioned-world-projects.md
       - Family sign-in and admission: adrs/005-family-sign-in-and-admission.md
       - Playtest isolation and public surface: adrs/006-release-isolation-and-public-surface.md
+      - Runtime media packaging: adrs/007-runtime-media-packaging.md
       - ADR template: adrs/000-template.md
   - Domain language:
       - Ubiquitous language: domain-driven-design/001-ubiquitous-language.md
@@ -80,6 +81,7 @@ nav:
       - Hosting context: ops/001-hosting-context.md
       - Private preview: ops/002-private-preview.md
       - Era combat verification: ops/005-era-combat-verification.md
+      - Runtime studio media: ops/006-runtime-media.md
       - Activate dev-env: project/runbooks/activate-dev-env.md
       - Runbook template: ops/000-template.md
   - Project records:
