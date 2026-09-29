@@ -47,16 +47,16 @@
           "encounters": {
             "bonus-1": {
               "arena": {
-                "maxX": 4.5,
+                "maxX": 2,
                 "maxZ": -83,
-                "minX": 1.5,
+                "minX": -1,
                 "minZ": -86
               },
               "checkpointId": "cp-picnic",
               "kind": "ordinary-a",
               "platformId": "picnic-plateau",
               "position": {
-                "x": 3,
+                "x": 0.5,
                 "y": 3.6,
                 "z": -84.5
               }
@@ -4662,18 +4662,18 @@
             },
             "bonus-2": {
               "arena": {
-                "maxX": -55,
-                "maxZ": -62.5,
-                "minX": -58,
-                "minZ": -65.3
+                "maxX": -51,
+                "maxZ": -62,
+                "minX": -54,
+                "minZ": -65
               },
               "checkpointId": "cp-billboard",
               "kind": "ordinary-a",
               "platformId": "billboard-balcony",
               "position": {
-                "x": -56.5,
+                "x": -52.5,
                 "y": 9.3,
-                "z": -64
+                "z": -63.5
               }
             },
             "boss": {

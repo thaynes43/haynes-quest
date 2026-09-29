@@ -47,18 +47,18 @@
           "encounters": {
             "bonus-1": {
               "arena": {
-                "maxX": -21,
-                "maxZ": -88.7,
-                "minX": -25,
-                "minZ": -92.3
+                "maxX": -17,
+                "maxZ": -86.2,
+                "minX": -19.2,
+                "minZ": -88.5
               },
               "checkpointId": "cp-shelf",
               "kind": "ordinary-a",
               "platformId": "book-shelf",
               "position": {
-                "x": -23,
+                "x": -18.2,
                 "y": 2.7,
-                "z": -90.5
+                "z": -87.2
               }
             },
             "bonus-2": {
@@ -1645,7 +1645,7 @@
             "id": "cp-shelf",
             "platformId": "book-shelf",
             "position": {
-              "x": -20.5,
+              "x": -23,
               "y": 2.7,
               "z": -85.5
             },

@@ -6039,6 +6039,25 @@
     "commands": [
       {
         "type": "piece.update",
+        "chapterId": "family-b1",
+        "pieceId": "cp-shelf",
+        "piece": {
+          "type": "checkpoint",
+          "id": "cp-shelf",
+          "position": {
+            "x": -23,
+            "y": 2.7,
+            "z": -85.5
+          },
+          "platformId": "book-shelf",
+          "activation": {
+            "type": "platform"
+          }
+        },
+        "carryAttached": false
+      },
+      {
+        "type": "piece.update",
         "chapterId": "family-b2",
         "pieceId": "roof-walk",
         "piece": {
@@ -6181,15 +6200,15 @@
           "platformId": "book-shelf",
           "checkpointId": "cp-shelf",
           "position": {
-            "x": -23,
+            "x": -18.2,
             "y": 2.7,
-            "z": -90.5
+            "z": -87.2
           },
           "arena": {
-            "minX": -25,
-            "maxX": -21,
-            "minZ": -92.3,
-            "maxZ": -88.7
+            "minX": -19.2,
+            "maxX": -17,
+            "minZ": -88.5,
+            "maxZ": -86.2
           }
         },
         "encounter": {

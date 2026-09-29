@@ -6,10 +6,10 @@ import { buildEncounterRevision, encounterRevisionCommands, serializeEncounterRe
 import { chapterCommands } from "./lib/growth-kit.js";
 
 export const FAMILY_WORLD_A_V7_PLACEMENTS: readonly BonusPlacement[] = [
-  { chapterId: "family-a1", slot: "bonus-1", castFrom: "ordinary-1", platformId: "picnic-plateau", checkpointId: "cp-picnic", position: { x: 3, y: 3.6, z: -84.5 }, arena: { minX: 1.5, maxX: 4.5, minZ: -86, maxZ: -83 } },
+  { chapterId: "family-a1", slot: "bonus-1", castFrom: "ordinary-1", platformId: "picnic-plateau", checkpointId: "cp-picnic", position: { x: 0.5, y: 3.6, z: -84.5 }, arena: { minX: -1, maxX: 2, minZ: -86, maxZ: -83 } },
   { chapterId: "family-a1", slot: "bonus-2", castFrom: "ordinary-3", platformId: "clubhouse-porch", checkpointId: "cp-clubhouse", position: { x: -18.2, y: 8.8, z: -142.3 }, arena: { minX: -19.5, maxX: -17, minZ: -143.8, maxZ: -141.5 } },
   { chapterId: "family-a2", slot: "bonus-2", castFrom: "ordinary-2", platformId: "tower-plaza", checkpointId: "plaza-safe", position: { x: -39, y: 9.9, z: -129 }, arena: { minX: -41, maxX: -37, minZ: -130, maxZ: -127 } },
-  { chapterId: "family-a3", slot: "bonus-2", castFrom: "ordinary-1", platformId: "billboard-balcony", checkpointId: "cp-billboard", position: { x: -56.5, y: 9.3, z: -64 }, arena: { minX: -58, maxX: -55, minZ: -65.3, maxZ: -62.5 } },
+  { chapterId: "family-a3", slot: "bonus-2", castFrom: "ordinary-1", platformId: "billboard-balcony", checkpointId: "cp-billboard", position: { x: -52.5, y: 9.3, z: -63.5 }, arena: { minX: -54, maxX: -51, minZ: -65, maxZ: -62 } },
   { chapterId: "family-a4", slot: "bonus-2", castFrom: "ordinary-3", platformId: "backstage-turn", checkpointId: "backstage-safe", position: { x: -33, y: 7.7, z: -80 }, arena: { minX: -35, maxX: -31.2, minZ: -81.5, maxZ: -78.5 } },
 ];
 
