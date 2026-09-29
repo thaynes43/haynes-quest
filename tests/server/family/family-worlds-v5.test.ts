@@ -4,11 +4,12 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { buildFamilyWorldAV5, familyWorldAV5Commands, FAMILY_A4_V5_SCRIPTED_SCARES, FAMILY_WORLD_A_V5_COMMANDS_URL, FAMILY_WORLD_A_V5_PROJECT_URL } from "../../../scripts/levels/build-family-world-a-v5";
 import { buildFamilyWorldBV5, familyWorldBV5Commands, FAMILY_WORLD_B_V5_COMMANDS_URL, FAMILY_WORLD_B_V5_PROJECT_URL } from "../../../scripts/levels/build-family-world-b-v5";
+import { blackoutHazardZones, nearBlackoutHazard } from "../../../src/game/scare";
 import { parodyArtwork } from "../../../src/game/scene-catalog";
 import { validateFamilyWorldPlan } from "../../../src/server/family/plan";
 import { rebaseWorldForChild } from "../../../src/server/family/rebase";
 import { FamilyTemplateRegistry } from "../../../src/server/family/templates";
-import { serializeLevelEditorProject } from "../../../src/shared/editor-project";
+import { resolveLevelEditorProject, serializeLevelEditorProject } from "../../../src/shared/editor-project";
 import { familyHarness, HARNESS_TODAY } from "./harness";
 import { TEST_CHILD_B, TEST_CHILD_C, syntheticLibrary } from "./fake-immich";
 
@@ -72,6 +73,10 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
       expect(v4.project.chapters[3]!.level.scriptedScares).toBeUndefined();
       expect(v5.project.chapters[3]!.level.scriptedScares).toEqual(FAMILY_A4_V5_SCRIPTED_SCARES);
       expect(v5.project.chapters[3]!.level.scare).toBe(2);
+      const a4 = resolveLevelEditorProject(v5.project).levels[v5.project.chapters[3]!.routeId]!;
+      const hazardZones = blackoutHazardZones(a4.course);
+      for (const spot of FAMILY_A4_V5_SCRIPTED_SCARES)
+        expect(nearBlackoutHazard(hazardZones, spot.position), spot.id).toBe(false);
     }
     for (const [index, slots] of Object.entries(spec.cast))
       for (const [slot, id] of Object.entries(slots) as [string, string][]) {
