@@ -1793,6 +1793,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
             player: controller.position,
             deltaSeconds: stepSeconds,
             active: combatActive && controller.recoveryRemaining <= 0,
+            recovering: controller.recoveryRemaining > 0,
           },
           save,
         );

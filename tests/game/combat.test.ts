@@ -70,6 +70,15 @@ function levelWithFirstOrdinary(
   };
 }
 
+function crossingLevel(save: ReturnType<typeof makeEraSave>): LevelLayout {
+  // A four-metre-deep authored fight island with the enemy off the route's
+  // centre line, matching the compact arenas in the frozen family worlds.
+  return levelWithFirstOrdinary(save, {
+    position: { x: 2, y: 0, z: -35.3 },
+    arena: { minX: -4, maxX: 4, minZ: -37.3, maxZ: -33.8 },
+  });
+}
+
 describe("enemy combat simulation", () => {
   it("chases, telegraphs, freezes while paused, and damages only during contact", () => {
     const save = makeEraSave();
@@ -166,6 +175,72 @@ describe("enemy combat simulation", () => {
     stepMany(legacy, save, playerAcrossGap, 40);
     expect(legacy.frames()[0]?.position.z).toBeCloseTo(-6.3425, 6);
     expect(legacy.frames()[0]?.position.z).toBeGreaterThan(arena.maxZ);
+  });
+
+  it("intercepts a straight four-metre-per-second crossing after a full visible warning", () => {
+    const save = makeEraSave();
+    const simulation = new EnemySimulation(crossingLevel(save), save);
+    let firstWindup = -1;
+    let firstStrike = -1;
+    let firstContact = -1;
+
+    for (let frame = 0; frame < 60; frame += 1) {
+      const player = { x: 0, y: 0, z: -27 - frame * 0.2 };
+      const contacts = simulation.step(
+        { player, deltaSeconds: 0.05, active: true },
+        save,
+      );
+      const enemy = simulation.frames()[0]!;
+      if (enemy.phase === "windup" && firstWindup < 0) firstWindup = frame;
+      if (enemy.phase === "strike" && firstStrike < 0) firstStrike = frame;
+      if (contacts.length > 0 && firstContact < 0) firstContact = frame;
+      expect(enemy.position.x).toBeGreaterThanOrEqual(-4);
+      expect(enemy.position.x).toBeLessThanOrEqual(4);
+      expect(enemy.position.z).toBeGreaterThanOrEqual(-37.3);
+      expect(enemy.position.z).toBeLessThanOrEqual(-33.8);
+    }
+
+    expect(firstWindup).toBeGreaterThan(0);
+    expect(firstStrike - firstWindup).toBeGreaterThanOrEqual(16);
+    expect(firstContact).toBeGreaterThan(firstStrike);
+  });
+
+  it("lets a player change direction during the committed windup to dodge", () => {
+    const save = makeEraSave();
+    const simulation = new EnemySimulation(crossingLevel(save), save);
+    let warned = false;
+    const contacts: string[] = [];
+
+    for (let frame = 0; frame < 60; frame += 1) {
+      const player = warned
+        ? { x: -Math.min(3.2, (frame - 33) * 0.2), y: 0, z: -33.6 }
+        : { x: 0, y: 0, z: -27 - frame * 0.2 };
+      contacts.push(
+        ...simulation.step({ player, deltaSeconds: 0.05, active: true }, save),
+      );
+      if (simulation.frames()[0]?.phase === "windup") warned = true;
+    }
+
+    expect(warned).toBe(true);
+    expect(contacts).toEqual([]);
+    expect(simulation.frames()[0]?.phase).toBe("cooldown");
+  });
+
+  it("stays off the safe approach and does not pursue from a different floor", () => {
+    const save = makeEraSave();
+    const level = crossingLevel(save);
+    const simulation = new EnemySimulation(level, save);
+    expect(stepMany(simulation, save, { x: 0, y: 0, z: -27 }, 80)).toEqual([]);
+    expect(simulation.frames()[0]).toMatchObject({
+      phase: "idle",
+      position: { x: 2, y: 0, z: -35.3 },
+    });
+
+    expect(stepMany(simulation, save, { x: 0, y: 2, z: -34 }, 80)).toEqual([]);
+    expect(simulation.frames()[0]).toMatchObject({
+      phase: "idle",
+      position: { x: 2, y: 0, z: -35.3 },
+    });
   });
 
   it("restarts a threatened attack with a full telegraph after resume", () => {

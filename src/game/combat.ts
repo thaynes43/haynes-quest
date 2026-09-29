@@ -6,6 +6,14 @@ import type { EnemyFrame, EnemyPhase, PositionSnapshot } from "./types";
 type RuntimeEncounterView = EncounterView & { available?: boolean };
 
 export const enemyActivationRadius = 6;
+/** Authored arenas let a foe notice an approach before the player enters strike reach. */
+const authoredActivationRadius = 6.5;
+const authoredPursuitRadius = 9;
+const authoredPursuitMargin = 4;
+const pursuitLeadSeconds = 0.4;
+const maxLeadDistance = 1.6;
+const windupClosingSpeed = 3;
+const windupStopRange = 0.9;
 export const enemyStrikeSeconds = 0.18;
 export const enemyCooldownSeconds = 1.4;
 export const playerHitCooldownSeconds = 0.9;
@@ -18,6 +26,7 @@ type EnemyArena = NonNullable<EncounterPlacement["arena"]>;
 
 interface EnemyTuning {
   speed: number;
+  legacySpeed: number;
   stopRange: number;
   attackRange: number;
   windupSeconds: number;
@@ -33,6 +42,7 @@ interface LocalEnemy {
   facing: number;
   phase: EnemyPhase;
   phaseSeconds: number;
+  windupTarget: PositionSnapshot | null;
   contactedDuringStrike: boolean;
   hp: number;
   maxHp: number;
@@ -58,17 +68,21 @@ export interface EnemyStepOptions {
   player: PositionSnapshot;
   deltaSeconds: number;
   active: boolean;
+  /** Local fall recovery protects the checkpoint and releases any pursuit. */
+  recovering?: boolean;
 }
 
 const ordinaryTuning: EnemyTuning = {
-  speed: 0.85,
+  speed: 2.5,
+  legacySpeed: 0.85,
   stopRange: 1.1,
   attackRange: 1.35,
   windupSeconds: 0.8,
   collisionRadius: 0.42,
 };
 const bossTuning: EnemyTuning = {
-  speed: 0.65,
+  speed: 1.4,
+  legacySpeed: 0.65,
   // The routed boss island resumes at z=-19 while its safe arena ends at
   // z=-21. Its reach must bridge that two-metre boundary or it walks against
   // the clamp forever without ever telegraphing an attack.
@@ -172,6 +186,7 @@ export function bossIsActive(save: SaveView): boolean {
 export class EnemySimulation {
   private enemies = new Map<string, LocalEnemy>();
   private hitCooldownSeconds = 0;
+  private lastPlayer: PositionSnapshot | null = null;
   /**
    * DESIGN-027 D-04, scare level 1+: a sleeping ordinary enemy holds its
    * facing instead of tracking the player, so it only changes while unseen.
@@ -185,6 +200,7 @@ export class EnemySimulation {
 
   reset(level: LevelLayout, save: SaveView): void {
     this.enemies.clear();
+    this.lastPlayer = null;
     const authoritative = encounterMap(save);
     for (const placement of level.encounters) {
       const encounter = authoritative.get(placement.id);
@@ -223,6 +239,7 @@ export class EnemySimulation {
       if (encounter.defeated) {
         current.phase = "defeated";
         current.phaseSeconds = 0;
+        current.windupTarget = null;
         current.contactedDuringStrike = false;
       } else if (revived) {
         current.spawn = spawnFor(placement, current.arena);
@@ -232,6 +249,7 @@ export class EnemySimulation {
         current.pose = 0;
         current.phase = "idle";
         current.phaseSeconds = 0;
+        current.windupTarget = null;
         current.contactedDuringStrike = false;
         this.hitCooldownSeconds = 0;
       }
@@ -295,13 +313,53 @@ export class EnemySimulation {
       if (enemy.phase !== "windup" && enemy.phase !== "strike") continue;
       enemy.phase = "windup";
       enemy.phaseSeconds = 0;
+      enemy.windupTarget = null;
       enemy.contactedDuringStrike = false;
     }
   }
 
   step(options: EnemyStepOptions, save: SaveView): string[] {
-    if (!options.active) return [];
+    if (!options.active) {
+      this.lastPlayer = null;
+      if (options.recovering) {
+        for (const enemy of this.enemies.values()) {
+          if (enemy.defeated || enemy.scripted) continue;
+          enemy.position = { ...enemy.spawn };
+          enemy.phase = "idle";
+          enemy.phaseSeconds = 0;
+          enemy.windupTarget = null;
+          enemy.contactedDuringStrike = false;
+          enemy.awake = false;
+          enemy.pose = 0;
+        }
+      }
+      return [];
+    }
     const dt = Math.max(0, Math.min(0.05, options.deltaSeconds));
+    // A short lead makes a moving foe cut across the route instead of chasing
+    // the player's old position. Ignore teleports/recovery and cap the lead so
+    // a single delayed frame cannot send an enemy across its whole arena.
+    const previousPlayer = this.lastPlayer;
+    const playerTravel = previousPlayer
+      ? distance(options.player, previousPlayer)
+      : 0;
+    const lead =
+      dt > 0 && previousPlayer && playerTravel <= dt * 8
+        ? Math.min(
+            pursuitLeadSeconds / dt,
+            maxLeadDistance / Math.max(playerTravel, distanceEpsilon),
+          )
+        : 0;
+    const pursuitTarget = {
+      x:
+        options.player.x +
+        (options.player.x - (previousPlayer?.x ?? options.player.x)) * lead,
+      y: options.player.y,
+      z:
+        options.player.z +
+        (options.player.z - (previousPlayer?.z ?? options.player.z)) * lead,
+    };
+    this.lastPlayer = { ...options.player };
     this.hitCooldownSeconds = Math.max(0, this.hitCooldownSeconds - dt);
     const contacts: string[] = [];
     const bossActive = bossIsActive(save);
@@ -321,16 +379,26 @@ export class EnemySimulation {
       if (enemy.scripted) continue;
       const tuning = tuningFor(enemy.role);
       const playerDistance = distance(enemy.position, options.player);
-      const playerReachable = canReachPlayer(
-        options.player,
-        enemy.arena,
-        tuning.attackRange,
-      );
+      const authoredOrdinary = enemy.role === "ordinary" && enemy.arena;
+      const pursuitReachable =
+        canReachPlayer(
+          options.player,
+          enemy.arena,
+          authoredOrdinary ? authoredPursuitMargin : tuning.attackRange,
+        ) &&
+        (!authoredOrdinary ||
+          verticalDistance(enemy.position, options.player) <= 1.25);
+      const activationRadius = authoredOrdinary
+        ? authoredActivationRadius
+        : enemyActivationRadius;
+      const pursuitRadius = authoredOrdinary
+        ? authoredPursuitRadius
+        : enemyActivationRadius;
       const sleeping = this.isDormantWatcher(enemy);
       if (!sleeping) enemy.facing = facingToward(enemy.position, options.player);
       switch (enemy.phase) {
         case "idle":
-          if (playerDistance <= enemyActivationRadius && playerReachable) {
+          if (playerDistance <= activationRadius && pursuitReachable) {
             enemy.phase = "chasing";
             enemy.phaseSeconds = 0;
             enemy.awake = true;
@@ -341,9 +409,10 @@ export class EnemySimulation {
           }
           break;
         case "chasing":
-          if (playerDistance > enemyActivationRadius || !playerReachable) {
+          if (playerDistance > pursuitRadius || !pursuitReachable) {
             enemy.phase = "idle";
             enemy.phaseSeconds = 0;
+            enemy.windupTarget = null;
           } else if (
             playerDistance <= tuning.stopRange + distanceEpsilon ||
             // Outside the arena, the clamped approach can converge on the
@@ -354,27 +423,61 @@ export class EnemySimulation {
           ) {
             enemy.phase = "windup";
             enemy.phaseSeconds = 0;
+            if (enemy.role === "ordinary" && enemy.arena) {
+              enemy.windupTarget = {
+                x: options.player.x + (pursuitTarget.x - options.player.x) * 2,
+                y: enemy.position.y,
+                z: options.player.z + (pursuitTarget.z - options.player.z) * 2,
+              };
+              clampToArena(enemy.windupTarget, enemy.arena);
+            }
           } else {
+            const target =
+              enemy.role === "ordinary" && enemy.arena
+                ? { ...pursuitTarget }
+                : { ...options.player };
+            if (enemy.role === "ordinary") clampToArena(target, enemy.arena);
+            const targetDistance = distance(enemy.position, target);
             const travel = Math.min(
-              tuning.speed * dt,
-              Math.max(0, playerDistance - tuning.stopRange),
+              (enemy.arena ? tuning.speed : tuning.legacySpeed) * dt,
+              Math.max(0, targetDistance - tuning.stopRange),
             );
-            if (playerDistance > 0) {
+            if (targetDistance > 0) {
               enemy.position.x +=
-                ((options.player.x - enemy.position.x) / playerDistance) *
-                travel;
+                ((target.x - enemy.position.x) / targetDistance) * travel;
               enemy.position.z +=
-                ((options.player.z - enemy.position.z) / playerDistance) *
-                travel;
+                ((target.z - enemy.position.z) / targetDistance) * travel;
               clampToArena(enemy.position, enemy.arena);
             }
           }
           break;
         case "windup":
-          if (playerDistance > tuning.attackRange) {
+          if (
+            (enemy.role === "boss" || !enemy.arena) &&
+            playerDistance > tuning.attackRange
+          ) {
             enemy.phase = "chasing";
             enemy.phaseSeconds = 0;
           } else {
+            if (enemy.windupTarget) {
+              const targetDistance = distance(
+                enemy.position,
+                enemy.windupTarget,
+              );
+              const travel = Math.min(
+                windupClosingSpeed * dt,
+                Math.max(0, targetDistance - windupStopRange),
+              );
+              if (targetDistance > 0) {
+                enemy.position.x +=
+                  ((enemy.windupTarget.x - enemy.position.x) / targetDistance) *
+                  travel;
+                enemy.position.z +=
+                  ((enemy.windupTarget.z - enemy.position.z) / targetDistance) *
+                  travel;
+                clampToArena(enemy.position, enemy.arena);
+              }
+            }
             enemy.phaseSeconds += dt;
             if (enemy.phaseSeconds >= tuning.windupSeconds) {
               enemy.phase = "strike";
@@ -403,7 +506,7 @@ export class EnemySimulation {
           enemy.phaseSeconds += dt;
           if (enemy.phaseSeconds >= enemyCooldownSeconds) {
             enemy.phase =
-              playerDistance <= enemyActivationRadius && playerReachable
+              playerDistance <= pursuitRadius && pursuitReachable
                 ? "chasing"
                 : "idle";
             enemy.phaseSeconds = 0;
@@ -478,6 +581,7 @@ export class EnemySimulation {
       facing: 0,
       phase: encounter.defeated ? "defeated" : "idle",
       phaseSeconds: 0,
+      windupTarget: null,
       contactedDuringStrike: false,
       hp: encounter.hp,
       maxHp: encounter.maxHp,
