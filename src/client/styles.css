@@ -1970,23 +1970,75 @@ footer {
   left: 50%;
   transform: translateX(-50%);
   bottom: 190px;
-  max-width: min(320px, calc(100vw - 30px));
-  padding: 8px 15px;
-  border-radius: 20px;
+  width: min(190px, calc(100vw - 30px));
+  padding: 8px 12px;
+  border: 2px solid #e4cba680;
+  border-radius: 12px;
   background: #302d43d9;
   color: #fff0d4;
   font-size: 12px;
   text-align: center;
   pointer-events: none;
 }
+.target-hint.in-reach {
+  border-color: #ffe394;
+  box-shadow: 0 0 18px #f9ca6966;
+}
 .target-hint strong,
 .target-hint small {
   display: block;
+}
+.target-hint meter {
+  display: block;
+  width: 100%;
+  height: 9px;
+  margin-top: 5px;
+}
+.target-hint meter::-webkit-meter-optimum-value {
+  background: #f1bc68;
+  border-radius: 8px;
+}
+.target-hint meter::-moz-meter-bar {
+  background: #f1bc68;
 }
 .target-hint small {
   margin-top: 2px;
   color: #e4cba6;
   font-size: 9px;
+}
+.confirmed-damage {
+  position: absolute;
+  top: -15px;
+  right: -14px;
+  color: #fff6bc;
+  font:
+    700 23px/1 system-ui,
+    sans-serif;
+  text-shadow: 0 2px 7px #4d2235;
+  animation: confirmed-damage-pop 850ms ease-out forwards;
+  pointer-events: none;
+}
+@keyframes confirmed-damage-pop {
+  from {
+    opacity: 0;
+    transform: translateY(9px) scale(0.7);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.15);
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .confirmed-damage {
+    animation: none;
+  }
 }
 .attack-notice {
   position: absolute;
@@ -2643,6 +2695,12 @@ footer {
 .era-game .combat-actions .action-button.available {
   border-color: #fff4b2;
   background: #a26b2b;
+}
+.era-game .combat-actions .combat-attack.available {
+  box-shadow:
+    0 0 0 5px #ffe39470,
+    0 6px 0 #513421bb,
+    0 7px 24px #0004;
 }
 .era-game .combat-actions .action-button:disabled {
   opacity: 0.56;

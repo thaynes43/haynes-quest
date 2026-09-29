@@ -236,6 +236,16 @@ function Adventure({
   );
   const [chapterNotice, setChapterNotice] = useState("");
   const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
+  const [lastDamage, setLastDamage] = useState<{
+    encounterId: string;
+    amount: number;
+    revision: number;
+  } | null>(null);
+  useEffect(() => {
+    if (!lastDamage) return;
+    const timeout = window.setTimeout(() => setLastDamage(null), 850);
+    return () => window.clearTimeout(timeout);
+  }, [lastDamage]);
   // The casino haul of the chapter that just ended, kept past its last status.
   const casinoTally = useRef<{
     levelId: string;
@@ -296,11 +306,12 @@ function Adventure({
   const chapterDescription =
     (level?.routeId ? chapterDescriptions?.[level.routeId] : undefined) ??
     story.description;
-  const chapterSubtitle =
-    level?.routeId ? chapterSubtitles?.[level.routeId] : undefined;
+  const chapterSubtitle = level?.routeId
+    ? chapterSubtitles?.[level.routeId]
+    : undefined;
   const previewChapterCount = selectedMemoryIds
     ? 1
-    : level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3));
+    : (level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3)));
   const hasDraftEnemy = level?.encounters.some(
     (encounter) => encounter.content?.placeholder === "neutral-candidate-v1",
   );
@@ -404,13 +415,21 @@ function Adventure({
         if (action?.type === "collect-equipment") {
           void sound.feedback("pickup");
         }
-        const enemyHit = next.adventure?.activeLevel?.encounters.some(
-          (enemy) =>
-            enemy.hp <
-            (before.adventure?.activeLevel?.encounters.find(
-              (prior) => prior.id === enemy.id,
-            )?.hp ?? enemy.hp),
-        );
+        const damagedEnemy = next.adventure?.activeLevel?.encounters
+          .map((enemy) => ({
+            encounterId: enemy.id,
+            amount:
+              (before.adventure?.activeLevel?.encounters.find(
+                (prior) => prior.id === enemy.id,
+              )?.hp ?? enemy.hp) - enemy.hp,
+          }))
+          .find((enemy) => enemy.amount > 0);
+        const enemyHit = Boolean(damagedEnemy);
+        if (
+          damagedEnemy &&
+          (action?.type === "attack" || action?.type === "secondary-attack")
+        )
+          setLastDamage({ ...damagedEnemy, revision: next.revision });
         // A player's own hit already sounded at contact (DESIGN-022).
         const hitPlayedAtContact =
           action?.type === "attack" || action?.type === "secondary-attack";
@@ -479,9 +498,7 @@ function Adventure({
         game.current = createGame({
           container: container.current,
           save: initialSave,
-          ...(authoredLevelResolver
-            ? { authoredLevelResolver }
-            : {}),
+          ...(authoredLevelResolver ? { authoredLevelResolver } : {}),
           onAction: act,
           onRefresh: async () =>
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
@@ -848,20 +865,57 @@ function Adventure({
             <small>
               {boss.hp} / {boss.maxHp}
             </small>
+            {lastDamage?.encounterId === boss.id && (
+              <b
+                className="confirmed-damage"
+                key={lastDamage.revision}
+                aria-hidden="true"
+              >
+                −{lastDamage.amount}
+              </b>
+            )}
           </div>
         )}
-      {!modalOpen && draftTargetName && view.phase === "exploring" && (
-        <div className="target-hint" data-encounter-id={target?.id}>
-          <strong>{draftTargetName}</strong>
-          <small>Current target · draft character</small>
-        </div>
-      )}
+      {!modalOpen &&
+        target &&
+        target.role !== "boss" &&
+        view.phase === "exploring" && (
+          <div
+            className={`target-hint ${status?.attackReady ? "in-reach" : ""}`}
+            data-encounter-id={target.id}
+          >
+            <strong>
+              {draftTargetName ??
+                target.content?.displayName ??
+                story.enemies[target.kind]}
+            </strong>
+            <meter
+              min={0}
+              max={target.maxHp}
+              value={target.hp}
+              aria-label="Target health"
+            />
+            <small>
+              {target.hp} / {target.maxHp} HP
+            </small>
+            {lastDamage?.encounterId === target.id && (
+              <b
+                className="confirmed-damage"
+                key={lastDamage.revision}
+                aria-hidden="true"
+              >
+                −{lastDamage.amount}
+              </b>
+            )}
+          </div>
+        )}
       {!modalOpen && feedback}
       {!modalOpen && (
         <div className="game-bottom" data-quest-ui>
           <Joystick game={game} />
           <div className="keyboard-hint">
-            <span>WASD</span> move · <span>SPACE</span> jump · click/<span>F</span> attack · right click/<span>SHIFT</span> secondary
+            <span>WASD</span> move · <span>SPACE</span> jump · click/
+            <span>F</span> attack · right click/<span>SHIFT</span> secondary
           </div>
           <div className="combat-actions">
             <ActionButton
@@ -1344,9 +1398,11 @@ function Adventure({
       {activeModal === "complete" && (
         <Modal
           notice={feedback}
-          title={selectedMemoryIds
-            ? `${chapterTitles?.[chapterOnlyRouteId ?? ""] ?? "Chapter"} complete.`
-            : "Every chapter, a little more you."}
+          title={
+            selectedMemoryIds
+              ? `${chapterTitles?.[chapterOnlyRouteId ?? ""] ?? "Chapter"} complete.`
+              : "Every chapter, a little more you."
+          }
           eyebrow={selectedMemoryIds ? "CHAPTER COMPLETE" : "JOURNEY COMPLETE"}
           wide
         >
@@ -1423,7 +1479,8 @@ function CasinoHaul({
   counts: CollectibleCounts;
   names?: TrailNames;
 }) {
-  const everyTicket = counts.ticketTotal > 0 && counts.tickets === counts.ticketTotal;
+  const everyTicket =
+    counts.ticketTotal > 0 && counts.tickets === counts.ticketTotal;
   return (
     <p className="casino-haul">
       You grabbed {counts.tokens} of {counts.tokenTotal} {names.tokens} and{" "}
@@ -1539,10 +1596,7 @@ function ActionButton({
     let closest: number | undefined;
     let closestDistance = Number.POSITIVE_INFINITY;
     for (const [identifier, contact] of pendingTouches.current) {
-      const distance = Math.hypot(
-        contact.x - clientX,
-        contact.y - clientY,
-      );
+      const distance = Math.hypot(contact.x - clientX, contact.y - clientY);
       if (distance < closestDistance) {
         closest = identifier;
         closestDistance = distance;
@@ -1708,10 +1762,7 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
     let closest: number | undefined;
     let closestDistance = Number.POSITIVE_INFINITY;
     for (const [identifier, contact] of pendingTouches.current) {
-      const distance = Math.hypot(
-        contact.x - clientX,
-        contact.y - clientY,
-      );
+      const distance = Math.hypot(contact.x - clientX, contact.y - clientY);
       if (distance < closestDistance) {
         closest = identifier;
         closestDistance = distance;

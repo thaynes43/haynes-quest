@@ -267,6 +267,60 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     expect(container.querySelector(".boss-hud")).toBeNull();
   });
 
+  it("shows ordinary health and a damage number only after the server confirms a hit", async () => {
+    const save = routeMemorySave();
+    const foe = save.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.role === "ordinary",
+    )!;
+    await renderRoute(save);
+    await act(async () =>
+      options!.onStatus?.({
+        ...status(),
+        nearEncounterId: foe.id,
+        attackReady: true,
+      }),
+    );
+    const target = container.querySelector(".target-hint");
+    expect(target).not.toBeNull();
+    expect(target?.classList.contains("in-reach")).toBe(true);
+    expect(target?.querySelector("meter")?.getAttribute("value")).toBe(
+      String(foe.hp),
+    );
+    expect(target?.querySelector(".confirmed-damage")).toBeNull();
+
+    await act(async () =>
+      options!.onStatus?.({
+        ...status(),
+        nearEncounterId: foe.id,
+        attackReady: true,
+        attackFeedback: { sequence: 1, outcome: "no-target" },
+      }),
+    );
+    expect(target?.querySelector(".confirmed-damage")).toBeNull();
+
+    const hit = structuredClone(save);
+    hit.revision += 1;
+    hit.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.id === foe.id,
+    )!.hp -= 1;
+    mocks.api.mockResolvedValueOnce(hit);
+    await act(async () => {
+      await options!.onAction({
+        actionId: "11111111-1111-4111-8111-111111111112",
+        expectedRevision: save.revision,
+        action: { type: "attack", levelId, encounterId: foe.id },
+      });
+    });
+    expect(container.querySelector(".target-hint meter")?.getAttribute("value")).toBe(
+      String(foe.hp - 1),
+    );
+    expect(container.querySelector(".target-hint .confirmed-damage")?.textContent).toBe(
+      "−1",
+    );
+    await act(async () => vi.advanceTimersByTime(850));
+    expect(container.querySelector(".confirmed-damage")).toBeNull();
+  });
+
   it("explains a refused checkpoint dispatch and permits a manual retry", async () => {
     const save = routeMemorySave();
     save.adventure!.phase = "fallen";
