@@ -30,7 +30,7 @@ Read this section first. [PLAN-019](plans/019-first-family-release.md) remains *
 
 The parked `wip/scare-fixes-post-merge` and `wip/family-b1-stale-rebuild` branches were audited and deleted after v5 publication: the useful cold-fog/doc correction was merged in #133, and the B1 rebuild was obsolete.
 
-The A4 synthetic Chromium normal route reached both grounded scripted scares before combat at simulated 2.07 s and 94.91 s, four fights and two memories with zero recoveries or browser/media errors. A separate scares-off route emitted no scare events, and the combined-tree first-fight view showed a clear attack lane. These are lockstep fixture checks; they do not establish physical-device feel or a full authenticated hosted journey.
+The A4 synthetic Chromium normal route reached both grounded scripted scares before combat at simulated 2.07 s and 94.91 s, four fights and two memories with zero recoveries or browser/media errors. A separate scares-off route emitted no scare events, and the combined-tree first-fight view showed a clear attack lane. The deployed isolated fixture also completed all of A4 with both scares, 36 legs, five fights, three memories, zero recoveries and zero browser/media errors. Its first-fight check drew every frame; the full-route check suppressed drawing between rendered screenshots while preserving simulation and combat. These are lockstep fixture checks; they do not establish physical-device feel, real-time frame cost or an authenticated family journey.
 
 ## Golden encounter and PC mouse controls · September 25, 2026
 

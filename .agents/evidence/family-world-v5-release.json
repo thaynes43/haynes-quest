@@ -173,7 +173,7 @@
     "note": "Role labels and counts only; no child identifiers or photo data are recorded. Started saves remain on their frozen prior publications until Start fresh."
   },
   "browser": {
-    "environment": "local synthetic fixture in Chromium with lockstep route; no real family photo, physical device, or authenticated hosted full-route assertion",
+    "environment": "Local and hosted isolated playtest fixtures in Chromium with synthetic lockstep routes; no real family photo, authenticated family journey, physical device, or real-time frame-cost assertion",
     "reports": [
       {
         "name": "a4-two-scares-normal-route",
@@ -219,6 +219,42 @@
         "consoleErrors": 0,
         "responseErrors": 0,
         "mediaFailed": 0
+      },
+      {
+        "name": "a4-hosted-first-fight",
+        "file": ".agents/evidence/family-world-v5/a4-hosted-first-fight.json",
+        "sha256": "35faf670340d3c1c7f02d7e607440bf07ef4a8508e0d357e63ea1b9c6b2d03f5",
+        "fixture": "hosted isolated playtest",
+        "drawingBetweenCaptures": true,
+        "stoppedAt": "first-fight",
+        "completed": false,
+        "legs": 6,
+        "fights": 0,
+        "memories": 0,
+        "recoveries": 0,
+        "jumpScares": 1,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "responseErrors": 0,
+        "mediaFailed": 0
+      },
+      {
+        "name": "a4-hosted-complete",
+        "file": ".agents/evidence/family-world-v5/a4-hosted-complete.json",
+        "sha256": "1e4e818cc7553ad0bf36d326cfa29540eb5472e9275ecba7e6efe34ba2a369ca",
+        "fixture": "hosted isolated playtest",
+        "drawingBetweenCaptures": false,
+        "stoppedAt": null,
+        "completed": true,
+        "legs": 36,
+        "fights": 5,
+        "memories": 3,
+        "recoveries": 0,
+        "jumpScares": 2,
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "responseErrors": 0,
+        "mediaFailed": 0
       }
     ],
     "selectedScreenshots": [
@@ -233,6 +269,22 @@
       {
         "file": ".agents/evidence/family-world-v5/a4-first-fight-clear.png",
         "sha256": "0e273cb3acef7feee6705a3ffdcaa37741059948d74c01a91d44ec278497321c"
+      },
+      {
+        "file": ".agents/evidence/family-world-v5/a4-hosted-foyer-lunge.png",
+        "sha256": "6fb8e9443e5430c42aefbd02455bc49e13dda65b64c6ec39cec9e7e53b1b88e0"
+      },
+      {
+        "file": ".agents/evidence/family-world-v5/a4-hosted-first-fight.png",
+        "sha256": "42a676186ff8b3a28abe3575e52b6e3d7daefb8f594d25fad5a3b2d4b8749c38"
+      },
+      {
+        "file": ".agents/evidence/family-world-v5/a4-hosted-boss-lunge.png",
+        "sha256": "3b511909eca666d1a96070ccd17c4bb0e9207080ce17801d1598c8c6e1f387e1"
+      },
+      {
+        "file": ".agents/evidence/family-world-v5/a4-hosted-finish.png",
+        "sha256": "2657bc2a5fa59fc93947e0fb995e6d121106b6677c9f8983a1a5ca6504f0d183"
       }
     ],
     "twoScares": {
@@ -245,7 +297,25 @@
       "bossRouteRecoveries": 0
     },
     "scaresOff": "zero scare events and jump scares across foyer to first ordinary",
-    "combinedTreeFirstFight": "foyer lunge and first-fight camera screenshot checked after marquee/cold-fog fixes"
+    "combinedTreeFirstFight": "foyer lunge and first-fight camera screenshot checked after marquee/cold-fog fixes",
+    "hostedFixture": {
+      "host": "haynes-quest-playtest.haynesops.com",
+      "imageId": "ghcr.io/thaynes43/haynes-quest@sha256:5f526911e856989d3ef9930a4e7ef1076fe86633dd6c833c8ca2d33cf39b2a41",
+      "fixtureIsolatedFromFamilyData": true,
+      "harnessSourceCommit": "5c502c16e4c10930431c5a986f4e7d2a58481b16",
+      "harnessSourcePath": "tests/e2e/family-world-lockstep.ts",
+      "harnessSourceSha256": "458091df54df32c582f05e0ec8d65cee4241fcd78321dc70375df65cf11e30a5",
+      "drawingSuppressedBetweenScreenshotsInCompleteRun": true,
+      "fullRouteCompleted": true,
+      "foyerTimeSeconds": 2.07,
+      "bossTimeSeconds": 94.91,
+      "separationSeconds": 92.84,
+      "bothGroundedBeforeTheirFights": true,
+      "fullRouteFights": 5,
+      "fullRouteMemories": 3,
+      "fullRouteRecoveries": 0,
+      "note": "The first-fight hosted run drew every frame. The complete hosted run suppressed GPU drawing between captures while preserving simulation, movement and combat; screenshots were drawn. Neither measures physical Safari feel or real-time frame cost."
+    }
   },
   "ownerGates": [
     "Tom exact-version art/audio review",
