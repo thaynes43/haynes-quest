@@ -10,12 +10,14 @@ import familyWorldAV2 from '../../shared/levels/family-world-a-v2.json';
 import familyWorldAV3 from '../../shared/levels/family-world-a-v3.json';
 import familyWorldAV4 from '../../shared/levels/family-world-a-v4.json';
 import familyWorldAV5 from '../../shared/levels/family-world-a-v5.json';
+import familyWorldAV7 from '../../shared/levels/family-world-a-v7.json';
 import type { FriendlyCatalogVersion } from '../../shared/friendly.js';
 import familyWorldBV1 from '../../shared/levels/family-world-b-v1.json';
 import familyWorldBV2 from '../../shared/levels/family-world-b-v2.json';
 import familyWorldBV3 from '../../shared/levels/family-world-b-v3.json';
 import familyWorldBV4 from '../../shared/levels/family-world-b-v4.json';
 import familyWorldBV5 from '../../shared/levels/family-world-b-v5.json';
+import familyWorldBV6 from '../../shared/levels/family-world-b-v6.json';
 
 export interface FamilyTemplateSource {
   readonly id: string;
@@ -45,9 +47,11 @@ export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Obje
   { id: 'family-world-a', version: 'v4', project: familyWorldAV4 },
   { id: 'family-world-a', version: 'v5', project: familyWorldAV5 },
   { id: 'family-world-a', version: 'v6', project: familyWorldAV5, friendlyCatalogVersion: 'friendly-catalog-v2' },
+  { id: 'family-world-a', version: 'v7', project: familyWorldAV7, friendlyCatalogVersion: 'friendly-catalog-v2' },
   { id: 'family-world-b', version: 'v1', project: familyWorldBV1 },
   { id: 'family-world-b', version: 'v2', project: familyWorldBV2 },
   { id: 'family-world-b', version: 'v3', project: familyWorldBV3 },
   { id: 'family-world-b', version: 'v4', project: familyWorldBV4 },
   { id: 'family-world-b', version: 'v5', project: familyWorldBV5 },
+  { id: 'family-world-b', version: 'v6', project: familyWorldBV6 },
 ]);
