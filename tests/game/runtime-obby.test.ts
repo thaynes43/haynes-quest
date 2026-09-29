@@ -711,6 +711,46 @@ describe("obby game runtime", () => {
     game.dispose();
   });
 
+  it("marks a route-memory basic attack ready and sends touch-equivalent input without a tool", async () => {
+    const initial = routeMemoryRoutedSave(
+      { defeatedIds: ["level-1-2020-ordinary-a"] },
+      2,
+    );
+    const damaged = structuredClone(initial);
+    damaged.revision++;
+    damaged.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.id === "level-1-2020-ordinary-b",
+    )!.hp--;
+    const onAction = vi.fn(async (_request: GameplayActionRequest) => damaged);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: initial,
+      onAction,
+      onRefresh: async () => initial,
+    });
+    advance(0);
+    game.setInput("moveX", 1);
+    game.setInput("moveY", 1);
+    for (let frame = 0; frame < 13; frame += 1) advance();
+    game.clearInput();
+
+    expect(game.inspect().status).toMatchObject({
+      nearEncounterId: "level-1-2020-ordinary-b",
+      attackReady: true,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(onAction.mock.calls[0]?.[0]).toMatchObject({
+      action: { type: "attack", encounterId: "level-1-2020-ordinary-b" },
+    });
+    await vi.waitFor(() => expect(game.inspect().enemies.find(
+      (enemy) => enemy.id === "level-1-2020-ordinary-b",
+    )?.hp).toBe(3));
+    game.dispose();
+  });
+
   it("maps the v3 guard input to a close-range secondary attack", () => {
     const initial = routeMemoryRoutedSave(
       {

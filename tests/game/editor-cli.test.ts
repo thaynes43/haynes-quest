@@ -387,7 +387,7 @@ describe("level editor CLI", () => {
       expect(garden.spatial.routes.branches).toHaveLength(garden.branches);
       expect(garden.spatial.anchors.map((anchor) => anchor.slot)).toEqual(
         LEVEL_EDITOR_ANCHOR_SLOTS.filter(
-          (slot) => slot !== "encounter.bonus-1",
+          (slot) => !slot.startsWith("encounter.bonus-"),
         ),
       );
       expect(
@@ -640,7 +640,7 @@ describe("level editor CLI", () => {
         elevatedGarden.spatial.platforms.length,
       );
       expect(brokenGarden.spatial.anchors).toHaveLength(
-        LEVEL_EDITOR_ANCHOR_SLOTS.length - 1,
+        LEVEL_EDITOR_ANCHOR_SLOTS.filter((slot) => !slot.startsWith("encounter.bonus-")).length,
       );
 
       const malformedPath = join(directory, "malformed.json");

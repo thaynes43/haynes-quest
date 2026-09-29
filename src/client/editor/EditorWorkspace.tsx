@@ -868,8 +868,8 @@ export function EditorWorkspace({
                 slot,
                 candidate,
               })}
-              onAddBonusEncounter={(anchor, encounter) => {
-                const command = { type: "encounter.bonus.add", chapterId: cursor.chapterId, anchor, encounter } as const;
+              onAddBonusEncounter={(slot, anchor, encounter) => {
+                const command = { type: "encounter.bonus.add", chapterId: cursor.chapterId, slot, anchor, encounter } as const;
                 const current = latestHistory.current.present.project;
                 const preview = applyLevelEditorCommand(current, command);
                 if (!preview.ok) return false;
@@ -878,14 +878,19 @@ export function EditorWorkspace({
                 );
                 if (preview.issues.some((issue) => !existing.has(`${issue.path}:${issue.code}`)))
                   return false;
-                return runCommand(command, { type: "anchor", slot: "encounter.bonus-1" });
+                return runCommand(command, { type: "anchor", slot: `encounter.${slot}` });
               }}
-              onRemoveBonusEncounter={() => {
+              onRemoveBonusEncounter={(slot) => {
                 runCommand(
-                  { type: "encounter.bonus.remove", chapterId: cursor.chapterId },
+                  { type: "encounter.bonus.remove", chapterId: cursor.chapterId, slot },
                   null,
                 );
               }}
+              onSetBossPrerequisite={(defeats) => runCommand({
+                type: "chapter.boss-prerequisite.set",
+                chapterId: cursor.chapterId,
+                defeats,
+              })}
             />
           ) : (
             <section className="editor-world-section">

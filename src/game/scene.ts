@@ -36,7 +36,7 @@ import {
 import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
 import { EnemyAnimation } from "./enemy-animation";
 import { enemyAttackRange } from "./combat";
-import { bossRequiresOrdinaryDefeats } from "../shared/encounter-availability";
+import { bossIsAvailable } from "../shared/encounter-availability";
 import { growthCameraScale } from "../shared/abilities";
 import { TravelerEquipment } from "./traveler-equipment";
 import {
@@ -107,7 +107,9 @@ function blocksSight(object: THREE.Object3D): boolean {
   if (!(object instanceof THREE.Mesh)) return false;
   for (let node: THREE.Object3D | null = object; node; node = node.parent)
     if (!node.visible) return false;
-  const materials = Array.isArray(object.material) ? object.material : [object.material];
+  const materials = Array.isArray(object.material)
+    ? object.material
+    : [object.material];
   return materials.some(
     (entry: THREE.Material) =>
       entry.visible &&
@@ -134,7 +136,11 @@ export class GardenScene {
   private themeKit: ThemeKit | null = null;
   private readonly resizeObserver: ResizeObserver | null;
   private readonly sun = new THREE.DirectionalLight(0xffedce, 2.1);
-  private readonly hemisphere = new THREE.HemisphereLight(0xfff5e5, 0x607c8c, 1.15);
+  private readonly hemisphere = new THREE.HemisphereLight(
+    0xfff5e5,
+    0x607c8c,
+    1.15,
+  );
   /** DESIGN-027 lighting and lunge presentation; null on every level 0 chapter. */
   private scareVisuals: ScareVisuals | null = null;
   private readonly scaryMoments: boolean;
@@ -155,7 +161,26 @@ export class GardenScene {
   private avatarRoot: THREE.Group | null = null;
   private visualTime = 0;
   private guardRing = groundRing(0.67, 0xadcfe2, 0.8);
-  private slash: THREE.Mesh;
+  private readonly attackStreak = shapeMesh(
+    new THREE.ConeGeometry(0.16, 1.6, 4),
+    new THREE.MeshBasicMaterial({
+      color: 0xffd578,
+      transparent: true,
+      opacity: 0.85,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    }),
+  );
+  private readonly bashStreak = shapeMesh(
+    new THREE.ConeGeometry(0.45, 1.1, 4),
+    new THREE.MeshBasicMaterial({
+      color: 0xb7ecff,
+      transparent: true,
+      opacity: 0.75,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    }),
+  );
   private readonly spell = new THREE.Group();
   private readonly spellCore = new THREE.Mesh(
     new THREE.CylinderGeometry(0.035, 0.065, 1, 8),
@@ -263,19 +288,13 @@ export class GardenScene {
     this.scene.add(this.traveler);
     this.traveler.add(this.avatarVisual, this.guardRing);
     this.guardRing.visible = false;
-    this.slash = shapeMesh(
-      new THREE.TorusGeometry(0.9, 0.024, 5, 36, Math.PI * 1.2),
-      new THREE.MeshBasicMaterial({
-        color: 0xffdc8b,
-        transparent: true,
-        opacity: 0.8,
-        depthWrite: false,
-      }),
-    );
-    this.slash.rotation.x = Math.PI / 2;
-    this.slash.position.set(0, 0.5, -0.3);
-    this.slash.visible = false;
-    this.traveler.add(this.slash);
+    // The two attacks extend toward the enemy. The former spinning ring hid
+    // their direction and made a clean hit look like another idle swirl.
+    this.attackStreak.rotation.x = -Math.PI / 2;
+    this.bashStreak.rotation.x = -Math.PI / 2;
+    this.attackStreak.visible = false;
+    this.bashStreak.visible = false;
+    this.traveler.add(this.attackStreak, this.bashStreak);
     this.spell.add(this.spellCore, this.spellGlow, this.spellImpact);
     this.spell.visible = false;
     this.scene.add(this.spell);
@@ -597,7 +616,9 @@ export class GardenScene {
     if (!level.course) this.addEraDetails(later);
     const gate = new THREE.Group();
     gate.position.set(level.finish.x, level.finish.y, level.finish.z);
-    gate.scale.setScalar(worldTheme.environment.state === "prepared-kit" ? 1 : 1.4);
+    gate.scale.setScalar(
+      worldTheme.environment.state === "prepared-kit" ? 1 : 1.4,
+    );
     this.world.add(gate);
     if (environmentAssets)
       this.assets.attach(environmentAssets.gate, gate, valid);
@@ -606,8 +627,7 @@ export class GardenScene {
         gate.name = kit.exitGate.name;
         this.assets.attach(kit.exitGate.url, gate, valid);
       }
-    }
-    else this.addPendingEnvironmentMarker(gate, worldTheme);
+    } else this.addPendingEnvironmentMarker(gate, worldTheme);
     // DESIGN-025 placed decor: only authored-level-v4 documents carry any.
     const decor = level.authored?.decor ?? [];
     if (decor.length > 0) {
@@ -730,7 +750,8 @@ export class GardenScene {
         practicalRoots: () => this.practicalRoots(),
       });
       for (const [id, visual] of this.enemies)
-        if (!visual.besties) this.scareVisuals.attachEyes(id, visual.model, visual.height);
+        if (!visual.besties)
+          this.scareVisuals.attachEyes(id, visual.model, visual.height);
     }
     this.updateProgress(save);
   }
@@ -1063,9 +1084,27 @@ export class GardenScene {
       (this.save.adventure?.inventory.find(
         (item) => item.id === this.save.adventure?.equippedId,
       )?.tier ?? 1) > 1;
-    this.slash.visible = (!ranged && attackTime < 0.38) || secondaryTime < 0.4;
-    this.slash.rotation.z = -1.3 + attackTime * 12;
-    this.slash.position.y = this.stage === "infant" ? 0.45 : 0.78;
+    const strikeHeight = this.stage === "infant" ? 0.45 : 0.78;
+    this.attackStreak.visible = !ranged && attackTime >= 0 && attackTime < 0.32;
+    if (this.attackStreak.visible) {
+      const reach = Math.min(1, attackTime / 0.09);
+      this.attackStreak.position.set(
+        -0.18 + reach * 0.36,
+        strikeHeight,
+        -0.35 - reach * 0.62,
+      );
+      this.attackStreak.scale.set(1, 0.35 + reach * 1.05, 1);
+      (this.attackStreak.material as THREE.MeshBasicMaterial).opacity =
+        0.85 * Math.min(1, (0.32 - attackTime) / 0.14);
+    }
+    this.bashStreak.visible = secondaryTime >= 0 && secondaryTime < 0.34;
+    if (this.bashStreak.visible) {
+      const reach = Math.min(1, secondaryTime / 0.1);
+      this.bashStreak.position.set(0, strikeHeight, -0.4 - reach * 0.58);
+      this.bashStreak.scale.set(1 + reach * 0.2, 0.4 + reach * 1.1, 1);
+      (this.bashStreak.material as THREE.MeshBasicMaterial).opacity =
+        0.75 * Math.min(1, (0.34 - secondaryTime) / 0.15);
+    }
     this.guardRing.visible = Boolean(frame?.guarding || frame?.recovering);
     const spellTarget =
       (frame?.attackTargetId
@@ -1171,7 +1210,12 @@ export class GardenScene {
     const lunge = frame?.scare?.lunge;
     if (lunge) this.frameLunge(lunge, frame.enemies);
     if (lunge) this.scenicCameraOcclusion.clear();
-    else this.scenicCameraOcclusion.update(this.camera.position, this.target, this.practicalRoots());
+    else
+      this.scenicCameraOcclusion.update(
+        this.camera.position,
+        this.target,
+        this.practicalRoots(),
+      );
     this.sun.position.set(position.x - 7, 13, position.z + 6);
     this.sun.target.position.set(position.x, 0, position.z - 4);
     for (const pickup of this.pickups.values()) {
@@ -1226,14 +1270,16 @@ export class GardenScene {
       : 1 - Math.pow(1 - Math.min(1, lunge.progress / 0.2), 3);
     const distance = lunge.reducedMotion
       ? 1.2
-      : THREE.MathUtils.lerp(2.2, 0.85, approach) * Math.max(0.7, visual.height / 1.6);
+      : THREE.MathUtils.lerp(2.2, 0.85, approach) *
+        Math.max(0.7, visual.height / 1.6);
     this.camera.position.copy(face).addScaledVector(forward, distance);
     this.camera.position.y += 0.05;
     if (!lunge.reducedMotion) {
       const amount = 0.075 * (1 - 0.6 * lunge.progress);
       this.camera.position.x += amount * Math.sin(lunge.progress * 97.1 + 0.4);
       this.camera.position.y += amount * Math.sin(lunge.progress * 83.7 + 1.3);
-      this.camera.position.z += amount * 0.6 * Math.cos(lunge.progress * 71.9 + 2.1);
+      this.camera.position.z +=
+        amount * 0.6 * Math.cos(lunge.progress * 71.9 + 2.1);
     }
     this.camera.lookAt(face);
     // Horror under-lighting: a cold light low between the camera and the face.
@@ -1490,19 +1536,19 @@ export class GardenScene {
     }
     visual.model.rotation.y = enemy.facing;
     // DESIGN-027 D-04 watcher idle pose; level 0 frames carry no pose.
-    if (enemy.pose !== undefined) visual.model.rotation.z = watcherPoseRoll(enemy.pose);
+    if (enemy.pose !== undefined)
+      visual.model.rotation.z = watcherPoseRoll(enemy.pose);
     // Only routes that still gate the boss behind its ordinaries render it
     // dormant. Share the rule with combat and the server so a v2 boss is never
     // fought with a hidden health bar.
     const activeLevel = this.save.adventure?.activeLevel;
     const dormant =
       visual.boss &&
-      bossRequiresOrdinaryDefeats(
+      !bossIsAvailable(
         activeLevel?.routeId,
         activeLevel?.bossGate,
-      ) &&
-      activeLevel?.encounters.some(
-        (item) => item.role === "ordinary" && !item.defeated,
+        activeLevel?.bossPrerequisiteDefeats,
+        activeLevel?.encounters ?? [],
       );
     const defeated = enemy.phase === "defeated";
     const animation = visual.animation?.update(enemy, deltaSeconds);

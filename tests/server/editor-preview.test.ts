@@ -15,9 +15,9 @@ import {
   type LevelEditorProject,
   type LevelEditorProjectV2,
 } from '../../src/shared/editor-project.js';
-import { createAdventureStateAtLevel } from '../../src/shared/adventure.js';
+import { createAdventureStateAtLevel, reduceAdventureAction } from '../../src/shared/adventure.js';
 import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
-import { prepareEditorPreview } from '../../src/server/editor-preview.js';
+import { prepareEditorPreview, prepareEditorWorld } from '../../src/server/editor-preview.js';
 import { shiftAuthoredLevelX } from '../editor-project-fixtures.js';
 import ratCasinoBonusProjectSource from '../../src/shared/levels/rat-casino-world-v2.json';
 
@@ -562,6 +562,60 @@ describe('POST /api/editor/playtests', () => {
           assetVersion: 'v001',
         },
       });
+    });
+
+    it('freezes a second optional slot and enforces a bounded boss prerequisite', () => {
+      const source = ratCasinoBonusProject();
+      const chapter = source.chapters[2]!;
+      const extra = parseLevelEditorProject({
+        ...source,
+        chapters: [source.chapters[0], source.chapters[1], {
+          ...chapter,
+          bossPrerequisiteDefeats: 2,
+          level: {
+            ...chapter.level,
+            anchors: {
+              ...chapter.level.anchors,
+              encounters: {
+                ...chapter.level.anchors.encounters,
+                'bonus-2': structuredClone(chapter.level.anchors.encounters['bonus-1']!),
+              },
+            },
+          },
+          encounterSlots: {
+            ...chapter.encounterSlots,
+            'bonus-2': chapter.encounterSlots['bonus-1'],
+          },
+        }],
+      });
+      if (!isLevelEditorProjectV2(extra)) throw new Error('Expected a v2 editor project');
+      const { plan } = prepareEditorWorld(extra, fingerprintOf(extra));
+      if (plan.version !== 'editor-world-plan-v2') throw new Error('Expected a v2 plan');
+      const frozen = plan.levels[2]!;
+      expect(frozen.optionalEncounterIds).toEqual([
+        'rat-casino-v2-encounter-bonus-1',
+        'rat-casino-v2-encounter-bonus-2',
+      ]);
+      expect(frozen.encounters).toHaveLength(7);
+      expect(frozen.bossPrerequisiteDefeats).toBe(2);
+      const state = createAdventureStateAtLevel(plan, 2);
+      expect(parseStoredAdventure(plan, state, { allowEditorPreviewPlan: true })).toBeDefined();
+      const attack = { type: 'attack' as const, levelId: frozen.id, encounterId: frozen.bossId };
+      expect(() => reduceAdventureAction(plan, state, attack, 1_000))
+        .toThrow('ENCOUNTER_NOT_ACTIVE');
+      for (const encounter of frozen.encounters.filter((entry) => entry.role === 'ordinary').slice(0, 2)) {
+        state.encounters[encounter.id] = { hp: 0, defeated: true, nextReportedHitAtMs: 0 };
+      }
+      const tool = frozen.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+      const armed = reduceAdventureAction(plan, state, {
+        type: 'collect-equipment', levelId: frozen.id, pickupId: tool.pickupId,
+      }, 1_000);
+      expect(reduceAdventureAction(plan, armed, attack, 1_000).encounters[frozen.bossId]?.hp)
+        .toBe(frozen.encounters.find((entry) => entry.id === frozen.bossId)!.maxHp - tool.damage);
+      const impossible = structuredClone(plan);
+      impossible.levels[2]!.bossPrerequisiteDefeats = 5;
+      expect(() => parseStoredAdventure(impossible, state, { allowEditorPreviewPlan: true }))
+        .toThrow('Save unavailable');
     });
 
     it('uses ordinary server combat authority for Golden', async () => {

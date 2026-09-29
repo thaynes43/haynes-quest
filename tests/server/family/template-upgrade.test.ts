@@ -105,8 +105,9 @@ describe('template upgrade (DESIGN-024 D-11)', () => {
     expect(registry.newestUpgrade('family-world-b', 'latest', TEST_CHILD_B.birthDate, TODAY)).toBeNull();
     const checkedIn = new FamilyTemplateRegistry();
     for (const version of ['v1', 'v2', 'v3', 'v4'])
-      expect(checkedIn.newestUpgrade('family-world-b', version, TEST_CHILD_B.birthDate, TODAY)?.version).toBe('v5');
-    expect(checkedIn.newestUpgrade('family-world-b', 'v5', TEST_CHILD_B.birthDate, TODAY)).toBeNull();
+      expect(checkedIn.newestUpgrade('family-world-b', version, TEST_CHILD_B.birthDate, TODAY)?.version).toBe('v6');
+    expect(checkedIn.newestUpgrade('family-world-b', 'v5', TEST_CHILD_B.birthDate, TODAY)?.version).toBe('v6');
+    expect(checkedIn.newestUpgrade('family-world-b', 'v6', TEST_CHILD_B.birthDate, TODAY)).toBeNull();
     expect(checkedIn.newestUpgrade('rat-casino-world', 'v1', TEST_CHILD_B.birthDate, TODAY)?.version).toBe('v2');
     // World B v2 to v4 exist, but their casts do not fit this older synthetic child's dates.
     expect(checkedIn.newestUpgrade('family-world-b', 'v1', TEST_CHILD_A.birthDate, TODAY)).toBeNull();

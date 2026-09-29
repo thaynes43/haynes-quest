@@ -5,6 +5,7 @@
  * the server domain at runtime.
  */
 import { createHash } from 'node:crypto';
+import { AUTHORED_BONUS_ENCOUNTER_SLOTS } from '../../shared/authored-level.js';
 import {
   LEVEL_EDITOR_CATALOG_VERSIONS,
   levelEditorPreparedBonusEnemies,
@@ -210,10 +211,16 @@ function validateCast(
   fail: (code: string) => void,
 ): void {
   const optionalIds = level.optionalEncounterIds ?? [];
-  const bonusId = `${level.id}-encounter-bonus-1`;
-  if (optionalIds.length > 1 || (optionalIds.length === 1 && optionalIds[0] !== bonusId)) {
+  const expectedOptionalIds = AUTHORED_BONUS_ENCOUNTER_SLOTS
+    .map((slot) => `${level.id}-encounter-${slot}`)
+    .filter((id) => optionalIds.includes(id));
+  if (optionalIds.length > 4 || canonicalJson(optionalIds) !== canonicalJson(expectedOptionalIds)) {
     fail('level.optional-encounter');
   }
+  if (!Number.isInteger(level.bossPrerequisiteDefeats ?? 0) ||
+      (level.bossPrerequisiteDefeats ?? 0) < 0 ||
+      (level.bossPrerequisiteDefeats ?? 0) > 4)
+    fail('level.boss-prerequisite');
   // Ordinary slots take either ordinary kind (a chapter with one ordinary
   // identity uses its kind in all four, DESIGN-026); stats follow the
   // encounter's actual kind.
@@ -223,9 +230,7 @@ function validateCast(
     { id: `${level.id}-encounter-3`, role: 'ordinary', kind: null, optional: false },
     { id: `${level.id}-encounter-4`, role: 'ordinary', kind: null, optional: false },
     { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
-    ...(optionalIds.length === 1
-      ? [{ id: bonusId, role: 'ordinary' as const, kind: null, optional: true }]
-      : []),
+    ...optionalIds.map((id) => ({ id, role: 'ordinary' as const, kind: null, optional: true })),
   ];
   const expectedPickups = [
     {

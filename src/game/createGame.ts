@@ -49,6 +49,7 @@ import {
   createLevelLayout,
   inspectLevel,
   memoryCheckpointForSave,
+  missingMemoryCheckpointForSave,
   type LevelLayout,
   type MemoryCheckpoint,
 } from "./level";
@@ -252,6 +253,13 @@ function isRouteMemoryAdventure(save: SaveView): boolean {
   return Boolean(requireAdventure(save).activeLevel?.majorMemoryId);
 }
 
+function canPrimaryAttack(save: SaveView): boolean {
+  return (
+    (isRouteMemoryAdventure(save) && requireAdventure(save).equippedId === null) ||
+    hasEquipment(save, "attack-tool")
+  );
+}
+
 function facingDifference(from: number, to: number): number {
   let difference = from - to;
   while (difference > Math.PI) difference -= Math.PI * 2;
@@ -267,7 +275,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
   let controller = createObbyState(checkpoint);
-  controller.checkpointId = memoryCheckpointForSave(save, level)?.id ?? null;
+  controller.checkpointId =
+    requireAdventure(save).phase === "memory-released"
+      ? missingMemoryCheckpointForSave(save, level)?.id ?? null
+      : memoryCheckpointForSave(save, level)?.id ?? null;
   controller.grounded = true;
   let courseTime = 0;
   let traversalRecoveries = 0;
@@ -352,7 +363,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     );
     const scriptedEncounterIds = new Map<string, string>([
       ...ordinary.map((enemy, index) => [`ordinary-${index + 1}`, enemy.id] as const),
-      ...level.encounters.filter((enemy) => optionalIds.has(enemy.id)).map((enemy) => ["bonus-1", enemy.id] as const),
+      ...level.encounters.filter((enemy) => optionalIds.has(enemy.id)).map((enemy) => [
+        enemy.id.slice(`${level.id}-encounter-`.length), enemy.id,
+      ] as const),
       ...level.encounters.filter((enemy) => enemy.role === "boss").map((enemy) => ["boss", enemy.id] as const),
     ]);
     scare = {
@@ -547,6 +560,71 @@ export function createGame(options: CreateGameOptions): GameHandle {
     );
   };
 
+  const nearLockedMajorMemoryId = (): string | null => {
+    const adventure = requireAdventure(save);
+    const activeLevel = adventure.activeLevel;
+    if (
+      adventure.phase !== "memory-released" ||
+      !activeLevel?.majorMemoryId ||
+      !activeLevel.minorMemoryIds?.some(
+        (id) => !save.recoveredIds.includes(id),
+      ) ||
+      !controller.grounded ||
+      controller.recoveryRemaining > 0
+    ) return null;
+    const major = level.memories.find(
+      (memory) => memory.id === activeLevel.majorMemoryId && memory.state === "released",
+    );
+    return major &&
+      sameInteractionFeetHeight(controller.position, major.position) &&
+      horizontalDistance(controller.position, major.position) <= interactionRadius
+      ? major.id
+      : null;
+  };
+
+  const lockedRouteBossId = (): string | null => {
+    const adventure = requireAdventure(save);
+    const active = adventure.activeLevel;
+    if (
+      save.format !== "era-combat-v2" ||
+      adventure.phase !== "exploring" ||
+      !active?.minorMemoryIds ||
+      !active.majorMemoryId ||
+      active.bossGate !== "independent" ||
+      !active.bossPrerequisiteDefeats ||
+      level.id !== adventure.currentLevelId ||
+      !level.authored ||
+      !level.course
+    ) return null;
+    const ordinaryWins = active.encounters.filter(
+      (enemy) => enemy.role === "ordinary" && enemy.defeated,
+    ).length;
+    const boss = active.encounters.find((enemy) => enemy.id === active.bossId);
+    return ordinaryWins < active.bossPrerequisiteDefeats &&
+      boss?.role === "boss" &&
+      !boss.defeated
+      ? boss.id
+      : null;
+  };
+
+  const nearLockedBossId = (): string | null => {
+    const bossId = lockedRouteBossId();
+    if (!bossId || !controller.grounded || controller.recoveryRemaining > 0)
+      return null;
+    const boss = level.encounters.find((enemy) => enemy.id === bossId);
+    if (!boss || !sameInteractionFeetHeight(controller.position, boss.position))
+      return null;
+    const arena = boss.arena;
+    const nearArena = arena &&
+      controller.position.x >= arena.minX - interactionRadius &&
+      controller.position.x <= arena.maxX + interactionRadius &&
+      controller.position.z >= arena.minZ - interactionRadius &&
+      controller.position.z <= arena.maxZ + interactionRadius;
+    return nearArena || horizontalDistance(controller.position, boss.position) <= interactionRadius
+      ? bossId
+      : null;
+  };
+
   const nearestEligibleFriendlyId = (): string | null => {
     const adventure = requireAdventure(save);
     if (!controller.grounded || controller.recoveryRemaining > 0) return null;
@@ -666,6 +744,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
       nearPickupId: nearestPickupId(),
       nearEncounterId: target?.id ?? secondaryTarget?.id ?? null,
       nearMemoryId: nearestMemoryId(),
+      nearLockedMajorMemoryId: nearLockedMajorMemoryId(),
+      nearLockedBossId: nearLockedBossId(),
       nearFinish:
         canConsume() &&
         sameInteractionFeetHeight(controller.position, level.finish) &&
@@ -690,7 +770,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       eraYear: adventure.activeLevel?.eraYear ?? null,
       attackReady:
         adventure.phase === "exploring" &&
-        hasEquipment(save, "attack-tool") &&
+        canPrimaryAttack(save) &&
         Boolean(target) &&
         now >= attackCooldownUntil &&
         !requestBusy,
@@ -942,6 +1022,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     controller.grounded = true;
   };
 
+  const returnLocally = (position: PositionSnapshot, checkpointId: string | null): void => {
+    input.clear();
+    attackBuffer.clear();
+    checkpoint = { ...position };
+    resetController(checkpoint, checkpointId);
+    emitStatus(true);
+  };
+
   const promoteCheckpoint = (selection: MemoryCheckpoint): void => {
     checkpoint = { ...selection.position };
     controller.checkpointId = selection.id;
@@ -1011,6 +1099,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       ? level
       : createLevelLayout(nextSave, resolveAuthored);
     const nextMemoryCheckpoint = memoryCheckpointForSave(nextSave, nextLevel);
+    const missingMemoryCheckpoint = missingMemoryCheckpointForSave(
+      nextSave,
+      nextLevel,
+    );
     const nextCheckpoint = retainCompletedWorld
       ? checkpoint
       : checkpointForSave(save, nextLevel);
@@ -1042,7 +1134,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
           : undefined;
       checkpoint = visited ? { ...visited.position } : nextCheckpoint;
       if (identityChanged || retried) {
-        resetCheckpointId = visited?.id ?? nextMemoryCheckpoint?.id ?? null;
+        resetCheckpointId =
+          visited?.id ??
+          (nextAdventure.phase === "memory-released"
+            ? missingMemoryCheckpoint?.id
+            : nextMemoryCheckpoint?.id) ??
+          null;
       }
     }
     if (identityChanged || retried) {
@@ -1084,10 +1181,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
         nextSave.adventure.phase === "memory-released"
       ) {
         if (level.course) {
-          // Let the player see the boss's defeat. Only recovery/reload moves to the safe reward area.
+          // Keep the victory in view; a fall goes to the first missing memory.
           controller.checkpoint = { ...checkpoint };
-          controller.checkpointId = null;
+          controller.checkpointId = missingMemoryCheckpoint?.id ?? null;
         } else resetController(checkpoint);
+      } else if (nextAdventure.phase === "memory-released" && level.course) {
+        // Collecting the last little memory makes the reward area safe again.
+        controller.checkpoint = { ...checkpoint };
+        controller.checkpointId = missingMemoryCheckpoint?.id ?? null;
       } else if (recoveredMinor && nextMemoryCheckpoint) {
         // A recovered minor is a durable death/fall floor. Promote its safe
         // authored checkpoint without moving or interrupting the player.
@@ -1264,7 +1365,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       case "attack": {
         if (adventure.phase !== "exploring")
           return recordAttackFeedback("unavailable");
-        if (!hasEquipment(save, "attack-tool"))
+        if (!canPrimaryAttack(save))
           return recordAttackFeedback("unarmed");
         if (requestState.requestState === "acting")
           return recordAttackFeedback("busy");
@@ -1736,6 +1837,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
             player: controller.position,
             deltaSeconds: stepSeconds,
             active: combatActive && controller.recoveryRemaining <= 0,
+            recovering: controller.recoveryRemaining > 0,
           },
           save,
         );
@@ -1914,6 +2016,56 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (disposed) return;
       scene.retryMedia?.();
       emitStatus(true);
+    },
+    returnToMissingMemory(): boolean {
+      if (
+        disposed ||
+        paused ||
+        requestState.requestState === "acting" ||
+        pendingHit ||
+        requireAdventure(save).phase !== "memory-released" ||
+        level.id !== requireAdventure(save).currentLevelId
+      ) return false;
+      const destination = missingMemoryCheckpointForSave(save, level);
+      if (!destination) return false;
+      returnLocally(destination.position, destination.id);
+      return true;
+    },
+    returnToMajorMemory(): boolean {
+      const adventure = requireAdventure(save);
+      if (
+        disposed ||
+        paused ||
+        requestState.requestState === "acting" ||
+        pendingHit ||
+        adventure.phase !== "memory-released" ||
+        !adventure.activeLevel?.majorMemoryId ||
+        !adventure.activeLevel.minorMemoryIds ||
+        adventure.activeLevel.minorMemoryIds.some(
+          (id) => !save.recoveredIds.includes(id),
+        ) ||
+        level.id !== adventure.currentLevelId ||
+        !level.authored ||
+        !level.course
+      ) return false;
+      returnLocally(level.authored.anchors.rewardRespawn.position, null);
+      return true;
+    },
+    returnToChapterStart(): boolean {
+      if (
+        disposed ||
+        paused ||
+        requestState.requestState === "acting" ||
+        pendingHit ||
+        !lockedRouteBossId()
+      ) return false;
+      // Authored anchor validation proves the spawn is supported, clear and on
+      // a static platform. Match the runtime course before moving the player.
+      const spawn = level.authored!.anchors.spawn;
+      if (!level.course!.platforms.some((platform) => platform.id === spawn.platformId))
+        return false;
+      returnLocally(spawn.position, null);
+      return true;
     },
     inspect() {
       const frames = enemyFrames();

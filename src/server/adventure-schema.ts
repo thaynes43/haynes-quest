@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { AUTHORED_BONUS_ENCOUNTER_SLOTS } from '../shared/authored-level.js';
 import {
   abilitiesForPlanAge,
   appearanceForAge,
@@ -27,7 +28,7 @@ import {
   friendlyDefinitionsForPlan,
   type FriendlyState,
 } from '../shared/friendly.js';
-import { bossRequiresOrdinaryDefeats } from '../shared/encounter-availability.js';
+import { bossIsAvailable } from '../shared/encounter-availability.js';
 import type { Ability, RuleVersions, SubjectOption } from '../shared/contracts.js';
 import type { FrozenMemory } from './domain.js';
 import { AppError } from './errors.js';
@@ -169,6 +170,7 @@ const editorWorldLevelShape = {
   routeId: identifier,
   representedEndDate: dateOnly,
   bossGate: z.literal('independent'),
+  bossPrerequisiteDefeats: z.number().int().min(0).max(4).optional(),
 };
 const editorWorldLevelV1Schema = z.object({
   ...editorWorldLevelShape,
@@ -176,8 +178,8 @@ const editorWorldLevelV1Schema = z.object({
 }).strict();
 const editorWorldLevelV2Schema = z.object({
   ...editorWorldLevelShape,
-  optionalEncounterIds: z.union([z.tuple([]), z.tuple([identifier])]),
-  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(6),
+  optionalEncounterIds: z.array(identifier).max(4),
+  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(9),
 }).strict();
 const familyMemorySlotSchema = z.object({
   slot: z.enum(FAMILY_MEMORY_SLOTS),
@@ -192,8 +194,8 @@ const familyMemorySlotSchema = z.object({
 }).strict();
 const familyWorldLevelSchema = z.object({
   ...editorWorldLevelShape,
-  optionalEncounterIds: z.union([z.tuple([]), z.tuple([identifier])]),
-  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(6),
+  optionalEncounterIds: z.array(identifier).max(4),
+  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(9),
   chapterId: identifier,
   chapterName: z.string().min(1).max(120),
   chapterSubtitle: z.string().max(240),
@@ -456,13 +458,12 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
     const optionalEncounterIds = 'optionalEncounterIds' in level
       ? level.optionalEncounterIds
       : [];
-    const expectedOptionalId = `${level.id}-encounter-bonus-1`;
-    if (
-      plan.version !== 'editor-world-plan-v1' &&
-      optionalEncounterIds.length === 1 &&
-      optionalEncounterIds[0] !== expectedOptionalId
-    ) return false;
-    hasOptionalEncounter ||= optionalEncounterIds.length === 1;
+    const expectedOptionalIds = AUTHORED_BONUS_ENCOUNTER_SLOTS
+      .map((slot) => `${level.id}-encounter-${slot}`)
+      .filter((id) => optionalEncounterIds.includes(id));
+    if (optionalEncounterIds.length > 4 ||
+      JSON.stringify(optionalEncounterIds) !== JSON.stringify(expectedOptionalIds)) return false;
+    hasOptionalEncounter ||= optionalEncounterIds.length > 0;
     const expectedEncounters: Array<{
       id: string;
       role: 'ordinary' | 'boss';
@@ -479,9 +480,9 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       { id: `${level.id}-encounter-4`, role: 'ordinary', kind: null, optional: false },
       { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
     ];
-    if (optionalEncounterIds.length === 1) {
+    for (const id of optionalEncounterIds) {
       expectedEncounters.push({
-        id: expectedOptionalId,
+        id,
         role: 'ordinary',
         kind: null,
         optional: true,
@@ -509,6 +510,7 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       level.routeId !== level.id ||
       level.representedEndDate < level.startDate ||
       level.bossGate !== 'independent' ||
+      (level.bossPrerequisiteDefeats ?? 0) > 4 ||
       JSON.stringify(level.pickups) !== JSON.stringify(expectedPickups) ||
       level.encounters.length !== expectedEncounters.length
     ) return false;
@@ -743,12 +745,12 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
       definition: encounter,
       progress: state.encounters[encounter.id]!,
     }));
-    const completedEncountersValid = bossRequiresOrdinaryDefeats(
+    const completedEncountersValid = bossIsAvailable(
       'routeId' in level ? level.routeId : undefined,
       'bossGate' in level ? level.bossGate : undefined,
-    )
-      ? progresses.every(({ progress }) => progress.defeated)
-      : state.encounters[level.bossId]?.defeated === true;
+      'bossPrerequisiteDefeats' in level ? level.bossPrerequisiteDefeats : undefined,
+      progresses.map(({ definition, progress }) => ({ role: definition.role, defeated: progress.defeated })),
+    ) && state.encounters[level.bossId]?.defeated === true;
     if (
       level.index < state.activeLevelIndex &&
       !completedEncountersValid
@@ -768,27 +770,23 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
   }
   if (state.activeLevelIndex >= levels.length) return false;
   const active = levels[state.activeLevelIndex]!;
-  const ordinaryDefeated = active.encounters
-    .filter((encounter) => encounter.role === 'ordinary')
-    .every((encounter) => state.encounters[encounter.id]?.defeated);
   const bossDefinition = active.encounters.find((encounter) => encounter.id === active.bossId)!;
   const bossProgress = state.encounters[active.bossId]!;
   const bossDefeated = state.encounters[active.bossId]?.defeated === true;
-  const requiresOrdinaryDefeats = bossRequiresOrdinaryDefeats(
+  const bossAvailable = bossIsAvailable(
     'routeId' in active ? active.routeId : undefined,
     'bossGate' in active ? active.bossGate : undefined,
+    'bossPrerequisiteDefeats' in active ? active.bossPrerequisiteDefeats : undefined,
+    active.encounters.map((encounter) => ({
+      role: encounter.role,
+      defeated: state.encounters[encounter.id]?.defeated === true,
+    })),
   );
   if (
-    requiresOrdinaryDefeats &&
-    !ordinaryDefeated &&
+    !bossAvailable &&
     (bossProgress.defeated || bossProgress.hp !== bossDefinition.maxHp)
   ) return false;
   if (state.phase === 'memory-released' && !bossDefeated) return false;
-  if (
-    state.phase === 'memory-released' &&
-    requiresOrdinaryDefeats &&
-    active.encounters.some((encounter) => !state.encounters[encounter.id]?.defeated)
-  ) return false;
   if ((state.phase === 'exploring' || state.phase === 'fallen') && bossDefeated) return false;
   if ((state.phase === 'fallen') !== (state.playerHp === 0)) return false;
   return true;

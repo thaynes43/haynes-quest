@@ -93,6 +93,7 @@ describe('family journey service', () => {
       'family-world-b@v3',
       'family-world-b@v4',
       'family-world-b@v5',
+      'family-world-b@v6',
     ]);
     expect(context.service.offeredTemplates(TEST_CHILD_A.birthDate)).toEqual([]);
   });

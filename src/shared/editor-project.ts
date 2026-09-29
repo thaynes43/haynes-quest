@@ -213,6 +213,8 @@ export interface LevelEditorChapterV2 {
     LevelEditorPreviewMemory & { readonly slotId: "major" },
   ];
   readonly encounterSlots: LevelEditorEncounterSlots;
+  /** Absent on published projects; new chapters may require a few ordinary wins. */
+  readonly bossPrerequisiteDefeats?: number;
 }
 
 export interface LevelEditorProjectV2 {
@@ -418,6 +420,9 @@ export const levelEditorEncounterSlotsSchema = z
     "ordinary-4": levelEditorEncounterReferenceSchema,
     boss: levelEditorEncounterReferenceSchema,
     "bonus-1": levelEditorEncounterReferenceSchema.optional(),
+    "bonus-2": levelEditorEncounterReferenceSchema.optional(),
+    "bonus-3": levelEditorEncounterReferenceSchema.optional(),
+    "bonus-4": levelEditorEncounterReferenceSchema.optional(),
   })
   .strict();
 
@@ -459,6 +464,7 @@ export const levelEditorChapterV2Schema = z
       previewMemorySchema("major"),
     ]),
     encounterSlots: levelEditorEncounterSlotsSchema,
+    bossPrerequisiteDefeats: z.number().int().min(0).max(4).optional(),
   })
   .strict();
 
@@ -798,7 +804,7 @@ function encounterIdentity(
 ): EditorEncounterIdentity | undefined {
   if (reference.source === "catalog") {
     const entry = levelEditorEncounterCatalogEntry(reference, catalogVersion, {
-      bonus: slot === "bonus-1",
+      bonus: slot.startsWith("bonus-"),
     });
     return entry
       ? {
@@ -1058,32 +1064,28 @@ function validateWorldProject(
         );
     }
 
-    const bonusAnchor = chapter.level.anchors.encounters["bonus-1"];
-    const bonusReference = chapter.encounterSlots["bonus-1"];
-    if (bonusAnchor !== undefined && bonusReference === undefined)
-      issues.push(
-        issue(
-          "semantic",
-          `${prefix}.encounterSlots["bonus-1"]`,
-          "encounter.bonus-pair",
-          "The bonus encounter anchor and assignment must be present together",
-        ),
-      );
-    if (bonusAnchor === undefined && bonusReference !== undefined)
-      issues.push(
-        issue(
-          "semantic",
-          `${prefix}.level.anchors.encounters["bonus-1"]`,
-          "encounter.bonus-pair",
-          "The bonus encounter anchor and assignment must be present together",
-        ),
-      );
+    for (const slot of AUTHORED_BONUS_ENCOUNTER_SLOTS) {
+      const bonusAnchor = chapter.level.anchors.encounters[slot];
+      const bonusReference = chapter.encounterSlots[slot];
+      if (bonusAnchor !== undefined && bonusReference === undefined)
+        issues.push(issue("semantic", `${prefix}.encounterSlots[${JSON.stringify(slot)}]`,
+          "encounter.bonus-pair", "The bonus encounter anchor and assignment must be present together"));
+      if (bonusAnchor === undefined && bonusReference !== undefined)
+        issues.push(issue("semantic", `${prefix}.level.anchors.encounters[${JSON.stringify(slot)}]`,
+          "encounter.bonus-pair", "The bonus encounter anchor and assignment must be present together"));
+    }
+
+    const ordinaryCount = 4 + AUTHORED_BONUS_ENCOUNTER_SLOTS.filter(
+      (slot) => chapter.encounterSlots[slot] !== undefined,
+    ).length;
+    if ((chapter.bossPrerequisiteDefeats ?? 0) > ordinaryCount)
+      issues.push(issue("semantic", `${prefix}.bossPrerequisiteDefeats`,
+        "encounter.boss-prerequisite", "Boss prerequisite exceeds the number of ordinary encounters"));
 
     const slots: readonly LevelEditorEncounterSlot[] = [
       ...AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
-      ...(bonusAnchor !== undefined && bonusReference !== undefined
-        ? AUTHORED_BONUS_ENCOUNTER_SLOTS
-        : []),
+      ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) =>
+        chapter.level.anchors.encounters[slot] !== undefined && chapter.encounterSlots[slot] !== undefined),
     ];
     let periodId: ParodyPeriodId | undefined;
     for (const slot of slots) {
@@ -1497,6 +1499,9 @@ export const LEVEL_EDITOR_ANCHOR_SLOTS = [
   "encounter.ordinary-4",
   "encounter.boss",
   "encounter.bonus-1",
+  "encounter.bonus-2",
+  "encounter.bonus-3",
+  "encounter.bonus-4",
   "friendly.friendly-1",
   "friendly.friendly-2",
   "friendly.friendly-3",
@@ -1573,10 +1578,12 @@ export type LevelEditorCommand =
     } & ChapterCommand)
   | ({
       readonly type: "encounter.bonus.add";
+      readonly slot?: AuthoredBonusEncounterSlot;
       readonly anchor: AuthoredEncounterAnchor;
       readonly encounter: LevelEditorEncounterReference;
     } & ChapterCommand)
-  | ({ readonly type: "encounter.bonus.remove" } & ChapterCommand)
+  | ({ readonly type: "encounter.bonus.remove"; readonly slot?: AuthoredBonusEncounterSlot } & ChapterCommand)
+  | ({ readonly type: "chapter.boss-prerequisite.set"; readonly defeats: number } & ChapterCommand)
   | ({
       readonly type: "encounter.assign";
       readonly slot: LevelEditorEncounterSlot;
@@ -1780,6 +1787,7 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
     .object({
       type: z.literal("encounter.bonus.add"),
       ...chapterIdField,
+      slot: z.enum(AUTHORED_BONUS_ENCOUNTER_SLOTS).optional(),
       anchor: encounterAnchorSchema,
       encounter: levelEditorEncounterReferenceSchema,
     })
@@ -1788,8 +1796,11 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
     .object({
       type: z.literal("encounter.bonus.remove"),
       ...chapterIdField,
+      slot: z.enum(AUTHORED_BONUS_ENCOUNTER_SLOTS).optional(),
     })
     .strict(),
+  z.object({ type: z.literal("chapter.boss-prerequisite.set"), ...chapterIdField,
+    defeats: z.number().int().min(0).max(4) }).strict(),
   z
     .object({
       type: z.literal("encounter.assign"),
@@ -2327,13 +2338,17 @@ function anchorFor(level: MutableLevel, slot: LevelEditorAnchorSlot): MutableAnc
       return level.anchors.encounters["ordinary-4"];
     case "encounter.boss":
       return level.anchors.encounters.boss;
-    case "encounter.bonus-1": {
-      const anchor = level.anchors.encounters["bonus-1"];
+    case "encounter.bonus-1":
+    case "encounter.bonus-2":
+    case "encounter.bonus-3":
+    case "encounter.bonus-4": {
+      const bonusSlot = slot.slice("encounter.".length) as AuthoredBonusEncounterSlot;
+      const anchor = level.anchors.encounters[bonusSlot];
       if (!anchor)
         commandError(
           "$.slot",
           "encounter.slot-missing",
-          "Encounter slot bonus-1 has no authored anchor",
+          `Encounter slot ${bonusSlot} has no authored anchor`,
         );
       return anchor;
     }
@@ -2393,14 +2408,19 @@ function setAnchor(
       level.anchors.encounters.boss = cloned as MutableEncounterAnchor;
       break;
     case "encounter.bonus-1":
-      if (!level.anchors.encounters["bonus-1"])
+    case "encounter.bonus-2":
+    case "encounter.bonus-3":
+    case "encounter.bonus-4": {
+      const bonusSlot = slot.slice("encounter.".length) as AuthoredBonusEncounterSlot;
+      if (!level.anchors.encounters[bonusSlot])
         commandError(
           "$.slot",
           "encounter.slot-missing",
-          "Encounter slot bonus-1 has no authored anchor",
+          `Encounter slot ${bonusSlot} has no authored anchor`,
         );
-      level.anchors.encounters["bonus-1"] = cloned as MutableEncounterAnchor;
+      level.anchors.encounters[bonusSlot] = cloned as MutableEncounterAnchor;
       break;
+    }
     case "friendly.friendly-1":
       level.anchors.friendlies["friendly-1"] = cloned as MutableAnchor;
       break;
@@ -2666,13 +2686,14 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
     case "encounter.bonus.add": {
       const world = worldProjectForCommand(project);
       const worldChapter = worldChapterForCommand(chapter);
-      const currentAnchor = worldChapter.level.anchors.encounters["bonus-1"];
-      const currentReference = worldChapter.encounterSlots["bonus-1"];
+      const slot = command.slot ?? "bonus-1";
+      const currentAnchor = worldChapter.level.anchors.encounters[slot];
+      const currentReference = worldChapter.encounterSlots[slot];
       if (currentAnchor !== undefined || currentReference !== undefined)
         commandError(
           "$.chapterId",
           "encounter.bonus-exists",
-          "This chapter already has a bonus encounter",
+          `This chapter already has encounter ${slot}`,
         );
       if (command.anchor.kind === "boss")
         commandError(
@@ -2682,29 +2703,36 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
         );
       assertEncounterReferenceFitsAnchor(
         world,
-        "bonus-1",
+        slot,
         command.encounter,
         command.anchor,
         "$.encounter",
       );
-      worldChapter.level.anchors.encounters["bonus-1"] = cloneJson(
+      worldChapter.level.anchors.encounters[slot] = cloneJson(
         command.anchor,
       );
-      worldChapter.encounterSlots["bonus-1"] = cloneJson(command.encounter);
+      worldChapter.encounterSlots[slot] = cloneJson(command.encounter);
       return;
     }
     case "encounter.bonus.remove": {
       const worldChapter = worldChapterForCommand(chapter);
-      const currentAnchor = worldChapter.level.anchors.encounters["bonus-1"];
-      const currentReference = worldChapter.encounterSlots["bonus-1"];
+      const slot = command.slot ?? "bonus-1";
+      const currentAnchor = worldChapter.level.anchors.encounters[slot];
+      const currentReference = worldChapter.encounterSlots[slot];
       if (currentAnchor === undefined && currentReference === undefined)
         commandError(
           "$.chapterId",
           "encounter.bonus-missing",
           "This chapter has no bonus encounter",
         );
-      delete worldChapter.level.anchors.encounters["bonus-1"];
-      delete worldChapter.encounterSlots["bonus-1"];
+      delete worldChapter.level.anchors.encounters[slot];
+      delete worldChapter.encounterSlots[slot];
+      return;
+    }
+    case "chapter.boss-prerequisite.set": {
+      const worldChapter = worldChapterForCommand(chapter);
+      if (command.defeats === 0) delete worldChapter.bossPrerequisiteDefeats;
+      else worldChapter.bossPrerequisiteDefeats = command.defeats;
       return;
     }
     case "encounter.assign": {

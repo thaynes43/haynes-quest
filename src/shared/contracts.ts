@@ -105,6 +105,8 @@ export interface ActiveLevelView {
   routeId?: string;
   /** Explicit only when a frozen plan overrides the published route policy. */
   bossGate?: BossGate;
+  /** Minimum distinct ordinary victories before the boss engages; absent means 0. */
+  bossPrerequisiteDefeats?: number;
   memoryIds: string[];
   /** Present for route-memory plans; `memoryIds` remains the ordered combined view. */
   minorMemoryIds?: [string, string];

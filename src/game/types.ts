@@ -223,6 +223,10 @@ export interface GameStatus {
   nearPickupId: string | null;
   nearEncounterId: string | null;
   nearMemoryId: string | null;
+  /** A visible big memory in contact range whose little memories remain incomplete. */
+  nearLockedMajorMemoryId?: string | null;
+  /** An approached boss whose frozen ordinary-win prerequisite is still unmet. */
+  nearLockedBossId?: string | null;
   nearFinish: boolean;
   canConsume: boolean;
   position: PositionSnapshot;
@@ -363,6 +367,12 @@ export interface GameHandle {
   clearInput(): void;
   setPaused(paused: boolean): void;
   performAction(action: GameplayAction): boolean;
+  /** Return locally to the first missing little memory's safe approach. */
+  returnToMissingMemory(): boolean;
+  /** Return locally to the final memory once both little memories are held. */
+  returnToMajorMemory(): boolean;
+  /** Escape a one-way route while an authored chapter's boss still needs ordinary wins. */
+  returnToChapterStart(): boolean;
   retryMedia(): void;
   inspect(): GameInspection;
   dispose(): void;

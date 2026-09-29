@@ -319,6 +319,46 @@ describe("editor preview runtime resolver", () => {
       };
     }
 
+    it("returns a boss-gated editor preview to its own validated spawn", () => {
+      const routeId = "garden-playground-v2";
+      const levels = editedV2Levels(PROJECT_A_SHIFT);
+      const save = makeAuthoredSave({ routeId, defeatedOrdinaryCount: 0 });
+      const adventure = save.adventure!;
+      const active = adventure.activeLevel!;
+      adventure.planVersion = "editor-world-plan-v2";
+      active.bossGate = "independent";
+      active.bossPrerequisiteDefeats = 2;
+      active.encounters.find((enemy) => enemy.id === active.bossId)!.available = false;
+      const beforeReturn = structuredClone(save);
+      const onAction = vi.fn(async () => save);
+      const game = createGame({
+        container: document.createElement("div"),
+        save,
+        authoredLevelResolver: authoredLevelResolverFor(levels),
+        onAction,
+        onRefresh: async () => save,
+      });
+      const controller = runtimeState.controllers.at(-1)!;
+      const edited = levels[routeId].document;
+      Object.assign(controller.position, edited.anchors.encounters.boss.position);
+      controller.grounded = true;
+      expect(game.inspect().status.nearLockedBossId).toBe(active.bossId);
+      Object.assign(controller.position, edited.anchors.rewardRespawn.position);
+      game.setInput("moveY", 1);
+      expect(game.returnToChapterStart()).toBe(true);
+      expect(game.inspect()).toMatchObject({
+        status: { position: edited.anchors.spawn.position },
+        checkpoint: edited.anchors.spawn.position,
+        input: { moveY: 0 },
+      });
+      expect(game.inspect().checkpoint).not.toEqual(
+        authoredRoute(routeId)!.document.anchors.spawn.position,
+      );
+      expect(save).toEqual(beforeReturn);
+      expect(onAction).not.toHaveBeenCalled();
+      game.dispose();
+    });
+
     it("keeps each project's documents through combat and into chapter two", async () => {
       const sessions = [PROJECT_A_SHIFT, PROJECT_B_SHIFT].map(startSession);
       advance();

@@ -524,6 +524,44 @@ describe("complete-world editor project contract", () => {
     expect(validateLevelEditorProject(removed)).toEqual([]);
   });
 
+  it("keeps extra optional slots distinct and bounds the boss prerequisite", () => {
+    const before = ratCasinoProject();
+    const added = expectApplied(applyLevelEditorCommand(before, {
+      type: "encounter.bonus.add",
+      chapterId: "chapter-1",
+      slot: "bonus-2",
+      anchor: bonusAnchor,
+      encounter: {
+        source: "catalog",
+        catalogEntryId: "golden-after-hours-rat",
+        catalogEntryVersion: "v001",
+      },
+    }));
+    expect(added.chapters[0]?.encounterSlots["bonus-2"]).toBeDefined();
+    expect(added.chapters[0]?.encounterSlots["bonus-1"]).toBeUndefined();
+    const gated = expectApplied(applyLevelEditorCommand(added, {
+      type: "chapter.boss-prerequisite.set",
+      chapterId: "chapter-1",
+      defeats: 4,
+    }));
+    expect(gated.chapters[0]?.bossPrerequisiteDefeats).toBe(4);
+    expect(parseLevelEditorProjectJson(serializeLevelEditorProject(gated))).toEqual(gated);
+    expect(applyLevelEditorCommand(gated, {
+      type: "chapter.boss-prerequisite.set", chapterId: "chapter-1", defeats: 5,
+    }).issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ source: "command" }),
+    ]));
+    const reset = expectApplied(applyLevelEditorCommand(gated, {
+      type: "chapter.boss-prerequisite.set", chapterId: "chapter-1", defeats: 0,
+    }));
+    expect(reset.chapters[0]?.bossPrerequisiteDefeats).toBeUndefined();
+    const removed = expectApplied(applyLevelEditorCommand(reset, {
+      type: "encounter.bonus.remove", chapterId: "chapter-1", slot: "bonus-2",
+    }));
+    expect(removed.chapters[0]?.encounterSlots).toEqual(before.chapters[0]?.encounterSlots);
+    expect(removed.chapters[0]?.level.anchors.encounters).toEqual(before.chapters[0]?.level.anchors.encounters);
+  });
+
   it("rejects half-authored and ineligible bonus encounters", () => {
     const before = ratCasinoProject();
     const chapter = before.chapters[0]!;

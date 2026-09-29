@@ -3,6 +3,7 @@ import party from "../shared/levels/besties-playground-v1.json";
 import gardenV2 from "../shared/levels/garden-playground-v2.json";
 import partyV2 from "../shared/levels/besties-playground-v2.json";
 import {
+  AUTHORED_BONUS_ENCOUNTER_SLOTS,
   resolveAuthoredLevelDocument,
   type AuthoredEncounterSlot,
   type ResolvedAuthoredLevel,
@@ -82,13 +83,28 @@ export function authoredLevelLayout(
   );
   const optionalIds = active.optionalEncounterIds ?? [];
   const optionalSet = new Set(optionalIds);
+  const legacyBonusId = optionalIds.length === 1 &&
+    !AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) =>
+      optionalIds[0] === `${active.id}-encounter-${slot}`)
+    ? optionalIds[0]
+    : undefined;
+  const optionalSlotIds = new Map(AUTHORED_BONUS_ENCOUNTER_SLOTS.flatMap((slot) => {
+    const canonical = `${active.id}-encounter-${slot}`;
+    const id = optionalSet.has(canonical) ? canonical : slot === "bonus-1" ? legacyBonusId : undefined;
+    return id === undefined ? [] : [[slot, id] as const];
+  }));
+  const expectedOptionalIds = AUTHORED_BONUS_ENCOUNTER_SLOTS
+    .map((slot) => optionalSlotIds.get(slot))
+    .filter((id): id is string => id !== undefined);
   const requiredOrdinary = ordinary.filter((enemy) => !optionalSet.has(enemy.id));
   if (
     requiredOrdinary.length !== 4 ||
-    optionalIds.length > 1 ||
+    optionalIds.length > 4 ||
+    optionalIds.some((id, index) => id !== expectedOptionalIds[index]) ||
     optionalSet.size !== optionalIds.length ||
     optionalIds.some((id) => !ordinary.some((enemy) => enemy.id === id)) ||
-    Boolean(anchors.encounters["bonus-1"]) !== (optionalIds.length === 1) ||
+    AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) =>
+      Boolean(anchors.encounters[slot]) !== optionalSlotIds.has(slot)) ||
     active.encounters.filter((enemy) => enemy.role === "boss").length !== 1
   ) {
     throw new Error("Authored encounter slots do not match the frozen roster");
@@ -99,7 +115,8 @@ export function authoredLevelLayout(
         enemy.role === "boss"
           ? "boss"
           : optionalSet.has(enemy.id)
-            ? "bonus-1"
+            ? (AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) =>
+                optionalSlotIds.get(slot) === enemy.id)!)
             : (`ordinary-${requiredOrdinary.indexOf(enemy) + 1}` as AuthoredEncounterSlot);
       const binding = anchors.encounters[slot];
       if (!binding || binding.kind !== enemy.kind) {

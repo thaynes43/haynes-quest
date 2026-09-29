@@ -8,7 +8,9 @@
  * fingerprints every object's name, type, transform, visibility, geometry,
  * material, instance matrices and light, plus the background, fog, exposure
  * and every asset request with its placements, and compares the SHA-256 with
- * the value recorded from the pre-registry code on main at 32cee46.
+ * the value recorded after DESIGN-028 replaced the shared spinning attack
+ * ring with separate forward strikes. The pre-registry baseline is in git
+ * history at 32cee46.
  */
 import { describe, expect, it, vi } from "vitest";
 import * as THREE from "three";
@@ -125,16 +127,16 @@ function publishedScene(routeId: "garden-playground-v2" | "besties-playground-v2
   return new GardenScene(document.createElement("div"), createLevelLayout(save), save);
 }
 
-/** Recorded from the pre-registry scene code (main at 32cee46). */
+/** Recorded after DESIGN-028's intentional strike-shape change. */
 const EXPECTED: Record<string, string> = {
-  "rat-casino-v2": "9419d4dc36f9a9cd37f85d6f0417eb37132945ee9a2a9a9d6520655b35497802",
-  "theme-garden": "6d772a99310fe79794b75e56948f10a4cb9ee083815ecd186c22e6262e97d751",
-  "theme-party": "3b6b7742dbf7f8e45e4d01a562ed0636e408392b027800d1977aab6b577db29c",
-  "theme-arcade": "759dcedbbd1bd95efb4711ad987d59d88d032241aeac45a78151f36e235863cf",
-  "theme-toybox": "5d7fecad433b49ad099d96367f0cfd36f155a1467fe5f07dde904110ce509081",
-  "theme-casino": "4198334c2798306006e8717745bf4a235f93c1507ad2ff5f9dd2047a7d41eb12",
-  "garden-playground-v2": "6d772a99310fe79794b75e56948f10a4cb9ee083815ecd186c22e6262e97d751",
-  "besties-playground-v2": "9aa460ca28752f65b585ff2d146195fe954fa4af06d66119b42e0680f01d34d1",
+  "rat-casino-v2": "6107e7c6a50f6e838536acc1ad947b42ad0d4ee0e4cf694c9268a33b4eb1ec00",
+  "theme-garden": "340e2648197f9c2b5a86774cef2268395b564035a4f4d714be6f5a98ee277cc0",
+  "theme-party": "e21c30ae08ab2e2efcde3feea52f379bf8e1c96278c41e44cec6d9e455bf5b10",
+  "theme-arcade": "18700c66db81128694dac615d70d015d01de0d9853598623c90e10b53de315bd",
+  "theme-toybox": "ce659258fd724074ff38273e8c64fa9a3a045551720c81615a0bf3cfbb36da3c",
+  "theme-casino": "68d294be909030175dc5bf53f923364995f975dc1ea0e8030ee7f082eb941848",
+  "garden-playground-v2": "340e2648197f9c2b5a86774cef2268395b564035a4f4d714be6f5a98ee277cc0",
+  "besties-playground-v2": "47ff47727f68ef59b09b07eafe4c543109823e8a02dcd87a2cb7715d834bd09f",
 };
 
 const builders: Record<string, () => GardenScene> = {

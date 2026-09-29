@@ -3,6 +3,7 @@ import {
   EnemySimulation,
   bossIsActive,
   findAttackTarget,
+  playerAttackRange,
 } from "../../src/game/combat";
 import {
   createLevelLayout,
@@ -10,7 +11,26 @@ import {
   type LevelLayout,
 } from "../../src/game/level";
 import type { EnemyFrame } from "../../src/game/types";
+import { bossIsAvailable } from "../../src/shared/encounter-availability";
 import { makeEraSave } from "./fixtures";
+
+describe("frozen boss availability", () => {
+  const ordinary = [
+    { role: "ordinary", defeated: true },
+    { role: "ordinary", defeated: false },
+    { role: "ordinary", defeated: false },
+    { role: "ordinary", defeated: false },
+  ];
+
+  it("requires distinct ordinary wins only when the independent plan opts in", () => {
+    expect(bossIsAvailable("family-world-a1-v7", "independent", undefined, ordinary)).toBe(true);
+    expect(bossIsAvailable("family-world-a1-v7", "independent", 2, ordinary)).toBe(false);
+    expect(bossIsAvailable("family-world-a1-v7", "independent", 2, [
+      ordinary[0]!, { ...ordinary[1]!, defeated: true }, ordinary[2]!, ordinary[3]!,
+    ])).toBe(true);
+    expect(bossIsAvailable("garden-playground-v1", "after-ordinaries", 0, ordinary)).toBe(false);
+  });
+});
 
 function stepMany(
   simulation: EnemySimulation,
@@ -48,6 +68,15 @@ function levelWithFirstOrdinary(
       },
     ],
   };
+}
+
+function crossingLevel(save: ReturnType<typeof makeEraSave>): LevelLayout {
+  // A four-metre-deep authored fight island with the enemy off the route's
+  // centre line, matching the compact arenas in the frozen family worlds.
+  return levelWithFirstOrdinary(save, {
+    position: { x: 2, y: 0, z: -35.3 },
+    arena: { minX: -4, maxX: 4, minZ: -37.3, maxZ: -33.8 },
+  });
 }
 
 describe("enemy combat simulation", () => {
@@ -146,6 +175,72 @@ describe("enemy combat simulation", () => {
     stepMany(legacy, save, playerAcrossGap, 40);
     expect(legacy.frames()[0]?.position.z).toBeCloseTo(-6.3425, 6);
     expect(legacy.frames()[0]?.position.z).toBeGreaterThan(arena.maxZ);
+  });
+
+  it("intercepts a straight four-metre-per-second crossing after a full visible warning", () => {
+    const save = makeEraSave();
+    const simulation = new EnemySimulation(crossingLevel(save), save);
+    let firstWindup = -1;
+    let firstStrike = -1;
+    let firstContact = -1;
+
+    for (let frame = 0; frame < 60; frame += 1) {
+      const player = { x: 0, y: 0, z: -27 - frame * 0.2 };
+      const contacts = simulation.step(
+        { player, deltaSeconds: 0.05, active: true },
+        save,
+      );
+      const enemy = simulation.frames()[0]!;
+      if (enemy.phase === "windup" && firstWindup < 0) firstWindup = frame;
+      if (enemy.phase === "strike" && firstStrike < 0) firstStrike = frame;
+      if (contacts.length > 0 && firstContact < 0) firstContact = frame;
+      expect(enemy.position.x).toBeGreaterThanOrEqual(-4);
+      expect(enemy.position.x).toBeLessThanOrEqual(4);
+      expect(enemy.position.z).toBeGreaterThanOrEqual(-37.3);
+      expect(enemy.position.z).toBeLessThanOrEqual(-33.8);
+    }
+
+    expect(firstWindup).toBeGreaterThan(0);
+    expect(firstStrike - firstWindup).toBeGreaterThanOrEqual(16);
+    expect(firstContact).toBeGreaterThan(firstStrike);
+  });
+
+  it("lets a player change direction during the committed windup to dodge", () => {
+    const save = makeEraSave();
+    const simulation = new EnemySimulation(crossingLevel(save), save);
+    let warned = false;
+    const contacts: string[] = [];
+
+    for (let frame = 0; frame < 60; frame += 1) {
+      const player = warned
+        ? { x: -Math.min(3.2, (frame - 33) * 0.2), y: 0, z: -33.6 }
+        : { x: 0, y: 0, z: -27 - frame * 0.2 };
+      contacts.push(
+        ...simulation.step({ player, deltaSeconds: 0.05, active: true }, save),
+      );
+      if (simulation.frames()[0]?.phase === "windup") warned = true;
+    }
+
+    expect(warned).toBe(true);
+    expect(contacts).toEqual([]);
+    expect(simulation.frames()[0]?.phase).toBe("cooldown");
+  });
+
+  it("stays off the safe approach and does not pursue from a different floor", () => {
+    const save = makeEraSave();
+    const level = crossingLevel(save);
+    const simulation = new EnemySimulation(level, save);
+    expect(stepMany(simulation, save, { x: 0, y: 0, z: -27 }, 80)).toEqual([]);
+    expect(simulation.frames()[0]).toMatchObject({
+      phase: "idle",
+      position: { x: 2, y: 0, z: -35.3 },
+    });
+
+    expect(stepMany(simulation, save, { x: 0, y: 2, z: -34 }, 80)).toEqual([]);
+    expect(simulation.frames()[0]).toMatchObject({
+      phase: "idle",
+      position: { x: 2, y: 0, z: -35.3 },
+    });
   });
 
   it("restarts a threatened attack with a full telegraph after resume", () => {
@@ -428,5 +523,23 @@ describe("attack targeting", () => {
         true,
       ),
     ).toBeNull();
+  });
+
+  it("gives basic and tier-one route-memory attacks reach beyond Bash without changing archived reach", () => {
+    const archived = makeEraSave();
+    const route = structuredClone(archived);
+    route.adventure!.planVersion = "era-level-plan-v3";
+    route.adventure!.activeLevel!.majorMemoryId = "memory-2";
+    const tierOne = structuredClone(route);
+    const tool = tierOne.adventure!.activeLevel!.pickups.find((pickup) => pickup.kind === "attack-tool")!;
+    tierOne.adventure!.inventory.push({ ...tool, collected: true });
+    tierOne.adventure!.equippedId = tool.id;
+
+    for (const role of ["ordinary", "boss"] as const) {
+      expect(playerAttackRange(route, role)).toBe(2.4);
+      expect(playerAttackRange(tierOne, role)).toBe(2.4);
+    }
+    expect(playerAttackRange(archived, "ordinary")).toBe(1.7);
+    expect(playerAttackRange(archived, "boss")).toBe(2);
   });
 });

@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { AUTHORED_BONUS_ENCOUNTER_SLOTS } from '../shared/authored-level.js';
 import {
   canonicalLevelEditorProjectJson,
   LEVEL_EDITOR_CHAPTER_ROUTES,
@@ -170,7 +171,7 @@ export function prepareEditorWorld(
     }
   }
   const hasOptionalEncounter = project.chapters.some(
-    (chapter) => chapter.encounterSlots['bonus-1'] !== undefined,
+    (chapter) => AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) => chapter.encounterSlots[slot] !== undefined),
   );
   const plan: EditorWorldAdventurePlan = hasOptionalEncounter
     ? {
@@ -227,7 +228,7 @@ function editorWorldLevel(
 ): FrozenEditorWorldLevelPlanV1 | FrozenEditorWorldLevelPlanV2 {
   const slots: LevelEditorEncounterSlot[] = [
     ...EDITOR_ENCOUNTER_SLOTS,
-    ...(chapter.encounterSlots['bonus-1'] === undefined ? [] : ['bonus-1' as const]),
+    ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot] !== undefined),
   ];
   const resolved = slots.map((slot) => {
     const reference = chapter.encounterSlots[slot];
@@ -237,7 +238,7 @@ function editorWorldLevel(
       : undefined;
     const catalogEntry = reference.source === 'catalog'
       ? levelEditorEncounterCatalogEntry(reference, catalogVersion, {
-          bonus: slot === 'bonus-1',
+          bonus: slot.startsWith('bonus-'),
         })
       : undefined;
     const periodId = candidate?.periodId ?? catalogEntry?.periodId;
@@ -271,8 +272,8 @@ function editorWorldLevel(
     return {
       id: slot === 'boss'
         ? `${chapter.routeId}-boss`
-        : slot === 'bonus-1'
-          ? `${chapter.routeId}-encounter-bonus-1`
+        : slot.startsWith('bonus-')
+          ? `${chapter.routeId}-encounter-${slot}`
           : `${chapter.routeId}-encounter-${encounterIndex + 1}`,
       role,
       kind,
@@ -300,17 +301,20 @@ function editorWorldLevel(
     periodId,
     routeId: chapter.routeId,
     bossGate: 'independent' as const,
+    ...(chapter.bossPrerequisiteDefeats === undefined ? {} : {
+      bossPrerequisiteDefeats: chapter.bossPrerequisiteDefeats,
+    }),
     pickups,
     encounters,
     bossId: `${chapter.routeId}-boss`,
   };
   if (planVersion === 'editor-world-plan-v2') {
-    const optionalEncounter = encounters.find(
-      (encounter) => encounter.id === `${chapter.routeId}-encounter-bonus-1`,
-    );
+    const optionalEncounterIds = AUTHORED_BONUS_ENCOUNTER_SLOTS
+      .map((slot) => `${chapter.routeId}-encounter-${slot}`)
+      .filter((id) => encounters.some((encounter) => encounter.id === id));
     return {
       ...level,
-      optionalEncounterIds: optionalEncounter ? [optionalEncounter.id] : [],
+      optionalEncounterIds,
     };
   }
   return level;

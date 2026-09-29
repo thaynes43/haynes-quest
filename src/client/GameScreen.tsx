@@ -236,6 +236,16 @@ function Adventure({
   );
   const [chapterNotice, setChapterNotice] = useState("");
   const [chapterMemoryId, setChapterMemoryId] = useState<string | null>(null);
+  const [lastDamage, setLastDamage] = useState<{
+    encounterId: string;
+    amount: number;
+    revision: number;
+  } | null>(null);
+  useEffect(() => {
+    if (!lastDamage) return;
+    const timeout = window.setTimeout(() => setLastDamage(null), 850);
+    return () => window.clearTimeout(timeout);
+  }, [lastDamage]);
   // The casino haul of the chapter that just ended, kept past its last status.
   const casinoTally = useRef<{
     levelId: string;
@@ -289,6 +299,10 @@ function Adventure({
       level?.minorMemoryIds?.includes(memory.id) &&
       ["revealed", "consumed"].includes(memory.state ?? ""),
   ).length;
+  const missingMinorCount = Math.max(
+    0,
+    (level?.minorMemoryIds?.length ?? 0) - minorCount,
+  );
   const story = eraStory(level?.eraYear, level);
   const chapterTitle =
     (level?.routeId ? chapterTitles?.[level.routeId] : undefined) ??
@@ -296,11 +310,12 @@ function Adventure({
   const chapterDescription =
     (level?.routeId ? chapterDescriptions?.[level.routeId] : undefined) ??
     story.description;
-  const chapterSubtitle =
-    level?.routeId ? chapterSubtitles?.[level.routeId] : undefined;
+  const chapterSubtitle = level?.routeId
+    ? chapterSubtitles?.[level.routeId]
+    : undefined;
   const previewChapterCount = selectedMemoryIds
     ? 1
-    : level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3));
+    : (level?.totalLevels ?? Math.max(1, Math.ceil(save.memories.length / 3)));
   const hasDraftEnemy = level?.encounters.some(
     (encounter) => encounter.content?.placeholder === "neutral-candidate-v1",
   );
@@ -317,6 +332,11 @@ function Adventure({
     .filter((item) => item.kind === "guard-tool" && item.collected)
     .sort((a, b) => b.tier - a.tier)[0];
   const boss = level?.encounters.find((enemy) => enemy.role === "boss");
+  const bossRequiredWins = level?.bossPrerequisiteDefeats ?? 0;
+  const ordinaryWins =
+    level?.encounters.filter(
+      (enemy) => enemy.role === "ordinary" && enemy.defeated,
+    ).length ?? 0;
   const nearbyPickup = level?.pickups.find(
     (pickup) => pickup.pickupId === status?.nearPickupId,
   );
@@ -404,13 +424,21 @@ function Adventure({
         if (action?.type === "collect-equipment") {
           void sound.feedback("pickup");
         }
-        const enemyHit = next.adventure?.activeLevel?.encounters.some(
-          (enemy) =>
-            enemy.hp <
-            (before.adventure?.activeLevel?.encounters.find(
-              (prior) => prior.id === enemy.id,
-            )?.hp ?? enemy.hp),
-        );
+        const damagedEnemy = next.adventure?.activeLevel?.encounters
+          .map((enemy) => ({
+            encounterId: enemy.id,
+            amount:
+              (before.adventure?.activeLevel?.encounters.find(
+                (prior) => prior.id === enemy.id,
+              )?.hp ?? enemy.hp) - enemy.hp,
+          }))
+          .find((enemy) => enemy.amount > 0);
+        const enemyHit = Boolean(damagedEnemy);
+        if (
+          damagedEnemy &&
+          (action?.type === "attack" || action?.type === "secondary-attack")
+        )
+          setLastDamage({ ...damagedEnemy, revision: next.revision });
         // A player's own hit already sounded at contact (DESIGN-022).
         const hitPlayedAtContact =
           action?.type === "attack" || action?.type === "secondary-attack";
@@ -479,9 +507,7 @@ function Adventure({
         game.current = createGame({
           container: container.current,
           save: initialSave,
-          ...(authoredLevelResolver
-            ? { authoredLevelResolver }
-            : {}),
+          ...(authoredLevelResolver ? { authoredLevelResolver } : {}),
           onAction: act,
           onRefresh: async () =>
             update(await api<SaveView>(`/saves/${initialSave.id}`)),
@@ -821,15 +847,45 @@ function Adventure({
             <b aria-hidden="true">{minorCount} / 2</b>
           </div>
         )}
+        {bossRequiredWins > 0 &&
+          view.phase === "exploring" &&
+          !boss?.defeated && (
+            <div className="fight-objective" role="status">
+              <span aria-hidden="true">⚔</span>
+              <span>
+                {ordinaryWins >= bossRequiredWins
+                  ? "Boss unlocked!"
+                  : status?.nearLockedBossId
+                    ? `Boss locked · ${bossRequiredWins - ordinaryWins} ${bossRequiredWins - ordinaryWins === 1 ? "foe" : "foes"} left`
+                    : `Boss: beat ${bossRequiredWins} foes`}
+              </span>
+              <b>
+                {Math.min(ordinaryWins, bossRequiredWins)}/{bossRequiredWins}
+              </b>
+              {ordinaryWins < bossRequiredWins && (
+                <button
+                  type="button"
+                  className="fight-return-button"
+                  aria-label="Return to chapter start"
+                  disabled={busy}
+                  onClick={() => game.current?.returnToChapterStart()}
+                >
+                  ↶ Return to start
+                </button>
+              )}
+            </div>
+          )}
         {routeMemories && view.phase === "memory-released" && (
           <p className="memory-next-step" role="status">
-            {minorCount < 2
-              ? `${2 - minorCount} little ${minorCount === 1 ? "memory" : "memories"} left. Follow the path back to find ${minorCount === 1 ? "it" : "them"}, then return to the big memory.`
-              : "Walk into the big memory to finish this chapter."}
+            {missingMinorCount > 0
+              ? `${status?.nearLockedMajorMemoryId ? "Big memory locked. " : ""}${missingMinorCount} little ${missingMinorCount === 1 ? "memory" : "memories"} left. Tap Find memory to get there.`
+              : "Both little memories found. Go to the big memory and walk into it."}
           </p>
         )}
         <div className="equipment-line">
-          <span>✦ {equipmentName(weapon)}</span>
+          <span>
+            ✦ {routeMemories && !weapon ? "Quick hit" : equipmentName(weapon)}
+          </span>
           {shield && <span>◈ {equipmentName(shield)}</span>}
         </div>
       </aside>
@@ -848,20 +904,57 @@ function Adventure({
             <small>
               {boss.hp} / {boss.maxHp}
             </small>
+            {lastDamage?.encounterId === boss.id && (
+              <b
+                className="confirmed-damage"
+                key={lastDamage.revision}
+                aria-hidden="true"
+              >
+                −{lastDamage.amount}
+              </b>
+            )}
           </div>
         )}
-      {!modalOpen && draftTargetName && view.phase === "exploring" && (
-        <div className="target-hint" data-encounter-id={target?.id}>
-          <strong>{draftTargetName}</strong>
-          <small>Current target · draft character</small>
-        </div>
-      )}
+      {!modalOpen &&
+        target &&
+        target.role !== "boss" &&
+        view.phase === "exploring" && (
+          <div
+            className={`target-hint ${status?.attackReady ? "in-reach" : ""}`}
+            data-encounter-id={target.id}
+          >
+            <strong>
+              {draftTargetName ??
+                target.content?.displayName ??
+                story.enemies[target.kind]}
+            </strong>
+            <meter
+              min={0}
+              max={target.maxHp}
+              value={target.hp}
+              aria-label="Target health"
+            />
+            <small>
+              {target.hp} / {target.maxHp} HP
+            </small>
+            {lastDamage?.encounterId === target.id && (
+              <b
+                className="confirmed-damage"
+                key={lastDamage.revision}
+                aria-hidden="true"
+              >
+                −{lastDamage.amount}
+              </b>
+            )}
+          </div>
+        )}
       {!modalOpen && feedback}
       {!modalOpen && (
         <div className="game-bottom" data-quest-ui>
           <Joystick game={game} />
           <div className="keyboard-hint">
-            <span>WASD</span> move · <span>SPACE</span> jump · click/<span>F</span> attack · right click/<span>SHIFT</span> secondary
+            <span>WASD</span> move · <span>SPACE</span> jump · click/
+            <span>F</span> attack · right click/<span>SHIFT</span> secondary
           </div>
           <div className="combat-actions">
             <ActionButton
@@ -881,7 +974,7 @@ function Adventure({
               input={actionInput}
               cancelInput={cancelActionInput}
             />
-            {shield && (
+            {shield && !(routeMemories && view.phase === "memory-released") && (
               <ActionButton
                 action="guard"
                 label={routeMemories ? "Bash" : "Guard"}
@@ -892,15 +985,38 @@ function Adventure({
                 cancelInput={cancelActionInput}
               />
             )}
-            <ActionButton
-              action="attack"
-              label="Attack"
-              symbol="✦"
-              disabled={view.phase !== "exploring"}
-              active={Boolean(target && status?.attackReady)}
-              input={actionInput}
-              cancelInput={cancelActionInput}
-            />
+            {routeMemories && view.phase === "memory-released" ? (
+              <button
+                type="button"
+                className="action-button memory-return-button"
+                aria-label={
+                  missingMinorCount > 0
+                    ? "Go to missing little memory"
+                    : "Go to big memory"
+                }
+                disabled={busy}
+                onClick={() => {
+                  if (missingMinorCount > 0)
+                    game.current?.returnToMissingMemory();
+                  else game.current?.returnToMajorMemory();
+                }}
+              >
+                <span aria-hidden="true">↶</span>
+                <small>
+                  {missingMinorCount > 0 ? "Find memory" : "Big memory"}
+                </small>
+              </button>
+            ) : (
+              <ActionButton
+                action="attack"
+                label="Attack"
+                symbol="✦"
+                disabled={view.phase !== "exploring"}
+                active={Boolean(target && status?.attackReady)}
+                input={actionInput}
+                cancelInput={cancelActionInput}
+              />
+            )}
           </div>
           {!routeMemories &&
             (nearbyPickup || status?.nearMemoryId || nearbyFriend) && (
@@ -1344,9 +1460,11 @@ function Adventure({
       {activeModal === "complete" && (
         <Modal
           notice={feedback}
-          title={selectedMemoryIds
-            ? `${chapterTitles?.[chapterOnlyRouteId ?? ""] ?? "Chapter"} complete.`
-            : "Every chapter, a little more you."}
+          title={
+            selectedMemoryIds
+              ? `${chapterTitles?.[chapterOnlyRouteId ?? ""] ?? "Chapter"} complete.`
+              : "Every chapter, a little more you."
+          }
           eyebrow={selectedMemoryIds ? "CHAPTER COMPLETE" : "JOURNEY COMPLETE"}
           wide
         >
@@ -1423,7 +1541,8 @@ function CasinoHaul({
   counts: CollectibleCounts;
   names?: TrailNames;
 }) {
-  const everyTicket = counts.ticketTotal > 0 && counts.tickets === counts.ticketTotal;
+  const everyTicket =
+    counts.ticketTotal > 0 && counts.tickets === counts.ticketTotal;
   return (
     <p className="casino-haul">
       You grabbed {counts.tokens} of {counts.tokenTotal} {names.tokens} and{" "}
@@ -1539,10 +1658,7 @@ function ActionButton({
     let closest: number | undefined;
     let closestDistance = Number.POSITIVE_INFINITY;
     for (const [identifier, contact] of pendingTouches.current) {
-      const distance = Math.hypot(
-        contact.x - clientX,
-        contact.y - clientY,
-      );
+      const distance = Math.hypot(contact.x - clientX, contact.y - clientY);
       if (distance < closestDistance) {
         closest = identifier;
         closestDistance = distance;
@@ -1708,10 +1824,7 @@ function Joystick({ game }: { game: React.RefObject<GameHandle | undefined> }) {
     let closest: number | undefined;
     let closestDistance = Number.POSITIVE_INFINITY;
     for (const [identifier, contact] of pendingTouches.current) {
-      const distance = Math.hypot(
-        contact.x - clientX,
-        contact.y - clientY,
-      );
+      const distance = Math.hypot(contact.x - clientX, contact.y - clientY);
       if (distance < closestDistance) {
         closest = identifier;
         closestDistance = distance;
