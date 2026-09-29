@@ -360,28 +360,40 @@ export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze(
     theme: "casita",
     bounds: box(2.4, 2, 0.35),
     fallback: { shape: "box", color: 0xd9825b, trim: 0xf5e6c8 },
-    glb: null,
+    glb: {
+      url: `${media}/casita-kit/v001/casita-terrace-wall.glb`,
+      sha256: "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+    },
   },
   {
     id: "flower-planter",
     theme: "casita",
     bounds: box(0.6, 0.9, 0.6),
     fallback: { shape: "cylinder", color: 0xc4643f, trim: 0xe8487a },
-    glb: null,
+    glb: {
+      url: `${media}/casita-kit/v001/flower-planter.glb`,
+      sha256: "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+    },
   },
   {
     id: "patterned-door",
     theme: "casita",
     bounds: box(0.8, 2.4, 0.2),
     fallback: { shape: "box", color: 0x2e8b73, trim: 0xf2c14e },
-    glb: null,
+    glb: {
+      url: `${media}/casita-kit/v001/patterned-door.glb`,
+      sha256: "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+    },
   },
   {
     id: "butterfly-arch",
     theme: "casita",
     bounds: box(1.8, 3.2, 0.3),
     fallback: { shape: "arch", color: 0x3f9b4f, trim: 0xf2a93b },
-    glb: null,
+    glb: {
+      url: `${media}/casita-kit/v001/butterfly-arch.glb`,
+      sha256: "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+    },
   },
   // Concert-stage props for the Besties party finale.
   {

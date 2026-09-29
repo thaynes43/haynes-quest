@@ -1,0 +1,391 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/casita-kit/v001/casita-kit-blockout.blend",
+  "sha256": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+  "props": {
+    "casita-terrace-wall": {
+      "min": [
+        -2.4,
+        -0.3426,
+        0.0
+      ],
+      "max": [
+        2.4,
+        0.34,
+        2.0
+      ],
+      "size": [
+        4.8,
+        0.6826,
+        2.0
+      ],
+      "blockout_triangles": 46412,
+      "registry_box_blender": {
+        "min": [
+          -2.4,
+          -0.35,
+          0.0
+        ],
+        "max": [
+          2.4,
+          0.35,
+          2.0
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -2.4,
+          0.0,
+          -0.34
+        ],
+        "max": [
+          2.4,
+          2.0,
+          0.3426
+        ]
+      },
+      "parts": 63,
+      "part_tops_m": {
+        "Zocalo base band": 0.42,
+        "Zocalo cream moulding": 0.455,
+        "Stucco body": 1.72,
+        "End pilaster right": 1.82,
+        "End pilaster base right": 0.46,
+        "End pilaster cap right": 1.9,
+        "Finial plinth right": 1.94,
+        "Finial ball right": 2.0,
+        "End pilaster left": 1.82,
+        "End pilaster base left": 0.46,
+        "End pilaster cap left": 1.9,
+        "Finial plinth left": 1.94,
+        "Finial ball left": 2.0,
+        "Coping cap": 1.795,
+        "Barrel coping tiles (red)": 1.865,
+        "Barrel coping tiles (clay)": 1.865,
+        "Talavera band tiles cream": 1.635,
+        "Talavera band tiles blue": 1.635,
+        "Talavera band tile motifs blue": 1.5974,
+        "Talavera band tile motifs gold": 1.567,
+        "Talavera band tile motifs cream": 1.6061,
+        "Band line z1.45": 1.455,
+        "Band line z1.66": 1.665,
+        "Niche left niche backing": 1.22,
+        "Niche left niche surround": 1.3,
+        "Niche left niche sill": 0.66,
+        "Niche left candle 1 wax": 0.9,
+        "Niche left candle 1 wick": 0.92,
+        "Niche left candle 1 flame": 1.0344,
+        "Niche left candle 2 wax": 0.8,
+        "Niche left candle 2 wick": 0.82,
+        "Niche left candle 2 flame": 0.9036,
+        "Niche left candle 3 wax": 0.83,
+        "Niche left candle 3 wick": 0.85,
+        "Niche left candle 3 flame": 0.9336,
+        "Niche right niche backing": 1.22,
+        "Niche right niche surround": 1.3,
+        "Niche right niche sill": 0.66,
+        "Niche right candle 1 wax": 0.9,
+        "Niche right candle 1 wick": 0.92,
+        "Niche right candle 1 flame": 1.0344,
+        "Niche right candle 2 wax": 0.8,
+        "Niche right candle 2 wick": 0.82,
+        "Niche right candle 2 flame": 0.9036,
+        "Niche right candle 3 wax": 0.83,
+        "Niche right candle 3 wick": 0.85,
+        "Niche right candle 3 flame": 0.9336,
+        "Wall butterfly relief wing edges": 1.1418,
+        "Wall butterfly relief wings": 1.1196,
+        "Wall butterfly relief wing spots": 1.1383,
+        "Wall butterfly relief body": 1.1437,
+        "Bougainvillea over the coping stem": 1.911,
+        "Bougainvillea over the coping leaves": 1.9835,
+        "Bougainvillea over the coping blooms": 1.99,
+        "Bougainvillea strand 1 stem": 1.8496,
+        "Bougainvillea strand 1 leaves": 1.9152,
+        "Bougainvillea strand 1 blooms": 1.9307,
+        "Bougainvillea strand 2 stem": 1.8462,
+        "Bougainvillea strand 2 leaves": 1.9186,
+        "Bougainvillea strand 2 blooms": 1.9293,
+        "Bougainvillea strand 3 stem": 1.8427,
+        "Bougainvillea strand 3 leaves": 1.936,
+        "Bougainvillea strand 3 blooms": 1.9279
+      }
+    },
+    "flower-planter": {
+      "min": [
+        -0.59,
+        -0.59,
+        0.0
+      ],
+      "max": [
+        0.59,
+        0.59,
+        0.8972
+      ],
+      "size": [
+        1.18,
+        1.18,
+        0.8972
+      ],
+      "blockout_triangles": 19582,
+      "registry_box_blender": {
+        "min": [
+          -0.6,
+          -0.6,
+          0.0
+        ],
+        "max": [
+          0.6,
+          0.6,
+          0.9
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -0.59,
+          0.0,
+          -0.59
+        ],
+        "max": [
+          0.59,
+          0.8972,
+          0.59
+        ]
+      },
+      "parts": 17,
+      "part_tops_m": {
+        "Terracotta pot": 0.612,
+        "Talavera band": 0.408,
+        "Band ring z0.27": 0.28,
+        "Band ring z0.41": 0.416,
+        "Band diamonds": 0.3895,
+        "Band dots": 0.362,
+        "Foliage mound": 0.74,
+        "Foliage lumps": 0.72,
+        "Leaves over the rim": 0.6438,
+        "Tall flower stems": 0.8392,
+        "Marigold pompoms": 0.893,
+        "Pink bloom petals": 0.876,
+        "Bloom centres": 0.8803,
+        "Planter butterfly wing edges": 0.8821,
+        "Planter butterfly wings": 0.8756,
+        "Planter butterfly wing spots": 0.8817,
+        "Planter butterfly body": 0.8972
+      }
+    },
+    "patterned-door": {
+      "min": [
+        -0.8,
+        -0.2,
+        0.0
+      ],
+      "max": [
+        0.8,
+        0.2,
+        2.4
+      ],
+      "size": [
+        1.6,
+        0.4,
+        2.4
+      ],
+      "blockout_triangles": 16440,
+      "registry_box_blender": {
+        "min": [
+          -0.8,
+          -0.2,
+          0.0
+        ],
+        "max": [
+          0.8,
+          0.2,
+          2.4
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -0.8,
+          0.0,
+          -0.2
+        ],
+        "max": [
+          0.8,
+          2.4,
+          0.2
+        ]
+      },
+      "parts": 33,
+      "part_tops_m": {
+        "Clay step": 0.1,
+        "Stucco surround": 2.4,
+        "Opening backing": 2.25,
+        "Door leaf left": 2.2347,
+        "Lower panel left": 0.78,
+        "Upper panel left": 1.7,
+        "Rosette petals left": 0.6437,
+        "Rosette centre left": 0.55,
+        "Lattice diamonds left": 1.6345,
+        "Lattice dots left": 1.562,
+        "Pull plate left": 1.094,
+        "Ring pull left": 1.069,
+        "Door leaf right": 2.2347,
+        "Lower panel right": 0.78,
+        "Upper panel right": 1.7,
+        "Rosette petals right": 0.6437,
+        "Rosette centre right": 0.55,
+        "Lattice diamonds right": 1.6345,
+        "Lattice dots right": 1.562,
+        "Pull plate right": 1.094,
+        "Ring pull right": 1.069,
+        "Gold seam astragal": 1.85,
+        "Transom sunburst rays": 2.19,
+        "Transom butterfly wing edges": 2.0871,
+        "Transom butterfly wings": 2.0738,
+        "Transom butterfly wing spots": 2.085,
+        "Transom butterfly body": 2.0882,
+        "Glow trim": 2.261,
+        "Door surround tiles cream": 2.3161,
+        "Door surround tiles blue": 2.375,
+        "Door surround tile motifs blue": 2.2745,
+        "Door surround tile motifs gold": 2.331,
+        "Door surround tile motifs cream": 2.3563
+      }
+    },
+    "butterfly-arch": {
+      "min": [
+        -1.7739,
+        -0.297,
+        0.0
+      ],
+      "max": [
+        1.73,
+        0.29,
+        3.1927
+      ],
+      "size": [
+        3.5039,
+        0.587,
+        3.1927
+      ],
+      "blockout_triangles": 45236,
+      "registry_box_blender": {
+        "min": [
+          -1.8,
+          -0.3,
+          0.0
+        ],
+        "max": [
+          1.8,
+          0.3,
+          3.2
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -1.7739,
+          0.0,
+          -0.29
+        ],
+        "max": [
+          1.73,
+          3.1927,
+          0.297
+        ]
+      },
+      "parts": 65,
+      "part_tops_m": {
+        "Post base left": 0.4,
+        "Post shaft left": 1.98,
+        "Post capital band left": 2.06,
+        "Post cap left": 2.16,
+        "Post niche left niche backing": 1.64,
+        "Post niche left niche surround": 1.7,
+        "Post niche left niche sill": 1.18,
+        "Post niche left candle 1 wax": 1.36,
+        "Post niche left candle 1 wick": 1.38,
+        "Post niche left candle 1 flame": 1.4504,
+        "Cap candle dish left": 2.19,
+        "Cap candle left wax": 2.41,
+        "Cap candle left wick": 2.43,
+        "Cap candle left flame": 2.562,
+        "Post base right": 0.4,
+        "Post shaft right": 1.98,
+        "Post capital band right": 2.06,
+        "Post cap right": 2.16,
+        "Post niche right niche backing": 1.64,
+        "Post niche right niche surround": 1.7,
+        "Post niche right niche sill": 1.18,
+        "Post niche right candle 1 wax": 1.36,
+        "Post niche right candle 1 wick": 1.38,
+        "Post niche right candle 1 flame": 1.4504,
+        "Cap candle dish right": 2.19,
+        "Cap candle right wax": 2.41,
+        "Cap candle right wick": 2.43,
+        "Cap candle right flame": 2.562,
+        "Arch posts tiles cream": 1.015,
+        "Arch posts tiles blue": 1.015,
+        "Arch posts tile motifs blue": 0.9819,
+        "Arch posts tile motifs gold": 0.955,
+        "Arch posts tile motifs cream": 0.9895,
+        "Foot bush leaves left": 0.2781,
+        "Foot bush blooms left": 0.2938,
+        "Foot bush leaves right": 0.2697,
+        "Foot bush blooms right": 0.2938,
+        "Vine arch": 3.08,
+        "Twisting tendril": 3.1076,
+        "Vine leaves": 3.1098,
+        "Vine marigolds": 3.1082,
+        "Vine blooms": 3.0767,
+        "Bougainvillea on the left post stem": 2.0202,
+        "Bougainvillea on the left post leaves": 2.0655,
+        "Bougainvillea on the left post blooms": 2.0589,
+        "Crown butterfly wing edges": 3.1892,
+        "Crown butterfly wings": 3.1493,
+        "Crown butterfly wing spots": 3.183,
+        "Crown butterfly body": 3.1927,
+        "Small butterfly left wing edges": 3.1137,
+        "Small butterfly left wings": 3.0984,
+        "Small butterfly left wing spots": 3.1114,
+        "Small butterfly left body": 3.0911,
+        "Small butterfly right wing edges": 3.15,
+        "Small butterfly right wings": 3.1368,
+        "Small butterfly right wing spots": 3.1482,
+        "Small butterfly right body": 3.1275,
+        "Small butterfly pink wing edges": 2.696,
+        "Small butterfly pink wings": 2.6853,
+        "Small butterfly pink wing spots": 2.6949,
+        "Small butterfly pink body": 2.6744,
+        "Small butterfly blue wing edges": 2.8417,
+        "Small butterfly blue wings": 2.83,
+        "Small butterfly blue wing spots": 2.8403,
+        "Small butterfly blue body": 2.8214
+      }
+    }
+  },
+  "materials": [
+    "CK flame gold #f2c14e",
+    "CK glaze bloom #e8487a",
+    "CK glaze blue #4e8ab8",
+    "CK glaze cream #f5e6c8",
+    "CK glaze gold #f2c14e",
+    "CK gloss gold #f2c14e",
+    "CK matte bloom #e8487a",
+    "CK matte blue #4e8ab8",
+    "CK matte clay #c4643f",
+    "CK matte cream #f5e6c8",
+    "CK matte gold #f2c14e",
+    "CK matte leaf #3f9b4f",
+    "CK matte marigold #f2a93b",
+    "CK matte plum #3a2842",
+    "CK matte stucco #f1c28c",
+    "CK matte teal #2e8b73",
+    "CK matte terracotta #d9825b",
+    "CK matte tile #a94a32"
+  ],
+  "parts": 178,
+  "build_seconds": 12.7,
+  "utc": "2026-09-27T00:14:47.463721+00:00"
+}

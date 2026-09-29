@@ -5,9 +5,9 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The Magic House garden adds tiled terrace walls, flower planters, patterned doors and butterfly arches. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**67 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**71 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -28,7 +28,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Family eras {#family-eras}
 
-Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. The five remaining Hero City, Big Stage and Casino bonus models are registered for the pending v5 templates; the live v4 journeys still show placeholder art in those slots until the checked release is published.
+Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. Catalog v11 registers the five Hero City, Big Stage and Casino bonus models used by the v5 family worlds. The [current handoff](../../.agents/HANDOFF.md) records the checked live revision and remaining owner reviews.
 
 ### World A · Chapter 1
 
@@ -373,6 +373,54 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/cc05a4ba74166f07.webp" alt="Blender reference sheet of the bin chicken in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="casita-terrace-wall" markdown="1">
+
+[![Exact Casita terrace wall v001 model](media/catalog-thumbnails/v001/5acad8ec6bf0f147.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/casita-kit/v001.md#casita-terrace-wall)
+
+### [Casita terrace wall](reviews/casita-kit/v001.md#casita-terrace-wall)
+
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/91e37b3ff0aae9c2.webp" alt="Approved Blender reference sheet of the four original Casita garden props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="flower-planter" markdown="1">
+
+[![Exact Casita flower planter v001 model](media/catalog-thumbnails/v001/39a20ef55760a56f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/casita-kit/v001.md#flower-planter)
+
+### [Casita flower planter](reviews/casita-kit/v001.md#flower-planter)
+
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/91e37b3ff0aae9c2.webp" alt="Approved Blender reference sheet of the four original Casita garden props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="patterned-door" markdown="1">
+
+[![Exact Casita patterned door v001 model](media/catalog-thumbnails/v001/ed07632dab4ecdcc.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/casita-kit/v001.md#patterned-door)
+
+### [Casita patterned door](reviews/casita-kit/v001.md#patterned-door)
+
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/91e37b3ff0aae9c2.webp" alt="Approved Blender reference sheet of the four original Casita garden props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="butterfly-arch" markdown="1">
+
+[![Exact Candle-and-butterfly arch v001 model](media/catalog-thumbnails/v001/ba953264ebaac7d9.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/casita-kit/v001.md#butterfly-arch)
+
+### [Candle-and-butterfly arch](reviews/casita-kit/v001.md#butterfly-arch)
+
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/91e37b3ff0aae9c2.webp" alt="Approved Blender reference sheet of the four original Casita garden props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
 </div>
 

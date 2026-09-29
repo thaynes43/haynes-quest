@@ -101,6 +101,41 @@
       "sha256": "24aeaa3d18a6f6a05794b3449992a98eeb425bbe3f8ab89356af3af7b0efdfcb"
     },
     {
+      "source": "docs/assets/media/casita-kit/v001/reference-sheet.png",
+      "source_sha256": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+      "path": "docs/assets/media/catalog-thumbnails/v001/91e37b3ff0aae9c2.webp",
+      "bytes": 26300,
+      "sha256": "5db78b389fb1546485a37cc8bbc86c887d53356f06c19e944bf75a8fe59e450a"
+    },
+    {
+      "source": "docs/assets/media/casita-kit/v001/stills/butterfly-arch-beauty.png",
+      "source_sha256": "de7bfb4fb09524787987ff30a7f1500eefe2c38cc9993348924f26550c626b49",
+      "path": "docs/assets/media/catalog-thumbnails/v001/ba953264ebaac7d9.webp",
+      "bytes": 11362,
+      "sha256": "fc2cad3b5429f852b5231e1842a484413dad8a1e3e41939538efaa1cd5873fd8"
+    },
+    {
+      "source": "docs/assets/media/casita-kit/v001/stills/casita-terrace-wall-beauty.png",
+      "source_sha256": "1d8466a3a45d9887dac6311462c056d3683b1ca991e32f3a7375b39a633f446f",
+      "path": "docs/assets/media/catalog-thumbnails/v001/5acad8ec6bf0f147.webp",
+      "bytes": 13494,
+      "sha256": "1915ce1a7076d2e525e1c42664e4fe5bd86c3dccd5d15bad908749826b9633fc"
+    },
+    {
+      "source": "docs/assets/media/casita-kit/v001/stills/flower-planter-beauty.png",
+      "source_sha256": "b64e1de798bdbccf48dab5558b498a69dc5405259c8055776e0e9d3c9b46a33f",
+      "path": "docs/assets/media/catalog-thumbnails/v001/39a20ef55760a56f.webp",
+      "bytes": 11986,
+      "sha256": "2ed65ed381a9194a984390967dd514941826f619c6c06be783d731b586888471"
+    },
+    {
+      "source": "docs/assets/media/casita-kit/v001/stills/patterned-door-beauty.png",
+      "source_sha256": "6c855337076f58970b697b20e09edb29251b8eaa04589eed6fd05ec9082d8f15",
+      "path": "docs/assets/media/catalog-thumbnails/v001/ed07632dab4ecdcc.webp",
+      "bytes": 15276,
+      "sha256": "6fed884e79b2e8944428a47e1502dc7159cf1d26917144426b89ca47ecdfa0d4"
+    },
+    {
       "source": "docs/assets/media/chick-flia/v001/beauty.png",
       "source_sha256": "8872e6f300911749c95a9649924896a0a2c0aae2a33bcd5a0ac33517602e0807",
       "path": "docs/assets/media/catalog-thumbnails/v001/b72c2f131107d0eb.webp",

@@ -1,0 +1,29 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "reviewer": "coordinating GPT-6 Astra session",
+  "reviewed_on": "2026-09-29",
+  "coordinator_decision": "approved for labeled private candidate integration",
+  "reviewed_files": [
+    "reference-sheet.png",
+    "kit-beauty.png",
+    "sheet-vs-export.png",
+    "stills/flower-planter-top.png",
+    "b2-camera/family-b2-01-spawn-gate-arch-phone.png",
+    "b2-camera/family-b2-01-spawn-path-bed-west-1-desktop.png"
+  ],
+  "reviewed_glb_sha256": {
+    "casita-terrace-wall": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+    "flower-planter": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+    "patterned-door": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+    "butterfly-arch": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7"
+  },
+  "notes": [
+    "Four silhouettes and palette match approved sheet",
+    "Orange blooms now read clearly as flowers",
+    "Open arch retains the sightline",
+    "Avatar and next path remain unobscured in B2 desktop/phone gameplay views",
+    "Coordinator approved camera evidence and final intake/PR preparation; Tom exact-version review remains pending"
+  ],
+  "owner_decision": "pending; coordinator review does not substitute for Tom exact-version review"
+}

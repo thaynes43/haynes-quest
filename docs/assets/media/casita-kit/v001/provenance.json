@@ -1,0 +1,30 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "source_type": "Blender reference sheet, no generated concept",
+  "reference_author": "Claude Opus 5.5, September 26 2026",
+  "production_author": "GPT-6 Astra max, September 29 2026",
+  "sheet_completion": "Corrected planter clearance annotation only; prior geometry and source preserved",
+  "reference_sheet_sha256": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07",
+  "partial_sheet_sha256": "c3ff84d76d94cbb3bb81a6e1238216ce0ae1e0334ffcca88d3484968b63f9896",
+  "partial_blockout_sha256": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6",
+  "external_assets": [],
+  "private_media_used": false,
+  "owner_review": "pending",
+  "gameplay_use": "private-candidate under PRD-004 Q-03",
+  "coordinator_sheet_review": "approved September 29; retain kit direction and make orange planter blooms read as flowers",
+  "approved_sheet_preserved": true,
+  "frozen_templates_unchanged": true,
+  "planning_boxes_unchanged": true,
+  "actual_B2_placements_unchanged": 36,
+  "method": "Parametric topology derived from preserved blockout; six-petal marigolds; opaque vertex colors with mild baked contact shading; no generated bitmap inputs",
+  "master_sha256": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
+  "glb_sha256": {
+    "casita-terrace-wall": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+    "flower-planter": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+    "patterned-door": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+    "butterfly-arch": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7"
+  },
+  "scene_release": "scene-release.json"
+}

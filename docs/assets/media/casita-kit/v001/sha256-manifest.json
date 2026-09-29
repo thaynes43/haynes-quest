@@ -1,0 +1,632 @@
+{
+  "asset_id": "casita-kit",
+  "version": "v001",
+  "scope": "All files in this public version directory except the manifest itself; original September 26 checkpoint history also remains in the durable partial-0926-preserved mirror",
+  "files": [
+    {
+      "path": "b2-camera/family-b2-01-spawn-gate-arch-desktop.png",
+      "bytes": 460545,
+      "sha256": "e4388fd1412027e3e029547a8adf68ae03cfc5d1be616600d433bfb58d6230f5"
+    },
+    {
+      "path": "b2-camera/family-b2-01-spawn-gate-arch-phone.png",
+      "bytes": 161813,
+      "sha256": "06548dc1bc96dfb7308128bbb90f199fc30de17b3c47f08c6aedb0c7a0d80f56"
+    },
+    {
+      "path": "b2-camera/family-b2-01-spawn-path-bed-west-1-desktop.png",
+      "bytes": 411080,
+      "sha256": "2eb24b9ad925c8e40bc4e78b3b80e5289d774a0b6f040ab59f0393fb54bb9445"
+    },
+    {
+      "path": "b2-camera/family-b2-01-spawn-path-bed-west-1-phone.png",
+      "bytes": 167545,
+      "sha256": "72a136b5dbe799f572ede2576d356faa125808fe17a6ce06da916991bf47c0aa"
+    },
+    {
+      "path": "b2-camera/family-b2-01-spawn.png",
+      "bytes": 444249,
+      "sha256": "18985bf9c1759b35ffaaee12aa86ed8e54f02c3523e14ed0e8bcefd74163270c"
+    },
+    {
+      "path": "b2-camera/family-b2-02-first-ordinary-fight-terrace-wall-west-1-desktop.png",
+      "bytes": 284064,
+      "sha256": "9727e74fe59c7676cd105c0b697aaa0e6ac82ab9700d46c5a91b1ee798205a2e"
+    },
+    {
+      "path": "b2-camera/family-b2-02-first-ordinary-fight-terrace-wall-west-1-phone.png",
+      "bytes": 135333,
+      "sha256": "56c2862c917e5e6af63bfe6702578617ba1e6c635c117a702a88975463399ccc"
+    },
+    {
+      "path": "b2-camera/family-b2-02-first-ordinary-fight.png",
+      "bytes": 268435,
+      "sha256": "c21511ab513f229998fe1143a7eadbee4e35a8ad98b5eb21403cf58707805422"
+    },
+    {
+      "path": "b2-camera/family-b2-02-mid-climb-balcony-door-desktop.png",
+      "bytes": 297893,
+      "sha256": "b79b6382893db0a841682e71af25265d9e2b5ff853acf83b7b21489ee928a34b"
+    },
+    {
+      "path": "b2-camera/family-b2-02-mid-climb-balcony-door-phone.png",
+      "bytes": 152516,
+      "sha256": "a4124e6beb3e91280ab569fb14f11eca1a2a550b5152f4a44aac2067d6be8605"
+    },
+    {
+      "path": "b2-camera/family-b2-02-mid-climb.png",
+      "bytes": 244352,
+      "sha256": "6f94b165ceda976750d323db2bbff0f1b399e9f69955fb1240bb5c7d043c992c"
+    },
+    {
+      "path": "b2-camera/family-b2-03-boss-arena-court-wall-east-desktop.png",
+      "bytes": 421968,
+      "sha256": "9e6b635a9019682cd98e429dc38d9c7f05a790b349c232c0122af4e771dd3c18"
+    },
+    {
+      "path": "b2-camera/family-b2-03-boss-arena-court-wall-east-phone.png",
+      "bytes": 137150,
+      "sha256": "5b1dcc1ce41e11d39c72a61d161310f8ba5d87eef726c802acfd1a85da326482"
+    },
+    {
+      "path": "b2-camera/family-b2-03-boss-arena-finish-arch-desktop.png",
+      "bytes": 246421,
+      "sha256": "44f2a9dacdc1a23f500b282d463b885ca8da80a0bfd930a9630906fff6455964"
+    },
+    {
+      "path": "b2-camera/family-b2-03-boss-arena-finish-arch-phone.png",
+      "bytes": 184256,
+      "sha256": "20352a62392f0c6aff4290ece1819024c2ac71c0e4f8df9e1846d0b40374358a"
+    },
+    {
+      "path": "b2-camera/family-b2-03-boss-arena.png",
+      "bytes": 245327,
+      "sha256": "8ad3ede97385c5ac2dd50d1417d18c91a4cb66b8e66815407c020298557771ef"
+    },
+    {
+      "path": "b2-camera/family-b2-04-finish.png",
+      "bytes": 211267,
+      "sha256": "24b6d4e063e6b4665798d2033a2bf2117f9adea1f7ff42c5f02bfb4da13963a9"
+    },
+    {
+      "path": "b2-camera/history/persistent-fixture-entry-failure.json",
+      "bytes": 1267,
+      "sha256": "f5f26fdec37b80bce9ab256a65698ec9317365a4d0589608083d1ce5b3cfd9c8"
+    },
+    {
+      "path": "b2-camera/report.json",
+      "bytes": 11006,
+      "sha256": "5d3323705607431abb60d9d514c45ca1c0314fbd78e9f1bc515895b278933889"
+    },
+    {
+      "path": "blender-previews/butterfly-arch-beauty.png",
+      "bytes": 788750,
+      "sha256": "9ad1ccde1983320d29f86ec7884ecc24062028a05aabd00cfb922e15bc2879f6"
+    },
+    {
+      "path": "blender-previews/casita-terrace-wall-beauty.png",
+      "bytes": 777401,
+      "sha256": "71f58e7685559ce652a1648f6d1686b225c382958c5a141525e15d97281a9913"
+    },
+    {
+      "path": "blender-previews/flower-planter-beauty.png",
+      "bytes": 840962,
+      "sha256": "bd6953f07356545e1aeaa73b12e7e0a6fa37d582996e54f4f6a68045dd30c40b"
+    },
+    {
+      "path": "blender-previews/flower-planter-top.png",
+      "bytes": 894095,
+      "sha256": "f8238c3e19ce6d7dc9db72cf5e7d3f950a360ac4d6c097a9814058eb343157c7"
+    },
+    {
+      "path": "blender-previews/patterned-door-beauty.png",
+      "bytes": 815846,
+      "sha256": "43afc4c28d9744ec7e6d3e4ad02e3c65f266fe6460dc74f7c2de145fd48143c2"
+    },
+    {
+      "path": "blender-previews/report.json",
+      "bytes": 957,
+      "sha256": "945ee76ec6dcf93f3a3cf2565f7a1b91069eed372f7db424f4ebcde424260958"
+    },
+    {
+      "path": "bounds.json",
+      "bytes": 3507,
+      "sha256": "002b02910920d16e53c2ce2d41321f13ee8aa9e728a72ca972e42b091b97e953"
+    },
+    {
+      "path": "butterfly-arch.glb",
+      "bytes": 193420,
+      "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7"
+    },
+    {
+      "path": "casita-kit-reference-sheet.blend",
+      "bytes": 1996289,
+      "sha256": "79a8eb12cc9edfee73165bb19789c4c07b356f255dc0954abfb1357348ca0035"
+    },
+    {
+      "path": "casita-kit.blend",
+      "bytes": 759820,
+      "sha256": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05"
+    },
+    {
+      "path": "casita-terrace-wall.glb",
+      "bytes": 153388,
+      "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c"
+    },
+    {
+      "path": "construction.json",
+      "bytes": 47341,
+      "sha256": "c76eef76a1439f4a6b528dec2e129ea98e74d4e7c774191b29cada4043b245f4"
+    },
+    {
+      "path": "flower-planter.glb",
+      "bytes": 131712,
+      "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27"
+    },
+    {
+      "path": "kit-beauty.png",
+      "bytes": 695375,
+      "sha256": "ccc819860aab8f53271f16796d5bc0d07b791b9b1dee57c7f5ec4f316b87fecf"
+    },
+    {
+      "path": "model-notes.md",
+      "bytes": 1724,
+      "sha256": "178f042c83054eda2a61ca9c4ae9748a11ad792686603f886bc73cdba44e89d0"
+    },
+    {
+      "path": "patterned-door.glb",
+      "bytes": 97932,
+      "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc"
+    },
+    {
+      "path": "prompt.txt",
+      "bytes": 692,
+      "sha256": "9f46c6406ae4093b004dcfb39860409fee961a0d60b25346ff0ff501fb3d44b5"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 1759,
+      "sha256": "cbd502416de7d4fc5801f872e6ee3c140669803560c51a2f98360242de856beb"
+    },
+    {
+      "path": "reference-notes.md",
+      "bytes": 2515,
+      "sha256": "f718e91f20da94656194869c1aaf625d2ff74ab0e8fc9d96e00afc626025e7fc"
+    },
+    {
+      "path": "reference-sheet.png",
+      "bytes": 2262073,
+      "sha256": "e27e71967202f35f738c3df6ff1cc8b99cbe8fedf0584e448b82462ea86c5d07"
+    },
+    {
+      "path": "reimport.json",
+      "bytes": 2117,
+      "sha256": "33926cb48cd1cd180825e6b89837e97fd50608591d71d5d154c938cedeaf2e2e"
+    },
+    {
+      "path": "review-audit/desktop-butterfly-arch-card.png",
+      "bytes": 43334,
+      "sha256": "3fc3f5ca1564129913b00c2cb6e34bc2e6bf306c8abaf2fc6e916a2653ce4844"
+    },
+    {
+      "path": "review-audit/desktop-butterfly-arch-viewer.png",
+      "bytes": 162777,
+      "sha256": "2de886af69e7023c4dda1b7125682f5dff5d5978e24a6350148daa3181f79307"
+    },
+    {
+      "path": "review-audit/desktop-casita-terrace-wall-card.png",
+      "bytes": 46919,
+      "sha256": "2156418bc53d4f96b4b0be6a5ce435d681d7cd7e9db5863d32b0ec81940e7de8"
+    },
+    {
+      "path": "review-audit/desktop-casita-terrace-wall-viewer.png",
+      "bytes": 140054,
+      "sha256": "4320789693130f19527cb6b21ec3698735476e22e8d1da6238acd09902bf7aa8"
+    },
+    {
+      "path": "review-audit/desktop-flower-planter-card.png",
+      "bytes": 46504,
+      "sha256": "bdc2f6982603e471ef8c256b65a9cf6c4702a6d88aa3423a45c610474b5a8365"
+    },
+    {
+      "path": "review-audit/desktop-flower-planter-viewer.png",
+      "bytes": 207835,
+      "sha256": "dac28224434843010320592b8e4735d7bbf7c4ec077fc31f601abb9159587f14"
+    },
+    {
+      "path": "review-audit/desktop-patterned-door-card.png",
+      "bytes": 55194,
+      "sha256": "9b9b8ce876750744584b6ae858d60c6cb130253710218229258658f8cb89c1d4"
+    },
+    {
+      "path": "review-audit/desktop-patterned-door-viewer.png",
+      "bytes": 139967,
+      "sha256": "7e71e8d6b8206733551ca17a9513b9d509a0556ea0b3571c60c3ab430c10456d"
+    },
+    {
+      "path": "review-audit/phone-butterfly-arch-card.png",
+      "bytes": 52874,
+      "sha256": "5f10bdcd587c957149263cc7b1872d0f9387979d925d3b07f2d6519b01ae23d3"
+    },
+    {
+      "path": "review-audit/phone-butterfly-arch-viewer.png",
+      "bytes": 69831,
+      "sha256": "89a14d7d997d1350314fa5b8e99d9cd7d7fe2da673e4279281e62d1e71b15a8b"
+    },
+    {
+      "path": "review-audit/phone-casita-terrace-wall-card.png",
+      "bytes": 57564,
+      "sha256": "2da631e68957fd92c53ca4c9c5657b60d0e08207be40150201211a264bc213c5"
+    },
+    {
+      "path": "review-audit/phone-casita-terrace-wall-viewer.png",
+      "bytes": 59588,
+      "sha256": "4782eb59e96da0d82e741e41e248eaeae2abd905c514b66cd93952d2abe097ea"
+    },
+    {
+      "path": "review-audit/phone-flower-planter-card.png",
+      "bytes": 57837,
+      "sha256": "b86d5590e03c844e0673b5e93d0697ee19454a1bc46e45054192048226d46b93"
+    },
+    {
+      "path": "review-audit/phone-flower-planter-viewer.png",
+      "bytes": 99437,
+      "sha256": "9dde70d9744544d5854233130e33e4b27395098689cc91a0cce3721d58984852"
+    },
+    {
+      "path": "review-audit/phone-patterned-door-card.png",
+      "bytes": 68475,
+      "sha256": "e5d08dc1c7a53e9a55934862eecbd13db4133f24c50f0ecfaeae42255b31df63"
+    },
+    {
+      "path": "review-audit/phone-patterned-door-viewer.png",
+      "bytes": 60809,
+      "sha256": "f3c9d89537e4cd3e28a3548d1ec6f15e58a7872a82abb8c2f1c801194d840cee"
+    },
+    {
+      "path": "review-audit/report.json",
+      "bytes": 1472,
+      "sha256": "627a775deaa53d1e6103609bc85355a65805bc94bc2a25b5806dcbd20ffdb229"
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 12081,
+      "sha256": "7fd921d8c91a07628f62b8aa2b347caa4549a05038a58613359828e37d765a2b"
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 21441,
+      "sha256": "85117cf6c1603b4d865623ff120f671e170b6c425af69458ede390298ea247b4"
+    },
+    {
+      "path": "sheet-render.json",
+      "bytes": 2152,
+      "sha256": "fbb881ab820a3d39c60bfe1566f399844e90d9b704d969e5ee3d89503d63e7d1"
+    },
+    {
+      "path": "sheet-stage/README.md",
+      "bytes": 1536,
+      "sha256": "dc7570fb2981ca9b4069ff000ef6ef1f6aab4e9e5db782b25ae63749be7e13c6"
+    },
+    {
+      "path": "sheet-stage/partial-0926/blockout-measurements.json",
+      "bytes": 11131,
+      "sha256": "15e6ffa50af53561f30084f56d7f9a9dfc8a2d005c7ea575447cf7e5691d9171"
+    },
+    {
+      "path": "sheet-stage/partial-0926/casita-kit-blockout.blend",
+      "bytes": 1373078,
+      "sha256": "40f6cd473fadd57f9de031497c896cb9d7098be313e0d992a5614ca54bb65eb6"
+    },
+    {
+      "path": "sheet-stage/partial-0926/casita-kit-reference-sheet-checkpoint.blend",
+      "bytes": 1982340,
+      "sha256": "724290118c41dca3fd494a498aac205f01aac1e91b3e2fc42c9727cc2799f964"
+    },
+    {
+      "path": "sheet-stage/partial-0926/coordinator-scene-release.json",
+      "bytes": 462,
+      "sha256": "802cef8714a93e08eb7e1b978093032d8ccbe9e63ecca52232b7dc0e9661c937"
+    },
+    {
+      "path": "sheet-stage/partial-0926/original-remote-manifest.json",
+      "bytes": 4044,
+      "sha256": "94585004d036de520fea6106e45766b5e1feb1a99de1c3b6e36b37cd528a41f5"
+    },
+    {
+      "path": "sheet-stage/partial-0926/part-measurements.json",
+      "bytes": 9575,
+      "sha256": "2f44c9bef09d69249df9e101c180fe20468fb636b985370b401aa0f20dd72955"
+    },
+    {
+      "path": "sheet-stage/partial-0926/reference-sheet.png",
+      "bytes": 2262328,
+      "sha256": "c3ff84d76d94cbb3bb81a6e1238216ce0ae1e0334ffcca88d3484968b63f9896"
+    },
+    {
+      "path": "sheet-stage/partial-0926/scene-lease.json",
+      "bytes": 16661,
+      "sha256": "72d8bdd7fc8f6a4d610c7d14989f069ad133a5f78a054178ba8644bb035fd63b"
+    },
+    {
+      "path": "sheet-stage/partial-0926/sheet-render.json",
+      "bytes": 2152,
+      "sha256": "6a67a35b94426860546d2befc3d5302378f0aeb2191875ba79f8ffe537249102"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/build_blockout.py",
+      "bytes": 43267,
+      "sha256": "86c7ac180ff1f5473082da48e5358aa569fb05a8f65f7ddad6d4f9df9c64f28a"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/claim.py",
+      "bytes": 3403,
+      "sha256": "3cea1796623815d098a1bc49f51aba63106d79ac25c2eabeec2af569a6d917ff"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/crops.py",
+      "bytes": 2257,
+      "sha256": "f6a873bde5c8a6e5c02ecb99f6b9ceedca96478a01443ed76d995476bcb6f2e7"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/final_render.py",
+      "bytes": 1393,
+      "sha256": "94890ba6fea8295dd7ac680e7f6cab116ece229d79ff5db71d87d8679cd623a6"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/iterate_preview.py",
+      "bytes": 674,
+      "sha256": "36080687de0a46db3d60fa99c944e659a0c4361057524e6af7fe19f6dd24c903"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/measure_parts.py",
+      "bytes": 3576,
+      "sha256": "dc9ed3e7e32afb393a3c3d44302be77e0c0f42bba92dcd95c5d46b035fd0ea03"
+    },
+    {
+      "path": "sheet-stage/partial-0926/source/sheet.py",
+      "bytes": 18726,
+      "sha256": "8960b41c1c295ab85400450ac557bf59809c8a5bf568c6e4ed3bbcd56db0ab32"
+    },
+    {
+      "path": "sheet-stage/preview/crop-butterfly-arch-front.png",
+      "bytes": 1049993,
+      "sha256": "3c245aa3e6ae5dc79ca9e6ea2002f8a771beed368b62b1d75636d38bf42d65c1"
+    },
+    {
+      "path": "sheet-stage/preview/crop-casita-terrace-wall-front.png",
+      "bytes": 969473,
+      "sha256": "4e361f6fa0f08fb350be35c2f9858ac33f8bcf46792a620dfdf5d78e6844bb50"
+    },
+    {
+      "path": "sheet-stage/preview/crop-flower-planter-from-above.png",
+      "bytes": 1108046,
+      "sha256": "0e3e9e74ce48aa80c4e24ebc05c3280d5455ab7768106d373976a310839290a6"
+    },
+    {
+      "path": "sheet-stage/preview/crop-patterned-door-front.png",
+      "bytes": 1100038,
+      "sha256": "0eb0173ffd00d2786c119335c4d873f9064349d04475a36a51cffd861c095f46"
+    },
+    {
+      "path": "sheet-vs-export.png",
+      "bytes": 1932485,
+      "sha256": "b6b8ffb5e7a2f5fe24fb83047617584220afc39c667316e3ddbd4747f44652b1"
+    },
+    {
+      "path": "source/b2-camera-audit.mjs",
+      "bytes": 5918,
+      "sha256": "1aa4b8d6cd6575c36ffc9ec01b01e531698a9f7fd14544399d160fc8bc12fad8"
+    },
+    {
+      "path": "source/build_model.py",
+      "bytes": 16303,
+      "sha256": "2d439a04b452b014c58a86abc229d54e6037cf86385248d75c3d2f9c7a3b2c6b"
+    },
+    {
+      "path": "source/claim_resume.py",
+      "bytes": 3270,
+      "sha256": "30ca60cf312e0678ab23e50349ec870f52df850f977cf191dd866a45a0388dc3"
+    },
+    {
+      "path": "source/compose.mjs",
+      "bytes": 2743,
+      "sha256": "aba64b064b27778c6954a1047311f69ccf5a72c77eba99dc2d1e4fd2fa1469b5"
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 9703,
+      "sha256": "fbacccc58d0a5c2658d2ce2c9cd53d0c54512156b8fcf8e423dd74a089f093e4"
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 7912,
+      "sha256": "ee617e28546ef049cd9ad81fd5e49db74692202da3260854f5815a4423b18a07"
+    },
+    {
+      "path": "source/reference_blockout.py",
+      "bytes": 43267,
+      "sha256": "86c7ac180ff1f5473082da48e5358aa569fb05a8f65f7ddad6d4f9df9c64f28a"
+    },
+    {
+      "path": "source/reference_sheet.py",
+      "bytes": 18721,
+      "sha256": "f2455fe40d4b9e4bc409cf7701fbe1ea315670b3f885956c67d60726ce33e46d"
+    },
+    {
+      "path": "source/reimport.py",
+      "bytes": 1761,
+      "sha256": "f6f35fccc877e0fcac94e58893f3301d1b46dab1c183953b5d47741c1d13513c"
+    },
+    {
+      "path": "source/release_scene.py",
+      "bytes": 2517,
+      "sha256": "af4872c4f3970ad049948ec8bfd223e30bf8aa5d307399624d43b04c10cb5210"
+    },
+    {
+      "path": "source/render_candidate.py",
+      "bytes": 3626,
+      "sha256": "7c13e2ea1b9de3d9ab172ae3c3c06a299d429df88ee4c3e620dbf37e17bf5141"
+    },
+    {
+      "path": "source/review_audit.mjs",
+      "bytes": 3478,
+      "sha256": "39d626af5592eb8ad4c95ec7276c644bd0faa88243d9326fd514511e54b254d1"
+    },
+    {
+      "path": "source/run.py",
+      "bytes": 615,
+      "sha256": "94439fa462fd03c22fbc57be8d50701fc7df5e7a872a11fd88c62000d7796864"
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 4786,
+      "sha256": "0f64e339cd1bd9c65297ae8e48c04d5338c3de338063114cdef23def90ebaf86"
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 6410,
+      "sha256": "2f9157c87b5a06357d7c25f4ac1759e276751914c71480110c3bcdf2eba91d93"
+    },
+    {
+      "path": "source.json",
+      "bytes": 924,
+      "sha256": "accf1c640cff4d990701c21361f050225f99696641535a6c03959995db1453f2"
+    },
+    {
+      "path": "static-contact-sheet.png",
+      "bytes": 1457647,
+      "sha256": "29fc52c39115219a143673f122f673991672e63cfa265049623a3ba87cdd8158"
+    },
+    {
+      "path": "stills/browser-inspection.json",
+      "bytes": 21543,
+      "sha256": "724e4f2e78d19aafc294b3e12faec8f746d2582596e750713f3f4b8512ca06a1"
+    },
+    {
+      "path": "stills/butterfly-arch-back.png",
+      "bytes": 113571,
+      "sha256": "54d5f3acb4ce39533b611309ce9ad94c8dc2cb13690f43132caaaeab088500e0"
+    },
+    {
+      "path": "stills/butterfly-arch-beauty.png",
+      "bytes": 234285,
+      "sha256": "de7bfb4fb09524787987ff30a7f1500eefe2c38cc9993348924f26550c626b49"
+    },
+    {
+      "path": "stills/butterfly-arch-front.png",
+      "bytes": 289749,
+      "sha256": "815e6c66fae95f94bcbc0b56c4f4c780e3d88352bf00e7b9529b541d68671f87"
+    },
+    {
+      "path": "stills/butterfly-arch-side.png",
+      "bytes": 153841,
+      "sha256": "fde9fd9082c735b951afaa765baed743cbdc615fa91893a88836e37edd6ee24a"
+    },
+    {
+      "path": "stills/butterfly-arch-threequarter.png",
+      "bytes": 316336,
+      "sha256": "5348cdb1c528718e30937e1084b2e91b0b965724bd96117964fb252da2253974"
+    },
+    {
+      "path": "stills/casita-terrace-wall-back.png",
+      "bytes": 31130,
+      "sha256": "52418e677e2128109c66777874ef304674d5fc08ae1f8d938116afd1242922f0"
+    },
+    {
+      "path": "stills/casita-terrace-wall-beauty.png",
+      "bytes": 347250,
+      "sha256": "1d8466a3a45d9887dac6311462c056d3683b1ca991e32f3a7375b39a633f446f"
+    },
+    {
+      "path": "stills/casita-terrace-wall-front.png",
+      "bytes": 324265,
+      "sha256": "be65cfc97b01287dfd608e25e6b155cfbbdd3b87af689b1d946e522d49837839"
+    },
+    {
+      "path": "stills/casita-terrace-wall-side.png",
+      "bytes": 270796,
+      "sha256": "68397c00edd8afcb8d229b37259b899c9274ad1f72db99cf1e8a313ae71b4872"
+    },
+    {
+      "path": "stills/casita-terrace-wall-threequarter.png",
+      "bytes": 270837,
+      "sha256": "462a2f4778875cea0b402da22fc2989b59435dd91d7bdd22b312961c228c3468"
+    },
+    {
+      "path": "stills/flower-planter-back.png",
+      "bytes": 196791,
+      "sha256": "1d624e8aa931836048f82e2b6e60e15d96b8459d7df92975bc8b0a65ef15ba9d"
+    },
+    {
+      "path": "stills/flower-planter-beauty.png",
+      "bytes": 289751,
+      "sha256": "b64e1de798bdbccf48dab5558b498a69dc5405259c8055776e0e9d3c9b46a33f"
+    },
+    {
+      "path": "stills/flower-planter-front.png",
+      "bytes": 315011,
+      "sha256": "b6bf95c75263589217cde14802babb256fe590ad020364e57ee9e4189a68310a"
+    },
+    {
+      "path": "stills/flower-planter-side.png",
+      "bytes": 306182,
+      "sha256": "2b0fdbd564fcd1f6c7098479684edd27fba5ba78fb642063ae946cb2aaf58a24"
+    },
+    {
+      "path": "stills/flower-planter-threequarter.png",
+      "bytes": 189410,
+      "sha256": "5351d32da7f849663fd0404b6e4239f132faf88a808942fad7b5ca9193cbc75c"
+    },
+    {
+      "path": "stills/flower-planter-top.png",
+      "bytes": 361991,
+      "sha256": "64bd32b13399433bb39df9e716f09f56704afc6674da6f60ab3d167ace8f1f12"
+    },
+    {
+      "path": "stills/patterned-door-back.png",
+      "bytes": 31466,
+      "sha256": "df0e328c4173dfebc33f70aa9bc19f67bb0550129db94cafabadb7f6b5d10537"
+    },
+    {
+      "path": "stills/patterned-door-beauty.png",
+      "bytes": 461754,
+      "sha256": "6c855337076f58970b697b20e09edb29251b8eaa04589eed6fd05ec9082d8f15"
+    },
+    {
+      "path": "stills/patterned-door-front.png",
+      "bytes": 567826,
+      "sha256": "d80c91133dd9de95d1cdd54e7d89bc61c07b9cadd8919d1096265920b3563069"
+    },
+    {
+      "path": "stills/patterned-door-side.png",
+      "bytes": 135028,
+      "sha256": "723c22003875ebfafca95643b4ce40ecba09a951cac57b46b13eda77a9d29ffd"
+    },
+    {
+      "path": "stills/patterned-door-threequarter.png",
+      "bytes": 496698,
+      "sha256": "5d8e49090f7aa6a118e9657852d4e0e0c0810b0cd72510859bef8094fe0ad870"
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 62567,
+      "sha256": "8a5e786d9e6d05670fe7509d51af021369738587dfeb198938ce6801ec89f3cf"
+    },
+    {
+      "path": "topology-budget.json",
+      "bytes": 42327,
+      "sha256": "e8aad14e312506f6648e82c02604ea04c8b09ddb7ebcdf7cbeaf7a92b7d195e3"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 15000,
+      "sha256": "6c6cfc0aececf7180892c727e060bdaa39cdf1be0e339bcb7ae8f7fd82d05875"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 1329,
+      "sha256": "d7bdaf6dd3c21a2fb9b18410fb13543dd45ddfbaa8ac4fe517f55eb3e7c1d62e"
+    }
+  ]
+}

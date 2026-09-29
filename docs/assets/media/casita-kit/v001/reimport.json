@@ -1,0 +1,93 @@
+{
+  "all_checks_pass": true,
+  "props": {
+    "casita-terrace-wall": {
+      "sha256": "0f545da86ab99abadfa3f8b3c119fd606d0e67f53503c6b92708fc4b0fbc005c",
+      "meshes": 1,
+      "triangles": 4524,
+      "bbox_gltf": {
+        "min": [
+          -2.4000000953674316,
+          0.0,
+          -0.34153681993484497
+        ],
+        "max": [
+          2.4000000953674316,
+          2.0,
+          0.34153681993484497
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "flower-planter": {
+      "sha256": "89965de5b2fa88330a78a6a45f67b04a4e4bfb5581bd522469ca61d93b86df27",
+      "meshes": 1,
+      "triangles": 4338,
+      "bbox_gltf": {
+        "min": [
+          -0.5899999737739563,
+          0.0,
+          -0.5899999737739563
+        ],
+        "max": [
+          0.5899999737739563,
+          0.8942082524299622,
+          0.5899999737739563
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "patterned-door": {
+      "sha256": "14eee20e95b95c80a2319baa16bf6f69577fd63911bdb19c0963f74eace51afc",
+      "meshes": 1,
+      "triangles": 2486,
+      "bbox_gltf": {
+        "min": [
+          -0.800000011920929,
+          0.0,
+          -0.20000000298023224
+        ],
+        "max": [
+          0.800000011920929,
+          2.4000000953674316,
+          0.20000000298023224
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "butterfly-arch": {
+      "sha256": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
+      "meshes": 1,
+      "triangles": 4980,
+      "bbox_gltf": {
+        "min": [
+          -1.7408596277236938,
+          0.0,
+          -0.29350000619888306
+        ],
+        "max": [
+          1.7408596277236938,
+          3.1877999305725098,
+          0.29350000619888306
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    }
+  }
+}
