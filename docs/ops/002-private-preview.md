@@ -1,6 +1,6 @@
 # Running the private preview
 
-The private playtest uses **fictional illustrations**. PLAN007 adds fresh sessions, contact collection and jumping at every age. The [handoff](../../.agents/HANDOFF.md) distinguishes their versions and actual release status. OAuth and real-player admission remain deferred. The Immich adapter exists behind a private server contract, but the fixture web process cannot receive its credentials or expose a real-photo route.
+The isolated private playtest uses **fictional illustrations**. The [family release](https://quest.haynesnetwork.com/) now uses Authentik admission and prepared Immich photos; [the handoff](../../.agents/HANDOFF.md) records its exact current version. PLAN007 added fresh fixture sessions, contact collection and jumping at every age. The fixture process cannot receive family credentials or expose a real-photo route.
 
 ## Private cluster preview
 
@@ -8,7 +8,7 @@ The old LAN host `haynes-quest.haynesops.com` now redirects to the family releas
 
 The earlier deployed MVP passed complete keyboard and Chromium touch-emulation journeys on September 11, 2026. A separate live test retained the same signed session and complete save state across replacement of the application pod. See the [verification record](004-overnight-verification.md) for exact versions, checks and limitations.
 
-The separate private review runs at [Haynes Quest Playtest](https://haynes-quest-playtest.haynesops.com). Check the [current release handoff](../../.agents/HANDOFF.md) for rollout status. Its [playtest guide](../assets/playtest.md) describes the established two-chapter run and the Rat Casino fictional project. The review uses its own host-only browser session, fictional data and visibly labeled candidate artwork; the normal demo retains its existing image until final artwork review.
+The separate private review runs at [Haynes Quest Playtest](https://haynes-quest-playtest.haynesops.com). Check the [current release handoff](../../.agents/HANDOFF.md) for rollout status. Its [playtest guide](../assets/playtest.md) describes the established two-chapter run and the Rat Casino fictional project. The review uses its own host-only browser session and fictional data; it runs the same signed image as the family release in isolated fixture mode.
 
 ## Local development
 
@@ -32,7 +32,7 @@ The four existing sound candidates play in the isolated review with a revised mi
 
 Build the documentation using [the documented commands](../README.md#build-and-preview-the-site). The app serves the generated `site/` directory at `/studio/`; its catalog is `/studio/assets/catalog.html`. The standalone MkDocs preview is also available through `scripts/docs/serve.sh` at loopback port 8000.
 
-The static studio contains original fictional references, candidate media and the repository’s public-safe project documentation. It is isolated from application records and has no database or Immich access. The fixture playtest serves it to anyone on the LAN. The family release serves it only to signed-in family members, like the rest of that host ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02). Tom’s exact-version approval is required before candidate models, animation, materials or sounds are promoted into the normal demo. DESIGN007 permits the isolated, labeled candidate review used for this playtest. Pending approval does not prevent browsing or downloading the candidate package. WAV downloads and byte-range responses use `audio/wav` with `nosniff` retained. The 3D viewers use a 4:3 desktop frame and a square phone frame, with still images and direct downloads alongside them.
+The static studio contains original fictional references, candidate media and the repository’s public-safe project documentation. It is isolated from application records and has no database or Immich access. The fixture playtest serves it to anyone on the LAN. The family release serves it only to signed-in family members, like the rest of that host ([ADR-006](../adrs/006-release-isolation-and-public-surface.md) D-02). Tom’s exact-version review of models, animation, materials and sounds remains open. PRD-004 Q-03 permits visibly labeled private-release candidates before final owner review; it does not make them approved art. DESIGN007 also permits the isolated candidate review used for this playtest. Pending approval does not prevent browsing or downloading a candidate package. WAV downloads and byte-range responses use `audio/wav` with `nosniff` retained. The 3D viewers use a 4:3 desktop frame and a square phone frame, with still images and direct downloads alongside them.
 
 ## Verification commands
 
@@ -78,9 +78,9 @@ Database preparation merged in haynes-ops [#2849](https://github.com/thaynes43/h
 
 The deployment deliberately sets both `NODE_ENV=development` and `QUEST_FIXTURE_MODE=true`, with the exact HTTPS application origin. The default image refuses fixture mode under production. This is a private synthetic development workload; its ingress and Secret mounts enforce the additional separation from real photos.
 
-The private route is live at `https://haynes-quest.haynesops.com` behind `traefik-internal`, whose LoadBalancer is LAN-only at `192.168.40.203`. The zone is managed by UniFi DNS and excluded from the public Cloudflare DNS controller. Deployment merged through haynes-ops [#2851](https://github.com/thaynes43/haynes-ops/pull/2851), with restart and ownership evidence in [#2852](https://github.com/thaynes43/haynes-ops/pull/2852). Check the [handoff](../../.agents/HANDOFF.md) for the current immutable image.
+The isolated fixture playtest is live at [haynes-quest-playtest.haynesops.com](https://haynes-quest-playtest.haynesops.com/) behind `traefik-internal`; the earlier `haynes-quest.haynesops.com` host redirects to the Authentik-gated [family release](https://quest.haynesnetwork.com/). The LAN zone is managed by UniFi DNS and excluded from the public Cloudflare DNS controller. The original playtest deployment merged through haynes-ops [#2851](https://github.com/thaynes43/haynes-ops/pull/2851); the [handoff](../../.agents/HANDOFF.md) and [v5 release evidence](../../.agents/evidence/family-world-v5-release.json) record the current immutable image and rollout.
 
-Future admission work: configure the Authentik provider and application for the family release, verify the owner's actual login/callback journey, authorize real subject setup/media, settle birth-date/age-anchor and name-disambiguation previews, review exact asset versions, and play on physical iPad/iPhone Safari. Real photo-derived likeness remains private follow-on work; no private family reference has been sent to an external generator.
+Authentik provider, admitted groups, real subject setup and prepared-photo media are live for the family release. Tom still needs to check his own sign-in, portal tile, photo swaps and exact candidate versions, and play on physical iPad/iPhone Safari. Real photo-derived likeness remains private follow-on work; no private family reference has been sent to an external generator.
 
 ## Family sign-in configuration
 
@@ -157,7 +157,16 @@ node dist/server/admin.js set-template --child <child id> --template family-worl
 node dist/server/admin.js publish --child <child id>                                      # publication <id> rN ...
 ```
 
-The next checked release adds `family-world-a@v5` and `family-world-b@v5` on `parody-catalog-v11`, with five exact model candidates and A4's scripted scare spots. Once its signed image and media pass hosted checks, run the same `set-template` and `publish` sequence for both children with `@v5`. Expect 12/12 and 9/9 carried photos when their chapter choices still fit. The live children remain on v4 until those commands succeed; Tom's exact-version model reviews remain pending under PRD-004 Q-03.
+The September 29 checked release deployed `family-world-a@v5` and `family-world-b@v5` on `parody-catalog-v11`, with five exact model candidates and two authored A4 scripted scare spots. Both children are now on v5 publication r5: World A carried 12/12 photos and decoded 12/12, and World B carried 9/9 and decoded 9/9, with zero `needs-photo` or media failures. Their started runs stay on frozen prior publications until **Start fresh**. The isolated hosted fixture completed A4 with both scares, all five fights and three memories, zero recoveries and no browser/media errors; this synthetic lockstep check does not cover an authenticated family journey or physical Safari. For a future template, use the same explicit `set-template`, `publish` and `verify-media` sequence; never silently advance existing saves. Tom's exact-version model reviews remain pending under PRD-004 Q-03. See the [v5 release record](../../.agents/evidence/family-world-v5-release.json).
+
+For a child still on an older World A or B draft, first run `status`, then use the corresponding v5 template and verify its publication. These are operator examples, not commands to rerun for the two already-published children:
+
+```bash
+node dist/server/admin.js set-template --child <child id> --template family-world-a@v5  # or family-world-b@v5
+node dist/server/admin.js publish --child <child id>
+node dist/server/admin.js verify-media --child <child id>
+node dist/server/admin.js status
+```
 
 The family screens live in `src/client/family/`: the household home with its journey cards, administrator setup, **Add a child** and the Memories screen. Their strings are `// COPY:` placeholders. The synthetic browser journey runs the real client and family routes against a fake session cookie and an in-process fake Immich, and exercises no real sign-in or photos. Start a fresh harness for each run:
 

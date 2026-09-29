@@ -1,0 +1,207 @@
+{
+  "chapterId": "family-a4",
+  "routeId": "family-a4-casino",
+  "name": "Rat Casino After Hours",
+  "theme": "casino",
+  "startAge": 9,
+  "growthMoves": [
+    "jump",
+    "high-jump",
+    "double-jump",
+    "glide"
+  ],
+  "appearanceStage": "child",
+  "mediaFailed": 0,
+  "identities": [
+    {
+      "id": "family-a4-casino-encounter-1",
+      "role": "ordinary",
+      "asset": "chick-flia"
+    },
+    {
+      "id": "family-a4-casino-encounter-2",
+      "role": "ordinary",
+      "asset": "jackrabbit-drummer"
+    },
+    {
+      "id": "family-a4-casino-encounter-3",
+      "role": "ordinary",
+      "asset": "fox-card-shark"
+    },
+    {
+      "id": "family-a4-casino-encounter-4",
+      "role": "ordinary",
+      "asset": "moth-projectionist"
+    },
+    {
+      "id": "family-a4-casino-boss",
+      "role": "boss",
+      "asset": "rat-pit-boss"
+    },
+    {
+      "id": "family-a4-casino-encounter-bonus-1",
+      "role": "ordinary",
+      "asset": "radio-host-showman"
+    }
+  ],
+  "legs": [
+    {
+      "leg": "casino-foyer->token-step-one",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "token-step-one->token-step-two",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "token-step-two->glide-school-pad",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "glide-school-pad->spotlight-perch",
+      "attempt": 1,
+      "mode": "bounce",
+      "planned": "launched",
+      "ok": true
+    },
+    {
+      "leg": "spotlight-perch->glide-landing",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "glide",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "glide-landing->ticket-counter",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "glide",
+      "planned": "direct",
+      "ok": true
+    }
+  ],
+  "recoveries": 0,
+  "fights": [],
+  "pickups": [
+    "attack-tool",
+    "guard-tool"
+  ],
+  "memories": [],
+  "completed": false,
+  "stoppedAt": "first-fight",
+  "completion": null,
+  "screenshots": [
+    "/home/dev/work/hq-family-v5/test-results/family-world-lockstep/family-a4-v5-hosted-first/family-a4-01-spawn.png",
+    "/home/dev/work/hq-family-v5/test-results/family-world-lockstep/family-a4-v5-hosted-first/family-a4-scare-01-dark-room.png",
+    "/home/dev/work/hq-family-v5/test-results/family-world-lockstep/family-a4-v5-hosted-first/family-a4-scare-04-jump-scare-lunge.png",
+    "/home/dev/work/hq-family-v5/test-results/family-world-lockstep/family-a4-v5-hosted-first/family-a4-02-first-ordinary-fight.png"
+  ],
+  "frames": {
+    "frames": 626,
+    "fineFrames": 571,
+    "pageMs": 11776,
+    "wallMs": 255906
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "media": {
+    "/studio/assets/media/rat-casino-kit/v001/marquee-arch.glb": 200,
+    "/studio/assets/media/traveler-child/v001/traveler-child.glb": 200,
+    "/studio/assets/media/rat-casino-kit/v001/roulette-dais.glb": 200,
+    "/studio/assets/media/rat-casino-kit/v001/slot-cabinet.glb": 200,
+    "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": 200,
+    "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": 200,
+    "/studio/assets/media/loop-dancer/v001/loop-dancer.glb": 200,
+    "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb": 200,
+    "/studio/assets/media/prism-mimic/v001/prism-mimic.glb": 200,
+    "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb": 200,
+    "/studio/assets/media/chick-flia/v001/chick-flia.glb": 200,
+    "/studio/assets/media/trendweaver/v001/trendweaver.glb": 200,
+    "/studio/assets/media/moth-projectionist/v001/moth-projectionist.glb": 200,
+    "/studio/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb": 200,
+    "/studio/assets/media/fox-card-shark/v001/fox-card-shark.glb": 200,
+    "/studio/assets/media/radio-host-showman/v001/radio-host-showman.glb": 200,
+    "/studio/assets/media/rat-pit-boss/v002/rat-pit-boss.glb": 200
+  },
+  "scare": {
+    "declared": 2,
+    "expected": 2,
+    "live": 2,
+    "blackouts": 0,
+    "flickers": 2,
+    "watcherMoves": 0,
+    "watcherCreaks": 0,
+    "jumpScares": 1,
+    "events": [
+      {
+        "event": "scripted-spot-enter",
+        "time": 1.84,
+        "id": "foyer-ticket-flash",
+        "encounterSlot": "ordinary-1",
+        "position": {
+          "x": 0.2838207289509893,
+          "y": 0,
+          "z": -1.3683016003585984
+        },
+        "grounded": true,
+        "supportId": "casino-foyer",
+        "jumpScares": 1
+      },
+      {
+        "event": "jump-scare",
+        "time": 1.84,
+        "count": 1,
+        "encounterId": "family-a4-casino-encounter-1",
+        "position": {
+          "x": 0.2838207289509893,
+          "y": 0,
+          "z": -1.3683016003585984
+        },
+        "grounded": true,
+        "supportId": "casino-foyer",
+        "playerHp": 10,
+        "encounterHp": 10,
+        "encounterMaxHp": 10
+      }
+    ],
+    "closestSpots": {
+      "foyer-ticket-flash": {
+        "distance": 0.4946109894590087,
+        "time": 2.12,
+        "position": {
+          "x": 0.49461025584879825,
+          "y": 0,
+          "z": -2.5008518819202226
+        },
+        "grounded": true,
+        "supportId": "casino-foyer"
+      }
+    },
+    "shots": {
+      "01-dark-room": {
+        "file": "/home/dev/work/hq-family-v5/test-results/family-world-lockstep/family-a4-v5-hosted-first/family-a4-scare-01-dark-room.png",
+        "luma": 53.5,
+        "time": 1.21
+      },
+      "04-jump-scare-lunge": {
+        "file": "/home/dev/work/hq-family-v5/test-results/family-world-lockstep/family-a4-v5-hosted-first/family-a4-scare-04-jump-scare-lunge.png",
+        "luma": 27.9,
+        "time": 1.84,
+        "encounterId": "family-a4-casino-encounter-1"
+      }
+    }
+  },
+  "wallSeconds": 263,
+  "failure": null
+}
