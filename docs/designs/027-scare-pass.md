@@ -44,7 +44,7 @@ Initial assignment:
   - ambient and hemisphere light at about 38%, darker than level 1;
   - fog colder and closer again;
   - practical lights browned out to about 60% between dips;
-  - every animatronic's eyes glow faintly red, and flare in flickers, blackouts and the lunge.
+  - every animatronic's eyes glow faintly red, and flare in flickers and blackouts.
 - **Level 2 blackouts:**
   - every 35–60 s the room goes dark for about 1.2 s;
   - only animatronic eyes and the golden-collectible glow stay lit;
@@ -63,7 +63,7 @@ Initial assignment:
 - **The lunge:** the camera snaps to a close shot of that enemy's face for about 0.9 s, with the jump-scare sting and a hard camera shake. Reduced motion turns this into a 0.5 s cut with no shake.
 - **The look** (amended September 26):
   - the room drops almost black;
-  - a cold light from below catches the face and the eyes flare;
+  - a cold light from below catches the face; fitted glow eyes stay hidden in the close shot so they cannot float in front of the model's real eyes;
   - the HUD, touch controls and prompts vanish behind a dark red vignette;
   - with full motion, a red flash opens the lunge.
 - **Afterwards:** a knockout follows normal recovery to the memory checkpoint; a scripted set piece resumes play in place.
@@ -103,7 +103,7 @@ The engine implements D-01 to D-06, and the template versions below implement D-
   - Level 1 scales the hemisphere, sun and environment light to 55%. It moves fog to half its start and 60% of its end distance, and mixes the sky and fog toward cold night.
   - Level 2 scales them to 38%, moves fog to 35% of its start and half its end distance, and holds the practical lights at 60%. Scenery that loads later joins the dimmed practicals within a second.
   - The practical lights are the scenery kit, placed decor and placeholder scenery, meaning their unlit bulbs and emissive trim. A flicker dip drops them to 12% of their level's value and the scene light to 80%.
-  - At level 2 the eyes glow at 45% with a faint halo between scares, and at full strength in a dip, a blackout or a lunge.
+  - At level 2 the eyes glow at 45% with a faint halo between scares, and at full strength in a dip or blackout. The fitted eyes hide during a lunge; the key light reveals the model's own face instead. This resolves the floating-eye close-up in [#118](https://github.com/thaynes43/haynes-quest/issues/118) without changing the blackout treatment.
 - **Blackouts.** Scene light falls to 3%, the environment light goes out, the sky and fog go black and the practicals go dark. Gameplay markers stay visible for fairness: attack warnings, checkpoints, rings and health bars. The animatronics' eyes (small red emissive pairs fitted to each model's face) and the golden glow stay visible too.
   - The 2 s launch guard counts any departure from the ground (a jump, a walk-off drop or a bounce), a superset of starting a connection.
   - The 1 s landing guard counts from the last frame the player was airborne or riding.

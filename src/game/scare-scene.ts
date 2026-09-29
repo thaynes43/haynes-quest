@@ -35,7 +35,7 @@ export const SCARE_FOG_SCALE = Object.freeze({
 const COLD_NIGHT = 0x0e1524;
 const COLD_MIX = 0.62;
 const EYE_COLOR = 0xff3b2e;
-/** Level 2 eyes between scares: a faint ember; flickers, blackouts and lunges flare them. */
+/** Level 2 eyes: a faint ember between scares, flaring in flickers and blackouts. */
 const EYE_DIM = 0.45;
 const EYE_GLOW_OPACITY = 0.35;
 const EYE_DIM_GLOW_OPACITY = 0.12;
@@ -216,12 +216,13 @@ export class ScareVisuals {
         (flicker > 0 ? FLICKER_PRACTICAL_SCALE : 1) *
         (1 - blackout),
     );
-    // Level 2 eyes always glow a little; a dip, a blackout or a lunge flares them.
-    const flare = this.level === 2 && (blackout > 0.5 || lunge || flicker > 0);
+    // The fitted eyes help at room distance, but float off some faces in the
+    // close shot. Let the key-lit model carry the lunge instead.
+    const flare = this.level === 2 && !lunge && (blackout > 0.5 || flicker > 0);
     this.eyeFlare = flare;
     this.eyeMaterial.color.setHex(EYE_COLOR).multiplyScalar(flare ? 1 : EYE_DIM);
     this.eyeGlowMaterial.opacity = flare ? EYE_GLOW_OPACITY : EYE_DIM_GLOW_OPACITY;
-    for (const eyes of this.eyes.values()) eyes.visible = this.level === 2;
+    for (const eyes of this.eyes.values()) eyes.visible = this.level === 2 && !lunge;
     if (this.keyLight) this.keyLight.intensity = lunge ? KEY_LIGHT_INTENSITY : 0;
   }
 

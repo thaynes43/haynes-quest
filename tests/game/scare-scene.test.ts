@@ -345,14 +345,16 @@ describe("DESIGN-027 scene presentation", () => {
       expect(key.position.y).toBeLessThan(face.y);
       expect(key.position.clone().sub(face).setY(0).normalize().dot(forward)).toBeGreaterThan(0.9);
       expect(key.color.b).toBeGreaterThan(key.color.r);
-      // The room drops almost black behind the face; the eyes flare.
+      // The room drops almost black. Fitted eyes stay off the close shot so
+      // they cannot float in front of this model's real face.
       expect(lights(scene).hemisphere).toBeLessThan(1.15 * 0.38 * 0.2);
       expect(lights(scene).environment).toBeLessThan(0.3 * 0.38 * 0.2);
-      expect(scene.inspectVisuals().scare).toMatchObject({ eyesVisible: true, eyesFlared: true });
+      expect(scene.inspectVisuals().scare).toMatchObject({ eyesVisible: false, eyesFlared: false });
     }
     scene.render(player, 0, 0, frame(lit(2), [enemyFrame]));
     const key = internals(scene).scene.getObjectByName("scare-key-light") as THREE.PointLight;
     expect(key.intensity).toBe(0);
+    expect(scene.inspectVisuals().scare).toMatchObject({ eyesVisible: true, eyesFlared: false });
     expect(lights(scene).hemisphere).toBeCloseTo(1.15 * 0.38);
     scene.dispose();
   });
