@@ -569,13 +569,16 @@
         "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
         "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
         "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
-        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "72777504c8936e61ce5e828e0b22c0ef3bd2af97397c8c8234b511c33e25e026",
         "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-beauty.png": "d29e182d74f6369fb6139754459bed3d3142093b95f99dcb4a3ed7924b2690e2",
         "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-front.png": "6820a2d739d027fa3a30f59f4bf38183bfc6b279c6a31c922c322809103c26f2",
         "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-side.png": "9a558bb8969a699d3fee8e6a2de5903933e91bc0195af0dbef1ef34c20e154eb",
         "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-back.png": "1505744267ad4f68055fde2a9e32017765ecd41eceb189cca1d6cc85e5a327cd",
         "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-threequarter.png": "c19af696f77b4dca9f92a1792e69cec7a30b4ba0cda6d759f0b33403326de4c4",
-        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24",
+        "docs/assets/media/playroom-kit/v001/intake-three-inspection.json": "a058d563176a87e89e6b01415f9306c10e994315604d99a96f0d5c4419b269b9",
+        "docs/assets/media/playroom-kit/v001/final-verification.json": "2003cfe1fb8c5a6751c0d14f46a851e6a0fda467aeb5018138801b33b861e1aa",
+        "docs/assets/media/playroom-kit/v001/catalog-audit-final/report.json": "08420e8a4593e739da66f4ffc104615bbbb3df645f1a984ce670d3e37101557e"
       }
     },
     {
@@ -619,13 +622,16 @@
         "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
         "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
         "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
-        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "72777504c8936e61ce5e828e0b22c0ef3bd2af97397c8c8234b511c33e25e026",
         "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-beauty.png": "bd190e14dd43773c1db119f69e714109af4d236ee320d80ec234b7a5bb73c493",
         "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-front.png": "8f0dd34edb7ceb9ba2baad5b9234aa5925d385a33e335536228ca855b79205ca",
         "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-side.png": "6b9655e30e1b21e7116cde9c2ab444fdcd716d577915549b6f2ab77d7b51c6d0",
         "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-back.png": "feb5a46050877d034edb71be6d51d954c1c528256926f6814054025b0c638efc",
         "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-threequarter.png": "7a25c58c19de3ca3d782dcd6f2416d5299cab997d462f6969cc2a79284b8d606",
-        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24",
+        "docs/assets/media/playroom-kit/v001/intake-three-inspection.json": "a058d563176a87e89e6b01415f9306c10e994315604d99a96f0d5c4419b269b9",
+        "docs/assets/media/playroom-kit/v001/final-verification.json": "2003cfe1fb8c5a6751c0d14f46a851e6a0fda467aeb5018138801b33b861e1aa",
+        "docs/assets/media/playroom-kit/v001/catalog-audit-final/report.json": "08420e8a4593e739da66f4ffc104615bbbb3df645f1a984ce670d3e37101557e"
       }
     },
     {
@@ -669,13 +675,16 @@
         "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
         "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
         "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
-        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "72777504c8936e61ce5e828e0b22c0ef3bd2af97397c8c8234b511c33e25e026",
         "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-beauty.png": "8cc2af39d650e03c2bd0e65506c068ec418fc1ad5379d7fff7d17adfb7da971a",
         "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-front.png": "f2d4bd12bb573955c79c809bd26ec5fc3741bacc71d951a82d81d87f081b8b33",
         "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-side.png": "78877f7af3a4ed6f824036d548ece2caec4700d26fb94cffd40f6d1e3993e0a9",
         "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-back.png": "056d9128ae610a0561b3696ae495a8eeaff1ed27852215ee59f72eb7bf597126",
         "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-threequarter.png": "84269d2d201ccaa928400d305884d2f154f1acdb8a8546f473030641757723a3",
-        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24",
+        "docs/assets/media/playroom-kit/v001/intake-three-inspection.json": "a058d563176a87e89e6b01415f9306c10e994315604d99a96f0d5c4419b269b9",
+        "docs/assets/media/playroom-kit/v001/final-verification.json": "2003cfe1fb8c5a6751c0d14f46a851e6a0fda467aeb5018138801b33b861e1aa",
+        "docs/assets/media/playroom-kit/v001/catalog-audit-final/report.json": "08420e8a4593e739da66f4ffc104615bbbb3df645f1a984ce670d3e37101557e"
       }
     },
     {
@@ -719,13 +728,16 @@
         "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
         "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
         "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
-        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "72777504c8936e61ce5e828e0b22c0ef3bd2af97397c8c8234b511c33e25e026",
         "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-beauty.png": "8e2cbe667cb836016bcbb59318cda0b737a394e17bc221312952a01273b02873",
         "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-front.png": "e9859e26cc22409e2bae66a657cb03b579c5c5757e307760bb2ce6b3d11c53f7",
         "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-side.png": "ec0f02e5f3e06fdbdef9af1750069f7e8f3c44f5d1b94fd67003905d91a38ddf",
         "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-back.png": "53ba9a0bab8c7ff115b2ed57d903b604f0fc22b13231887b944425abf067858b",
         "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-threequarter.png": "886dfb4ab86a7de9a1ab178c3db1f069e4171f16ae169d6183ddbe9e569bf4c0",
-        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24",
+        "docs/assets/media/playroom-kit/v001/intake-three-inspection.json": "a058d563176a87e89e6b01415f9306c10e994315604d99a96f0d5c4419b269b9",
+        "docs/assets/media/playroom-kit/v001/final-verification.json": "2003cfe1fb8c5a6751c0d14f46a851e6a0fda467aeb5018138801b33b861e1aa",
+        "docs/assets/media/playroom-kit/v001/catalog-audit-final/report.json": "08420e8a4593e739da66f4ffc104615bbbb3df645f1a984ce670d3e37101557e"
       }
     },
     {

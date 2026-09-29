@@ -1,0 +1,1429 @@
+{
+  "work_order": "WO111",
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "three_revision": "186",
+  "loader": "three/addons/loaders/GLTFLoader.js parseAsync (exact bytes) + src/game/scene-assets.ts SceneAssets.attachInstances (DecorScene path)",
+  "envelope": "src/shared/theme-kits.ts decorWorldBounds(registry bounds, placement) at rotationY 0/90/180/270 deg, scale 1 and 1.25",
+  "all_checks_pass": true,
+  "props": {
+    "stacking-block-tower": {
+      "file": "stacking-block-tower.glb",
+      "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+      "bytes": 106928,
+      "triangles": 4344,
+      "meshes": 1,
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.67875,
+          "y": 0,
+          "z": -0.67875
+        },
+        "max": {
+          "x": 0.67875,
+          "y": 2.4,
+          "z": 0.67875
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.679,
+          "y": 0,
+          "z": -0.679
+        },
+        "max": {
+          "x": 0.679,
+          "y": 2.4,
+          "z": 0.679
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 0.679,
+        "height": 2.4,
+        "halfZ": 0.679
+      },
+      "size_m": {
+        "width_x": 1.3575,
+        "height_y": 2.4,
+        "depth_z": 1.3575
+      },
+      "registry_bounds": {
+        "min": {
+          "x": -0.7,
+          "y": 0,
+          "z": -0.7
+        },
+        "max": {
+          "x": 0.7,
+          "y": 2.4,
+          "z": 0.7
+        }
+      },
+      "registry_fill": {
+        "width": 0.97,
+        "height": 1,
+        "depth": 0.97
+      },
+      "materials": [
+        {
+          "name": "Playroom foam",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7599999904632568,
+          "metalness": 0,
+          "color": "#ffffff",
+          "transparent": false,
+          "side": 2
+        }
+      ],
+      "colour_attributes": [
+        {
+          "itemSize": 3,
+          "normalized": false,
+          "array": "Float32Array"
+        }
+      ],
+      "adapter": {
+        "instanced_batches": 1,
+        "instances_per_batch": 8,
+        "attach_ms": 12.3,
+        "placements": [
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": -0.67875,
+                "y": 0,
+                "z": -0.67875
+              },
+              "max": {
+                "x": 0.67875,
+                "y": 2.4,
+                "z": 0.67875
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -0.7,
+                "y": 0,
+                "z": -0.7
+              },
+              "max": {
+                "x": 0.7,
+                "y": 2.4,
+                "z": 0.7
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 2.32125,
+                "y": 0,
+                "z": -2.67875
+              },
+              "max": {
+                "x": 3.67875,
+                "y": 2.4,
+                "z": -1.32125
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 2.3,
+                "y": 0,
+                "z": -2.7
+              },
+              "max": {
+                "x": 3.7,
+                "y": 2.4,
+                "z": -1.3
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 5.32125,
+                "y": 0,
+                "z": -4.67875
+              },
+              "max": {
+                "x": 6.67875,
+                "y": 2.4,
+                "z": -3.32125
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 5.3,
+                "y": 0,
+                "z": -4.7
+              },
+              "max": {
+                "x": 6.7,
+                "y": 2.4,
+                "z": -3.3
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 8.32125,
+                "y": 0,
+                "z": -6.67875
+              },
+              "max": {
+                "x": 9.67875,
+                "y": 2.4,
+                "z": -5.32125
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 8.3,
+                "y": 0,
+                "z": -6.7
+              },
+              "max": {
+                "x": 9.7,
+                "y": 2.4,
+                "z": -5.3
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": -0.84844,
+                "y": 0,
+                "z": -0.84844
+              },
+              "max": {
+                "x": 0.84844,
+                "y": 3,
+                "z": 0.84844
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -0.875,
+                "y": 0,
+                "z": -0.875
+              },
+              "max": {
+                "x": 0.875,
+                "y": 3,
+                "z": 0.875
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 2.15156,
+                "y": 0,
+                "z": -2.84844
+              },
+              "max": {
+                "x": 3.84844,
+                "y": 3,
+                "z": -1.15156
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 2.125,
+                "y": 0,
+                "z": -2.875
+              },
+              "max": {
+                "x": 3.875,
+                "y": 3,
+                "z": -1.125
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 5.15156,
+                "y": 0,
+                "z": -4.84844
+              },
+              "max": {
+                "x": 6.84844,
+                "y": 3,
+                "z": -3.15156
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 5.125,
+                "y": 0,
+                "z": -4.875
+              },
+              "max": {
+                "x": 6.875,
+                "y": 3,
+                "z": -3.125
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 8.15156,
+                "y": 0,
+                "z": -6.84844
+              },
+              "max": {
+                "x": 9.84844,
+                "y": 3,
+                "z": -5.15156
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 8.125,
+                "y": 0,
+                "z": -6.875
+              },
+              "max": {
+                "x": 9.875,
+                "y": 3,
+                "z": -5.125
+              }
+            },
+            "inside": true
+          }
+        ]
+      },
+      "checks": {
+        "registry_entry_present": true,
+        "registry_theme_playroom": true,
+        "single_gltf_node_named_for_id": true,
+        "identity_node_transform": true,
+        "static": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "vertex_colours_enabled": true,
+        "standard_opaque_materials": true,
+        "floor_at_zero": true,
+        "tight_box_inside_registry_box": true,
+        "adapter_attached": true,
+        "adapter_every_placement_inside_decorWorldBounds": true
+      }
+    },
+    "toy-bus-garage": {
+      "file": "toy-bus-garage.glb",
+      "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+      "bytes": 121300,
+      "triangles": 4796,
+      "meshes": 2,
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -1.98613,
+          "y": 0,
+          "z": -1.58
+        },
+        "max": {
+          "x": 1.98613,
+          "y": 2.195,
+          "z": 1.58
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -1.987,
+          "y": 0,
+          "z": -1.58
+        },
+        "max": {
+          "x": 1.987,
+          "y": 2.195,
+          "z": 1.58
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 1.987,
+        "height": 2.195,
+        "halfZ": 1.58
+      },
+      "size_m": {
+        "width_x": 3.9723,
+        "height_y": 2.195,
+        "depth_z": 3.16
+      },
+      "registry_bounds": {
+        "min": {
+          "x": -2,
+          "y": 0,
+          "z": -1.6
+        },
+        "max": {
+          "x": 2,
+          "y": 2.2,
+          "z": 1.6
+        }
+      },
+      "registry_fill": {
+        "width": 0.993,
+        "height": 0.998,
+        "depth": 0.988
+      },
+      "materials": [
+        {
+          "name": "Playroom foam",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7599999904632568,
+          "metalness": 0,
+          "color": "#ffffff",
+          "transparent": false,
+          "side": 2
+        },
+        {
+          "name": "Playroom gloss",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.36000001430511475,
+          "metalness": 0,
+          "color": "#ffffff",
+          "transparent": false,
+          "side": 2
+        }
+      ],
+      "colour_attributes": [
+        {
+          "itemSize": 3,
+          "normalized": false,
+          "array": "Float32Array"
+        },
+        {
+          "itemSize": 3,
+          "normalized": false,
+          "array": "Float32Array"
+        }
+      ],
+      "adapter": {
+        "instanced_batches": 2,
+        "instances_per_batch": 8,
+        "attach_ms": 5.3,
+        "placements": [
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": -1.98613,
+                "y": 0,
+                "z": -1.58
+              },
+              "max": {
+                "x": 1.98613,
+                "y": 2.195,
+                "z": 1.58
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -2,
+                "y": 0,
+                "z": -1.6
+              },
+              "max": {
+                "x": 2,
+                "y": 2.2,
+                "z": 1.6
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 1.42,
+                "y": 0,
+                "z": -3.98613
+              },
+              "max": {
+                "x": 4.58,
+                "y": 2.195,
+                "z": -0.01387
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 1.3999999999999997,
+                "y": 0,
+                "z": -4
+              },
+              "max": {
+                "x": 4.6000000000000005,
+                "y": 2.2,
+                "z": 0
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 4.01387,
+                "y": 0,
+                "z": -5.58
+              },
+              "max": {
+                "x": 7.98613,
+                "y": 2.195,
+                "z": -2.42
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 4,
+                "y": 0,
+                "z": -5.6000000000000005
+              },
+              "max": {
+                "x": 8,
+                "y": 2.2,
+                "z": -2.3999999999999995
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 7.42,
+                "y": 0,
+                "z": -7.98613
+              },
+              "max": {
+                "x": 10.58,
+                "y": 2.195,
+                "z": -4.01387
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 7.3999999999999995,
+                "y": 0,
+                "z": -8
+              },
+              "max": {
+                "x": 10.600000000000001,
+                "y": 2.2,
+                "z": -3.9999999999999996
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": -2.48267,
+                "y": 0,
+                "z": -1.975
+              },
+              "max": {
+                "x": 2.48267,
+                "y": 2.74375,
+                "z": 1.975
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -2.5,
+                "y": 0,
+                "z": -2
+              },
+              "max": {
+                "x": 2.5,
+                "y": 2.75,
+                "z": 2
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 1.025,
+                "y": 0,
+                "z": -4.48267
+              },
+              "max": {
+                "x": 4.975,
+                "y": 2.74375,
+                "z": 0.48267
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 0.9999999999999996,
+                "y": 0,
+                "z": -4.5
+              },
+              "max": {
+                "x": 5,
+                "y": 2.75,
+                "z": 0.5
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 3.51733,
+                "y": 0,
+                "z": -5.975
+              },
+              "max": {
+                "x": 8.48267,
+                "y": 2.74375,
+                "z": -2.025
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 3.5,
+                "y": 0,
+                "z": -6
+              },
+              "max": {
+                "x": 8.5,
+                "y": 2.75,
+                "z": -1.9999999999999996
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 7.025,
+                "y": 0,
+                "z": -8.48267
+              },
+              "max": {
+                "x": 10.975,
+                "y": 2.74375,
+                "z": -3.51733
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.999999999999999,
+                "y": 0,
+                "z": -8.5
+              },
+              "max": {
+                "x": 11,
+                "y": 2.75,
+                "z": -3.4999999999999996
+              }
+            },
+            "inside": true
+          }
+        ]
+      },
+      "checks": {
+        "registry_entry_present": true,
+        "registry_theme_playroom": true,
+        "single_gltf_node_named_for_id": true,
+        "identity_node_transform": true,
+        "static": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "vertex_colours_enabled": true,
+        "standard_opaque_materials": true,
+        "floor_at_zero": true,
+        "tight_box_inside_registry_box": true,
+        "adapter_attached": true,
+        "adapter_every_placement_inside_decorWorldBounds": true
+      }
+    },
+    "crib-rail-fence": {
+      "file": "crib-rail-fence.glb",
+      "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+      "bytes": 121288,
+      "triangles": 4904,
+      "meshes": 1,
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -1.6,
+          "y": 0,
+          "z": -0.091
+        },
+        "max": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0.091
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -1.6,
+          "y": 0,
+          "z": -0.091
+        },
+        "max": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0.091
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 1.6,
+        "height": 0.9,
+        "halfZ": 0.091
+      },
+      "size_m": {
+        "width_x": 3.2,
+        "height_y": 0.9,
+        "depth_z": 0.182
+      },
+      "registry_bounds": {
+        "min": {
+          "x": -1.6,
+          "y": 0,
+          "z": -0.12
+        },
+        "max": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0.12
+        }
+      },
+      "registry_fill": {
+        "width": 1,
+        "height": 1,
+        "depth": 0.758
+      },
+      "materials": [
+        {
+          "name": "Playroom foam",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7599999904632568,
+          "metalness": 0,
+          "color": "#ffffff",
+          "transparent": false,
+          "side": 2
+        }
+      ],
+      "colour_attributes": [
+        {
+          "itemSize": 3,
+          "normalized": false,
+          "array": "Float32Array"
+        }
+      ],
+      "adapter": {
+        "instanced_batches": 1,
+        "instances_per_batch": 8,
+        "attach_ms": 5.1,
+        "placements": [
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": -1.6,
+                "y": 0,
+                "z": -0.091
+              },
+              "max": {
+                "x": 1.6,
+                "y": 0.9,
+                "z": 0.091
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -1.6,
+                "y": 0,
+                "z": -0.12
+              },
+              "max": {
+                "x": 1.6,
+                "y": 0.9,
+                "z": 0.12
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 2.909,
+                "y": 0,
+                "z": -3.6
+              },
+              "max": {
+                "x": 3.091,
+                "y": 0.9,
+                "z": -0.4
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 2.88,
+                "y": 0,
+                "z": -3.6
+              },
+              "max": {
+                "x": 3.12,
+                "y": 0.9,
+                "z": -0.3999999999999999
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 4.4,
+                "y": 0,
+                "z": -4.091
+              },
+              "max": {
+                "x": 7.6,
+                "y": 0.9,
+                "z": -3.909
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 4.4,
+                "y": 0,
+                "z": -4.12
+              },
+              "max": {
+                "x": 7.6,
+                "y": 0.9,
+                "z": -3.88
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 8.909,
+                "y": 0,
+                "z": -7.6
+              },
+              "max": {
+                "x": 9.091,
+                "y": 0.9,
+                "z": -4.4
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 8.879999999999999,
+                "y": 0,
+                "z": -7.6
+              },
+              "max": {
+                "x": 9.120000000000001,
+                "y": 0.9,
+                "z": -4.4
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": -2,
+                "y": 0,
+                "z": -0.11375
+              },
+              "max": {
+                "x": 2,
+                "y": 1.125,
+                "z": 0.11375
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -2,
+                "y": 0,
+                "z": -0.15
+              },
+              "max": {
+                "x": 2,
+                "y": 1.125,
+                "z": 0.15
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 2.88625,
+                "y": 0,
+                "z": -4
+              },
+              "max": {
+                "x": 3.11375,
+                "y": 1.125,
+                "z": 0
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 2.85,
+                "y": 0,
+                "z": -4
+              },
+              "max": {
+                "x": 3.15,
+                "y": 1.125,
+                "z": 0
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 4,
+                "y": 0,
+                "z": -4.11375
+              },
+              "max": {
+                "x": 8,
+                "y": 1.125,
+                "z": -3.88625
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 4,
+                "y": 0,
+                "z": -4.15
+              },
+              "max": {
+                "x": 8,
+                "y": 1.125,
+                "z": -3.8499999999999996
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 8.88625,
+                "y": 0,
+                "z": -8
+              },
+              "max": {
+                "x": 9.11375,
+                "y": 1.125,
+                "z": -4
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 8.85,
+                "y": 0,
+                "z": -8
+              },
+              "max": {
+                "x": 9.15,
+                "y": 1.125,
+                "z": -4
+              }
+            },
+            "inside": true
+          }
+        ]
+      },
+      "checks": {
+        "registry_entry_present": true,
+        "registry_theme_playroom": true,
+        "single_gltf_node_named_for_id": true,
+        "identity_node_transform": true,
+        "static": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "vertex_colours_enabled": true,
+        "standard_opaque_materials": true,
+        "floor_at_zero": true,
+        "tight_box_inside_registry_box": true,
+        "adapter_attached": true,
+        "adapter_every_placement_inside_decorWorldBounds": true
+      }
+    },
+    "giant-plush-ball": {
+      "file": "giant-plush-ball.glb",
+      "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+      "bytes": 115332,
+      "triangles": 4368,
+      "meshes": 2,
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.88553,
+          "y": 0,
+          "z": -0.88542
+        },
+        "max": {
+          "x": 0.88553,
+          "y": 1.76397,
+          "z": 0.88542
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.886,
+          "y": 0,
+          "z": -0.886
+        },
+        "max": {
+          "x": 0.886,
+          "y": 1.764,
+          "z": 0.886
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 0.886,
+        "height": 1.764,
+        "halfZ": 0.886
+      },
+      "size_m": {
+        "width_x": 1.7711,
+        "height_y": 1.764,
+        "depth_z": 1.7708
+      },
+      "registry_bounds": {
+        "min": {
+          "x": -0.9,
+          "y": 0,
+          "z": -0.9
+        },
+        "max": {
+          "x": 0.9,
+          "y": 1.8,
+          "z": 0.9
+        }
+      },
+      "registry_fill": {
+        "width": 0.984,
+        "height": 0.98,
+        "depth": 0.984
+      },
+      "materials": [
+        {
+          "name": "Playroom plush",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.9700000286102295,
+          "metalness": 0,
+          "color": "#ffffff",
+          "transparent": false,
+          "side": 2
+        },
+        {
+          "name": "Playroom foam",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7599999904632568,
+          "metalness": 0,
+          "color": "#ffffff",
+          "transparent": false,
+          "side": 2
+        }
+      ],
+      "colour_attributes": [
+        {
+          "itemSize": 3,
+          "normalized": false,
+          "array": "Float32Array"
+        },
+        {
+          "itemSize": 3,
+          "normalized": false,
+          "array": "Float32Array"
+        }
+      ],
+      "adapter": {
+        "instanced_batches": 2,
+        "instances_per_batch": 8,
+        "attach_ms": 5.9,
+        "placements": [
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": -0.88553,
+                "y": 0,
+                "z": -0.88542
+              },
+              "max": {
+                "x": 0.88553,
+                "y": 1.76397,
+                "z": 0.88542
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -0.9,
+                "y": 0,
+                "z": -0.9
+              },
+              "max": {
+                "x": 0.9,
+                "y": 1.8,
+                "z": 0.9
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 2.11458,
+                "y": 0,
+                "z": -2.88553
+              },
+              "max": {
+                "x": 3.88542,
+                "y": 1.76397,
+                "z": -1.11447
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 2.1,
+                "y": 0,
+                "z": -2.9
+              },
+              "max": {
+                "x": 3.9,
+                "y": 1.8,
+                "z": -1.1
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 5.11447,
+                "y": 0,
+                "z": -4.88542
+              },
+              "max": {
+                "x": 6.88553,
+                "y": 1.76397,
+                "z": -3.11458
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 5.1,
+                "y": 0,
+                "z": -4.9
+              },
+              "max": {
+                "x": 6.9,
+                "y": 1.8,
+                "z": -3.0999999999999996
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1
+            },
+            "model_bounds": {
+              "min": {
+                "x": 8.11458,
+                "y": 0,
+                "z": -6.88553
+              },
+              "max": {
+                "x": 9.88542,
+                "y": 1.76397,
+                "z": -5.11447
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 8.1,
+                "y": 0,
+                "z": -6.9
+              },
+              "max": {
+                "x": 9.9,
+                "y": 1.8,
+                "z": -5.1
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 0,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": -1.10691,
+                "y": 0,
+                "z": -1.10678
+              },
+              "max": {
+                "x": 1.10691,
+                "y": 2.20496,
+                "z": 1.10678
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -1.125,
+                "y": 0,
+                "z": -1.125
+              },
+              "max": {
+                "x": 1.125,
+                "y": 2.25,
+                "z": 1.125
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 90,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 1.89322,
+                "y": 0,
+                "z": -3.10691
+              },
+              "max": {
+                "x": 4.10678,
+                "y": 2.20496,
+                "z": -0.89309
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 1.875,
+                "y": 0,
+                "z": -3.125
+              },
+              "max": {
+                "x": 4.125,
+                "y": 2.25,
+                "z": -0.875
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 180,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 4.89309,
+                "y": 0,
+                "z": -5.10678
+              },
+              "max": {
+                "x": 7.10691,
+                "y": 2.20496,
+                "z": -2.89322
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 4.875,
+                "y": 0,
+                "z": -5.125
+              },
+              "max": {
+                "x": 7.125,
+                "y": 2.25,
+                "z": -2.875
+              }
+            },
+            "inside": true
+          },
+          {
+            "placement": {
+              "rotationY_deg": 270,
+              "scale": 1.25
+            },
+            "model_bounds": {
+              "min": {
+                "x": 7.89322,
+                "y": 0,
+                "z": -7.10691
+              },
+              "max": {
+                "x": 10.10678,
+                "y": 2.20496,
+                "z": -4.89309
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 7.875,
+                "y": 0,
+                "z": -7.125
+              },
+              "max": {
+                "x": 10.125,
+                "y": 2.25,
+                "z": -4.875
+              }
+            },
+            "inside": true
+          }
+        ]
+      },
+      "checks": {
+        "registry_entry_present": true,
+        "registry_theme_playroom": true,
+        "single_gltf_node_named_for_id": true,
+        "identity_node_transform": true,
+        "static": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "vertex_colours_enabled": true,
+        "standard_opaque_materials": true,
+        "floor_at_zero": true,
+        "tight_box_inside_registry_box": true,
+        "adapter_attached": true,
+        "adapter_every_placement_inside_decorWorldBounds": true
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "tested_commit": "c1954fec9cfa24c4a60f8f332d6e36c1e8d779a0",
+  "base_commit": "a540ad7401b20a9a587fab6ff08f2b873f94a157",
+  "recorded_utc": "2026-09-29T03:54:38.148360+00:00",
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "coordinator_visual_review": "passed September 29",
+  "local_checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "strict_docs_and_media_links": "passed",
+    "focused_tests": {
+      "passed": 47,
+      "files": 5
+    },
+    "khronos": {
+      "files": 4,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "hints": 0
+    },
+    "blender_reimport": "all four files passed",
+    "rebased_three_adapter": {
+      "placements_passed": 32,
+      "report": "intake-three-inspection.json"
+    },
+    "exact_glb_browser_views": 20,
+    "desktop_phone_static_viewers": {
+      "passed": 8,
+      "report": "review-audit/report.json"
+    }
+  },
+  "full_suite": {
+    "source": "GitHub Actions verify job on the tested commit",
+    "outcome": "passed",
+    "job_url": "https://github.com/thaynes43/haynes-quest/actions/runs/36518589126/job/109246300751",
+    "completed_utc": "2026-09-29T03:51:13Z",
+    "local_attempt": {
+      "outcome": "interrupted",
+      "exit_code": 143,
+      "last_log_change_utc": "2026-09-29T03:49:17Z",
+      "note": "The coordinator also observed another concurrent process receiving SIGTERM at this time. The successful CI suite supplies the full-suite result."
+    }
+  },
+  "full_catalog_audit": {
+    "outcome": "passed",
+    "report": "catalog-audit-final/report.json",
+    "overall_timeout_ms": 900000,
+    "started_utc": "2026-09-29T03:44:58.057Z",
+    "report_written_utc": "2026-09-29T03:52:23.854144+00:00",
+    "inventory_entries": 93,
+    "thumbnail_files": 132,
+    "review_pages": 68,
+    "exact_model_deliveries": 64,
+    "animated_candidate_viewer_checks": 38,
+    "errors": {
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0
+    },
+    "expected_metadata_preload_aborts": 12,
+    "screenshots_durable_directory": "/home/dev/artifacts/haynes-quest/family-eras/playroom-kit/v001/catalog-audit-final"
+  },
+  "physical_safari": "not tested",
+  "deployment": "pending coordinator merge and image publication"
+}

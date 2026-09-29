@@ -1934,19 +1934,25 @@
       "ownerReview": "pending",
       "coordinatorReview": "passed September 29 against reference-sheet.png and kit-beauty.png",
       "gameplayUse": "private-candidate under PRD-004 Q-03",
-      "sceneReleased": "2026-09-29T03:30:25.120846+00:00",
       "sceneInstance": "blender-authoring (instance 1)",
       "prMerged": null,
       "checks": {
         "khronos": "0 errors, warnings, infos and hints on all four files",
         "threeAdapter": "32 placements inside registry bounds",
         "blenderReimport": "all four exact files pass",
-        "chromium": "all four exact files, five views each, 0 page/HTTP/GL errors"
+        "chromium": "all four exact files, five views each, 0 page/HTTP/GL errors",
+        "focusedTests": "47 passed in 5 files on rebased branch",
+        "fullSuite": "passed in GitHub Actions verify job 109246300751 on c1954fe",
+        "fullCatalog": "passed: 93 entries, 132 thumbnails, 68 review pages, 64 exact model deliveries, 38 animated candidate viewer checks; zero page/console/HTTP/request/external errors",
+        "rebasedThreeAdapter": "32 placements passed against a540ad7 scene code",
+        "finalVerification": "docs/assets/media/playroom-kit/v001/final-verification.json"
       },
       "publication": {
-        "status": "pending coordinator integration/deployment; no deployment claim",
+        "status": "pending coordinator merge and image publication; no deployment claim",
         "runtimeIntegration": "Exact URLs and hashes in src/shared/theme-kits.ts. Existing B1 v4 placements: 30 block towers, 1 garage, 4 crib fences, 15 plush balls. No template or published course document changes."
-      }
+      },
+      "sceneReleasedAt": "2026-09-29T03:30:25.120846+00:00",
+      "pr": 131
     }
   ]
 }

@@ -8,6 +8,11 @@
       "sha256": "e254d438cc4ae0d620dcc4a7621de495bc48ed2a7fba1795afc98fc6714d63fa"
     },
     {
+      "path": "catalog-audit-final/report.json",
+      "bytes": 226080,
+      "sha256": "08420e8a4593e739da66f4ffc104615bbbb3df645f1a984ce670d3e37101557e"
+    },
+    {
       "path": "claim-checkpoint.blend",
       "bytes": 1400272,
       "sha256": "42b0ee26d5d0e1a785a8ebb129880ecb74ce96c6e2a63c0976f89df60b8e5307"
@@ -23,9 +28,19 @@
       "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799"
     },
     {
+      "path": "final-verification.json",
+      "bytes": 2399,
+      "sha256": "2003cfe1fb8c5a6751c0d14f46a851e6a0fda467aeb5018138801b33b861e1aa"
+    },
+    {
       "path": "giant-plush-ball.glb",
       "bytes": 115332,
       "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49"
+    },
+    {
+      "path": "intake-three-inspection.json",
+      "bytes": 34313,
+      "sha256": "a058d563176a87e89e6b01415f9306c10e994315604d99a96f0d5c4419b269b9"
     },
     {
       "path": "kit-beauty.png",
