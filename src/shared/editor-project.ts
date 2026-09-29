@@ -74,6 +74,7 @@ export const LEVEL_EDITOR_CATALOG_VERSIONS = [
   "parody-catalog-v8",
   "parody-catalog-v9",
   "parody-catalog-v10",
+  "parody-catalog-v11",
 ] as const satisfies readonly ParodyCatalogVersion[];
 export type LevelEditorCatalogVersion =
   (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];
@@ -509,6 +510,13 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "magic-house@v001:magic-house@v001",
   "mischief-kitten@v001:mischief-kitten@v001",
   "bin-chicken@v001:bin-chicken@v001",
+  // The remaining family-era candidates are allowed under PRD-004 Q-03;
+  // their exact v001 owner reviews are still pending in the studio.
+  "inator-monster@v001:inator-monster@v001",
+  "putty-grunt@v001:putty-grunt@v001",
+  "demon-band-idol@v001:demon-band-idol@v001",
+  "radio-host-showman@v001:radio-host-showman@v001",
+  "lab-robot@v001:lab-robot@v001",
 ]);
 
 const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
@@ -516,7 +524,8 @@ const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
 ]);
 
 /**
- * Exact reviewed identities prepared for private gameplay. Paused entries and
+ * Exact catalog identities prepared for private gameplay under PRD-004 Q-03.
+ * Tom's exact-version review remains separate. Paused entries and
  * reserved cameos stay catalog-addressable but cannot fill an editor combat slot.
  */
 export function levelEditorPreparedEnemies(

@@ -1,6 +1,6 @@
 /**
  * Runtime artifact contract for the family-era enemies registered in
- * parody-catalog-v8 and v10 (DESIGN-026, WO111). Each exact GLB must match its
+ * parody-catalog-v8, v10 and v11 (DESIGN-026, WO111). Each exact GLB must match its
  * delivery log, checksum manifest and catalog inventory, stay inside the
  * enemy budget and give the enemy animation adapter what it needs: five named
  * clips, a stationary floor-centred root, the measured height the scene puts
@@ -35,6 +35,12 @@ const EXACT: Record<
   "magic-house": { bytes: 1_149_808, bufferBytes: 1_048_068, triangles: 12_122, textures: 3 },
   "mischief-kitten": { bytes: 1_197_116, bufferBytes: 1_096_208, triangles: 14_174, textures: 2 },
   "bin-chicken": { bytes: 1_033_964, bufferBytes: 942_192, triangles: 11_196, textures: 2 },
+  // parody-catalog-v11
+  "inator-monster": { bytes: 1_234_756, bufferBytes: 1_107_020, triangles: 14_575, textures: 2 },
+  "putty-grunt": { bytes: 1_148_172, bufferBytes: 1_061_604, triangles: 14_528, textures: 2 },
+  "demon-band-idol": { bytes: 1_240_728, bufferBytes: 1_108_744, triangles: 12_308, textures: 2 },
+  "radio-host-showman": { bytes: 1_034_532, bufferBytes: 931_800, triangles: 10_900, textures: 3 },
+  "lab-robot": { bytes: 1_506_604, bufferBytes: 1_346_864, triangles: 13_420, textures: 3 },
 };
 
 interface Delivery {
@@ -76,10 +82,11 @@ const inventory = JSON.parse(
   readFileSync(new URL("../../scripts/assets/catalog-inventory.json", import.meta.url), "utf8"),
 ) as { assets: { id: string; version: string; models: string[]; gameplay_use?: string; checksums: Record<string, string> }[] };
 
-/** The family-era models: every v10 entry v7 does not list (v8's two and v10's six). */
+/** Every family-era registration after v7 (v8's two, v10's six, v11's five). */
 const v7Ids = new Set(PARODY_CATALOGS["parody-catalog-v7"].map((entry) => entry.id));
-const additions = PARODY_CATALOGS["parody-catalog-v10"].filter((entry) => !v7Ids.has(entry.id));
+const additions = PARODY_CATALOGS["parody-catalog-v11"].filter((entry) => !v7Ids.has(entry.id));
 const v8Ids = new Set(PARODY_CATALOGS["parody-catalog-v8"].map((entry) => entry.id));
+const v10Ids = new Set(PARODY_CATALOGS["parody-catalog-v10"].map((entry) => entry.id));
 
 function repoFile(path: string): Buffer {
   return readFileSync(new URL(`../../${path}`, import.meta.url));
@@ -121,7 +128,7 @@ function floats(document: GlbDocument, binary: Buffer, index: number): number[][
   );
 }
 
-describe("family-era enemy artifacts registered in parody-catalog-v8 and v10", () => {
+describe("family-era enemy artifacts registered through parody-catalog-v11", () => {
   it("adds exactly the delivered family-era models, each merged and recorded as registered", () => {
     expect(additions.map((entry) => `${entry.assetId}@${entry.assetVersion}`)).toEqual([
       "clubhouse-bully-cat@v001",
@@ -132,6 +139,11 @@ describe("family-era enemy artifacts registered in parody-catalog-v8 and v10", (
       "magic-house@v001",
       "mischief-kitten@v001",
       "bin-chicken@v001",
+      "inator-monster@v001",
+      "demon-band-idol@v001",
+      "putty-grunt@v001",
+      "radio-host-showman@v001",
+      "lab-robot@v001",
     ]);
     // Every registered model has a delivery record, in delivery-log order. A WO111
     // catalog intake appends its record before the coordinator registers the model,
@@ -150,7 +162,7 @@ describe("family-era enemy artifacts registered in parody-catalog-v8 and v10", (
       )!;
       expect(delivery.prMerged, entry.id).toMatch(/^[0-9a-f]{40}$/);
       expect(delivery.publication.runtimeIntegration, entry.id).toContain(
-        v8Ids.has(entry.id) ? "parody-catalog-v8" : "parody-catalog-v10",
+        v8Ids.has(entry.id) ? "parody-catalog-v8" : v10Ids.has(entry.id) ? "parody-catalog-v10" : "parody-catalog-v11",
       );
     }
   });
