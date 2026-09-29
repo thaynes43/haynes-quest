@@ -1,0 +1,182 @@
+{
+  "axes": "glTF metres, +Y up, front +Z, floor-centred origin",
+  "registry_boxes_unchanged": true,
+  "props": {
+    "lookout-tower-facade": {
+      "sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+      "exact_gltf": {
+        "min": {
+          "x": -1.75,
+          "y": 0,
+          "z": -1.76495
+        },
+        "max": {
+          "x": 1.75,
+          "y": 6.885,
+          "z": 1.76495
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -1.75,
+          "y": 0,
+          "z": -1.765
+        },
+        "max": {
+          "x": 1.75,
+          "y": 6.885,
+          "z": 1.765
+        }
+      },
+      "size_m": {
+        "width": 3.5,
+        "height": 6.885,
+        "depth": 3.5299
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.8,
+          "y": 0,
+          "z": -1.8
+        },
+        "max": {
+          "x": 1.8,
+          "y": 7,
+          "z": 1.8
+        }
+      }
+    },
+    "pier-bollard": {
+      "sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+      "exact_gltf": {
+        "min": {
+          "x": -0.28324,
+          "y": 0,
+          "z": -0.28324
+        },
+        "max": {
+          "x": 0.28324,
+          "y": 0.787,
+          "z": 0.28324
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.284,
+          "y": 0,
+          "z": -0.284
+        },
+        "max": {
+          "x": 0.284,
+          "y": 0.787,
+          "z": 0.284
+        }
+      },
+      "size_m": {
+        "width": 0.56648,
+        "height": 0.787,
+        "depth": 0.56648
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.3,
+          "y": 0,
+          "z": -0.3
+        },
+        "max": {
+          "x": 0.3,
+          "y": 0.8,
+          "z": 0.3
+        }
+      }
+    },
+    "rescue-buoy-stand": {
+      "sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+      "exact_gltf": {
+        "min": {
+          "x": -0.58,
+          "y": 0,
+          "z": -0.17079
+        },
+        "max": {
+          "x": 0.58,
+          "y": 1.798,
+          "z": 0.17079
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.58,
+          "y": 0,
+          "z": -0.171
+        },
+        "max": {
+          "x": 0.58,
+          "y": 1.798,
+          "z": 0.171
+        }
+      },
+      "size_m": {
+        "width": 1.16,
+        "height": 1.798,
+        "depth": 0.34159
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.6,
+          "y": 0,
+          "z": -0.25
+        },
+        "max": {
+          "x": 0.6,
+          "y": 1.8,
+          "z": 0.25
+        }
+      }
+    },
+    "small-boat": {
+      "sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+      "exact_gltf": {
+        "min": {
+          "x": -1.12489,
+          "y": 0,
+          "z": -2.58337
+        },
+        "max": {
+          "x": 1.12489,
+          "y": 1.08,
+          "z": 2.58337
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -1.125,
+          "y": 0,
+          "z": -2.584
+        },
+        "max": {
+          "x": 1.125,
+          "y": 1.08,
+          "z": 2.584
+        }
+      },
+      "size_m": {
+        "width": 2.24978,
+        "height": 1.08,
+        "depth": 5.16674
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.2,
+          "y": 0,
+          "z": -2.6
+        },
+        "max": {
+          "x": 1.2,
+          "y": 1.1,
+          "z": 2.6
+        }
+      }
+    }
+  }
+}

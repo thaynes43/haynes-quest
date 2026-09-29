@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "base_commit": "7f9701e5ce7ebbb37d12d8ed8a3aefe3941c0576",
+  "tested_scope": "production kit and registry integration in agent/hq-rescue-harbor-kit working tree; exact GLB hashes are in visual-review.json",
+  "recorded_utc": "2026-09-29T05:07:27.632422+00:00",
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "coordinator_visual_review": "passed September 29: reference comparison, exact kit renders, boat interior and actual desktop/phone A2 near/far tower placements",
+  "local_checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "strict_docs_and_media_links": "passed",
+    "full_suite": {
+      "outcome": "passed",
+      "test_files_passed": 162,
+      "test_files_skipped": 3,
+      "tests_passed": 1886,
+      "tests_skipped": 34,
+      "note": "An earlier run exposed two obsolete expectations that Harbor props have no GLB. Both were updated to the exact delivered URLs, then the complete suite passed."
+    },
+    "focused_tests": {
+      "passed": 40,
+      "scope": "Rescue Harbor, family A2 and theme registry"
+    },
+    "final_open_frame_regression": {
+      "passed": 8,
+      "scope": "Rescue Harbor file rerun after adding an explicit ray probe through the lower buoy frame"
+    },
+    "khronos": {
+      "files": 4,
+      "errors": 0,
+      "warnings": 0,
+      "report": "validation.json"
+    },
+    "blender_reimport": {
+      "outcome": "passed",
+      "files": 4,
+      "report": "reimport.json"
+    },
+    "three_adapter": {
+      "outcome": "passed",
+      "rotation_scale_probes": 32,
+      "actual_a2_placements": 40,
+      "report": "three-inspection.json"
+    },
+    "exact_glb_browser_views": {
+      "passed": 21,
+      "report": "stills/browser-inspection.json"
+    },
+    "desktop_phone_static_viewers": {
+      "passed": 8,
+      "report": "review-audit/report.json"
+    },
+    "a2_camera": {
+      "outcome": "passed",
+      "report": "a2-camera/report.json",
+      "route_legs": 29,
+      "ordinary_fights": 4,
+      "minor_memories": 2,
+      "recoveries": 0,
+      "camera_probes": 12,
+      "screenshots": 16,
+      "errors": 0,
+      "scope": "Normal route to boss deck, stopped before boss fight; ordinary public inputs, no teleport or internal state mutation",
+      "rendering": "Software draw calls thinned between full captures; server combat inputs paced by real time. No physical-device performance claim."
+    }
+  },
+  "full_catalog_audit": {
+    "outcome": "passed",
+    "report": "catalog-audit/report.json",
+    "overall_timeout_ms": 900000,
+    "started_utc": "2026-09-29T04:57:54.220Z",
+    "browser": {
+      "engine": "Chromium",
+      "version": "153.0.8010.12",
+      "rendering": "SwiftShader software (requested)"
+    },
+    "inventory_entries": 97,
+    "thumbnail_files": 137,
+    "review_pages": 69,
+    "exact_model_deliveries": 68,
+    "animated_candidate_viewer_checks": 38,
+    "errors": {
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0
+    },
+    "expected_metadata_preload_aborts": 12
+  },
+  "scene_release": {
+    "instance": "blender-authoring (instance 1)",
+    "released_utc": "2026-09-29T04:44:51.997495+00:00",
+    "report": "scene-release.json",
+    "prior_playroom_source": "hash unchanged"
+  },
+  "physical_safari": "not tested",
+  "deployment": "pending coordinator merge and image publication"
+}

@@ -1,0 +1,52 @@
+{
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "author_visual_review": "pass",
+  "author_inspected": [
+    "reference-sheet.png",
+    "kit-beauty.png",
+    "sheet-vs-export.png",
+    "static-contact-sheet.png",
+    "stills/small-boat-top.png"
+  ],
+  "coordinator_review": {
+    "decision": "pass",
+    "date": "2026-09-29",
+    "images": [
+      "kit-beauty.png",
+      "sheet-vs-export.png",
+      "stills/small-boat-top.png"
+    ],
+    "notes": "Silhouettes, palette, open trestle, life-ring details and boat interior match the approved sheet. Approved as exact private kit candidates; Tom exact-version decision stays pending.",
+    "a2_placement": {
+      "decision": "pass",
+      "date": "2026-09-29",
+      "captures": [
+        "a2-camera/family-a2-01-spawn-lookout-tower-facade-27-desktop.png",
+        "a2-camera/family-a2-03-boss-arena-lookout-tower-facade-28-desktop.png",
+        "a2-camera/family-a2-03-boss-arena-lookout-tower-facade-28-phone.png"
+      ],
+      "notes": "Near trestle leaves path and traveler readable. Far roof and cabin sit behind the Mayor with a clear combat lane on desktop and phone. Original planning boxes and waterline remain unchanged."
+    }
+  },
+  "exact_glb_sha256": {
+    "lookout-tower-facade": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+    "pier-bollard": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+    "rescue-buoy-stand": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+    "small-boat": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4"
+  },
+  "owner_review": {
+    "status": "pending",
+    "policy": "PRD-004 Q-03 permits family-release candidates before exact-version owner review"
+  },
+  "limits": [
+    "Headless Chromium captures do not establish physical Safari or frame-time acceptance",
+    "Deployment is the coordinator’s separate checked release"
+  ],
+  "studio_review": {
+    "report": "review-audit/report.json",
+    "desktop": "4 visible cards and 4 loaded static orbitable viewers",
+    "phone": "4 visible cards and 4 loaded static orbitable viewers; no horizontal overflow",
+    "errors": 0
+  }
+}

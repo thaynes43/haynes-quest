@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 93,
+    "entries": 97,
     "reference_sheet_entries": 8,
-    "model_entries": 64,
-    "model_files": 64,
+    "model_entries": 68,
+    "model_files": 68,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 62,
+    "completed_model_candidates": 66,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -4392,6 +4392,176 @@
         "docs/assets/media/casino-hum/v001/source-attempt-2.wav": "423ed154579acf3189b5c37c22a1fa28c7a749fbb3c26f7f202ce7d89a3e0ea1"
       },
       "gameplay_use": "private-candidate"
+    },
+    {
+      "id": "lookout-tower-facade",
+      "title": "Rescue Harbor lookout tower",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rescue-harbor-kit/v001.md#lookout-tower-facade",
+      "concept_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-beauty.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-front.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-side.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-back.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rescue-harbor-kit/v001/lookout-tower-facade.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
+        "docs/assets/media/rescue-harbor-kit/v001/lookout-tower-facade.glb": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+        "docs/assets/media/rescue-harbor-kit/v001/provenance.json": "82455cc26c57c9002edb610b50dd5f22c675079eb2df689f687db8b53116ce39",
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png": "b442ff14652d6c3d90e6b1641e01eded9c9f93b00e007072c6c1707fbba31172",
+        "docs/assets/media/rescue-harbor-kit/v001/reimport.json": "7dfcde49513e20952b04d7d518293a057444010fd6375fc06bd80f5187bc2e26",
+        "docs/assets/media/rescue-harbor-kit/v001/rescue-harbor-kit.blend": "24316102872500fb48729b97b0453cb4369a16b3c858f0622d18eb935a5fb74d",
+        "docs/assets/media/rescue-harbor-kit/v001/sha256-manifest.json": "5abf4d39d9738616f057e0ee71a326269a7eb236d7d28e2971d052414d39b954",
+        "docs/assets/media/rescue-harbor-kit/v001/source.json": "cef1a154ec0255e3e814174bd09dc4fa030f96ac39f72869c0bdf3b434b48922",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-back.png": "fb256fe5f63c48655380d1a14336b947d8460a6a5d14a4740189d82e4b5f2df2",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-beauty.png": "79ffdce7c5d799956d5003ce102a7b1b9755e56c38bc78658c2a10e4c550a287",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-front.png": "eefbdb3816188d76b1819c15f98f76738071e3b85c9b2ccec2976a584a73fe8a",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-side.png": "fafbb90db47e178b4b73f2cf955a62175b5a39035c7e7b104de602fefe80c0e5",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-threequarter.png": "efcfae413b476218f1d9d8399e54087a670142c5fd6d39ab639b27aa474e3d9d",
+        "docs/assets/media/rescue-harbor-kit/v001/three-inspection.json": "73002a6e7af230a710393839b408309b387b3d3201f6160b823544852a08fefa",
+        "docs/assets/media/rescue-harbor-kit/v001/validation.json": "4d57839abb26479f68e3d7a4fb91f8fdc7b0622785f5bbce2b6c331b37003eaa",
+        "docs/assets/media/rescue-harbor-kit/v001/visual-review.json": "80c790e7ffb18861e2a78d3077b822462c3f1548f1e89687988d6172e13fda0b"
+      }
+    },
+    {
+      "id": "pier-bollard",
+      "title": "Rescue Harbor pier bollard",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rescue-harbor-kit/v001.md#pier-bollard",
+      "concept_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-beauty.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-front.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-side.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-back.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rescue-harbor-kit/v001/pier-bollard.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
+        "docs/assets/media/rescue-harbor-kit/v001/pier-bollard.glb": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+        "docs/assets/media/rescue-harbor-kit/v001/provenance.json": "82455cc26c57c9002edb610b50dd5f22c675079eb2df689f687db8b53116ce39",
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png": "b442ff14652d6c3d90e6b1641e01eded9c9f93b00e007072c6c1707fbba31172",
+        "docs/assets/media/rescue-harbor-kit/v001/reimport.json": "7dfcde49513e20952b04d7d518293a057444010fd6375fc06bd80f5187bc2e26",
+        "docs/assets/media/rescue-harbor-kit/v001/rescue-harbor-kit.blend": "24316102872500fb48729b97b0453cb4369a16b3c858f0622d18eb935a5fb74d",
+        "docs/assets/media/rescue-harbor-kit/v001/sha256-manifest.json": "5abf4d39d9738616f057e0ee71a326269a7eb236d7d28e2971d052414d39b954",
+        "docs/assets/media/rescue-harbor-kit/v001/source.json": "cef1a154ec0255e3e814174bd09dc4fa030f96ac39f72869c0bdf3b434b48922",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-back.png": "b7059888396d9d62081f63e935f8b890cdac82a843e74a705ff4a2cd7676c663",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-beauty.png": "6a4dce88d7a722ce548b6ff975773640cfd34e203d8a6245ddec936dfe112c2a",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-front.png": "1f9925764aa6a77039ffab576fcafde359cc76c7b762c56701c594772c535218",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-side.png": "177487b1c733a58c33c96492dbb3a7b42051c59da296b9514857301939689787",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-threequarter.png": "5bdd3773d94b94a578a6cb1336a6d8943b315a0f34cfa5d9b2cbfa71397aaa2b",
+        "docs/assets/media/rescue-harbor-kit/v001/three-inspection.json": "73002a6e7af230a710393839b408309b387b3d3201f6160b823544852a08fefa",
+        "docs/assets/media/rescue-harbor-kit/v001/validation.json": "4d57839abb26479f68e3d7a4fb91f8fdc7b0622785f5bbce2b6c331b37003eaa",
+        "docs/assets/media/rescue-harbor-kit/v001/visual-review.json": "80c790e7ffb18861e2a78d3077b822462c3f1548f1e89687988d6172e13fda0b"
+      }
+    },
+    {
+      "id": "rescue-buoy-stand",
+      "title": "Rescue Harbor buoy stand",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rescue-harbor-kit/v001.md#rescue-buoy-stand",
+      "concept_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-beauty.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-front.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-side.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-back.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rescue-harbor-kit/v001/rescue-buoy-stand.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
+        "docs/assets/media/rescue-harbor-kit/v001/provenance.json": "82455cc26c57c9002edb610b50dd5f22c675079eb2df689f687db8b53116ce39",
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png": "b442ff14652d6c3d90e6b1641e01eded9c9f93b00e007072c6c1707fbba31172",
+        "docs/assets/media/rescue-harbor-kit/v001/reimport.json": "7dfcde49513e20952b04d7d518293a057444010fd6375fc06bd80f5187bc2e26",
+        "docs/assets/media/rescue-harbor-kit/v001/rescue-buoy-stand.glb": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+        "docs/assets/media/rescue-harbor-kit/v001/rescue-harbor-kit.blend": "24316102872500fb48729b97b0453cb4369a16b3c858f0622d18eb935a5fb74d",
+        "docs/assets/media/rescue-harbor-kit/v001/sha256-manifest.json": "5abf4d39d9738616f057e0ee71a326269a7eb236d7d28e2971d052414d39b954",
+        "docs/assets/media/rescue-harbor-kit/v001/source.json": "cef1a154ec0255e3e814174bd09dc4fa030f96ac39f72869c0bdf3b434b48922",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-back.png": "23d262111ca9a1d2751978e5d8ce4cabe074f4ab0a6f079636646d7dc7b69202",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-beauty.png": "1298559d641c79a914f35d216821cc81e347c6f14be36cf35d45b43064119c2f",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-front.png": "66b565ba50cdd586db8d1bae66b5b0640451257a460a4708df410e842c893ed4",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-side.png": "9aa680c3b5005941e5ae749eb4f5b030a697b9876254e9fbfece29aba6c29273",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-threequarter.png": "afe8798b1301eb3eeee70b99512fa89c3cfee8f1203a65171c747ddf6e20e929",
+        "docs/assets/media/rescue-harbor-kit/v001/three-inspection.json": "73002a6e7af230a710393839b408309b387b3d3201f6160b823544852a08fefa",
+        "docs/assets/media/rescue-harbor-kit/v001/validation.json": "4d57839abb26479f68e3d7a4fb91f8fdc7b0622785f5bbce2b6c331b37003eaa",
+        "docs/assets/media/rescue-harbor-kit/v001/visual-review.json": "80c790e7ffb18861e2a78d3077b822462c3f1548f1e89687988d6172e13fda0b"
+      }
+    },
+    {
+      "id": "small-boat",
+      "title": "Rescue Harbor small boat",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rescue-harbor-kit/v001.md#small-boat",
+      "concept_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-beauty.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-front.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-side.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-back.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-threequarter.png",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-top.png"
+      ],
+      "models": [
+        "docs/assets/media/rescue-harbor-kit/v001/small-boat.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
+        "docs/assets/media/rescue-harbor-kit/v001/provenance.json": "82455cc26c57c9002edb610b50dd5f22c675079eb2df689f687db8b53116ce39",
+        "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png": "b442ff14652d6c3d90e6b1641e01eded9c9f93b00e007072c6c1707fbba31172",
+        "docs/assets/media/rescue-harbor-kit/v001/reimport.json": "7dfcde49513e20952b04d7d518293a057444010fd6375fc06bd80f5187bc2e26",
+        "docs/assets/media/rescue-harbor-kit/v001/rescue-harbor-kit.blend": "24316102872500fb48729b97b0453cb4369a16b3c858f0622d18eb935a5fb74d",
+        "docs/assets/media/rescue-harbor-kit/v001/sha256-manifest.json": "5abf4d39d9738616f057e0ee71a326269a7eb236d7d28e2971d052414d39b954",
+        "docs/assets/media/rescue-harbor-kit/v001/small-boat.glb": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+        "docs/assets/media/rescue-harbor-kit/v001/source.json": "cef1a154ec0255e3e814174bd09dc4fa030f96ac39f72869c0bdf3b434b48922",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-back.png": "c57fc4b382c3eaab605c15d196ec918f8fe561b5ba514335dccd4b4e8462d7ac",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-beauty.png": "0aaefbbfb53e82add7a99bb3fe3719f81d9c6a40e637271cbcb1a8e8587d6242",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-front.png": "5631df43c1e57729fc3cd823fc2703c567bae8d9f73f0278898d8a990fabaac2",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-side.png": "9b49c8b2f7290c1ca120306d1c10ab33c935937c71f663216ded5560e3ddb818",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-threequarter.png": "b5a408585bc8f1ef5a18facf74065dfb3873ef0305d6a1370046ad74f75082f5",
+        "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-top.png": "3cb4f2769544447c11378f8def6c1e0cfb63cb6a0e32033b6e749074f6e8e8fd",
+        "docs/assets/media/rescue-harbor-kit/v001/three-inspection.json": "73002a6e7af230a710393839b408309b387b3d3201f6160b823544852a08fefa",
+        "docs/assets/media/rescue-harbor-kit/v001/validation.json": "4d57839abb26479f68e3d7a4fb91f8fdc7b0622785f5bbce2b6c331b37003eaa",
+        "docs/assets/media/rescue-harbor-kit/v001/visual-review.json": "80c790e7ffb18861e2a78d3077b822462c3f1548f1e89687988d6172e13fda0b"
+      }
     }
   ],
   "notes": {

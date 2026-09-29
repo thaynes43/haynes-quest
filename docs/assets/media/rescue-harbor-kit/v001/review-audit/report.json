@@ -1,0 +1,72 @@
+{
+  "browser": "153.0.8010.12",
+  "physicalDevice": false,
+  "results": [
+    {
+      "viewport": "desktop",
+      "id": "lookout-tower-facade",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "pier-bollard",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "rescue-buoy-stand",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "small-boat",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "phone",
+      "id": "lookout-tower-facade",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "pier-bollard",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "rescue-buoy-stand",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "small-boat",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    }
+  ],
+  "errors": [],
+  "outcome": "passed"
+}

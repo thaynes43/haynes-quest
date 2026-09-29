@@ -1,0 +1,49 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "task": "full static props kit (four GLBs) from the coordinator-approved Blender reference sheet: build, export, stills, contact sheet, Khronos + three.js checks",
+  "blender_instance": "blender-authoring (instance 1); instance 2 untouched",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-09-29T04:38:21.902752+00:00",
+  "props_before_claim": {
+    "work_order": "WO111",
+    "scene_owner": "none",
+    "scene_lease": "released",
+    "asset_id": "playroom-kit",
+    "asset_version": "v001",
+    "authoring_model": "gpt-6-astra max",
+    "candidate_status": "WO111 playroom-kit v001 \u00b7 Awaiting Tom's review \u00b7 used in the family release"
+  },
+  "scene_before_claim": {
+    "file": "/workspace/haynes-quest/family-eras/playroom-kit/v001/live-scene-release.blend",
+    "object_count": 224
+  },
+  "prior_files": {
+    "prior_scene_file": {
+      "path": "/workspace/haynes-quest/family-eras/playroom-kit/v001/live-scene-release.blend",
+      "sha256": "111a9a5ec70272c0b037ed0f2c50cc75fc8067287f61d50e2947948d3d16826f"
+    }
+  },
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "readyz_at_claim": {
+    "ready": true,
+    "busy": false
+  },
+  "note": "Claimed from the released playroom-kit v001 scene. That file is never saved over; the first save is this kit's claim-checkpoint.blend.",
+  "author_jobs_running": false,
+  "released_utc": "2026-09-29T04:44:51.997495+00:00",
+  "glb_sha256": {
+    "lookout-tower-facade": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+    "pier-bollard": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+    "rescue-buoy-stand": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+    "small-boat": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4"
+  }
+}

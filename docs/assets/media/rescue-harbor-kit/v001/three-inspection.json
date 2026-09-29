@@ -1,0 +1,2610 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "three_revision": "186",
+  "source": "family-world-a-v5 A2",
+  "adapter": "GLTFLoader.parseAsync exact bytes + SceneAssets.attachInstances (DecorScene path)",
+  "actual_placement_count": 40,
+  "all_checks_pass": true,
+  "props": {
+    "lookout-tower-facade": {
+      "file": "lookout-tower-facade.glb",
+      "sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+      "bytes": 128256,
+      "triangles": 4776,
+      "meshes": 4,
+      "materials": [
+        {
+          "name": "Rescue Harbor matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rescue Harbor satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rescue Harbor gloss",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rescue Harbor lamp",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -1.75,
+          "y": 0,
+          "z": -1.76495
+        },
+        "max": {
+          "x": 1.75,
+          "y": 6.885,
+          "z": 1.76495
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -1.75,
+          "y": 0,
+          "z": -1.765
+        },
+        "max": {
+          "x": 1.75,
+          "y": 6.885,
+          "z": 1.765
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.8,
+          "y": 0,
+          "z": -1.8
+        },
+        "max": {
+          "x": 1.8,
+          "y": 7,
+          "z": 1.8
+        }
+      },
+      "size_m": {
+        "width": 3.5,
+        "height": 6.885,
+        "depth": 3.5299
+      },
+      "adapter": {
+        "instanced_batches": 4,
+        "actual_a2_placements": 2,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "lookout-tower-facade-27",
+            "rotationY": 0,
+            "scale": 1.5,
+            "bounds": {
+              "min": {
+                "x": -14.325,
+                "y": -1.4,
+                "z": -2.64742
+              },
+              "max": {
+                "x": -9.075,
+                "y": 8.9275,
+                "z": 2.64742
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -14.399999999999999,
+                "y": -1.4,
+                "z": -2.7
+              },
+              "max": {
+                "x": -9,
+                "y": 9.1,
+                "z": 2.7
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "lookout-tower-facade-28",
+            "rotationY": 0,
+            "scale": 3,
+            "bounds": {
+              "min": {
+                "x": -45.25,
+                "y": -1.4,
+                "z": -180.72484
+              },
+              "max": {
+                "x": -34.75,
+                "y": 19.255,
+                "z": -170.13515
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -45.4,
+                "y": -1.4,
+                "z": -180.83
+              },
+              "max": {
+                "x": -34.6,
+                "y": 19.6,
+                "z": -170.03
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 18.25,
+                "y": -1.4,
+                "z": -21.76495
+              },
+              "max": {
+                "x": 21.75,
+                "y": 5.485,
+                "z": -18.23505
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.2,
+                "y": -1.4,
+                "z": -21.8
+              },
+              "max": {
+                "x": 21.8,
+                "y": 5.6,
+                "z": -18.2
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 23.23505,
+                "y": -1.4,
+                "z": -26.75
+              },
+              "max": {
+                "x": 26.76495,
+                "y": 5.485,
+                "z": -23.25
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 23.2,
+                "y": -1.4,
+                "z": -26.8
+              },
+              "max": {
+                "x": 26.8,
+                "y": 5.6,
+                "z": -23.2
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 28.25,
+                "y": -1.4,
+                "z": -31.76495
+              },
+              "max": {
+                "x": 31.75,
+                "y": 5.485,
+                "z": -28.23505
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.2,
+                "y": -1.4,
+                "z": -31.8
+              },
+              "max": {
+                "x": 31.8,
+                "y": 5.6,
+                "z": -28.2
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 33.23505,
+                "y": -1.4,
+                "z": -36.75
+              },
+              "max": {
+                "x": 36.76495,
+                "y": 5.485,
+                "z": -33.25
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 33.2,
+                "y": -1.4,
+                "z": -36.8
+              },
+              "max": {
+                "x": 36.8,
+                "y": 5.6,
+                "z": -33.2
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 17.8125,
+                "y": -1.4,
+                "z": -22.20619
+              },
+              "max": {
+                "x": 22.1875,
+                "y": 7.20625,
+                "z": -17.79381
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 17.75,
+                "y": -1.4,
+                "z": -22.25
+              },
+              "max": {
+                "x": 22.25,
+                "y": 7.35,
+                "z": -17.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 22.79381,
+                "y": -1.4,
+                "z": -27.1875
+              },
+              "max": {
+                "x": 27.20619,
+                "y": 7.20625,
+                "z": -22.8125
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 22.75,
+                "y": -1.4,
+                "z": -27.25
+              },
+              "max": {
+                "x": 27.25,
+                "y": 7.35,
+                "z": -22.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 27.8125,
+                "y": -1.4,
+                "z": -32.20619
+              },
+              "max": {
+                "x": 32.1875,
+                "y": 7.20625,
+                "z": -27.79381
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 27.75,
+                "y": -1.4,
+                "z": -32.25
+              },
+              "max": {
+                "x": 32.25,
+                "y": 7.35,
+                "z": -27.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 32.79381,
+                "y": -1.4,
+                "z": -37.1875
+              },
+              "max": {
+                "x": 37.20619,
+                "y": 7.20625,
+                "z": -32.8125
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 32.75,
+                "y": -1.4,
+                "z": -37.25
+              },
+              "max": {
+                "x": 37.25,
+                "y": 7.35,
+                "z": -32.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a2_count": true,
+        "all_actual_origins_on_water_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a2_placement_inside_box": true,
+        "no_false_footholds_in_actual_a2": true,
+        "tower_sheet_height": true,
+        "bollard_height": true,
+        "stand_height": true,
+        "boat_height_and_waterline": true
+      }
+    },
+    "pier-bollard": {
+      "file": "pier-bollard.glb",
+      "sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+      "bytes": 81224,
+      "triangles": 2632,
+      "meshes": 2,
+      "materials": [
+        {
+          "name": "Rescue Harbor matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rescue Harbor satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.28324,
+          "y": 0,
+          "z": -0.28324
+        },
+        "max": {
+          "x": 0.28324,
+          "y": 0.787,
+          "z": 0.28324
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.284,
+          "y": 0,
+          "z": -0.284
+        },
+        "max": {
+          "x": 0.284,
+          "y": 0.787,
+          "z": 0.284
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.3,
+          "y": 0,
+          "z": -0.3
+        },
+        "max": {
+          "x": 0.3,
+          "y": 0.8,
+          "z": 0.3
+        }
+      },
+      "size_m": {
+        "width": 0.56648,
+        "height": 0.787,
+        "depth": 0.56648
+      },
+      "adapter": {
+        "instanced_batches": 2,
+        "actual_a2_placements": 20,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "pier-bollard-1",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -6.71157,
+                "y": -1.4,
+                "z": -4.31157
+              },
+              "max": {
+                "x": -6.08843,
+                "y": -0.5343,
+                "z": -3.68843
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -6.73,
+                "y": -1.4,
+                "z": -4.33
+              },
+              "max": {
+                "x": -6.07,
+                "y": -0.5199999999999998,
+                "z": -3.67
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-2",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 6.08843,
+                "y": -1.4,
+                "z": -4.31157
+              },
+              "max": {
+                "x": 6.71157,
+                "y": -0.5343,
+                "z": -3.68843
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.07,
+                "y": -1.4,
+                "z": -4.33
+              },
+              "max": {
+                "x": 6.73,
+                "y": -0.5199999999999998,
+                "z": -3.67
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-3",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -6.71157,
+                "y": -1.4,
+                "z": -2.31157
+              },
+              "max": {
+                "x": -6.08843,
+                "y": -0.5343,
+                "z": -1.68843
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -6.73,
+                "y": -1.4,
+                "z": -2.33
+              },
+              "max": {
+                "x": -6.07,
+                "y": -0.5199999999999998,
+                "z": -1.67
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-4",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 6.08843,
+                "y": -1.4,
+                "z": -2.31157
+              },
+              "max": {
+                "x": 6.71157,
+                "y": -0.5343,
+                "z": -1.68843
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.07,
+                "y": -1.4,
+                "z": -2.33
+              },
+              "max": {
+                "x": 6.73,
+                "y": -0.5199999999999998,
+                "z": -1.67
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-5",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -6.71157,
+                "y": -1.4,
+                "z": -0.31157
+              },
+              "max": {
+                "x": -6.08843,
+                "y": -0.5343,
+                "z": 0.31157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -6.73,
+                "y": -1.4,
+                "z": -0.33
+              },
+              "max": {
+                "x": -6.07,
+                "y": -0.5199999999999998,
+                "z": 0.33
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-6",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 6.08843,
+                "y": -1.4,
+                "z": -0.31157
+              },
+              "max": {
+                "x": 6.71157,
+                "y": -0.5343,
+                "z": 0.31157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.07,
+                "y": -1.4,
+                "z": -0.33
+              },
+              "max": {
+                "x": 6.73,
+                "y": -0.5199999999999998,
+                "z": 0.33
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-7",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -6.71157,
+                "y": -1.4,
+                "z": 1.68843
+              },
+              "max": {
+                "x": -6.08843,
+                "y": -0.5343,
+                "z": 2.31157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -6.73,
+                "y": -1.4,
+                "z": 1.67
+              },
+              "max": {
+                "x": -6.07,
+                "y": -0.5199999999999998,
+                "z": 2.33
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-8",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 6.08843,
+                "y": -1.4,
+                "z": 1.68843
+              },
+              "max": {
+                "x": 6.71157,
+                "y": -0.5343,
+                "z": 2.31157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.07,
+                "y": -1.4,
+                "z": 1.67
+              },
+              "max": {
+                "x": 6.73,
+                "y": -0.5199999999999998,
+                "z": 2.33
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-9",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": -6.71157,
+                "y": -1.4,
+                "z": 3.68843
+              },
+              "max": {
+                "x": -6.08843,
+                "y": -0.5343,
+                "z": 4.31157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -6.73,
+                "y": -1.4,
+                "z": 3.67
+              },
+              "max": {
+                "x": -6.07,
+                "y": -0.5199999999999998,
+                "z": 4.33
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-10",
+            "rotationY": 0,
+            "scale": 1.1,
+            "bounds": {
+              "min": {
+                "x": 6.08843,
+                "y": -1.4,
+                "z": 3.68843
+              },
+              "max": {
+                "x": 6.71157,
+                "y": -0.5343,
+                "z": 4.31157
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.07,
+                "y": -1.4,
+                "z": 3.67
+              },
+              "max": {
+                "x": 6.73,
+                "y": -0.5199999999999998,
+                "z": 4.33
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-11",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.76648,
+                "y": -1.4,
+                "z": -51.56648
+              },
+              "max": {
+                "x": -3.63352,
+                "y": 0.174,
+                "z": -50.43352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.8,
+                "y": -1.4,
+                "z": -51.6
+              },
+              "max": {
+                "x": -3.6,
+                "y": 0.20000000000000018,
+                "z": -50.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-12",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.76648,
+                "y": -1.4,
+                "z": -53.96649
+              },
+              "max": {
+                "x": -3.63352,
+                "y": 0.174,
+                "z": -52.83352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.8,
+                "y": -1.4,
+                "z": -54
+              },
+              "max": {
+                "x": -3.6,
+                "y": 0.20000000000000018,
+                "z": -52.8
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-13",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.76648,
+                "y": -1.4,
+                "z": -56.36648
+              },
+              "max": {
+                "x": -3.63352,
+                "y": 0.174,
+                "z": -55.23351
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.8,
+                "y": -1.4,
+                "z": -56.4
+              },
+              "max": {
+                "x": -3.6,
+                "y": 0.20000000000000018,
+                "z": -55.199999999999996
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-14",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.76648,
+                "y": -1.4,
+                "z": -58.76649
+              },
+              "max": {
+                "x": -3.63352,
+                "y": 0.174,
+                "z": -57.63352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.8,
+                "y": -1.4,
+                "z": -58.800000000000004
+              },
+              "max": {
+                "x": -3.6,
+                "y": 0.20000000000000018,
+                "z": -57.6
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-15",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 6.13352,
+                "y": -1.4,
+                "z": -67.56648
+              },
+              "max": {
+                "x": 7.26648,
+                "y": 0.174,
+                "z": -66.43352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.1000000000000005,
+                "y": -1.4,
+                "z": -67.6
+              },
+              "max": {
+                "x": 7.3,
+                "y": 0.20000000000000018,
+                "z": -66.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-16",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 6.13352,
+                "y": -1.4,
+                "z": -69.96649
+              },
+              "max": {
+                "x": 7.26648,
+                "y": 0.174,
+                "z": -68.83352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.1000000000000005,
+                "y": -1.4,
+                "z": -70
+              },
+              "max": {
+                "x": 7.3,
+                "y": 0.20000000000000018,
+                "z": -68.80000000000001
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-17",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 6.13352,
+                "y": -1.4,
+                "z": -72.36649
+              },
+              "max": {
+                "x": 7.26648,
+                "y": 0.174,
+                "z": -71.23352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.1000000000000005,
+                "y": -1.4,
+                "z": -72.39999999999999
+              },
+              "max": {
+                "x": 7.3,
+                "y": 0.20000000000000018,
+                "z": -71.2
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-18",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 6.13352,
+                "y": -1.4,
+                "z": -74.56648
+              },
+              "max": {
+                "x": 7.26648,
+                "y": 0.174,
+                "z": -73.43352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.1000000000000005,
+                "y": -1.4,
+                "z": -74.6
+              },
+              "max": {
+                "x": 7.3,
+                "y": 0.20000000000000018,
+                "z": -73.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-19",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": -4.56648,
+                "y": -1.4,
+                "z": -76.06648
+              },
+              "max": {
+                "x": -3.43352,
+                "y": 0.174,
+                "z": -74.93352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -4.6,
+                "y": -1.4,
+                "z": -76.1
+              },
+              "max": {
+                "x": -3.4,
+                "y": 0.20000000000000018,
+                "z": -74.9
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "pier-bollard-20",
+            "rotationY": 0,
+            "scale": 2,
+            "bounds": {
+              "min": {
+                "x": 3.43352,
+                "y": -1.4,
+                "z": -76.06648
+              },
+              "max": {
+                "x": 4.56648,
+                "y": 0.174,
+                "z": -74.93352
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 3.4,
+                "y": -1.4,
+                "z": -76.1
+              },
+              "max": {
+                "x": 4.6,
+                "y": 0.20000000000000018,
+                "z": -74.9
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 19.71676,
+                "y": -1.4,
+                "z": -20.28324
+              },
+              "max": {
+                "x": 20.28324,
+                "y": -0.613,
+                "z": -19.71676
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.7,
+                "y": -1.4,
+                "z": -20.3
+              },
+              "max": {
+                "x": 20.3,
+                "y": -0.5999999999999999,
+                "z": -19.7
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.71676,
+                "y": -1.4,
+                "z": -25.28324
+              },
+              "max": {
+                "x": 25.28324,
+                "y": -0.613,
+                "z": -24.71676
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.7,
+                "y": -1.4,
+                "z": -25.3
+              },
+              "max": {
+                "x": 25.3,
+                "y": -0.5999999999999999,
+                "z": -24.7
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 29.71676,
+                "y": -1.4,
+                "z": -30.28324
+              },
+              "max": {
+                "x": 30.28324,
+                "y": -0.613,
+                "z": -29.71676
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.7,
+                "y": -1.4,
+                "z": -30.3
+              },
+              "max": {
+                "x": 30.3,
+                "y": -0.5999999999999999,
+                "z": -29.7
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.71676,
+                "y": -1.4,
+                "z": -35.28324
+              },
+              "max": {
+                "x": 35.28324,
+                "y": -0.613,
+                "z": -34.71676
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.7,
+                "y": -1.4,
+                "z": -35.3
+              },
+              "max": {
+                "x": 35.3,
+                "y": -0.5999999999999999,
+                "z": -34.7
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 19.64595,
+                "y": -1.4,
+                "z": -20.35405
+              },
+              "max": {
+                "x": 20.35405,
+                "y": -0.41625,
+                "z": -19.64595
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.625,
+                "y": -1.4,
+                "z": -20.375
+              },
+              "max": {
+                "x": 20.375,
+                "y": -0.3999999999999999,
+                "z": -19.625
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.64595,
+                "y": -1.4,
+                "z": -25.35405
+              },
+              "max": {
+                "x": 25.35405,
+                "y": -0.41625,
+                "z": -24.64595
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.625,
+                "y": -1.4,
+                "z": -25.375
+              },
+              "max": {
+                "x": 25.375,
+                "y": -0.3999999999999999,
+                "z": -24.625
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 29.64595,
+                "y": -1.4,
+                "z": -30.35405
+              },
+              "max": {
+                "x": 30.35405,
+                "y": -0.41625,
+                "z": -29.64595
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.625,
+                "y": -1.4,
+                "z": -30.375
+              },
+              "max": {
+                "x": 30.375,
+                "y": -0.3999999999999999,
+                "z": -29.625
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.64595,
+                "y": -1.4,
+                "z": -35.35405
+              },
+              "max": {
+                "x": 35.35405,
+                "y": -0.41625,
+                "z": -34.64595
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.625,
+                "y": -1.4,
+                "z": -35.375
+              },
+              "max": {
+                "x": 35.375,
+                "y": -0.3999999999999999,
+                "z": -34.625
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a2_count": true,
+        "all_actual_origins_on_water_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a2_placement_inside_box": true,
+        "no_false_footholds_in_actual_a2": true,
+        "tower_sheet_height": true,
+        "bollard_height": true,
+        "stand_height": true,
+        "boat_height_and_waterline": true
+      }
+    },
+    "rescue-buoy-stand": {
+      "file": "rescue-buoy-stand.glb",
+      "sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+      "bytes": 80208,
+      "triangles": 3160,
+      "meshes": 2,
+      "materials": [
+        {
+          "name": "Rescue Harbor matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rescue Harbor satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -0.58,
+          "y": 0,
+          "z": -0.17079
+        },
+        "max": {
+          "x": 0.58,
+          "y": 1.798,
+          "z": 0.17079
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -0.58,
+          "y": 0,
+          "z": -0.171
+        },
+        "max": {
+          "x": 0.58,
+          "y": 1.798,
+          "z": 0.171
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -0.6,
+          "y": 0,
+          "z": -0.25
+        },
+        "max": {
+          "x": 0.6,
+          "y": 1.8,
+          "z": 0.25
+        }
+      },
+      "size_m": {
+        "width": 1.16,
+        "height": 1.798,
+        "depth": 0.34159
+      },
+      "adapter": {
+        "instanced_batches": 2,
+        "actual_a2_placements": 6,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "rescue-buoy-stand-21",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": -7.47327,
+                "y": -1.4,
+                "z": 3.072
+              },
+              "max": {
+                "x": -6.92673,
+                "y": 1.4768,
+                "z": 4.928
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -7.6000000000000005,
+                "y": -1.4,
+                "z": 3.04
+              },
+              "max": {
+                "x": -6.8,
+                "y": 1.4800000000000004,
+                "z": 4.96
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "rescue-buoy-stand-22",
+            "rotationY": -1.5707963267948966,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": 6.92673,
+                "y": -1.4,
+                "z": 3.072
+              },
+              "max": {
+                "x": 7.47327,
+                "y": 1.4768,
+                "z": 4.928
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.8,
+                "y": -1.4,
+                "z": 3.04
+              },
+              "max": {
+                "x": 7.6000000000000005,
+                "y": 1.4800000000000004,
+                "z": 4.96
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "rescue-buoy-stand-23",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": -7.47327,
+                "y": -1.4,
+                "z": -4.928
+              },
+              "max": {
+                "x": -6.92673,
+                "y": 1.4768,
+                "z": -3.072
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -7.6000000000000005,
+                "y": -1.4,
+                "z": -4.96
+              },
+              "max": {
+                "x": -6.8,
+                "y": 1.4800000000000004,
+                "z": -3.04
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "rescue-buoy-stand-24",
+            "rotationY": -1.5707963267948966,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": 6.92673,
+                "y": -1.4,
+                "z": -4.928
+              },
+              "max": {
+                "x": 7.47327,
+                "y": 1.4768,
+                "z": -3.072
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 6.8,
+                "y": -1.4,
+                "z": -4.96
+              },
+              "max": {
+                "x": 7.6000000000000005,
+                "y": 1.4800000000000004,
+                "z": -3.04
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "rescue-buoy-stand-25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": -7.67327,
+                "y": -1.4,
+                "z": -21.728
+              },
+              "max": {
+                "x": -7.12673,
+                "y": 1.4768,
+                "z": -19.872
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -7.800000000000001,
+                "y": -1.4,
+                "z": -21.76
+              },
+              "max": {
+                "x": -7,
+                "y": 1.4800000000000004,
+                "z": -19.84
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "rescue-buoy-stand-26",
+            "rotationY": -1.5707963267948966,
+            "scale": 1.6,
+            "bounds": {
+              "min": {
+                "x": 7.12673,
+                "y": -1.4,
+                "z": -21.728
+              },
+              "max": {
+                "x": 7.67327,
+                "y": 1.4768,
+                "z": -19.872
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 7,
+                "y": -1.4,
+                "z": -21.76
+              },
+              "max": {
+                "x": 7.800000000000001,
+                "y": 1.4800000000000004,
+                "z": -19.84
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 19.42,
+                "y": -1.4,
+                "z": -20.17079
+              },
+              "max": {
+                "x": 20.58,
+                "y": 0.398,
+                "z": -19.82921
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.4,
+                "y": -1.4,
+                "z": -20.25
+              },
+              "max": {
+                "x": 20.6,
+                "y": 0.40000000000000013,
+                "z": -19.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 24.82921,
+                "y": -1.4,
+                "z": -25.58
+              },
+              "max": {
+                "x": 25.17079,
+                "y": 0.398,
+                "z": -24.42
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.75,
+                "y": -1.4,
+                "z": -25.6
+              },
+              "max": {
+                "x": 25.25,
+                "y": 0.40000000000000013,
+                "z": -24.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 29.42,
+                "y": -1.4,
+                "z": -30.17079
+              },
+              "max": {
+                "x": 30.58,
+                "y": 0.398,
+                "z": -29.82921
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.4,
+                "y": -1.4,
+                "z": -30.25
+              },
+              "max": {
+                "x": 30.6,
+                "y": 0.40000000000000013,
+                "z": -29.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 34.82921,
+                "y": -1.4,
+                "z": -35.58
+              },
+              "max": {
+                "x": 35.17079,
+                "y": 0.398,
+                "z": -34.42
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.75,
+                "y": -1.4,
+                "z": -35.6
+              },
+              "max": {
+                "x": 35.25,
+                "y": 0.40000000000000013,
+                "z": -34.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 19.275,
+                "y": -1.4,
+                "z": -20.21349
+              },
+              "max": {
+                "x": 20.725,
+                "y": 0.8475,
+                "z": -19.78651
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 19.25,
+                "y": -1.4,
+                "z": -20.3125
+              },
+              "max": {
+                "x": 20.75,
+                "y": 0.8500000000000001,
+                "z": -19.6875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 24.78651,
+                "y": -1.4,
+                "z": -25.725
+              },
+              "max": {
+                "x": 25.21349,
+                "y": 0.8475,
+                "z": -24.275
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 24.6875,
+                "y": -1.4,
+                "z": -25.75
+              },
+              "max": {
+                "x": 25.3125,
+                "y": 0.8500000000000001,
+                "z": -24.25
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 29.275,
+                "y": -1.4,
+                "z": -30.21349
+              },
+              "max": {
+                "x": 30.725,
+                "y": 0.8475,
+                "z": -29.78651
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 29.25,
+                "y": -1.4,
+                "z": -30.3125
+              },
+              "max": {
+                "x": 30.75,
+                "y": 0.8500000000000001,
+                "z": -29.6875
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 34.78651,
+                "y": -1.4,
+                "z": -35.725
+              },
+              "max": {
+                "x": 35.21349,
+                "y": 0.8475,
+                "z": -34.275
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 34.6875,
+                "y": -1.4,
+                "z": -35.75
+              },
+              "max": {
+                "x": 35.3125,
+                "y": 0.8500000000000001,
+                "z": -34.25
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a2_count": true,
+        "all_actual_origins_on_water_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a2_placement_inside_box": true,
+        "no_false_footholds_in_actual_a2": true,
+        "tower_sheet_height": true,
+        "bollard_height": true,
+        "stand_height": true,
+        "boat_height_and_waterline": true
+      }
+    },
+    "small-boat": {
+      "file": "small-boat.glb",
+      "sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+      "bytes": 129672,
+      "triangles": 4732,
+      "meshes": 2,
+      "materials": [
+        {
+          "name": "Rescue Harbor satin",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        },
+        {
+          "name": "Rescue Harbor matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "metalness": 0,
+          "transparent": false
+        }
+      ],
+      "exact_bounds_gltf": {
+        "min": {
+          "x": -1.12489,
+          "y": 0,
+          "z": -2.58337
+        },
+        "max": {
+          "x": 1.12489,
+          "y": 1.08,
+          "z": 2.58337
+        }
+      },
+      "tight_bounds_mm": {
+        "min": {
+          "x": -1.125,
+          "y": 0,
+          "z": -2.584
+        },
+        "max": {
+          "x": 1.125,
+          "y": 1.08,
+          "z": 2.584
+        }
+      },
+      "unchanged_registry_box": {
+        "min": {
+          "x": -1.2,
+          "y": 0,
+          "z": -2.6
+        },
+        "max": {
+          "x": 1.2,
+          "y": 1.1,
+          "z": 2.6
+        }
+      },
+      "size_m": {
+        "width": 2.24978,
+        "height": 1.08,
+        "depth": 5.16674
+      },
+      "adapter": {
+        "instanced_batches": 2,
+        "actual_a2_placements": 12,
+        "probes": 8,
+        "placements": [
+          {
+            "id": "small-boat-29",
+            "rotationY": 0.3,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -13.19191,
+                "y": -1.4,
+                "z": 5.99931
+              },
+              "max": {
+                "x": -11.05994,
+                "y": -0.536,
+                "z": 9.97438
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -13.531805059416168,
+                "y": -1.4,
+                "z": 5.729200704223853
+              },
+              "max": {
+                "x": -10.468194940583832,
+                "y": -0.5199999999999998,
+                "z": 10.270799295776147
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-30",
+            "rotationY": -0.2,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": 11.59143,
+                "y": -1.4,
+                "z": -5.03993
+              },
+              "max": {
+                "x": 13.55314,
+                "y": -0.536,
+                "z": -0.97449
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 11.14590387721868,
+                "y": -1.4,
+                "z": -5.229261039473041
+              },
+              "max": {
+                "x": 13.85409612278132,
+                "y": -0.5199999999999998,
+                "z": -0.7707389605269586
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-31",
+            "rotationY": 1.2,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -14.96077,
+                "y": -1.4,
+                "z": -15.30135
+              },
+              "max": {
+                "x": -11.07375,
+                "y": -0.536,
+                "z": -13.02305
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -15.286504743109438,
+                "y": -1.4,
+                "z": -15.64846165184002
+              },
+              "max": {
+                "x": -10.713495256890562,
+                "y": -0.5199999999999998,
+                "z": -12.35153834815998
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-32",
+            "rotationY": 2.6,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": 11.46874,
+                "y": -1.4,
+                "z": -19.77094
+              },
+              "max": {
+                "x": 14.13621,
+                "y": -0.536,
+                "z": -16.12153
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 11.105143943377165,
+                "y": -1.4,
+                "z": -20.277209923956015
+              },
+              "max": {
+                "x": 14.894856056622835,
+                "y": -0.5199999999999998,
+                "z": -15.722790076043983
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-33",
+            "rotationY": 0.8,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -16.71893,
+                "y": -1.4,
+                "z": -35.76877
+              },
+              "max": {
+                "x": -13.51743,
+                "y": -0.536,
+                "z": -32.56013
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -17.160939110044286,
+                "y": -1.4,
+                "z": -36.13781180270565
+              },
+              "max": {
+                "x": -12.839060889955714,
+                "y": -0.5199999999999998,
+                "z": -31.862188197294355
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-34",
+            "rotationY": 2,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -19.95358,
+                "y": -1.4,
+                "z": -47.01418
+              },
+              "max": {
+                "x": -16.12077,
+                "y": -0.536,
+                "z": -44.64323
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -20.290839610882674,
+                "y": -1.4,
+                "z": -47.73851094977071
+              },
+              "max": {
+                "x": -15.709160389117326,
+                "y": -0.5199999999999998,
+                "z": -44.26148905022929
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-35",
+            "rotationY": -0.6,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": 12.78233,
+                "y": -1.4,
+                "z": -45.8469
+              },
+              "max": {
+                "x": 15.59996,
+                "y": -0.536,
+                "z": -42.29427
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 12.033221465025035,
+                "y": -1.4,
+                "z": -46.258754853471366
+              },
+              "max": {
+                "x": 15.966778534974965,
+                "y": -0.5199999999999998,
+                "z": -41.741245146528634
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-36",
+            "rotationY": 0.4,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -19.32139,
+                "y": -1.4,
+                "z": -55.95694
+              },
+              "max": {
+                "x": -17.00571,
+                "y": -0.536,
+                "z": -52.09646
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -19.694208706244762,
+                "y": -1.4,
+                "z": -56.289648476142304
+              },
+              "max": {
+                "x": -16.305791293755238,
+                "y": -0.5199999999999998,
+                "z": -51.710351523857696
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-37",
+            "rotationY": 1.4,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": 12.95244,
+                "y": -1.4,
+                "z": -71.01421
+              },
+              "max": {
+                "x": 17.03663,
+                "y": -0.536,
+                "z": -69.09834
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 12.78709610443977,
+                "y": -1.4,
+                "z": -71.29956339802142
+              },
+              "max": {
+                "x": 17.212903895560228,
+                "y": -0.5199999999999998,
+                "z": -68.70043660197858
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-38",
+            "rotationY": 0.9,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -21.8002,
+                "y": -1.4,
+                "z": -97.6759
+              },
+              "max": {
+                "x": -18.38109,
+                "y": -0.536,
+                "z": -94.68918
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -22.226065541565003,
+                "y": -1.4,
+                "z": -98.04494256724537
+              },
+              "max": {
+                "x": -17.773934458434997,
+                "y": -0.5199999999999998,
+                "z": -93.95505743275463
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-39",
+            "rotationY": 2.2,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -15.88611,
+                "y": -1.4,
+                "z": -119.25691
+              },
+              "max": {
+                "x": -12.3291,
+                "y": -0.536,
+                "z": -116.4335
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -16.24663359250988,
+                "y": -1.4,
+                "z": -120.00023887155793
+              },
+              "max": {
+                "x": -11.75336640749012,
+                "y": -0.5199999999999998,
+                "z": -115.99976112844207
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "small-boat-40",
+            "rotationY": -0.5,
+            "scale": 0.8,
+            "bounds": {
+              "min": {
+                "x": -25.07966,
+                "y": -1.4,
+                "z": -141.89705
+              },
+              "max": {
+                "x": -22.52086,
+                "y": -0.536,
+                "z": -138.18629
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": -25.8396843797115,
+                "y": -1.4,
+                "z": -142.28562024579202
+              },
+              "max": {
+                "x": -22.1603156202885,
+                "y": -0.5199999999999998,
+                "z": -137.71437975420798
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1",
+            "rotationY": 0,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 18.87511,
+                "y": -1.4,
+                "z": -22.58337
+              },
+              "max": {
+                "x": 21.12489,
+                "y": -0.32,
+                "z": -17.41663
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.8,
+                "y": -1.4,
+                "z": -22.6
+              },
+              "max": {
+                "x": 21.2,
+                "y": -0.2999999999999998,
+                "z": -17.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1",
+            "rotationY": 1.5707963267948966,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 22.41663,
+                "y": -1.4,
+                "z": -26.12489
+              },
+              "max": {
+                "x": 27.58337,
+                "y": -0.32,
+                "z": -23.87511
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 22.4,
+                "y": -1.4,
+                "z": -26.2
+              },
+              "max": {
+                "x": 27.6,
+                "y": -0.2999999999999998,
+                "z": -23.8
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1",
+            "rotationY": 3.141592653589793,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 28.87511,
+                "y": -1.4,
+                "z": -32.58337
+              },
+              "max": {
+                "x": 31.12489,
+                "y": -0.32,
+                "z": -27.41663
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.8,
+                "y": -1.4,
+                "z": -32.6
+              },
+              "max": {
+                "x": 31.2,
+                "y": -0.2999999999999998,
+                "z": -27.4
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1",
+            "rotationY": 4.71238898038469,
+            "scale": 1,
+            "bounds": {
+              "min": {
+                "x": 32.41663,
+                "y": -1.4,
+                "z": -36.12489
+              },
+              "max": {
+                "x": 37.58337,
+                "y": -0.32,
+                "z": -33.87511
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 32.4,
+                "y": -1.4,
+                "z": -36.2
+              },
+              "max": {
+                "x": 37.6,
+                "y": -0.2999999999999998,
+                "z": -33.8
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-0-scale-1.25",
+            "rotationY": 0,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 18.59388,
+                "y": -1.4,
+                "z": -23.22921
+              },
+              "max": {
+                "x": 21.40612,
+                "y": -0.05,
+                "z": -16.77079
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 18.5,
+                "y": -1.4,
+                "z": -23.25
+              },
+              "max": {
+                "x": 21.5,
+                "y": -0.02499999999999991,
+                "z": -16.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-90-scale-1.25",
+            "rotationY": 1.5707963267948966,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 21.77079,
+                "y": -1.4,
+                "z": -26.40612
+              },
+              "max": {
+                "x": 28.22921,
+                "y": -0.05,
+                "z": -23.59388
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 21.75,
+                "y": -1.4,
+                "z": -26.5
+              },
+              "max": {
+                "x": 28.25,
+                "y": -0.02499999999999991,
+                "z": -23.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-180-scale-1.25",
+            "rotationY": 3.141592653589793,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 28.59388,
+                "y": -1.4,
+                "z": -33.22921
+              },
+              "max": {
+                "x": 31.40612,
+                "y": -0.05,
+                "z": -26.77079
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 28.5,
+                "y": -1.4,
+                "z": -33.25
+              },
+              "max": {
+                "x": 31.5,
+                "y": -0.02499999999999991,
+                "z": -26.75
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          },
+          {
+            "id": "probe-270-scale-1.25",
+            "rotationY": 4.71238898038469,
+            "scale": 1.25,
+            "bounds": {
+              "min": {
+                "x": 31.77079,
+                "y": -1.4,
+                "z": -36.40612
+              },
+              "max": {
+                "x": 38.22921,
+                "y": -0.05,
+                "z": -33.59388
+              }
+            },
+            "registry_envelope": {
+              "min": {
+                "x": 31.75,
+                "y": -1.4,
+                "z": -36.5
+              },
+              "max": {
+                "x": 38.25,
+                "y": -0.02499999999999991,
+                "z": -33.5
+              }
+            },
+            "inside": true,
+            "false_footholds": []
+          }
+        ]
+      },
+      "checks": {
+        "exact_registry_prop_and_fixed_box": true,
+        "registry_hash_matches_when_pinned": true,
+        "actual_a2_count": true,
+        "all_actual_origins_on_water_plane": true,
+        "floor_at_zero": true,
+        "source_inside_planning_box": true,
+        "static_opaque_vertex_colour_pbr": true,
+        "triangle_budget": true,
+        "adapter_attached_every_instance": true,
+        "every_rotation_scale_and_a2_placement_inside_box": true,
+        "no_false_footholds_in_actual_a2": true,
+        "tower_sheet_height": true,
+        "bollard_height": true,
+        "stand_height": true,
+        "boat_height_and_waterline": true
+      }
+    }
+  }
+}

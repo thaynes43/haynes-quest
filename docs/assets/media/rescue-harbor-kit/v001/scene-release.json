@@ -1,0 +1,37 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "blender_instance": "blender-authoring (instance 1)",
+  "released_utc": "2026-09-29T04:44:51.997495+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "saved_live_scene": "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "52238c865ce41978107016abbbbdf5d2a674c27a2c1f70fe3a994b2193818ddd",
+  "editable_master": "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/rescue-harbor-kit.blend",
+  "editable_master_sha256": "24316102872500fb48729b97b0453cb4369a16b3c858f0622d18eb935a5fb74d",
+  "sheet_scene_sha256": "none",
+  "glb_sha256": {
+    "lookout-tower-facade": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+    "pier-bollard": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+    "rescue-buoy-stand": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+    "small-boat": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4"
+  },
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "prior_scene_files_unchanged": {
+    "prior_scene_file": {
+      "path": "/workspace/haynes-quest/family-eras/playroom-kit/v001/live-scene-release.blend",
+      "sha256_at_claim": "111a9a5ec70272c0b037ed0f2c50cc75fc8067287f61d50e2947948d3d16826f",
+      "sha256_now": "111a9a5ec70272c0b037ed0f2c50cc75fc8067287f61d50e2947948d3d16826f",
+      "unchanged": true
+    }
+  },
+  "failure": null,
+  "scope": "Awaiting Tom's review \u00b7 used in the family release. Candidate technical delivery only; the coordinator owns final integration, publication and deployment. No physical-device acceptance."
+}
