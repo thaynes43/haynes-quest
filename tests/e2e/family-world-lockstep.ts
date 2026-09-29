@@ -1279,6 +1279,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     };
     const counted = { blackouts: 0, watcherMoves: 0, watcherCreaks: 0, jumpScares: 0 };
     const insideScriptedSpots = new Map<string, boolean>();
+    const capturedLunges = new Set<string>();
     let lastLive: Live = opening;
     /** While the spawn watcher probe runs, it takes the watcher screenshots itself. */
     let probing = false;
@@ -1367,9 +1368,11 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
           }
         }
       }
-      if (!scare.shots["04-jump-scare-lunge"] && state.lunge && state.lunge.progress >= 0.25) {
-        await scareShot("04-jump-scare-lunge");
-        Object.assign(scare.shots["04-jump-scare-lunge"]!, { encounterId: state.lunge.encounterId });
+      if (state.lunge && state.lunge.progress >= 0.25 && !capturedLunges.has(state.lunge.encounterId)) {
+        const name = capturedLunges.size === 0 ? "04-jump-scare-lunge" : `04-jump-scare-lunge-${capturedLunges.size + 1}`;
+        await scareShot(name);
+        Object.assign(scare.shots[name]!, { encounterId: state.lunge.encounterId });
+        capturedLunges.add(state.lunge.encounterId);
       }
     };
     if (report.scare.live > 0) await scareShot("01-dark-room");
