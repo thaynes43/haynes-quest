@@ -302,7 +302,6 @@
       "host": "haynes-quest-playtest.haynesops.com",
       "imageId": "ghcr.io/thaynes43/haynes-quest@sha256:5f526911e856989d3ef9930a4e7ef1076fe86633dd6c833c8ca2d33cf39b2a41",
       "fixtureIsolatedFromFamilyData": true,
-      "harnessSourceCommit": "5c502c16e4c10930431c5a986f4e7d2a58481b16",
       "harnessSourcePath": "tests/e2e/family-world-lockstep.ts",
       "harnessSourceSha256": "458091df54df32c582f05e0ec8d65cee4241fcd78321dc70375df65cf11e30a5",
       "drawingSuppressedBetweenScreenshotsInCompleteRun": true,
