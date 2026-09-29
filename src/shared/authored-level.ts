@@ -78,7 +78,9 @@ export const AUTHORED_REQUIRED_ENCOUNTER_SLOTS = [
   "ordinary-4",
   "boss",
 ] as const;
-export const AUTHORED_BONUS_ENCOUNTER_SLOTS = ["bonus-1"] as const;
+export const AUTHORED_BONUS_ENCOUNTER_SLOTS = [
+  "bonus-1", "bonus-2", "bonus-3", "bonus-4",
+] as const;
 export const AUTHORED_ENCOUNTER_SLOTS = [
   ...AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
   ...AUTHORED_BONUS_ENCOUNTER_SLOTS,
@@ -703,7 +705,12 @@ const authoredLevelAnchorsSchema = z
 const authoredLevelV3AnchorsSchema = authoredLevelAnchorsSchema
   .extend({
     encounters: authoredLevelAnchorsSchema.shape.encounters
-      .extend({ "bonus-1": encounterAnchorSchema.optional() })
+      .extend({
+        "bonus-1": encounterAnchorSchema.optional(),
+        "bonus-2": encounterAnchorSchema.optional(),
+        "bonus-3": encounterAnchorSchema.optional(),
+        "bonus-4": encounterAnchorSchema.optional(),
+      })
       .strict(),
   })
   .strict();
@@ -2155,9 +2162,10 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
   const firstFight = Math.min(...ordinaryIndexes);
   const boss = document.anchors.encounters.boss;
   const bossIndex = indexOf(boss);
-  const bonus = document.anchors.encounters["bonus-1"];
-  if (bonus) {
-    const path = '$.anchors.encounters["bonus-1"]';
+  for (const slot of AUTHORED_BONUS_ENCOUNTER_SLOTS) {
+    const bonus = document.anchors.encounters[slot];
+    if (!bonus) continue;
+    const path = `$.anchors.encounters[${JSON.stringify(slot)}]`;
     const bonusMainIndex = mainIndex.get(bonus.platformId);
     if (bonusMainIndex !== undefined && bonusMainIndex > bossIndex)
       issue(

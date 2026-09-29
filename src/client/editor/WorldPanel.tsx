@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  AUTHORED_BONUS_ENCOUNTER_SLOTS,
   authoredScareLevel,
   type AuthoredEncounterAnchor,
   type AuthoredEncounterSlot,
@@ -81,10 +82,12 @@ export interface WorldPanelProps {
     candidate: LevelEditorEnemyCandidate,
   ): boolean;
   onAddBonusEncounter(
+    slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number],
     anchor: AuthoredEncounterAnchor,
     reference: LevelEditorEncounterReference,
   ): boolean;
-  onRemoveBonusEncounter(): void;
+  onRemoveBonusEncounter(slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number]): void;
+  onSetBossPrerequisite(defeats: number): void;
 }
 
 function visibleCatalogEntry(
@@ -107,7 +110,9 @@ function selectedReferenceValue(reference: LevelEditorEncounterReference): strin
 
 function encounterLabel(slot: AuthoredEncounterSlot): string {
   if (slot === "boss") return "Boss";
-  return slot === "bonus-1" ? "Optional enemy" : `Encounter ${slot.slice(-1)}`;
+  return slot.startsWith("bonus-")
+    ? slot === "bonus-1" ? "Optional enemy" : `Optional enemy ${slot.slice(-1)}`
+    : `Encounter ${slot.slice(-1)}`;
 }
 
 function suggestedCandidateId(name: string): string {
@@ -245,15 +250,17 @@ function CandidateForm({
 }
 
 function BonusEncounterForm({
+  slot,
   project,
   chapter,
   periodId,
   onAdd,
 }: {
+  slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number];
   project: LevelEditorProjectV2;
   chapter: LevelEditorChapterV2;
   periodId: ParodyPeriodId;
-  onAdd(anchor: AuthoredEncounterAnchor, reference: LevelEditorEncounterReference): boolean;
+  onAdd(slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number], anchor: AuthoredEncounterAnchor, reference: LevelEditorEncounterReference): boolean;
 }) {
   const mainPathIds = new Set(chapter.level.mainPath);
   const branchIds = new Set(chapter.level.branches.flat().filter((id) => !mainPathIds.has(id)));
@@ -314,7 +321,7 @@ function BonusEncounterForm({
           Math.hypot(b.position.x - x, b.position.z - z),
         )[0];
       if (!checkpoint) return;
-      setFailed(!onAdd({
+      setFailed(!onAdd(slot, {
         kind: selected.kind,
         platformId: platform.id,
         checkpointId: checkpoint.id,
@@ -371,6 +378,7 @@ export function WorldPanel({
   onCreateCandidate,
   onAddBonusEncounter,
   onRemoveBonusEncounter,
+  onSetBossPrerequisite,
 }: WorldPanelProps) {
   const [showMore, setShowMore] = useState(false);
   const [candidateSlot, setCandidateSlot] = useState<AuthoredEncounterSlot | null>(null);
@@ -480,13 +488,13 @@ export function WorldPanel({
         <button type="button" className="editor-world-show-more" aria-pressed={showMore} onClick={() => setShowMore((value) => !value)}>
           {showMore ? "Show date matches" : "Show more prepared characters"}
         </button>
-        {([...encounterSlots, ...(chapter.encounterSlots["bonus-1"] ? ["bonus-1" as const] : [])]).map((slot) => {
+        {([...encounterSlots, ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot])]).map((slot) => {
           const role = slot === "boss" ? "boss" : "ordinary";
           const kind = chapter.level.anchors.encounters[slot]?.kind;
           const selected = chapter.encounterSlots[slot];
           if (!kind || !selected) return null;
           const selectedValue = selectedReferenceValue(selected);
-          const prepared = (slot === "bonus-1"
+          const prepared = (slot.startsWith("bonus-")
             ? levelEditorPreparedBonusEnemies(project.catalogVersion)
             : preparedEnemies).filter((entry) =>
             entry.role === role && entry.kind === kind &&
@@ -547,17 +555,29 @@ export function WorldPanel({
             </div>
           );
         })}
-        {chapter.encounterSlots["bonus-1"] ? (
-          <button type="button" className="danger" onClick={onRemoveBonusEncounter}>Remove optional enemy</button>
-        ) : (
+        {AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot]).map((slot) => (
+          <button key={slot} type="button" className="danger" onClick={() => onRemoveBonusEncounter(slot)}>
+            {slot === "bonus-1" ? "Remove optional enemy" : `Remove optional enemy ${slot.slice(-1)}`}
+          </button>
+        ))}
+        {AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) => !chapter.encounterSlots[slot]) && (
           <BonusEncounterForm
-            key={chapter.chapterId}
+            key={`${chapter.chapterId}:${AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) => !chapter.encounterSlots[slot])}`}
+            slot={AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) => !chapter.encounterSlots[slot])!}
             project={project}
             chapter={chapter}
             periodId={periodId}
             onAdd={onAddBonusEncounter}
           />
         )}
+        <label className="editor-field">
+          <span>Ordinary wins before boss</span>
+          <select value={chapter.bossPrerequisiteDefeats ?? 0} onChange={(event) => onSetBossPrerequisite(Number(event.target.value))}>
+            {Array.from({ length: 5 }, (_, defeats) => (
+              <option key={defeats} value={defeats}>{defeats}</option>
+            ))}
+          </select>
+        </label>
       </section>
     </div>
   );

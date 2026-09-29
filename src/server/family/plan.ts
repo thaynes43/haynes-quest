@@ -115,7 +115,7 @@ export function buildFamilyWorldPlan(input: BuildFamilyPlanInput): BuiltFamilyPl
     return {
       ...structuredClone(level),
       optionalEncounterIds: 'optionalEncounterIds' in level
-        ? [...level.optionalEncounterIds] as [] | [string]
+        ? [...level.optionalEncounterIds]
         : [],
       representedEndDate: slots[2].date,
       chapterId: chapter.chapterId,

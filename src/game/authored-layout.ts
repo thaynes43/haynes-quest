@@ -3,6 +3,7 @@ import party from "../shared/levels/besties-playground-v1.json";
 import gardenV2 from "../shared/levels/garden-playground-v2.json";
 import partyV2 from "../shared/levels/besties-playground-v2.json";
 import {
+  AUTHORED_BONUS_ENCOUNTER_SLOTS,
   resolveAuthoredLevelDocument,
   type AuthoredEncounterSlot,
   type ResolvedAuthoredLevel,
@@ -82,13 +83,18 @@ export function authoredLevelLayout(
   );
   const optionalIds = active.optionalEncounterIds ?? [];
   const optionalSet = new Set(optionalIds);
+  const expectedOptionalIds = AUTHORED_BONUS_ENCOUNTER_SLOTS
+    .map((slot) => `${active.id}-encounter-${slot}`)
+    .filter((id) => optionalSet.has(id));
   const requiredOrdinary = ordinary.filter((enemy) => !optionalSet.has(enemy.id));
   if (
     requiredOrdinary.length !== 4 ||
-    optionalIds.length > 1 ||
+    optionalIds.length > 4 ||
+    optionalIds.some((id, index) => id !== expectedOptionalIds[index]) ||
     optionalSet.size !== optionalIds.length ||
     optionalIds.some((id) => !ordinary.some((enemy) => enemy.id === id)) ||
-    Boolean(anchors.encounters["bonus-1"]) !== (optionalIds.length === 1) ||
+    AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) =>
+      Boolean(anchors.encounters[slot]) !== optionalSet.has(`${active.id}-encounter-${slot}`)) ||
     active.encounters.filter((enemy) => enemy.role === "boss").length !== 1
   ) {
     throw new Error("Authored encounter slots do not match the frozen roster");
@@ -99,7 +105,8 @@ export function authoredLevelLayout(
         enemy.role === "boss"
           ? "boss"
           : optionalSet.has(enemy.id)
-            ? "bonus-1"
+            ? (AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) =>
+                enemy.id === `${active.id}-encounter-${slot}`)!)
             : (`ordinary-${requiredOrdinary.indexOf(enemy) + 1}` as AuthoredEncounterSlot);
       const binding = anchors.encounters[slot];
       if (!binding || binding.kind !== enemy.kind) {

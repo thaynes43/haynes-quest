@@ -78,6 +78,33 @@ describe("authored level layout", () => {
     );
     expect(() => authoredLevelLayout(save, { ...withBonus, optionalEncounterIds: [] }, resolver))
       .toThrow("Authored encounter slots do not match");
+
+    const bonus2Id = "rat-casino-v2-encounter-bonus-2";
+    const bonus2Anchor = {
+      ...route.anchors.encounters["bonus-1"]!,
+      position: { ...route.anchors.encounters["bonus-1"]!.position, x: 6 },
+    };
+    const twoBonuses = {
+      ...withBonus,
+      optionalEncounterIds: [bonusId, bonus2Id],
+      encounters: [
+        ...withBonus.encounters,
+        { ...active.encounters[0]!, id: bonus2Id, kind: bonus2Anchor.kind },
+      ],
+    };
+    const expanded = authoredLevelLayout(save, twoBonuses, authoredLevelResolverFor({
+      "rat-casino-v2": {
+        ...route,
+        anchors: { ...route.anchors, encounters: {
+          ...route.anchors.encounters, "bonus-2": bonus2Anchor,
+        } },
+      },
+    }))!;
+    expect(expanded.encounters.find((enemy) => enemy.id === bonus2Id)?.position)
+      .toEqual(bonus2Anchor.position);
+    expect(() => authoredLevelLayout(save, {
+      ...twoBonuses, optionalEncounterIds: [bonus2Id, bonusId],
+    }, resolver)).toThrow("Authored encounter slots do not match");
   });
 
   it("binds the two minor memories and major memory by explicit role", () => {

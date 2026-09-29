@@ -20,6 +20,9 @@ export const EDITOR_ANCHOR_SLOTS = [
   "encounter.ordinary-3",
   "encounter.ordinary-4",
   "encounter.bonus-1",
+  "encounter.bonus-2",
+  "encounter.bonus-3",
+  "encounter.bonus-4",
   "encounter.boss",
   "friendly.friendly-1",
   "friendly.friendly-2",
@@ -34,8 +37,10 @@ export function editorAnchorSlotsFor(
 ): readonly EditorAnchorSlot[] {
   return EDITOR_ANCHOR_SLOTS.filter(
     (slot) =>
-      slot !== "encounter.bonus-1" ||
-      Boolean(document.anchors.encounters["bonus-1"]),
+      !slot.startsWith("encounter.bonus-") ||
+      Boolean(document.anchors.encounters[
+        slot.slice("encounter.".length) as "bonus-1" | "bonus-2" | "bonus-3" | "bonus-4"
+      ]),
   );
 }
 
@@ -101,8 +106,10 @@ export function anchorForSelection(
 ): AuthoredAnchor | AuthoredEncounterAnchor | null {
   if (selection?.type !== "anchor") return null;
   if (
-    selection.slot === "encounter.bonus-1" &&
-    !document.anchors.encounters["bonus-1"]
+    selection.slot.startsWith("encounter.bonus-") &&
+    !document.anchors.encounters[
+      selection.slot.slice("encounter.".length) as "bonus-1" | "bonus-2" | "bonus-3" | "bonus-4"
+    ]
   ) return null;
   return anchorForSlot(document, selection.slot);
 }
@@ -133,6 +140,9 @@ export function labelForAnchor(slot: EditorAnchorSlot): string {
     "encounter.ordinary-3": "Enemy · Ordinary three",
     "encounter.ordinary-4": "Enemy · Ordinary four",
     "encounter.bonus-1": "Enemy · Optional bonus",
+    "encounter.bonus-2": "Enemy · Optional bonus two",
+    "encounter.bonus-3": "Enemy · Optional bonus three",
+    "encounter.bonus-4": "Enemy · Optional bonus four",
     "encounter.boss": "Boss",
     "friendly.friendly-1": "Friend one",
     "friendly.friendly-2": "Friend two",

@@ -13,6 +13,7 @@
  */
 import type {
   AuthoredAnchor,
+  AuthoredBonusEncounterSlot,
   AuthoredBouncePadPiece,
   AuthoredCheckpointPiece,
   AuthoredConnection,
@@ -252,8 +253,10 @@ export interface ChapterCommands {
   readonly addBonus: (
     anchor: AuthoredEncounterAnchor,
     encounter: LevelEditorEncounterReference,
+    slot?: AuthoredBonusEncounterSlot,
   ) => LevelEditorCommand;
-  readonly removeBonus: () => LevelEditorCommand;
+  readonly removeBonus: (slot?: AuthoredBonusEncounterSlot) => LevelEditorCommand;
+  readonly bossPrerequisite: (defeats: number) => LevelEditorCommand;
   readonly add: (piece: AuthoredLevelPiece) => LevelEditorCommand;
   readonly update: (piece: AuthoredLevelPiece) => LevelEditorCommand;
   readonly rename: (pieceId: string, newPieceId: string) => LevelEditorCommand;
@@ -295,13 +298,16 @@ export function chapterCommands(chapterId: string): ChapterCommands {
       slot,
       candidate,
     }),
-    addBonus: (anchor, encounter) => ({
+    addBonus: (anchor, encounter, slot = "bonus-1") => ({
       type: "encounter.bonus.add",
       chapterId,
+      ...(slot === "bonus-1" ? {} : { slot }),
       anchor,
       encounter,
     }),
-    removeBonus: () => ({ type: "encounter.bonus.remove", chapterId }),
+    removeBonus: (slot = "bonus-1") => ({ type: "encounter.bonus.remove", chapterId,
+      ...(slot === "bonus-1" ? {} : { slot }) }),
+    bossPrerequisite: (defeats) => ({ type: "chapter.boss-prerequisite.set", chapterId, defeats }),
     add: (piece) => ({ type: "piece.add", chapterId, piece }),
     // Growth pieces carry no anchors; attachments are never moved implicitly.
     update: (piece) => ({

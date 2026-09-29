@@ -363,7 +363,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
     );
     const scriptedEncounterIds = new Map<string, string>([
       ...ordinary.map((enemy, index) => [`ordinary-${index + 1}`, enemy.id] as const),
-      ...level.encounters.filter((enemy) => optionalIds.has(enemy.id)).map((enemy) => ["bonus-1", enemy.id] as const),
+      ...level.encounters.filter((enemy) => optionalIds.has(enemy.id)).map((enemy) => [
+        enemy.id.slice(`${level.id}-encounter-`.length), enemy.id,
+      ] as const),
       ...level.encounters.filter((enemy) => enemy.role === "boss").map((enemy) => ["boss", enemy.id] as const),
     ]);
     scare = {

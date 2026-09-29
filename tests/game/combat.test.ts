@@ -11,7 +11,26 @@ import {
   type LevelLayout,
 } from "../../src/game/level";
 import type { EnemyFrame } from "../../src/game/types";
+import { bossIsAvailable } from "../../src/shared/encounter-availability";
 import { makeEraSave } from "./fixtures";
+
+describe("frozen boss availability", () => {
+  const ordinary = [
+    { role: "ordinary", defeated: true },
+    { role: "ordinary", defeated: false },
+    { role: "ordinary", defeated: false },
+    { role: "ordinary", defeated: false },
+  ];
+
+  it("requires distinct ordinary wins only when the independent plan opts in", () => {
+    expect(bossIsAvailable("family-world-a1-v7", "independent", undefined, ordinary)).toBe(true);
+    expect(bossIsAvailable("family-world-a1-v7", "independent", 2, ordinary)).toBe(false);
+    expect(bossIsAvailable("family-world-a1-v7", "independent", 2, [
+      ordinary[0]!, { ...ordinary[1]!, defeated: true }, ordinary[2]!, ordinary[3]!,
+    ])).toBe(true);
+    expect(bossIsAvailable("garden-playground-v1", "after-ordinaries", 0, ordinary)).toBe(false);
+  });
+});
 
 function stepMany(
   simulation: EnemySimulation,

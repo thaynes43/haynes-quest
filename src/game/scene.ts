@@ -36,7 +36,7 @@ import {
 import { equipmentArtwork, parodyArtwork } from "./scene-catalog";
 import { EnemyAnimation } from "./enemy-animation";
 import { enemyAttackRange } from "./combat";
-import { bossRequiresOrdinaryDefeats } from "../shared/encounter-availability";
+import { bossIsAvailable } from "../shared/encounter-availability";
 import { growthCameraScale } from "../shared/abilities";
 import { TravelerEquipment } from "./traveler-equipment";
 import {
@@ -1544,12 +1544,11 @@ export class GardenScene {
     const activeLevel = this.save.adventure?.activeLevel;
     const dormant =
       visual.boss &&
-      bossRequiresOrdinaryDefeats(
+      !bossIsAvailable(
         activeLevel?.routeId,
         activeLevel?.bossGate,
-      ) &&
-      activeLevel?.encounters.some(
-        (item) => item.role === "ordinary" && !item.defeated,
+        activeLevel?.bossPrerequisiteDefeats,
+        activeLevel?.encounters ?? [],
       );
     const defeated = enemy.phase === "defeated";
     const animation = visual.animation?.update(enemy, deltaSeconds);

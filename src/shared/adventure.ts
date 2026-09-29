@@ -24,7 +24,7 @@ import {
   selectRouteMemoryLevel,
   type SelectedParodyEncounter,
 } from './parody-selection.js';
-import { bossRequiresOrdinaryDefeats } from './encounter-availability.js';
+import { bossIsAvailable } from './encounter-availability.js';
 import {
   abilitiesAtAge,
   type FamilyWorldAdventurePlanV1,
@@ -109,6 +109,8 @@ interface FrozenEditorWorldLevelPlanBase extends FrozenLevelPlanBase {
   routeId: string;
   representedEndDate: string;
   bossGate: BossGate;
+  /** Absent on published plans, which keep their existing boss availability. */
+  bossPrerequisiteDefeats?: number;
   encounters: FrozenEncounterDefinitionV2[];
 }
 
@@ -121,7 +123,7 @@ export type FrozenEditorWorldLevelPlanV1 = FrozenEditorWorldLevelPlanBase;
  * boss or memory completion gate.
  */
 export interface FrozenEditorWorldLevelPlanV2 extends FrozenEditorWorldLevelPlanBase {
-  optionalEncounterIds: [] | [string];
+  optionalEncounterIds: string[];
 }
 
 export type FrozenEditorWorldLevelPlan =
@@ -815,16 +817,15 @@ function requireCurrentEncounter(
   if (state.encounters[requested.id]?.defeated) {
     throw new AdventureRuleError('ENCOUNTER_NOT_ACTIVE');
   }
-  if (
-    requested.role === 'boss' &&
-    bossRequiresOrdinaryDefeats(
-      'routeId' in level ? level.routeId : undefined,
-      'bossGate' in level ? level.bossGate : undefined,
-    ) &&
-    level.encounters.some(
-      (encounter) => encounter.role === 'ordinary' && !state.encounters[encounter.id]?.defeated,
-    )
-  ) throw new AdventureRuleError('ENCOUNTER_NOT_ACTIVE');
+  if (requested.role === 'boss' && !bossIsAvailable(
+    'routeId' in level ? level.routeId : undefined,
+    'bossGate' in level ? level.bossGate : undefined,
+    'bossPrerequisiteDefeats' in level ? level.bossPrerequisiteDefeats : undefined,
+    level.encounters.map((encounter) => ({
+      role: encounter.role,
+      defeated: state.encounters[encounter.id]?.defeated === true,
+    })),
+  )) throw new AdventureRuleError('ENCOUNTER_NOT_ACTIVE');
   return requested;
 }
 
@@ -861,12 +862,14 @@ function levelView(
   level: FrozenLevelPlan,
   state: AdventureState,
 ): ActiveLevelView {
-  const ordinaryDefeated = level.encounters
-    .filter((encounter) => encounter.role === 'ordinary')
-    .every((encounter) => state.encounters[encounter.id]?.defeated);
-  const bossAvailableWithoutOrdinaries = !bossRequiresOrdinaryDefeats(
+  const bossAvailable = bossIsAvailable(
     'routeId' in level ? level.routeId : undefined,
     'bossGate' in level ? level.bossGate : undefined,
+    'bossPrerequisiteDefeats' in level ? level.bossPrerequisiteDefeats : undefined,
+    level.encounters.map((encounter) => ({
+      role: encounter.role,
+      defeated: state.encounters[encounter.id]?.defeated === true,
+    })),
   );
   return {
     id: level.id,
@@ -878,6 +881,7 @@ function levelView(
     eraYear: level.eraYear,
     ...('periodId' in level ? { periodId: level.periodId, routeId: level.routeId } : {}),
     ...('bossGate' in level ? { bossGate: level.bossGate } : {}),
+    ...('bossPrerequisiteDefeats' in level ? { bossPrerequisiteDefeats: level.bossPrerequisiteDefeats } : {}),
     ...((plan.version === 'editor-world-plan-v2' || plan.version === 'family-world-plan-v1') &&
       'optionalEncounterIds' in level
       ? { optionalEncounterIds: [...level.optionalEncounterIds] }
@@ -900,8 +904,7 @@ function levelView(
         defeated,
         available: !defeated && (
           encounter.role === 'ordinary' ||
-          bossAvailableWithoutOrdinaries ||
-          ordinaryDefeated
+          bossAvailable
         ),
       };
     }),
