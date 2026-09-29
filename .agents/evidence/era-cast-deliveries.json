@@ -2483,6 +2483,184 @@
       },
       "rebasedOnto": "d78e146f6db2db7eb2393ec164baa06536bb71b1",
       "implementationCommit": "fbe8b4428ee9d8d257dfd12d61434e696ec72cd1"
+    },
+    {
+      "assetId": "rooftop-city-kit",
+      "version": "v001",
+      "role": "props",
+      "world": "A",
+      "chapter": 3,
+      "theme": "rooftop",
+      "glb": null,
+      "sha256": null,
+      "heightM": 4.895,
+      "clips": [],
+      "props": [
+        {
+          "id": "water-tower",
+          "glb": "docs/assets/media/rooftop-city-kit/v001/water-tower.glb",
+          "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+          "bytes": 180172,
+          "triangles": 2960,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -1.2999999523162842,
+              0.0,
+              -1.2999999523162842
+            ],
+            "max": [
+              1.2999999523162842,
+              4.894999980926514,
+              1.2999999523162842
+            ]
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -1.4,
+              "y": 0,
+              "z": -1.4
+            },
+            "max": {
+              "x": 1.4,
+              "y": 5,
+              "z": 1.4
+            }
+          }
+        },
+        {
+          "id": "rooftop-ac-unit",
+          "glb": "docs/assets/media/rooftop-city-kit/v001/rooftop-ac-unit.glb",
+          "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+          "bytes": 88880,
+          "triangles": 1496,
+          "materials": 1,
+          "bbox": {
+            "min": [
+              -0.8899999856948853,
+              0.0,
+              -0.6974999904632568
+            ],
+            "max": [
+              0.8899999856948853,
+              1.0299999713897705,
+              0.6974999904632568
+            ]
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -0.9,
+              "y": 0,
+              "z": -0.7
+            },
+            "max": {
+              "x": 0.9,
+              "y": 1.1,
+              "z": 0.7
+            }
+          }
+        },
+        {
+          "id": "crane-hook",
+          "glb": "docs/assets/media/rooftop-city-kit/v001/crane-hook.glb",
+          "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+          "bytes": 43912,
+          "triangles": 880,
+          "materials": 1,
+          "bbox": {
+            "min": [
+              -0.3769734799861908,
+              0.0,
+              -0.31449997425079346
+            ],
+            "max": [
+              0.3769734799861908,
+              1.5861884355545044,
+              0.31449997425079346
+            ]
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            },
+            "max": {
+              "x": 0.5,
+              "y": 1.6,
+              "z": 0.5
+            }
+          }
+        },
+        {
+          "id": "billboard-frame",
+          "glb": "docs/assets/media/rooftop-city-kit/v001/billboard-frame.glb",
+          "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+          "bytes": 122480,
+          "triangles": 1552,
+          "materials": 1,
+          "bbox": {
+            "min": [
+              -2.440000057220459,
+              0.0,
+              -0.23999999463558197
+            ],
+            "max": [
+              2.440000057220459,
+              3.990000009536743,
+              0.23999999463558197
+            ]
+          },
+          "registeredBounds": {
+            "min": {
+              "x": -2.5,
+              "y": 0,
+              "z": -0.25
+            },
+            "max": {
+              "x": 2.5,
+              "y": 4,
+              "z": 0.25
+            }
+          }
+        }
+      ],
+      "bounds": {
+        "convention": "glTF +Y up, front +Z; identity floor-centred roots. All four original planning boxes retained."
+      },
+      "review": "docs/assets/reviews/rooftop-city-kit/v001.md",
+      "manifest": "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json",
+      "master": "docs/assets/media/rooftop-city-kit/v001/rooftop-city-kit.blend",
+      "masterSha256": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+      "ownerReview": "pending",
+      "coordinatorReview": "Reference sheet approved before export; exact GLB comparison and beauty approved September 29 for candidate PR, final checks pending",
+      "gameplayUse": "private-candidate under PRD-004 Q-03",
+      "sceneInstance": "blender-authoring-2",
+      "prMerged": null,
+      "checks": {
+        "khronos": "0 errors and warnings for all four files",
+        "blenderReimport": "passed",
+        "threeAdapter": "50 A3 placements and 32 rotation/scale probes inside unchanged planning boxes; no false footholds",
+        "chromium": "20 exact model views, no page/HTTP/GL errors",
+        "a3Camera": "Full 36-leg route, 5 fights, 3 memories, 0 recoveries; 12 desktop/phone camera-only probes; no page/console/HTTP errors",
+        "focusedTests": "158 passed across Rooftop, A3 and theme registry",
+        "typecheck": "passed",
+        "lint": "passed",
+        "productionBuild": "passed",
+        "strictDocsMedia": "passed",
+        "fullSuite": "running",
+        "catalog": "pending final rebase and serial Chromium audit",
+        "finalVerification": "docs/assets/media/rooftop-city-kit/v001/final-verification.json"
+      },
+      "publication": {
+        "status": "pending coordinator PR review, merge and deployment",
+        "runtimeIntegration": "Exact URLs and hashes replace four rooftop stand-ins. All 50 published A3 placements and planning boxes are unchanged; no template, save or friendly roster edits."
+      },
+      "sceneRelease": {
+        "releasedUtc": "2026-09-29T06:11:06.741969+00:00",
+        "report": "docs/assets/media/rooftop-city-kit/v001/scene-release.json",
+        "predecessorsUnchanged": 78
+      }
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "date": "2026-09-29",
+  "coordinator_decision": "approved for candidate PR, pending final technical checks",
+  "sheet_decision": "approved before production export",
+  "sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+  "exact_model_decision": "all four read clearly and match the approved design",
+  "comparison": "sheet-vs-export.png",
+  "beauty": "kit-beauty.png",
+  "glb_sha256": {
+    "water-tower": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+    "rooftop-ac-unit": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+    "crane-hook": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+    "billboard-frame": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf"
+  },
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "physical_safari": "not tested"
+}

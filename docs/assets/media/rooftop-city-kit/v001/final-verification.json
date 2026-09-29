@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "recorded_utc": "2026-09-29T06:16:18.831027+00:00",
+  "base_commit": "489902a8b0e22bbaaea1e9cd0eb20f365610907c",
+  "tested_scope": "Rooftop kit and registry integration; post-Casita rebase and final catalog audit pending",
+  "owner_exact_version_review": "pending under PRD-004 Q-03",
+  "coordinator_visual_review": "reference and exact export comparison approved September 29",
+  "local_checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "focused_tests": {
+      "passed": 158,
+      "scope": "Rooftop City, A3 and theme registry"
+    },
+    "full_suite": "running",
+    "strict_docs_and_media_links": "pending",
+    "khronos": {
+      "files": 4,
+      "errors": 0,
+      "warnings": 0,
+      "report": "validation.json"
+    },
+    "blender_reimport": {
+      "outcome": "passed",
+      "report": "reimport.json"
+    },
+    "three_adapter": {
+      "outcome": "passed",
+      "actual_a3_placements": 50,
+      "rotation_scale_probes": 32,
+      "report": "three-inspection.json"
+    },
+    "exact_glb_browser_views": {
+      "passed": 20,
+      "report": "stills/browser-inspection.json"
+    },
+    "a3_camera": {
+      "outcome": "passed",
+      "report": "a3-camera/report.json",
+      "route_legs": 36,
+      "fights": 5,
+      "memories": 3,
+      "recoveries": 0,
+      "camera_probes": 12,
+      "screenshots": 19,
+      "errors": 0,
+      "scope": "Full normal-control route plus camera-only drags; no teleport or internal state mutation",
+      "rendering": "Lockstep; software drawing thinned between full captures; server combat input paced by real time"
+    }
+  },
+  "full_catalog_audit": "pending final merged-base rebase",
+  "desktop_phone_static_viewers": "pending",
+  "scene_release": {
+    "instance": "blender-authoring-2",
+    "released_utc": "2026-09-29T06:11:06.741969+00:00",
+    "prior_files_unchanged": 78,
+    "report": "scene-release.json"
+  },
+  "physical_safari": "not tested",
+  "deployment": "pending coordinator PR review, merge and image release"
+}

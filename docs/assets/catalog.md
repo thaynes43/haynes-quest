@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The Magic House garden adds tiled terrace walls, flower planters, patterned doors and butterfly arches. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**71 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**75 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -201,6 +201,54 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 ### World A · Chapter 3
 
 <div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="water-tower" markdown="1">
+
+[![Exact Rooftop City water tower v001 model](media/catalog-thumbnails/v001/ef01f02947f49be3.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rooftop-city-kit/v001.md#water-tower)
+
+### [Rooftop City water tower](reviews/rooftop-city-kit/v001.md#water-tower)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c8cd2666e561d82e.webp" alt="Approved Blender reference sheet of four original Rooftop City props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rooftop-ac-unit" markdown="1">
+
+[![Exact Rooftop City AC unit v001 model](media/catalog-thumbnails/v001/0ade60f9d1a436f4.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rooftop-city-kit/v001.md#rooftop-ac-unit)
+
+### [Rooftop City AC unit](reviews/rooftop-city-kit/v001.md#rooftop-ac-unit)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c8cd2666e561d82e.webp" alt="Approved Blender reference sheet of four original Rooftop City props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="crane-hook" markdown="1">
+
+[![Exact Rooftop City crane hook v001 model](media/catalog-thumbnails/v001/58797632b03f1b11.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rooftop-city-kit/v001.md#crane-hook)
+
+### [Rooftop City crane hook](reviews/rooftop-city-kit/v001.md#crane-hook)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c8cd2666e561d82e.webp" alt="Approved Blender reference sheet of four original Rooftop City props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="billboard-frame" markdown="1">
+
+[![Exact Rooftop City billboard frame v001 model](media/catalog-thumbnails/v001/5cd667e88207be28.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rooftop-city-kit/v001.md#billboard-frame)
+
+### [Rooftop City billboard frame](reviews/rooftop-city-kit/v001.md#billboard-frame)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/c8cd2666e561d82e.webp" alt="Approved Blender reference sheet of four original Rooftop City props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
 
 <div class="catalog-card" data-asset-id="inator-monster" markdown="1">
 

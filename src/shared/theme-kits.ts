@@ -292,28 +292,40 @@ export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze(
     theme: "rooftop",
     bounds: box(1.4, 5, 1.4),
     fallback: { shape: "tank", color: 0x8a5a44, trim: 0x5a6d8c },
-    glb: null,
+    glb: {
+      url: `${media}/rooftop-city-kit/v001/water-tower.glb`,
+      sha256: "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+    },
   },
   {
     id: "rooftop-ac-unit",
     theme: "rooftop",
     bounds: box(0.9, 1.1, 0.7),
     fallback: { shape: "box", color: 0x9aa4b2, trim: 0x5a6d8c },
-    glb: null,
+    glb: {
+      url: `${media}/rooftop-city-kit/v001/rooftop-ac-unit.glb`,
+      sha256: "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+    },
   },
   {
     id: "crane-hook",
     theme: "rooftop",
     bounds: box(0.5, 1.6, 0.5),
     fallback: { shape: "cylinder", color: 0xf2b134, trim: 0x33394a },
-    glb: null,
+    glb: {
+      url: `${media}/rooftop-city-kit/v001/crane-hook.glb`,
+      sha256: "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+    },
   },
   {
     id: "billboard-frame",
     theme: "rooftop",
     bounds: box(2.5, 4, 0.25),
     fallback: { shape: "board", color: 0x2b3350, trim: 0xff4fa3 },
-    glb: null,
+    glb: {
+      url: `${media}/rooftop-city-kit/v001/billboard-frame.glb`,
+      sha256: "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+    },
   },
   {
     id: "stacking-block-tower",

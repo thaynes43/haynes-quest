@@ -1,0 +1,307 @@
+{
+  "normal_route_inputs": true,
+  "camera_only_orbits": true,
+  "internal_state_mutation": false,
+  "probes": [
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-01-spawn-skyline-138-tank-desktop.png",
+      "viewport": "desktop",
+      "target": "skyline-138-tank",
+      "kitPropId": "water-tower",
+      "placement": {
+        "id": "skyline-138-tank",
+        "kitPropId": "water-tower",
+        "position": {
+          "x": 8,
+          "y": 4.79,
+          "z": -39
+        },
+        "rotationY": 3.142,
+        "scale": 0.843
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 3
+      },
+      "grounded": true,
+      "supportId": "launch-deck",
+      "dragPixels": 31
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-01-spawn-skyline-138-tank-phone.png",
+      "viewport": "phone",
+      "target": "skyline-138-tank",
+      "kitPropId": "water-tower",
+      "placement": {
+        "id": "skyline-138-tank",
+        "kitPropId": "water-tower",
+        "position": {
+          "x": 8,
+          "y": 4.79,
+          "z": -39
+        },
+        "rotationY": 3.142,
+        "scale": 0.843
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 3
+      },
+      "grounded": true,
+      "supportId": "launch-deck",
+      "dragPixels": 31
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-sign-pigeon-roof-nz-0-desktop.png",
+      "viewport": "desktop",
+      "target": "sign-pigeon-roof-nz-0",
+      "kitPropId": "billboard-frame",
+      "placement": {
+        "id": "sign-pigeon-roof-nz-0",
+        "kitPropId": "billboard-frame",
+        "position": {
+          "x": 0,
+          "y": 5.2,
+          "z": -35.725
+        },
+        "rotationY": -3.141,
+        "scale": 1.1
+      },
+      "player": {
+        "x": -1.1061287058586031,
+        "y": 6,
+        "z": -29.22604012012736
+      },
+      "grounded": true,
+      "supportId": "pigeon-roof",
+      "dragPixels": 28
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-sign-pigeon-roof-nz-0-phone.png",
+      "viewport": "phone",
+      "target": "sign-pigeon-roof-nz-0",
+      "kitPropId": "billboard-frame",
+      "placement": {
+        "id": "sign-pigeon-roof-nz-0",
+        "kitPropId": "billboard-frame",
+        "position": {
+          "x": 0,
+          "y": 5.2,
+          "z": -35.725
+        },
+        "rotationY": -3.141,
+        "scale": 1.1
+      },
+      "player": {
+        "x": -1.1061287058586031,
+        "y": 6,
+        "z": -29.22604012012736
+      },
+      "grounded": true,
+      "supportId": "pigeon-roof",
+      "dragPixels": 28
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-ac-pigeon-roof-nx-0-desktop.png",
+      "viewport": "desktop",
+      "target": "ac-pigeon-roof-nx-0",
+      "kitPropId": "rooftop-ac-unit",
+      "placement": {
+        "id": "ac-pigeon-roof-nx-0",
+        "kitPropId": "rooftop-ac-unit",
+        "position": {
+          "x": -7.75,
+          "y": 3.8,
+          "z": -29.4
+        },
+        "rotationY": -1.571,
+        "scale": 1
+      },
+      "player": {
+        "x": -1.1061287058586031,
+        "y": 6,
+        "z": -29.22604012012736
+      },
+      "grounded": true,
+      "supportId": "pigeon-roof",
+      "dragPixels": -257
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-ac-pigeon-roof-nx-0-phone.png",
+      "viewport": "phone",
+      "target": "ac-pigeon-roof-nx-0",
+      "kitPropId": "rooftop-ac-unit",
+      "placement": {
+        "id": "ac-pigeon-roof-nx-0",
+        "kitPropId": "rooftop-ac-unit",
+        "position": {
+          "x": -7.75,
+          "y": 3.8,
+          "z": -29.4
+        },
+        "rotationY": -1.571,
+        "scale": 1
+      },
+      "player": {
+        "x": -1.1061287058586031,
+        "y": 6,
+        "z": -29.22604012012736
+      },
+      "grounded": true,
+      "supportId": "pigeon-roof",
+      "dragPixels": -257
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-hook-crane-jib-nz-0-desktop.png",
+      "viewport": "desktop",
+      "target": "hook-crane-jib-nz-0",
+      "kitPropId": "crane-hook",
+      "placement": {
+        "id": "hook-crane-jib-nz-0",
+        "kitPropId": "crane-hook",
+        "position": {
+          "x": -42.9,
+          "y": 6.8,
+          "z": -41.75
+        },
+        "rotationY": -3.141,
+        "scale": 1
+      },
+      "player": {
+        "x": -52.00148385704662,
+        "y": 9.3,
+        "z": -60.037999737031534
+      },
+      "grounded": true,
+      "supportId": "billboard-balcony",
+      "dragPixels": 447
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-hook-crane-jib-nz-0-phone.png",
+      "viewport": "phone",
+      "target": "hook-crane-jib-nz-0",
+      "kitPropId": "crane-hook",
+      "placement": {
+        "id": "hook-crane-jib-nz-0",
+        "kitPropId": "crane-hook",
+        "position": {
+          "x": -42.9,
+          "y": 6.8,
+          "z": -41.75
+        },
+        "rotationY": -3.141,
+        "scale": 1
+      },
+      "player": {
+        "x": -52.00148385704662,
+        "y": 9.3,
+        "z": -60.037999737031534
+      },
+      "grounded": true,
+      "supportId": "billboard-balcony",
+      "dragPixels": 447
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-sign-billboard-balcony-nx-0-desktop.png",
+      "viewport": "desktop",
+      "target": "sign-billboard-balcony-nx-0",
+      "kitPropId": "billboard-frame",
+      "placement": {
+        "id": "sign-billboard-balcony-nx-0",
+        "kitPropId": "billboard-frame",
+        "position": {
+          "x": -58.325,
+          "y": 8.5,
+          "z": -63.05
+        },
+        "rotationY": -1.571,
+        "scale": 1.1
+      },
+      "player": {
+        "x": -52.00148385704662,
+        "y": 9.3,
+        "z": -60.037999737031534
+      },
+      "grounded": true,
+      "supportId": "billboard-balcony",
+      "dragPixels": -188
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-sign-billboard-balcony-nx-0-phone.png",
+      "viewport": "phone",
+      "target": "sign-billboard-balcony-nx-0",
+      "kitPropId": "billboard-frame",
+      "placement": {
+        "id": "sign-billboard-balcony-nx-0",
+        "kitPropId": "billboard-frame",
+        "position": {
+          "x": -58.325,
+          "y": 8.5,
+          "z": -63.05
+        },
+        "rotationY": -1.571,
+        "scale": 1.1
+      },
+      "player": {
+        "x": -52.00148385704662,
+        "y": 9.3,
+        "z": -60.037999737031534
+      },
+      "grounded": true,
+      "supportId": "billboard-balcony",
+      "dragPixels": -188
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-03-boss-arena-hero-tank-tower-top-desktop.png",
+      "viewport": "desktop",
+      "target": "hero-tank-tower-top",
+      "kitPropId": "water-tower",
+      "placement": {
+        "id": "hero-tank-tower-top",
+        "kitPropId": "water-tower",
+        "position": {
+          "x": 31.6,
+          "y": 13.998,
+          "z": -135.203
+        },
+        "rotationY": 1.571,
+        "scale": 1.002
+      },
+      "player": {
+        "x": 21.788433829696533,
+        "y": 15,
+        "z": -122.68210105090192
+      },
+      "grounded": true,
+      "supportId": "tower-top",
+      "dragPixels": 111
+    },
+    {
+      "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-03-boss-arena-hero-tank-tower-top-phone.png",
+      "viewport": "phone",
+      "target": "hero-tank-tower-top",
+      "kitPropId": "water-tower",
+      "placement": {
+        "id": "hero-tank-tower-top",
+        "kitPropId": "water-tower",
+        "position": {
+          "x": 31.6,
+          "y": 13.998,
+          "z": -135.203
+        },
+        "rotationY": 1.571,
+        "scale": 1.002
+      },
+      "player": {
+        "x": 21.788433829696533,
+        "y": 15,
+        "z": -122.68210105090192
+      },
+      "grounded": true,
+      "supportId": "tower-top",
+      "dragPixels": 111
+    }
+  ]
+}

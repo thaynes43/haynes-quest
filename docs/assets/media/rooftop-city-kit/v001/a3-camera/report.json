@@ -1,0 +1,553 @@
+{
+  "chapterId": "family-a3",
+  "routeId": "family-a3-rooftop",
+  "name": "Hero City",
+  "theme": "rooftop",
+  "startAge": 5,
+  "growthMoves": [
+    "jump",
+    "high-jump",
+    "double-jump"
+  ],
+  "appearanceStage": "child",
+  "mediaFailed": 0,
+  "identities": [
+    {
+      "id": "family-a3-rooftop-encounter-1",
+      "role": "ordinary",
+      "asset": "putty-grunt"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-2",
+      "role": "ordinary",
+      "asset": "lab-robot"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-3",
+      "role": "ordinary",
+      "asset": "putty-grunt"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-4",
+      "role": "ordinary",
+      "asset": "lab-robot"
+    },
+    {
+      "id": "family-a3-rooftop-boss",
+      "role": "boss",
+      "asset": "inator-monster"
+    },
+    {
+      "id": "family-a3-rooftop-encounter-bonus-1",
+      "role": "ordinary",
+      "asset": "lab-robot"
+    }
+  ],
+  "legs": [
+    {
+      "leg": "launch-deck->freight-elevator",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "freight-elevator->elevator-roof",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "elevator-roof->fire-escape-1",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "fire-escape-1->fire-escape-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "fire-escape-2->pigeon-roof",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pigeon-roof->chimney-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-1->chimney-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-2->chimney-3",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-3->chimney-4",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney-4->water-tower-roof",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "water-tower-roof->gondola-1",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "gondola-1->gondola-2",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "gondola-2->satellite-roof",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "satellite-roof->skylight-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "skylight-1->skylight-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "skylight-2->vent-ledge",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "vent-ledge->ac-vent-pad",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "ac-vent-pad->billboard-balcony",
+      "attempt": 1,
+      "mode": "bounce",
+      "planned": "launched",
+      "ok": true
+    },
+    {
+      "leg": "billboard-balcony->neon-walk",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "neon-walk->roller-catwalk",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "wait 3.00s, lateral 1.2",
+      "ok": true
+    },
+    {
+      "leg": "roller-catwalk->pigeon-coop-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pigeon-coop-1->pigeon-coop-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pigeon-coop-2->putty-plaza",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "putty-plaza->scaffold-1",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "scaffold-1->scaffold-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "scaffold-2->crane-walk",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "crane-walk->scaffold-deck",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "detour 2",
+      "ok": true
+    },
+    {
+      "leg": "scaffold-deck->window-cradle",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "window-cradle->antenna-1",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "antenna-1->antenna-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "antenna-2->antenna-3",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "antenna-3->tower-porch",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-porch->tower-ledge-1",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-ledge-1->tower-ledge-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-ledge-2->tower-top",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "double-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-top->helipad",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    }
+  ],
+  "recoveries": 0,
+  "fights": [
+    {
+      "slot": "ordinary-1",
+      "encounterId": "family-a3-rooftop-encounter-1",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-2",
+      "encounterId": "family-a3-rooftop-encounter-2",
+      "role": "ordinary",
+      "attacks": 3,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-3",
+      "encounterId": "family-a3-rooftop-encounter-3",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-4",
+      "encounterId": "family-a3-rooftop-encounter-4",
+      "role": "ordinary",
+      "attacks": 3,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "boss",
+      "encounterId": "family-a3-rooftop-boss",
+      "role": "boss",
+      "attacks": 4,
+      "bashes": 0,
+      "defeats": 0
+    }
+  ],
+  "pickups": [
+    "attack-tool",
+    "guard-tool"
+  ],
+  "memories": [
+    {
+      "slot": "minor-one",
+      "id": "family-a3-rooftop-memory-minor-one"
+    },
+    {
+      "slot": "minor-two",
+      "id": "family-a3-rooftop-memory-minor-two"
+    },
+    {
+      "slot": "major",
+      "id": "family-a3-rooftop-memory-major"
+    }
+  ],
+  "completed": true,
+  "stoppedAt": null,
+  "completion": {
+    "ageYears": 9,
+    "phase": "exploring",
+    "currentLevelId": "family-a4-casino",
+    "completedLevelIds": [
+      "family-a1-clubhouse",
+      "family-a2-harbor",
+      "family-a3-rooftop"
+    ],
+    "recoveredIds": [
+      "family-a1-clubhouse-memory-minor-one",
+      "family-a1-clubhouse-memory-minor-two",
+      "family-a1-clubhouse-memory-major",
+      "family-a2-harbor-memory-minor-one",
+      "family-a2-harbor-memory-minor-two",
+      "family-a2-harbor-memory-major",
+      "family-a3-rooftop-memory-minor-one",
+      "family-a3-rooftop-memory-minor-two",
+      "family-a3-rooftop-memory-major"
+    ]
+  },
+  "screenshots": [
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-01-spawn.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-01-spawn-skyline-138-tank-desktop.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-01-spawn-skyline-138-tank-phone.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-scare-01-dark-room.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-sign-pigeon-roof-nz-0-desktop.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-sign-pigeon-roof-nz-0-phone.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-ac-pigeon-roof-nx-0-desktop.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-first-ordinary-fight-ac-pigeon-roof-nx-0-phone.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-hook-crane-jib-nz-0-desktop.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-hook-crane-jib-nz-0-phone.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-sign-billboard-balcony-nx-0-desktop.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-02-mid-climb-sign-billboard-balcony-nx-0-phone.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-scare-03-watcher-moved.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-03-boss-arena.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-03-boss-arena-hero-tank-tower-top-desktop.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-03-boss-arena-hero-tank-tower-top-phone.png",
+    "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-04-finish.png"
+  ],
+  "frames": {
+    "frames": 3667,
+    "fineFrames": 2986,
+    "pageMs": 93280,
+    "wallMs": 45616
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "media": {
+    "/studio/assets/media/traveler-child/v001/traveler-child.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/block-tower.glb": 200,
+    "/studio/assets/media/rooftop-city-kit/v001/water-tower.glb": 200,
+    "/studio/assets/media/rooftop-city-kit/v001/billboard-frame.glb": 200,
+    "/studio/assets/media/rooftop-city-kit/v001/crane-hook.glb": 200,
+    "/studio/assets/media/midnight-arcade-kit/v001/arcade-cabinet.glb": 200,
+    "/studio/assets/media/rooftop-city-kit/v001/rooftop-ac-unit.glb": 200,
+    "/studio/assets/media/midnight-arcade-kit/v001/joystick-bollard.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/safety-rail.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/windup-lantern.glb": 200,
+    "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb": 200,
+    "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": 200,
+    "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": 200,
+    "/studio/assets/media/blockling/v001/blockling.glb": 200,
+    "/studio/assets/media/signal-moth/v001/signal-moth.glb": 200,
+    "/studio/assets/media/buffer-baron/v001/buffer-baron.glb": 200,
+    "/studio/assets/media/putty-grunt/v001/putty-grunt.glb": 200,
+    "/studio/assets/media/lab-robot/v001/lab-robot.glb": 200,
+    "/studio/assets/media/inator-monster/v001/inator-monster.glb": 200,
+    "/studio/assets/media/rat-casino-kit/v001/slot-cabinet.glb": 200,
+    "/studio/assets/media/rat-casino-kit/v001/marquee-arch.glb": 200,
+    "/studio/assets/media/rat-casino-kit/v001/roulette-dais.glb": 200,
+    "/studio/assets/media/golden-after-hours-rat/v001/golden-after-hours-rat.glb": 200,
+    "/studio/assets/media/loop-dancer/v001/loop-dancer.glb": 200,
+    "/studio/assets/media/prism-mimic/v001/prism-mimic.glb": 200,
+    "/studio/assets/media/trendweaver/v001/trendweaver.glb": 200,
+    "/studio/assets/media/chick-flia/v001/chick-flia.glb": 200,
+    "/studio/assets/media/jackrabbit-drummer/v001/jackrabbit-drummer.glb": 200,
+    "/studio/assets/media/fox-card-shark/v001/fox-card-shark.glb": 200,
+    "/studio/assets/media/moth-projectionist/v001/moth-projectionist.glb": 200,
+    "/studio/assets/media/rat-pit-boss/v002/rat-pit-boss.glb": 200,
+    "/studio/assets/media/radio-host-showman/v001/radio-host-showman.glb": 200
+  },
+  "scare": {
+    "declared": 1,
+    "expected": 1,
+    "live": 1,
+    "blackouts": 0,
+    "flickers": 0,
+    "watcherMoves": 0,
+    "watcherCreaks": 0,
+    "jumpScares": 0,
+    "events": [
+      {
+        "event": "watcher-move",
+        "time": 1.92,
+        "count": 1,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-4",
+            "step": 1.29
+          }
+        ]
+      },
+      {
+        "event": "watcher-move",
+        "time": 2.97,
+        "count": 2,
+        "shifted": []
+      },
+      {
+        "event": "watcher-move",
+        "time": 3.45,
+        "count": 3,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-2",
+            "step": 1.24
+          }
+        ]
+      },
+      {
+        "event": "watcher-move",
+        "time": 25.2,
+        "count": 4,
+        "shifted": []
+      },
+      {
+        "event": "watcher-move",
+        "time": 60.98,
+        "count": 5,
+        "shifted": [
+          {
+            "id": "family-a3-rooftop-encounter-4",
+            "step": 1.03
+          }
+        ]
+      },
+      {
+        "event": "watcher-creak",
+        "time": 62.5,
+        "count": 1,
+        "id": "family-a3-rooftop-encounter-3",
+        "shiftFromSpawn": 0,
+        "distance": 15.12
+      },
+      {
+        "event": "watcher-move",
+        "time": 64.58,
+        "count": 6,
+        "shifted": []
+      },
+      {
+        "event": "watcher-creak",
+        "time": 73.92,
+        "count": 2,
+        "id": "family-a3-rooftop-encounter-4",
+        "shiftFromSpawn": 1.34,
+        "distance": 6.51
+      }
+    ],
+    "closestSpots": {},
+    "shots": {
+      "01-dark-room": {
+        "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-scare-01-dark-room.png",
+        "luma": 103.9,
+        "time": 1.9
+      },
+      "03-watcher-moved": {
+        "file": "/home/dev/work/hq-rooftop-city-kit/docs/assets/media/rooftop-city-kit/v001/a3-camera/family-a3-scare-03-watcher-moved.png",
+        "luma": 83.9,
+        "time": 73.92,
+        "watcher": "family-a3-rooftop-encounter-4",
+        "shiftFromSpawn": 1.34,
+        "distance": 6.51
+      }
+    }
+  },
+  "wallSeconds": 64,
+  "failure": null
+}

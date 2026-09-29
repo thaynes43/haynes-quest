@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 102,
+    "entries": 106,
     "reference_sheet_entries": 8,
-    "model_entries": 73,
-    "model_files": 73,
+    "model_entries": 77,
+    "model_files": 77,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 71,
+    "completed_model_candidates": 75,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -4998,6 +4998,174 @@
         "docs/assets/media/casita-kit/v001/three-inspection.json": "8a5e786d9e6d05670fe7509d51af021369738587dfeb198938ce6801ec89f3cf",
         "docs/assets/media/casita-kit/v001/validation.json": "6c6cfc0aececf7180892c727e060bdaa39cdf1be0e339bcb7ae8f7fd82d05875",
         "docs/assets/media/casita-kit/v001/visual-review.json": "d7bdaf6dd3c21a2fb9b18410fb13543dd45ddfbaa8ac4fe517f55eb3e7c1d62e"
+      }
+    },
+    {
+      "id": "water-tower",
+      "title": "Rooftop City water tower",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rooftop-city-kit/v001.md#water-tower",
+      "concept_images": [
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-beauty.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-front.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-side.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-back.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rooftop-city-kit/v001/water-tower.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rooftop-city-kit/v001/final-verification.json": "ab677814261dfcee666daac20a8309a4bba82fc72009b21f11d2093b57e1e90e",
+        "docs/assets/media/rooftop-city-kit/v001/provenance.json": "0001e8c8bae2fd5bbaeb0bfd7ec66387cc5c6474b29ed59fbd08ca949c98a11d",
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "docs/assets/media/rooftop-city-kit/v001/reimport.json": "29347c45788bc5aed151254d3b25f044bfbea5b364bb32470747a39908b6a63b",
+        "docs/assets/media/rooftop-city-kit/v001/rooftop-city-kit.blend": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+        "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json": "d53a038ed611629d031cd956357c5d179c25f0b79927d2602d3cc48af356d54a",
+        "docs/assets/media/rooftop-city-kit/v001/source.json": "6862d44ccb8bdd0419f5f313e7fdb88f1c8695f9c6b89832b8be3be2742f57f8",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-back.png": "990862e74524923f6990071b8b730f0aa75c40a3c93948edcfe6f7ec51f7fb23",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-beauty.png": "32ad068eef61df188c2418105d30f8ba33af01a7494803490c56fa26b5b6e764",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-front.png": "6f20c5c2cbfb025ae030c67f8ac842409208546b662e239a1e3a6e5aff58b872",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-side.png": "d8834d6b21f3aa1ad69c3511455be38768848fa969a3391550c56eed7a994b51",
+        "docs/assets/media/rooftop-city-kit/v001/stills/water-tower-threequarter.png": "64ecbc2abd943e82a50f05e0614a01e01be155ed03874fd98996ddcd1708af73",
+        "docs/assets/media/rooftop-city-kit/v001/three-inspection.json": "6a912983075496e498fa04383acc3b422930f9125ada7a4cde91e6db38b7f68c",
+        "docs/assets/media/rooftop-city-kit/v001/validation.json": "7a6333b888b2c420f298151cf0ea94da3b87388d70e16a3615de8f9a9c255307",
+        "docs/assets/media/rooftop-city-kit/v001/visual-review.json": "53836682f1d32ab9725accd4c02434e918205f7e397393d647ae44cb0e4c1c9b",
+        "docs/assets/media/rooftop-city-kit/v001/water-tower.glb": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f"
+      }
+    },
+    {
+      "id": "rooftop-ac-unit",
+      "title": "Rooftop City AC unit",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rooftop-city-kit/v001.md#rooftop-ac-unit",
+      "concept_images": [
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-beauty.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-front.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-side.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-back.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rooftop-city-kit/v001/rooftop-ac-unit.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rooftop-city-kit/v001/final-verification.json": "ab677814261dfcee666daac20a8309a4bba82fc72009b21f11d2093b57e1e90e",
+        "docs/assets/media/rooftop-city-kit/v001/provenance.json": "0001e8c8bae2fd5bbaeb0bfd7ec66387cc5c6474b29ed59fbd08ca949c98a11d",
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "docs/assets/media/rooftop-city-kit/v001/reimport.json": "29347c45788bc5aed151254d3b25f044bfbea5b364bb32470747a39908b6a63b",
+        "docs/assets/media/rooftop-city-kit/v001/rooftop-ac-unit.glb": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+        "docs/assets/media/rooftop-city-kit/v001/rooftop-city-kit.blend": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+        "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json": "d53a038ed611629d031cd956357c5d179c25f0b79927d2602d3cc48af356d54a",
+        "docs/assets/media/rooftop-city-kit/v001/source.json": "6862d44ccb8bdd0419f5f313e7fdb88f1c8695f9c6b89832b8be3be2742f57f8",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-back.png": "98c0f9d543aaaef8a6a26fbe0d56f3464133201ced292808a4c4069f21830580",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-beauty.png": "7a0ebbe2142f347fd55891fd132da6c18bbb4d496b7402a8aa3ad7b771ea95da",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-front.png": "0f30e0c289a75357ee1cf4abd3e28e96f9f428ee604a0f34434d40d9d970c22b",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-side.png": "5c3f800decb05754cc3c3c534d97e02cd3d32f242c93c081a35c7210d8b04306",
+        "docs/assets/media/rooftop-city-kit/v001/stills/rooftop-ac-unit-threequarter.png": "57546dc6811b9c308dcd0d9c9690b8f2f3ab9289dcfb80fcbb8c5c139eb6a068",
+        "docs/assets/media/rooftop-city-kit/v001/three-inspection.json": "6a912983075496e498fa04383acc3b422930f9125ada7a4cde91e6db38b7f68c",
+        "docs/assets/media/rooftop-city-kit/v001/validation.json": "7a6333b888b2c420f298151cf0ea94da3b87388d70e16a3615de8f9a9c255307",
+        "docs/assets/media/rooftop-city-kit/v001/visual-review.json": "53836682f1d32ab9725accd4c02434e918205f7e397393d647ae44cb0e4c1c9b"
+      }
+    },
+    {
+      "id": "crane-hook",
+      "title": "Rooftop City crane hook",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rooftop-city-kit/v001.md#crane-hook",
+      "concept_images": [
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-beauty.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-front.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-side.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-back.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rooftop-city-kit/v001/crane-hook.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rooftop-city-kit/v001/crane-hook.glb": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+        "docs/assets/media/rooftop-city-kit/v001/final-verification.json": "ab677814261dfcee666daac20a8309a4bba82fc72009b21f11d2093b57e1e90e",
+        "docs/assets/media/rooftop-city-kit/v001/provenance.json": "0001e8c8bae2fd5bbaeb0bfd7ec66387cc5c6474b29ed59fbd08ca949c98a11d",
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "docs/assets/media/rooftop-city-kit/v001/reimport.json": "29347c45788bc5aed151254d3b25f044bfbea5b364bb32470747a39908b6a63b",
+        "docs/assets/media/rooftop-city-kit/v001/rooftop-city-kit.blend": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+        "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json": "d53a038ed611629d031cd956357c5d179c25f0b79927d2602d3cc48af356d54a",
+        "docs/assets/media/rooftop-city-kit/v001/source.json": "6862d44ccb8bdd0419f5f313e7fdb88f1c8695f9c6b89832b8be3be2742f57f8",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-back.png": "8d9793754444b6e820618a3b0ea4d56c7af51be02c1e5ff6623c00eb61b783c0",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-beauty.png": "ce50d009643c4aa11c3cc1107d54114db9da2732f3e4597f765667c1f8938ce1",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-front.png": "451ac0bdb5a0c7138a9953153d2b3f1cb03686652d8fe0ac8d1b2910b729b183",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-side.png": "6a3bf8ae56021ce7ea6c1dc85a7e8334adf0888f6ef842b422a40b62e8609f50",
+        "docs/assets/media/rooftop-city-kit/v001/stills/crane-hook-threequarter.png": "6783c2a90141221e0ba74dca53cb65e39063ac67e2ce5411e7c6e93a2fc71d6b",
+        "docs/assets/media/rooftop-city-kit/v001/three-inspection.json": "6a912983075496e498fa04383acc3b422930f9125ada7a4cde91e6db38b7f68c",
+        "docs/assets/media/rooftop-city-kit/v001/validation.json": "7a6333b888b2c420f298151cf0ea94da3b87388d70e16a3615de8f9a9c255307",
+        "docs/assets/media/rooftop-city-kit/v001/visual-review.json": "53836682f1d32ab9725accd4c02434e918205f7e397393d647ae44cb0e4c1c9b"
+      }
+    },
+    {
+      "id": "billboard-frame",
+      "title": "Rooftop City billboard frame",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/rooftop-city-kit/v001.md#billboard-frame",
+      "concept_images": [
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-beauty.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-front.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-side.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-back.png",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/rooftop-city-kit/v001/billboard-frame.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/rooftop-city-kit/v001/billboard-frame.glb": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+        "docs/assets/media/rooftop-city-kit/v001/final-verification.json": "ab677814261dfcee666daac20a8309a4bba82fc72009b21f11d2093b57e1e90e",
+        "docs/assets/media/rooftop-city-kit/v001/provenance.json": "0001e8c8bae2fd5bbaeb0bfd7ec66387cc5c6474b29ed59fbd08ca949c98a11d",
+        "docs/assets/media/rooftop-city-kit/v001/reference-sheet.png": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "docs/assets/media/rooftop-city-kit/v001/reimport.json": "29347c45788bc5aed151254d3b25f044bfbea5b364bb32470747a39908b6a63b",
+        "docs/assets/media/rooftop-city-kit/v001/rooftop-city-kit.blend": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+        "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json": "d53a038ed611629d031cd956357c5d179c25f0b79927d2602d3cc48af356d54a",
+        "docs/assets/media/rooftop-city-kit/v001/source.json": "6862d44ccb8bdd0419f5f313e7fdb88f1c8695f9c6b89832b8be3be2742f57f8",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-back.png": "1e2834aec2254e5caebd25998ab0dc185273cc37da364588ba1227536b59b32a",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-beauty.png": "36d08ce10e38a069a1a07dc306e3b69695cb7d077830355c51a3b0eca5243689",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-front.png": "7a85f317c239f301ceae36e8fbcd1cc6986b6b6c05abd58ae00c001b80aff6d9",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-side.png": "810a1e7b4234a0054bc6b2e1e28bae7e6c53c83c78eee91946721d2eb5936634",
+        "docs/assets/media/rooftop-city-kit/v001/stills/billboard-frame-threequarter.png": "a5175f61ec7ce76eab8e4f270ef5eb1b57c2f30c4d08f8c4d1545c09786a98b3",
+        "docs/assets/media/rooftop-city-kit/v001/three-inspection.json": "6a912983075496e498fa04383acc3b422930f9125ada7a4cde91e6db38b7f68c",
+        "docs/assets/media/rooftop-city-kit/v001/validation.json": "7a6333b888b2c420f298151cf0ea94da3b87388d70e16a3615de8f9a9c255307",
+        "docs/assets/media/rooftop-city-kit/v001/visual-review.json": "53836682f1d32ab9725accd4c02434e918205f7e397393d647ae44cb0e4c1c9b"
       }
     }
   ],

@@ -1,0 +1,96 @@
+{
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "delivery_work_order": "WO142",
+  "author": "gpt-6-astra max native author",
+  "tool": "Blender via dedicated MCP, instance 2",
+  "source": "Original Blender reference sheet and component geometry authored for this kit; no generated concept",
+  "rights": "Original geometry, vertex colours, construction source and original reference renders; no external assets, logos, private identifiers, photos or likenesses",
+  "private_media_used": false,
+  "external_assets_used": false,
+  "owner_review": "pending",
+  "reference_sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+  "editable_master": {
+    "file": "rooftop-city-kit.blend",
+    "sha256": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+    "remote_path": "/workspace/haynes-quest/family-eras/rooftop-city-kit/v001/rooftop-city-kit.blend"
+  },
+  "predecessor_files_preserved": 78,
+  "scene_release": "scene-release.json",
+  "local_source_path": "scripts/assets/rooftop-city-kit/v001/",
+  "props": {
+    "water-tower": {
+      "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+      "bytes": 180172,
+      "triangles": 2960,
+      "materials": 2,
+      "bbox": {
+        "min": [
+          -1.2999999523162842,
+          0.0,
+          -1.2999999523162842
+        ],
+        "max": [
+          1.2999999523162842,
+          4.894999980926514,
+          1.2999999523162842
+        ]
+      }
+    },
+    "rooftop-ac-unit": {
+      "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+      "bytes": 88880,
+      "triangles": 1496,
+      "materials": 1,
+      "bbox": {
+        "min": [
+          -0.8899999856948853,
+          0.0,
+          -0.6974999904632568
+        ],
+        "max": [
+          0.8899999856948853,
+          1.0299999713897705,
+          0.6974999904632568
+        ]
+      }
+    },
+    "crane-hook": {
+      "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+      "bytes": 43912,
+      "triangles": 880,
+      "materials": 1,
+      "bbox": {
+        "min": [
+          -0.3769734799861908,
+          0.0,
+          -0.31449997425079346
+        ],
+        "max": [
+          0.3769734799861908,
+          1.5861884355545044,
+          0.31449997425079346
+        ]
+      }
+    },
+    "billboard-frame": {
+      "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+      "bytes": 122480,
+      "triangles": 1552,
+      "materials": 1,
+      "bbox": {
+        "min": [
+          -2.440000057220459,
+          0.0,
+          -0.23999999463558197
+        ],
+        "max": [
+          2.440000057220459,
+          3.990000009536743,
+          0.23999999463558197
+        ]
+      }
+    }
+  }
+}

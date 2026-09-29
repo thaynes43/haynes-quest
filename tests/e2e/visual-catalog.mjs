@@ -73,11 +73,11 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 102,
+  entries: 106,
   reference_sheet_entries: 8,
-  model_entries: 73,
-  model_files: 73,
-  completed_model_candidates: 71,
+  model_entries: 77,
+  model_files: 77,
+  completed_model_candidates: 75,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 18,

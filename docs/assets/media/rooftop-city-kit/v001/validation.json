@@ -1,0 +1,467 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "validator": {
+    "name": "Khronos glTF Validator",
+    "version": "2.0.0-dev.3.10"
+  },
+  "all_checks_pass": true,
+  "props": {
+    "water-tower": {
+      "file": "water-tower.glb",
+      "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+      "bytes": 180172,
+      "triangles": 2960,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        },
+        {
+          "name": "Rooftop City timber",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8399999737739563
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -1.2999999523162842,
+          0,
+          -1.2999999523162842
+        ],
+        "max": [
+          1.2999999523162842,
+          4.894999980926514,
+          1.2999999523162842
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -1.4,
+          0,
+          -1.4
+        ],
+        "max": [
+          1.4,
+          5,
+          1.4
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "delivery_work_order": "WO142",
+        "asset_id": "rooftop-city-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, September 29, 2026; no generated concept",
+        "reference_sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "candidate_status": "WO111 rooftop-city-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, floor-centred identity roots",
+        "prop_id": "water-tower"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rooftop_city_identity": true,
+        "no_scene_lease_metadata": true,
+        "recognizable_height": true
+      },
+      "validator": {
+        "uri": "water-tower.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T06:04:39.238Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 177600
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 4440,
+          "totalTriangleCount": 2960,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "rooftop-ac-unit": {
+      "file": "rooftop-ac-unit.glb",
+      "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+      "bytes": 88880,
+      "triangles": 1496,
+      "primitives": 1,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.8899999856948853,
+          0,
+          -0.6974999904632568
+        ],
+        "max": [
+          0.8899999856948853,
+          1.0299999713897705,
+          0.6974999904632568
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -0.9,
+          0,
+          -0.7
+        ],
+        "max": [
+          0.9,
+          1.1,
+          0.7
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "delivery_work_order": "WO142",
+        "asset_id": "rooftop-city-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, September 29, 2026; no generated concept",
+        "reference_sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "candidate_status": "WO111 rooftop-city-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, floor-centred identity roots",
+        "prop_id": "rooftop-ac-unit"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rooftop_city_identity": true,
+        "no_scene_lease_metadata": true,
+        "recognizable_height": true
+      },
+      "validator": {
+        "uri": "rooftop-ac-unit.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T06:04:39.245Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 87168
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 1,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 1,
+          "totalVertexCount": 2172,
+          "totalTriangleCount": 1496,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "crane-hook": {
+      "file": "crane-hook.glb",
+      "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+      "bytes": 43912,
+      "triangles": 880,
+      "primitives": 1,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.3769734799861908,
+          0,
+          -0.31449997425079346
+        ],
+        "max": [
+          0.3769734799861908,
+          1.5861884355545044,
+          0.31449997425079346
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -0.5,
+          0,
+          -0.5
+        ],
+        "max": [
+          0.5,
+          1.6,
+          0.5
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "delivery_work_order": "WO142",
+        "asset_id": "rooftop-city-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, September 29, 2026; no generated concept",
+        "reference_sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "candidate_status": "WO111 rooftop-city-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, floor-centred identity roots",
+        "prop_id": "crane-hook"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rooftop_city_identity": true,
+        "no_scene_lease_metadata": true,
+        "recognizable_height": true
+      },
+      "validator": {
+        "uri": "crane-hook.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T06:04:39.247Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 42216
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 1,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 1,
+          "totalVertexCount": 1026,
+          "totalTriangleCount": 880,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "billboard-frame": {
+      "file": "billboard-frame.glb",
+      "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+      "bytes": 122480,
+      "triangles": 1552,
+      "primitives": 1,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rooftop City equipment",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -2.440000057220459,
+          0,
+          -0.23999999463558197
+        ],
+        "max": [
+          2.440000057220459,
+          3.990000009536743,
+          0.23999999463558197
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -2.5,
+          0,
+          -0.25
+        ],
+        "max": [
+          2.5,
+          4,
+          0.25
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "delivery_work_order": "WO142",
+        "asset_id": "rooftop-city-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, September 29, 2026; no generated concept",
+        "reference_sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "candidate_status": "WO111 rooftop-city-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, floor-centred identity roots",
+        "prop_id": "billboard-frame"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rooftop_city_identity": true,
+        "no_scene_lease_metadata": true,
+        "recognizable_height": true
+      },
+      "validator": {
+        "uri": "billboard-frame.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T06:04:39.249Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 120768
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 1,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 1,
+          "totalVertexCount": 3096,
+          "totalTriangleCount": 1552,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    }
+  }
+}

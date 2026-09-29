@@ -1,0 +1,22 @@
+{
+  "asset_id": "rooftop-city-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "delivery_work_order": "WO142",
+  "source": "Blender reference sheet, no generated concept",
+  "reference_sheet": "reference-sheet.png",
+  "reference_sheet_sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+  "reference_author": "gpt-6-astra max",
+  "sheet_coordinator_review": {
+    "decision": "approved",
+    "date": "2026-09-29",
+    "scope": "sheet only; production authorized, Tom exact-version review pending",
+    "notes": "Open trestle, compact utility AC, hanging hook and empty-centre billboard preserve sightlines; muted palette reads as one utility kit."
+  },
+  "production_author": "gpt-6-astra max",
+  "blender_instance": "blender-authoring-2",
+  "owner_exact_version_review": "pending",
+  "private_media_used": false,
+  "external_assets_used": false,
+  "branding": "Original rooftop utility scenery; no names, logos, copied identities or external assets"
+}
