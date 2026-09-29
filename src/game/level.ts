@@ -318,6 +318,34 @@ export function memoryCheckpointForSave(
   return { id: checkpoint.id, position: { ...checkpoint.position } };
 }
 
+/** The first little memory still needed after boss victory has a safe approach. */
+export function missingMemoryCheckpointForSave(
+  save: SaveView,
+  level: LevelLayout,
+): MemoryCheckpoint | null {
+  const activeLevel = save.adventure?.activeLevel;
+  if (
+    save.format !== "era-combat-v2" ||
+    save.adventure?.phase !== "memory-released" ||
+    !activeLevel?.minorMemoryIds ||
+    !level.authored ||
+    !level.course
+  ) return null;
+
+  const missingIndex = activeLevel.minorMemoryIds.findIndex(
+    (memoryId) => !save.recoveredIds.includes(memoryId),
+  );
+  if (missingIndex < 0) return null;
+  const slot = missingIndex === 0 ? "minor-one" : "minor-two";
+  const platformId = level.authored.anchors.memories[slot].platformId;
+  const matches = level.course.checkpoints.filter(
+    (candidate) => candidate.triggerPlatformId === platformId,
+  );
+  if (matches.length !== 1) return null;
+  const checkpoint = matches[0]!;
+  return { id: checkpoint.id, position: { ...checkpoint.position } };
+}
+
 export function checkpointForSave(
   save: SaveView,
   level: LevelLayout,
@@ -325,7 +353,10 @@ export function checkpointForSave(
   if (save.format === "era-combat-v2") {
     if (level.authored && level.course) {
       if (save.adventure?.phase === "memory-released") {
-        return { ...level.authored.anchors.rewardRespawn.position };
+        return {
+          ...(missingMemoryCheckpointForSave(save, level)?.position ??
+            level.authored.anchors.rewardRespawn.position),
+        };
       }
       if (save.adventure?.activeLevel?.minorMemoryIds) {
         return {

@@ -2,10 +2,13 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { authoredRoute } from "../../src/game/authored-layout";
+import { resolveAuthoredLevelDocument } from "../../src/shared/authored-level";
+import familyWorldAV5 from "../../src/shared/levels/family-world-a-v5.json";
 import {
   checkpointForSave,
   createLevelLayout,
   memoryCheckpointForSave,
+  missingMemoryCheckpointForSave,
 } from "../../src/game/level";
 import type { SceneFrame } from "../../src/game/types";
 import type { SaveView } from "../../src/shared/contracts";
@@ -84,6 +87,31 @@ function withRecoveredMinors(
       memory.state = minorIndex < count ? "revealed" : "released";
     }
   }
+  return save;
+}
+
+const familyA1 = resolveAuthoredLevelDocument(familyWorldAV5.chapters[0]!.level);
+const familyA1Resolver = (routeId: string | undefined) =>
+  routeId === familyA1.document.id ? familyA1 : null;
+
+/** Exercise the shipped A1 geometry with an isolated, synthetic route save. */
+function familyA1Save(
+  count: 0 | 1 | 2,
+  options: Parameters<typeof makeAuthoredSave>[0] = {},
+): SaveView {
+  const save = withRecoveredMinors(count, options);
+  const active = save.adventure!.activeLevel!;
+  const slots = familyA1.document.anchors.encounters;
+  save.adventure!.activeLevel = {
+    ...active,
+    routeId: familyA1.document.id,
+    encounters: active.encounters.map((encounter, index) => ({
+      ...encounter,
+      kind: encounter.role === "boss"
+        ? slots.boss.kind
+        : slots[`ordinary-${index + 1}` as keyof typeof slots]!.kind,
+    })),
+  };
   return save;
 }
 
@@ -190,6 +218,15 @@ describe("authored memory checkpoints", () => {
       authoredRoute("garden-playground-v1")!.anchors.rewardRespawn.position,
     );
 
+    const missing = withRecoveredMinors(1, {
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    expect(missingMemoryCheckpointForSave(missing, createLevelLayout(missing))?.id).toBe(
+      "grove-safe",
+    );
+
     const archived = makeArchivedRoutedSave();
     expect(
       memoryCheckpointForSave(archived, createLevelLayout(archived)),
@@ -199,6 +236,197 @@ describe("authored memory checkpoints", () => {
       y: 0,
       z: 1,
     });
+  });
+
+  it("returns a post-boss family A1 reload to the missing balcony memory", () => {
+    const released = familyA1Save(1, {
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const level = createLevelLayout(released, familyA1Resolver);
+    const safe = missingMemoryCheckpointForSave(released, level);
+    expect(familyA1.document.mainPath.at(-1)).toBe("party-lawn");
+    expect(familyA1.document.connections.some((edge) => edge.from === "party-lawn")).toBe(false);
+    expect(safe).toEqual({
+      id: "cp-balcony",
+      position: { x: -31.2, y: 12.4, z: -141 },
+    });
+    expect(checkpointForSave(released, level)).toEqual(safe?.position);
+    const reloaded = createGame({
+      container: document.createElement("div"),
+      save: released,
+      authoredLevelResolver: familyA1Resolver,
+      onAction: async () => released,
+      onRefresh: async () => released,
+    });
+    expect(reloaded.inspect()).toMatchObject({
+      status: { position: safe!.position, phase: "memory-released" },
+      obby: { checkpointId: "cp-balcony" },
+    });
+    reloaded.dispose();
+
+    const complete = familyA1Save(2, {
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const completeLevel = createLevelLayout(complete, familyA1Resolver);
+    expect(missingMemoryCheckpointForSave(complete, completeLevel)).toBeNull();
+    expect(checkpointForSave(complete, completeLevel)).toEqual(
+      familyA1.document.anchors.rewardRespawn.position,
+    );
+
+    const firstMissing = familyA1Save(2, {
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const firstId = firstMissing.adventure!.activeLevel!.minorMemoryIds![0];
+    firstMissing.recoveredIds = firstMissing.recoveredIds.filter((id) => id !== firstId);
+    firstMissing.memories.find((memory) => memory.id === firstId)!.state = "released";
+    expect(missingMemoryCheckpointForSave(
+      firstMissing,
+      createLevelLayout(firstMissing, familyA1Resolver),
+    )?.id).toBe("cp-gear");
+  });
+
+  it("keeps the A1 boss victory in place but returns a fall or explicit action to the missing memory", () => {
+    const exploring = familyA1Save(1);
+    const released = familyA1Save(1, {
+      revision: 1,
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const onAction = vi.fn(async () => released);
+    const game = createGame({
+      container: document.createElement("div"),
+      save: exploring,
+      authoredLevelResolver: familyA1Resolver,
+      onAction,
+      onRefresh: async () => exploring,
+    });
+    const controller = runtimeState.controllers.at(-1)!;
+    const major = familyA1.document.anchors.memories.major.position;
+    Object.assign(controller.position, major);
+    controller.grounded = true;
+    game.updateSave(released);
+    game.setPaused(true);
+    expect(game.returnToMissingMemory()).toBe(false);
+    game.setPaused(false);
+    expect(game.returnToMajorMemory()).toBe(false);
+    expect(game.inspect()).toMatchObject({
+      status: {
+        position: major,
+        nearLockedMajorMemoryId: released.adventure!.activeLevel!.majorMemoryId,
+      },
+      checkpoint: { x: -31.2, y: 12.4, z: -141 },
+    });
+    expect(game.inspect().obby?.checkpointId).toBe("cp-balcony");
+
+    game.setInput("moveY", 1);
+    expect(game.returnToMissingMemory()).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: { position: { x: -31.2, y: 12.4, z: -141 } },
+      input: { moveY: 0 },
+      obby: { checkpointId: "cp-balcony" },
+    });
+    expect(onAction).not.toHaveBeenCalled();
+
+    const returned = runtimeState.controllers.at(-1)!;
+    Object.assign(returned.position, { x: -31.2, y: -3, z: -141 });
+    returned.velocityY = -2;
+    returned.grounded = false;
+    returned.supportId = null;
+    returned.supportAnchor = null;
+    advance();
+    advance();
+    expect(game.inspect()).toMatchObject({
+      status: { position: { x: -31.2, y: 12.4, z: -141 } },
+      obby: { checkpointId: "cp-balcony", recoveries: 1 },
+    });
+    game.dispose();
+  });
+
+  it("switches the post-boss checkpoint back to the reward after the missing minor is recovered", () => {
+    const released = familyA1Save(1, {
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const recovered = familyA1Save(2, {
+      revision: 1,
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const game = createGame({
+      container: document.createElement("div"),
+      save: released,
+      authoredLevelResolver: familyA1Resolver,
+      onAction: async () => recovered,
+      onRefresh: async () => released,
+    });
+    game.updateSave(recovered);
+    expect(game.inspect().checkpoint).toEqual(
+      familyA1.document.anchors.rewardRespawn.position,
+    );
+    expect(game.inspect().obby?.checkpointId).toBeNull();
+    expect(game.returnToMissingMemory()).toBe(false);
+    game.setInput("moveX", 1);
+    expect(game.returnToMajorMemory()).toBe(true);
+    expect(game.inspect()).toMatchObject({
+      status: { position: familyA1.document.anchors.rewardRespawn.position },
+      input: { moveX: 0 },
+      checkpoint: familyA1.document.anchors.rewardRespawn.position,
+    });
+    game.dispose();
+  });
+
+  it("accepts the missing A1 photo by contact and refuses a return while its save is pending", async () => {
+    const released = familyA1Save(1, {
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    const recovered = familyA1Save(2, {
+      revision: 1,
+      phase: "memory-released",
+      defeatedOrdinaryCount: 4,
+      bossDefeated: true,
+    });
+    let reply: ((save: SaveView) => void) | undefined;
+    const onAction = vi.fn(() => new Promise<SaveView>((resolve) => {
+      reply = resolve;
+    }));
+    const game = createGame({
+      container: document.createElement("div"),
+      save: released,
+      authoredLevelResolver: familyA1Resolver,
+      onAction,
+      onRefresh: async () => released,
+    });
+    const controller = runtimeState.controllers.at(-1)!;
+    Object.assign(controller.position, familyA1.document.anchors.memories["minor-two"].position);
+    controller.grounded = true;
+    const minorId = released.adventure!.activeLevel!.minorMemoryIds![1];
+    expect(game.performAction({
+      type: "recover-memory",
+      levelId: released.adventure!.currentLevelId!,
+      memoryId: minorId,
+    })).toBe(true);
+    expect(onAction).toHaveBeenCalledOnce();
+    expect(game.returnToMissingMemory()).toBe(false);
+    expect(game.returnToMajorMemory()).toBe(false);
+    reply!(recovered);
+    await vi.waitFor(() => expect(game.inspect().status.requestBusy).toBe(false));
+    expect(game.inspect().checkpoint).toEqual(
+      familyA1.document.anchors.rewardRespawn.position,
+    );
+    expect(game.returnToMajorMemory()).toBe(true);
+    expect(onAction).toHaveBeenCalledOnce();
+    game.dispose();
   });
 
   it("falls back to chapter start when a memory platform has no unique checkpoint", () => {

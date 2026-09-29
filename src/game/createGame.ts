@@ -49,6 +49,7 @@ import {
   createLevelLayout,
   inspectLevel,
   memoryCheckpointForSave,
+  missingMemoryCheckpointForSave,
   type LevelLayout,
   type MemoryCheckpoint,
 } from "./level";
@@ -274,7 +275,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let retainedActiveLevel = requireAdventure(save).activeLevel;
   let checkpoint = checkpointForSave(save, level);
   let controller = createObbyState(checkpoint);
-  controller.checkpointId = memoryCheckpointForSave(save, level)?.id ?? null;
+  controller.checkpointId =
+    requireAdventure(save).phase === "memory-released"
+      ? missingMemoryCheckpointForSave(save, level)?.id ?? null
+      : memoryCheckpointForSave(save, level)?.id ?? null;
   controller.grounded = true;
   let courseTime = 0;
   let traversalRecoveries = 0;
@@ -554,6 +558,28 @@ export function createGame(options: CreateGameOptions): GameHandle {
     );
   };
 
+  const nearLockedMajorMemoryId = (): string | null => {
+    const adventure = requireAdventure(save);
+    const activeLevel = adventure.activeLevel;
+    if (
+      adventure.phase !== "memory-released" ||
+      !activeLevel?.majorMemoryId ||
+      !activeLevel.minorMemoryIds?.some(
+        (id) => !save.recoveredIds.includes(id),
+      ) ||
+      !controller.grounded ||
+      controller.recoveryRemaining > 0
+    ) return null;
+    const major = level.memories.find(
+      (memory) => memory.id === activeLevel.majorMemoryId && memory.state === "released",
+    );
+    return major &&
+      sameInteractionFeetHeight(controller.position, major.position) &&
+      horizontalDistance(controller.position, major.position) <= interactionRadius
+      ? major.id
+      : null;
+  };
+
   const nearestEligibleFriendlyId = (): string | null => {
     const adventure = requireAdventure(save);
     if (!controller.grounded || controller.recoveryRemaining > 0) return null;
@@ -673,6 +699,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       nearPickupId: nearestPickupId(),
       nearEncounterId: target?.id ?? secondaryTarget?.id ?? null,
       nearMemoryId: nearestMemoryId(),
+      nearLockedMajorMemoryId: nearLockedMajorMemoryId(),
       nearFinish:
         canConsume() &&
         sameInteractionFeetHeight(controller.position, level.finish) &&
@@ -949,6 +976,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     controller.grounded = true;
   };
 
+  const returnLocally = (position: PositionSnapshot, checkpointId: string | null): void => {
+    input.clear();
+    attackBuffer.clear();
+    checkpoint = { ...position };
+    resetController(checkpoint, checkpointId);
+    emitStatus(true);
+  };
+
   const promoteCheckpoint = (selection: MemoryCheckpoint): void => {
     checkpoint = { ...selection.position };
     controller.checkpointId = selection.id;
@@ -1018,6 +1053,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       ? level
       : createLevelLayout(nextSave, resolveAuthored);
     const nextMemoryCheckpoint = memoryCheckpointForSave(nextSave, nextLevel);
+    const missingMemoryCheckpoint = missingMemoryCheckpointForSave(
+      nextSave,
+      nextLevel,
+    );
     const nextCheckpoint = retainCompletedWorld
       ? checkpoint
       : checkpointForSave(save, nextLevel);
@@ -1049,7 +1088,12 @@ export function createGame(options: CreateGameOptions): GameHandle {
           : undefined;
       checkpoint = visited ? { ...visited.position } : nextCheckpoint;
       if (identityChanged || retried) {
-        resetCheckpointId = visited?.id ?? nextMemoryCheckpoint?.id ?? null;
+        resetCheckpointId =
+          visited?.id ??
+          (nextAdventure.phase === "memory-released"
+            ? missingMemoryCheckpoint?.id
+            : nextMemoryCheckpoint?.id) ??
+          null;
       }
     }
     if (identityChanged || retried) {
@@ -1091,10 +1135,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
         nextSave.adventure.phase === "memory-released"
       ) {
         if (level.course) {
-          // Let the player see the boss's defeat. Only recovery/reload moves to the safe reward area.
+          // Keep the victory in view; a fall goes to the first missing memory.
           controller.checkpoint = { ...checkpoint };
-          controller.checkpointId = null;
+          controller.checkpointId = missingMemoryCheckpoint?.id ?? null;
         } else resetController(checkpoint);
+      } else if (nextAdventure.phase === "memory-released" && level.course) {
+        // Collecting the last little memory makes the reward area safe again.
+        controller.checkpoint = { ...checkpoint };
+        controller.checkpointId = missingMemoryCheckpoint?.id ?? null;
       } else if (recoveredMinor && nextMemoryCheckpoint) {
         // A recovered minor is a durable death/fall floor. Promote its safe
         // authored checkpoint without moving or interrupting the player.
@@ -1921,6 +1969,40 @@ export function createGame(options: CreateGameOptions): GameHandle {
       if (disposed) return;
       scene.retryMedia?.();
       emitStatus(true);
+    },
+    returnToMissingMemory(): boolean {
+      if (
+        disposed ||
+        paused ||
+        requestState.requestState === "acting" ||
+        pendingHit ||
+        requireAdventure(save).phase !== "memory-released" ||
+        level.id !== requireAdventure(save).currentLevelId
+      ) return false;
+      const destination = missingMemoryCheckpointForSave(save, level);
+      if (!destination) return false;
+      returnLocally(destination.position, destination.id);
+      return true;
+    },
+    returnToMajorMemory(): boolean {
+      const adventure = requireAdventure(save);
+      if (
+        disposed ||
+        paused ||
+        requestState.requestState === "acting" ||
+        pendingHit ||
+        adventure.phase !== "memory-released" ||
+        !adventure.activeLevel?.majorMemoryId ||
+        !adventure.activeLevel.minorMemoryIds ||
+        adventure.activeLevel.minorMemoryIds.some(
+          (id) => !save.recoveredIds.includes(id),
+        ) ||
+        level.id !== adventure.currentLevelId ||
+        !level.authored ||
+        !level.course
+      ) return false;
+      returnLocally(level.authored.anchors.rewardRespawn.position, null);
+      return true;
     },
     inspect() {
       const frames = enemyFrames();
