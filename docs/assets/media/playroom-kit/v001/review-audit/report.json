@@ -1,0 +1,72 @@
+{
+  "browser": "153.0.8010.12",
+  "physicalDevice": false,
+  "results": [
+    {
+      "viewport": "desktop",
+      "id": "stacking-block-tower",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "toy-bus-garage",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "crib-rail-fence",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "desktop",
+      "id": "giant-plush-ball",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 688
+    },
+    {
+      "viewport": "phone",
+      "id": "stacking-block-tower",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "toy-bus-garage",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "crib-rail-fence",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    },
+    {
+      "viewport": "phone",
+      "id": "giant-plush-ball",
+      "loaded": true,
+      "static": true,
+      "orbitControl": true,
+      "viewerWidth": 358
+    }
+  ],
+  "errors": [],
+  "outcome": "passed"
+}

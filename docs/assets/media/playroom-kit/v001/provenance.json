@@ -1,0 +1,25 @@
+{
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "source": "Blender reference sheet, no generated concept",
+  "reference_sheet": "reference-sheet.png",
+  "reference_sheet_sha256": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9",
+  "reference_author": "claude-opus-5-5 xhigh, retained historical sheet-stage",
+  "sheet_coordinator_review": {
+    "decision": "approved",
+    "date": "2026-09-29",
+    "scope": "sheet only"
+  },
+  "production_author": "gpt-6-astra max",
+  "blender_instance": "blender-authoring (instance 1)",
+  "owner_exact_version_review": "pending",
+  "private_media_used": false,
+  "external_assets_used": false,
+  "branding": "original toy shapes; no copied names, logos, lettering or faces",
+  "method": "Production topology regenerated from approved blockout parametrisation; selective radial/bevel resolution; mild 24-ray contact shading in vertex colour; one or two opaque nonmetallic PBR materials per prop",
+  "source_scripts": "source/",
+  "generated_utc": "2026-09-29T03:29:47.666225+00:00",
+  "historical_sheet": "sheet-stage/",
+  "coordinate_convention": "glTF +Y up, front +Z, identity floor-centred root. Runtime registry planning boxes retained unchanged."
+}

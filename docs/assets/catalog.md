@@ -5,9 +5,9 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**58 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**62 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -235,6 +235,54 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/48cd4b4d67e99ff2.webp" alt="Selected original stubborn broccoli construction sheet" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="stacking-block-tower" markdown="1">
+
+[![Three pastel foam blocks with raised shape appliques and level stacking faces](media/catalog-thumbnails/v001/6e05567fed90fc95.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/playroom-kit/v001.md#stacking-block-tower)
+
+### [Playroom stacking-block tower](reviews/playroom-kit/v001.md#stacking-block-tower)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/ca64a142a1f0707c.webp" alt="Coordinator-approved Blender reference sheet of the four Playroom props" loading="lazy" decoding="async" width="68" height="50"><span>Approved reference sheet; exact model review pending</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="toy-bus-garage" markdown="1">
+
+[![A butter-yellow toy bus garage with an open portal, lilac barrel roof, bus badge and mint traffic-light tower](media/catalog-thumbnails/v001/0c4227bf131b980f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/playroom-kit/v001.md#toy-bus-garage)
+
+### [Playroom toy bus garage](reviews/playroom-kit/v001.md#toy-bus-garage)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/ca64a142a1f0707c.webp" alt="Coordinator-approved Blender reference sheet of the four Playroom props" loading="lazy" decoding="async" width="68" height="50"><span>Approved reference sheet; exact model review pending</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="crib-rail-fence" markdown="1">
+
+[![A low mint and cream crib rail with blue posts, open spindles and a pastel bead-slide toy](media/catalog-thumbnails/v001/ca77a69fdb513ca5.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/playroom-kit/v001.md#crib-rail-fence)
+
+### [Playroom crib-rail fence](reviews/playroom-kit/v001.md#crib-rail-fence)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/ca64a142a1f0707c.webp" alt="Coordinator-approved Blender reference sheet of the four Playroom props" loading="lazy" decoding="async" width="68" height="50"><span>Approved reference sheet; exact model review pending</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="giant-plush-ball" markdown="1">
+
+[![A puffy pastel plush ball with cream seams, a felt star and heart, and a lilac hanging loop](media/catalog-thumbnails/v001/87b561dc7fd04104.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/playroom-kit/v001.md#giant-plush-ball)
+
+### [Playroom giant plush ball](reviews/playroom-kit/v001.md#giant-plush-ball)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/ca64a142a1f0707c.webp" alt="Coordinator-approved Blender reference sheet of the four Playroom props" loading="lazy" decoding="async" width="68" height="50"><span>Approved reference sheet; exact model review pending</span></div>
 
 </div>
 

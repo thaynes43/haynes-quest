@@ -1,0 +1,663 @@
+{
+  "tool": "Chromium headless (Playwright) + three.js GLTFLoader, real WebGL raster via ANGLE SwiftShader; no physical-device claim",
+  "props": {
+    "stacking-block-tower": {
+      "glb_sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 3,
+          "triangles": 8690,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.6787506937980652,
+              0,
+              -0.6787506937980652
+            ],
+            "max": [
+              0.6787506937980652,
+              2.4000000953674316,
+              0.6787506937980652
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 3,
+          "triangles": 8690,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.6787506937980652,
+              0,
+              -0.6787506937980652
+            ],
+            "max": [
+              0.6787506937980652,
+              2.4000000953674316,
+              0.6787506937980652
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 3,
+          "triangles": 8690,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.6787506937980652,
+              0,
+              -0.6787506937980652
+            ],
+            "max": [
+              0.6787506937980652,
+              2.4000000953674316,
+              0.6787506937980652
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 3,
+          "triangles": 8690,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.6787506937980652,
+              0,
+              -0.6787506937980652
+            ],
+            "max": [
+              0.6787506937980652,
+              2.4000000953674316,
+              0.6787506937980652
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 3,
+          "triangles": 8690,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.344000053405762,
+          "bounds": {
+            "min": [
+              -0.6787506937980652,
+              0,
+              -0.6787506937980652
+            ],
+            "max": [
+              0.6787506937980652,
+              2.4000000953674316,
+              0.6787506937980652
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -28,
+          "elevation_deg": 18
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "toy-bus-garage": {
+      "glb_sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 9594,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.8424902004082524,
+          "bounds": {
+            "min": [
+              -1.9861338138580322,
+              0,
+              -1.5800000429153442
+            ],
+            "max": [
+              1.9861338138580322,
+              2.195000171661377,
+              1.5800000429153442
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 9594,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.8424902004082524,
+          "bounds": {
+            "min": [
+              -1.9861338138580322,
+              0,
+              -1.5800000429153442
+            ],
+            "max": [
+              1.9861338138580322,
+              2.195000171661377,
+              1.5800000429153442
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 9594,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.8424902004082524,
+          "bounds": {
+            "min": [
+              -1.9861338138580322,
+              0,
+              -1.5800000429153442
+            ],
+            "max": [
+              1.9861338138580322,
+              2.195000171661377,
+              1.5800000429153442
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 9594,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.8424902004082524,
+          "bounds": {
+            "min": [
+              -1.9861338138580322,
+              0,
+              -1.5800000429153442
+            ],
+            "max": [
+              1.9861338138580322,
+              2.195000171661377,
+              1.5800000429153442
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom gloss",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 9594,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 2.8424902004082524,
+          "bounds": {
+            "min": [
+              -1.9861338138580322,
+              0,
+              -1.5800000429153442
+            ],
+            "max": [
+              1.9861338138580322,
+              2.195000171661377,
+              1.5800000429153442
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom gloss",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -32,
+          "elevation_deg": 18
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "crib-rail-fence": {
+      "glb_sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 3,
+          "triangles": 9810,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.7948960369286737,
+          "bounds": {
+            "min": [
+              -1.600000023841858,
+              0,
+              -0.09100000560283661
+            ],
+            "max": [
+              1.600000023841858,
+              0.8999999761581421,
+              0.09100000560283661
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 3,
+          "triangles": 9810,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.7948960369286737,
+          "bounds": {
+            "min": [
+              -1.600000023841858,
+              0,
+              -0.09100000560283661
+            ],
+            "max": [
+              1.600000023841858,
+              0.8999999761581421,
+              0.09100000560283661
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 3,
+          "triangles": 9810,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.7948960369286737,
+          "bounds": {
+            "min": [
+              -1.600000023841858,
+              0,
+              -0.09100000560283661
+            ],
+            "max": [
+              1.600000023841858,
+              0.8999999761581421,
+              0.09100000560283661
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 3,
+          "triangles": 9810,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.7948960369286737,
+          "bounds": {
+            "min": [
+              -1.600000023841858,
+              0,
+              -0.09100000560283661
+            ],
+            "max": [
+              1.600000023841858,
+              0.8999999761581421,
+              0.09100000560283661
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 3,
+          "triangles": 9810,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.7948960369286737,
+          "bounds": {
+            "min": [
+              -1.600000023841858,
+              0,
+              -0.09100000560283661
+            ],
+            "max": [
+              1.600000023841858,
+              0.8999999761581421,
+              0.09100000560283661
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -18,
+          "elevation_deg": 14
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "giant-plush-ball": {
+      "glb_sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 8738,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.4025244972381803,
+          "bounds": {
+            "min": [
+              -0.885530412197113,
+              0,
+              -0.8854241967201233
+            ],
+            "max": [
+              0.885530412197113,
+              1.7639694213867188,
+              0.8854241967201233
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom plush",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 8738,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.4025244972381803,
+          "bounds": {
+            "min": [
+              -0.885530412197113,
+              0,
+              -0.8854241967201233
+            ],
+            "max": [
+              0.885530412197113,
+              1.7639694213867188,
+              0.8854241967201233
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom plush",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 8738,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.4025244972381803,
+          "bounds": {
+            "min": [
+              -0.885530412197113,
+              0,
+              -0.8854241967201233
+            ],
+            "max": [
+              0.885530412197113,
+              1.7639694213867188,
+              0.8854241967201233
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom plush",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 8738,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.4025244972381803,
+          "bounds": {
+            "min": [
+              -0.885530412197113,
+              0,
+              -0.8854241967201233
+            ],
+            "max": [
+              0.885530412197113,
+              1.7639694213867188,
+              0.8854241967201233
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom plush",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 8738,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.4025244972381803,
+          "bounds": {
+            "min": [
+              -0.885530412197113,
+              0,
+              -0.8854241967201233
+            ],
+            "max": [
+              0.885530412197113,
+              1.7639694213867188,
+              0.8854241967201233
+            ]
+          },
+          "materials": [
+            {
+              "name": "Playroom plush",
+              "vertexColors": true
+            },
+            {
+              "name": "Playroom foam",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -32,
+          "elevation_deg": 14
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    }
+  },
+  "browser": "153.0.8010.12",
+  "all_checks_pass": true
+}

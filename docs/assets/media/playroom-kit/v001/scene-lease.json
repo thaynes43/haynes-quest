@@ -1,0 +1,49 @@
+{
+  "work_order": "WO111",
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "task": "full static props kit (four GLBs) from the coordinator-approved Blender reference sheet: build, export, stills, contact sheet, Khronos + three.js checks",
+  "blender_instance": "blender-authoring (instance 1); instance 2 untouched",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-09-29T03:22:10.488219+00:00",
+  "props_before_claim": {
+    "work_order": "WO111",
+    "scene_owner": "none",
+    "scene_lease": "released",
+    "asset_id": "web-slinger-helper",
+    "asset_version": "v001",
+    "authoring_model": "claude-opus-5-5 xhigh",
+    "candidate_status": "WO111 web-slinger-helper v001 \u00b7 Awaiting Tom's review \u00b7 used in the family release"
+  },
+  "scene_before_claim": {
+    "file": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/web-slinger-helper.blend",
+    "object_count": 57
+  },
+  "prior_files": {
+    "prior_scene_file": {
+      "path": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/web-slinger-helper.blend",
+      "sha256": "a4d93a6de49d1a4b0eaa95e5727b640d866c217bbfc5d201fe46ec07dd727c20"
+    }
+  },
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "readyz_at_claim": {
+    "ready": true,
+    "busy": false
+  },
+  "note": "Claimed from the released web-slinger-helper v001 scene. Its master remains unchanged; the first save went to this kit claim-checkpoint.blend.",
+  "author_jobs_running": false,
+  "released_utc": "2026-09-29T03:30:25.120846+00:00",
+  "glb_sha256": {
+    "stacking-block-tower": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+    "toy-bus-garage": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+    "crib-rail-fence": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+    "giant-plush-ball": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49"
+  }
+}

@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 89,
+    "entries": 93,
     "reference_sheet_entries": 8,
-    "model_entries": 60,
-    "model_files": 60,
+    "model_entries": 64,
+    "model_files": 64,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 58,
+    "completed_model_candidates": 62,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -526,6 +526,206 @@
         "docs/assets/media/yes-yes-veggie/v001/checkpoint-preview-rebuild2/preview-browser.json": "0007ed0db396c83faf639c194c78a4439b6e9356f479ad0b8659e4339459cdb6",
         "docs/assets/media/yes-yes-veggie/v001/checkpoint-preview-rebuild2/side.png": "08eaa7e24e98b67dcfc8770d23d6298a41c9883ad1b39f3010e713e240af1a94",
         "docs/assets/media/yes-yes-veggie/v001/sha256-manifest.json": "1f83d09448f44afc99dbf8ae9b3e1a38b287d271121e0f9df8521e3ea52d519e"
+      }
+    },
+    {
+      "id": "stacking-block-tower",
+      "title": "Playroom stacking-block tower",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/playroom-kit/v001.md#stacking-block-tower",
+      "concept_images": [
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-beauty.png",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-front.png",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-side.png",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-back.png",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/playroom-kit/v001/stacking-block-tower.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/playroom-kit/v001/stacking-block-tower.glb": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9",
+        "docs/assets/media/playroom-kit/v001/prompt.txt": "3542a4e2d55192ae9ddc3b19878a5f81aa4e2476776d04f7ef4fda9732b8a784",
+        "docs/assets/media/playroom-kit/v001/source.json": "029464d3292b720be24c7a49511e78fa3c3c3c1a9de4becd8a07104904839fe6",
+        "docs/assets/media/playroom-kit/v001/provenance.json": "e4daf2774d8e55627040d798df7e6327a0acfcb465d59e5388f49fc4c14a8d80",
+        "docs/assets/media/playroom-kit/v001/playroom-kit.blend": "e187a58013120e93268895951bac1ec252e1e38d6c72ff7ad1aa867a9928f7ce",
+        "docs/assets/media/playroom-kit/v001/kit-beauty.png": "435df1880dd7e33c45234bf289bfa710e4d2a3689c9653f13a2c47c0211c5e86",
+        "docs/assets/media/playroom-kit/v001/static-contact-sheet.png": "a0d4d35371cd9a20c503d2391e70c26fc36ff13abd7030f960ae026ce8117986",
+        "docs/assets/media/playroom-kit/v001/sheet-vs-export.png": "28413767b6d384f6bf437df67aa907eb62b2e8b9938ccc6390e724b2f0eac570",
+        "docs/assets/media/playroom-kit/v001/construction.json": "84fdc7f4496841955bd2e49ea6c8ec14fe2df54919872cc5cc8534c829b8dff3",
+        "docs/assets/media/playroom-kit/v001/validation.json": "7804ceae3a036bed5b3aeaa951536c0bb760a2c355a8cdb77359051c19c3d48f",
+        "docs/assets/media/playroom-kit/v001/three-inspection.json": "bb579307447cf3294cb5bbef5da72a5fb6dc68b1880ff0a8c6270d8c4c0dba48",
+        "docs/assets/media/playroom-kit/v001/bounds.json": "e254d438cc4ae0d620dcc4a7621de495bc48ed2a7fba1795afc98fc6714d63fa",
+        "docs/assets/media/playroom-kit/v001/reimport.json": "8ba1e1a9a9fee9a9a215a57b64b7300754ebd957bf7e9198ce0ed45fa80364fc",
+        "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
+        "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
+        "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-beauty.png": "d29e182d74f6369fb6139754459bed3d3142093b95f99dcb4a3ed7924b2690e2",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-front.png": "6820a2d739d027fa3a30f59f4bf38183bfc6b279c6a31c922c322809103c26f2",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-side.png": "9a558bb8969a699d3fee8e6a2de5903933e91bc0195af0dbef1ef34c20e154eb",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-back.png": "1505744267ad4f68055fde2a9e32017765ecd41eceb189cca1d6cc85e5a327cd",
+        "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-threequarter.png": "c19af696f77b4dca9f92a1792e69cec7a30b4ba0cda6d759f0b33403326de4c4",
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+      }
+    },
+    {
+      "id": "toy-bus-garage",
+      "title": "Playroom toy bus garage",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/playroom-kit/v001.md#toy-bus-garage",
+      "concept_images": [
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-beauty.png",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-front.png",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-side.png",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-back.png",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/playroom-kit/v001/toy-bus-garage.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/playroom-kit/v001/toy-bus-garage.glb": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9",
+        "docs/assets/media/playroom-kit/v001/prompt.txt": "3542a4e2d55192ae9ddc3b19878a5f81aa4e2476776d04f7ef4fda9732b8a784",
+        "docs/assets/media/playroom-kit/v001/source.json": "029464d3292b720be24c7a49511e78fa3c3c3c1a9de4becd8a07104904839fe6",
+        "docs/assets/media/playroom-kit/v001/provenance.json": "e4daf2774d8e55627040d798df7e6327a0acfcb465d59e5388f49fc4c14a8d80",
+        "docs/assets/media/playroom-kit/v001/playroom-kit.blend": "e187a58013120e93268895951bac1ec252e1e38d6c72ff7ad1aa867a9928f7ce",
+        "docs/assets/media/playroom-kit/v001/kit-beauty.png": "435df1880dd7e33c45234bf289bfa710e4d2a3689c9653f13a2c47c0211c5e86",
+        "docs/assets/media/playroom-kit/v001/static-contact-sheet.png": "a0d4d35371cd9a20c503d2391e70c26fc36ff13abd7030f960ae026ce8117986",
+        "docs/assets/media/playroom-kit/v001/sheet-vs-export.png": "28413767b6d384f6bf437df67aa907eb62b2e8b9938ccc6390e724b2f0eac570",
+        "docs/assets/media/playroom-kit/v001/construction.json": "84fdc7f4496841955bd2e49ea6c8ec14fe2df54919872cc5cc8534c829b8dff3",
+        "docs/assets/media/playroom-kit/v001/validation.json": "7804ceae3a036bed5b3aeaa951536c0bb760a2c355a8cdb77359051c19c3d48f",
+        "docs/assets/media/playroom-kit/v001/three-inspection.json": "bb579307447cf3294cb5bbef5da72a5fb6dc68b1880ff0a8c6270d8c4c0dba48",
+        "docs/assets/media/playroom-kit/v001/bounds.json": "e254d438cc4ae0d620dcc4a7621de495bc48ed2a7fba1795afc98fc6714d63fa",
+        "docs/assets/media/playroom-kit/v001/reimport.json": "8ba1e1a9a9fee9a9a215a57b64b7300754ebd957bf7e9198ce0ed45fa80364fc",
+        "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
+        "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
+        "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-beauty.png": "bd190e14dd43773c1db119f69e714109af4d236ee320d80ec234b7a5bb73c493",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-front.png": "8f0dd34edb7ceb9ba2baad5b9234aa5925d385a33e335536228ca855b79205ca",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-side.png": "6b9655e30e1b21e7116cde9c2ab444fdcd716d577915549b6f2ab77d7b51c6d0",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-back.png": "feb5a46050877d034edb71be6d51d954c1c528256926f6814054025b0c638efc",
+        "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-threequarter.png": "7a25c58c19de3ca3d782dcd6f2416d5299cab997d462f6969cc2a79284b8d606",
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+      }
+    },
+    {
+      "id": "crib-rail-fence",
+      "title": "Playroom crib-rail fence",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/playroom-kit/v001.md#crib-rail-fence",
+      "concept_images": [
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-beauty.png",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-front.png",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-side.png",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-back.png",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/playroom-kit/v001/crib-rail-fence.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/playroom-kit/v001/crib-rail-fence.glb": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9",
+        "docs/assets/media/playroom-kit/v001/prompt.txt": "3542a4e2d55192ae9ddc3b19878a5f81aa4e2476776d04f7ef4fda9732b8a784",
+        "docs/assets/media/playroom-kit/v001/source.json": "029464d3292b720be24c7a49511e78fa3c3c3c1a9de4becd8a07104904839fe6",
+        "docs/assets/media/playroom-kit/v001/provenance.json": "e4daf2774d8e55627040d798df7e6327a0acfcb465d59e5388f49fc4c14a8d80",
+        "docs/assets/media/playroom-kit/v001/playroom-kit.blend": "e187a58013120e93268895951bac1ec252e1e38d6c72ff7ad1aa867a9928f7ce",
+        "docs/assets/media/playroom-kit/v001/kit-beauty.png": "435df1880dd7e33c45234bf289bfa710e4d2a3689c9653f13a2c47c0211c5e86",
+        "docs/assets/media/playroom-kit/v001/static-contact-sheet.png": "a0d4d35371cd9a20c503d2391e70c26fc36ff13abd7030f960ae026ce8117986",
+        "docs/assets/media/playroom-kit/v001/sheet-vs-export.png": "28413767b6d384f6bf437df67aa907eb62b2e8b9938ccc6390e724b2f0eac570",
+        "docs/assets/media/playroom-kit/v001/construction.json": "84fdc7f4496841955bd2e49ea6c8ec14fe2df54919872cc5cc8534c829b8dff3",
+        "docs/assets/media/playroom-kit/v001/validation.json": "7804ceae3a036bed5b3aeaa951536c0bb760a2c355a8cdb77359051c19c3d48f",
+        "docs/assets/media/playroom-kit/v001/three-inspection.json": "bb579307447cf3294cb5bbef5da72a5fb6dc68b1880ff0a8c6270d8c4c0dba48",
+        "docs/assets/media/playroom-kit/v001/bounds.json": "e254d438cc4ae0d620dcc4a7621de495bc48ed2a7fba1795afc98fc6714d63fa",
+        "docs/assets/media/playroom-kit/v001/reimport.json": "8ba1e1a9a9fee9a9a215a57b64b7300754ebd957bf7e9198ce0ed45fa80364fc",
+        "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
+        "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
+        "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-beauty.png": "8cc2af39d650e03c2bd0e65506c068ec418fc1ad5379d7fff7d17adfb7da971a",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-front.png": "f2d4bd12bb573955c79c809bd26ec5fc3741bacc71d951a82d81d87f081b8b33",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-side.png": "78877f7af3a4ed6f824036d548ece2caec4700d26fb94cffd40f6d1e3993e0a9",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-back.png": "056d9128ae610a0561b3696ae495a8eeaff1ed27852215ee59f72eb7bf597126",
+        "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-threequarter.png": "84269d2d201ccaa928400d305884d2f154f1acdb8a8546f473030641757723a3",
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+      }
+    },
+    {
+      "id": "giant-plush-ball",
+      "title": "Playroom giant plush ball",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/playroom-kit/v001.md#giant-plush-ball",
+      "concept_images": [
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png"
+      ],
+      "model_images": [
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-beauty.png",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-front.png",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-side.png",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-back.png",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-threequarter.png"
+      ],
+      "models": [
+        "docs/assets/media/playroom-kit/v001/giant-plush-ball.glb"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "gameplay_use": "private-candidate",
+      "checksums": {
+        "docs/assets/media/playroom-kit/v001/giant-plush-ball.glb": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+        "docs/assets/media/playroom-kit/v001/reference-sheet.png": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9",
+        "docs/assets/media/playroom-kit/v001/prompt.txt": "3542a4e2d55192ae9ddc3b19878a5f81aa4e2476776d04f7ef4fda9732b8a784",
+        "docs/assets/media/playroom-kit/v001/source.json": "029464d3292b720be24c7a49511e78fa3c3c3c1a9de4becd8a07104904839fe6",
+        "docs/assets/media/playroom-kit/v001/provenance.json": "e4daf2774d8e55627040d798df7e6327a0acfcb465d59e5388f49fc4c14a8d80",
+        "docs/assets/media/playroom-kit/v001/playroom-kit.blend": "e187a58013120e93268895951bac1ec252e1e38d6c72ff7ad1aa867a9928f7ce",
+        "docs/assets/media/playroom-kit/v001/kit-beauty.png": "435df1880dd7e33c45234bf289bfa710e4d2a3689c9653f13a2c47c0211c5e86",
+        "docs/assets/media/playroom-kit/v001/static-contact-sheet.png": "a0d4d35371cd9a20c503d2391e70c26fc36ff13abd7030f960ae026ce8117986",
+        "docs/assets/media/playroom-kit/v001/sheet-vs-export.png": "28413767b6d384f6bf437df67aa907eb62b2e8b9938ccc6390e724b2f0eac570",
+        "docs/assets/media/playroom-kit/v001/construction.json": "84fdc7f4496841955bd2e49ea6c8ec14fe2df54919872cc5cc8534c829b8dff3",
+        "docs/assets/media/playroom-kit/v001/validation.json": "7804ceae3a036bed5b3aeaa951536c0bb760a2c355a8cdb77359051c19c3d48f",
+        "docs/assets/media/playroom-kit/v001/three-inspection.json": "bb579307447cf3294cb5bbef5da72a5fb6dc68b1880ff0a8c6270d8c4c0dba48",
+        "docs/assets/media/playroom-kit/v001/bounds.json": "e254d438cc4ae0d620dcc4a7621de495bc48ed2a7fba1795afc98fc6714d63fa",
+        "docs/assets/media/playroom-kit/v001/reimport.json": "8ba1e1a9a9fee9a9a215a57b64b7300754ebd957bf7e9198ce0ed45fa80364fc",
+        "docs/assets/media/playroom-kit/v001/visual-review.json": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63",
+        "docs/assets/media/playroom-kit/v001/scene-lease.json": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542",
+        "docs/assets/media/playroom-kit/v001/scene-release.json": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e",
+        "docs/assets/media/playroom-kit/v001/sha256-manifest.json": "80bb5b40510220d735fd3e3cd4700066514c4aeae1bea5c4d11c547d62576f0c",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-beauty.png": "8e2cbe667cb836016bcbb59318cda0b737a394e17bc221312952a01273b02873",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-front.png": "e9859e26cc22409e2bae66a657cb03b579c5c5757e307760bb2ce6b3d11c53f7",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-side.png": "ec0f02e5f3e06fdbdef9af1750069f7e8f3c44f5d1b94fd67003905d91a38ddf",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-back.png": "53ba9a0bab8c7ff115b2ed57d903b604f0fc22b13231887b944425abf067858b",
+        "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-threequarter.png": "886dfb4ab86a7de9a1ab178c3db1f069e4171f16ae169d6183ddbe9e569bf4c0",
+        "docs/assets/media/playroom-kit/v001/review-audit/report.json": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
       }
     },
     {

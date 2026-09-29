@@ -4,6 +4,10 @@ Open the [private playtest](https://haynes-quest-playtest.haynesops.com/) and ch
 
 The established two-chapter route uses [six fictional pictures](reviews/fixture-route-memories/v001.md); the separate Rat Casino project adds three more synthetic memories. Familiar controls, memory checkpoints and safe jumping practice for a six-year-old are the current focus. Identity and curated family photos are the next required part of the MVP; every fixture age and picture is fictional.
 
+## Family Playroom scenery
+
+The Sing-Along Playroom now uses the four [Playroom kit v001 candidates](reviews/playroom-kit/v001.md): pastel stacking-block towers, an open toy bus garage, crib rails and sewn-panel plush balls. They replace the existing scenery stand-ins at the same placements and keep the same planning boxes. Tom's exact-version review remains pending under PRD-004 Q-03.
+
 ## How to play
 
 | Action | Touch | Keyboard and mouse |

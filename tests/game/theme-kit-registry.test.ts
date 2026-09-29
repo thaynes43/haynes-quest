@@ -117,9 +117,11 @@ describe("placed decor rendering", () => {
     expect(fallback.visible).toBe(false);
   });
 
-  it("swaps in the exact toon-clubhouse-kit models inside their bounds and keeps a stand-in for a missing one", async () => {
+  it.each([
+    { theme: "clubhouse" as const, kit: "toon-clubhouse-kit", missing: "stage-marker" },
+    { theme: "playroom" as const, kit: "playroom-kit", missing: "giant-plush-ball" },
+  ])("swaps in the exact $kit models inside their bounds and keeps a stand-in for a missing one", async ({ theme, kit, missing }) => {
     // The real SceneAssets parses the published GLB bytes; one file is missing.
-    const missing = "stage-marker";
     const load = vi
       .spyOn(GLTFLoader.prototype, "loadAsync")
       .mockImplementation(async function (this: GLTFLoader, url: string) {
@@ -128,23 +130,23 @@ describe("placed decor rendering", () => {
         return this.parseAsync(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), "");
       });
     const assets = new SceneAssets();
-    const clubhouse = themeKitPropsFor("clubhouse");
-    const decor = clubhouse.flatMap((prop, index) => [
+    const props = themeKitPropsFor(theme);
+    const decor = props.flatMap((prop, index) => [
       { id: `${prop.id}-a`, kitPropId: prop.id, position: { x: index * 12, y: 0, z: 0 }, rotationY: 0, scale: 1 },
       { id: `${prop.id}-b`, kitPropId: prop.id, position: { x: index * 12, y: 0.5, z: -9 }, rotationY: Math.PI / 2, scale: 2.2 },
     ]);
     const scene = new DecorScene(decor, assets, () => true);
     expect(load.mock.calls.map(([url]) => url)).toEqual(
-      clubhouse.map((prop) => `/studio/assets/media/toon-clubhouse-kit/v001/${prop.id}.glb`),
+      props.map((prop) => `/studio/assets/media/${kit}/v001/${prop.id}.glb`),
     );
     await vi.waitFor(() => {
-      for (const prop of clubhouse)
+      for (const prop of props)
         if (prop.id !== missing)
           expect(scene.root.getObjectByName(`decor-model-${prop.id}`)!.children, prop.id).toHaveLength(1);
       expect(assets.getState()).toEqual({ loading: 0, failed: 1 });
     });
     scene.update();
-    for (const prop of clubhouse) {
+    for (const prop of props) {
       const fallback = scene.root.getObjectByName(`decor-fallback-${prop.id}`)!;
       const model = scene.root.getObjectByName(`decor-model-${prop.id}`)!;
       if (prop.id === missing) {

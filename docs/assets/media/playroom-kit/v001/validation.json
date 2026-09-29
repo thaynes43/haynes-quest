@@ -1,0 +1,486 @@
+{
+  "work_order": "WO111",
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "validator": {
+    "name": "Khronos glTF Validator",
+    "version": "2.0.0-dev.3.10"
+  },
+  "all_checks_pass": true,
+  "props": [
+    {
+      "prop_id": "stacking-block-tower",
+      "file": "stacking-block-tower.glb",
+      "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+      "bytes": 106928,
+      "triangles": 4344,
+      "meshes": 1,
+      "primitives": 1,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Playroom foam",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7599999904632568
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.67875,
+          0,
+          -0.67875
+        ],
+        "max": [
+          0.67875,
+          2.4,
+          0.67875
+        ]
+      },
+      "registry_box_gltf": {
+        "min": [
+          -0.7,
+          0,
+          -0.7
+        ],
+        "max": [
+          0.7,
+          2.4,
+          0.7
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "playroom-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 playroom-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "stacking-block-tower"
+      },
+      "extensions_used": [],
+      "checks": {
+        "gltf_2": true,
+        "khronos_no_errors": true,
+        "khronos_no_warnings": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "glb_budget_1_5_mib": true,
+        "single_mesh_single_node": true,
+        "root_node_identity": true,
+        "node_named_for_registry_id": true,
+        "vertex_colour_on_every_primitive": true,
+        "normals_on_every_primitive": true,
+        "no_textures_or_images": true,
+        "static_no_animation_skin_morph": true,
+        "embedded_resources": true,
+        "no_extensions": true,
+        "opaque_materials": true,
+        "non_metallic_materials": true,
+        "floor_at_zero": true,
+        "inside_registry_box": true,
+        "footprint_centred_within_2cm": true,
+        "scene_identity": true,
+        "no_author_lease_state_in_extras": true
+      },
+      "validator": {
+        "uri": "stacking-block-tower.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T03:26:46.885Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 105336
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 1,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 1,
+          "totalVertexCount": 2202,
+          "totalTriangleCount": 4344,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    {
+      "prop_id": "toy-bus-garage",
+      "file": "toy-bus-garage.glb",
+      "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+      "bytes": 121300,
+      "triangles": 4796,
+      "meshes": 1,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Playroom foam",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7599999904632568
+          }
+        },
+        {
+          "name": "Playroom gloss",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.36000001430511475
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -1.98613,
+          0,
+          -1.58
+        ],
+        "max": [
+          1.98613,
+          2.195,
+          1.58
+        ]
+      },
+      "registry_box_gltf": {
+        "min": [
+          -2,
+          0,
+          -1.6
+        ],
+        "max": [
+          2,
+          2.2,
+          1.6
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "playroom-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 playroom-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "toy-bus-garage"
+      },
+      "extensions_used": [],
+      "checks": {
+        "gltf_2": true,
+        "khronos_no_errors": true,
+        "khronos_no_warnings": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "glb_budget_1_5_mib": true,
+        "single_mesh_single_node": true,
+        "root_node_identity": true,
+        "node_named_for_registry_id": true,
+        "vertex_colour_on_every_primitive": true,
+        "normals_on_every_primitive": true,
+        "no_textures_or_images": true,
+        "static_no_animation_skin_morph": true,
+        "embedded_resources": true,
+        "no_extensions": true,
+        "opaque_materials": true,
+        "non_metallic_materials": true,
+        "floor_at_zero": true,
+        "inside_registry_box": true,
+        "footprint_centred_within_2cm": true,
+        "scene_identity": true,
+        "no_author_lease_state_in_extras": true
+      },
+      "validator": {
+        "uri": "toy-bus-garage.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T03:26:46.891Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 118884
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 2503,
+          "totalTriangleCount": 4796,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    {
+      "prop_id": "crib-rail-fence",
+      "file": "crib-rail-fence.glb",
+      "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+      "bytes": 121288,
+      "triangles": 4904,
+      "meshes": 1,
+      "primitives": 1,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Playroom foam",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7599999904632568
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -1.6,
+          0,
+          -0.091
+        ],
+        "max": [
+          1.6,
+          0.9,
+          0.091
+        ]
+      },
+      "registry_box_gltf": {
+        "min": [
+          -1.6,
+          0,
+          -0.12
+        ],
+        "max": [
+          1.6,
+          0.9,
+          0.12
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "playroom-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 playroom-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "crib-rail-fence"
+      },
+      "extensions_used": [],
+      "checks": {
+        "gltf_2": true,
+        "khronos_no_errors": true,
+        "khronos_no_warnings": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "glb_budget_1_5_mib": true,
+        "single_mesh_single_node": true,
+        "root_node_identity": true,
+        "node_named_for_registry_id": true,
+        "vertex_colour_on_every_primitive": true,
+        "normals_on_every_primitive": true,
+        "no_textures_or_images": true,
+        "static_no_animation_skin_morph": true,
+        "embedded_resources": true,
+        "no_extensions": true,
+        "opaque_materials": true,
+        "non_metallic_materials": true,
+        "floor_at_zero": true,
+        "inside_registry_box": true,
+        "footprint_centred_within_2cm": true,
+        "scene_identity": true,
+        "no_author_lease_state_in_extras": true
+      },
+      "validator": {
+        "uri": "crib-rail-fence.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T03:26:46.893Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 119712
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 1,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 1,
+          "totalVertexCount": 2508,
+          "totalTriangleCount": 4904,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    {
+      "prop_id": "giant-plush-ball",
+      "file": "giant-plush-ball.glb",
+      "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+      "bytes": 115332,
+      "triangles": 4368,
+      "meshes": 1,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Playroom plush",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.9700000286102295
+          }
+        },
+        {
+          "name": "Playroom foam",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7599999904632568
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.88553,
+          0,
+          -0.88542
+        ],
+        "max": [
+          0.88553,
+          1.76397,
+          0.88542
+        ]
+      },
+      "registry_box_gltf": {
+        "min": [
+          -0.9,
+          0,
+          -0.9
+        ],
+        "max": [
+          0.9,
+          1.8,
+          0.9
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "playroom-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 playroom-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "giant-plush-ball"
+      },
+      "extensions_used": [],
+      "checks": {
+        "gltf_2": true,
+        "khronos_no_errors": true,
+        "khronos_no_warnings": true,
+        "triangle_budget_5000": true,
+        "material_budget_4": true,
+        "glb_budget_1_5_mib": true,
+        "single_mesh_single_node": true,
+        "root_node_identity": true,
+        "node_named_for_registry_id": true,
+        "vertex_colour_on_every_primitive": true,
+        "normals_on_every_primitive": true,
+        "no_textures_or_images": true,
+        "static_no_animation_skin_morph": true,
+        "embedded_resources": true,
+        "no_extensions": true,
+        "opaque_materials": true,
+        "non_metallic_materials": true,
+        "floor_at_zero": true,
+        "inside_registry_box": true,
+        "footprint_centred_within_2cm": true,
+        "scene_identity": true,
+        "no_author_lease_state_in_extras": true
+      },
+      "validator": {
+        "uri": "giant-plush-ball.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T03:26:46.896Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 112896
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 2408,
+          "totalTriangleCount": 4368,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    }
+  ]
+}
