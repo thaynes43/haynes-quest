@@ -2,9 +2,9 @@
   "schema_version": 1,
   "asset_id": "rooftop-city-kit",
   "version": "v001",
-  "recorded_utc": "2026-09-29T06:16:18.831027+00:00",
-  "base_commit": "489902a8b0e22bbaaea1e9cd0eb20f365610907c",
-  "tested_scope": "Rooftop kit and registry integration; post-Casita rebase and final catalog audit pending",
+  "recorded_utc": "2026-09-29T06:44:45.307352+00:00",
+  "base_commit": "adf97ba781a6dc3a183f6f4c387eeeba609bfdab",
+  "tested_scope": "Combined Web-slinger Helper, Casita and Rooftop catalog on merged main; exact Rooftop registry, all 50 unchanged A3 transforms and v5/v6 scenery parity",
   "owner_exact_version_review": "pending under PRD-004 Q-03",
   "coordinator_visual_review": "reference and exact export comparison approved September 29",
   "local_checks": {
@@ -16,10 +16,12 @@
       "scope": "Rooftop City, A3 and theme registry"
     },
     "full_suite": {
-      "outcome": "initial run failed one obsolete no-GLB expectation; corrected file passes 20 tests; final combined-base run pending",
-      "tests_passed": 1893,
-      "tests_failed": 1,
-      "tests_skipped": 34
+      "outcome": "passed",
+      "test_files_passed": 165,
+      "test_files_skipped": 3,
+      "tests_passed": 1908,
+      "tests_skipped": 34,
+      "duration_seconds": 248.78
     },
     "strict_docs_and_media_links": "passed",
     "khronos": {
@@ -53,10 +55,35 @@
       "screenshots": 19,
       "errors": 0,
       "scope": "Full normal-control route plus camera-only drags; no teleport or internal state mutation",
-      "rendering": "Lockstep; software drawing thinned between full captures; server combat input paced by real time"
-    }
+      "rendering": "Lockstep; software drawing thinned between full captures; server combat input paced by real time",
+      "frozen_template": "family-world-a@v5",
+      "current_scenery_parity": "family-world-a@v6 resolves identical A3 decor; registry regression passes"
+    },
+    "level_validation": "passed"
   },
-  "full_catalog_audit": "pending final merged-base rebase",
+  "full_catalog_audit": {
+    "outcome": "passed",
+    "report": "catalog-audit/report.json",
+    "entries": 106,
+    "thumbnails": 149,
+    "review_pages": 72,
+    "exact_model_deliveries": 77,
+    "animated_viewer_checks": 40,
+    "errors": {
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0
+    },
+    "expected_metadata_aborts": 12,
+    "browser": {
+      "engine": "Chromium",
+      "version": "153.0.8010.12",
+      "rendering": "SwiftShader software (requested)"
+    },
+    "chromium_lease": "closed and released"
+  },
   "desktop_phone_static_viewers": {
     "outcome": "passed",
     "viewers": 8,
@@ -70,5 +97,28 @@
     "report": "scene-release.json"
   },
   "physical_safari": "not tested",
-  "deployment": "pending coordinator PR review, merge and image release"
+  "deployment": "pending coordinator PR review, merge and image release",
+  "authored_from_commit": "489902a8b0e22bbaaea1e9cd0eb20f365610907c",
+  "verification_history": [
+    {
+      "stage": "Initial Harbor-base full suite",
+      "outcome": "One obsolete expectation asserted Rooftop had no GLBs; 1893 passed, 1 failed, 34 skipped",
+      "resolution": "Added exact Rooftop URL expectation; corrected 20-test file passed, then complete merged-base suite passed."
+    },
+    {
+      "stage": "Pre-merge v6 parity check",
+      "outcome": "Typecheck caught an incorrect assumed v6 JSON filename; the pending suite was stopped",
+      "resolution": "Read v6 from the existing FamilyTemplateRegistry; its source project reuses frozen v5 geometry. Final typecheck and full suite pass."
+    }
+  ],
+  "upstream_preservation": {
+    "inventory_records_unchanged": 102,
+    "thumbnail_records_unchanged": 144,
+    "frozen_templates_saves_and_friendly_roster": "unchanged"
+  },
+  "authoring_pvc_check": {
+    "report": "remote-authoring-hashes.json",
+    "files": 6,
+    "outcome": "released master, exports and approved reference match exact worktree bytes; no scene mutation"
+  }
 }

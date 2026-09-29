@@ -1,9 +1,17 @@
 {
   "asset_id": "rooftop-city-kit",
   "version": "v001",
-  "algorithm": "sha256",
-  "self_excluded": true,
-  "files": {
+  "recorded_utc": "2026-09-29T06:46:00.224782+00:00",
+  "authoritative_worktree": "/home/dev/work/hq-rooftop-city-kit",
+  "backup_mirror": "/home/dev/artifacts/haynes-quest/family-eras/rooftop-city-kit/v001",
+  "mirror_role": "backup only; editable repository/source remains in the worktree",
+  "media_manifest": "docs/assets/media/rooftop-city-kit/v001/sha256-manifest.json",
+  "media_manifest_sha256": "25e981f8d088244ec3489e91f7684653007e761ae9ef38a90366419a1430e139",
+  "manifest_files": 115,
+  "matching_media_files_including_manifest": 116,
+  "matching_original_source_files": 19,
+  "all_expected_files_match": true,
+  "media_files": {
     "a3-camera/camera-probes.json": {
       "sha256": "3ccbc9c05985a8c401792eecd3bd772ba7be1ba24275c0a1a3b43abc84b4b4c4",
       "bytes": 8722
@@ -463,6 +471,53 @@
     "water-tower.glb": {
       "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
       "bytes": 180172
+    },
+    "sha256-manifest.json": {
+      "sha256": "25e981f8d088244ec3489e91f7684653007e761ae9ef38a90366419a1430e139",
+      "bytes": 17894
     }
-  }
+  },
+  "released_authoring_pvc": {
+    "scope": "Released Blender authoring PVC exact master, exports and approved reference; read-only HTTP downloads, no scene mutation",
+    "files": {
+      "rooftop-city-kit.blend": {
+        "bytes": 492136,
+        "sha256": "975301c7787a336735fdc778839e411344238a37c6ec59f4e7181fa90bf76c60",
+        "remote_matches_worktree": true
+      },
+      "water-tower.glb": {
+        "bytes": 180172,
+        "sha256": "f078b42cc5c6a6406985bc25f339e59497e86173a4cc81ea9689b67da01b9c3f",
+        "remote_matches_worktree": true
+      },
+      "rooftop-ac-unit.glb": {
+        "bytes": 88880,
+        "sha256": "3b89bd0dafed47420d16e0a7c44d32872376df890d02019fce81970d89826b7b",
+        "remote_matches_worktree": true
+      },
+      "crane-hook.glb": {
+        "bytes": 43912,
+        "sha256": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
+        "remote_matches_worktree": true
+      },
+      "billboard-frame.glb": {
+        "bytes": 122480,
+        "sha256": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
+        "remote_matches_worktree": true
+      },
+      "reference-sheet.png": {
+        "bytes": 1058898,
+        "sha256": "bf750f3fd7d0b628e92498437325518aff49c6cbab03e6c2921ebf69703a646c",
+        "remote_matches_worktree": true
+      }
+    }
+  },
+  "global_audit_captures_backup": "/home/dev/artifacts/haynes-quest/family-eras/rooftop-city-kit/v001/intake-evidence/catalog-audit",
+  "verification_log_backup": "/home/dev/artifacts/haynes-quest/family-eras/rooftop-city-kit/v001/intake-evidence/logs",
+  "final_intake_contracts": {
+    "test_files_passed": 2,
+    "tests_passed": 17
+  },
+  "scene_lease": "released; no subsequent scene mutation",
+  "owner_exact_version_review": "pending under PRD-004 Q-03"
 }

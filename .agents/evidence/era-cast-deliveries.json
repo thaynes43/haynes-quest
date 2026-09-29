@@ -2648,9 +2648,12 @@
         "lint": "passed",
         "productionBuild": "passed",
         "strictDocsMedia": "passed",
-        "fullSuite": "running",
-        "catalog": "pending final rebase and serial Chromium audit",
-        "finalVerification": "docs/assets/media/rooftop-city-kit/v001/final-verification.json"
+        "fullSuite": "1908 passed across 165 files; 34 tests / 3 files skipped",
+        "catalog": "106 entries, 149 thumbnails, 72 reviews, 77 exact model deliveries, 40 animated viewer checks; zero browser/delivery errors",
+        "finalVerification": "docs/assets/media/rooftop-city-kit/v001/final-verification.json",
+        "levelValidation": "passed",
+        "desktopPhoneStaticViewers": "4 cards and 8 viewers passed; zero errors",
+        "upstreamPreservation": "All 102 predecessor inventory records and 144 thumbnails retained; v5/v6 A3 decor identical"
       },
       "publication": {
         "status": "pending coordinator PR review, merge and deployment",
@@ -2660,7 +2663,8 @@
         "releasedUtc": "2026-09-29T06:11:06.741969+00:00",
         "report": "docs/assets/media/rooftop-city-kit/v001/scene-release.json",
         "predecessorsUnchanged": 78
-      }
+      },
+      "integrationBaseCommit": "adf97ba781a6dc3a183f6f4c387eeeba609bfdab"
     }
   ]
 }
