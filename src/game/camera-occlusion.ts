@@ -15,6 +15,13 @@ export class ScenicCameraOcclusion {
   private readonly hiddenMeshes = new Set<THREE.Mesh>();
   private readonly hiddenInstances = new Map<THREE.InstancedMesh, Map<number, THREE.Matrix4>>();
   private readonly hiddenMatrix = new THREE.Matrix4().makeScale(0, 0, 0);
+  /** Static scenic instances keep their measured world boxes until a caller changes a transform. */
+  private readonly instanceBounds = new WeakMap<THREE.InstancedMesh, {
+    version: number;
+    worldMatrix: THREE.Matrix4;
+    union: THREE.Box3;
+    boxes: THREE.Box3[];
+  }>();
 
   update(camera: THREE.Vector3, target: THREE.Vector3, roots: THREE.Object3D[]): void {
     this.clear();
@@ -36,23 +43,30 @@ export class ScenicCameraOcclusion {
       } else addCandidate(object, index);
     };
 
-    // Front-face materials may not report a ray that starts inside them. The
-    // reverse ray catches that case when the traveler is outside the prop.
-    // Chest and head samples keep a broad prop from hiding most of the avatar
-    // while leaving the center point clear.
+    // Cast from the traveler toward the camera so a front-face prop still
+    // registers when the camera has entered it. Chest and head samples catch
+    // a prop that clips only part of the avatar. The opposite center ray is
+    // needed only if those samples found nothing (traveler inside a prop).
     for (const height of [0, -0.55, 0.55]) {
       this.probe.copy(target);
       this.probe.y += height;
-      for (const [start, end] of [[camera, this.probe], [this.probe, camera]] as const) {
-        this.direction.subVectors(end, start);
-        const distance = this.direction.length();
-        if (distance < 0.35) continue;
-        this.ray.set(start, this.direction.divideScalar(distance));
-        this.ray.near = 0.01;
-        this.ray.far = distance - 0.2;
-        for (const hit of this.ray.intersectObjects(roots, true))
-          include(hit.object, hit.instanceId);
-      }
+      this.direction.subVectors(camera, this.probe);
+      const distance = this.direction.length();
+      if (distance < 0.35) continue;
+      this.ray.set(this.probe, this.direction.divideScalar(distance));
+      this.ray.near = 0.01;
+      this.ray.far = distance - 0.2;
+      for (const hit of this.ray.intersectObjects(roots, true))
+        include(hit.object, hit.instanceId);
+    }
+    if (candidates.size === 0) {
+      this.direction.subVectors(target, camera);
+      const distance = this.direction.length();
+      this.ray.set(camera, this.direction.divideScalar(distance));
+      this.ray.near = 0.01;
+      this.ray.far = distance - 0.2;
+      for (const hit of this.ray.intersectObjects(roots, true))
+        include(hit.object, hit.instanceId);
     }
 
     // A camera embedded in a closed scenic surface can miss both rays. Test
@@ -60,19 +74,11 @@ export class ScenicCameraOcclusion {
     for (const root of roots) root.traverseVisible((object) => {
       if (!(object instanceof THREE.Mesh) || !this.isScenic(object) || !this.isOpaque(object)) return;
       if (object instanceof THREE.InstancedMesh) {
-        if (!object.boundingBox) object.computeBoundingBox();
         object.updateWorldMatrix(true, false);
-        if (!object.boundingBox || !this.box.copy(object.boundingBox).applyMatrix4(object.matrixWorld).containsPoint(camera))
-          return;
-        object.geometry.computeBoundingBox();
-        const bounds = object.geometry.boundingBox;
-        if (!bounds) return;
-        for (let index = 0; index < object.count; index++) {
-          object.getMatrixAt(index, this.matrix);
-          this.matrix.premultiply(object.matrixWorld);
-          if (this.box.copy(bounds).applyMatrix4(this.matrix).containsPoint(camera))
-            include(object, index);
-        }
+        const bounds = this.boundsFor(object);
+        if (!bounds.union.containsPoint(camera)) return;
+        for (let index = 0; index < bounds.boxes.length; index++)
+          if (bounds.boxes[index]!.containsPoint(camera)) include(object, index);
       } else {
         object.geometry.computeBoundingBox();
         const bounds = object.geometry.boundingBox;
@@ -94,6 +100,8 @@ export class ScenicCameraOcclusion {
         if (originals.size > 0) {
           this.hiddenInstances.set(mesh, originals);
           mesh.instanceMatrix.needsUpdate = true;
+          const bounds = this.instanceBounds.get(mesh);
+          if (bounds) bounds.version = mesh.instanceMatrix.version;
         }
       } else {
         this.hiddenMeshes.add(mesh);
@@ -108,6 +116,8 @@ export class ScenicCameraOcclusion {
     for (const [mesh, originals] of this.hiddenInstances) {
       for (const [index, matrix] of originals) mesh.setMatrixAt(index, matrix);
       mesh.instanceMatrix.needsUpdate = true;
+      const bounds = this.instanceBounds.get(mesh);
+      if (bounds) bounds.version = mesh.instanceMatrix.version;
     }
     this.hiddenInstances.clear();
   }
@@ -116,6 +126,31 @@ export class ScenicCameraOcclusion {
     for (let node: THREE.Object3D | null = object; node; node = node.parent)
       if (node.userData.scenicOnly === true) return true;
     return false;
+  }
+
+  private boundsFor(mesh: THREE.InstancedMesh) {
+    const cached = this.instanceBounds.get(mesh);
+    if (cached && cached.version === mesh.instanceMatrix.version &&
+        cached.worldMatrix.equals(mesh.matrixWorld)) return cached;
+    mesh.geometry.computeBoundingBox();
+    const geometry = mesh.geometry.boundingBox;
+    const boxes: THREE.Box3[] = [];
+    const union = new THREE.Box3();
+    if (geometry) for (let index = 0; index < mesh.count; index++) {
+      mesh.getMatrixAt(index, this.matrix);
+      this.matrix.premultiply(mesh.matrixWorld);
+      const box = geometry.clone().applyMatrix4(this.matrix);
+      boxes.push(box);
+      union.union(box);
+    }
+    const bounds = {
+      version: mesh.instanceMatrix.version,
+      worldMatrix: mesh.matrixWorld.clone(),
+      union,
+      boxes,
+    };
+    this.instanceBounds.set(mesh, bounds);
+    return bounds;
   }
 
   private isOpaque(object: THREE.Mesh): boolean {

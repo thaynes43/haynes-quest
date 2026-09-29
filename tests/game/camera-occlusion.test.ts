@@ -98,6 +98,19 @@ describe("chase-camera scenic occlusion", () => {
     props.getMatrixAt(0, actual);
     expect(actual.equals(first)).toBe(true);
     expect(alreadyHidden.visible).toBe(false);
+
+    // Cached camera-point bounds must follow later parent and instance edits.
+    root.position.x = 12;
+    occlusion.update(new THREE.Vector3(0, 2, 4), new THREE.Vector3(0, 1.5, 0), [root]);
+    props.getMatrixAt(0, actual);
+    expect(actual.equals(first)).toBe(true);
+    root.position.x = 0;
+    const moved = new THREE.Matrix4().makeTranslation(12, 1.5, 2);
+    props.setMatrixAt(0, moved);
+    props.instanceMatrix.needsUpdate = true;
+    occlusion.update(new THREE.Vector3(0, 2, 4), new THREE.Vector3(0, 1.5, 0), [root]);
+    props.getMatrixAt(0, actual);
+    expect(actual.equals(moved)).toBe(true);
   });
 
   it("also clears a scenic box when the camera starts inside it", () => {
