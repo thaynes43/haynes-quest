@@ -1,0 +1,771 @@
+{
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "gpt-6-astra max",
+  "approved_sheet_preserved": true,
+  "owner_review": "pending",
+  "method": "Parametric production topology from approved blockout; 24-ray mild baked contact shading and vertex colours; opaque nonmetallic PBR",
+  "props": {
+    "stacking-block-tower": {
+      "triangles": 4344,
+      "materials": 1,
+      "parts": [
+        {
+          "name": "Foam block 1 (pink)",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Raised star block 1 front",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 556
+        },
+        {
+          "name": "Raised circle block 1 +X",
+          "hex": "#a7d8f4",
+          "finish": "foam",
+          "triangles": 236
+        },
+        {
+          "name": "Raised triangle block 1 back",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 152
+        },
+        {
+          "name": "Raised heart block 1 -X",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 396
+        },
+        {
+          "name": "Foam block 2 (sky)",
+          "hex": "#a7d8f4",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Raised heart block 2 front",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 396
+        },
+        {
+          "name": "Raised triangle block 2 +X",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 152
+        },
+        {
+          "name": "Raised star block 2 back",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 556
+        },
+        {
+          "name": "Raised circle block 2 -X",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 236
+        },
+        {
+          "name": "Foam block 3 (mint)",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Raised triangle block 3 front",
+          "hex": "#b9a7f4",
+          "finish": "foam",
+          "triangles": 152
+        },
+        {
+          "name": "Raised heart block 3 +X",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 396
+        },
+        {
+          "name": "Raised circle block 3 back",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 236
+        },
+        {
+          "name": "Raised star block 3 -X",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 556
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.6787506937980652,
+          0.0,
+          -0.6787506937980652
+        ],
+        "max": [
+          0.6787506937980652,
+          2.4000000953674316,
+          0.6787506937980652
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 106928,
+      "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b"
+    },
+    "toy-bus-garage": {
+      "triangles": 4796,
+      "materials": 2,
+      "parts": [
+        {
+          "name": "Toy base tray",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 140
+        },
+        {
+          "name": "Toy road",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 140
+        },
+        {
+          "name": "Road dash 1",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Road dash 2",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Road dash 3",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Road dash 4",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Front wall with door",
+          "hex": "#fbe3a1",
+          "finish": "foam",
+          "triangles": 324
+        },
+        {
+          "name": "Back wall",
+          "hex": "#fbe3a1",
+          "finish": "foam",
+          "triangles": 156
+        },
+        {
+          "name": "Left wall",
+          "hex": "#fbe3a1",
+          "finish": "foam",
+          "triangles": 44
+        },
+        {
+          "name": "Right wall",
+          "hex": "#fbe3a1",
+          "finish": "foam",
+          "triangles": 44
+        },
+        {
+          "name": "Interior liner (night)",
+          "hex": "#5a4a7c",
+          "finish": "foam",
+          "triangles": 10
+        },
+        {
+          "name": "Roll-up door slat 1 (blue)",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 44
+        },
+        {
+          "name": "Roll-up door slat 2 (cream)",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 44
+        },
+        {
+          "name": "Roll-up door slat 3 (blue)",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 44
+        },
+        {
+          "name": "Barrel roof",
+          "hex": "#b9a7f4",
+          "finish": "foam",
+          "triangles": 284
+        },
+        {
+          "name": "Roof piping rib 1",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 200
+        },
+        {
+          "name": "Roof piping rib 2",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 200
+        },
+        {
+          "name": "Roof piping rib 3",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 200
+        },
+        {
+          "name": "Roof piping rib 4",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 200
+        },
+        {
+          "name": "Door frame piping",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 284
+        },
+        {
+          "name": "Corner post left",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Corner post ball left",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Corner post right",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Corner post ball right",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Badge rim",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Badge disc",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Badge bus pictogram",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 124
+        },
+        {
+          "name": "Pictogram window 1",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Pictogram window 2",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Pictogram window 3",
+          "hex": "#6fb1e3",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Pictogram wheel 1",
+          "hex": "#5a4a7c",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Pictogram wheel 2",
+          "hex": "#5a4a7c",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Side porthole frame 1",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Side porthole pane 1",
+          "hex": "#a7d8f4",
+          "finish": "gloss",
+          "triangles": 60
+        },
+        {
+          "name": "Side porthole frame 2",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Side porthole pane 2",
+          "hex": "#a7d8f4",
+          "finish": "gloss",
+          "triangles": 60
+        },
+        {
+          "name": "Tower drum",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 124
+        },
+        {
+          "name": "Tower band",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 124
+        },
+        {
+          "name": "Tower dome",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 198
+        },
+        {
+          "name": "Honk horn bulb",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Honk horn neck",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Honk horn bell",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Traffic light housing",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 44
+        },
+        {
+          "name": "Traffic lamp 1 (rose)",
+          "hex": "#e8829f",
+          "finish": "gloss",
+          "triangles": 60
+        },
+        {
+          "name": "Traffic lamp 2 (honey)",
+          "hex": "#f2c65c",
+          "finish": "gloss",
+          "triangles": 60
+        },
+        {
+          "name": "Traffic lamp 3 (mint)",
+          "hex": "#a7e0c8",
+          "finish": "gloss",
+          "triangles": 60
+        }
+      ],
+      "bbox": {
+        "min": [
+          -1.9861338138580322,
+          0.0,
+          -1.5800000429153442
+        ],
+        "max": [
+          1.9861338138580322,
+          2.195000171661377,
+          1.5800000429153442
+        ]
+      },
+      "centering_offset_blender": [
+        0.0061337947845458984,
+        -0.0,
+        1.1739923877485126e-07
+      ],
+      "bytes": 121300,
+      "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec"
+    },
+    "crib-rail-fence": {
+      "triangles": 4904,
+      "materials": 1,
+      "parts": [
+        {
+          "name": "End post left",
+          "hex": "#a7d8f4",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Post heart left",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 396
+        },
+        {
+          "name": "End post right",
+          "hex": "#a7d8f4",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Post heart right",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 396
+        },
+        {
+          "name": "Soft teether top rail",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Bottom rail",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 108
+        },
+        {
+          "name": "Spindle 01",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 02",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 03",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 04",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 05",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 10",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 11",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 12",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 13",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Spindle 14",
+          "hex": "#fdf6ec",
+          "finish": "foam",
+          "triangles": 188
+        },
+        {
+          "name": "Bead rod 1",
+          "hex": "#b9a7f4",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Bead 1.1 (pink)",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 1.2 (honey)",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 1.3 (mint)",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 1.4 (sky)",
+          "hex": "#a7d8f4",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 1.5 (rose)",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead rod 2",
+          "hex": "#b9a7f4",
+          "finish": "foam",
+          "triangles": 60
+        },
+        {
+          "name": "Bead 2.1 (rose)",
+          "hex": "#e8829f",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 2.2 (sky)",
+          "hex": "#a7d8f4",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 2.3 (mint)",
+          "hex": "#a7e0c8",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 2.4 (honey)",
+          "hex": "#f2c65c",
+          "finish": "foam",
+          "triangles": 168
+        },
+        {
+          "name": "Bead 2.5 (pink)",
+          "hex": "#f4a7b9",
+          "finish": "foam",
+          "triangles": 168
+        }
+      ],
+      "bbox": {
+        "min": [
+          -1.600000023841858,
+          0.0,
+          -0.09100000560283661
+        ],
+        "max": [
+          1.600000023841858,
+          0.8999999761581421,
+          0.09100000560283661
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        0.006000000983476639,
+        -0.0
+      ],
+      "bytes": 121288,
+      "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799"
+    },
+    "giant-plush-ball": {
+      "triangles": 4368,
+      "materials": 2,
+      "parts": [
+        {
+          "name": "Plush panel 1 (pink)",
+          "hex": "#f4a7b9",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 2 (sky)",
+          "hex": "#a7d8f4",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 3 (butter)",
+          "hex": "#fbe3a1",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 4 (mint)",
+          "hex": "#a7e0c8",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 5 (pink)",
+          "hex": "#f4a7b9",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 6 (sky)",
+          "hex": "#a7d8f4",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 7 (butter)",
+          "hex": "#fbe3a1",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Plush panel 8 (mint)",
+          "hex": "#a7e0c8",
+          "finish": "plush",
+          "triangles": 216
+        },
+        {
+          "name": "Seam piping 1",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 2",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 3",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 4",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 5",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 6",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 7",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Seam piping 8",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 224
+        },
+        {
+          "name": "Top button cap",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 168
+        },
+        {
+          "name": "Bottom button cap",
+          "hex": "#fdf6ec",
+          "finish": "plush",
+          "triangles": 168
+        },
+        {
+          "name": "Ribbon tag loop",
+          "hex": "#b9a7f4",
+          "finish": "foam",
+          "triangles": 192
+        },
+        {
+          "name": "Star applique",
+          "hex": "#f2c65c",
+          "finish": "plush",
+          "triangles": 160
+        },
+        {
+          "name": "Heart applique",
+          "hex": "#e8829f",
+          "finish": "plush",
+          "triangles": 160
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.885530412197113,
+          0.0,
+          -0.8854241967201233
+        ],
+        "max": [
+          0.885530412197113,
+          1.7639694213867188,
+          0.8854241967201233
+        ]
+      },
+      "centering_offset_blender": [
+        0.008780419826507568,
+        0.008674204349517822,
+        -0.0007805954664945602
+      ],
+      "bytes": 115332,
+      "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49"
+    }
+  }
+}

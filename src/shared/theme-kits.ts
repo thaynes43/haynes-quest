@@ -307,28 +307,40 @@ export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze(
     theme: "playroom",
     bounds: box(0.7, 2.4, 0.7),
     fallback: { shape: "stack", color: 0xf4a7b9, trim: 0xa7d8f4 },
-    glb: null,
+    glb: {
+      url: `${media}/playroom-kit/v001/stacking-block-tower.glb`,
+      sha256: "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+    },
   },
   {
     id: "toy-bus-garage",
     theme: "playroom",
     bounds: box(2, 2.2, 1.6),
     fallback: { shape: "box", color: 0xfbe3a1, trim: 0xb9a7f4 },
-    glb: null,
+    glb: {
+      url: `${media}/playroom-kit/v001/toy-bus-garage.glb`,
+      sha256: "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+    },
   },
   {
     id: "crib-rail-fence",
     theme: "playroom",
     bounds: box(1.6, 0.9, 0.12),
     fallback: { shape: "box", color: 0xfdf6ec, trim: 0xa7e0c8 },
-    glb: null,
+    glb: {
+      url: `${media}/playroom-kit/v001/crib-rail-fence.glb`,
+      sha256: "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+    },
   },
   {
     id: "giant-plush-ball",
     theme: "playroom",
     bounds: box(0.9, 1.8, 0.9),
     fallback: { shape: "sphere", color: 0xa7d8f4, trim: 0xf4a7b9 },
-    glb: null,
+    glb: {
+      url: `${media}/playroom-kit/v001/giant-plush-ball.glb`,
+      sha256: "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+    },
   },
   {
     id: "casita-terrace-wall",

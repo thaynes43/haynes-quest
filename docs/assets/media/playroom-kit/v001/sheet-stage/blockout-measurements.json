@@ -1,0 +1,326 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/playroom-kit/v001/playroom-kit-blockout.blend",
+  "sha256": "01db384d9ccc3bd5cf707cb3cdbb9056bc2e3d9565c5b01e1bbd21ae5a5c89d9",
+  "props": {
+    "stacking-block-tower": {
+      "min": [
+        -0.6788,
+        -0.6788,
+        0.0
+      ],
+      "max": [
+        0.6788,
+        0.6788,
+        2.4
+      ],
+      "size": [
+        1.3575,
+        1.3575,
+        2.4
+      ],
+      "blockout_triangles": 7068,
+      "registry_box_blender": {
+        "min": [
+          -0.7,
+          -0.7,
+          0.0
+        ],
+        "max": [
+          0.7,
+          0.7,
+          2.4
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -0.6788,
+          0.0,
+          -0.6788
+        ],
+        "max": [
+          0.6788,
+          2.4,
+          0.6788
+        ]
+      },
+      "parts": 15,
+      "part_tops_m": {
+        "Foam block 1 (pink)": 0.8,
+        "Raised star block 1 front": 0.6256,
+        "Raised circle block 1 +X": 0.59,
+        "Raised triangle block 1 back": 0.62,
+        "Raised heart block 1 -X": 0.5987,
+        "Foam block 2 (sky)": 1.6,
+        "Raised heart block 2 front": 1.3987,
+        "Raised triangle block 2 +X": 1.42,
+        "Raised star block 2 back": 1.4256,
+        "Raised circle block 2 -X": 1.39,
+        "Foam block 3 (mint)": 2.4,
+        "Raised triangle block 3 front": 2.22,
+        "Raised heart block 3 +X": 2.1987,
+        "Raised circle block 3 back": 2.19,
+        "Raised star block 3 -X": 2.2256
+      }
+    },
+    "toy-bus-garage": {
+      "min": [
+        -1.9942,
+        -1.58,
+        -0.0
+      ],
+      "max": [
+        1.98,
+        1.58,
+        2.195
+      ],
+      "size": [
+        3.9742,
+        3.16,
+        2.195
+      ],
+      "blockout_triangles": 27500,
+      "registry_box_blender": {
+        "min": [
+          -2.0,
+          -1.6,
+          0.0
+        ],
+        "max": [
+          2.0,
+          1.6,
+          2.2
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -1.9942,
+          -0.0,
+          -1.58
+        ],
+        "max": [
+          1.98,
+          2.195,
+          1.58
+        ]
+      },
+      "parts": 46,
+      "part_tops_m": {
+        "Toy base tray": 0.08,
+        "Toy road": 0.094,
+        "Road dash 1": 0.099,
+        "Road dash 2": 0.099,
+        "Road dash 3": 0.099,
+        "Road dash 4": 0.099,
+        "Front wall with door": 2.1,
+        "Back wall": 2.1,
+        "Left wall": 1.62,
+        "Right wall": 1.62,
+        "Interior liner (night)": 1.615,
+        "Roll-up door slat 1 (blue)": 1.4175,
+        "Roll-up door slat 2 (cream)": 1.2975,
+        "Roll-up door slat 3 (blue)": 1.1775,
+        "Barrel roof": 2.18,
+        "Roof piping rib 1": 2.185,
+        "Roof piping rib 2": 2.195,
+        "Roof piping rib 3": 2.195,
+        "Roof piping rib 4": 2.185,
+        "Door frame piping": 1.49,
+        "Corner post left": 1.6,
+        "Corner post ball left": 1.72,
+        "Corner post right": 1.6,
+        "Corner post ball right": 1.72,
+        "Badge rim": 2.07,
+        "Badge disc": 2.025,
+        "Badge bus pictogram": 1.9,
+        "Pictogram window 1": 1.87,
+        "Pictogram window 2": 1.87,
+        "Pictogram window 3": 1.87,
+        "Pictogram wheel 1": 1.781,
+        "Pictogram wheel 2": 1.781,
+        "Side porthole frame 1": 1.18,
+        "Side porthole pane 1": 1.125,
+        "Side porthole frame 2": 1.18,
+        "Side porthole pane 2": 1.125,
+        "Tower drum": 1.5,
+        "Tower band": 1.58,
+        "Tower dome": 1.9,
+        "Honk horn bulb": 2.07,
+        "Honk horn neck": 2.0199,
+        "Honk horn bell": 2.0937,
+        "Traffic light housing": 1.36,
+        "Traffic lamp 1 (rose)": 1.3136,
+        "Traffic lamp 2 (honey)": 1.0936,
+        "Traffic lamp 3 (mint)": 0.8736
+      }
+    },
+    "crib-rail-fence": {
+      "min": [
+        -1.6,
+        -0.097,
+        0.0
+      ],
+      "max": [
+        1.6,
+        0.085,
+        0.9
+      ],
+      "size": [
+        3.2,
+        0.182,
+        0.9
+      ],
+      "blockout_triangles": 13240,
+      "registry_box_blender": {
+        "min": [
+          -1.6,
+          -0.12,
+          0.0
+        ],
+        "max": [
+          1.6,
+          0.12,
+          0.9
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -1.6,
+          0.0,
+          -0.085
+        ],
+        "max": [
+          1.6,
+          0.9,
+          0.097
+        ]
+      },
+      "parts": 28,
+      "part_tops_m": {
+        "End post left": 0.76,
+        "Post heart left": 0.5039,
+        "End post right": 0.76,
+        "Post heart right": 0.5039,
+        "Soft teether top rail": 0.9,
+        "Bottom rail": 0.16,
+        "Spindle 01": 0.78,
+        "Spindle 02": 0.78,
+        "Spindle 03": 0.78,
+        "Spindle 04": 0.78,
+        "Spindle 05": 0.78,
+        "Spindle 10": 0.78,
+        "Spindle 11": 0.78,
+        "Spindle 12": 0.78,
+        "Spindle 13": 0.78,
+        "Spindle 14": 0.78,
+        "Bead rod 1": 0.577,
+        "Bead 1.1 (pink)": 0.635,
+        "Bead 1.2 (honey)": 0.635,
+        "Bead 1.3 (mint)": 0.635,
+        "Bead 1.4 (sky)": 0.635,
+        "Bead 1.5 (rose)": 0.635,
+        "Bead rod 2": 0.377,
+        "Bead 2.1 (rose)": 0.435,
+        "Bead 2.2 (sky)": 0.435,
+        "Bead 2.3 (mint)": 0.435,
+        "Bead 2.4 (honey)": 0.435,
+        "Bead 2.5 (pink)": 0.435
+      }
+    },
+    "giant-plush-ball": {
+      "min": [
+        -0.8943,
+        -0.8945,
+        0.0007
+      ],
+      "max": [
+        0.8767,
+        0.8767,
+        1.7648
+      ],
+      "size": [
+        1.7711,
+        1.7713,
+        1.7641
+      ],
+      "blockout_triangles": 23840,
+      "registry_box_blender": {
+        "min": [
+          -0.9,
+          -0.9,
+          0.0
+        ],
+        "max": [
+          0.9,
+          0.9,
+          1.8
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -0.8943,
+          0.0007,
+          -0.8767
+        ],
+        "max": [
+          0.8767,
+          1.7648,
+          0.8945
+        ]
+      },
+      "parts": 21,
+      "part_tops_m": {
+        "Plush panel 1 (pink)": 1.6548,
+        "Plush panel 2 (sky)": 1.6548,
+        "Plush panel 3 (butter)": 1.6548,
+        "Plush panel 4 (mint)": 1.6548,
+        "Plush panel 5 (pink)": 1.6548,
+        "Plush panel 6 (sky)": 1.6548,
+        "Plush panel 7 (butter)": 1.6548,
+        "Plush panel 8 (mint)": 1.6548,
+        "Seam piping 1": 1.6726,
+        "Seam piping 2": 1.6726,
+        "Seam piping 3": 1.6726,
+        "Seam piping 4": 1.6726,
+        "Seam piping 5": 1.6726,
+        "Seam piping 6": 1.6726,
+        "Seam piping 7": 1.6726,
+        "Seam piping 8": 1.6726,
+        "Top button cap": 1.6737,
+        "Bottom button cap": 0.0615,
+        "Ribbon tag loop": 1.7648,
+        "Star applique": 1.0716,
+        "Heart applique": 1.0354
+      }
+    }
+  },
+  "materials": [
+    "PK foam blue #6fb1e3",
+    "PK foam butter #fbe3a1",
+    "PK foam cream #fdf6ec",
+    "PK foam honey #f2c65c",
+    "PK foam lilac #b9a7f4",
+    "PK foam mint #a7e0c8",
+    "PK foam night #5a4a7c",
+    "PK foam pink #f4a7b9",
+    "PK foam rose #e8829f",
+    "PK foam sky #a7d8f4",
+    "PK gloss honey #f2c65c",
+    "PK gloss mint #a7e0c8",
+    "PK gloss rose #e8829f",
+    "PK gloss sky #a7d8f4",
+    "PK plush butter #fbe3a1",
+    "PK plush cream #fdf6ec",
+    "PK plush honey #f2c65c",
+    "PK plush mint #a7e0c8",
+    "PK plush pink #f4a7b9",
+    "PK plush rose #e8829f",
+    "PK plush sky #a7d8f4"
+  ],
+  "parts": 110,
+  "build_seconds": 2.4,
+  "utc": "2026-09-26T22:53:44.825491+00:00"
+}

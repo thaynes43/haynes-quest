@@ -1,0 +1,93 @@
+{
+  "all_checks_pass": true,
+  "props": {
+    "stacking-block-tower": {
+      "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+      "meshes": 1,
+      "triangles": 4344,
+      "bbox_gltf": {
+        "min": [
+          -0.6787506937980652,
+          0.0,
+          -0.6787506937980652
+        ],
+        "max": [
+          0.6787506937980652,
+          2.4000000953674316,
+          0.6787506937980652
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "toy-bus-garage": {
+      "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+      "meshes": 1,
+      "triangles": 4796,
+      "bbox_gltf": {
+        "min": [
+          -1.9861338138580322,
+          0.0,
+          -1.5800000429153442
+        ],
+        "max": [
+          1.9861338138580322,
+          2.195000171661377,
+          1.5800000429153442
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "crib-rail-fence": {
+      "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+      "meshes": 1,
+      "triangles": 4904,
+      "bbox_gltf": {
+        "min": [
+          -1.600000023841858,
+          0.0,
+          -0.09100000560283661
+        ],
+        "max": [
+          1.600000023841858,
+          0.8999999761581421,
+          0.09100000560283661
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "giant-plush-ball": {
+      "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+      "meshes": 1,
+      "triangles": 4368,
+      "bbox_gltf": {
+        "min": [
+          -0.885530412197113,
+          0.0,
+          -0.8854241967201233
+        ],
+        "max": [
+          0.885530412197113,
+          1.7639694213867188,
+          0.8854241967201233
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    }
+  }
+}

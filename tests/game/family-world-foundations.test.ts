@@ -124,10 +124,11 @@ describe("era themes (v4 only)", () => {
       expect(kit.props.length).toBeLessThanOrEqual(6);
       for (const prop of kit.props) {
         expect(prop.theme).toBe(theme);
-        // Only the clubhouse kit has landed (WO111 toon-clubhouse-kit v001);
-        // every other era prop still draws its procedural stand-in.
+        // The delivered WO111 kits replace only their own scenery stand-ins.
         if (theme === "clubhouse")
           expect(prop.glb?.url).toBe(`/studio/assets/media/toon-clubhouse-kit/v001/${prop.id}.glb`);
+        else if (theme === "playroom")
+          expect(prop.glb?.url).toBe(`/studio/assets/media/playroom-kit/v001/${prop.id}.glb`);
         else expect(prop.glb).toBeNull();
       }
       expect(resolveRuntimeWorldTheme({ schemaVersion: "authored-level-v4", theme }, false)).toBe(world);

@@ -1,0 +1,502 @@
+{
+  "asset_id": "playroom-kit",
+  "version": "v001",
+  "files": [
+    {
+      "path": "bounds.json",
+      "bytes": 3973,
+      "sha256": "e254d438cc4ae0d620dcc4a7621de495bc48ed2a7fba1795afc98fc6714d63fa"
+    },
+    {
+      "path": "catalog-audit-final/report.json",
+      "bytes": 226080,
+      "sha256": "08420e8a4593e739da66f4ffc104615bbbb3df645f1a984ce670d3e37101557e"
+    },
+    {
+      "path": "claim-checkpoint.blend",
+      "bytes": 1400272,
+      "sha256": "42b0ee26d5d0e1a785a8ebb129880ecb74ce96c6e2a63c0976f89df60b8e5307"
+    },
+    {
+      "path": "construction.json",
+      "bytes": 18275,
+      "sha256": "84fdc7f4496841955bd2e49ea6c8ec14fe2df54919872cc5cc8534c829b8dff3"
+    },
+    {
+      "path": "crib-rail-fence.glb",
+      "bytes": 121288,
+      "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799"
+    },
+    {
+      "path": "final-verification.json",
+      "bytes": 2399,
+      "sha256": "2003cfe1fb8c5a6751c0d14f46a851e6a0fda467aeb5018138801b33b861e1aa"
+    },
+    {
+      "path": "giant-plush-ball.glb",
+      "bytes": 115332,
+      "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49"
+    },
+    {
+      "path": "intake-three-inspection.json",
+      "bytes": 34313,
+      "sha256": "a058d563176a87e89e6b01415f9306c10e994315604d99a96f0d5c4419b269b9"
+    },
+    {
+      "path": "kit-beauty.png",
+      "bytes": 525672,
+      "sha256": "435df1880dd7e33c45234bf289bfa710e4d2a3689c9653f13a2c47c0211c5e86"
+    },
+    {
+      "path": "live-scene-release.blend",
+      "bytes": 665924,
+      "sha256": "111a9a5ec70272c0b037ed0f2c50cc75fc8067287f61d50e2947948d3d16826f"
+    },
+    {
+      "path": "model-notes.md",
+      "bytes": 1592,
+      "sha256": "62735cd8bb20356c6ef026b15dfff995b692b425ae7efb2910a1f165dfd0c0ae"
+    },
+    {
+      "path": "playroom-kit.blend",
+      "bytes": 656200,
+      "sha256": "e187a58013120e93268895951bac1ec252e1e38d6c72ff7ad1aa867a9928f7ce"
+    },
+    {
+      "path": "production-topology-checkpoint.blend",
+      "bytes": 549555,
+      "sha256": "bd79b05ab0223ec71de2e152eaf3b7ee671aea30b6ef3585140773c5748d2685"
+    },
+    {
+      "path": "prompt.txt",
+      "bytes": 651,
+      "sha256": "3542a4e2d55192ae9ddc3b19878a5f81aa4e2476776d04f7ef4fda9732b8a784"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 1241,
+      "sha256": "e4daf2774d8e55627040d798df7e6327a0acfcb465d59e5388f49fc4c14a8d80"
+    },
+    {
+      "path": "reference-notes.md",
+      "bytes": 17614,
+      "sha256": "8c6755412e130aac6e9af7ef2f9b4e356590491b0ef616707e372f51e06f0fd3"
+    },
+    {
+      "path": "reference-sheet.png",
+      "bytes": 2147396,
+      "sha256": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9"
+    },
+    {
+      "path": "reimport.json",
+      "bytes": 2129,
+      "sha256": "8ba1e1a9a9fee9a9a215a57b64b7300754ebd957bf7e9198ce0ed45fa80364fc"
+    },
+    {
+      "path": "review-audit/desktop-crib-rail-fence-card.png",
+      "bytes": 35732,
+      "sha256": "419a503d008a8803ace9cb671d90999852421cc1cc2628c910837f1f3e534dc6"
+    },
+    {
+      "path": "review-audit/desktop-crib-rail-fence-viewer.png",
+      "bytes": 135498,
+      "sha256": "b66353bc2abf08216567256767af2170ee4f33107a383614acb15a9e724f8eea"
+    },
+    {
+      "path": "review-audit/desktop-giant-plush-ball-card.png",
+      "bytes": 38726,
+      "sha256": "09fd0aa69e6a2246110defcfbf01a096b4511f6d5e55c6ef665aa63ebda45079"
+    },
+    {
+      "path": "review-audit/desktop-giant-plush-ball-viewer.png",
+      "bytes": 149574,
+      "sha256": "832954fcd63552720a7f657b26d2503fffeb5dff0dc566f4e9eb7f97a15e560d"
+    },
+    {
+      "path": "review-audit/desktop-stacking-block-tower-card.png",
+      "bytes": 43957,
+      "sha256": "3df5fa2bbee8f5cc347147d4ff261fd719a73d7cdb0c46ab102c14f191780f52"
+    },
+    {
+      "path": "review-audit/desktop-stacking-block-tower-viewer.png",
+      "bytes": 118977,
+      "sha256": "5bf7487a4d7264b2f3ab6041d7900c4fffd872fd3f23ee21362782cc7cf3c28e"
+    },
+    {
+      "path": "review-audit/desktop-toy-bus-garage-card.png",
+      "bytes": 46010,
+      "sha256": "08d75b4ae2b7802fc5f2465a5474bf58bb9004d26bf126d060c8e36ac86ac158"
+    },
+    {
+      "path": "review-audit/desktop-toy-bus-garage-viewer.png",
+      "bytes": 134606,
+      "sha256": "8328cd5578357ae215544fa6cacde8e83d0f654f6436d35b13c300228e57d618"
+    },
+    {
+      "path": "review-audit/phone-crib-rail-fence-card.png",
+      "bytes": 42316,
+      "sha256": "0f7c44fa9f85c822cb908c4fa691e687009af132da81b28d69ad53f58f7a8bb5"
+    },
+    {
+      "path": "review-audit/phone-crib-rail-fence-viewer.png",
+      "bytes": 54523,
+      "sha256": "cc80e9de23b751eb8e13e437953ffd20fa2dcae13275df994c3b6233cec525a3"
+    },
+    {
+      "path": "review-audit/phone-giant-plush-ball-card.png",
+      "bytes": 45314,
+      "sha256": "60d8e089d439fb8f14136620699bf4973ebaca058db2dd53bbe33e1e4036ee79"
+    },
+    {
+      "path": "review-audit/phone-giant-plush-ball-viewer.png",
+      "bytes": 68130,
+      "sha256": "9536a7d875217fcd10f10544e104fac35701f0a509e2711f5cd2187009861719"
+    },
+    {
+      "path": "review-audit/phone-stacking-block-tower-card.png",
+      "bytes": 52120,
+      "sha256": "24258ba430d0790b679a7f0f9231b67a9badd47aa9b7174cfb0072a07ef55f27"
+    },
+    {
+      "path": "review-audit/phone-stacking-block-tower-viewer.png",
+      "bytes": 46888,
+      "sha256": "20cf23611071b43d067a1b875206fbb764788a0b38f787a8bfc5f66acb2d8d3a"
+    },
+    {
+      "path": "review-audit/phone-toy-bus-garage-card.png",
+      "bytes": 55223,
+      "sha256": "3edfd45aaed3177974c189ea3ef940a509ea6c4ec2d4b7a9827bbc194a3339b3"
+    },
+    {
+      "path": "review-audit/phone-toy-bus-garage-viewer.png",
+      "bytes": 57457,
+      "sha256": "9f2b879d957d95be41116e1c2170daa41be9ce1cbf34fba1414118f3a276df23"
+    },
+    {
+      "path": "review-audit/report.json",
+      "bytes": 1480,
+      "sha256": "9d9e9eea0de9b40498444825127888e5abba26573ea37e56fde3c8c8f28aee24"
+    },
+    {
+      "path": "scene-lease.json",
+      "bytes": 2022,
+      "sha256": "322b3ac1cae71f43b7b5b680131140445585e2c692713b2aa790c8fc0428e542"
+    },
+    {
+      "path": "scene-release.json",
+      "bytes": 1817,
+      "sha256": "b547eecaa0a5f31af944615858ba7c6e8b937e7cee489d28ca4ea9062b00b85e"
+    },
+    {
+      "path": "sheet-stage/README.md",
+      "bytes": 562,
+      "sha256": "2fe84da9abf67d37d00c9ea7059ab8f3a66d67b5389abfbb7864c9473da689d5"
+    },
+    {
+      "path": "sheet-stage/blockout-measurements.json",
+      "bytes": 7732,
+      "sha256": "fbfbc180fac0863d02c7259c93409717329a200dbc1338464abbbdf7889bc0e7"
+    },
+    {
+      "path": "sheet-stage/part-measurements.json",
+      "bytes": 7077,
+      "sha256": "fac8d75c6def90ddef4c960ee3cf11048138f87b9d7959fddce88354039eb0ea"
+    },
+    {
+      "path": "sheet-stage/playroom-kit-blockout.blend",
+      "bytes": 431511,
+      "sha256": "01db384d9ccc3bd5cf707cb3cdbb9056bc2e3d9565c5b01e1bbd21ae5a5c89d9"
+    },
+    {
+      "path": "sheet-stage/playroom-kit-reference-sheet.blend",
+      "bytes": 872439,
+      "sha256": "a1759db19361e5c2e61ef84357a18005a3f7ae972defa0ba30f0aaba1c679d17"
+    },
+    {
+      "path": "sheet-stage/reference-notes.md",
+      "bytes": 17614,
+      "sha256": "8c6755412e130aac6e9af7ef2f9b4e356590491b0ef616707e372f51e06f0fd3"
+    },
+    {
+      "path": "sheet-stage/scene-lease.json",
+      "bytes": 14019,
+      "sha256": "a4c7d5f861855c583a35a890b5fa671ccdea07fc47ca6a812801f51970f4a4fd"
+    },
+    {
+      "path": "sheet-stage/scene-release.json",
+      "bytes": 14194,
+      "sha256": "4cbe4f10bd262b5b6246badd78cb3f95f66f80e846b6540e03b4db3e840aeb66"
+    },
+    {
+      "path": "sheet-stage/source/build_blockout.py",
+      "bytes": 30934,
+      "sha256": "3010c05fb17c4e5d568d8b9aed8abf2cc215b8d6edbf7ece6450f2a9af8f4937"
+    },
+    {
+      "path": "sheet-stage/source/claim.py",
+      "bytes": 3423,
+      "sha256": "2f6606374bbb12be03dc897f3c40a51bf3f230fc914b33d55cb0252171b32eda"
+    },
+    {
+      "path": "sheet-stage/source/collect.py",
+      "bytes": 4559,
+      "sha256": "9fb2913069e60582cb6c64115fd7c7cf3613dfe98ea2084bd14991214321dd9c"
+    },
+    {
+      "path": "sheet-stage/source/crops.py",
+      "bytes": 2260,
+      "sha256": "a18854718d031468aa5f8709642be093f285887954c7bcdf9604bb020a480961"
+    },
+    {
+      "path": "sheet-stage/source/fetchprev.py",
+      "bytes": 375,
+      "sha256": "31e1ef65d529028676845da6d2ac7a3b7c7aa63805d62881f4fbfee3aa366d8c"
+    },
+    {
+      "path": "sheet-stage/source/final_render.py",
+      "bytes": 1309,
+      "sha256": "df3d1129ebf936b5307cfd0bb5756c59ad2e99e050ebae21e817106980d27312"
+    },
+    {
+      "path": "sheet-stage/source/iterate_preview.py",
+      "bytes": 574,
+      "sha256": "06f809b4f1cdb6d291ddc40c66855a836dff0f3a5d3de296e838780a929de342"
+    },
+    {
+      "path": "sheet-stage/source/measure_parts.py",
+      "bytes": 3163,
+      "sha256": "1ac15a1558727f31fd13d1d9331f9957a990db6b6c62d8aeab02665bbf66c02a"
+    },
+    {
+      "path": "sheet-stage/source/release.py",
+      "bytes": 4421,
+      "sha256": "c775c2a147f895a62ed9b93920059f03e94a51d9d1ae0e1dd63b2e4ceb720f1a"
+    },
+    {
+      "path": "sheet-stage/source/run.py",
+      "bytes": 975,
+      "sha256": "01de41485b20f6279dc591eea14bfb7192a2653c2a1d613d93de875abd0b9e97"
+    },
+    {
+      "path": "sheet-stage/source/sheet.py",
+      "bytes": 16625,
+      "sha256": "6f74067e6d806f288ba4e0e56bcb85b90fe869f856c0ae4986cadd4ebdbae534"
+    },
+    {
+      "path": "sheet-stage/source/transfer.py",
+      "bytes": 4871,
+      "sha256": "362cff0a57e3c6e806cd351c32d69af2658c541971e7e993071f726d976adba5"
+    },
+    {
+      "path": "sheet-stage/source/upload_notes.py",
+      "bytes": 375,
+      "sha256": "de2c7c9da78cf4b197b48fbd47a32447e2a7f47bcf7ec949c899fc4380347e26"
+    },
+    {
+      "path": "sheet-vs-export.png",
+      "bytes": 1366911,
+      "sha256": "28413767b6d384f6bf437df67aa907eb62b2e8b9938ccc6390e724b2f0eac570"
+    },
+    {
+      "path": "source/build_model.py",
+      "bytes": 10183,
+      "sha256": "fc81645e522205501f5931675d0490dc5a323537ad7838bbc87289525a48f6dd"
+    },
+    {
+      "path": "source/claim.py",
+      "bytes": 2734,
+      "sha256": "fd3643fdfefb4ccb5c29421d711e88f48c954ff03806a3ff58334db2e761a597"
+    },
+    {
+      "path": "source/compose.mjs",
+      "bytes": 2761,
+      "sha256": "55e2be7ca8c595d534c6cfceeeb798423d6e0005c656dfbdf5cad6c6e6a73931"
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 8665,
+      "sha256": "539b92ce20392e2b0bbc632f37a7ae46d8b96b95c683304c83441be64d11e263"
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 7610,
+      "sha256": "e359b0dd583e7cfbc2b27f5d40cb6911e2b0b236544f32203d87a34373d349f7"
+    },
+    {
+      "path": "source/reference_blockout.py",
+      "bytes": 30934,
+      "sha256": "3010c05fb17c4e5d568d8b9aed8abf2cc215b8d6edbf7ece6450f2a9af8f4937"
+    },
+    {
+      "path": "source/reimport.py",
+      "bytes": 1769,
+      "sha256": "7b2afc0ff6237b9d8105f9b798258a11a0b74ac3371264a85b351af1fd32d10a"
+    },
+    {
+      "path": "source/release_scene.py",
+      "bytes": 3675,
+      "sha256": "bcc0465ba51f6cb666063e5e67f0ef248a66ac78c0aad4194fb466043dd8782c"
+    },
+    {
+      "path": "source/review_audit.mjs",
+      "bytes": 3484,
+      "sha256": "7520e498b19a62d74cfa4958b70b07563a1f5b2a5dd9c09ed99cfcfc7011ae35"
+    },
+    {
+      "path": "source/run.py",
+      "bytes": 608,
+      "sha256": "5bb481e6deb6ebe94d2834ab016960b9f03d8ce6080934bf72e94aac7bce34bf"
+    },
+    {
+      "path": "source/transfer.py",
+      "bytes": 4643,
+      "sha256": "52f78bb116992c22942543c7e8f712b81444477b50a6a1e03c7f0733be4441da"
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 5168,
+      "sha256": "53afc286a6b7344dd30af8ebc9c1fa27548ce294ab5e5968ddc41fae7371ad7e"
+    },
+    {
+      "path": "source.json",
+      "bytes": 763,
+      "sha256": "029464d3292b720be24c7a49511e78fa3c3c3c1a9de4becd8a07104904839fe6"
+    },
+    {
+      "path": "stacking-block-tower.glb",
+      "bytes": 106928,
+      "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b"
+    },
+    {
+      "path": "static-contact-sheet.png",
+      "bytes": 1124125,
+      "sha256": "a0d4d35371cd9a20c503d2391e70c26fc36ff13abd7030f960ae026ce8117986"
+    },
+    {
+      "path": "stills/browser-inspection.json",
+      "bytes": 17783,
+      "sha256": "3d89969d90137fb1908a912639569ac7cbb8d3aa01081e0059290966507720d8"
+    },
+    {
+      "path": "stills/crib-rail-fence-back.png",
+      "bytes": 49434,
+      "sha256": "056d9128ae610a0561b3696ae495a8eeaff1ed27852215ee59f72eb7bf597126"
+    },
+    {
+      "path": "stills/crib-rail-fence-beauty.png",
+      "bytes": 143199,
+      "sha256": "8cc2af39d650e03c2bd0e65506c068ec418fc1ad5379d7fff7d17adfb7da971a"
+    },
+    {
+      "path": "stills/crib-rail-fence-front.png",
+      "bytes": 106206,
+      "sha256": "f2d4bd12bb573955c79c809bd26ec5fc3741bacc71d951a82d81d87f081b8b33"
+    },
+    {
+      "path": "stills/crib-rail-fence-side.png",
+      "bytes": 21776,
+      "sha256": "78877f7af3a4ed6f824036d548ece2caec4700d26fb94cffd40f6d1e3993e0a9"
+    },
+    {
+      "path": "stills/crib-rail-fence-threequarter.png",
+      "bytes": 106601,
+      "sha256": "84269d2d201ccaa928400d305884d2f154f1acdb8a8546f473030641757723a3"
+    },
+    {
+      "path": "stills/giant-plush-ball-back.png",
+      "bytes": 187243,
+      "sha256": "53ba9a0bab8c7ff115b2ed57d903b604f0fc22b13231887b944425abf067858b"
+    },
+    {
+      "path": "stills/giant-plush-ball-beauty.png",
+      "bytes": 200851,
+      "sha256": "8e2cbe667cb836016bcbb59318cda0b737a394e17bc221312952a01273b02873"
+    },
+    {
+      "path": "stills/giant-plush-ball-front.png",
+      "bytes": 257017,
+      "sha256": "e9859e26cc22409e2bae66a657cb03b579c5c5757e307760bb2ce6b3d11c53f7"
+    },
+    {
+      "path": "stills/giant-plush-ball-side.png",
+      "bytes": 253400,
+      "sha256": "ec0f02e5f3e06fdbdef9af1750069f7e8f3c44f5d1b94fd67003905d91a38ddf"
+    },
+    {
+      "path": "stills/giant-plush-ball-threequarter.png",
+      "bytes": 261288,
+      "sha256": "886dfb4ab86a7de9a1ab178c3db1f069e4171f16ae169d6183ddbe9e569bf4c0"
+    },
+    {
+      "path": "stills/stacking-block-tower-back.png",
+      "bytes": 94311,
+      "sha256": "1505744267ad4f68055fde2a9e32017765ecd41eceb189cca1d6cc85e5a327cd"
+    },
+    {
+      "path": "stills/stacking-block-tower-beauty.png",
+      "bytes": 376586,
+      "sha256": "d29e182d74f6369fb6139754459bed3d3142093b95f99dcb4a3ed7924b2690e2"
+    },
+    {
+      "path": "stills/stacking-block-tower-front.png",
+      "bytes": 397505,
+      "sha256": "6820a2d739d027fa3a30f59f4bf38183bfc6b279c6a31c922c322809103c26f2"
+    },
+    {
+      "path": "stills/stacking-block-tower-side.png",
+      "bytes": 399192,
+      "sha256": "9a558bb8969a699d3fee8e6a2de5903933e91bc0195af0dbef1ef34c20e154eb"
+    },
+    {
+      "path": "stills/stacking-block-tower-threequarter.png",
+      "bytes": 503490,
+      "sha256": "c19af696f77b4dca9f92a1792e69cec7a30b4ba0cda6d759f0b33403326de4c4"
+    },
+    {
+      "path": "stills/toy-bus-garage-back.png",
+      "bytes": 54048,
+      "sha256": "feb5a46050877d034edb71be6d51d954c1c528256926f6814054025b0c638efc"
+    },
+    {
+      "path": "stills/toy-bus-garage-beauty.png",
+      "bytes": 298670,
+      "sha256": "bd190e14dd43773c1db119f69e714109af4d236ee320d80ec234b7a5bb73c493"
+    },
+    {
+      "path": "stills/toy-bus-garage-front.png",
+      "bytes": 191719,
+      "sha256": "8f0dd34edb7ceb9ba2baad5b9234aa5925d385a33e335536228ca855b79205ca"
+    },
+    {
+      "path": "stills/toy-bus-garage-side.png",
+      "bytes": 153128,
+      "sha256": "6b9655e30e1b21e7116cde9c2ab444fdcd716d577915549b6f2ab77d7b51c6d0"
+    },
+    {
+      "path": "stills/toy-bus-garage-threequarter.png",
+      "bytes": 238176,
+      "sha256": "7a25c58c19de3ca3d782dcd6f2416d5299cab997d462f6969cc2a79284b8d606"
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 34311,
+      "sha256": "bb579307447cf3294cb5bbef5da72a5fb6dc68b1880ff0a8c6270d8c4c0dba48"
+    },
+    {
+      "path": "toy-bus-garage.glb",
+      "bytes": 121300,
+      "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 13920,
+      "sha256": "7804ceae3a036bed5b3aeaa951536c0bb760a2c355a8cdb77359051c19c3d48f"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 1240,
+      "sha256": "01434aa060da0202a56254aea22a588d9e149ba4aed0b6aa26c60d75803f7e63"
+    }
+  ],
+  "self_excluded": true
+}

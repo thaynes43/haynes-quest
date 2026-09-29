@@ -1,0 +1,201 @@
+{
+  "axes": "glTF metres, +Y up, front toward +Z, origin at the floor centre",
+  "props": {
+    "stacking-block-tower": {
+      "exact_gltf": {
+        "min": {
+          "x": -0.67875,
+          "y": 0,
+          "z": -0.67875
+        },
+        "max": {
+          "x": 0.67875,
+          "y": 2.4,
+          "z": 0.67875
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.679,
+          "y": 0,
+          "z": -0.679
+        },
+        "max": {
+          "x": 0.679,
+          "y": 2.4,
+          "z": 0.679
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 0.679,
+        "height": 2.4,
+        "halfZ": 0.679
+      },
+      "size_m": {
+        "width_x": 1.3575,
+        "height_y": 2.4,
+        "depth_z": 1.3575
+      },
+      "registry": {
+        "min": {
+          "x": -0.7,
+          "y": 0,
+          "z": -0.7
+        },
+        "max": {
+          "x": 0.7,
+          "y": 2.4,
+          "z": 0.7
+        }
+      },
+      "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b"
+    },
+    "toy-bus-garage": {
+      "exact_gltf": {
+        "min": {
+          "x": -1.98613,
+          "y": 0,
+          "z": -1.58
+        },
+        "max": {
+          "x": 1.98613,
+          "y": 2.195,
+          "z": 1.58
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -1.987,
+          "y": 0,
+          "z": -1.58
+        },
+        "max": {
+          "x": 1.987,
+          "y": 2.195,
+          "z": 1.58
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 1.987,
+        "height": 2.195,
+        "halfZ": 1.58
+      },
+      "size_m": {
+        "width_x": 3.9723,
+        "height_y": 2.195,
+        "depth_z": 3.16
+      },
+      "registry": {
+        "min": {
+          "x": -2,
+          "y": 0,
+          "z": -1.6
+        },
+        "max": {
+          "x": 2,
+          "y": 2.2,
+          "z": 1.6
+        }
+      },
+      "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec"
+    },
+    "crib-rail-fence": {
+      "exact_gltf": {
+        "min": {
+          "x": -1.6,
+          "y": 0,
+          "z": -0.091
+        },
+        "max": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0.091
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -1.6,
+          "y": 0,
+          "z": -0.091
+        },
+        "max": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0.091
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 1.6,
+        "height": 0.9,
+        "halfZ": 0.091
+      },
+      "size_m": {
+        "width_x": 3.2,
+        "height_y": 0.9,
+        "depth_z": 0.182
+      },
+      "registry": {
+        "min": {
+          "x": -1.6,
+          "y": 0,
+          "z": -0.12
+        },
+        "max": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0.12
+        }
+      },
+      "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799"
+    },
+    "giant-plush-ball": {
+      "exact_gltf": {
+        "min": {
+          "x": -0.88553,
+          "y": 0,
+          "z": -0.88542
+        },
+        "max": {
+          "x": 0.88553,
+          "y": 1.76397,
+          "z": 0.88542
+        }
+      },
+      "tight_mm": {
+        "min": {
+          "x": -0.886,
+          "y": 0,
+          "z": -0.886
+        },
+        "max": {
+          "x": 0.886,
+          "y": 1.764,
+          "z": 0.886
+        }
+      },
+      "symmetric_registry_suggestion": {
+        "halfX": 0.886,
+        "height": 1.764,
+        "halfZ": 0.886
+      },
+      "size_m": {
+        "width_x": 1.7711,
+        "height_y": 1.764,
+        "depth_z": 1.7708
+      },
+      "registry": {
+        "min": {
+          "x": -0.9,
+          "y": 0,
+          "z": -0.9
+        },
+        "max": {
+          "x": 0.9,
+          "y": 1.8,
+          "z": 0.9
+        }
+      },
+      "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49"
+    }
+  }
+}

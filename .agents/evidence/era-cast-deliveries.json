@@ -1782,6 +1782,177 @@
         "artifactHashesMatchedLocally": 179,
         "physicalSafari": false
       }
+    },
+    {
+      "assetId": "playroom-kit",
+      "version": "v001",
+      "role": "props",
+      "world": "B",
+      "chapter": 1,
+      "theme": "playroom",
+      "glb": null,
+      "sha256": null,
+      "heightM": 2.4,
+      "clips": [],
+      "props": [
+        {
+          "id": "stacking-block-tower",
+          "glb": "docs/assets/media/playroom-kit/v001/stacking-block-tower.glb",
+          "sha256": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
+          "bytes": 106928,
+          "triangles": 4344,
+          "materials": 1,
+          "bbox": {
+            "min": [
+              -0.67875,
+              0,
+              -0.67875
+            ],
+            "max": [
+              0.67875,
+              2.4,
+              0.67875
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -0.7,
+              0,
+              -0.7
+            ],
+            "max": [
+              0.7,
+              2.4,
+              0.7
+            ]
+          }
+        },
+        {
+          "id": "toy-bus-garage",
+          "glb": "docs/assets/media/playroom-kit/v001/toy-bus-garage.glb",
+          "sha256": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
+          "bytes": 121300,
+          "triangles": 4796,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -1.98613,
+              0,
+              -1.58
+            ],
+            "max": [
+              1.98613,
+              2.195,
+              1.58
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -2,
+              0,
+              -1.6
+            ],
+            "max": [
+              2,
+              2.2,
+              1.6
+            ]
+          }
+        },
+        {
+          "id": "crib-rail-fence",
+          "glb": "docs/assets/media/playroom-kit/v001/crib-rail-fence.glb",
+          "sha256": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
+          "bytes": 121288,
+          "triangles": 4904,
+          "materials": 1,
+          "bbox": {
+            "min": [
+              -1.6,
+              0,
+              -0.091
+            ],
+            "max": [
+              1.6,
+              0.9,
+              0.091
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -1.6,
+              0,
+              -0.12
+            ],
+            "max": [
+              1.6,
+              0.9,
+              0.12
+            ]
+          }
+        },
+        {
+          "id": "giant-plush-ball",
+          "glb": "docs/assets/media/playroom-kit/v001/giant-plush-ball.glb",
+          "sha256": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
+          "bytes": 115332,
+          "triangles": 4368,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -0.88553,
+              0,
+              -0.88542
+            ],
+            "max": [
+              0.88553,
+              1.76397,
+              0.88542
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -0.9,
+              0,
+              -0.9
+            ],
+            "max": [
+              0.9,
+              1.8,
+              0.9
+            ]
+          }
+        }
+      ],
+      "bounds": {
+        "convention": "glTF +Y up, front +Z; identity floor-centred roots. All four original planning boxes retained unchanged."
+      },
+      "review": "docs/assets/reviews/playroom-kit/v001.md",
+      "manifest": "docs/assets/media/playroom-kit/v001/sha256-manifest.json",
+      "master": "docs/assets/media/playroom-kit/v001/playroom-kit.blend",
+      "masterSha256": "e187a58013120e93268895951bac1ec252e1e38d6c72ff7ad1aa867a9928f7ce",
+      "ownerReview": "pending",
+      "coordinatorReview": "passed September 29 against reference-sheet.png and kit-beauty.png",
+      "gameplayUse": "private-candidate under PRD-004 Q-03",
+      "sceneInstance": "blender-authoring (instance 1)",
+      "prMerged": null,
+      "checks": {
+        "khronos": "0 errors, warnings, infos and hints on all four files",
+        "threeAdapter": "32 placements inside registry bounds",
+        "blenderReimport": "all four exact files pass",
+        "chromium": "all four exact files, five views each, 0 page/HTTP/GL errors",
+        "focusedTests": "47 passed in 5 files on rebased branch",
+        "fullSuite": "passed in GitHub Actions verify job 109246300751 on c1954fe",
+        "fullCatalog": "passed: 93 entries, 132 thumbnails, 68 review pages, 64 exact model deliveries, 38 animated candidate viewer checks; zero page/console/HTTP/request/external errors",
+        "rebasedThreeAdapter": "32 placements passed against a540ad7 scene code",
+        "finalVerification": "docs/assets/media/playroom-kit/v001/final-verification.json"
+      },
+      "publication": {
+        "status": "pending coordinator merge and image publication; no deployment claim",
+        "runtimeIntegration": "Exact URLs and hashes in src/shared/theme-kits.ts. Existing B1 v4 placements: 30 block towers, 1 garage, 4 crib fences, 15 plush balls. No template or published course document changes."
+      },
+      "sceneReleasedAt": "2026-09-29T03:30:25.120846+00:00",
+      "pr": 131
     }
   ]
 }

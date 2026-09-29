@@ -556,6 +556,41 @@
       "sha256": "366cfdefcfd7dacf8d068e7cf71825f8abebdef0c2c73a66faa24f0c5803259d"
     },
     {
+      "source": "docs/assets/media/playroom-kit/v001/reference-sheet.png",
+      "source_sha256": "0f75775176842b005d2066cba7da85d6c028d73fe58929731cb85584c66f45e9",
+      "path": "docs/assets/media/catalog-thumbnails/v001/ca64a142a1f0707c.webp",
+      "bytes": 22310,
+      "sha256": "67479ec0c13aac3156220d1ca24415d3264531cddb9c4bc098b9b998d3a81317"
+    },
+    {
+      "source": "docs/assets/media/playroom-kit/v001/stills/crib-rail-fence-beauty.png",
+      "source_sha256": "8cc2af39d650e03c2bd0e65506c068ec418fc1ad5379d7fff7d17adfb7da971a",
+      "path": "docs/assets/media/catalog-thumbnails/v001/ca77a69fdb513ca5.webp",
+      "bytes": 5550,
+      "sha256": "5db5bb19c860d328edf9ab8107b5cfd42f299e72498f127f0a30bc61dacba2ea"
+    },
+    {
+      "source": "docs/assets/media/playroom-kit/v001/stills/giant-plush-ball-beauty.png",
+      "source_sha256": "8e2cbe667cb836016bcbb59318cda0b737a394e17bc221312952a01273b02873",
+      "path": "docs/assets/media/catalog-thumbnails/v001/87b561dc7fd04104.webp",
+      "bytes": 4534,
+      "sha256": "29ebcc95010701382dafed509635570dbda3570882af81afa7c2d092a8efafd2"
+    },
+    {
+      "source": "docs/assets/media/playroom-kit/v001/stills/stacking-block-tower-beauty.png",
+      "source_sha256": "d29e182d74f6369fb6139754459bed3d3142093b95f99dcb4a3ed7924b2690e2",
+      "path": "docs/assets/media/catalog-thumbnails/v001/6e05567fed90fc95.webp",
+      "bytes": 5806,
+      "sha256": "ad6422d7bb9aa40c3ab67d24d8b1e45b12d30ef026cf0cc981b654fa9545a07b"
+    },
+    {
+      "source": "docs/assets/media/playroom-kit/v001/stills/toy-bus-garage-beauty.png",
+      "source_sha256": "bd190e14dd43773c1db119f69e714109af4d236ee320d80ec234b7a5bb73c493",
+      "path": "docs/assets/media/catalog-thumbnails/v001/0c4227bf131b980f.webp",
+      "bytes": 7750,
+      "sha256": "b347bc906ac432899268d45c6d312ef5028350cfb250d1e0570fc79ab4b26edf"
+    },
+    {
       "source": "docs/assets/media/prism-mimic/v001/beauty.png",
       "source_sha256": "02e9d028b5e145ff8a75fb9141a2a5451f5611c9dbe562f1dd394baf29df944d",
       "path": "docs/assets/media/catalog-thumbnails/v001/7408095b1dcf7b88.webp",
