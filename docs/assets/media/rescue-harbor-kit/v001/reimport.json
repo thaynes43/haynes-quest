@@ -1,0 +1,93 @@
+{
+  "all_checks_pass": true,
+  "props": {
+    "lookout-tower-facade": {
+      "sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+      "meshes": 1,
+      "triangles": 4776,
+      "bbox_gltf": {
+        "min": [
+          -1.75,
+          0.0,
+          -1.7649483680725098
+        ],
+        "max": [
+          1.75,
+          6.885000228881836,
+          1.7649483680725098
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "pier-bollard": {
+      "sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+      "meshes": 1,
+      "triangles": 2632,
+      "bbox_gltf": {
+        "min": [
+          -0.28324228525161743,
+          0.0,
+          -0.28324228525161743
+        ],
+        "max": [
+          0.28324228525161743,
+          0.7870000004768372,
+          0.28324228525161743
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "rescue-buoy-stand": {
+      "sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+      "meshes": 1,
+      "triangles": 3160,
+      "bbox_gltf": {
+        "min": [
+          -0.5799999833106995,
+          0.0,
+          -0.17079336941242218
+        ],
+        "max": [
+          0.5799999833106995,
+          1.7980000972747803,
+          0.17079336941242218
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    },
+    "small-boat": {
+      "sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+      "meshes": 1,
+      "triangles": 4732,
+      "bbox_gltf": {
+        "min": [
+          -1.1248924732208252,
+          0.0,
+          -2.583371162414551
+        ],
+        "max": [
+          1.1248924732208252,
+          1.0800000429153442,
+          2.583371162414551
+        ]
+      },
+      "checks": {
+        "floor_at_zero": true,
+        "budget": true,
+        "no_animation": true
+      }
+    }
+  }
+}

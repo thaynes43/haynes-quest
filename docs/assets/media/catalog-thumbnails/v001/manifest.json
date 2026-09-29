@@ -738,6 +738,41 @@
       "sha256": "0eb888a81c41b62f0ceaebbf7a628802fc98913d789278f6ee6c49927b8520af"
     },
     {
+      "source": "docs/assets/media/rescue-harbor-kit/v001/reference-sheet.png",
+      "source_sha256": "b442ff14652d6c3d90e6b1641e01eded9c9f93b00e007072c6c1707fbba31172",
+      "path": "docs/assets/media/catalog-thumbnails/v001/dafad1b74ccc370b.webp",
+      "bytes": 30348,
+      "sha256": "e86bd4ac03d52ee47f6a536c6bfcc9aed4854930217826385bae2959aabce0cd"
+    },
+    {
+      "source": "docs/assets/media/rescue-harbor-kit/v001/stills/lookout-tower-facade-beauty.png",
+      "source_sha256": "79ffdce7c5d799956d5003ce102a7b1b9755e56c38bc78658c2a10e4c550a287",
+      "path": "docs/assets/media/catalog-thumbnails/v001/896a01c691ef11ac.webp",
+      "bytes": 15708,
+      "sha256": "241f20cb2e1f7a0bb9d77b49833931551e4bb2b02a7052c67e755bbe8efd8c37"
+    },
+    {
+      "source": "docs/assets/media/rescue-harbor-kit/v001/stills/pier-bollard-beauty.png",
+      "source_sha256": "6a4dce88d7a722ce548b6ff975773640cfd34e203d8a6245ddec936dfe112c2a",
+      "path": "docs/assets/media/catalog-thumbnails/v001/98acdc03a16c9e4c.webp",
+      "bytes": 6960,
+      "sha256": "4e51d377a902d980bb7a5e5d8d409381e313c56e3971993e7dd9c2680247da20"
+    },
+    {
+      "source": "docs/assets/media/rescue-harbor-kit/v001/stills/rescue-buoy-stand-beauty.png",
+      "source_sha256": "1298559d641c79a914f35d216821cc81e347c6f14be36cf35d45b43064119c2f",
+      "path": "docs/assets/media/catalog-thumbnails/v001/65f9fcb552dbd151.webp",
+      "bytes": 10400,
+      "sha256": "54e3fb227d3a38c4820fe0104389deeb7fb6691953f0549cddeeb1b0d1b42390"
+    },
+    {
+      "source": "docs/assets/media/rescue-harbor-kit/v001/stills/small-boat-beauty.png",
+      "source_sha256": "0aaefbbfb53e82add7a99bb3fe3719f81d9c6a40e637271cbcb1a8e8587d6242",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9001ecf23dc5cd91.webp",
+      "bytes": 6624,
+      "sha256": "45fd00050c4b72a660678095f5e948c01cc4b2e29211b98131c6ee91e10c3685"
+    },
+    {
       "source": "docs/assets/media/rival-mayor/v001/beauty.png",
       "source_sha256": "38db9634548997a3edcdc3954ca561b518a264f6e4e18df96219f23791f56772",
       "path": "docs/assets/media/catalog-thumbnails/v001/1788dc8e9403d322.webp",

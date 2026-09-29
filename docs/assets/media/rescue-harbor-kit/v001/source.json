@@ -1,0 +1,20 @@
+{
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "source": "Blender reference sheet, no generated concept",
+  "reference_sheet": "reference-sheet.png",
+  "reference_sheet_sha256": "b442ff14652d6c3d90e6b1641e01eded9c9f93b00e007072c6c1707fbba31172",
+  "reference_author": "claude-opus-5-5 xhigh, retained historical sheet-stage",
+  "sheet_coordinator_review": {
+    "decision": "approved",
+    "date": "2026-09-29",
+    "scope": "sheet only"
+  },
+  "production_author": "gpt-6-astra max",
+  "blender_instance": "blender-authoring (instance 1)",
+  "owner_exact_version_review": "pending",
+  "private_media_used": false,
+  "external_assets_used": false,
+  "branding": "Original generic rescue-pup harbor scenery; blank bone signs, plain paw prints, no copied show design, logos or lettering"
+}

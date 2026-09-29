@@ -1,0 +1,2517 @@
+{
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "work_order": "WO111",
+  "authoring_model": "gpt-6-astra max",
+  "approved_sheet_preserved": true,
+  "owner_review": "pending",
+  "method": "Parametric production topology from approved blockout; 24-ray mild baked contact shading and vertex colours; opaque nonmetallic PBR",
+  "props": {
+    "lookout-tower-facade": {
+      "triangles": 4776,
+      "materials": 4,
+      "parts": [
+        {
+          "name": "Stone footing left front",
+          "colours": [
+            {
+              "hex": "#8c979f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber leg left front",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Stone footing left back",
+          "colours": [
+            {
+              "hex": "#8c979f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber leg left back",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Stone footing right front",
+          "colours": [
+            {
+              "hex": "#8c979f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber leg right front",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Stone footing right back",
+          "colours": [
+            {
+              "hex": "#8c979f",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber leg right back",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace front 1a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace front 1b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace front 2a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace front 2b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Girt front",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace back 1a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace back 1b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace back 2a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace back 2b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Girt back",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace left 1a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace left 1b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace left 2a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace left 2b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Girt left",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace right 1a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace right 1b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace right 2a",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Brace right 2b",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Girt right",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Ladder rail left",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rail cap left",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Ladder rail right",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rail cap right",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Ladder rung 01",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 02",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 03",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 04",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 05",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 06",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 07",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 08",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 09",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 10",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Ladder rung 11",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Deck fascia",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Deck planks",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 1",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 2",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 3",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 4",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 5",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 6",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 7",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 8",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail post 9",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Rail top 1",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail mid 1",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail top 2",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail mid 2",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail top 3",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail mid 3",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail top 4",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail mid 4",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail top 5",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Rail mid 5",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Balcony life ring segment 1 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 2 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 3 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 4 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 5 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 6 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 7 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring segment 8 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Balcony life ring grab line",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Balcony life ring grab line clip 1",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Balcony life ring grab line clip 2",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Balcony life ring grab line clip 3",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Balcony life ring grab line clip 4",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Life ring hanging loop",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Tripod leg 1",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Tripod leg 2",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Tripod leg 3",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Telescope tube",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Telescope eyepiece band",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Telescope lens band",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Telescope lens",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Cabin walls",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Window frame left",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane left 1",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane left 2",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane left 3",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window frame right",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane right 1",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane right 2",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane right 3",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window frame back",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane back 1",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane back 2",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane back 3",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window frame front left",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane front left",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window frame front right",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Window pane front right",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Doghouse-arch door",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 56
+        },
+        {
+          "name": "Door frame",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 176
+        },
+        {
+          "name": "Door porthole rim",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Door porthole pane",
+          "colours": [
+            {
+              "hex": "#8fd6e6",
+              "finish": "gloss"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Door knob",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Bone sign",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 236
+        },
+        {
+          "name": "Bone sign paw 1",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Bone sign paw 2",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bone sign paw 3",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bone sign paw 4",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bone sign paw 5",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Roof fascia",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Hip roof",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 6
+        },
+        {
+          "name": "Hip rib 1",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Hip rib 2",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Hip rib 3",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Hip rib 4",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 20
+        },
+        {
+          "name": "Beacon drum",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Beacon glass",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "lamp"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Beacon bar 1",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Beacon bar 2",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Beacon bar 3",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Beacon bar 4",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Beacon cap",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 126
+        },
+        {
+          "name": "Beacon finial",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Loudhailer horn left",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Loudhailer mouth left",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Loudhailer horn right",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Loudhailer mouth right",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        }
+      ],
+      "bbox": {
+        "min": [
+          -1.75,
+          0.0,
+          -1.7649483680725098
+        ],
+        "max": [
+          1.75,
+          6.885000228881836,
+          1.7649483680725098
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        0.014948368072509766,
+        -0.0
+      ],
+      "bytes": 128256,
+      "sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9"
+    },
+    "pier-bollard": {
+      "triangles": 2632,
+      "materials": 2,
+      "parts": [
+        {
+          "name": "Timber piling",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 124
+        },
+        {
+          "name": "Wet tide band",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 256
+        },
+        {
+          "name": "Barnacle 1",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Barnacle 2",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Barnacle 3",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Barnacle 4",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Barnacle 5",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Barnacle 6",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Iron strap 1",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Timber crack 1",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber crack 2",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber crack 3",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Timber crack 4",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Starfish",
+          "colours": [
+            {
+              "hex": "#f08a5d",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 76
+        },
+        {
+          "name": "Bollard base plate",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 124
+        },
+        {
+          "name": "Bollard body",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 200
+        },
+        {
+          "name": "Bollard cap (safety yellow)",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 200
+        },
+        {
+          "name": "Mooring rope loop",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Mooring rope tail",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 200
+        },
+        {
+          "name": "Rope end whipping",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 100
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.28324228525161743,
+          0.0,
+          -0.28324228525161743
+        ],
+        "max": [
+          0.28324228525161743,
+          0.7870000004768372,
+          0.28324228525161743
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "bytes": 81224,
+      "sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc"
+    },
+    "rescue-buoy-stand": {
+      "triangles": 3160,
+      "materials": 2,
+      "parts": [
+        {
+          "name": "Post left",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post wet foot left",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post cap ball left",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Post grain left 1",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post grain left 2",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post right",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post wet foot right",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Post cap ball right",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Post grain right 1",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Post grain right 2",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Lower rail",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Navy backboard",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Header board",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Header top trim",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Header wave strip",
+          "colours": [
+            {
+              "hex": "#2f7fb8",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 104
+        },
+        {
+          "name": "Header bone",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 236
+        },
+        {
+          "name": "Ring peg",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Ring peg knob",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Life ring segment 1 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 2 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 3 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 4 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 5 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 6 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 7 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring segment 8 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 60
+        },
+        {
+          "name": "Life ring grab line",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Life ring grab line clip 1",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Life ring grab line clip 2",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Life ring grab line clip 3",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Life ring grab line clip 4",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 120
+        },
+        {
+          "name": "Coil hook",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Throw line coil 1",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Throw line coil 2",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        },
+        {
+          "name": "Throw line coil 3",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        }
+      ],
+      "bbox": {
+        "min": [
+          -0.5799999833106995,
+          0.0,
+          -0.17079336941242218
+        ],
+        "max": [
+          0.5799999833106995,
+          1.7980000972747803,
+          0.17079336941242218
+        ]
+      },
+      "centering_offset_blender": [
+        -0.0,
+        0.0507933646440506,
+        -0.0
+      ],
+      "bytes": 80208,
+      "sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc"
+    },
+    "small-boat": {
+      "triangles": 4732,
+      "materials": 2,
+      "parts": [
+        {
+          "name": "Hull (red topsides, cream waterline, navy bottom, driftwood inside)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            },
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            },
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            },
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            },
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 1328
+        },
+        {
+          "name": "Fender collar",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 768
+        },
+        {
+          "name": "Thwart 1",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Thwart 2",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Thwart 3",
+          "colours": [
+            {
+              "hex": "#a8835b",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Floorboard seam 1",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Floorboard seam 2",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Floorboard seam 3",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Floorboard seam 4",
+          "colours": [
+            {
+              "hex": "#6e5238",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Oar shaft left",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Oar blade left",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Oarlock left",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Oar shaft right",
+          "colours": [
+            {
+              "hex": "#d9c3a0",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Oar blade right",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Oarlock right",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Flank life ring port (-X) segment 1 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 2 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 3 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 4 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 5 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 6 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 7 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring port (-X) segment 8 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 1 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 2 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 3 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 4 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 5 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 6 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 7 (red)",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Flank life ring starboard (+X) segment 8 (cream)",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw port 1",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Bow paw port 2",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw port 3",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw port 4",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw port 5",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw starboard 1",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 28
+        },
+        {
+          "name": "Bow paw starboard 2",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw starboard 3",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw starboard 4",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Bow paw starboard 5",
+          "colours": [
+            {
+              "hex": "#f2efe6",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Motor clamp bracket",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Motor leg",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 12
+        },
+        {
+          "name": "Motor lower unit",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Propeller blade 1",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Propeller blade 2",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Propeller blade 3",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 100
+        },
+        {
+          "name": "Motor cowl",
+          "colours": [
+            {
+              "hex": "#f7c948",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Motor cowl band",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 44
+        },
+        {
+          "name": "Motor tiller",
+          "colours": [
+            {
+              "hex": "#d64533",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Motor tiller grip",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 36
+        },
+        {
+          "name": "Stem mooring eye",
+          "colours": [
+            {
+              "hex": "#2e4a62",
+              "finish": "satin"
+            }
+          ],
+          "triangles": 240
+        },
+        {
+          "name": "Foredeck line coil 1",
+          "colours": [
+            {
+              "hex": "#dcc18c",
+              "finish": "matte"
+            }
+          ],
+          "triangles": 288
+        }
+      ],
+      "bbox": {
+        "min": [
+          -1.1248924732208252,
+          0.0,
+          -2.583371162414551
+        ],
+        "max": [
+          1.1248924732208252,
+          1.0800000429153442,
+          2.583371162414551
+        ]
+      },
+      "centering_offset_blender": [
+        2.8908252716064453e-05,
+        -0.003628849983215332,
+        -0.0
+      ],
+      "bytes": 129672,
+      "sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4"
+    }
+  }
+}

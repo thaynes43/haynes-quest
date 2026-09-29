@@ -1,0 +1,506 @@
+{
+  "work_order": "WO111",
+  "asset_id": "rescue-harbor-kit",
+  "version": "v001",
+  "validator": {
+    "name": "Khronos glTF Validator",
+    "version": "2.0.0-dev.3.10"
+  },
+  "all_checks_pass": true,
+  "props": {
+    "lookout-tower-facade": {
+      "file": "lookout-tower-facade.glb",
+      "sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+      "bytes": 128256,
+      "triangles": 4776,
+      "primitives": 4,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rescue Harbor matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Rescue Harbor satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        },
+        {
+          "name": "Rescue Harbor gloss",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.25999999046325684
+          }
+        },
+        {
+          "name": "Rescue Harbor lamp",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.36000001430511475
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -1.75,
+          0,
+          -1.7649483680725098
+        ],
+        "max": [
+          1.75,
+          6.885000228881836,
+          1.7649483680725098
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -1.8,
+          0,
+          -1.8
+        ],
+        "max": [
+          1.8,
+          7,
+          1.8
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "rescue-harbor-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 rescue-harbor-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "lookout-tower-facade"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rescue_harbor_identity": true,
+        "no_scene_lease_metadata": true,
+        "tower_retains_sheet_height": true,
+        "bollard_height": true,
+        "buoy_stand_height": true,
+        "boat_height": true
+      },
+      "validator": {
+        "uri": "lookout-tower-facade.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T04:43:31.615Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 124020
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 4,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 4,
+          "totalVertexCount": 2649,
+          "totalTriangleCount": 4776,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "pier-bollard": {
+      "file": "pier-bollard.glb",
+      "sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+      "bytes": 81224,
+      "triangles": 2632,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rescue Harbor matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Rescue Harbor satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.28324228525161743,
+          0,
+          -0.28324228525161743
+        ],
+        "max": [
+          0.28324228525161743,
+          0.7870000004768372,
+          0.28324228525161743
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -0.3,
+          0,
+          -0.3
+        ],
+        "max": [
+          0.3,
+          0.8,
+          0.3
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "rescue-harbor-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 rescue-harbor-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "pier-bollard"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rescue_harbor_identity": true,
+        "no_scene_lease_metadata": true,
+        "tower_retains_sheet_height": true,
+        "bollard_height": true,
+        "buoy_stand_height": true,
+        "boat_height": true
+      },
+      "validator": {
+        "uri": "pier-bollard.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T04:43:31.633Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 78792
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 1750,
+          "totalTriangleCount": 2632,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "rescue-buoy-stand": {
+      "file": "rescue-buoy-stand.glb",
+      "sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+      "bytes": 80208,
+      "triangles": 3160,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rescue Harbor matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        },
+        {
+          "name": "Rescue Harbor satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -0.5799999833106995,
+          0,
+          -0.17079336941242218
+        ],
+        "max": [
+          0.5799999833106995,
+          1.7980000972747803,
+          0.17079336941242218
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -0.6,
+          0,
+          -0.25
+        ],
+        "max": [
+          0.6,
+          1.8,
+          0.25
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "rescue-harbor-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 rescue-harbor-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "rescue-buoy-stand"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rescue_harbor_identity": true,
+        "no_scene_lease_metadata": true,
+        "tower_retains_sheet_height": true,
+        "bollard_height": true,
+        "buoy_stand_height": true,
+        "boat_height": true
+      },
+      "validator": {
+        "uri": "rescue-buoy-stand.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T04:43:31.638Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 77784
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 1634,
+          "totalTriangleCount": 3160,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    },
+    "small-boat": {
+      "file": "small-boat.glb",
+      "sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+      "bytes": 129672,
+      "triangles": 4732,
+      "primitives": 2,
+      "nodes": 1,
+      "materials": [
+        {
+          "name": "Rescue Harbor satin",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        },
+        {
+          "name": "Rescue Harbor matte",
+          "pbr": {
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8299999833106995
+          }
+        }
+      ],
+      "accessor_bounds_gltf": {
+        "min": [
+          -1.1248924732208252,
+          0,
+          -2.583371162414551
+        ],
+        "max": [
+          1.1248924732208252,
+          1.0800000429153442,
+          2.583371162414551
+        ]
+      },
+      "unchanged_registry_box_gltf": {
+        "min": [
+          -1.2,
+          0,
+          -2.6
+        ],
+        "max": [
+          1.2,
+          1.1,
+          2.6
+        ]
+      },
+      "scene_extras": {
+        "work_order": "WO111",
+        "asset_id": "rescue-harbor-kit",
+        "asset_version": "v001",
+        "source_reference": "Coordinator-approved Blender reference sheet, Sept 29; no generated concept",
+        "candidate_status": "WO111 rescue-harbor-kit v001 · Awaiting Tom's review · used in the family release",
+        "orientation": "glTF +Y up, front +Z, identity floor-centred prop roots",
+        "prop_id": "small-boat"
+      },
+      "checks": {
+        "gltf_2": true,
+        "khronos_zero_errors": true,
+        "khronos_zero_warnings": true,
+        "triangles_at_most_5000": true,
+        "materials_at_most_4": true,
+        "bytes_at_most_1_5_mib": true,
+        "one_static_mesh_node": true,
+        "identity_node_named_for_prop": true,
+        "triangle_primitives_with_normals_and_vertex_colours": true,
+        "opaque_vertex_colour_pbr": true,
+        "no_image_texture_or_sampler": true,
+        "embedded_binary_only": true,
+        "no_skin_animation_or_morph": true,
+        "no_extensions_or_decoder": true,
+        "floor_at_zero": true,
+        "inside_unchanged_planning_box": true,
+        "footprint_centred_within_2cm": true,
+        "rescue_harbor_identity": true,
+        "no_scene_lease_metadata": true,
+        "tower_retains_sheet_height": true,
+        "bollard_height": true,
+        "buoy_stand_height": true,
+        "boat_height": true
+      },
+      "validator": {
+        "uri": "small-boat.glb",
+        "mimeType": "model/gltf-binary",
+        "validatorVersion": "2.0.0-dev.3.10",
+        "validatedAt": "2026-09-29T04:43:31.647Z",
+        "issues": {
+          "numErrors": 0,
+          "numWarnings": 0,
+          "numInfos": 0,
+          "numHints": 0,
+          "messages": [],
+          "truncated": false
+        },
+        "info": {
+          "version": "2.0",
+          "generator": "Khronos glTF Blender I/O v4.5.51",
+          "resources": [
+            {
+              "pointer": "/buffers/0",
+              "mimeType": "application/gltf-buffer",
+              "storage": "glb",
+              "byteLength": 127248
+            }
+          ],
+          "animationCount": 0,
+          "materialCount": 2,
+          "hasMorphTargets": false,
+          "hasSkins": false,
+          "hasTextures": false,
+          "hasDefaultScene": true,
+          "drawCallCount": 2,
+          "totalVertexCount": 2746,
+          "totalTriangleCount": 4732,
+          "maxUVs": 0,
+          "maxInfluences": 0,
+          "maxAttributes": 3
+        }
+      }
+    }
+  }
+}

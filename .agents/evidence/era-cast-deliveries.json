@@ -1953,6 +1953,186 @@
       },
       "sceneReleasedAt": "2026-09-29T03:30:25.120846+00:00",
       "pr": 131
+    },
+    {
+      "assetId": "rescue-harbor-kit",
+      "version": "v001",
+      "role": "props",
+      "world": "A",
+      "chapter": 2,
+      "theme": "harbor",
+      "glb": null,
+      "sha256": null,
+      "heightM": 6.885,
+      "clips": [],
+      "props": [
+        {
+          "id": "lookout-tower-facade",
+          "glb": "docs/assets/media/rescue-harbor-kit/v001/lookout-tower-facade.glb",
+          "sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+          "bytes": 128256,
+          "triangles": 4776,
+          "materials": 4,
+          "bbox": {
+            "min": [
+              -1.75,
+              0.0,
+              -1.7649483680725098
+            ],
+            "max": [
+              1.75,
+              6.885000228881836,
+              1.7649483680725098
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -1.8,
+              0,
+              -1.8
+            ],
+            "max": [
+              1.8,
+              7,
+              1.8
+            ]
+          }
+        },
+        {
+          "id": "pier-bollard",
+          "glb": "docs/assets/media/rescue-harbor-kit/v001/pier-bollard.glb",
+          "sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+          "bytes": 81224,
+          "triangles": 2632,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -0.28324228525161743,
+              0.0,
+              -0.28324228525161743
+            ],
+            "max": [
+              0.28324228525161743,
+              0.7870000004768372,
+              0.28324228525161743
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -0.3,
+              0,
+              -0.3
+            ],
+            "max": [
+              0.3,
+              0.8,
+              0.3
+            ]
+          }
+        },
+        {
+          "id": "rescue-buoy-stand",
+          "glb": "docs/assets/media/rescue-harbor-kit/v001/rescue-buoy-stand.glb",
+          "sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+          "bytes": 80208,
+          "triangles": 3160,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -0.5799999833106995,
+              0.0,
+              -0.17079336941242218
+            ],
+            "max": [
+              0.5799999833106995,
+              1.7980000972747803,
+              0.17079336941242218
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -0.6,
+              0,
+              -0.25
+            ],
+            "max": [
+              0.6,
+              1.8,
+              0.25
+            ]
+          }
+        },
+        {
+          "id": "small-boat",
+          "glb": "docs/assets/media/rescue-harbor-kit/v001/small-boat.glb",
+          "sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+          "bytes": 129672,
+          "triangles": 4732,
+          "materials": 2,
+          "bbox": {
+            "min": [
+              -1.1248924732208252,
+              0.0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "registeredBounds": {
+            "min": [
+              -1.2,
+              0,
+              -2.6
+            ],
+            "max": [
+              1.2,
+              1.1,
+              2.6
+            ]
+          }
+        }
+      ],
+      "bounds": {
+        "convention": "glTF +Y up, front +Z; identity floor-centred roots. All four original planning boxes retained unchanged."
+      },
+      "review": "docs/assets/reviews/rescue-harbor-kit/v001.md",
+      "manifest": "docs/assets/media/rescue-harbor-kit/v001/sha256-manifest.json",
+      "master": "docs/assets/media/rescue-harbor-kit/v001/rescue-harbor-kit.blend",
+      "masterSha256": "24316102872500fb48729b97b0453cb4369a16b3c858f0622d18eb935a5fb74d",
+      "ownerReview": "pending",
+      "coordinatorReview": "passed September 29: exact kit/reference comparison, boat interior and actual desktop/phone A2 near/far tower placements",
+      "gameplayUse": "private-candidate under PRD-004 Q-03",
+      "sceneInstance": "blender-authoring (instance 1)",
+      "prMerged": null,
+      "checks": {
+        "khronos": "0 errors and warnings on all four exact GLBs",
+        "threeAdapter": "32 rotation/scale probes plus all 40 actual A2 placements inside unchanged registry bounds; waterline and false footholds pass",
+        "blenderReimport": "all four exact files pass",
+        "chromium": "21 exact-GLB inspection views pass with no page/HTTP/GL errors",
+        "focusedTests": "40 passed across Rescue Harbor, A2 and theme-kit registry tests",
+        "a2Camera": "29 route legs, 4 ordinary fights, 2 minor memories, 0 recoveries; 12 grounded desktop/phone camera probes and 16 captures; all four GLBs loaded, no page/console/HTTP/media errors; stopped before boss fight",
+        "studio": "4 cards and 8 desktop/phone viewers pass without overflow or browser errors",
+        "catalog": "97 entries, 137 thumbnails, 69 review pages, 68 exact model deliveries, 38 animated candidate viewer checks; no browser/delivery errors",
+        "fullSuite": "1886 passed, 34 skipped; 162 test files passed, 3 skipped",
+        "typecheck": "passed",
+        "lint": "passed",
+        "productionBuild": "passed",
+        "strictDocsMedia": "passed",
+        "finalOpenFrameTests": "8 passed, including open trestle and lower buoy frame",
+        "finalVerification": "docs/assets/media/rescue-harbor-kit/v001/final-verification.json",
+        "artifactHashes": "159 version files match the manifest in git inputs, the durable dev-env mirror and the Blender artifact PVC; manifest file is intentionally not self-hashed"
+      },
+      "publication": {
+        "status": "pending coordinator merge and image publication; no deployment claim",
+        "runtimeIntegration": "Exact URLs and hashes in src/shared/theme-kits.ts. Existing A2 v5 placements: 2 towers (1.5x/3x), 20 bollards (ten 1.1x/ten 2x), 6 buoy stands (1.6x, three each +/-90deg), 12 boats (0.8x). All origins Y=-1.4m; no template edit."
+      },
+      "sceneReleasedAt": "2026-09-29T04:44:51.997495+00:00",
+      "pr": 135,
+      "prUrl": "https://github.com/thaynes43/haynes-quest/pull/135",
+      "implementationCommit": "361bf37"
     }
   ]
 }

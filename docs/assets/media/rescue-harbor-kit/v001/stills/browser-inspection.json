@@ -1,0 +1,774 @@
+{
+  "tool": "Chromium headless (Playwright) + three.js GLTFLoader, real WebGL raster via ANGLE SwiftShader; no physical-device claim",
+  "props": {
+    "lookout-tower-facade": {
+      "glb_sha256": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 9,
+          "triangles": 9554,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.8556001281738284,
+          "bounds": {
+            "min": [
+              -1.75,
+              0,
+              -1.7649483680725098
+            ],
+            "max": [
+              1.75,
+              6.885000228881836,
+              1.7649483680725098
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 9,
+          "triangles": 9554,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.8556001281738284,
+          "bounds": {
+            "min": [
+              -1.75,
+              0,
+              -1.7649483680725098
+            ],
+            "max": [
+              1.75,
+              6.885000228881836,
+              1.7649483680725098
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 9,
+          "triangles": 9554,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.8556001281738284,
+          "bounds": {
+            "min": [
+              -1.75,
+              0,
+              -1.7649483680725098
+            ],
+            "max": [
+              1.75,
+              6.885000228881836,
+              1.7649483680725098
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 9,
+          "triangles": 9554,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.8556001281738284,
+          "bounds": {
+            "min": [
+              -1.75,
+              0,
+              -1.7649483680725098
+            ],
+            "max": [
+              1.75,
+              6.885000228881836,
+              1.7649483680725098
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor lamp",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 9,
+          "triangles": 9554,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.8556001281738284,
+          "bounds": {
+            "min": [
+              -1.75,
+              0,
+              -1.7649483680725098
+            ],
+            "max": [
+              1.75,
+              6.885000228881836,
+              1.7649483680725098
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor gloss",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor lamp",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -28,
+          "elevation_deg": 12
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "pier-bollard": {
+      "glb_sha256": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 5266,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.44863289098923265,
+          "bounds": {
+            "min": [
+              -0.28324228525161743,
+              0,
+              -0.28324228525161743
+            ],
+            "max": [
+              0.28324228525161743,
+              0.7870000004768372,
+              0.28324228525161743
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 5266,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.44863289098923265,
+          "bounds": {
+            "min": [
+              -0.28324228525161743,
+              0,
+              -0.28324228525161743
+            ],
+            "max": [
+              0.28324228525161743,
+              0.7870000004768372,
+              0.28324228525161743
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 5266,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.44863289098923265,
+          "bounds": {
+            "min": [
+              -0.28324228525161743,
+              0,
+              -0.28324228525161743
+            ],
+            "max": [
+              0.28324228525161743,
+              0.7870000004768372,
+              0.28324228525161743
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 5266,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.44863289098923265,
+          "bounds": {
+            "min": [
+              -0.28324228525161743,
+              0,
+              -0.28324228525161743
+            ],
+            "max": [
+              0.28324228525161743,
+              0.7870000004768372,
+              0.28324228525161743
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 5266,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 0.44863289098923265,
+          "bounds": {
+            "min": [
+              -0.28324228525161743,
+              0,
+              -0.28324228525161743
+            ],
+            "max": [
+              0.28324228525161743,
+              0.7870000004768372,
+              0.28324228525161743
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -32,
+          "elevation_deg": 20
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "rescue-buoy-stand": {
+      "glb_sha256": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 6322,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.006880054473877,
+          "bounds": {
+            "min": [
+              -0.5799999833106995,
+              0,
+              -0.17079336941242218
+            ],
+            "max": [
+              0.5799999833106995,
+              1.7980000972747803,
+              0.17079336941242218
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 6322,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.006880054473877,
+          "bounds": {
+            "min": [
+              -0.5799999833106995,
+              0,
+              -0.17079336941242218
+            ],
+            "max": [
+              0.5799999833106995,
+              1.7980000972747803,
+              0.17079336941242218
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 6322,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.006880054473877,
+          "bounds": {
+            "min": [
+              -0.5799999833106995,
+              0,
+              -0.17079336941242218
+            ],
+            "max": [
+              0.5799999833106995,
+              1.7980000972747803,
+              0.17079336941242218
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 6322,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.006880054473877,
+          "bounds": {
+            "min": [
+              -0.5799999833106995,
+              0,
+              -0.17079336941242218
+            ],
+            "max": [
+              0.5799999833106995,
+              1.7980000972747803,
+              0.17079336941242218
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 6322,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 1.006880054473877,
+          "bounds": {
+            "min": [
+              -0.5799999833106995,
+              0,
+              -0.17079336941242218
+            ],
+            "max": [
+              0.5799999833106995,
+              1.7980000972747803,
+              0.17079336941242218
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -20,
+          "elevation_deg": 12
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    },
+    "small-boat": {
+      "glb_sha256": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+      "shots": {
+        "front": {
+          "view": "front",
+          "calls": 5,
+          "triangles": 9466,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.15577557555857,
+          "bounds": {
+            "min": [
+              -1.1248924732208252,
+              0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            }
+          ]
+        },
+        "side": {
+          "view": "side",
+          "calls": 5,
+          "triangles": 9466,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.15577557555857,
+          "bounds": {
+            "min": [
+              -1.1248924732208252,
+              0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            }
+          ]
+        },
+        "back": {
+          "view": "back",
+          "calls": 5,
+          "triangles": 9466,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.15577557555857,
+          "bounds": {
+            "min": [
+              -1.1248924732208252,
+              0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            }
+          ]
+        },
+        "threequarter": {
+          "view": "threequarter",
+          "calls": 5,
+          "triangles": 9466,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.15577557555857,
+          "bounds": {
+            "min": [
+              -1.1248924732208252,
+              0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            }
+          ]
+        },
+        "top": {
+          "view": "top",
+          "calls": 5,
+          "triangles": 9466,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.15577557555857,
+          "bounds": {
+            "min": [
+              -1.1248924732208252,
+              0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            }
+          ]
+        },
+        "beauty": {
+          "view": "beauty",
+          "calls": 5,
+          "triangles": 9466,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "renderer": "WebKit WebGL",
+          "ortho_half_extent_m": 3.15577557555857,
+          "bounds": {
+            "min": [
+              -1.1248924732208252,
+              0,
+              -2.583371162414551
+            ],
+            "max": [
+              1.1248924732208252,
+              1.0800000429153442,
+              2.583371162414551
+            ]
+          },
+          "materials": [
+            {
+              "name": "Rescue Harbor satin",
+              "vertexColors": true
+            },
+            {
+              "name": "Rescue Harbor matte",
+              "vertexColors": true
+            }
+          ],
+          "azimuth_deg": -55,
+          "elevation_deg": 45
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+      ],
+      "httpErrors": [],
+      "checks": {
+        "no_page_errors": true,
+        "no_http_errors": true,
+        "no_gl_errors": true,
+        "drew_triangles": true,
+        "vertex_colours_enabled": true
+      }
+    }
+  },
+  "browser": "153.0.8010.12",
+  "all_checks_pass": true
+}

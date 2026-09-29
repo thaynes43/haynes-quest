@@ -1,0 +1,682 @@
+{
+  "chapterId": "family-a2",
+  "routeId": "family-a2-harbor",
+  "name": "Harbor Rescue",
+  "theme": "harbor",
+  "startAge": 2,
+  "growthMoves": [
+    "jump",
+    "high-jump"
+  ],
+  "appearanceStage": "infant",
+  "mediaFailed": 0,
+  "identities": [
+    {
+      "id": "family-a2-harbor-encounter-1",
+      "role": "ordinary",
+      "asset": "mischief-kitten"
+    },
+    {
+      "id": "family-a2-harbor-encounter-2",
+      "role": "ordinary",
+      "asset": "mischief-kitten"
+    },
+    {
+      "id": "family-a2-harbor-encounter-3",
+      "role": "ordinary",
+      "asset": "mischief-kitten"
+    },
+    {
+      "id": "family-a2-harbor-encounter-4",
+      "role": "ordinary",
+      "asset": "mischief-kitten"
+    },
+    {
+      "id": "family-a2-harbor-boss",
+      "role": "boss",
+      "asset": "rival-mayor"
+    },
+    {
+      "id": "family-a2-harbor-encounter-bonus-1",
+      "role": "ordinary",
+      "asset": "mischief-kitten"
+    }
+  ],
+  "legs": [
+    {
+      "leg": "hq-dock->boat-1",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "boat-1->boat-2",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "boat-2->boat-3",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "boat-3->beach",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "beach->dune-1",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dune-1->dune-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dune-2->dune-3",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "dune-3->sea-wall",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "sea-wall->pier",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "pier->tugboat",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "wait 0.75s, lateral 1.2",
+      "ok": true
+    },
+    {
+      "leg": "tugboat->fish-market",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "fish-market->cargo-lift",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "cargo-lift->crane-roof",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "crane-roof->chimney",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "chimney->vane-roof",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "vane-roof->rooftop-trolley",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "detour 2",
+      "ok": true
+    },
+    {
+      "leg": "rooftop-trolley->laundry-roof",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "laundry-roof->trampoline",
+      "attempt": 1,
+      "mode": "walk",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "trampoline->clock-roof",
+      "attempt": 1,
+      "mode": "bounce",
+      "planned": "launched",
+      "ok": true
+    },
+    {
+      "leg": "clock-roof->awning-1",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "awning-1->awning-2",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "awning-2->town-hall",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "town-hall->gondola",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "gondola->signal-walk",
+      "attempt": 1,
+      "mode": "ride",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "signal-walk->tower-plaza",
+      "attempt": 1,
+      "mode": "jump",
+      "planned": "wait 0.50s, lateral -1.2",
+      "ok": true
+    },
+    {
+      "leg": "tower-plaza->tower-step-1",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-step-1->tower-step-2",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-step-2->tower-step-3",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    },
+    {
+      "leg": "tower-step-3->lookout-deck",
+      "attempt": 1,
+      "mode": "jump",
+      "requires": "high-jump",
+      "planned": "direct",
+      "ok": true
+    }
+  ],
+  "recoveries": 0,
+  "fights": [
+    {
+      "slot": "ordinary-1",
+      "encounterId": "family-a2-harbor-encounter-1",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-2",
+      "encounterId": "family-a2-harbor-encounter-2",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-3",
+      "encounterId": "family-a2-harbor-encounter-3",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    },
+    {
+      "slot": "ordinary-4",
+      "encounterId": "family-a2-harbor-encounter-4",
+      "role": "ordinary",
+      "attacks": 2,
+      "bashes": 0,
+      "defeats": 0
+    }
+  ],
+  "pickups": [
+    "attack-tool",
+    "guard-tool"
+  ],
+  "memories": [
+    {
+      "slot": "minor-one",
+      "id": "family-a2-harbor-memory-minor-one"
+    },
+    {
+      "slot": "minor-two",
+      "id": "family-a2-harbor-memory-minor-two"
+    }
+  ],
+  "completed": false,
+  "stoppedAt": "boss-arena",
+  "completion": null,
+  "screenshots": [
+    "family-a2-01-spawn.png",
+    "family-a2-01-spawn-lookout-tower-facade-27-desktop.png",
+    "family-a2-01-spawn-lookout-tower-facade-27-phone.png",
+    "family-a2-01-spawn-small-boat-29-desktop.png",
+    "family-a2-01-spawn-small-boat-29-phone.png",
+    "family-a2-01-spawn-small-boat-30-desktop.png",
+    "family-a2-01-spawn-small-boat-30-phone.png",
+    "family-a2-02-first-ordinary-fight.png",
+    "family-a2-02-first-ordinary-fight-lookout-tower-facade-27-desktop.png",
+    "family-a2-02-first-ordinary-fight-lookout-tower-facade-27-phone.png",
+    "family-a2-02-mid-climb.png",
+    "family-a2-02-mid-climb-small-boat-36-desktop.png",
+    "family-a2-02-mid-climb-small-boat-36-phone.png",
+    "family-a2-03-boss-arena.png",
+    "family-a2-03-boss-arena-lookout-tower-facade-28-desktop.png",
+    "family-a2-03-boss-arena-lookout-tower-facade-28-phone.png"
+  ],
+  "frames": {
+    "frames": 2828,
+    "fineFrames": 2315,
+    "pageMs": 72032,
+    "wallMs": 34894
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "responseErrors": [],
+  "media": {
+    "/studio/assets/media/traveler-infant/v001/traveler-infant.glb": 200,
+    "/studio/assets/media/rescue-harbor-kit/v001/pier-bollard.glb": 200,
+    "/studio/assets/media/rescue-harbor-kit/v001/rescue-buoy-stand.glb": 200,
+    "/studio/assets/media/rescue-harbor-kit/v001/lookout-tower-facade.glb": 200,
+    "/studio/assets/media/rescue-harbor-kit/v001/small-boat.glb": 200,
+    "/studio/assets/media/clearing-stone/v001/clearing-stone.glb": 200,
+    "/studio/assets/media/clearing-tree/v001/clearing-tree.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/block-tower.glb": 200,
+    "/studio/assets/media/skyline-toybox-kit/v001/windup-lantern.glb": 200,
+    "/studio/assets/media/memory-keepsake/v001/memory-keepsake.glb": 200,
+    "/studio/assets/media/era-equipment/v001/prism-wand/prism-wand.glb": 200,
+    "/studio/assets/media/era-equipment/v001/ribbon-shield/ribbon-shield.glb": 200,
+    "/studio/assets/media/loop-dancer/v001/loop-dancer.glb": 200,
+    "/studio/assets/media/prism-mimic/v001/prism-mimic.glb": 200,
+    "/studio/assets/media/trendweaver/v001/trendweaver.glb": 200,
+    "/studio/assets/media/mischief-kitten/v001/mischief-kitten.glb": 200,
+    "/studio/assets/media/rival-mayor/v001/rival-mayor.glb": 200
+  },
+  "scare": {
+    "declared": 0,
+    "expected": 0,
+    "live": 0,
+    "blackouts": 0,
+    "flickers": 0,
+    "watcherMoves": 0,
+    "watcherCreaks": 0,
+    "jumpScares": 0,
+    "events": [],
+    "closestSpots": {},
+    "shots": {}
+  },
+  "wallSeconds": 49,
+  "failure": null,
+  "method": "Actual family-world-a-v5 A2 rendered by the game and navigated with ordinary lockstep controls; camera drag only at grounded route checkpoints; desktop and 390x844 viewport captures. GPU drawing skipped between captures; each saved view renders full frames. Server attack inputs retain real-time cooldown spacing. No teleport, authored placement edits, or internal game-state mutations.",
+  "physicalDevice": false,
+  "all_checks_pass": true,
+  "cameraProbes": [
+    {
+      "file": "family-a2-01-spawn-lookout-tower-facade-27-desktop.png",
+      "viewport": "desktop",
+      "target": "lookout-tower-facade-27",
+      "kitPropId": "lookout-tower-facade",
+      "placement": {
+        "id": "lookout-tower-facade-27",
+        "kitPropId": "lookout-tower-facade",
+        "position": {
+          "x": -11.7,
+          "y": -1.4,
+          "z": 0
+        },
+        "rotationY": 0,
+        "scale": 1.5
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 2.5
+      },
+      "grounded": true,
+      "supportId": "hq-dock",
+      "dragPixels": -227
+    },
+    {
+      "file": "family-a2-01-spawn-lookout-tower-facade-27-phone.png",
+      "viewport": "phone",
+      "target": "lookout-tower-facade-27",
+      "kitPropId": "lookout-tower-facade",
+      "placement": {
+        "id": "lookout-tower-facade-27",
+        "kitPropId": "lookout-tower-facade",
+        "position": {
+          "x": -11.7,
+          "y": -1.4,
+          "z": 0
+        },
+        "rotationY": 0,
+        "scale": 1.5
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 2.5
+      },
+      "grounded": true,
+      "supportId": "hq-dock",
+      "dragPixels": -227
+    },
+    {
+      "file": "family-a2-01-spawn-small-boat-29-desktop.png",
+      "viewport": "desktop",
+      "target": "small-boat-29",
+      "kitPropId": "small-boat",
+      "placement": {
+        "id": "small-boat-29",
+        "kitPropId": "small-boat",
+        "position": {
+          "x": -12,
+          "y": -1.4,
+          "z": 8
+        },
+        "rotationY": 0.3,
+        "scale": 0.8
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 2.5
+      },
+      "grounded": true,
+      "supportId": "hq-dock",
+      "dragPixels": -333
+    },
+    {
+      "file": "family-a2-01-spawn-small-boat-29-phone.png",
+      "viewport": "phone",
+      "target": "small-boat-29",
+      "kitPropId": "small-boat",
+      "placement": {
+        "id": "small-boat-29",
+        "kitPropId": "small-boat",
+        "position": {
+          "x": -12,
+          "y": -1.4,
+          "z": 8
+        },
+        "rotationY": 0.3,
+        "scale": 0.8
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 2.5
+      },
+      "grounded": true,
+      "supportId": "hq-dock",
+      "dragPixels": -333
+    },
+    {
+      "file": "family-a2-01-spawn-small-boat-30-desktop.png",
+      "viewport": "desktop",
+      "target": "small-boat-30",
+      "kitPropId": "small-boat",
+      "placement": {
+        "id": "small-boat-30",
+        "kitPropId": "small-boat",
+        "position": {
+          "x": 12.5,
+          "y": -1.4,
+          "z": -3
+        },
+        "rotationY": -0.2,
+        "scale": 0.8
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 2.5
+      },
+      "grounded": true,
+      "supportId": "hq-dock",
+      "dragPixels": 193
+    },
+    {
+      "file": "family-a2-01-spawn-small-boat-30-phone.png",
+      "viewport": "phone",
+      "target": "small-boat-30",
+      "kitPropId": "small-boat",
+      "placement": {
+        "id": "small-boat-30",
+        "kitPropId": "small-boat",
+        "position": {
+          "x": 12.5,
+          "y": -1.4,
+          "z": -3
+        },
+        "rotationY": -0.2,
+        "scale": 0.8
+      },
+      "player": {
+        "x": 0,
+        "y": 0,
+        "z": 2.5
+      },
+      "grounded": true,
+      "supportId": "hq-dock",
+      "dragPixels": 193
+    },
+    {
+      "file": "family-a2-02-first-ordinary-fight-lookout-tower-facade-27-desktop.png",
+      "viewport": "desktop",
+      "target": "lookout-tower-facade-27",
+      "kitPropId": "lookout-tower-facade",
+      "placement": {
+        "id": "lookout-tower-facade-27",
+        "kitPropId": "lookout-tower-facade",
+        "position": {
+          "x": -11.7,
+          "y": -1.4,
+          "z": 0
+        },
+        "rotationY": 0,
+        "scale": 1.5
+      },
+      "player": {
+        "x": -0.6209274036419947,
+        "y": 1.8,
+        "z": -40.584730676319545
+      },
+      "grounded": true,
+      "supportId": "sea-wall",
+      "dragPixels": -479
+    },
+    {
+      "file": "family-a2-02-first-ordinary-fight-lookout-tower-facade-27-phone.png",
+      "viewport": "phone",
+      "target": "lookout-tower-facade-27",
+      "kitPropId": "lookout-tower-facade",
+      "placement": {
+        "id": "lookout-tower-facade-27",
+        "kitPropId": "lookout-tower-facade",
+        "position": {
+          "x": -11.7,
+          "y": -1.4,
+          "z": 0
+        },
+        "rotationY": 0,
+        "scale": 1.5
+      },
+      "player": {
+        "x": -0.6209274036419947,
+        "y": 1.8,
+        "z": -40.584730676319545
+      },
+      "grounded": true,
+      "supportId": "sea-wall",
+      "dragPixels": -479
+    },
+    {
+      "file": "family-a2-02-mid-climb-small-boat-36-desktop.png",
+      "viewport": "desktop",
+      "target": "small-boat-36",
+      "kitPropId": "small-boat",
+      "placement": {
+        "id": "small-boat-36",
+        "kitPropId": "small-boat",
+        "position": {
+          "x": -18,
+          "y": -1.4,
+          "z": -54
+        },
+        "rotationY": 0.4,
+        "scale": 0.8
+      },
+      "player": {
+        "x": -35.63177963518132,
+        "y": 6.6,
+        "z": -72.50055572002707
+      },
+      "grounded": true,
+      "supportId": "laundry-roof",
+      "dragPixels": 397
+    },
+    {
+      "file": "family-a2-02-mid-climb-small-boat-36-phone.png",
+      "viewport": "phone",
+      "target": "small-boat-36",
+      "kitPropId": "small-boat",
+      "placement": {
+        "id": "small-boat-36",
+        "kitPropId": "small-boat",
+        "position": {
+          "x": -18,
+          "y": -1.4,
+          "z": -54
+        },
+        "rotationY": 0.4,
+        "scale": 0.8
+      },
+      "player": {
+        "x": -35.63177963518132,
+        "y": 6.6,
+        "z": -72.50055572002707
+      },
+      "grounded": true,
+      "supportId": "laundry-roof",
+      "dragPixels": 397
+    },
+    {
+      "file": "family-a2-03-boss-arena-lookout-tower-facade-28-desktop.png",
+      "viewport": "desktop",
+      "target": "lookout-tower-facade-28",
+      "kitPropId": "lookout-tower-facade",
+      "placement": {
+        "id": "lookout-tower-facade-28",
+        "kitPropId": "lookout-tower-facade",
+        "position": {
+          "x": -40,
+          "y": -1.4,
+          "z": -175.43
+        },
+        "rotationY": 0,
+        "scale": 3
+      },
+      "player": {
+        "x": -40.51761854905518,
+        "y": 12.7,
+        "z": -150.84368443122418
+      },
+      "grounded": true,
+      "supportId": "lookout-deck",
+      "dragPixels": 4
+    },
+    {
+      "file": "family-a2-03-boss-arena-lookout-tower-facade-28-phone.png",
+      "viewport": "phone",
+      "target": "lookout-tower-facade-28",
+      "kitPropId": "lookout-tower-facade",
+      "placement": {
+        "id": "lookout-tower-facade-28",
+        "kitPropId": "lookout-tower-facade",
+        "position": {
+          "x": -40,
+          "y": -1.4,
+          "z": -175.43
+        },
+        "rotationY": 0,
+        "scale": 3
+      },
+      "player": {
+        "x": -40.51761854905518,
+        "y": 12.7,
+        "z": -150.84368443122418
+      },
+      "grounded": true,
+      "supportId": "lookout-deck",
+      "dragPixels": 4
+    }
+  ],
+  "templateSha256": "fdf25561f1aedb1a7c5a7dcb7df7e9477ba095f8a02c0c9a95d5cbf10dd07f8c",
+  "glbSha256": {
+    "small-boat": "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+    "rescue-buoy-stand": "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+    "pier-bollard": "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+    "lookout-tower-facade": "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9"
+  }
+}

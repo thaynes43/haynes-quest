@@ -1,0 +1,903 @@
+{
+ "lookout-tower-facade": {
+  "stone footings": {
+   "parts": 4,
+   "blockout_triangles": 752,
+   "min": [
+    -1.75,
+    -1.75,
+    0.0
+   ],
+   "max": [
+    1.75,
+    1.75,
+    0.28
+   ],
+   "size": [
+    3.5,
+    3.5,
+    0.28
+   ]
+  },
+  "timber legs": {
+   "parts": 4,
+   "blockout_triangles": 432,
+   "min": [
+    -1.608,
+    -1.608,
+    0.235
+   ],
+   "max": [
+    1.608,
+    1.608,
+    3.285
+   ],
+   "size": [
+    3.217,
+    3.217,
+    3.051
+   ]
+  },
+  "x-bracing and girts": {
+   "parts": 20,
+   "blockout_triangles": 2160,
+   "min": [
+    -1.64,
+    -1.64,
+    0.463
+   ],
+   "max": [
+    1.64,
+    1.64,
+    3.137
+   ],
+   "size": [
+    3.28,
+    3.28,
+    2.674
+   ]
+  },
+  "rescue ladder (rails, caps, rungs)": {
+   "parts": 15,
+   "blockout_triangles": 2012,
+   "min": [
+    -0.35,
+    -1.779,
+    0.003
+   ],
+   "max": [
+    0.35,
+    -1.39,
+    4.27
+   ],
+   "size": [
+    0.7,
+    0.389,
+    4.267
+   ]
+  },
+  "deck (fascia, planks)": {
+   "parts": 2,
+   "blockout_triangles": 376,
+   "min": [
+    -1.52,
+    -1.52,
+    3.25
+   ],
+   "max": [
+    1.52,
+    1.52,
+    3.45
+   ],
+   "size": [
+    3.04,
+    3.04,
+    0.2
+   ]
+  },
+  "balcony railing": {
+   "parts": 19,
+   "blockout_triangles": 2292,
+   "min": [
+    -1.46,
+    -1.46,
+    3.45
+   ],
+   "max": [
+    1.46,
+    1.46,
+    4.365
+   ],
+   "size": [
+    2.92,
+    2.92,
+    0.915
+   ]
+  },
+  "balcony life ring (segments, grab line, clips, loop)": {
+   "parts": 14,
+   "blockout_triangles": 7360,
+   "min": [
+    -1.257,
+    -1.612,
+    3.638
+   ],
+   "max": [
+    -0.583,
+    -1.389,
+    4.331
+   ],
+   "size": [
+    0.675,
+    0.224,
+    0.694
+   ]
+  },
+  "telescope and tripod": {
+   "parts": 7,
+   "blockout_triangles": 1548,
+   "min": [
+    0.737,
+    -1.334,
+    3.446
+   ],
+   "max": [
+    1.28,
+    -0.703,
+    4.702
+   ],
+   "size": [
+    0.543,
+    0.631,
+    1.256
+   ]
+  },
+  "cabin walls": {
+   "parts": 1,
+   "blockout_triangles": 188,
+   "min": [
+    -1.1,
+    -1.1,
+    3.45
+   ],
+   "max": [
+    1.1,
+    1.1,
+    5.45
+   ],
+   "size": [
+    2.2,
+    2.2,
+    2.0
+   ]
+  },
+  "window band (frames, panes)": {
+   "parts": 16,
+   "blockout_triangles": 3008,
+   "min": [
+    -1.15,
+    -1.15,
+    4.22
+   ],
+   "max": [
+    1.15,
+    1.15,
+    5.04
+   ],
+   "size": [
+    2.3,
+    2.3,
+    0.82
+   ]
+  },
+  "doghouse-arch door (door, frame, porthole, knob)": {
+   "parts": 5,
+   "blockout_triangles": 2372,
+   "min": [
+    -0.415,
+    -1.2,
+    3.455
+   ],
+   "max": [
+    0.415,
+    -1.09,
+    5.035
+   ],
+   "size": [
+    0.83,
+    0.11,
+    1.58
+   ]
+  },
+  "bone sign with paw": {
+   "parts": 6,
+   "blockout_triangles": 3544,
+   "min": [
+    -0.46,
+    -1.15,
+    5.101
+   ],
+   "max": [
+    0.46,
+    -1.112,
+    5.319
+   ],
+   "size": [
+    0.92,
+    0.038,
+    0.218
+   ]
+  },
+  "hip roof (fascia, roof, ribs)": {
+   "parts": 6,
+   "blockout_triangles": 1490,
+   "min": [
+    -1.503,
+    -1.503,
+    5.39
+   ],
+   "max": [
+    1.503,
+    1.503,
+    6.362
+   ],
+   "size": [
+    3.006,
+    3.006,
+    0.972
+   ]
+  },
+  "beacon (drum, glass, bars, cap, finial)": {
+   "parts": 8,
+   "blockout_triangles": 3534,
+   "min": [
+    -0.2,
+    -0.2,
+    6.18
+   ],
+   "max": [
+    0.2,
+    0.2,
+    6.885
+   ],
+   "size": [
+    0.4,
+    0.4,
+    0.705
+   ]
+  },
+  "loudhailer horns": {
+   "parts": 4,
+   "blockout_triangles": 1264,
+   "min": [
+    -0.565,
+    -0.119,
+    6.221
+   ],
+   "max": [
+    0.565,
+    0.119,
+    6.458
+   ],
+   "size": [
+    1.129,
+    0.238,
+    0.236
+   ]
+  }
+ },
+ "pier-bollard": {
+  "timber piling": {
+   "parts": 1,
+   "blockout_triangles": 764,
+   "min": [
+    -0.245,
+    -0.245,
+    0.0
+   ],
+   "max": [
+    0.245,
+    0.245,
+    0.55
+   ],
+   "size": [
+    0.49,
+    0.49,
+    0.55
+   ]
+  },
+  "wet tide band": {
+   "parts": 1,
+   "blockout_triangles": 896,
+   "min": [
+    -0.251,
+    -0.251,
+    0.0
+   ],
+   "max": [
+    0.251,
+    0.251,
+    0.148
+   ],
+   "size": [
+    0.502,
+    0.502,
+    0.148
+   ]
+  },
+  "barnacles": {
+   "parts": 6,
+   "blockout_triangles": 1344,
+   "min": [
+    -0.164,
+    -0.247,
+    0.149
+   ],
+   "max": [
+    0.227,
+    -0.104,
+    0.229
+   ],
+   "size": [
+    0.392,
+    0.143,
+    0.08
+   ]
+  },
+  "iron strap": {
+   "parts": 1,
+   "blockout_triangles": 960,
+   "min": [
+    -0.263,
+    -0.263,
+    0.457
+   ],
+   "max": [
+    0.263,
+    0.263,
+    0.483
+   ],
+   "size": [
+    0.527,
+    0.527,
+    0.026
+   ]
+  },
+  "timber cracks": {
+   "parts": 4,
+   "blockout_triangles": 176,
+   "min": [
+    -0.228,
+    -0.235,
+    0.16
+   ],
+   "max": [
+    0.172,
+    0.187,
+    0.52
+   ],
+   "size": [
+    0.4,
+    0.422,
+    0.36
+   ]
+  },
+  "starfish": {
+   "parts": 1,
+   "blockout_triangles": 156,
+   "min": [
+    -0.138,
+    -0.262,
+    0.277
+   ],
+   "max": [
+    -0.001,
+    -0.2,
+    0.406
+   ],
+   "size": [
+    0.137,
+    0.062,
+    0.129
+   ]
+  },
+  "bollard base plate": {
+   "parts": 1,
+   "blockout_triangles": 764,
+   "min": [
+    -0.283,
+    -0.283,
+    0.545
+   ],
+   "max": [
+    0.283,
+    0.283,
+    0.585
+   ],
+   "size": [
+    0.566,
+    0.566,
+    0.04
+   ]
+  },
+  "bollard body (navy iron)": {
+   "parts": 1,
+   "blockout_triangles": 400,
+   "min": [
+    -0.19,
+    -0.19,
+    0.58
+   ],
+   "max": [
+    0.19,
+    0.19,
+    0.7
+   ],
+   "size": [
+    0.38,
+    0.38,
+    0.12
+   ]
+  },
+  "bollard cap (safety yellow)": {
+   "parts": 1,
+   "blockout_triangles": 400,
+   "min": [
+    -0.23,
+    -0.23,
+    0.695
+   ],
+   "max": [
+    0.23,
+    0.23,
+    0.787
+   ],
+   "size": [
+    0.46,
+    0.46,
+    0.092
+   ]
+  },
+  "mooring rope (loop, tail, whipping)": {
+   "parts": 3,
+   "blockout_triangles": 2548,
+   "min": [
+    -0.193,
+    -0.201,
+    0.25
+   ],
+   "max": [
+    0.272,
+    0.193,
+    0.687
+   ],
+   "size": [
+    0.465,
+    0.394,
+    0.437
+   ]
+  }
+ },
+ "rescue-buoy-stand": {
+  "posts and wet feet": {
+   "parts": 4,
+   "blockout_triangles": 752,
+   "min": [
+    -0.525,
+    -0.025,
+    0.0
+   ],
+   "max": [
+    0.525,
+    0.105,
+    1.66
+   ],
+   "size": [
+    1.05,
+    0.13,
+    1.66
+   ]
+  },
+  "post cap balls": {
+   "parts": 2,
+   "blockout_triangles": 1056,
+   "min": [
+    -0.54,
+    -0.04,
+    1.638
+   ],
+   "max": [
+    0.54,
+    0.12,
+    1.798
+   ],
+   "size": [
+    1.08,
+    0.16,
+    0.16
+   ]
+  },
+  "post grain": {
+   "parts": 4,
+   "blockout_triangles": 48,
+   "min": [
+    -0.489,
+    -0.023,
+    0.25
+   ],
+   "max": [
+    0.484,
+    -0.019,
+    1.2
+   ],
+   "size": [
+    0.973,
+    0.004,
+    0.95
+   ]
+  },
+  "lower rail": {
+   "parts": 1,
+   "blockout_triangles": 188,
+   "min": [
+    -0.43,
+    0.0,
+    0.38
+   ],
+   "max": [
+    0.43,
+    0.08,
+    0.46
+   ],
+   "size": [
+    0.86,
+    0.08,
+    0.08
+   ]
+  },
+  "navy backboard": {
+   "parts": 1,
+   "blockout_triangles": 188,
+   "min": [
+    -0.42,
+    0.042,
+    0.53
+   ],
+   "max": [
+    0.42,
+    0.078,
+    1.37
+   ],
+   "size": [
+    0.84,
+    0.035,
+    0.84
+   ]
+  },
+  "header board and red trim": {
+   "parts": 2,
+   "blockout_triangles": 376,
+   "min": [
+    -0.58,
+    -0.088,
+    1.34
+   ],
+   "max": [
+    0.58,
+    -0.012,
+    1.635
+   ],
+   "size": [
+    1.16,
+    0.075,
+    0.295
+   ]
+  },
+  "header wave strip and bone": {
+   "parts": 2,
+   "blockout_triangles": 3332,
+   "min": [
+    -0.55,
+    -0.092,
+    1.362
+   ],
+   "max": [
+    0.55,
+    -0.078,
+    1.541
+   ],
+   "size": [
+    1.1,
+    0.014,
+    0.179
+   ]
+  },
+  "ring peg": {
+   "parts": 2,
+   "blockout_triangles": 476,
+   "min": [
+    -0.028,
+    -0.215,
+    1.162
+   ],
+   "max": [
+    0.028,
+    0.05,
+    1.218
+   ],
+   "size": [
+    0.056,
+    0.265,
+    0.056
+   ]
+  },
+  "life ring (eight segments)": {
+   "parts": 8,
+   "blockout_triangles": 3136,
+   "min": [
+    -0.357,
+    -0.201,
+    0.593
+   ],
+   "max": [
+    0.357,
+    -0.059,
+    1.307
+   ],
+   "size": [
+    0.714,
+    0.142,
+    0.714
+   ]
+  },
+  "grab line and clips": {
+   "parts": 5,
+   "blockout_triangles": 3840,
+   "min": [
+    -0.381,
+    -0.226,
+    0.569
+   ],
+   "max": [
+    0.381,
+    -0.034,
+    1.331
+   ],
+   "size": [
+    0.763,
+    0.193,
+    0.763
+   ]
+  },
+  "throw line coil and hook": {
+   "parts": 4,
+   "blockout_triangles": 2444,
+   "min": [
+    0.359,
+    -0.126,
+    0.78
+   ],
+   "max": [
+    0.561,
+    -0.017,
+    1.114
+   ],
+   "size": [
+    0.202,
+    0.11,
+    0.334
+   ]
+  }
+ },
+ "small-boat": {
+  "hull": {
+   "parts": 1,
+   "blockout_triangles": 10396,
+   "min": [
+    -1.02,
+    -2.48,
+    0.0
+   ],
+   "max": [
+    1.02,
+    2.24,
+    0.95
+   ],
+   "size": [
+    2.04,
+    4.72,
+    0.95
+   ]
+  },
+  "fender collar": {
+   "parts": 1,
+   "blockout_triangles": 4680,
+   "min": [
+    -1.124,
+    -2.58,
+    0.665
+   ],
+   "max": [
+    1.124,
+    2.339,
+    1.015
+   ],
+   "size": [
+    2.248,
+    4.919,
+    0.35
+   ]
+  },
+  "thwarts": {
+   "parts": 3,
+   "blockout_triangles": 564,
+   "min": [
+    -0.83,
+    -1.1,
+    0.53
+   ],
+   "max": [
+    0.83,
+    1.45,
+    0.58
+   ],
+   "size": [
+    1.66,
+    2.55,
+    0.05
+   ]
+  },
+  "floorboard seams": {
+   "parts": 4,
+   "blockout_triangles": 48,
+   "min": [
+    -0.459,
+    -1.3,
+    0.366
+   ],
+   "max": [
+    0.459,
+    1.7,
+    0.413
+   ],
+   "size": [
+    0.918,
+    3.0,
+    0.047
+   ]
+  },
+  "oars (shafts, blades)": {
+   "parts": 4,
+   "blockout_triangles": 272,
+   "min": [
+    -0.345,
+    -1.3,
+    0.608
+   ],
+   "max": [
+    0.345,
+    1.55,
+    0.662
+   ],
+   "size": [
+    0.69,
+    2.85,
+    0.054
+   ]
+  },
+  "oarlocks": {
+   "parts": 2,
+   "blockout_triangles": 88,
+   "min": [
+    -1.077,
+    0.128,
+    0.792
+   ],
+   "max": [
+    1.077,
+    0.172,
+    0.862
+   ],
+   "size": [
+    2.154,
+    0.044,
+    0.07
+   ]
+  },
+  "flank life rings": {
+   "parts": 16,
+   "blockout_triangles": 5120,
+   "min": [
+    -1.106,
+    0.347,
+    0.26
+   ],
+   "max": [
+    1.106,
+    0.757,
+    0.632
+   ],
+   "size": [
+    2.212,
+    0.41,
+    0.372
+   ]
+  },
+  "bow paw prints": {
+   "parts": 10,
+   "blockout_triangles": 2936,
+   "min": [
+    -0.842,
+    -1.135,
+    0.44
+   ],
+   "max": [
+    0.842,
+    -0.87,
+    0.664
+   ],
+   "size": [
+    1.684,
+    0.266,
+    0.224
+   ]
+  },
+  "outboard motor": {
+   "parts": 10,
+   "blockout_triangles": 2376,
+   "min": [
+    -0.175,
+    1.789,
+    0.038
+   ],
+   "max": [
+    0.175,
+    2.587,
+    1.08
+   ],
+   "size": [
+    0.35,
+    0.798,
+    1.042
+   ]
+  },
+  "stem mooring eye": {
+   "parts": 1,
+   "blockout_triangles": 320,
+   "min": [
+    -0.013,
+    -2.509,
+    0.742
+   ],
+   "max": [
+    0.013,
+    -2.413,
+    0.858
+   ],
+   "size": [
+    0.026,
+    0.096,
+    0.116
+   ]
+  },
+  "foredeck line coil": {
+   "parts": 2,
+   "blockout_triangles": 1440,
+   "min": [
+    -0.15,
+    -2.12,
+    0.895
+   ],
+   "max": [
+    0.15,
+    -1.88,
+    0.967
+   ],
+   "size": [
+    0.3,
+    0.24,
+    0.072
+   ]
+  }
+ }
+}

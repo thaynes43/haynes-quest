@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**62 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**66 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -145,6 +145,54 @@ Original characters and scenery for the [locked chapter roster](../designs/026-p
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/636bef6db1456f8f.webp" alt="Blender reference sheet of the mischief kitten in front, side, back and three-quarter views" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="lookout-tower-facade" markdown="1">
+
+[![Exact Rescue Harbor lookout tower model](media/catalog-thumbnails/v001/896a01c691ef11ac.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rescue-harbor-kit/v001.md#lookout-tower-facade)
+
+### [Rescue Harbor lookout tower](reviews/rescue-harbor-kit/v001.md#lookout-tower-facade)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dafad1b74ccc370b.webp" alt="Approved Blender reference sheet of four original Rescue Harbor props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="pier-bollard" markdown="1">
+
+[![Exact Rescue Harbor pier bollard model](media/catalog-thumbnails/v001/98acdc03a16c9e4c.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rescue-harbor-kit/v001.md#pier-bollard)
+
+### [Rescue Harbor pier bollard](reviews/rescue-harbor-kit/v001.md#pier-bollard)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dafad1b74ccc370b.webp" alt="Approved Blender reference sheet of four original Rescue Harbor props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="rescue-buoy-stand" markdown="1">
+
+[![Exact Rescue Harbor rescue buoy stand model](media/catalog-thumbnails/v001/65f9fcb552dbd151.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rescue-harbor-kit/v001.md#rescue-buoy-stand)
+
+### [Rescue Harbor rescue buoy stand](reviews/rescue-harbor-kit/v001.md#rescue-buoy-stand)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dafad1b74ccc370b.webp" alt="Approved Blender reference sheet of four original Rescue Harbor props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
+
+</div>
+
+<div class="catalog-card" data-asset-id="small-boat" markdown="1">
+
+[![Exact Rescue Harbor small rescue boat model](media/catalog-thumbnails/v001/9001ecf23dc5cd91.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/rescue-harbor-kit/v001.md#small-boat)
+
+### [Rescue Harbor small rescue boat](reviews/rescue-harbor-kit/v001.md#small-boat)
+
+<span class="catalog-state">3D prop · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/dafad1b74ccc370b.webp" alt="Approved Blender reference sheet of four original Rescue Harbor props" loading="lazy" decoding="async" width="68" height="50"><span>Blender reference sheet, no generated concept</span></div>
 
 </div>
 

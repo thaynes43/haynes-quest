@@ -127,6 +127,8 @@ describe("era themes (v4 only)", () => {
         // The delivered WO111 kits replace only their own scenery stand-ins.
         if (theme === "clubhouse")
           expect(prop.glb?.url).toBe(`/studio/assets/media/toon-clubhouse-kit/v001/${prop.id}.glb`);
+        else if (theme === "harbor")
+          expect(prop.glb?.url).toBe(`/studio/assets/media/rescue-harbor-kit/v001/${prop.id}.glb`);
         else if (theme === "playroom")
           expect(prop.glb?.url).toBe(`/studio/assets/media/playroom-kit/v001/${prop.id}.glb`);
         else expect(prop.glb).toBeNull();
@@ -668,7 +670,11 @@ describe("generator commands for a whole world", () => {
         bounds: expect.any(Object),
         model: "/studio/assets/media/clearing-tree/v001/clearing-tree.glb",
       });
-      expect(harborReport.spatial.themeKitProps[0]).toMatchObject({ id: "lookout-tower-facade", kit: "harbor", model: null });
+      expect(harborReport.spatial.themeKitProps[0]).toMatchObject({
+        id: "lookout-tower-facade",
+        kit: "harbor",
+        model: "/studio/assets/media/rescue-harbor-kit/v001/lookout-tower-facade.glb",
+      });
 
       const level = run("level", projectPath, "a2-harbor");
       expect(level.stderr).toBe("");

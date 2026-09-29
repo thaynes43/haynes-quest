@@ -76,6 +76,7 @@ function box(
 }
 
 const casinoKit = "/studio/assets/media/rat-casino-kit/v001";
+const harborKit = "/studio/assets/media/rescue-harbor-kit/v001";
 const clubhouseKit = "/studio/assets/media/toon-clubhouse-kit/v001";
 const media = "/studio/assets/media";
 
@@ -251,28 +252,40 @@ export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze(
     theme: "harbor",
     bounds: box(1.8, 7, 1.8),
     fallback: { shape: "tank", color: 0xd64533, trim: 0xf7c948 },
-    glb: null,
+    glb: {
+      url: `${harborKit}/lookout-tower-facade.glb`,
+      sha256: "739455bcb706fd85bd8b38d1c528dc652b555e532f7408f2ea0ae9751e16dea9",
+    },
   },
   {
     id: "pier-bollard",
     theme: "harbor",
     bounds: box(0.3, 0.8, 0.3),
     fallback: { shape: "cylinder", color: 0x2e4a62, trim: 0xf7c948 },
-    glb: null,
+    glb: {
+      url: `${harborKit}/pier-bollard.glb`,
+      sha256: "28f94a7720f6dc77d98ad6021698310927c6a28fa7d2a4e8c021ff6278ff8dfc",
+    },
   },
   {
     id: "rescue-buoy-stand",
     theme: "harbor",
     bounds: box(0.6, 1.8, 0.25),
     fallback: { shape: "board", color: 0xa8835b, trim: 0xd64533 },
-    glb: null,
+    glb: {
+      url: `${harborKit}/rescue-buoy-stand.glb`,
+      sha256: "38ff1bb695e9c4fd236126dc4452f6aa109c2ee14487a4e4a7137b098a4be9cc",
+    },
   },
   {
     id: "small-boat",
     theme: "harbor",
     bounds: box(1.2, 1.1, 2.6),
     fallback: { shape: "box", color: 0x2f7fb8, trim: 0xf2efe6 },
-    glb: null,
+    glb: {
+      url: `${harborKit}/small-boat.glb`,
+      sha256: "5475cb386e851d5e547759854aa4b17cf08a9f7cf5b7f0d2315e5b2f970cb8e4",
+    },
   },
   {
     id: "water-tower",

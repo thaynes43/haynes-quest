@@ -1,0 +1,450 @@
+{
+  "saved": "/workspace/haynes-quest/family-eras/rescue-harbor-kit/v001/rescue-harbor-kit-blockout.blend",
+  "sha256": "acf0a3c3a9873ac1924435a3c8fe666c472bbe26d23e840e3d768287bba386c0",
+  "props": {
+    "lookout-tower-facade": {
+      "min": [
+        -1.75,
+        -1.7795,
+        0.0
+      ],
+      "max": [
+        1.75,
+        1.75,
+        6.885
+      ],
+      "size": [
+        3.5,
+        3.5295,
+        6.885
+      ],
+      "blockout_triangles": 32332,
+      "registry_box_blender": {
+        "min": [
+          -1.8,
+          -1.8,
+          0.0
+        ],
+        "max": [
+          1.8,
+          1.8,
+          7.0
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -1.75,
+          0.0,
+          -1.75
+        ],
+        "max": [
+          1.75,
+          6.885,
+          1.7795
+        ]
+      },
+      "parts": 131,
+      "part_tops_m": {
+        "Stone footing left front": 0.28,
+        "Timber leg left front": 3.2853,
+        "Stone footing left back": 0.28,
+        "Timber leg left back": 3.2853,
+        "Stone footing right front": 0.28,
+        "Timber leg right front": 3.2853,
+        "Stone footing right back": 0.28,
+        "Timber leg right back": 3.2853,
+        "Brace front 1a": 1.7575,
+        "Brace front 1b": 1.7575,
+        "Brace front 2a": 3.1366,
+        "Brace front 2b": 3.1366,
+        "Girt front": 1.85,
+        "Brace back 1a": 1.7575,
+        "Brace back 1b": 1.7575,
+        "Brace back 2a": 3.1366,
+        "Brace back 2b": 3.1366,
+        "Girt back": 1.85,
+        "Brace left 1a": 1.7575,
+        "Brace left 1b": 1.7575,
+        "Brace left 2a": 3.1366,
+        "Brace left 2b": 3.1366,
+        "Girt left": 1.85,
+        "Brace right 1a": 1.7575,
+        "Brace right 1b": 1.7575,
+        "Brace right 2a": 3.1366,
+        "Brace right 2b": 3.1366,
+        "Girt right": 1.85,
+        "Ladder rail left": 4.2024,
+        "Ladder rail cap left": 4.27,
+        "Ladder rail right": 4.2024,
+        "Ladder rail cap right": 4.27,
+        "Ladder rung 01": 0.33,
+        "Ladder rung 02": 0.63,
+        "Ladder rung 03": 0.93,
+        "Ladder rung 04": 1.23,
+        "Ladder rung 05": 1.53,
+        "Ladder rung 06": 1.83,
+        "Ladder rung 07": 2.13,
+        "Ladder rung 08": 2.43,
+        "Ladder rung 09": 2.73,
+        "Ladder rung 10": 3.03,
+        "Ladder rung 11": 3.33,
+        "Deck fascia": 3.39,
+        "Deck planks": 3.45,
+        "Rail post 1": 4.36,
+        "Rail post 2": 4.36,
+        "Rail post 3": 4.36,
+        "Rail post 4": 4.36,
+        "Rail post 5": 4.36,
+        "Rail post 6": 4.36,
+        "Rail post 7": 4.36,
+        "Rail post 8": 4.36,
+        "Rail post 9": 4.36,
+        "Rail top 1": 4.365,
+        "Rail mid 1": 3.935,
+        "Rail top 2": 4.365,
+        "Rail mid 2": 3.935,
+        "Rail top 3": 4.365,
+        "Rail mid 3": 3.935,
+        "Rail top 4": 4.365,
+        "Rail mid 4": 3.935,
+        "Rail top 5": 4.365,
+        "Rail mid 5": 3.935,
+        "Balcony life ring segment 1 (red)": 4.2641,
+        "Balcony life ring segment 2 (cream)": 4.289,
+        "Balcony life ring segment 3 (red)": 4.2641,
+        "Balcony life ring segment 4 (cream)": 4.0928,
+        "Balcony life ring segment 5 (red)": 3.9061,
+        "Balcony life ring segment 6 (cream)": 3.8041,
+        "Balcony life ring segment 7 (red)": 3.9061,
+        "Balcony life ring segment 8 (cream)": 4.0928,
+        "Balcony life ring grab line": 4.311,
+        "Balcony life ring grab line clip 1": 3.9873,
+        "Balcony life ring grab line clip 2": 4.3123,
+        "Balcony life ring grab line clip 3": 3.9873,
+        "Balcony life ring grab line clip 4": 3.8124,
+        "Life ring hanging loop": 4.3314,
+        "Tripod leg 1": 4.4635,
+        "Tripod leg 2": 4.4635,
+        "Tripod leg 3": 4.4635,
+        "Telescope tube": 4.6874,
+        "Telescope eyepiece band": 4.5453,
+        "Telescope lens band": 4.7018,
+        "Telescope lens": 4.6842,
+        "Cabin walls": 5.45,
+        "Window frame left": 5.04,
+        "Window pane left 1": 4.95,
+        "Window pane left 2": 4.95,
+        "Window pane left 3": 4.95,
+        "Window frame right": 5.04,
+        "Window pane right 1": 4.95,
+        "Window pane right 2": 4.95,
+        "Window pane right 3": 4.95,
+        "Window frame back": 5.04,
+        "Window pane back 1": 4.95,
+        "Window pane back 2": 4.95,
+        "Window pane back 3": 4.95,
+        "Window frame front left": 5.04,
+        "Window pane front left": 4.95,
+        "Window frame front right": 5.04,
+        "Window pane front right": 4.95,
+        "Doghouse-arch door": 4.98,
+        "Door frame": 5.035,
+        "Door porthole rim": 4.65,
+        "Door porthole pane": 4.612,
+        "Door knob": 4.085,
+        "Bone sign": 5.3191,
+        "Bone sign paw 1": 5.2077,
+        "Bone sign paw 2": 5.2415,
+        "Bone sign paw 3": 5.2631,
+        "Bone sign paw 4": 5.2631,
+        "Bone sign paw 5": 5.2415,
+        "Roof fascia": 5.51,
+        "Hip roof": 6.2872,
+        "Hip rib 1": 6.3621,
+        "Hip rib 2": 6.3621,
+        "Hip rib 3": 6.3621,
+        "Hip rib 4": 6.3621,
+        "Beacon drum": 6.4,
+        "Beacon glass": 6.66,
+        "Beacon bar 1": 6.66,
+        "Beacon bar 2": 6.66,
+        "Beacon bar 3": 6.66,
+        "Beacon bar 4": 6.66,
+        "Beacon cap": 6.79,
+        "Beacon finial": 6.885,
+        "Loudhailer horn left": 6.4577,
+        "Loudhailer mouth left": 6.4391,
+        "Loudhailer horn right": 6.4577,
+        "Loudhailer mouth right": 6.4391
+      }
+    },
+    "pier-bollard": {
+      "min": [
+        -0.2832,
+        -0.2832,
+        0.0
+      ],
+      "max": [
+        0.2832,
+        0.2832,
+        0.787
+      ],
+      "size": [
+        0.5665,
+        0.5665,
+        0.787
+      ],
+      "blockout_triangles": 8408,
+      "registry_box_blender": {
+        "min": [
+          -0.3,
+          -0.3,
+          0.0
+        ],
+        "max": [
+          0.3,
+          0.3,
+          0.8
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -0.2832,
+          0.0,
+          -0.2832
+        ],
+        "max": [
+          0.2832,
+          0.787,
+          0.2832
+        ]
+      },
+      "parts": 20,
+      "part_tops_m": {
+        "Timber piling": 0.55,
+        "Wet tide band": 0.148,
+        "Barnacle 1": 0.1898,
+        "Barnacle 2": 0.2144,
+        "Barnacle 3": 0.2285,
+        "Barnacle 4": 0.1812,
+        "Barnacle 5": 0.198,
+        "Barnacle 6": 0.2176,
+        "Iron strap 1": 0.483,
+        "Timber crack 1": 0.4,
+        "Timber crack 2": 0.52,
+        "Timber crack 3": 0.42,
+        "Timber crack 4": 0.5,
+        "Starfish": 0.4057,
+        "Bollard base plate": 0.585,
+        "Bollard body": 0.7,
+        "Bollard cap (safety yellow)": 0.787,
+        "Mooring rope loop": 0.687,
+        "Mooring rope tail": 0.6755,
+        "Rope end whipping": 0.294
+      }
+    },
+    "rescue-buoy-stand": {
+      "min": [
+        -0.58,
+        -0.2263,
+        0.0
+      ],
+      "max": [
+        0.58,
+        0.12,
+        1.798
+      ],
+      "size": [
+        1.16,
+        0.3463,
+        1.798
+      ],
+      "blockout_triangles": 15836,
+      "registry_box_blender": {
+        "min": [
+          -0.6,
+          -0.25,
+          0.0
+        ],
+        "max": [
+          0.6,
+          0.25,
+          1.8
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -0.58,
+          0.0,
+          -0.12
+        ],
+        "max": [
+          0.58,
+          1.798,
+          0.2263
+        ]
+      },
+      "parts": 35,
+      "part_tops_m": {
+        "Post left": 1.66,
+        "Post wet foot left": 0.16,
+        "Post cap ball left": 1.798,
+        "Post grain left 1": 0.7,
+        "Post grain left 2": 1.2,
+        "Post right": 1.66,
+        "Post wet foot right": 0.16,
+        "Post cap ball right": 1.798,
+        "Post grain right 1": 0.7,
+        "Post grain right 2": 1.2,
+        "Lower rail": 0.46,
+        "Navy backboard": 1.37,
+        "Header board": 1.6,
+        "Header top trim": 1.635,
+        "Header wave strip": 1.416,
+        "Header bone": 1.5408,
+        "Ring peg": 1.21,
+        "Ring peg knob": 1.218,
+        "Life ring segment 1 (red)": 1.2787,
+        "Life ring segment 2 (cream)": 1.307,
+        "Life ring segment 3 (red)": 1.2787,
+        "Life ring segment 4 (cream)": 1.084,
+        "Life ring segment 5 (red)": 0.8711,
+        "Life ring segment 6 (cream)": 0.7542,
+        "Life ring segment 7 (red)": 0.8711,
+        "Life ring segment 8 (cream)": 1.084,
+        "Life ring grab line": 1.3311,
+        "Life ring grab line clip 1": 0.9633,
+        "Life ring grab line clip 2": 1.3313,
+        "Life ring grab line clip 3": 0.9633,
+        "Life ring grab line clip 4": 0.7613,
+        "Coil hook": 1.1136,
+        "Throw line coil 1": 1.096,
+        "Throw line coil 2": 1.084,
+        "Throw line coil 3": 1.072
+      }
+    },
+    "small-boat": {
+      "min": [
+        -1.1241,
+        -2.5797,
+        0.0
+      ],
+      "max": [
+        1.1244,
+        2.587,
+        1.08
+      ],
+      "size": [
+        2.2485,
+        5.1667,
+        1.08
+      ],
+      "blockout_triangles": 28240,
+      "registry_box_blender": {
+        "min": [
+          -1.2,
+          -2.6,
+          0.0
+        ],
+        "max": [
+          1.2,
+          2.6,
+          1.1
+        ]
+      },
+      "inside_registry_box": true,
+      "gltf_bounds_y_up": {
+        "min": [
+          -1.1241,
+          0.0,
+          -2.587
+        ],
+        "max": [
+          1.1244,
+          1.08,
+          2.5797
+        ]
+      },
+      "parts": 54,
+      "part_tops_m": {
+        "Hull (red topsides, cream waterline, navy bottom, driftwood inside)": 0.95,
+        "Fender collar": 1.0148,
+        "Thwart 1": 0.58,
+        "Thwart 2": 0.58,
+        "Thwart 3": 0.58,
+        "Floorboard seam 1": 0.413,
+        "Floorboard seam 2": 0.37,
+        "Floorboard seam 3": 0.37,
+        "Floorboard seam 4": 0.413,
+        "Oar shaft left": 0.662,
+        "Oar blade left": 0.647,
+        "Oarlock left": 0.8616,
+        "Oar shaft right": 0.662,
+        "Oar blade right": 0.647,
+        "Oarlock right": 0.8616,
+        "Flank life ring port (-X) segment 1 (red)": 0.6197,
+        "Flank life ring port (-X) segment 2 (cream)": 0.6324,
+        "Flank life ring port (-X) segment 3 (red)": 0.617,
+        "Flank life ring port (-X) segment 4 (cream)": 0.5225,
+        "Flank life ring port (-X) segment 5 (red)": 0.4175,
+        "Flank life ring port (-X) segment 6 (cream)": 0.3599,
+        "Flank life ring port (-X) segment 7 (red)": 0.4217,
+        "Flank life ring port (-X) segment 8 (cream)": 0.5283,
+        "Flank life ring starboard (+X) segment 1 (red)": 0.6197,
+        "Flank life ring starboard (+X) segment 2 (cream)": 0.6324,
+        "Flank life ring starboard (+X) segment 3 (red)": 0.617,
+        "Flank life ring starboard (+X) segment 4 (cream)": 0.5225,
+        "Flank life ring starboard (+X) segment 5 (red)": 0.4175,
+        "Flank life ring starboard (+X) segment 6 (cream)": 0.3599,
+        "Flank life ring starboard (+X) segment 7 (red)": 0.4217,
+        "Flank life ring starboard (+X) segment 8 (cream)": 0.5283,
+        "Bow paw port 1": 0.5495,
+        "Bow paw port 2": 0.6195,
+        "Bow paw port 3": 0.6643,
+        "Bow paw port 4": 0.6643,
+        "Bow paw port 5": 0.6195,
+        "Bow paw starboard 1": 0.5495,
+        "Bow paw starboard 2": 0.6195,
+        "Bow paw starboard 3": 0.6643,
+        "Bow paw starboard 4": 0.6643,
+        "Bow paw starboard 5": 0.6195,
+        "Motor clamp bracket": 0.82,
+        "Motor leg": 0.78,
+        "Motor lower unit": 0.21,
+        "Propeller blade 1": 0.1866,
+        "Propeller blade 2": 0.2166,
+        "Propeller blade 3": 0.1351,
+        "Motor cowl": 1.08,
+        "Motor cowl band": 0.93,
+        "Motor tiller": 0.9548,
+        "Motor tiller grip": 0.9097,
+        "Stem mooring eye": 0.858,
+        "Foredeck line coil 1": 0.9374,
+        "Foredeck line coil 2": 0.9674
+      }
+    }
+  },
+  "materials": [
+    "RH gloss aqua #8fd6e6",
+    "RH iron navy #2e4a62",
+    "RH lamp yellow #f7c948",
+    "RH paint coral #f08a5d",
+    "RH paint cream #f2efe6",
+    "RH paint navy #2e4a62",
+    "RH paint red #d64533",
+    "RH paint sea #2f7fb8",
+    "RH paint wetwood #6e5238",
+    "RH paint yellow #f7c948",
+    "RH rope rope #dcc18c",
+    "RH stone stone #8c979f",
+    "RH wood driftwood #d9c3a0",
+    "RH wood wetwood #6e5238",
+    "RH wood wood #a8835b"
+  ],
+  "parts": 240,
+  "build_seconds": 6.1,
+  "utc": "2026-09-26T23:38:55.812594+00:00"
+}
