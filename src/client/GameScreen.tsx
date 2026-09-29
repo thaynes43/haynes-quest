@@ -299,6 +299,10 @@ function Adventure({
       level?.minorMemoryIds?.includes(memory.id) &&
       ["revealed", "consumed"].includes(memory.state ?? ""),
   ).length;
+  const missingMinorCount = Math.max(
+    0,
+    (level?.minorMemoryIds?.length ?? 0) - minorCount,
+  );
   const story = eraStory(level?.eraYear, level);
   const chapterTitle =
     (level?.routeId ? chapterTitles?.[level.routeId] : undefined) ??
@@ -840,13 +844,15 @@ function Adventure({
         )}
         {routeMemories && view.phase === "memory-released" && (
           <p className="memory-next-step" role="status">
-            {minorCount < 2
-              ? `${2 - minorCount} little ${minorCount === 1 ? "memory" : "memories"} left. Follow the path back to find ${minorCount === 1 ? "it" : "them"}, then return to the big memory.`
-              : "Walk into the big memory to finish this chapter."}
+            {missingMinorCount > 0
+              ? `${status?.nearLockedMajorMemoryId ? "Big memory locked. " : ""}${missingMinorCount} little ${missingMinorCount === 1 ? "memory" : "memories"} left. Tap Find memory to get there.`
+              : "Both little memories found. Go to the big memory and walk into it."}
           </p>
         )}
         <div className="equipment-line">
-          <span>✦ {equipmentName(weapon)}</span>
+          <span>
+            ✦ {routeMemories && !weapon ? "Quick hit" : equipmentName(weapon)}
+          </span>
           {shield && <span>◈ {equipmentName(shield)}</span>}
         </div>
       </aside>
@@ -935,7 +941,7 @@ function Adventure({
               input={actionInput}
               cancelInput={cancelActionInput}
             />
-            {shield && (
+            {shield && !(routeMemories && view.phase === "memory-released") && (
               <ActionButton
                 action="guard"
                 label={routeMemories ? "Bash" : "Guard"}
@@ -946,15 +952,38 @@ function Adventure({
                 cancelInput={cancelActionInput}
               />
             )}
-            <ActionButton
-              action="attack"
-              label="Attack"
-              symbol="✦"
-              disabled={view.phase !== "exploring"}
-              active={Boolean(target && status?.attackReady)}
-              input={actionInput}
-              cancelInput={cancelActionInput}
-            />
+            {routeMemories && view.phase === "memory-released" ? (
+              <button
+                type="button"
+                className="action-button memory-return-button"
+                aria-label={
+                  missingMinorCount > 0
+                    ? "Go to missing little memory"
+                    : "Go to big memory"
+                }
+                disabled={busy}
+                onClick={() => {
+                  if (missingMinorCount > 0)
+                    game.current?.returnToMissingMemory();
+                  else game.current?.returnToMajorMemory();
+                }}
+              >
+                <span aria-hidden="true">↶</span>
+                <small>
+                  {missingMinorCount > 0 ? "Find memory" : "Big memory"}
+                </small>
+              </button>
+            ) : (
+              <ActionButton
+                action="attack"
+                label="Attack"
+                symbol="✦"
+                disabled={view.phase !== "exploring"}
+                active={Boolean(target && status?.attackReady)}
+                input={actionInput}
+                cancelInput={cancelActionInput}
+              />
+            )}
           </div>
           {!routeMemories &&
             (nearbyPickup || status?.nearMemoryId || nearbyFriend) && (

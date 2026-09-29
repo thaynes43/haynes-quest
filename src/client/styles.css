@@ -2702,6 +2702,31 @@ footer {
     0 6px 0 #513421bb,
     0 7px 24px #0004;
 }
+.era-game .combat-actions .memory-return-button {
+  left: 0;
+  bottom: calc(var(--jump-size) + 6px);
+  width: 110px;
+  height: 88px;
+  border: 2px solid #bff5d8;
+  border-radius: 24px;
+  background: #246b62f2;
+  box-shadow:
+    0 0 0 4px #69d6ac55,
+    0 6px 18px #122c2a80;
+  color: #f6ffec;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.era-game .combat-actions .memory-return-button small {
+  max-width: 90px;
+  font-size: 12px;
+  line-height: 1.1;
+  white-space: normal;
+}
+.era-game .combat-actions .memory-return-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
 .era-game .combat-actions .action-button:disabled {
   opacity: 0.56;
 }

@@ -125,9 +125,7 @@ function knownModelSave(): SaveView {
   };
 }
 
-function routeMemorySave(
-  firstMemoryState: "released" | "revealed",
-): SaveView {
+function routeMemorySave(firstMemoryState: "released" | "revealed"): SaveView {
   const save = makeEraSave({ phase: "memory-released" });
   const adventure = save.adventure;
   const activeLevel = adventure?.activeLevel;
@@ -148,8 +146,7 @@ function routeMemorySave(
   return {
     ...save,
     memories,
-    recoveredIds:
-      firstMemoryState === "revealed" ? [memoryIds[0]!] : [],
+    recoveredIds: firstMemoryState === "revealed" ? [memoryIds[0]!] : [],
     adventure: {
       ...adventure,
       planVersion: "era-level-plan-v3",
@@ -208,7 +205,8 @@ describe("GardenScene fallback and attack lifecycle", () => {
     const attachment = harness.attachments.find((candidate) =>
       candidate.target.getObjectByName("encounter-artwork-fallback"),
     );
-    if (!attachment) throw new Error("Known encounter attachment was not queued");
+    if (!attachment)
+      throw new Error("Known encounter attachment was not queued");
     const fallback = attachment.target.getObjectByName(
       "encounter-artwork-fallback",
     ) as THREE.Group;
@@ -259,9 +257,8 @@ describe("GardenScene fallback and attack lifecycle", () => {
       createLevelLayout(save),
       save,
     );
-    const avatar = (
-      scene as unknown as { avatarVisual: THREE.Group }
-    ).avatarVisual;
+    const avatar = (scene as unknown as { avatarVisual: THREE.Group })
+      .avatarVisual;
     const position = { x: 0, y: 0, z: 0 };
 
     scene.render(position, 0, 0, frame({ attacking: true, attackSequence: 1 }));
@@ -318,6 +315,54 @@ describe("GardenScene fallback and attack lifecycle", () => {
     );
     expect(avatar.rotation.x).toBeCloseTo(0, 6);
     expect(avatar.rotation.z).toBeCloseTo(0, 6);
+    scene.dispose();
+  });
+
+  it("draws short forward strikes instead of a rotating ring, with an independent Bash", () => {
+    const save = makeEraSave();
+    const scene = new GardenScene(
+      document.createElement("div"),
+      createLevelLayout(save),
+      save,
+    );
+    const { attackStreak, bashStreak } = scene as unknown as {
+      attackStreak: THREE.Mesh;
+      bashStreak: THREE.Mesh;
+    };
+    const position = { x: 0, y: 0, z: 0 };
+
+    scene.render(position, 0, 0, frame({ attacking: true, attackSequence: 1 }));
+    expect(attackStreak.visible).toBe(true);
+    expect(attackStreak.geometry.type).toBe("ConeGeometry");
+    expect(bashStreak.visible).toBe(false);
+    const firstZ = attackStreak.position.z;
+    scene.render(
+      position,
+      0,
+      0,
+      frame({ deltaSeconds: 0.09, attacking: true, attackSequence: 1 }),
+    );
+    expect(attackStreak.position.z).toBeLessThan(firstZ);
+    expect(attackStreak.rotation.z).toBe(0);
+
+    scene.render(position, 0, 0, frame({ deltaSeconds: 0.3 }));
+    scene.render(
+      position,
+      0,
+      0,
+      frame({ secondaryAttacking: true, attackSequence: 2 }),
+    );
+    expect(attackStreak.visible).toBe(false);
+    expect(bashStreak.visible).toBe(true);
+    const firstBashZ = bashStreak.position.z;
+    scene.render(
+      position,
+      0,
+      0,
+      frame({ deltaSeconds: 0.1, secondaryAttacking: true, attackSequence: 2 }),
+    );
+    expect(bashStreak.position.z).toBeLessThan(firstBashZ);
+    expect(bashStreak.geometry.type).toBe("ConeGeometry");
     scene.dispose();
   });
 

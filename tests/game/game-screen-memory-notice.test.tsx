@@ -201,22 +201,41 @@ describe("Peripheral memory feedback and automatic recovery", () => {
         memory.state = "revealed";
         save.recoveredIds.push(memory.id);
       }
-      await renderRoute(save);
+      const handle = await renderRoute(save);
       const hint = container.querySelector(".era-hud .memory-next-step");
       expect(hint?.getAttribute("role")).toBe("status");
+      const returnButton = container.querySelector<HTMLButtonElement>(
+        ".memory-return-button",
+      );
+      expect(returnButton).not.toBeNull();
       if (collected < 2) {
         expect(hint?.textContent).toContain(
           `${2 - collected} little ${collected === 1 ? "memory" : "memories"} left`,
         );
-        expect(hint?.textContent).toContain("Follow the path back");
-        expect(hint?.textContent).toContain("return to the big memory");
+        expect(hint?.textContent).toContain("Tap Find memory");
+        expect(returnButton?.getAttribute("aria-label")).toBe(
+          "Go to missing little memory",
+        );
+        await act(async () => returnButton?.click());
+        expect(handle.returnToMissingMemory).toHaveBeenCalledTimes(1);
+        expect(handle.returnToMajorMemory).not.toHaveBeenCalled();
       } else {
         expect(hint?.textContent).toBe(
-          "Walk into the big memory to finish this chapter.",
+          "Both little memories found. Go to the big memory and walk into it.",
         );
+        expect(returnButton?.getAttribute("aria-label")).toBe(
+          "Go to big memory",
+        );
+        await act(async () => returnButton?.click());
+        expect(handle.returnToMajorMemory).toHaveBeenCalledTimes(1);
+        expect(handle.returnToMissingMemory).not.toHaveBeenCalled();
       }
+      expect(container.querySelector(".combat-attack")).toBeNull();
+      expect(container.querySelector(".combat-guard")).toBeNull();
       expect(container.querySelector('[role="dialog"]')).toBeNull();
-      expect(container.querySelector('[data-testid="joystick"]')).not.toBeNull();
+      expect(
+        container.querySelector('[data-testid="joystick"]'),
+      ).not.toBeNull();
     },
   );
 
@@ -247,9 +266,45 @@ describe("Peripheral memory feedback and automatic recovery", () => {
       });
     });
     expect(container.querySelector(".memory-next-step")?.textContent).toBe(
-      "Walk into the big memory to finish this chapter.",
+      "Both little memories found. Go to the big memory and walk into it.",
     );
+    expect(
+      container.querySelector(".memory-return-button")?.textContent,
+    ).toContain("Big memory");
     expect(container.querySelector('[role="dialog"]')).toBeNull();
+  });
+
+  it("explains the locked big memory at the ring and keeps a working return control", async () => {
+    const save = routeMemorySave();
+    save.adventure!.phase = "memory-released";
+    save.memories[2]!.state = "released";
+    const handle = await renderRoute(save);
+    await act(async () =>
+      options!.onStatus?.({
+        ...status(),
+        phase: "memory-released",
+        nearLockedMajorMemoryId: save.memories[2]!.id,
+      }),
+    );
+    expect(container.querySelector(".memory-next-step")?.textContent).toContain(
+      "Big memory locked",
+    );
+    await act(async () =>
+      container
+        .querySelector<HTMLButtonElement>(".memory-return-button")
+        ?.click(),
+    );
+    expect(handle.returnToMissingMemory).toHaveBeenCalledTimes(1);
+  });
+
+  it("labels the basic hit as usable before the chapter's tool is collected", async () => {
+    const save = routeMemorySave();
+    save.adventure!.equippedId = null;
+    await renderRoute(save);
+    expect(container.querySelector(".equipment-line")?.textContent).toContain(
+      "Quick hit",
+    );
+    expect(container.querySelector(".combat-attack")).not.toBeNull();
   });
 
   it("shows boss health only after the fight engages", async () => {
@@ -313,12 +368,12 @@ describe("Peripheral memory feedback and automatic recovery", () => {
         action: { type: "attack", levelId, encounterId: foe.id },
       });
     });
-    expect(container.querySelector(".target-hint meter")?.getAttribute("value")).toBe(
-      String(foe.hp - 1),
-    );
-    expect(container.querySelector(".target-hint .confirmed-damage")?.textContent).toBe(
-      "−1",
-    );
+    expect(
+      container.querySelector(".target-hint meter")?.getAttribute("value"),
+    ).toBe(String(foe.hp - 1));
+    expect(
+      container.querySelector(".target-hint .confirmed-damage")?.textContent,
+    ).toBe("−1");
     await act(async () => vi.advanceTimersByTime(850));
     expect(container.querySelector(".confirmed-damage")).toBeNull();
   });
@@ -617,17 +672,13 @@ describe("Peripheral memory feedback and automatic recovery", () => {
       touch(window, "touchend", [{ identifier: 53, x: 340, y: 600 }]);
     });
     expect(
-      vi
-        .mocked(handle.setInput)
-        .mock.calls.filter(([axis]) => axis === "jump"),
+      vi.mocked(handle.setInput).mock.calls.filter(([axis]) => axis === "jump"),
     ).toEqual([["jump", true]]);
     await act(async () => {
       touch(window, "touchend", [{ identifier: 52, x: 300, y: 600 }]);
     });
     expect(
-      vi
-        .mocked(handle.setInput)
-        .mock.calls.filter(([axis]) => axis === "jump"),
+      vi.mocked(handle.setInput).mock.calls.filter(([axis]) => axis === "jump"),
     ).toEqual([
       ["jump", true],
       ["jump", false],
@@ -645,7 +696,9 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     expect(
       vi
         .mocked(handle.setInput)
-        .mock.calls.filter(([axis, value]) => axis === "jump" && value === true),
+        .mock.calls.filter(
+          ([axis, value]) => axis === "jump" && value === true,
+        ),
     ).toHaveLength(2);
 
     await act(async () => {
@@ -653,8 +706,9 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     });
     const releasesBeforeUnrelatedTouch = vi
       .mocked(handle.setInput)
-      .mock.calls.filter(([axis, value]) => axis === "jump" && value === false)
-      .length;
+      .mock.calls.filter(
+        ([axis, value]) => axis === "jump" && value === false,
+      ).length;
     await act(async () => {
       pointer(jump, "pointerdown", 4, 300, 600, "mouse");
       touch(jump, "touchstart", [{ identifier: 54, x: 300, y: 600 }]);
@@ -663,7 +717,9 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     expect(
       vi
         .mocked(handle.setInput)
-        .mock.calls.filter(([axis, value]) => axis === "jump" && value === false),
+        .mock.calls.filter(
+          ([axis, value]) => axis === "jump" && value === false,
+        ),
     ).toHaveLength(releasesBeforeUnrelatedTouch);
     await act(async () => {
       pointer(window, "pointerup", 4, 300, 600, "mouse");
@@ -671,7 +727,9 @@ describe("Peripheral memory feedback and automatic recovery", () => {
     expect(
       vi
         .mocked(handle.setInput)
-        .mock.calls.filter(([axis, value]) => axis === "jump" && value === false),
+        .mock.calls.filter(
+          ([axis, value]) => axis === "jump" && value === false,
+        ),
     ).toHaveLength(releasesBeforeUnrelatedTouch + 1);
   });
 
