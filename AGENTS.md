@@ -47,6 +47,12 @@ Tom now requires parent-prepared journeys and collaborative enemy selection; rea
 - Give the game its own name, visual identity, and interaction design. Reuse proven engineering conventions from sibling repos where they fit.
 - Keep the handoff concise and current. Completed plans retain their IDs when moved to `.agents/plans/completed/`.
 
+## Automated PR review (Claude Code)
+
+`.github/workflows/claude-code-review.yml` runs an advisory Claude review on every non-draft PR (check name "Claude advisory review"), and `.github/workflows/claude.yml` answers `@claude` mentions from users with write access. The review is **not** a required check and never gates a merge, but agents must read its findings before merging. Fix each finding, or answer it on the PR with a concrete reason it is wrong; never merge anyway. Fork, dependabot and renovate PRs skip it.
+
+It needs two prerequisites: the Claude GitHub App has access to this repo, and the `CLAUDE_CODE_OAUTH_TOKEN` repo secret exists. Until both are in place the jobs skip and finish green.
+
 ## Verification
 
 Build the MkDocs Material site and check documentation/media links using the commands in [docs/README.md](docs/README.md). Run `pnpm typecheck`, `pnpm lint`, `pnpm test` and `pnpm build`; use a dedicated `QUEST_TEST_DATABASE_URL` for real Postgres tests. The [private-preview runbook](docs/ops/002-private-preview.md) documents browser journeys and the strict docs build. CI runs the same checks. For gameplay work, document the actual device/browser journeys and frame-time targets the later brief requires.
