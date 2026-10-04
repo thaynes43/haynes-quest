@@ -1,0 +1,189 @@
+{
+  "id": "demon-idol-drummer",
+  "file": "demon-idol-drummer.glb",
+  "sha256": "a2d4a6bdf78b2990d45ade28c49d70602b96cfaa040156cbec5b41c788c1610b",
+  "bytes": 1174024,
+  "triangles": 17946,
+  "vertices": 9272,
+  "primitives": 2,
+  "nodes": 28,
+  "materials": [
+    {
+      "name": "Demon Idol Drummer matte",
+      "doubleSided": true,
+      "pbr": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6200000047683716
+      }
+    },
+    {
+      "name": "Demon Idol Drummer gloss",
+      "doubleSided": true,
+      "pbr": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.25999999046325684
+      }
+    }
+  ],
+  "animations": [
+    {
+      "name": "idle",
+      "channels": 81,
+      "duration_s": 2
+    },
+    {
+      "name": "move",
+      "channels": 81,
+      "duration_s": 0.8
+    },
+    {
+      "name": "attack",
+      "channels": 81,
+      "duration_s": 2
+    },
+    {
+      "name": "hit",
+      "channels": 81,
+      "duration_s": 0.7
+    },
+    {
+      "name": "defeat",
+      "channels": 81,
+      "duration_s": 2.4
+    }
+  ],
+  "accessor_bounds_gltf": {
+    "min": [
+      -0.47710174322128296,
+      0,
+      -0.3958950638771057
+    ],
+    "max": [
+      0.47710174322128296,
+      1.5699700117111206,
+      0.24969696998596191
+    ]
+  },
+  "scene_extras": {
+    "pack_id": "action-minions-b",
+    "asset_id": "demon-idol-drummer",
+    "asset_version": "v001",
+    "work_order": "20261004-opus-action-minions-b",
+    "candidate_status": "demon-idol-drummer v001 · awaiting owner review",
+    "forward": "glTF -Z (enemy adapter facing)"
+  },
+  "root_channels": [
+    {
+      "clip": "idle",
+      "path": "translation",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "path": "rotation",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "path": "scale",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "path": "translation",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "path": "rotation",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "path": "scale",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "path": "translation",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "path": "rotation",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "path": "scale",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "path": "translation",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "path": "rotation",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "path": "scale",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "path": "translation",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "path": "rotation",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "path": "scale",
+      "constant": true
+    }
+  ],
+  "validator": {
+    "name": "Khronos glTF Validator",
+    "version": "2.0.0-dev.3.10",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    }
+  },
+  "checks": {
+    "gltf_2": true,
+    "khronos_zero_errors": true,
+    "khronos_zero_warnings": true,
+    "khronos_zero_infos_or_hints_reported": true,
+    "two_or_fewer_materials": true,
+    "opaque_vertex_colour_pbr_no_textures": true,
+    "no_images_textures_samplers": true,
+    "triangle_primitives_with_normals_and_vertex_colours": true,
+    "embedded_single_buffer": true,
+    "no_extensions": true,
+    "bytes_at_most_1_5_mib": true,
+    "identity_extras": true,
+    "no_lease_or_addon_metadata": true,
+    "floor_at_or_above_zero": true,
+    "triangles_at_most_20000": true,
+    "one_skin": true,
+    "exactly_the_five_adapter_clips": true,
+    "scene_roots_are_skin_and_root_bone": true,
+    "root_level_channels_only_constant_root_bone": true,
+    "root_bone_identity": true,
+    "skinned_mesh_carries_bounds_envelope": true,
+    "four_influences_max": true
+  },
+  "failures": []
+}
