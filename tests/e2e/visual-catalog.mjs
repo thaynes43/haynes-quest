@@ -85,7 +85,18 @@ const expectedInventoryCounts = {
   owner_approved_entries: 1,
 };
 const expectedThumbnailFiles = 165;
+const actionWorldAssetIds = [
+  "gadget-hammer-hopper",
+  "mischief-kitten-skater",
+  "lab-robot-sentry",
+  "broccoli-bouncer",
+  "bin-chicken-flower-thief",
+  "demon-idol-drummer",
+  "storybook-planting-kit",
+];
+
 const integratedAssetIds = [
+  ...actionWorldAssetIds,
   "water-tower",
   "rooftop-ac-unit",
   "crane-hook",
@@ -656,7 +667,7 @@ async function inspectLanding(
       const cardState = cardInspections.find((entry) => entry.id === id)?.state;
       assert.match(
         cardState ?? "",
-        asset.category === "family-eras"
+        asset.category === "family-eras" || actionWorldAssetIds.includes(id)
           ? /Awaiting Tom's review · used in the family release/i
           : /in (?:private (?:Rat Casino )?)?playtest/i,
         `${scope}: ${id} card records current gameplay use`,

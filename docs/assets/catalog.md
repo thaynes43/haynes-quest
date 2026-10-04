@@ -42,7 +42,7 @@ The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds si
 
 ### [Action minions A](reviews/action-minions-a/v001.md)
 
-<span class="catalog-state">Construction concept · v001 · Blender models in progress</span>
+<span class="catalog-state">Construction concept · v001 · three Blender models delivered</span>
 
 A spring-boot toolbox, skating kitten and radar-eyed robot extend the Clubhouse, Harbor and Hero City casts.
 
@@ -54,7 +54,7 @@ A spring-boot toolbox, skating kitten and radar-eyed robot extend the Clubhouse,
 
 ### [Action minions B](reviews/action-minions-b/v001.md)
 
-<span class="catalog-state">Construction concept · v001 · Blender models in progress</span>
+<span class="catalog-state">Construction concept · v001 · three Blender models delivered</span>
 
 A bouncing broccoli, flower-stealing bird and fantasy band drummer bring new shapes to the Playroom, Magic House and Big Stage.
 
@@ -66,7 +66,7 @@ A bouncing broccoli, flower-stealing bird and fantasy band drummer bring new sha
 
 ### [Storybook planting kit](reviews/storybook-planting-kit/v001.md)
 
-<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/215d467cf1b1ee60.webp" alt="Selected original tree, cypress and flowering-shrub construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -87,7 +87,7 @@ A broad canopy, slim cypress and low flowering shrub form varied planted groups 
 
 ### [Broccoli Bouncer](reviews/broccoli-bouncer/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/64be59f8843c829e.webp" alt="Selected original Broccoli Bouncer construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -101,7 +101,7 @@ A bouncing vegetable with a held warning, two-leaf slap and wilting defeat. View
 
 ### [Gadget Hammer Hopper](reviews/gadget-hammer-hopper/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/622e690b729a8e67.webp" alt="Selected original Gadget Hammer Hopper construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -115,7 +115,7 @@ A spring-legged toolbox raises a rubber mallet, then brings it down in front. It
 
 ### [Bin Chicken Flower Thief](reviews/bin-chicken-flower-thief/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/69ccecf3a880a100.webp" alt="Selected original Bin Chicken Flower Thief construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -128,7 +128,7 @@ A long-beaked garden thief struts, coils its neck and jabs while spilling stolen
 
 ### [Demon Idol Drummer](reviews/demon-idol-drummer/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/804398e0f60380f7.webp" alt="Selected original Demon Idol Drummer construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -141,7 +141,7 @@ A mischievous drummer raises both sticks, slams the snare and bursts a golden be
 
 ### [Mischief Kitten Skater](reviews/mischief-kitten-skater/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/566dba64177bfd57.webp" alt="Selected original Mischief Kitten Skater construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
@@ -154,7 +154,7 @@ A four-footed roller skater crouches, rears up and stomps forward. Its large ear
 
 ### [Lab Robot Sentry](reviews/lab-robot-sentry/v001.md)
 
-<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
 
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d5988c795942c2d3.webp" alt="Selected original Lab Robot Sentry construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
