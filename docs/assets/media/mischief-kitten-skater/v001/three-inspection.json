@@ -1,0 +1,559 @@
+{
+  "asset_id": "mischief-kitten-skater",
+  "version": "v001",
+  "glb_sha256": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader import of the GLB bytes; every exported skin vertex sampled at 60 Hz in every clip; SkeletonUtils clones driven by the real src/game/enemy-animation.ts adapter. Part clearance uses rest-space boxes of the named bone groups (dominant skin weight), so it is a proxy, not triangle collision. No physical-device claim.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.34797092361771603,
+      0.0024471794050176894,
+      -0.485999979202768
+    ],
+    "max": [
+      0.3479709236177135,
+      1.3082286958773262,
+      0.5489477162959876
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.7257421323085799,
+      -1.7116662476279743e-8,
+      -0.7385614192484015
+    ],
+    "max": [
+      1.2593831709401861,
+      1.642894282907709,
+      1.1079493980650346
+    ]
+  },
+  "height_m": 1.3082286958773262,
+  "dimensions_m": [
+    0.6959418472354295,
+    1.3057815164723086,
+    1.0349476954987555
+  ],
+  "body_footprint_y_up": {
+    "min": [
+      -0.15199998923689828,
+      0.2850000119977052,
+      -0.2586326761282238
+    ],
+    "max": [
+      0.15199998923689928,
+      0.5349999736382498,
+      0.27745535584815506
+    ]
+  },
+  "exported_bounds": {
+    "min": [
+      -0.731,
+      -0.006,
+      -0.744
+    ],
+    "max": [
+      1.265,
+      1.648,
+      1.113
+    ]
+  },
+  "root_bone_tracks": [
+    {
+      "clip": "idle",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.scale",
+      "constant": true
+    }
+  ],
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 13390,
+      "max_vertex_displacement_m": 0.2005083787149386,
+      "bounds_y_up": {
+        "min": [
+          -0.43078748489344965,
+          0.000003986587980991246,
+          -0.5141920313536804
+        ],
+        "max": [
+          0.43269923775425356,
+          1.3350283328095307,
+          0.6107785353932353
+        ]
+      },
+      "loop_seam_max_m": 7.342412098453392e-8,
+      "floor_minimum": {
+        "y": 0.000003986587980991246,
+        "bone": "axle_FR_b",
+        "position": [
+          0.16499998512505964,
+          0.000003986587980991246,
+          -0.08770797707480699
+        ],
+        "time_s": 0.18333333333333332
+      },
+      "held_defeat_difference_m": null
+    },
+    "move": {
+      "duration_s": 0.800000011920929,
+      "samples": 49,
+      "vertices_per_sample": 13390,
+      "max_vertex_displacement_m": 0.279798425855047,
+      "bounds_y_up": {
+        "min": [
+          -0.3499218374023798,
+          -1.7116662476279743e-8,
+          -0.5289661269965515
+        ],
+        "max": [
+          0.34992192648852344,
+          1.2767906399604798,
+          0.4275119595046375
+        ]
+      },
+      "loop_seam_max_m": 2.1084713195564534e-7,
+      "floor_minimum": {
+        "y": -1.7116662476279743e-8,
+        "bone": "axle_FL_f",
+        "position": [
+          -0.16499997213599743,
+          -1.7116662476279743e-8,
+          -0.26300007094920413
+        ],
+        "time_s": 0.6000000089406967
+      },
+      "held_defeat_difference_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 13390,
+      "max_vertex_displacement_m": 1.0413189119307993,
+      "bounds_y_up": {
+        "min": [
+          -0.36751032019131624,
+          8.600758827359556e-8,
+          -0.7385614192484015
+        ],
+        "max": [
+          0.38009547610591876,
+          1.4030852958701012,
+          1.058488895979317
+        ]
+      },
+      "loop_seam_max_m": 0.0014381214187247527,
+      "floor_minimum": {
+        "y": 8.600758827359556e-8,
+        "bone": "axle_FR_b",
+        "position": [
+          0.035000007729444664,
+          8.600758827359556e-8,
+          -0.18195571071770242
+        ],
+        "time_s": 1.7833333333333334
+      },
+      "held_defeat_difference_m": null
+    },
+    "hit": {
+      "duration_s": 0.6000000238418579,
+      "samples": 37,
+      "vertices_per_sample": 13390,
+      "max_vertex_displacement_m": 1.0305476070539423,
+      "bounds_y_up": {
+        "min": [
+          -0.3479709474388023,
+          0.000004269688288573159,
+          -0.4859999754697397
+        ],
+        "max": [
+          0.34797094743879364,
+          1.3082971371153458,
+          1.1079493980650346
+        ]
+      },
+      "loop_seam_max_m": 4.5171289978954925e-8,
+      "floor_minimum": {
+        "y": 0.000004269688288573159,
+        "bone": "axle_FR_b",
+        "position": [
+          0.16499998589542386,
+          0.000004269688288573159,
+          -0.024876080298807255
+        ],
+        "time_s": 0.26666667726304794
+      },
+      "held_defeat_difference_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 13390,
+      "max_vertex_displacement_m": 1.622754034868116,
+      "bounds_y_up": {
+        "min": [
+          -0.7257421323085799,
+          0.000020037062894998764,
+          -0.5502907373958896
+        ],
+        "max": [
+          1.2593831709401861,
+          1.642894282907709,
+          1.0407542928985585
+        ]
+      },
+      "loop_seam_max_m": 1.6227539293298616,
+      "floor_minimum": {
+        "y": 0.000020037062894998764,
+        "bone": "axle_FL_b",
+        "position": [
+          -0.03500000456498061,
+          0.000020037062894998764,
+          -0.056292227411704455
+        ],
+        "time_s": 0.166666673289405
+      },
+      "held_defeat_difference_m": 7.269723047038679e-7
+    }
+  },
+  "clearance": {
+    "skates_vs_head": {
+      "pairs": {
+        "of": [
+          "skate_FR",
+          "skate_FL",
+          "skate_HR",
+          "skate_HL",
+          "axle_FR_f",
+          "axle_FR_b",
+          "axle_FL_f",
+          "axle_FL_b",
+          "axle_HR_f",
+          "axle_HR_b",
+          "axle_HL_f",
+          "axle_HL_b"
+        ],
+        "solid": "head"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "skates_vs_torso": {
+      "pairs": {
+        "of": [
+          "skate_FR",
+          "skate_FL",
+          "skate_HR",
+          "skate_HL",
+          "axle_FR_f",
+          "axle_FR_b",
+          "axle_FL_f",
+          "axle_FL_b",
+          "axle_HR_f",
+          "axle_HR_b",
+          "axle_HL_f",
+          "axle_HL_b"
+        ],
+        "solid": "torso"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "tail_vs_head": {
+      "pairs": {
+        "of": [
+          "tail_2",
+          "tail_3",
+          "tail_4",
+          "tail_5"
+        ],
+        "solid": "head"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "hat_vs_head": {
+      "pairs": {
+        "of": [
+          "hat"
+        ],
+        "solid": "head",
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit"
+        ]
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0
+      }
+    }
+  },
+  "images": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "encoded_bytes": 195780
+    }
+  ],
+  "max_skin_influences": 2,
+  "max_weight_sum_error": 2.9802322387695312e-8,
+  "adapter": {
+    "contact_fraction": 0.625,
+    "probe": "skate_FR",
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "probe": [
+          0.10000000119248888,
+          0.23499999940395355,
+          -0.15000000615888712
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "probe": [
+          0.10000001231875415,
+          0.23499999940395355,
+          -0.17500001192812017
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "probe": [
+          0.10000000200798191,
+          0.23499999940395355,
+          -0.4899999948340125
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "probe": [
+          0.10000000119248888,
+          0.23499999940395355,
+          -0.15000000615888714
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "probe": [
+          0.10000000119248888,
+          0.23499999940395355,
+          -0.15000000615888714
+        ]
+      }
+    ],
+    "direct_contact_probe": [
+      0.10000000200798191,
+      0.23499999940395355,
+      -0.4899999948340125
+    ],
+    "defeat_states": [
+      {
+        "time_s": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.0500000000000003,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.6500000000000004,
+        "visible": true,
+        "vanish": 0.8333330154418934
+      },
+      {
+        "time_s": 2.95,
+        "visible": false,
+        "vanish": 1
+      },
+      {
+        "time_s": 4,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "beats": {
+    "ankle_to_skate_max_gap_m": 8.936499588632818e-7,
+    "ankle_gap_worst": {
+      "clip": "attack",
+      "time_s": 0.7833333333333333,
+      "leg": "FR"
+    },
+    "contact": {
+      "front_skates_min_y": 0.0010232217348443776,
+      "front_toe_z": -0.6496073971805071,
+      "hips": [
+        1.9647024502770062e-15,
+        0.3962133526802063,
+        -0.08316485583782386
+      ]
+    },
+    "front_skates_min_y_at_0_95_s": 0.13817931406069744,
+    "rest_front_toe_z": -0.3096073787030597,
+    "move_hind_skate_max_lift_m": 0.03817877802871325,
+    "move_wheel_turn_deg_0_to_0_2_s": 90.00000598446778,
+    "hit_hat_pop_m": 0.07847645066111975,
+    "defeat_held": {
+      "hat_min_y": 0.000500199499585241,
+      "hat_centre": [
+        -0.6199995413772048,
+        0.0690001977135567,
+        -0.42000005711950605
+      ],
+      "hat_to_head_m": 1.3965698041451344,
+      "head_min_y": 0.0012962650510091045,
+      "skates_min_y": 0.08722333967314672
+    },
+    "rest_wheel_min_y": 0.0024471794050176894,
+    "idle0_vs_bind_max_m": 1.560749116045539e-7
+  },
+  "checks": {
+    "five_exact_clips": true,
+    "attack_2_s": true,
+    "all_tracks_resolve_below_scene_root": true,
+    "no_root_motion": true,
+    "all_clips_move_vertices": true,
+    "idle_move_seamless": true,
+    "held_defeat": true,
+    "no_floor_penetration": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "height_1_3_to_1_6_m": true,
+    "standing_on_floor": true,
+    "floor_centred_body": true,
+    "one_1024_atlas": true,
+    "two_draw_primitives": true,
+    "exported_bounds_cover_all_poses": true,
+    "actual_adapter_contact_pose": true,
+    "actual_adapter_defeat_vanish": true,
+    "adapter_root_identity": true,
+    "independent_skeleton_clone": true,
+    "clear_skates_vs_head": true,
+    "clear_skates_vs_torso": true,
+    "clear_tail_vs_head": true,
+    "clear_hat_vs_head": true,
+    "idle_starts_in_concept_stance": true,
+    "legs_stay_plugged_into_skates": true,
+    "wheels_touch_floor_at_rest": true,
+    "front_skates_raised_in_wind_up": true,
+    "front_skates_stomp_floor_at_contact": true,
+    "stomp_lands_in_front": true,
+    "hind_skate_lifts_in_stroke": true,
+    "wheels_roll_in_move": true,
+    "hat_pops_on_hit": true,
+    "hat_lands_on_floor_in_defeat": true,
+    "knocked_out_on_its_side": true
+  }
+}

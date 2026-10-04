@@ -15,7 +15,7 @@ const s=new T.Scene();s.add(new T.HemisphereLight(0xfff3e0,0x6f7480,2.1));for(co
 const floor=new T.Mesh(new T.CircleGeometry(3,48),new T.MeshStandardMaterial({color:0xd8cfbd,roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.002;s.add(floor);
 const g=await new GLTFLoader().loadAsync('/asset.glb');s.add(g.scene);const m=new T.AnimationMixer(g.scene);
 const box=new T.Box3().setFromObject(g.scene);const H=Math.max(1.2,box.max.y);const c=new T.OrthographicCamera(-H*.62,H*.62,H*.67,-H*.67,.01,40);
-const views={front:[0,H*.5,-8],side:[8,H*.5,0],back:[0,H*.5,8],threequarter:[5.657,H*.5,-5.657],beauty:[4.6,3.4,-6.6],left:[-8,H*.5,0]};
+const views={front:[0,H*.5,-8],side:[8,H*.5,0],back:[0,H*.5,8],threequarter:[5.657,H*.5,-5.657],beauty:[4.6,3.4,-6.6],left:[-8,H*.5,0],top:[0.01,9,-0.5]};
 window.draw=(view='beauty',clip=null,fraction=0,zoom=1)=>{m.stopAllAction();if(clip){const a=m.clipAction(g.animations.find(a=>a.name===clip));a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;a.play();m.setTime(a.getClip().duration*fraction)}g.scene.updateMatrixWorld(true);c.position.set(...views[view]);c.lookAt(0,H*.5,0);c.zoom=zoom*(view==='beauty'?.95:1);c.updateProjectionMatrix();r.render(s,c);return {calls:r.info.render.calls,tris:r.info.render.triangles}};window.ready=true;</script>`;
 const server=createServer(async(req,res)=>{try{if(req.url==='/'){res.setHeader('Content-Type','text/html');return res.end(html)}const f=req.url==='/asset.glb'?file:path.join(repo,'node_modules',req.url.slice(1));res.setHeader('Content-Type',req.url==='/asset.glb'?'model/gltf-binary':'text/javascript');res.end(await readFile(f))}catch(e){res.writeHead(404);res.end(String(e))}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;const errors=[];
