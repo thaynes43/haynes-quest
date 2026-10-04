@@ -524,6 +524,10 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "demon-band-idol@v001:demon-band-idol@v001",
   "radio-host-showman@v001:radio-host-showman@v001",
   "lab-robot@v001:lab-robot@v001",
+  // DESIGN-029 family variants with delivered, inspected v001 GLBs.
+  "gadget-hammer-hopper@v001:gadget-hammer-hopper@v001",
+  "broccoli-bouncer@v001:broccoli-bouncer@v001",
+  "bin-chicken-flower-thief@v001:bin-chicken-flower-thief@v001",
 ]);
 
 const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([

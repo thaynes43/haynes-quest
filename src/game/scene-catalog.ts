@@ -35,6 +35,10 @@ const parodyMotion: Record<
   "demon-band-idol": { contactFraction: 0.625, height: 1.3958640411922474 },
   "radio-host-showman": { contactFraction: 0.625, height: 2.0030001423669983 },
   "lab-robot": { contactFraction: 0.625, height: 1.2918970584869385 },
+  // parody-catalog-v12: exported Three.js heights and 1.25 s / 2.0 s contact.
+  "gadget-hammer-hopper": { contactFraction: 0.625, height: 1.5414782316099696 },
+  "broccoli-bouncer": { contactFraction: 0.625, height: 1.527886152267456 },
+  "bin-chicken-flower-thief": { contactFraction: 0.625, height: 1.4803972244262695 },
 };
 
 interface ParodyArtworkBase {
