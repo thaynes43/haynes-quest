@@ -405,7 +405,16 @@ export class EnemySimulation {
       const tuning = tuningFor(enemy.role);
       const playerDistance = distance(enemy.position, options.player);
       const ordinary = enemy.role === "ordinary";
-      const groundTarget = ordinary && this.groundNavigation
+      const activationRadius = ordinary ? ordinaryActivationRadius : enemyActivationRadius;
+      const pursuitRadius = ordinary ? ordinaryPursuitRadius : enemyActivationRadius;
+      const outsideLeash = ordinary && distance(enemy.spawn, options.player) > ordinarySpawnLeash;
+      const needsGroundRoute = !outsideLeash && (
+        enemy.phase === "windup" ||
+        (enemy.phase === "idle" && playerDistance <= activationRadius) ||
+        ((enemy.phase === "chasing" || enemy.phase === "cooldown") &&
+          playerDistance <= pursuitRadius)
+      );
+      const groundTarget = ordinary && this.groundNavigation && needsGroundRoute
         ? this.groundNavigation.next(enemy.position, options.player)
         : null;
       const pursuitReachable = ordinary && this.groundNavigation
@@ -415,9 +424,6 @@ export class EnemySimulation {
           ordinary ? tuning.attackRange + 2.5 : tuning.attackRange) &&
           (!ordinary || !enemy.arena ||
             verticalDistance(enemy.position, options.player) <= 1.25);
-      const activationRadius = ordinary ? ordinaryActivationRadius : enemyActivationRadius;
-      const pursuitRadius = ordinary ? ordinaryPursuitRadius : enemyActivationRadius;
-      const outsideLeash = ordinary && distance(enemy.spawn, options.player) > ordinarySpawnLeash;
       const sleeping = this.isDormantWatcher(enemy);
       if (!sleeping && !enemy.returning) enemy.facing = facingToward(enemy.position, options.player);
       switch (enemy.phase) {
