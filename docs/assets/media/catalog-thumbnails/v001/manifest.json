@@ -276,6 +276,20 @@
       "sha256": "242a6b810ffd686e7f2df43f205cfd1b5cc3c1dd71090ea424680931beeb6fdc"
     },
     {
+      "source": "docs/assets/media/demon-idol-drummer/v001/beauty.png",
+      "source_sha256": "84a645938a82fde999d4cf7cfe8ff1a4c5a76fed8875bf588c2997beb678bc71",
+      "path": "docs/assets/media/catalog-thumbnails/v001/45c2e43700737359.webp",
+      "bytes": 10730,
+      "sha256": "4c1018d13a09905218ca1235b0ce08abc24c0bc6777ed122cc1e216ce3526296"
+    },
+    {
+      "source": "docs/assets/media/demon-idol-drummer/v001/concept.png",
+      "source_sha256": "f60eff5515d05efee7eab080a926ceddb1ea85754dd87f8113b05846ddee7619",
+      "path": "docs/assets/media/catalog-thumbnails/v001/804398e0f60380f7.webp",
+      "bytes": 17132,
+      "sha256": "3f7d55123f1a38ce5196103889c89d7a4ba9bb45b4ef9ecee231db9bd4c89a7c"
+    },
+    {
       "source": "docs/assets/media/distant-laugh/v001/waveform.svg",
       "source_sha256": "225ee2fc8f591d399a3300dca3abcc4261f46425aac233e18029b51841cc23e1",
       "path": "docs/assets/media/catalog-thumbnails/v001/74a50920cdb8307e.webp",
