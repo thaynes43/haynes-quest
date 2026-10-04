@@ -1,0 +1,881 @@
+{
+  "asset_id": "gadget-hammer-hopper",
+  "version": "v001",
+  "work_order": "action-worlds/minions-a",
+  "blender_version": "4.5.13 LTS",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.7398319244384766,
+      -0.31733155250549316,
+      -1.979098485094255e-08
+    ],
+    "max": [
+      0.9886758923530579,
+      0.319767028093338,
+      1.5414782762527466
+    ]
+  },
+  "height_m": 1.5414782762527466,
+  "width_m": 1.7285078167915344,
+  "depth_m": 0.6370985805988312,
+  "triangles": 13912,
+  "vertices": 7199,
+  "materials": [
+    "Matte painted clay",
+    "Glossy toy accents"
+  ],
+  "faces_per_material": {
+    "Matte painted clay": 6004,
+    "Glossy toy accents": 1500
+  },
+  "bone_count": 27,
+  "bones": [
+    "root",
+    "boot",
+    "spring_0",
+    "spring_1",
+    "spring_2",
+    "spring_3",
+    "spring_4",
+    "body",
+    "lid",
+    "handle",
+    "eye_R",
+    "pupil_R",
+    "eye_L",
+    "pupil_L",
+    "brow_R",
+    "brow_L",
+    "mouth",
+    "arm_R_0",
+    "arm_R_1",
+    "arm_R_2",
+    "arm_L_0",
+    "arm_L_1",
+    "arm_L_2",
+    "hand_R",
+    "hand_L",
+    "mallet",
+    "wrench"
+  ],
+  "max_influences_blender": 2,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": "8 x 8 tiles of 128 px; UVs use the centre 72% of each tile",
+    "origin": "Original clay-pigment colour atlas generated with numpy in Blender Python (common.paint_atlas); no external textures, photos, text or logos.",
+    "tiles": {
+      "teal": 0,
+      "teal_dark": 1,
+      "ochre": 2,
+      "ochre_dark": 3,
+      "hose": 4,
+      "metal": 5,
+      "cream": 6,
+      "pupil": 7,
+      "highlight": 8,
+      "brow": 9,
+      "mouth": 10,
+      "tongue": 11,
+      "teeth": 12,
+      "rubber": 13,
+      "mallet": 14,
+      "boot": 15,
+      "sole": 16,
+      "lace": 17,
+      "interior": 18,
+      "spring": 19,
+      "wrench": 20,
+      "scuff": 21
+    }
+  },
+  "parts": [
+    {
+      "name": "toolbox body",
+      "triangles": 252,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ochre lid",
+      "triangles": 188,
+      "bones": [
+        "lid"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "carry handle",
+      "triangles": 492,
+      "bones": [
+        "handle"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "handle mount -0.17",
+      "triangles": 108,
+      "bones": [
+        "handle"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "handle mount +0.17",
+      "triangles": 108,
+      "bones": [
+        "handle"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "back latch -0.21",
+      "triangles": 108,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 5,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "back latch rivet -0.21",
+      "triangles": 80,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "back latch +0.21",
+      "triangles": 108,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 5,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "back latch rivet +0.21",
+      "triangles": 80,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "side latch -1",
+      "triangles": 108,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 5,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "side latch rivet -1",
+      "triangles": 80,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "side latch +1",
+      "triangles": 108,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 5,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "side latch rivet +1",
+      "triangles": 80,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "box foot -0.32 -0.18",
+      "triangles": 82,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "box foot -0.32 +0.18",
+      "triangles": 82,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "box foot +0.32 -0.18",
+      "triangles": 82,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "box foot +0.32 +0.18",
+      "triangles": 82,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder socket -1",
+      "triangles": 174,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder socket +1",
+      "triangles": 174,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "eye white R",
+      "triangles": 440,
+      "bones": [
+        "eye_R"
+      ],
+      "atlas_tile": 6,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "pupil R",
+      "triangles": 252,
+      "bones": [
+        "pupil_R"
+      ],
+      "atlas_tile": 7,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "eye glint R",
+      "triangles": 80,
+      "bones": [
+        "pupil_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "eye white L",
+      "triangles": 440,
+      "bones": [
+        "eye_L"
+      ],
+      "atlas_tile": 6,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "pupil L",
+      "triangles": 252,
+      "bones": [
+        "pupil_L"
+      ],
+      "atlas_tile": 7,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "eye glint L",
+      "triangles": 80,
+      "bones": [
+        "pupil_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "brow R",
+      "triangles": 252,
+      "bones": [
+        "brow_R"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "brow L",
+      "triangles": 252,
+      "bones": [
+        "brow_L"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "grin",
+      "triangles": 240,
+      "bones": [
+        "mouth"
+      ],
+      "atlas_tile": 10,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "tongue",
+      "triangles": 220,
+      "bones": [
+        "mouth"
+      ],
+      "atlas_tile": 11,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "buck tooth -0.028",
+      "triangles": 108,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 12,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "buck tooth +0.022",
+      "triangles": 108,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 12,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "hose arm R",
+      "triangles": 576,
+      "bones": [
+        "arm_R_0",
+        "arm_R_1",
+        "arm_R_2",
+        "hand_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "hose arm L",
+      "triangles": 918,
+      "bones": [
+        "arm_L_0",
+        "arm_L_1",
+        "arm_L_2",
+        "hand_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist palm R",
+      "triangles": 188,
+      "bones": [
+        "hand_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist finger R0",
+      "triangles": 168,
+      "bones": [
+        "hand_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist finger R1",
+      "triangles": 168,
+      "bones": [
+        "hand_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist finger R2",
+      "triangles": 168,
+      "bones": [
+        "hand_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist thumb R",
+      "triangles": 196,
+      "bones": [
+        "hand_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist cuff R",
+      "triangles": 108,
+      "bones": [
+        "hand_R"
+      ],
+      "atlas_tile": 1,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist palm L",
+      "triangles": 188,
+      "bones": [
+        "hand_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist finger L0",
+      "triangles": 168,
+      "bones": [
+        "hand_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist finger L1",
+      "triangles": 168,
+      "bones": [
+        "hand_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist finger L2",
+      "triangles": 168,
+      "bones": [
+        "hand_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist thumb L",
+      "triangles": 196,
+      "bones": [
+        "hand_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fist cuff L",
+      "triangles": 108,
+      "bones": [
+        "hand_L"
+      ],
+      "atlas_tile": 1,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "mallet handle",
+      "triangles": 84,
+      "bones": [
+        "mallet"
+      ],
+      "atlas_tile": 14,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "giant rubber mallet head",
+      "triangles": 748,
+      "bones": [
+        "mallet"
+      ],
+      "atlas_tile": 14,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "coil spring",
+      "triangles": 1130,
+      "bones": [
+        "spring_0",
+        "spring_1",
+        "spring_2",
+        "spring_3",
+        "spring_4"
+      ],
+      "atlas_tile": 19,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "spring top cap",
+      "triangles": 160,
+      "bones": [
+        "body"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "spring boot cap",
+      "triangles": 160,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot sole",
+      "triangles": 332,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot toe",
+      "triangles": 288,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 15,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot vamp",
+      "triangles": 288,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 15,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot shaft",
+      "triangles": 196,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 15,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot collar",
+      "triangles": 240,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot lace 0-1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 17,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot lace 0+1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 17,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot lace 1-1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 17,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot lace 1+1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 17,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot lace 2-1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 17,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot lace 2+1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 17,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 0",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 1",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 2",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 3",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 4",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 5",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 6",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 7",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 8",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "sole lug 9",
+      "triangles": 44,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 16,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot welt",
+      "triangles": 132,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot heel tab",
+      "triangles": 120,
+      "bones": [
+        "boot"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wrench shaft",
+      "triangles": 108,
+      "bones": [
+        "wrench"
+      ],
+      "atlas_tile": 20,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "wrench jaw",
+      "triangles": 308,
+      "bones": [
+        "wrench"
+      ],
+      "atlas_tile": 20,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "wrench ring",
+      "triangles": 128,
+      "bones": [
+        "wrench"
+      ],
+      "atlas_tile": 20,
+      "material": "Glossy toy accents"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.0,
+      "loop": true,
+      "frames": 121,
+      "fps": 60
+    },
+    {
+      "name": "move",
+      "duration_s": 0.7,
+      "loop": true,
+      "frames": 43,
+      "fps": 60
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "frames": 121,
+      "fps": 60,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "tell_s": [
+        0.0,
+        0.45
+      ],
+      "windup_s": [
+        0.45,
+        1.0
+      ],
+      "strike_s": [
+        1.0,
+        1.25
+      ],
+      "squash_s": [
+        1.24,
+        1.43
+      ]
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "frames": 37,
+      "fps": 60
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "frames": 145,
+      "fps": 60,
+      "held_final_pose_from_s": 1.95,
+      "wrench_pop_s": [
+        0.48,
+        0.98
+      ],
+      "spin_s": [
+        0.25,
+        0.83
+      ],
+      "topple_s": [
+        1.0,
+        1.48
+      ]
+    }
+  ],
+  "max_bone_shear": 5.811452865600586e-07,
+  "rest_reproduction_error": 1.1920928955078125e-07,
+  "idle0_reproduction_error": 1.1920928955078125e-07,
+  "fps": 60,
+  "scaled_bones": [
+    "eye_L",
+    "eye_R",
+    "mallet",
+    "mouth"
+  ],
+  "files": {
+    "gadget-hammer-hopper.blend": {
+      "bytes": 2035489,
+      "sha256": "a621c554ddce82297c290bcf1e81aef271879007124b1f777425ba16994ce1d2"
+    },
+    "gadget-hammer-hopper.glb": {
+      "bytes": 1475240,
+      "sha256": "ac4f92e0ec57a172272616507cc399fd15e0c791ec768f6adfc4a64bad41530e"
+    },
+    "pigment.png": {
+      "bytes": 195681,
+      "sha256": "05b5bbe3748e8a1b842b406a6a0481fa7e4b49bcd972879de670f73f9819b376"
+    }
+  }
+}
