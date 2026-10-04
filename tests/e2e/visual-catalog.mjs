@@ -73,8 +73,8 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 106,
-  reference_sheet_entries: 8,
+  entries: 109,
+  reference_sheet_entries: 11,
   model_entries: 77,
   model_files: 77,
   completed_model_candidates: 75,
@@ -84,7 +84,7 @@ const expectedInventoryCounts = {
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 149;
+const expectedThumbnailFiles = 152;
 const integratedAssetIds = [
   "water-tower",
   "rooftop-ac-unit",
