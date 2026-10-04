@@ -33,8 +33,10 @@ function slabFloor(
   geometry.setIndex([...sides, ...topFace]);
   geometry.clearGroups();
   geometry.addGroup(0, sides.length, 0);
-  geometry.addGroup(sides.length, topFace.length, 1);
-  return shapeMesh(geometry, [side, top]);
+  geometry.addGroup(sides.length, topFace.length, 2);
+  // Retain BoxGeometry's original material slots for frozen scene identity.
+  // Only the two active groups render, so the draw-call saving remains intact.
+  return shapeMesh(geometry, [side, side, top, side, side, side]);
 }
 
 /** Course surfaces and hazards use the exact sampled collision dimensions. */

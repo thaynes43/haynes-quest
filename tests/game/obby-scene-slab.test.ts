@@ -49,9 +49,15 @@ describe("ObbyScene slab draw groups", () => {
       const floor = group.children[0] as THREE.Mesh<THREE.BoxGeometry, THREE.Material[]>;
       const old = new THREE.BoxGeometry(platform.size.x, platform.size.y, platform.size.z);
       expect(floor.geometry.groups).toHaveLength(2);
-      expect(floor.material).toHaveLength(2);
+      expect(floor.material).toHaveLength(6);
+      expect(floor.material[0]).toBe(floor.material[1]);
+      expect(floor.material[0]).toBe(floor.material[3]);
+      expect(floor.material[0]).toBe(floor.material[4]);
+      expect(floor.material[0]).toBe(floor.material[5]);
+      expect(floor.material[2]).not.toBe(floor.material[0]);
       expect(floor.geometry.groups.map(({ count }) => count)).toEqual([30, 6]);
-      expect(triangleSignatures(floor.geometry, 1)).toEqual(triangleSignatures(old, 2));
+      expect(floor.geometry.groups.map(({ materialIndex }) => materialIndex)).toEqual([0, 2]);
+      expect(triangleSignatures(floor.geometry, 2)).toEqual(triangleSignatures(old, 2));
       const top = floor.geometry.groups[1]!;
       const indices = floor.geometry.getIndex()!;
       const normals = floor.geometry.getAttribute("normal");
@@ -74,7 +80,7 @@ describe("ObbyScene slab draw groups", () => {
     const fragileFloor = fragile.children[0] as THREE.Mesh<THREE.BoxGeometry, THREE.Material[]>;
     const geometryDispose = vi.spyOn(movingFloor.geometry, "dispose");
     const sideDispose = vi.spyOn(movingFloor.material[0]!, "dispose");
-    const topDispose = vi.spyOn(movingFloor.material[1]!, "dispose");
+    const topDispose = vi.spyOn(movingFloor.material[2]!, "dispose");
     const sample = sampleObby(course, 0.3, { crumbles: { fragile: 0 } });
     scene.update(sample, null, 0.3);
     expect(moving.position.x).toBeCloseTo(sample.platforms.find((p) => p.id === "moving")!.center.x);
