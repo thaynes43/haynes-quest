@@ -15,8 +15,8 @@ describe("parody-catalog-v11", () => {
   const v11 = PARODY_CATALOGS["parody-catalog-v11"];
 
   it("appends the five merged v001 identities without changing v10", () => {
-    expect(PARODY_CATALOG_VERSIONS.at(-1)).toBe("parody-catalog-v11");
-    expect(LEVEL_EDITOR_CATALOG_VERSIONS.at(-1)).toBe("parody-catalog-v11");
+    expect(PARODY_CATALOG_VERSIONS).toContain("parody-catalog-v11");
+    expect(LEVEL_EDITOR_CATALOG_VERSIONS).toContain("parody-catalog-v11");
     expect(Object.isFrozen(v11)).toBe(true);
     expect(v11.slice(0, v10.length)).toEqual(v10);
     expect(v11.slice(v10.length).map((entry) => [entry.id, entry.title, entry.role, entry.kind, entry.periodId, entry.eligibleFrom])).toEqual(EXPECTED);

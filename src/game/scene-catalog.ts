@@ -58,6 +58,22 @@ export interface DuoParodyArtwork extends ParodyArtworkBase {
 
 export type ParodyArtwork = SingleParodyArtwork | DuoParodyArtwork;
 
+/** Static storybook planting props for authored scenery (DESIGN-029). */
+export const storybookPlantingKit = Object.freeze({
+  "broad-canopy-tree": {
+    id: "broad-canopy-tree",
+    url: "/studio/assets/media/storybook-planting-kit/v001/models/broad-canopy-tree.glb",
+  },
+  "slim-cypress": {
+    id: "slim-cypress",
+    url: "/studio/assets/media/storybook-planting-kit/v001/models/slim-cypress.glb",
+  },
+  "flowering-shrub": {
+    id: "flowering-shrub",
+    url: "/studio/assets/media/storybook-planting-kit/v001/models/flowering-shrub.glb",
+  },
+} as const);
+
 /** Candidate identities are frozen by the server; legacy saves retain their old renderer. */
 export function parodyArtwork(
   content: NonNullable<EncounterView["content"]>,

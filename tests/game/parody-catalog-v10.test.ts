@@ -202,6 +202,7 @@ describe("parody-catalog-v10", () => {
       "parody-catalog-v9",
       "parody-catalog-v10",
       "parody-catalog-v11",
+      "parody-catalog-v12",
     ]);
   });
 

@@ -13,6 +13,7 @@ export const PARODY_CATALOG_VERSIONS = [
   "parody-catalog-v9",
   "parody-catalog-v10",
   "parody-catalog-v11",
+  "parody-catalog-v12",
 ] as const;
 export type ParodyCatalogVersion = (typeof PARODY_CATALOG_VERSIONS)[number];
 export const PARODY_CATALOG_VERSION = "parody-catalog-v5" as const;
@@ -634,6 +635,51 @@ const PARODY_CANDIDATES_V11: readonly ParodyCatalogEntry[] = Object.freeze([
   }),
 ]);
 
+/**
+ * V12 extends the family chapters with one distinct ordinary variant each.
+ * World A/B action templates pin this version; every earlier catalog remains
+ * unchanged for published journeys and started saves (DESIGN-029).
+ */
+const PARODY_CANDIDATES_V12: readonly ParodyCatalogEntry[] = Object.freeze([
+  ...PARODY_CANDIDATES_V11,
+  familyEraEntry({
+    id: "gadget-hammer-hopper", title: "Gadget Hammer Hopper",
+    reference: "runaway clubhouse toolbox with an oversized soft mallet",
+    role: "ordinary", kind: "ordinary-a", periodId: "toon-clubhouse-v1",
+    eligibleFrom: "2006-05-05", eligibleThrough: "2016-11-06",
+  }),
+  familyEraEntry({
+    id: "mischief-kitten-skater", title: "Mischief Kitten Skater",
+    reference: "naughty harbor kitten on roller skates",
+    role: "ordinary", kind: "ordinary-a", periodId: "rescue-harbor-v1",
+    eligibleFrom: "2013-08-12", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "lab-robot-sentry", title: "Lab Robot Sentry",
+    reference: "runaway city lab robot with a radar eye and pincers",
+    role: "ordinary", kind: "ordinary-b", periodId: "hero-city-v1",
+    eligibleFrom: "2018-12-14", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "broccoli-bouncer", title: "Broccoli Bouncer",
+    reference: "bouncing vegetable from a sing-along playroom",
+    role: "ordinary", kind: "ordinary-a", periodId: "sing-along-playroom-v1",
+    eligibleFrom: "2018-01-01", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "bin-chicken-flower-thief", title: "Bin Chicken Flower Thief",
+    reference: "cheeky garden ibis carrying stolen flowers",
+    role: "ordinary", kind: "ordinary-a", periodId: "magic-house-v1",
+    eligibleFrom: "2019-09-01", eligibleThrough: "2026-12-31",
+  }),
+  familyEraEntry({
+    id: "demon-idol-drummer", title: "Demon Idol Drummer",
+    reference: "sparkly demon band drummer with a waist snare",
+    role: "ordinary", kind: "ordinary-a", periodId: "besties-obby-v1",
+    eligibleFrom: BESTIES_PARENT_LOCK_FROM, eligibleThrough: "2026-12-31",
+  }),
+]);
+
 export const PARODY_CATALOGS: Readonly<
   Record<ParodyCatalogVersion, readonly ParodyCatalogEntry[]>
 > = {
@@ -648,6 +694,7 @@ export const PARODY_CATALOGS: Readonly<
   "parody-catalog-v9": PARODY_CANDIDATES_V9,
   "parody-catalog-v10": PARODY_CANDIDATES_V10,
   "parody-catalog-v11": PARODY_CANDIDATES_V11,
+  "parody-catalog-v12": PARODY_CANDIDATES_V12,
 };
 export const PARODY_CANDIDATES = PARODY_CATALOGS[PARODY_CATALOG_VERSION];
 export const ALL_PARODY_CANDIDATES = Object.values(PARODY_CATALOGS).flat();
