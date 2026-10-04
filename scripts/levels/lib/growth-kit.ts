@@ -14,6 +14,7 @@
 import type {
   AuthoredAnchor,
   AuthoredBonusEncounterSlot,
+  AuthoredExtendedCoreEncounterSlot,
   AuthoredBouncePadPiece,
   AuthoredCheckpointPiece,
   AuthoredConnection,
@@ -255,6 +256,11 @@ export interface ChapterCommands {
     encounter: LevelEditorEncounterReference,
     slot?: AuthoredBonusEncounterSlot,
   ) => LevelEditorCommand;
+  readonly addCore: (
+    slot: AuthoredExtendedCoreEncounterSlot,
+    anchor: AuthoredEncounterAnchor,
+    encounter: LevelEditorEncounterReference,
+  ) => LevelEditorCommand;
   readonly removeBonus: (slot?: AuthoredBonusEncounterSlot) => LevelEditorCommand;
   readonly bossPrerequisite: (defeats: number) => LevelEditorCommand;
   readonly add: (piece: AuthoredLevelPiece) => LevelEditorCommand;
@@ -304,6 +310,9 @@ export function chapterCommands(chapterId: string): ChapterCommands {
       ...(slot === "bonus-1" ? {} : { slot }),
       anchor,
       encounter,
+    }),
+    addCore: (slot, anchor, encounter) => ({
+      type: "encounter.core.add", chapterId, slot, anchor, encounter,
     }),
     removeBonus: (slot = "bonus-1") => ({ type: "encounter.bonus.remove", chapterId,
       ...(slot === "bonus-1" ? {} : { slot }) }),

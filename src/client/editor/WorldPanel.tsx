@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {
   AUTHORED_BONUS_ENCOUNTER_SLOTS,
+  AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS,
   authoredScareLevel,
   type AuthoredEncounterAnchor,
   type AuthoredEncounterSlot,
+  type AuthoredExtendedCoreEncounterSlot,
   type AuthoredPlatformPiece,
   type AuthoredScareLevel,
 } from "../../shared/authored-level";
@@ -87,6 +89,8 @@ export interface WorldPanelProps {
     reference: LevelEditorEncounterReference,
   ): boolean;
   onRemoveBonusEncounter(slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number]): void;
+  onAddCoreEncounter(slot: AuthoredExtendedCoreEncounterSlot, anchor: AuthoredEncounterAnchor, reference: LevelEditorEncounterReference): boolean;
+  onRemoveCoreEncounter(slot: AuthoredExtendedCoreEncounterSlot): void;
   onSetBossPrerequisite(defeats: number): void;
 }
 
@@ -112,7 +116,7 @@ function encounterLabel(slot: AuthoredEncounterSlot): string {
   if (slot === "boss") return "Boss";
   return slot.startsWith("bonus-")
     ? slot === "bonus-1" ? "Optional enemy" : `Optional enemy ${slot.slice(-1)}`
-    : `Encounter ${slot.slice(-1)}`;
+    : `Encounter ${slot.slice("ordinary-".length)}`;
 }
 
 function suggestedCandidateId(name: string): string {
@@ -255,12 +259,14 @@ function BonusEncounterForm({
   chapter,
   periodId,
   onAdd,
+  mode = "optional",
 }: {
-  slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number];
+  slot: AuthoredExtendedCoreEncounterSlot | (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number];
   project: LevelEditorProjectV2;
   chapter: LevelEditorChapterV2;
   periodId: ParodyPeriodId;
-  onAdd(slot: (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number], anchor: AuthoredEncounterAnchor, reference: LevelEditorEncounterReference): boolean;
+  onAdd(slot: AuthoredEncounterSlot, anchor: AuthoredEncounterAnchor, reference: LevelEditorEncounterReference): boolean;
+  mode?: "optional" | "core";
 }) {
   const mainPathIds = new Set(chapter.level.mainPath);
   const branchIds = new Set(chapter.level.branches.flat().filter((id) => !mainPathIds.has(id)));
@@ -268,14 +274,16 @@ function BonusEncounterForm({
     .filter((piece): piece is AuthoredPlatformPiece =>
       piece.type === "platform" && piece.size.x >= 3 && piece.size.z >= 3,
     )
-    .sort((a, b) => Number(branchIds.has(b.id)) - Number(branchIds.has(a.id)));
+    .sort((a, b) => mode === "core"
+      ? Number(mainPathIds.has(b.id)) - Number(mainPathIds.has(a.id))
+      : Number(branchIds.has(b.id)) - Number(branchIds.has(a.id)));
   const [platformId, setPlatformId] = useState(platforms[0]?.id ?? "");
   const initialPlatform = platforms.find((piece) => piece.id === platformId) ?? platforms[0];
   const [x, setX] = useState(initialPlatform?.center.x ?? 0);
   const [z, setZ] = useState(initialPlatform?.center.z ?? 0);
   const [radius, setRadius] = useState(1.1);
   const [failed, setFailed] = useState(false);
-  const catalogChoices = levelEditorPreparedBonusEnemies(project.catalogVersion)
+  const catalogChoices = (mode === "core" ? levelEditorPreparedEnemies(project.catalogVersion) : levelEditorPreparedBonusEnemies(project.catalogVersion))
     .filter((entry) =>
       entry.periodId === periodId && visibleCatalogEntry(entry, chapter),
     )
@@ -329,8 +337,8 @@ function BonusEncounterForm({
         arena: { minX: x - radius, maxX: x + radius, minZ: z - radius, maxZ: z + radius },
       }, selected.reference));
     }}>
-      <h3>Add an optional enemy</h3>
-      <p>This side challenge can be skipped. It never blocks the boss or final memory.</p>
+      <h3>{mode === "core" ? "Add route enemy" : "Add an optional enemy"}</h3>
+      <p>{mode === "core" ? "Place this fight on the main route." : "This side challenge can be skipped. It never blocks the boss or final memory."}</p>
       <label className="editor-field">
         <span>Character</span>
         <select value={selected?.value ?? ""} onChange={(event) => setSelectedValue(event.target.value)}>
@@ -357,7 +365,7 @@ function BonusEncounterForm({
       </div>
       <p className="editor-world-choice-state">Place the arena clear of other fights and objectives. You can drag its marker after adding it.</p>
       {failed && <p className="editor-world-choice-state" role="alert">That placement did not pass the level checks. Try another spot or platform.</p>}
-      <button type="submit" className="editor-primary" disabled={!platform || !selected}>Add optional enemy</button>
+      <button type="submit" className="editor-primary" disabled={!platform || !selected}>{mode === "core" ? "Add route enemy" : "Add optional enemy"}</button>
     </form>
   );
 }
@@ -378,6 +386,8 @@ export function WorldPanel({
   onCreateCandidate,
   onAddBonusEncounter,
   onRemoveBonusEncounter,
+  onAddCoreEncounter,
+  onRemoveCoreEncounter,
   onSetBossPrerequisite,
 }: WorldPanelProps) {
   const [showMore, setShowMore] = useState(false);
@@ -389,6 +399,8 @@ export function WorldPanel({
     ...project.enemyCandidates.map((item) => item.id),
     ...ALL_PARODY_CANDIDATES.map((item) => item.id),
   ]);
+  const nextCoreSlot = AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS.find((slot) => !chapter.encounterSlots[slot]);
+  const lastCoreSlot = [...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS].reverse().find((slot) => chapter.encounterSlots[slot]);
 
   const setMemory = (slotId: LevelEditorPreviewMemory["slotId"], changes: Partial<LevelEditorPreviewMemory>) => {
     const memories = chapter.previewMemories.map((item) =>
@@ -488,7 +500,10 @@ export function WorldPanel({
         <button type="button" className="editor-world-show-more" aria-pressed={showMore} onClick={() => setShowMore((value) => !value)}>
           {showMore ? "Show date matches" : "Show more prepared characters"}
         </button>
-        {([...encounterSlots, ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot])]).map((slot) => {
+        {([...encounterSlots.filter((slot) => slot !== "boss"),
+          ...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot]),
+          "boss" as const,
+          ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot])]).map((slot) => {
           const role = slot === "boss" ? "boss" : "ordinary";
           const kind = chapter.level.anchors.encounters[slot]?.kind;
           const selected = chapter.encounterSlots[slot];
@@ -560,6 +575,16 @@ export function WorldPanel({
             {slot === "bonus-1" ? "Remove optional enemy" : `Remove optional enemy ${slot.slice(-1)}`}
           </button>
         ))}
+        {lastCoreSlot && <button type="button" className="danger" onClick={() => onRemoveCoreEncounter(lastCoreSlot)}>Remove enemy</button>}
+        {nextCoreSlot && <BonusEncounterForm
+          key={`${chapter.chapterId}:${nextCoreSlot}`}
+          slot={nextCoreSlot}
+          project={project}
+          chapter={chapter}
+          periodId={periodId}
+          mode="core"
+          onAdd={onAddCoreEncounter}
+        />}
         {AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) => !chapter.encounterSlots[slot]) && (
           <BonusEncounterForm
             key={`${chapter.chapterId}:${AUTHORED_BONUS_ENCOUNTER_SLOTS.find((slot) => !chapter.encounterSlots[slot])}`}

@@ -219,6 +219,6 @@ describe('family-world-a@v6 friendly catalog', () => {
     expect(after.plan.friendlyCatalogVersion).toBe('friendly-catalog-v2');
     expect(after.plan.levels.map((level) => level.authoredLevel))
       .toEqual(before.plan.levels.map((level) => level.authoredLevel));
-    expect(registry.newestUpgrade('family-world-a', 'v5', TEST_CHILD_C.birthDate, HARNESS_TODAY)?.version).toBe('v7');
+    expect(registry.newestUpgrade('family-world-a', 'v5', TEST_CHILD_C.birthDate, HARNESS_TODAY)?.version).toBe('v8');
   });
 });

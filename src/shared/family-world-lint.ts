@@ -16,6 +16,7 @@
 import {
   AUTHORED_LEVEL_LIMITS,
   AUTHORED_BONUS_ENCOUNTER_SLOTS,
+  AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS,
   AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
   authoredStrikeEnvelope,
   authoredSurfaceBounds,
@@ -183,7 +184,7 @@ function encounterEntries(
     AUTHORED_REQUIRED_ENCOUNTER_SLOTS.map(
       (slot) => [slot, level.anchors.encounters[slot]] as const,
     );
-  for (const slot of AUTHORED_BONUS_ENCOUNTER_SLOTS) {
+  for (const slot of [...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS, ...AUTHORED_BONUS_ENCOUNTER_SLOTS]) {
     const bonus = level.anchors.encounters[slot];
     if (bonus) entries.push([slot, bonus]);
   }

@@ -62,6 +62,8 @@ export interface ThemeKitPropDefinition {
     readonly url: string;
     readonly sha256: string;
   } | null;
+  /** Low, non-colliding planting that may sit on an unused corner of a static deck. */
+  readonly surfaceGroundcover?: true;
 }
 
 function box(
@@ -81,6 +83,34 @@ const clubhouseKit = "/studio/assets/media/toon-clubhouse-kit/v001";
 const media = "/studio/assets/media";
 
 export const THEME_KIT_PROPS: readonly ThemeKitPropDefinition[] = Object.freeze([
+  // The exact planting-kit GLBs are registered after visual review. These stable
+  // IDs keep new world placements intact while their procedural forms render.
+  {
+    id: "broad-canopy-tree", theme: SHARED_THEME_KIT,
+    bounds: box(1.55, 5.2, 1.55),
+    fallback: { shape: "sphere", color: 0x6fa753, trim: 0x7b593c }, glb: null,
+  },
+  {
+    id: "slim-cypress", theme: SHARED_THEME_KIT,
+    bounds: box(0.8, 4.5, 0.8),
+    fallback: { shape: "cylinder", color: 0x567d55, trim: 0x6b5742 }, glb: null,
+  },
+  {
+    id: "flowering-shrub", theme: SHARED_THEME_KIT,
+    bounds: box(0.85, 1.35, 0.85),
+    fallback: { shape: "sphere", color: 0xd687a5, trim: 0x629c5a }, glb: null,
+  },
+  {
+    id: "storybook-flower-bed", theme: SHARED_THEME_KIT,
+    bounds: box(0.85, 0.36, 0.55),
+    fallback: { shape: "sphere", color: 0x80ad52, trim: 0xf0b0c2 },
+    glb: null, surfaceGroundcover: true,
+  },
+  {
+    id: "storybook-planter-island", theme: SHARED_THEME_KIT,
+    bounds: box(3.65, 0.24, 2.35),
+    fallback: { shape: "box", color: 0x806748, trim: 0x9a8058 }, glb: null,
+  },
   // Rat Casino kit v001 (WO097). Bounds are the exported floor-centred model
   // bounds from construction-measurements.json (Blender Z-up to glTF Y-up).
   // Unlike the registry convention above, these three exports face -Z

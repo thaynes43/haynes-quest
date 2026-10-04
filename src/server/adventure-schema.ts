@@ -179,7 +179,7 @@ const editorWorldLevelV1Schema = z.object({
 const editorWorldLevelV2Schema = z.object({
   ...editorWorldLevelShape,
   optionalEncounterIds: z.array(identifier).max(4),
-  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(9),
+  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(17),
 }).strict();
 const familyMemorySlotSchema = z.object({
   slot: z.enum(FAMILY_MEMORY_SLOTS),
@@ -195,7 +195,7 @@ const familyMemorySlotSchema = z.object({
 const familyWorldLevelSchema = z.object({
   ...editorWorldLevelShape,
   optionalEncounterIds: z.array(identifier).max(4),
-  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(9),
+  encounters: z.array(editorEncounterDefinitionSchema).min(5).max(17),
   chapterId: identifier,
   chapterName: z.string().min(1).max(120),
   chapterSubtitle: z.string().max(240),
@@ -404,11 +404,11 @@ function validPlan(plan: AdventurePlan): boolean {
       plan.version === 'era-level-plan-v3' &&
       (plan.catalogVersion === 'parody-catalog-v4' || plan.catalogVersion === 'parody-catalog-v5')
     );
-    const expectedOrdinaryCount = playgroundPlan
-      ? 4 + ('optionalEncounterIds' in level
-        ? (level as { optionalEncounterIds: string[] }).optionalEncounterIds.length
-        : 0)
-      : 2;
+    const expectedOrdinaryCount = editorWorldPlan
+      // The authored-world validator above already checks its 4–12 contiguous
+      // core slots and up to four optional slots.
+      ? level.encounters.length - 1
+      : playgroundPlan ? 4 : 2;
     if (
       level.index !== index ||
       level.startAgeYears !== priorTargetAge ||
@@ -464,6 +464,8 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
     if (optionalEncounterIds.length > 4 ||
       JSON.stringify(optionalEncounterIds) !== JSON.stringify(expectedOptionalIds)) return false;
     hasOptionalEncounter ||= optionalEncounterIds.length > 0;
+    const coreCount = level.encounters.length - optionalEncounterIds.length - 1;
+    if (coreCount < 4 || coreCount > 12) return false;
     const expectedEncounters: Array<{
       id: string;
       role: 'ordinary' | 'boss';
@@ -478,6 +480,10 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       { id: `${level.id}-encounter-2`, role: 'ordinary', kind: null, optional: false },
       { id: `${level.id}-encounter-3`, role: 'ordinary', kind: null, optional: false },
       { id: `${level.id}-encounter-4`, role: 'ordinary', kind: null, optional: false },
+      ...Array.from({ length: coreCount - 4 }, (_, offset) => ({
+        id: `${level.id}-encounter-${offset + 5}`, role: 'ordinary' as const,
+        kind: null, optional: false,
+      })),
       { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
     ];
     for (const id of optionalEncounterIds) {

@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { AUTHORED_BONUS_ENCOUNTER_SLOTS } from '../shared/authored-level.js';
+import { AUTHORED_BONUS_ENCOUNTER_SLOTS, AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS } from '../shared/authored-level.js';
 import {
   canonicalLevelEditorProjectJson,
   LEVEL_EDITOR_CHAPTER_ROUTES,
@@ -227,7 +227,9 @@ function editorWorldLevel(
   planVersion: EditorWorldAdventurePlan['version'],
 ): FrozenEditorWorldLevelPlanV1 | FrozenEditorWorldLevelPlanV2 {
   const slots: LevelEditorEncounterSlot[] = [
-    ...EDITOR_ENCOUNTER_SLOTS,
+    ...EDITOR_ENCOUNTER_SLOTS.filter((slot) => slot !== 'boss'),
+    ...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot] !== undefined),
+    'boss',
     ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) => chapter.encounterSlots[slot] !== undefined),
   ];
   const resolved = slots.map((slot) => {

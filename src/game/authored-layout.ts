@@ -4,6 +4,7 @@ import gardenV2 from "../shared/levels/garden-playground-v2.json";
 import partyV2 from "../shared/levels/besties-playground-v2.json";
 import {
   AUTHORED_BONUS_ENCOUNTER_SLOTS,
+  AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS,
   resolveAuthoredLevelDocument,
   type AuthoredEncounterSlot,
   type ResolvedAuthoredLevel,
@@ -98,7 +99,7 @@ export function authoredLevelLayout(
     .filter((id): id is string => id !== undefined);
   const requiredOrdinary = ordinary.filter((enemy) => !optionalSet.has(enemy.id));
   if (
-    requiredOrdinary.length !== 4 ||
+    requiredOrdinary.length !== 4 + AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS.filter((slot) => Boolean(anchors.encounters[slot])).length ||
     optionalIds.length > 4 ||
     optionalIds.some((id, index) => id !== expectedOptionalIds[index]) ||
     optionalSet.size !== optionalIds.length ||
