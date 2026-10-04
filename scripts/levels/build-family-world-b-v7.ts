@@ -24,7 +24,7 @@ export const FAMILY_WORLD_B_V7_REVISIONS: readonly DenseChapterRevision[] = [
     { platformId: "pillow-fort", castFrom: "ordinary-4", dx: 2.3 },
   ] },
   { chapterId: "family-b2", variantId: "bin-chicken-flower-thief", guardTool: { platformId: "garden-path" },
-    removeDecorIds: ["rest-candle-west", "rest-candle-east", "stair-candle-west-3", "stair-candle-east-3", "stair-candle-west-4", "stair-candle-east-4"], core: [
+    removeDecorIds: ["rest-candle-west", "rest-candle-east", "stair-candle-west-3", "stair-candle-east-3", "stair-candle-west-4", "stair-candle-east-4", "bend-bed-south-1", "bend-bed-south-2"], core: [
     { platformId: "flower-terrace", castFrom: "ordinary-1", dx: 4 },
     { platformId: "veranda-south", castFrom: "ordinary-2", dx: -4 },
     { platformId: "roof-west", castFrom: "ordinary-3", dx: 4 },

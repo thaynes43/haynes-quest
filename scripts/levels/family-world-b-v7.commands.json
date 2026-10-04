@@ -7232,6 +7232,16 @@
         "decorId": "stair-candle-east-4"
       },
       {
+        "type": "decor.remove",
+        "chapterId": "family-b2",
+        "decorId": "bend-bed-south-1"
+      },
+      {
+        "type": "decor.remove",
+        "chapterId": "family-b2",
+        "decorId": "bend-bed-south-2"
+      },
+      {
         "type": "anchor.set",
         "chapterId": "family-b2",
         "slot": "pickup.guard-tool",
@@ -7600,7 +7610,7 @@
           "position": {
             "x": -7,
             "y": 0,
-            "z": 1.1
+            "z": -8.3
           },
           "rotationY": 0,
           "scale": 1
@@ -7615,7 +7625,7 @@
           "position": {
             "x": -8.6,
             "y": 0.24,
-            "z": 0.9000000000000001
+            "z": -8.5
           },
           "rotationY": 0,
           "scale": 1
@@ -7630,7 +7640,7 @@
           "position": {
             "x": -5.5,
             "y": 0.24,
-            "z": 0.8
+            "z": -8.600000000000001
           },
           "rotationY": 0.7,
           "scale": 1
@@ -7645,7 +7655,7 @@
           "position": {
             "x": -8.1,
             "y": 0.24,
-            "z": 2.3
+            "z": -7.1000000000000005
           },
           "rotationY": 1.4,
           "scale": 0.85
@@ -7660,7 +7670,7 @@
           "position": {
             "x": -5.6,
             "y": 0.24,
-            "z": 2.2
+            "z": -7.200000000000001
           },
           "rotationY": 2.0999999999999996,
           "scale": 1

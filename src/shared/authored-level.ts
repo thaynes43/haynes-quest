@@ -2606,6 +2606,8 @@ interface ProtectedVolume {
   /** The highest standing (or launch apex) height inside the volume. */
   readonly highest: number;
   readonly platformId?: string;
+  /** Extra objective/hazard clearance for low planting exempted from its support deck. */
+  readonly groundcoverOnly?: true;
 }
 
 /**
@@ -2684,12 +2686,13 @@ function validateDecor(
     volumes.push({ label: `${label} landing`, bounds: {
       minX: position.x - radius, maxX: position.x + radius,
       minZ: position.z - radius, maxZ: position.z + radius,
-    }, floor: position.y, highest: position.y });
+    }, floor: position.y, highest: position.y, groundcoverOnly: true });
   }
   for (const piece of document.pieces) {
     if (piece.type !== "sweeper") continue;
     volumes.push({ label: `${piece.id} hazard`, bounds: hazardEnvelope(piece),
-      floor: piece.center.y - piece.radius, highest: piece.center.y + piece.radius });
+      floor: piece.center.y - piece.radius, highest: piece.center.y + piece.radius,
+      groundcoverOnly: true });
   }
 
   const seen = new Map<string, number>();
@@ -2736,7 +2739,8 @@ function validateDecor(
       : undefined;
     const blocked = volumes.find(
       (volume) =>
-        volume.platformId !== groundcoverSupport?.id &&
+        (volume.groundcoverOnly !== true || prop.surfaceGroundcover === true) &&
+        (groundcoverSupport === undefined || volume.platformId !== groundcoverSupport.id) &&
         rectanglesHaveInteriorOverlap(footprint, volume.bounds) &&
         world.max.y > volume.floor + EPSILON &&
         world.min.y <
