@@ -1,0 +1,146 @@
+{
+  "asset_id": "broccoli-bouncer",
+  "version": "v001",
+  "files": {
+    "action-contact.png": {
+      "bytes": 66030,
+      "sha256": "7d235dc66bf577373d58320273c0f7ff212f0093f919b15d55dc1c85d5fc39f3"
+    },
+    "action-defeat.png": {
+      "bytes": 60249,
+      "sha256": "f1ef037d2a18576541f45e86c7d9750b7506a95812ab1656dc5b7a40b1381f98"
+    },
+    "action-hit.png": {
+      "bytes": 55792,
+      "sha256": "56a8e6236b85875d9fc0cfaf58129f75b569201de8d3c3cb2619e21f058d5c0a"
+    },
+    "action-windup.png": {
+      "bytes": 58052,
+      "sha256": "3b7c79a3e2ad8fe7b6eaf143c3aaeead9af33f5a26cd866aac891255196934e4"
+    },
+    "attack-gameplay-scale.png": {
+      "bytes": 41432,
+      "sha256": "a204be63949c0ae9ccc8d196f0032820cc543229536bcbc7b69117f929c4ed44"
+    },
+    "back.png": {
+      "bytes": 72905,
+      "sha256": "d8e41fe2e2cfe13c724f489dbdc7afd8916c06276cd74e558e104ae1289230b8"
+    },
+    "beauty.png": {
+      "bytes": 81491,
+      "sha256": "1701685ae4cc5b7a0af1b36192af6fe6b7b4586c287442bdc9a95faf0f43994b"
+    },
+    "broccoli-bouncer.blend": {
+      "bytes": 711118,
+      "sha256": "e2bb7e3dc343cbdeafd79f7b009237bf02b8c968112e0bf217a7561841289b9a"
+    },
+    "broccoli-bouncer.glb": {
+      "bytes": 1070172,
+      "sha256": "164a54763e764b4f6ac0d751a4bbe4e4ce1e58bcd98c23107eeb2255747b5bf9"
+    },
+    "browser-inspection.json": {
+      "bytes": 18467,
+      "sha256": "23dec676496c511a5d74d5666c49914b6f35dbda81c7a904295fde4b9d508f78"
+    },
+    "concept-vs-model.png": {
+      "bytes": 339826,
+      "sha256": "672ca2a30fd61a20314c7d705e00bc5696d90e097479d44ad239c159f178efba"
+    },
+    "concept.png": {
+      "bytes": 843026,
+      "sha256": "0ea401071e70c1e67f45f4402c48af2eee58bb25bd34cd47ee8a75be721f7b1f"
+    },
+    "construction.json": {
+      "bytes": 33300,
+      "sha256": "4e15117dbcafe9df2e490e348254ac87e320c39b8d8478d3358d833e8c8ba4ac"
+    },
+    "front.png": {
+      "bytes": 78805,
+      "sha256": "a6efc15243dfa245fe9ceae38bf61e168f15ce574bcf78047e6a0db70c57dffa"
+    },
+    "motion-contact-sheet.png": {
+      "bytes": 245117,
+      "sha256": "0abe094d5af2fbd47cf1317c2538a81da1e347342499f904bad3e1e0d042b2fb"
+    },
+    "provenance.json": {
+      "bytes": 3766,
+      "sha256": "813ae21a142225164b395e7570e15866f8d7096007556e82cbee923d92e5187b"
+    },
+    "side.png": {
+      "bytes": 61655,
+      "sha256": "7437963c47100d84fea7ffe544ab3db7289d619a123a677210b32806b8879bc5"
+    },
+    "source/assets.json": {
+      "bytes": 1576,
+      "sha256": "56441ce7f1585c66526413f20e2f5c45f7d2e3ec9da5c1720c6aaaa09c840c1d"
+    },
+    "source/broccoli.py": {
+      "bytes": 21101,
+      "sha256": "33894eb9f9d0ae779fdb687f7bc310e02df8a9346f6035a28bd86c92ed1eacaa"
+    },
+    "source/claim.py": {
+      "bytes": 2807,
+      "sha256": "83026e23dac484a9d2d658c8f6345c3a2249add0b63263d00ced5b60aeaecb99"
+    },
+    "source/common.py": {
+      "bytes": 24528,
+      "sha256": "4e28bfc2177eb4fe72619a748f04b22b109c3fa0beec86d0978573c919914b1f"
+    },
+    "source/compare.mjs": {
+      "bytes": 1429,
+      "sha256": "bd0c19d52b8b5c239f59ff3b21e9c59adb636ed45a976f8c490b3e6da904a61b"
+    },
+    "source/deliver.py": {
+      "bytes": 6512,
+      "sha256": "972f1e8d266b971e295ff8b42790ab26c56fc5b773e9cc04a884e5832af1d98d"
+    },
+    "source/diag.py": {
+      "bytes": 1471,
+      "sha256": "4c53e24f7a97375536810d67c060334f62d16e245b2a04c1e0ae43bbf67f1163"
+    },
+    "source/fetch_look.py": {
+      "bytes": 960,
+      "sha256": "2e8184c0c34c9f0634445b7b5bd3a0f484d32d635806d244f76a27af0ca2b416"
+    },
+    "source/inspect-three.mjs": {
+      "bytes": 9142,
+      "sha256": "5358097a0c9d739d5cbdc5a3d53413dba5ae29a873a833ed811134f7867cef7c"
+    },
+    "source/look.py": {
+      "bytes": 5489,
+      "sha256": "5560805c1f21ea9e232a89f3fefe203c9a445284d565a04f74e41bf1723a93c9"
+    },
+    "source/preview.mjs": {
+      "bytes": 11397,
+      "sha256": "1cbae36a73782c02e326df4e5e8656c817abb9d122b92c113493b51fcb97ecb5"
+    },
+    "source/run.py": {
+      "bytes": 1025,
+      "sha256": "2c71659dad1bdf0b0f06535977314c1c0cd377dfb7b478fe6b11426f3af56597"
+    },
+    "source/run_validate.py": {
+      "bytes": 731,
+      "sha256": "4e783a9674b55da32db692fdb198184bbe2c90641159625346abf7f82abf527f"
+    },
+    "source/transfer.py": {
+      "bytes": 4244,
+      "sha256": "4ce93f9d2557418bd10ba690719c76f6ce247deec376ba82afef76821cb1c3fb"
+    },
+    "source/validate.mjs": {
+      "bytes": 7915,
+      "sha256": "9c37a035c76bd2cb111067055d691fef67101d6608d42d3e5dd886d06860a44e"
+    },
+    "three-inspection.json": {
+      "bytes": 7222,
+      "sha256": "5d8e0cb4b55d1026d77ab7965d1a90193468ea76d694cccd86506f04fcad4ba9"
+    },
+    "threequarter.png": {
+      "bytes": 69893,
+      "sha256": "3663ba1a7d1e5a9d82348329310e523c5ab8a1c932aa80741e200e2119af831b"
+    },
+    "validation.json": {
+      "bytes": 3991,
+      "sha256": "891d255c13a896c3f334e2715d08e96e9a6253079fbcc335e1976bedd24c50d1"
+    }
+  }
+}
