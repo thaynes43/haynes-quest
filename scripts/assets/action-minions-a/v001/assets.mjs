@@ -97,4 +97,51 @@ export const ASSETS = {
         attack: [[.15, 'tell: crouch, hiss'], [.47, 'rear up'], [.58, 'dash'], [.625, 'stomp 1.25 s']], hit: [[0, 'rest'], [.2, 'recoil, hat pops'], [.5, 'settle'], [1, 'settled']],
         defeat: [[.06, 'hat flies'], [.3, 'skates slide, spin'], [.55, 'flop'], [1, 'held: knocked out']]}},
   },
+  'lab-robot-sentry': {
+    contactFraction: .625, contactProbe: 'claw_R', bodyBones: ['pelvis', 'shell'],
+    probes: ['claw_R', 'claw_L', 'lens', 'shell', 'foot_R', 'ant_2'],
+    solids: {
+      shell: {frame: 'shell', min: [-.3, .76, -.25], max: [.3, 1.22, .25], shrink: .004},
+      pelvis: {frame: 'pelvis', min: [-.22, .59, -.15], max: [.22, .72, .15], shrink: .004},
+    },
+    clearance: {
+      pincers_vs_shell: {of: ['jaw_R_up', 'jaw_R_lo', 'jaw_L_up', 'jaw_L_lo', 'claw_R', 'claw_L'], solid: 'shell'},
+      pincers_vs_pelvis: {of: ['jaw_R_up', 'jaw_R_lo', 'jaw_L_up', 'jaw_L_lo', 'claw_R', 'claw_L'], solid: 'pelvis'},
+      forearms_vs_shell: {of: ['fore_R', 'fore_L'], solid: 'shell'},
+      boots_vs_shell: {of: ['foot_R', 'foot_L'], solid: 'shell'}, boots_vs_pelvis: {of: ['foot_R', 'foot_L'], solid: 'pelvis'},
+    },
+    beats({at, B, wp, groupBox, T, rest}) {
+      const claws = ['jaw_R_up', 'jaw_R_lo', 'jaw_L_up', 'jaw_L_lo'];
+      const restClaws = groupBox(rest, claws), restR = groupBox(rest, ['jaw_R_up', 'jaw_R_lo']), restL = groupBox(rest, ['jaw_L_up', 'jaw_L_lo']);
+      const contact = at('attack', 1.25, s => { const all = groupBox(s, claws), r = groupBox(s, ['jaw_R_up', 'jaw_R_lo']), l = groupBox(s, ['jaw_L_up', 'jaw_L_lo']);
+        return {claws_min_z: all.min.z, claws_centre_y: all.getCenter(new T.Vector3()).y, claw_gap_x_m: l.max.x < r.min.x ? r.min.x - l.max.x : 0, right_centre: r.getCenter(new T.Vector3()).toArray(), left_centre: l.getCenter(new T.Vector3()).toArray()}; });
+      // jaw tips: the vertex of each jaw farthest from its wrist hinge in the bind pose, followed through the clip
+      const tipIdx = sd => ['up', 'lo'].map(k => { const g = rest.groups['jaw_' + sd + '_' + k], h = wp(B('claw_' + sd)); let bi = 0; g.forEach((p, i) => { if (p.distanceTo(h) > g[bi].distanceTo(h)) bi = i; }); return bi; });
+      const TIP = {R: tipIdx('R'), L: tipIdx('L')};
+      const tipGap = (s, sd) => s.groups['jaw_' + sd + '_up'][TIP[sd][0]].distanceTo(s.groups['jaw_' + sd + '_lo'][TIP[sd][1]]);
+      const restGap = tipGap(rest, 'R');
+      const jawOpen = (t, sd) => at('attack', t, s => tipGap(s, sd)) / restGap;
+      const wind = at('attack', .95, s => groupBox(s, claws).max.y);
+      const lensRest = B('lens').scale.x; const lensHit = at('hit', .15, () => B('lens').scale.x / lensRest);
+      let footLift = 0; for (let i = 0; i <= 60; i++) footLift = Math.max(footLift, at('move', i / 60, s => groupBox(s, ['foot_R']).min.y));
+      const held = at('defeat', 2.4, s => { const sh = groupBox(s, ['shell']); const f = groupBox(s, ['foot_R', 'foot_L']); return {shell_min_y: sh.min.y, boots_min_y: f.min.y, lens_scale: B('lens').scale.x / lensRest, antenna_tip_y: wp(B('ant_2')).y}; });
+      const idle0 = at('idle', 0, s => Math.max(...s.positions.map((p, i) => p.distanceTo(rest.positions[i]))));
+      const data = {contact, rest_jaw_tip_gap_m: restGap, jaw_tip_gap_ratio_at_0_95_s: jawOpen(.95, 'R'), jaw_tip_gap_ratio_at_contact: jawOpen(1.25, 'R'), claws_max_y_at_0_95_s: wind, rest_claws_min_z: restClaws.min.z, hit_lens_scale: lensHit, move_boot_max_lift_m: footLift, defeat_held: held, idle0_vs_bind_max_m: idle0};
+      return {data, checks: {
+        idle_starts_in_concept_stance: idle0 < 1e-4,
+        pincers_raised_high_in_wind_up: wind > 1.25,
+        pincers_open_wide_before_strike: jawOpen(.95, 'R') > 1.5 && jawOpen(.95, 'L') > 1.5,
+        pincers_clamp_shut_at_contact: jawOpen(1.25, 'R') < .6 && jawOpen(1.25, 'L') < .6,
+        pincers_meet_in_front_at_contact: contact.claws_min_z < restClaws.min.z - .3 && contact.claw_gap_x_m < .2,
+        pincers_at_chest_height_at_contact: contact.claws_centre_y > .6 && contact.claws_centre_y < 1.15,
+        lens_shrinks_on_hit: lensHit < .7, boot_lifts_in_move: footLift > .06,
+        defeat_lies_on_its_back_feet_up: held.shell_min_y < .02 && held.boots_min_y > .3, defeat_lens_dimmed: held.lens_scale < .5,
+      }};
+    },
+    durations: {idle: 2.4, move: 1, attack: 2, hit: .6, defeat: 2.4},
+    preview: {center: [0, .76, 0], half: .9, beauty: [4.6, 3.0, -6.8], beautyZoom: .92, motionZoom: .74, compare: [-22, -55, -158], compareZoom: 1.0,
+      beats: {idle: [[0, 'concept stance'], [.29, 'snip'], [.5, 'scan'], [.79, 'snip, scan']], move: [[0, 'stomp'], [.25, 'step'], [.5, 'stomp'], [.75, 'step']],
+        attack: [[.15, 'tell: lens flare, buzz'], [.47, 'wind-up'], [.57, 'lunge'], [.625, 'clamp 1.25 s']], hit: [[0, 'rest'], [.2, 'jolt, lens shrinks'], [.5, 'settle'], [1, 'settled']],
+        defeat: [[.25, 'sputter'], [.48, 'knees buckle'], [.66, 'tips over'], [1, 'held: powered down']]}},
+  },
 };

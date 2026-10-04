@@ -1,0 +1,747 @@
+{
+  "asset_id": "lab-robot-sentry",
+  "version": "v001",
+  "work_order": "action-worlds/minions-a",
+  "blender_version": "4.5.13 LTS",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.8153854012489319,
+      -0.3370000123977661,
+      0.0
+    ],
+    "max": [
+      0.8153854012489319,
+      0.3472360670566559,
+      1.5149998664855957
+    ]
+  },
+  "height_m": 1.5149998664855957,
+  "width_m": 1.6307708024978638,
+  "depth_m": 0.684236079454422,
+  "triangles": 11154,
+  "vertices": 5804,
+  "materials": [
+    "Matte painted clay",
+    "Glossy toy accents"
+  ],
+  "faces_per_material": {
+    "Matte painted clay": 4941,
+    "Glossy toy accents": 1022
+  },
+  "bone_count": 25,
+  "bones": [
+    "root",
+    "pelvis",
+    "shell",
+    "eye",
+    "lens",
+    "ant_1",
+    "ant_2",
+    "shoulder_R",
+    "upper_R",
+    "fore_R",
+    "claw_R",
+    "jaw_R_up",
+    "jaw_R_lo",
+    "thigh_R",
+    "shin_R",
+    "foot_R",
+    "shoulder_L",
+    "upper_L",
+    "fore_L",
+    "claw_L",
+    "jaw_L_up",
+    "jaw_L_lo",
+    "thigh_L",
+    "shin_L",
+    "foot_L"
+  ],
+  "max_influences_blender": 2,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": "8 x 8 tiles of 128 px; UVs use the centre 72% of each tile",
+    "origin": "Original clay-pigment colour atlas generated with numpy in Blender Python (common.paint_atlas); bands and seams are bisected geometry on flat tiles; no external textures, photos, text or logos.",
+    "tiles": {
+      "cream": 0,
+      "cream_dark": 1,
+      "teal": 2,
+      "teal_dark": 3,
+      "plum": 4,
+      "plum_dark": 5,
+      "gray": 6,
+      "gray_dark": 7,
+      "screw": 8,
+      "bezel": 9,
+      "lens": 10,
+      "glint": 11,
+      "sole": 12,
+      "vent": 13,
+      "lens_rim": 14
+    }
+  },
+  "parts": [
+    {
+      "name": "rounded shell",
+      "triangles": 1560,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "lens housing",
+      "triangles": 84,
+      "bones": [
+        "eye"
+      ],
+      "atlas_tile": 9,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "lens socket",
+      "triangles": 200,
+      "bones": [
+        "eye"
+      ],
+      "atlas_tile": 13,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "lens bezel",
+      "triangles": 384,
+      "bones": [
+        "eye"
+      ],
+      "atlas_tile": 9,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "lens rim",
+      "triangles": 112,
+      "bones": [
+        "eye"
+      ],
+      "atlas_tile": 14,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "orange lens",
+      "triangles": 728,
+      "bones": [
+        "lens"
+      ],
+      "atlas_tile": 10,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "lens glint",
+      "triangles": 80,
+      "bones": [
+        "lens"
+      ],
+      "atlas_tile": 11,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "screw -0.21 +0.26",
+      "triangles": 70,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "screw +0.21 +0.26",
+      "triangles": 70,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "screw -0.20 -0.27",
+      "triangles": 70,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "screw +0.20 -0.27",
+      "triangles": 70,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "back vent frame",
+      "triangles": 108,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "back vent slat 0",
+      "triangles": 44,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 13,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "back vent slat 1",
+      "triangles": 44,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 13,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "back vent slat 2",
+      "triangles": 44,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 13,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "antenna collar",
+      "triangles": 94,
+      "bones": [
+        "shell"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "antenna stem",
+      "triangles": 172,
+      "bones": [
+        "ant_1",
+        "ant_2"
+      ],
+      "atlas_tile": 7,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "antenna ball",
+      "triangles": 224,
+      "bones": [
+        "ant_2"
+      ],
+      "atlas_tile": 2,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "shoulder joint R",
+      "triangles": 72,
+      "bones": [
+        "shoulder_R"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder sphere R",
+      "triangles": 440,
+      "bones": [
+        "shoulder_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder cap R",
+      "triangles": 128,
+      "bones": [
+        "shoulder_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "upper_R plum",
+      "triangles": 188,
+      "bones": [
+        "upper_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "elbow joint R",
+      "triangles": 60,
+      "bones": [
+        "fore_R"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "elbow disc R",
+      "triangles": 128,
+      "bones": [
+        "fore_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fore_R plum",
+      "triangles": 188,
+      "bones": [
+        "fore_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "forearm disc R",
+      "triangles": 112,
+      "bones": [
+        "fore_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wrist joint R",
+      "triangles": 52,
+      "bones": [
+        "claw_R"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pincer palm R",
+      "triangles": 108,
+      "bones": [
+        "claw_R"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pincer upper jaw R",
+      "triangles": 300,
+      "bones": [
+        "jaw_R_up"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pincer lower jaw R",
+      "triangles": 300,
+      "bones": [
+        "jaw_R_lo"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder joint L",
+      "triangles": 72,
+      "bones": [
+        "shoulder_L"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder sphere L",
+      "triangles": 440,
+      "bones": [
+        "shoulder_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shoulder cap L",
+      "triangles": 128,
+      "bones": [
+        "shoulder_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "upper_L plum",
+      "triangles": 188,
+      "bones": [
+        "upper_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "elbow joint L",
+      "triangles": 60,
+      "bones": [
+        "fore_L"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "elbow disc L",
+      "triangles": 128,
+      "bones": [
+        "fore_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fore_L plum",
+      "triangles": 188,
+      "bones": [
+        "fore_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "forearm disc L",
+      "triangles": 112,
+      "bones": [
+        "fore_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wrist joint L",
+      "triangles": 52,
+      "bones": [
+        "claw_L"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pincer palm L",
+      "triangles": 108,
+      "bones": [
+        "claw_L"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pincer upper jaw L",
+      "triangles": 300,
+      "bones": [
+        "jaw_L_up"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pincer lower jaw L",
+      "triangles": 300,
+      "bones": [
+        "jaw_L_lo"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "pelvis",
+      "triangles": 188,
+      "bones": [
+        "pelvis"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "hip joint R",
+      "triangles": 60,
+      "bones": [
+        "thigh_R"
+      ],
+      "atlas_tile": 7,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "thigh_R plum",
+      "triangles": 188,
+      "bones": [
+        "thigh_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "knee joint R",
+      "triangles": 60,
+      "bones": [
+        "shin_R"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "knee cap R",
+      "triangles": 128,
+      "bones": [
+        "shin_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shin_R plum",
+      "triangles": 188,
+      "bones": [
+        "shin_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ankle disc R",
+      "triangles": 112,
+      "bones": [
+        "foot_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot R",
+      "triangles": 188,
+      "bones": [
+        "foot_R"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot toe cap R",
+      "triangles": 188,
+      "bones": [
+        "foot_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot sole R",
+      "triangles": 108,
+      "bones": [
+        "foot_R"
+      ],
+      "atlas_tile": 12,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot heel cap R",
+      "triangles": 108,
+      "bones": [
+        "foot_R"
+      ],
+      "atlas_tile": 5,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "hip joint L",
+      "triangles": 60,
+      "bones": [
+        "thigh_L"
+      ],
+      "atlas_tile": 7,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "thigh_L plum",
+      "triangles": 188,
+      "bones": [
+        "thigh_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "knee joint L",
+      "triangles": 60,
+      "bones": [
+        "shin_L"
+      ],
+      "atlas_tile": 6,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "knee cap L",
+      "triangles": 128,
+      "bones": [
+        "shin_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "shin_L plum",
+      "triangles": 188,
+      "bones": [
+        "shin_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ankle disc L",
+      "triangles": 112,
+      "bones": [
+        "foot_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot L",
+      "triangles": 188,
+      "bones": [
+        "foot_L"
+      ],
+      "atlas_tile": 4,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot toe cap L",
+      "triangles": 188,
+      "bones": [
+        "foot_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot sole L",
+      "triangles": 108,
+      "bones": [
+        "foot_L"
+      ],
+      "atlas_tile": 12,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "boot heel cap L",
+      "triangles": 108,
+      "bones": [
+        "foot_L"
+      ],
+      "atlas_tile": 5,
+      "material": "Matte painted clay"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "loop": true,
+      "frames": 145,
+      "fps": 60
+    },
+    {
+      "name": "move",
+      "duration_s": 1.0,
+      "loop": true,
+      "frames": 61,
+      "fps": 60
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "frames": 121,
+      "fps": 60,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "tell_s": [
+        0.0,
+        0.45
+      ],
+      "windup_s": [
+        0.45,
+        1.0
+      ],
+      "strike_s": [
+        1.0,
+        1.25
+      ]
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "frames": 37,
+      "fps": 60
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "frames": 145,
+      "fps": 60,
+      "held_final_pose_from_s": 1.95,
+      "sputter_s": [
+        0.25,
+        1.0
+      ],
+      "sit_s": [
+        0.8,
+        1.2
+      ],
+      "tip_s": [
+        1.25,
+        1.68
+      ]
+    }
+  ],
+  "max_bone_shear": 1.817941665649414e-06,
+  "rest_reproduction_error": 2.0209699869155884e-07,
+  "idle0_reproduction_error": 2.0209699869155884e-07,
+  "fps": 60,
+  "scaled_bones": [
+    "lens"
+  ],
+  "ik_max_overreach_m": {
+    "idle": -0.028925916090220938,
+    "move": -0.039294964143740285,
+    "attack": -0.028927822674505166,
+    "hit": -0.028927822674505166,
+    "defeat": -0.028927822674505166
+  },
+  "defeat_lying_drop_m": -0.05185452848672867,
+  "files": {
+    "lab-robot-sentry.blend": {
+      "bytes": 1613378,
+      "sha256": "805ba795dfd3cc0ff3bf8bd889d5cf9632ad1414d2c9f2d4c9e1d73faddedd0b"
+    },
+    "lab-robot-sentry.glb": {
+      "bytes": 1226608,
+      "sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0"
+    },
+    "pigment.png": {
+      "bytes": 112522,
+      "sha256": "8de1dc2ba317ac5145c2c8b8a2801ba22db1f7aa3b22278dd83bce7d2a5b3c53"
+    }
+  }
+}
