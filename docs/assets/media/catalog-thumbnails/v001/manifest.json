@@ -584,6 +584,20 @@
       "sha256": "aae984930e0e081fece9a868c6e484769a2c1ab3b2fb40efc1dd5d2ae4868a5b"
     },
     {
+      "source": "docs/assets/media/mischief-kitten-skater/v001/beauty.png",
+      "source_sha256": "7740bf2d0bdac6c21dd2c2b9ada2a35bbcf1a5c65e13b32ef7c54fff458e92a0",
+      "path": "docs/assets/media/catalog-thumbnails/v001/f370a3dbdece76d8.webp",
+      "bytes": 11232,
+      "sha256": "c9debc831aaa7c1594bef8ee70e3853754b093ed3de4400f9ba09af57d4caf9e"
+    },
+    {
+      "source": "docs/assets/media/mischief-kitten-skater/v001/concept-row.png",
+      "source_sha256": "e99bb67c50b7ecd858b9a40742735cae57e613c16332bec619e48b9011e0908b",
+      "path": "docs/assets/media/catalog-thumbnails/v001/566dba64177bfd57.webp",
+      "bytes": 16980,
+      "sha256": "bb48a71f41fc998e3d86175d7bc6b41776f865e04e1571886099d95a7691c79a"
+    },
+    {
       "source": "docs/assets/media/mischief-kitten/v001/beauty.png",
       "source_sha256": "523ce23de015beb1e5fea234d350e8fab5c6b2201c85a2f70f9834e32b796417",
       "path": "docs/assets/media/catalog-thumbnails/v001/9847869f2fd89ea1.webp",

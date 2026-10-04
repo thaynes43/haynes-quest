@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 113,
+    "entries": 114,
     "reference_sheet_entries": 11,
-    "model_entries": 81,
-    "model_files": 81,
+    "model_entries": 82,
+    "model_files": 82,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 79,
+    "completed_model_candidates": 80,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -5484,6 +5484,66 @@
         "docs/assets/media/demon-idol-drummer/v001/three-inspection.json": "b55cda34ddbeef8a58360c4f209b206184c70d379baecacfc74595b98ed2d215",
         "docs/assets/media/demon-idol-drummer/v001/threequarter.png": "0691e656c48658f1b7aac133c2faab7295ef9c068cb6d22b258720ad2aaa827d",
         "docs/assets/media/demon-idol-drummer/v001/validation.json": "cb59e9b91e4d40361135906b1b7f9db8bb33758ea85d15210e142704b6f0d0ee"
+      }
+    },
+    {
+      "id": "mischief-kitten-skater",
+      "title": "Mischief Kitten Skater",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/mischief-kitten-skater/v001.md",
+      "concept_images": [
+        "docs/assets/media/mischief-kitten-skater/v001/concept-row.png"
+      ],
+      "model_images": [
+        "docs/assets/media/mischief-kitten-skater/v001/beauty.png",
+        "docs/assets/media/mischief-kitten-skater/v001/front.png",
+        "docs/assets/media/mischief-kitten-skater/v001/side.png",
+        "docs/assets/media/mischief-kitten-skater/v001/back.png",
+        "docs/assets/media/mischief-kitten-skater/v001/threequarter.png",
+        "docs/assets/media/mischief-kitten-skater/v001/motion-contact-sheet.png",
+        "docs/assets/media/mischief-kitten-skater/v001/attack-gameplay-scale.png",
+        "docs/assets/media/mischief-kitten-skater/v001/concept-vs-export.png"
+      ],
+      "models": [
+        "docs/assets/media/mischief-kitten-skater/v001/mischief-kitten-skater.glb"
+      ],
+      "videos": [
+        "docs/assets/media/mischief-kitten-skater/v001/review.webm"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed model candidate; coordinator-selected; Awaiting Tom review; family integration in progress",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/mischief-kitten-skater/v001/attack-contact-front.png": "aa10112d5df2c67cdb68276e02e95d31dcc37020f54201013333c3e2d6f99dee",
+        "docs/assets/media/mischief-kitten-skater/v001/attack-contact-side.png": "99e90b597ab2f654b4e574c18adca43d1ffbf1eb82f7dd4994cfbcf1365f4c51",
+        "docs/assets/media/mischief-kitten-skater/v001/attack-gameplay-scale.png": "491361324666e4058f693e84300955ff76bc1bf004cd47adff796cc841ab1fae",
+        "docs/assets/media/mischief-kitten-skater/v001/attack-strip.png": "337634bdda624af577e76708e8867a2c69ddad8c0819cade2e0aa8e463f1b679",
+        "docs/assets/media/mischief-kitten-skater/v001/attack-windup-side.png": "71f6ac1bb495fb9f3da5dc229de6feb910520d9a2cff4a8fe9dd8983527aa2fc",
+        "docs/assets/media/mischief-kitten-skater/v001/back.png": "0eccfccedb6d0b2b45868a2a5430381cc653b0a27880b77baf738853286a413c",
+        "docs/assets/media/mischief-kitten-skater/v001/beauty.png": "7740bf2d0bdac6c21dd2c2b9ada2a35bbcf1a5c65e13b32ef7c54fff458e92a0",
+        "docs/assets/media/mischief-kitten-skater/v001/bounds.json": "aa7a51deef3a797432d3a207a1945e6a032e07a9477ae1e54b376ad5e9df0e75",
+        "docs/assets/media/mischief-kitten-skater/v001/browser-inspection.json": "6795945a83223f5df937b3f0c6f955d05bc76ce3edb42f2bad8a58502b1b8d1e",
+        "docs/assets/media/mischief-kitten-skater/v001/catalog-intake.json": "c5f65b2158b6819afc29bf81caf4256063f8d796f762d9a35f2fe783d84e0d3d",
+        "docs/assets/media/mischief-kitten-skater/v001/concept-row.png": "e99bb67c50b7ecd858b9a40742735cae57e613c16332bec619e48b9011e0908b",
+        "docs/assets/media/mischief-kitten-skater/v001/concept-vs-export.png": "e711ff569df4c0fdcd4e93bd02ccd6d1769d27665468c36c902f018358ee7f6e",
+        "docs/assets/media/mischief-kitten-skater/v001/construction.json": "c40e631ade2e697b1dc55385c7652b04eaee607c1cb2a97cc853e02f686c30e4",
+        "docs/assets/media/mischief-kitten-skater/v001/coordinator-review.json": "061bb1eab95cf27618b9eb6ff093cc675e8589a15b942da12af9a93753e6369d",
+        "docs/assets/media/mischief-kitten-skater/v001/defeat-held-front.png": "d4f0305dd0dd1eb8a7d4946ed112dee8206498b957770de92b25c8e15f030758",
+        "docs/assets/media/mischief-kitten-skater/v001/defeat-held.png": "5b9edaac8e2202e13c91af917718331e5d6b67c7c2d593ac6243cbfbd2630b04",
+        "docs/assets/media/mischief-kitten-skater/v001/front.png": "104286c0870e605860fe2b5735b448ac1a8a4eb8fc5c4830f65bfb6f64bbdf22",
+        "docs/assets/media/mischief-kitten-skater/v001/mischief-kitten-skater.blend": "d7fc8fbf767f508259ecdf2ea43a1ff7963de847a1a3cae024db41e2a6388930",
+        "docs/assets/media/mischief-kitten-skater/v001/mischief-kitten-skater.glb": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4",
+        "docs/assets/media/mischief-kitten-skater/v001/motion-contact-sheet.png": "d8cb75c4287f0aa432b16c27399e6d66a1babcfa242a1340d98927d16fec29a7",
+        "docs/assets/media/mischief-kitten-skater/v001/pigment.png": "93aec61e424c80257b80bb318d1a9dcefca1f1883488b080c456ec5b8977e582",
+        "docs/assets/media/mischief-kitten-skater/v001/provenance.json": "109fe8bb1c7a0b552066ea2ccd945864ee8f24f8f9d1da7683b7a1494308b2a1",
+        "docs/assets/media/mischief-kitten-skater/v001/review.webm": "5cc4dfe2c68ef1eb4715fa74fa73799606f50bf06872998fdc4080780e4e8931",
+        "docs/assets/media/mischief-kitten-skater/v001/sha256-manifest.json": "591ec5983db0a45cdb4f7d22e8699b9f91f94a8c267948c2c6fe57008c1dfa94",
+        "docs/assets/media/mischief-kitten-skater/v001/side.png": "63b0f1bdc204f4ad497d600c946e47de9df0247b194e6f14418b1268fba1fd7f",
+        "docs/assets/media/mischief-kitten-skater/v001/three-inspection.json": "e76d41223809ac07a412038257c00ccbce64fa594890c986238c3cc5dd90ebe4",
+        "docs/assets/media/mischief-kitten-skater/v001/threequarter.png": "d0901fad0367c8f0279b551d1c95a4d3b1c7e4791de4c67f993b7434b43a681b",
+        "docs/assets/media/mischief-kitten-skater/v001/validation.json": "61f12ff4efaf7abb4ed54093875d2f7de3fee5882c9b8c3525dcb659d7e070d4"
       }
     }
   ],

@@ -5,9 +5,13 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The Magic House garden adds tiled terrace walls, flower planters, patterned doors and butterfly arches. The [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its construction reference, exact 3D model and available animations.
 
-**79 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+The new family world revisions place sixteen ordinary enemies in each chapter: twelve in six route fight areas and four on optional paths. Four distinct victories unlock the boss. Friendly residents, equipment and memory checkpoints remain part of the journey. The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds varied animated minions and planting beside the playable route.
+
+The catalog also includes the earlier era casts, equipment, keepsakes, themed scenery and sound auditions. The [playtest guide](playtest.md) records earlier trials; the [current handoff](../../.agents/HANDOFF.md) records release and publication checkpoints.
+
+**80 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -127,6 +131,19 @@ A long-beaked garden thief struts, coils its neck and jabs while spilling stolen
 <div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/804398e0f60380f7.webp" alt="Selected original Demon Idol Drummer construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 A mischievous drummer raises both sticks, slams the snare and bursts a golden beat ring. His march and dizzy defeat add a new silhouette to the Big Stage.
+
+</div>
+<div class="catalog-card" data-asset-id="mischief-kitten-skater" markdown="1">
+
+[![Exact lilac Mischief Kitten Skater with four teal roller skates](media/catalog-thumbnails/v001/f370a3dbdece76d8.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/mischief-kitten-skater/v001.md)
+
+### [Mischief Kitten Skater](reviews/mischief-kitten-skater/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/566dba64177bfd57.webp" alt="Selected original Mischief Kitten Skater construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A four-footed roller skater crouches, rears up and stomps forward. Its large ears, striped tail and tiny top hat give Harbor fights another clear silhouette.
 
 </div>
 </div>
