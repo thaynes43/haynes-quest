@@ -1,0 +1,316 @@
+{
+  "asset_id": "broccoli-bouncer",
+  "version": "v001",
+  "glb_sha256": "164a54763e764b4f6ac0d751a4bbe4e4ce1e58bcd98c23107eeb2255747b5bf9",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader parse; every exported skin vertex at 60 Hz per clip; SkeletonUtils clones; the actual src/game/enemy-animation.ts adapter driven through idle/chasing/windup/strike/cooldown/hit/defeated. No physical-device claim.",
+  "height_m": 1.527886152267456,
+  "rest_bounds_y_up": {
+    "min": [
+      -0.6803556680679321,
+      0,
+      -0.5597190856933594
+    ],
+    "max": [
+      0.6811281442642212,
+      1.527886152267456,
+      0.5679460763931274
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.7924800151078175,
+      -5.551115123125783e-17,
+      -1.0846226221656956
+    ],
+    "max": [
+      0.7745987259438858,
+      1.741099484296618,
+      1.1749357180874087
+    ]
+  },
+  "exported_envelope": {
+    "min": [
+      -0.798,
+      -0.006,
+      -1.09
+    ],
+    "max": [
+      0.78,
+      1.747,
+      1.18
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 10045,
+      "bounds_y_up": {
+        "min": [
+          -0.7062731604349781,
+          0,
+          -0.5765819903837006
+        ],
+        "max": [
+          0.7081026568206815,
+          1.5506265946721127,
+          0.578160956765551
+        ]
+      },
+      "floor": {
+        "y": 0,
+        "time_s": 0
+      },
+      "max_vertex_travel_m": 0.12946853252169713,
+      "loop_seam_m": 2.2548588367175223e-9,
+      "held_defeat_motion_m": null
+    },
+    "move": {
+      "duration_s": 0.800000011920929,
+      "samples": 49,
+      "vertices_per_sample": 10045,
+      "bounds_y_up": {
+        "min": [
+          -0.7239291451820755,
+          -1.3337451402696848e-17,
+          -0.6997275022857339
+        ],
+        "max": [
+          0.7267644649439453,
+          1.5930962655539072,
+          0.4704374634953516
+        ]
+      },
+      "floor": {
+        "y": -1.3337451402696848e-17,
+        "time_s": 0.800000011920929
+      },
+      "max_vertex_travel_m": 0.3462208845899518,
+      "loop_seam_m": 1.1178505725211099e-8,
+      "held_defeat_motion_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 10045,
+      "bounds_y_up": {
+        "min": [
+          -0.7679485322057973,
+          0,
+          -1.0846226221656956
+        ],
+        "max": [
+          0.7733442781267594,
+          1.741099484296618,
+          0.8142183422919941
+        ]
+      },
+      "floor": {
+        "y": 0,
+        "time_s": 0
+      },
+      "max_vertex_travel_m": 0.8050915651178904,
+      "loop_seam_m": 0,
+      "held_defeat_motion_m": null
+    },
+    "hit": {
+      "duration_s": 0.6000000238418579,
+      "samples": 37,
+      "vertices_per_sample": 10045,
+      "bounds_y_up": {
+        "min": [
+          -0.7754603155653172,
+          0,
+          -0.5597190856933594
+        ],
+        "max": [
+          0.7650140356103259,
+          1.527886152267456,
+          0.8865188259763246
+        ]
+      },
+      "floor": {
+        "y": 0,
+        "time_s": 0
+      },
+      "max_vertex_travel_m": 0.5591306783287783,
+      "loop_seam_m": 0,
+      "held_defeat_motion_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 10045,
+      "bounds_y_up": {
+        "min": [
+          -0.7924800151078175,
+          -5.551115123125783e-17,
+          -0.7510287809509035
+        ],
+        "max": [
+          0.7745987259438858,
+          1.5292244322183426,
+          1.1749357180874087
+        ]
+      },
+      "floor": {
+        "y": -5.551115123125783e-17,
+        "time_s": 0.9333333704206679
+      },
+      "max_vertex_travel_m": 1.433860994414213,
+      "loop_seam_m": 1.4480987231846119,
+      "held_defeat_motion_m": 5.438959822042073e-16
+    }
+  },
+  "facing": {
+    "front_bone": "mouth",
+    "position": [
+      -0.006154301290488934,
+      0.5299999713897705,
+      -0.1999052919952816
+    ]
+  },
+  "strike": {
+    "bone": "hand_R",
+    "idle0": [
+      0.34672806781930093,
+      0.3950000455975502,
+      -0.08442592340793763
+    ],
+    "telegraph_0_5s": [
+      0.33803306063756045,
+      0.46957125108258935,
+      -0.09912941720983884
+    ],
+    "contact_1_25s": [
+      0.23837892868800564,
+      0.42834096962317636,
+      -0.4876769323244692
+    ]
+  },
+  "adapter": {
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "strike_bone": [
+          0.36086033478162777,
+          0.3950000455975502,
+          -0.03473899034674825
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "strike_bone": [
+          0.303722006728825,
+          0.47163198006489343,
+          -0.20131004704128563
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "strike_bone": [
+          0.23837892868800564,
+          0.42834096962317636,
+          -0.4876769323244692
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "strike_bone": [
+          0.35499998927116394,
+          0.3950000455975502,
+          -0.05999999865889549
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "strike_bone": [
+          0.35499998927116394,
+          0.3950000455975502,
+          -0.05999999865889549
+        ]
+      }
+    ],
+    "hit_state": {
+      "visible": true,
+      "vanish": 0
+    },
+    "defeat_states": [
+      {
+        "t": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 2.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 2.55,
+        "visible": true,
+        "vanish": 0.4999996821085601
+      },
+      {
+        "t": 3.05,
+        "visible": false,
+        "vanish": 1
+      },
+      {
+        "t": 4,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "max_influences": 1,
+  "max_weight_error": 0,
+  "materials": [
+    {
+      "name": "Broccoli Bouncer matte",
+      "type": "MeshStandardMaterial",
+      "vertexColors": true,
+      "roughness": 0.6200000047683716
+    },
+    {
+      "name": "Broccoli Bouncer gloss",
+      "type": "MeshStandardMaterial",
+      "vertexColors": true,
+      "roughness": 0.25999999046325684
+    }
+  ],
+  "track_count": 285,
+  "checks": {
+    "five_exact_clips": true,
+    "all_tracks_bind_below_scene_root": true,
+    "every_clip_moves_vertices": true,
+    "seamless_idle_and_move": true,
+    "attack_2s_contact_1_25": true,
+    "defeat_final_pose_held": true,
+    "no_floor_penetration": true,
+    "standing_on_floor_at_rest": true,
+    "height_in_range": true,
+    "footprint_centred": true,
+    "faces_minus_z": true,
+    "strike_drives_forward_at_contact": true,
+    "envelope_covers_all_poses": true,
+    "two_vertex_coloured_standard_materials": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "adapter_constructs_and_vanishes": true,
+    "adapter_windup_holds_contact_pose": true,
+    "adapter_root_untouched": true,
+    "independent_skeleton_clone": true
+  }
+}
