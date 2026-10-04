@@ -56,7 +56,8 @@
  *   QUEST_E2E_RUN_LABEL  report folder under test-results/family-world (default candidate)
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
  *   QUEST_E2E_SCALE      device scale while playing (default 0.25; screenshots use 1)
- *   QUEST_E2E_UNTIL      complete (default), first-fight, boss-arena, spawn or watcher-probe
+ *   QUEST_E2E_VIEWPORT   CSS viewport, e.g. 390x844 for portrait (default 1280x760)
+ *   QUEST_E2E_UNTIL      complete (default), first-fight, chase-probe, boss-arena, spawn or watcher-probe
  *   QUEST_E2E_SPAWN_IDLE seconds of page time to stand at spawn for QUEST_E2E_UNTIL=spawn (default 20)
  *   QUEST_E2E_SCARY_MOMENTS on (default) or off
  *   QUEST_E2E_JUMP_SCARE encounter slot to be knocked out by (default none)
@@ -64,6 +65,7 @@
  *   QUEST_E2E_FAMILY_CARD synthetic family card label; uses its real published save instead of an editor playtest
  *   QUEST_E2E_FRIENDLY_ASSET exact friendly asset to exercise; requires UNTIL=friendly and FAMILY_CARD
  *   QUEST_E2E_SKIP_DRAW 1 to skip GPU drawing between captures (simulation and input remain unchanged)
+ *   QUEST_E2E_EXPECT_DENSE_WORLD 1 to require 12 main-route ordinaries, 4 bonus foes and a four-win boss gate
  *   QUEST_E2E_REALTIME_SAMPLE 1 to sample real frame intervals, draw calls and loaded assets at spawn;
  *     with UNTIL=first-fight also sample beside the first ordinary (the clock resumes before stopping)
  *
@@ -117,12 +119,13 @@ const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);
 assert.ok(playScale >= 0.1 && playScale <= 1, "QUEST_E2E_SCALE must be 0.1 to 1");
 const until = process.env.QUEST_E2E_UNTIL ?? "complete";
 assert.ok(
-  ["complete", "first-fight", "boss-arena", "spawn", "watcher-probe", "friendly"].includes(until),
-  "QUEST_E2E_UNTIL must be complete, first-fight, boss-arena, spawn, watcher-probe or friendly",
+  ["complete", "first-fight", "chase-probe", "boss-arena", "spawn", "watcher-probe", "friendly"].includes(until),
+  "QUEST_E2E_UNTIL must be complete, first-fight, chase-probe, boss-arena, spawn, watcher-probe or friendly",
 );
 const familyCard = process.env.QUEST_E2E_FAMILY_CARD ?? "";
 const friendlyAsset = process.env.QUEST_E2E_FRIENDLY_ASSET ?? "";
 const skipDraw = process.env.QUEST_E2E_SKIP_DRAW === "1";
+const expectDenseWorld = process.env.QUEST_E2E_EXPECT_DENSE_WORLD === "1";
 const realtimeSample = process.env.QUEST_E2E_REALTIME_SAMPLE === "1";
 assert.ok(!realtimeSample || !skipDraw, "real-time sampling requires normal GPU drawing");
 assert.ok(until !== "friendly" || (familyCard && friendlyAsset), "friendly checks require a synthetic family card and exact asset");
@@ -152,7 +155,10 @@ const selected = requested.length ? chapters.filter((entry) => requested.include
 assert.equal(selected.length, requested.length || chapters.length, "unknown chapter requested");
 assert.ok(!familyCard || selected.length === 1, "a synthetic family checkpoint selects exactly one chapter");
 
-let VIEWPORT = { width: 1280, height: 760 };
+const viewportMatch = /^(\d+)x(\d+)$/.exec(process.env.QUEST_E2E_VIEWPORT ?? "1280x760");
+assert.ok(viewportMatch, "QUEST_E2E_VIEWPORT must be WIDTHxHEIGHT");
+let VIEWPORT = { width: Number(viewportMatch[1]), height: Number(viewportMatch[2]) };
+assert.ok(VIEWPORT.width >= 320 && VIEWPORT.height >= 568, "QUEST_E2E_VIEWPORT is too small for the game");
 const FINE_MS = 16;
 const CRUISE_MS = 48;
 const IDLE_MS = 192;
@@ -597,6 +603,18 @@ interface RealtimeSample {
   deviceEvidence: false;
 }
 
+interface ChaseProbe {
+  slot: string;
+  encounterId: string;
+  arenaExitMeters: number;
+  enemyMovedMeters: number;
+  sameFloorSamples: number;
+  playerStayedOnDeck: boolean;
+  gapRecovery: boolean;
+  enemyStayedOnFloor: boolean;
+  playerHpAfter: number;
+}
+
 /** Measure only while page time flows normally; a paused clock cannot provide frame evidence. */
 async function sampleRealtime(
   page: Page,
@@ -659,6 +677,119 @@ async function sampleRealtime(
   };
 }
 
+/** Pursue on the connected deck, then escape over a side gap using the normal stick. */
+async function probeRealtimeChase(
+  game: LockstepGame,
+  level: ResolvedAuthoredLevel,
+  slot: string,
+  anchor: AuthoredEncounterAnchor,
+  encounterId: string,
+): Promise<ChaseProbe> {
+  await game.releaseStick();
+  // The route may have skipped draws to save software-rendering time; the
+  // real-time chase itself must render normally.
+  await game.page.evaluate("globalThis.__questSkipDraw=false");
+  await game.page.clock.resume();
+  const start = await game.read();
+  const firstEnemy = start.encounters.find((entry) => entry.id === encounterId);
+  assert.ok(firstEnemy && firstEnemy.hp > 0, `${slot}: chase foe is unavailable`);
+  assert.equal(start.supportId, anchor.platformId, `${slot}: player is not on the chase deck`);
+  const deck = sampledPlatform(level.course, anchor.platformId, start.time);
+  const inset = 1.15;
+  const minX = deck.center.x - deck.size.x / 2 + inset;
+  const maxX = deck.center.x + deck.size.x / 2 - inset;
+  const minZ = deck.center.z - deck.size.z / 2 + inset;
+  const maxZ = deck.center.z + deck.size.z / 2 - inset;
+  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+  const outside = (point: Point) => Math.max(
+    anchor.arena.minX - point.x,
+    point.x - anchor.arena.maxX,
+    anchor.arena.minZ - point.z,
+    point.z - anchor.arena.maxZ,
+    0,
+  );
+  const candidates = [
+    { x: minX, z: clamp(start.position.z, minZ, maxZ) },
+    { x: maxX, z: clamp(start.position.z, minZ, maxZ) },
+    { x: clamp(start.position.x, minX, maxX), z: minZ },
+    { x: clamp(start.position.x, minX, maxX), z: maxZ },
+  ].filter((point) => outside(point) >= 1.6 && planar(point, start.position) >= 1);
+  assert.ok(candidates.length > 0, `${slot}: no safe same-floor retreat outside the arena`);
+  const retreat = candidates.sort((left, right) =>
+    planar(left, start.position) - planar(right, start.position))[0]!;
+  const trace: Live[] = [];
+  const sleep = (ms: number) => new Promise((wait) => setTimeout(wait, ms));
+  const steer = async (target: Point, milliseconds: number, done: (live: Live) => boolean) => {
+    const deadline = Date.now() + milliseconds;
+    while (Date.now() < deadline) {
+      const live = await game.read();
+      trace.push(live);
+      if (done(live)) break;
+      const distance = planar(live.position, target);
+      if (distance > 0.15)
+        await game.move((target.x - live.position.x) / distance, -(target.z - live.position.z) / distance);
+      else await game.move(0, 0);
+      await sleep(120);
+    }
+    await game.releaseStick();
+  };
+  await steer(retreat, 4_000, (live) => planar(live.position, retreat) < 0.6 || live.supportId !== anchor.platformId);
+  await sleep(1_000);
+  const chased = await game.read();
+  trace.push(chased);
+  const foe = chased.encounters.find((entry) => entry.id === encounterId)!;
+  const arenaExitMeters = Math.max(...trace.map((live) =>
+    outside(live.encounters.find((entry) => entry.id === encounterId)!)));
+  const enemyMovedMeters = planar(firstEnemy, foe);
+  assert.equal(chased.supportId, anchor.platformId, `${slot}: player did not stay on the connected chase deck`);
+  assert.equal(chased.recoveries, start.recoveries, `${slot}: player fell during the same-floor retreat`);
+  assert.ok(enemyMovedMeters >= 0.4, `${slot}: enemy did not pursue in real time`);
+  assert.ok(arenaExitMeters >= 0.25, `${slot}: enemy remained confined to its spawn arena`);
+  const sameFloorSamples = trace.filter((live) =>
+    Math.abs(live.encounters.find((entry) => entry.id === encounterId)!.y - anchor.position.y) <= 0.35).length;
+  assert.equal(sameFloorSamples, trace.length, `${slot}: enemy changed floors while pursuing`);
+
+  // Step off the deck's side into open space. The checkpoint should recover
+  // the player while the ordinary stays on its original walkable floor.
+  const leftDistance = chased.position.x - minX;
+  const rightDistance = maxX - chased.position.x;
+  const side = leftDistance <= rightDistance ? -1 : 1;
+  const gap = { x: deck.center.x + side * (deck.size.x / 2 + 6), z: chased.position.z };
+  const recoveriesBefore = chased.recoveries;
+  await steer(gap, 7_000, (live) => live.recoveries > recoveriesBefore);
+  for (let attempt = 0; attempt < 30 && game.live.recoveries === recoveriesBefore; attempt += 1) {
+    await sleep(200);
+    trace.push(await game.read());
+  }
+  const gapRecovery = game.live.recoveries > recoveriesBefore;
+  assert.ok(gapRecovery, `${slot}: the side-gap escape did not recover at a checkpoint (${JSON.stringify({
+    start: chased.position,
+    end: game.live.position,
+    supportId: game.live.supportId,
+    phase: game.live.phase,
+    hp: game.live.playerHp,
+    recoveries: game.live.recoveries,
+    minX: Math.min(...trace.map((live) => live.position.x)),
+    maxX: Math.max(...trace.map((live) => live.position.x)),
+  })})`);
+  const enemyStayedOnFloor = trace.every((live) => {
+    const enemy = live.encounters.find((entry) => entry.id === encounterId);
+    return enemy && Math.abs(enemy.y - anchor.position.y) <= 0.35;
+  });
+  assert.ok(enemyStayedOnFloor, `${slot}: enemy crossed the side gap or changed floors`);
+  return {
+    slot,
+    encounterId,
+    arenaExitMeters: Number(arenaExitMeters.toFixed(2)),
+    enemyMovedMeters: Number(enemyMovedMeters.toFixed(2)),
+    sameFloorSamples,
+    playerStayedOnDeck: true,
+    gapRecovery,
+    enemyStayedOnFloor,
+    playerHpAfter: game.live.playerHp,
+  };
+}
+
 interface ChapterReport {
   chapterId: string;
   routeId: string;
@@ -687,6 +818,8 @@ interface ChapterReport {
   assetLoads: Array<{ path: string; bytes: number; durationMs: number }>;
   frozenProject?: { projectId: string; revision: number; fingerprint: string; schemaVersion: string; theme: string; decorCount: number };
   realtime?: { spawn: RealtimeSample; firstFight?: RealtimeSample };
+  portraitLayout?: { viewport: { width: number; height: number }; controls: Record<string, { x: number; y: number; width: number; height: number }>; scrollWidth: number };
+  chase?: ChaseProbe;
   friendly?: Record<string, unknown>;
   drawingBetweenCaptures?: boolean;
   /** DESIGN-027: the declared and live scare levels, counters, events and scare screenshots. */
@@ -1209,6 +1342,16 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       return slot;
     });
   assert.ok(ordinarySlots.length >= 4, `${chapter.routeId}: expected at least four required ordinaries`);
+  if (expectDenseWorld) {
+    const bonusSlots = Object.keys(document.anchors.encounters).filter((slot) => /^bonus-\d+$/.test(slot));
+    assert.equal(ordinarySlots.length, 12, `${chapter.routeId}: dense world needs 12 main-route ordinaries`);
+    assert.equal(bonusSlots.length, 4, `${chapter.routeId}: dense world needs four bonus foes`);
+    assert.equal(Object.keys(chapter.encounterSlots).length, 17,
+      `${chapter.routeId}: dense world needs 16 ordinary foes and one boss`);
+    assert.ok(bonusSlots.every((slot) => Boolean(chapter.encounterSlots[slot as keyof typeof chapter.encounterSlots])),
+      `${chapter.routeId}: bonus foe anchor is missing from the encounter roster`);
+    assert.equal(chapter.bossPrerequisiteDefeats, 4, `${chapter.routeId}: dense world boss gate must require four wins`);
+  }
   const encounterSlots = [...ordinarySlots, "boss"];
   const startAge = chapter.recoveredAge.fromYears;
   const report: ChapterReport = {
@@ -1403,6 +1546,24 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       mark("screenshot", { file });
     };
     await shot("01-spawn");
+    if (VIEWPORT.width <= 430) {
+      const controls = {
+        move: page.getByTestId("joystick"),
+        jump: page.getByRole("button", { name: "Jump", exact: true }),
+        attack: page.getByRole("button", { name: "Attack", exact: true }),
+      };
+      const boxes: Record<string, { x: number; y: number; width: number; height: number }> = {};
+      for (const [name, control] of Object.entries(controls)) {
+        const box = await control.boundingBox();
+        assert.ok(box, `${name} control is not visible in portrait`);
+        assert.ok(box.x >= -1 && box.y >= -1 && box.x + box.width <= VIEWPORT.width + 1 &&
+          box.y + box.height <= VIEWPORT.height + 1, `${name} control is clipped in portrait`);
+        boxes[name] = box;
+      }
+      const scrollWidth = await page.evaluate(() => globalThis.document.documentElement.scrollWidth);
+      assert.ok(scrollWidth <= VIEWPORT.width + 1, "portrait game scrolls horizontally");
+      report.portraitLayout = { viewport: { ...VIEWPORT }, controls: boxes, scrollWidth };
+    }
 
     // DESIGN-027 evidence: counters, events and the four scare screenshots.
     // Each encounter spawns on its anchor; a watcher never strays 1.5 m from it.
@@ -1802,7 +1963,21 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                 if (until === "boss-arena") throw new StopAt("boss-arena");
               } else if (!firstOrdinaryShot) {
                 firstOrdinaryShot = true;
+                const firstTargetId = game!.live.nearEncounterId;
                 await shot("02-first-ordinary-fight");
+                if (until === "chase-probe") {
+                  assert.ok(firstTargetId, "first ordinary was not in contact range");
+                  const number = /-encounter-(\d+)$/.exec(firstTargetId)?.[1];
+                  assert.ok(number, "first target is not a required ordinary");
+                  const chaseSlot = `ordinary-${number}`;
+                  const chaseAnchor = anchors.encounters[chaseSlot as keyof typeof anchors.encounters];
+                  assert.ok(chaseAnchor, `${chaseSlot}: missing chase anchor`);
+                  report.chase = await probeRealtimeChase(game!, level, chaseSlot, chaseAnchor, firstTargetId);
+                  const file = `${shotDirectory}/${chapter.chapterId}-03-chase-gap-recovery.png`;
+                  await page.screenshot({ path: file });
+                  report.screenshots.push(file);
+                  throw new StopAt("chase-probe");
+                }
                 if (realtimeSample && until === "first-fight") {
                   await game!.releaseStick();
                   await page.clock.resume();
