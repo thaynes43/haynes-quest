@@ -10448,6 +10448,15 @@
     "expectedRevision": 2,
     "commands": [
       {
+        "type": "project.catalog.set",
+        "catalogVersion": "parody-catalog-v12"
+      }
+    ]
+  },
+  {
+    "expectedRevision": 3,
+    "commands": [
+      {
         "type": "anchor.set",
         "chapterId": "family-a1",
         "slot": "pickup.guard-tool",
@@ -10597,7 +10606,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "gadget-helper",
+          "catalogEntryId": "gadget-hammer-hopper",
           "catalogEntryVersion": "v001"
         }
       },
@@ -10623,7 +10632,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "gadget-helper",
+          "catalogEntryId": "gadget-hammer-hopper",
           "catalogEntryVersion": "v001"
         }
       },
@@ -10649,7 +10658,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "gadget-helper",
+          "catalogEntryId": "gadget-hammer-hopper",
           "catalogEntryVersion": "v001"
         }
       },
@@ -10675,7 +10684,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "gadget-helper",
+          "catalogEntryId": "gadget-hammer-hopper",
           "catalogEntryVersion": "v001"
         }
       },
@@ -10727,7 +10736,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "gadget-helper",
+          "catalogEntryId": "gadget-hammer-hopper",
           "catalogEntryVersion": "v001"
         }
       },
@@ -10779,7 +10788,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "gadget-helper",
+          "catalogEntryId": "gadget-hammer-hopper",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11179,6 +11188,81 @@
         }
       },
       {
+        "type": "decor.add",
+        "chapterId": "family-a1",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": 11.5,
+            "y": 0,
+            "z": -12
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a1",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "broad-canopy-tree",
+          "position": {
+            "x": 9.9,
+            "y": 0.24,
+            "z": -12.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a1",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 13,
+            "y": 0.24,
+            "z": -12.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a1",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 10.4,
+            "y": 0.24,
+            "z": -10.8
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a1",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 12.9,
+            "y": 0.24,
+            "z": -10.9
+          },
+          "rotationY": 2.0999999999999996,
+          "scale": 1
+        }
+      },
+      {
         "type": "anchor.set",
         "chapterId": "family-a2",
         "slot": "pickup.guard-tool",
@@ -11307,7 +11391,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "mischief-kitten",
+          "catalogEntryId": "mischief-kitten-skater",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11333,7 +11417,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "mischief-kitten",
+          "catalogEntryId": "mischief-kitten-skater",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11359,7 +11443,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "mischief-kitten",
+          "catalogEntryId": "mischief-kitten-skater",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11385,7 +11469,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "mischief-kitten",
+          "catalogEntryId": "mischief-kitten-skater",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11437,7 +11521,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "mischief-kitten",
+          "catalogEntryId": "mischief-kitten-skater",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11489,7 +11573,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "mischief-kitten",
+          "catalogEntryId": "mischief-kitten-skater",
           "catalogEntryVersion": "v001"
         }
       },
@@ -11889,6 +11973,81 @@
         }
       },
       {
+        "type": "decor.add",
+        "chapterId": "family-a2",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": 7.5,
+            "y": 0,
+            "z": -12
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a2",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "broad-canopy-tree",
+          "position": {
+            "x": 5.9,
+            "y": 0.24,
+            "z": -12.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a2",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 9,
+            "y": 0.24,
+            "z": -12.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a2",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 6.4,
+            "y": 0.24,
+            "z": -10.8
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a2",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 8.9,
+            "y": 0.24,
+            "z": -10.9
+          },
+          "rotationY": 2.0999999999999996,
+          "scale": 1
+        }
+      },
+      {
         "type": "anchor.set",
         "chapterId": "family-a3",
         "slot": "pickup.guard-tool",
@@ -12042,7 +12201,7 @@
         "chapterId": "family-a3",
         "slot": "ordinary-5",
         "anchor": {
-          "kind": "ordinary-a",
+          "kind": "ordinary-b",
           "platformId": "water-tower-roof",
           "checkpointId": "cp-pigeon",
           "position": {
@@ -12059,7 +12218,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "putty-grunt",
+          "catalogEntryId": "lab-robot-sentry",
           "catalogEntryVersion": "v001"
         }
       },
@@ -12068,7 +12227,7 @@
         "chapterId": "family-a3",
         "slot": "ordinary-6",
         "anchor": {
-          "kind": "ordinary-b",
+          "kind": "ordinary-a",
           "platformId": "billboard-balcony",
           "checkpointId": "cp-satellite",
           "position": {
@@ -12085,7 +12244,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "lab-robot",
+          "catalogEntryId": "putty-grunt",
           "catalogEntryVersion": "v001"
         }
       },
@@ -12094,7 +12253,7 @@
         "chapterId": "family-a3",
         "slot": "ordinary-7",
         "anchor": {
-          "kind": "ordinary-a",
+          "kind": "ordinary-b",
           "platformId": "putty-plaza",
           "checkpointId": "cp-neon-walk",
           "position": {
@@ -12111,7 +12270,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "putty-grunt",
+          "catalogEntryId": "lab-robot-sentry",
           "catalogEntryVersion": "v001"
         }
       },
@@ -12120,7 +12279,7 @@
         "chapterId": "family-a3",
         "slot": "ordinary-8",
         "anchor": {
-          "kind": "ordinary-b",
+          "kind": "ordinary-a",
           "platformId": "scaffold-deck",
           "checkpointId": "cp-plaza",
           "position": {
@@ -12137,7 +12296,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "lab-robot",
+          "catalogEntryId": "putty-grunt",
           "catalogEntryVersion": "v001"
         }
       },
@@ -12189,7 +12348,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "lab-robot",
+          "catalogEntryId": "lab-robot-sentry",
           "catalogEntryVersion": "v001"
         }
       },
@@ -12241,7 +12400,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "lab-robot",
+          "catalogEntryId": "lab-robot-sentry",
           "catalogEntryVersion": "v001"
         }
       },
@@ -12637,6 +12796,81 @@
             "z": -32.45
           },
           "rotationY": 0.15,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a3",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": 7.5,
+            "y": 0,
+            "z": -9
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a3",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "broad-canopy-tree",
+          "position": {
+            "x": 5.9,
+            "y": 0.24,
+            "z": -9.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a3",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 9,
+            "y": 0.24,
+            "z": -9.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a3",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 6.4,
+            "y": 0.24,
+            "z": -7.8
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a3",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 8.9,
+            "y": 0.24,
+            "z": -7.9
+          },
+          "rotationY": 2.0999999999999996,
           "scale": 1
         }
       },
@@ -13430,6 +13664,81 @@
             "z": 2.75
           },
           "rotationY": 0.15,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a4",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": 10.5,
+            "y": 0,
+            "z": -12
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a4",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 8.7,
+            "y": 0.24,
+            "z": -12.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a4",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 12,
+            "y": 0.24,
+            "z": -12.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a4",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 9.4,
+            "y": 0.24,
+            "z": -10.8
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-a4",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 11.9,
+            "y": 0.24,
+            "z": -10.9
+          },
+          "rotationY": 2.0999999999999996,
           "scale": 1
         }
       }

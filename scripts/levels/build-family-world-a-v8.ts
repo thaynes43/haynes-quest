@@ -1,10 +1,10 @@
 /** World A v8: six paired main-route fights and four side-route discoveries. */
 import { writeFile } from "node:fs/promises";
 import { buildFamilyWorldAV7, familyWorldAV7Commands } from "./build-family-world-a-v7.js";
-import { buildDenseWorld, denseWorldCommands, serializeDenseWorld, type DenseChapterRevision } from "./family/dense-world-revision.js";
+import { buildDenseWorld, denseCatalogUpgrade, denseCatalogUpgradeCommands, denseWorldCommands, serializeDenseWorld, type DenseChapterRevision } from "./family/dense-world-revision.js";
 
 export const FAMILY_WORLD_A_V8_REVISIONS: readonly DenseChapterRevision[] = [
-  { chapterId: "family-a1", guardTool: { platformId: "hop-2" }, relocateRequired: {
+  { chapterId: "family-a1", variantId: "gadget-hammer-hopper", guardTool: { platformId: "hop-2" }, relocateRequired: {
     "ordinary-2": { platformId: "picnic-plateau", castFrom: "ordinary-2", dx: 2 },
   }, core: [
     { platformId: "hill-terrace", castFrom: "ordinary-1", dx: 4 },
@@ -22,7 +22,7 @@ export const FAMILY_WORLD_A_V8_REVISIONS: readonly DenseChapterRevision[] = [
     { platformId: "b1-perch-1", castFrom: "ordinary-3" },
     { platformId: "b3-hop-3", castFrom: "ordinary-4", minWidth: 8, minDepth: 8 },
   ] },
-  { chapterId: "family-a2", guardTool: { platformId: "hq-dock", dx: 2, dz: -2 }, core: [
+  { chapterId: "family-a2", variantId: "mischief-kitten-skater", guardTool: { platformId: "hq-dock", dx: 2, dz: -2 }, core: [
     { platformId: "sea-wall", castFrom: "ordinary-1", dx: -3, dz: 3 },
     { platformId: "fish-market", castFrom: "ordinary-2", dz: 3 },
     { platformId: "laundry-roof", castFrom: "ordinary-3", dx: 3 },
@@ -38,14 +38,14 @@ export const FAMILY_WORLD_A_V8_REVISIONS: readonly DenseChapterRevision[] = [
     { platformId: "crows-nest", castFrom: "ordinary-3", minWidth: 8, minDepth: 8 },
     { platformId: "sign-hop-2", castFrom: "ordinary-4", minWidth: 8, minDepth: 8 },
   ] },
-  { chapterId: "family-a3", guardTool: { platformId: "elevator-roof" }, relocateRequired: {
+  { chapterId: "family-a3", variantId: "lab-robot-sentry", variantSlots: ["ordinary-5", "ordinary-7", "ordinary-10", "ordinary-12"], guardTool: { platformId: "elevator-roof" }, relocateRequired: {
     "ordinary-1": { platformId: "water-tower-roof", castFrom: "ordinary-1", dx: -2 },
     "ordinary-2": { platformId: "billboard-balcony", castFrom: "ordinary-2", dx: -2 },
   }, core: [
     { platformId: "water-tower-roof", castFrom: "ordinary-1", dx: 3 },
-    { platformId: "billboard-balcony", castFrom: "ordinary-2", dx: 3 },
+    { platformId: "billboard-balcony", castFrom: "ordinary-1", dx: 3 },
     { platformId: "putty-plaza", castFrom: "ordinary-3", dx: 4 },
-    { platformId: "scaffold-deck", castFrom: "ordinary-4", dx: 4.2, dz: 3 },
+    { platformId: "scaffold-deck", castFrom: "ordinary-1", dx: 4.2, dz: 3 },
   ], extraCore: [
     { platformId: "pigeon-roof", castFrom: "ordinary-1", dx: -3 },
     { platformId: "pigeon-roof", castFrom: "ordinary-2", dx: 3 },
@@ -81,7 +81,7 @@ export const FAMILY_WORLD_A_V8_REVISIONS: readonly DenseChapterRevision[] = [
 
 export function familyWorldAV8Commands() {
   const base = buildFamilyWorldAV7();
-  return [...familyWorldAV7Commands(), denseWorldCommands(base, FAMILY_WORLD_A_V8_REVISIONS)];
+  return [...familyWorldAV7Commands(), denseCatalogUpgradeCommands(base), denseWorldCommands(denseCatalogUpgrade(base), FAMILY_WORLD_A_V8_REVISIONS)];
 }
 
 export function buildFamilyWorldAV8() {

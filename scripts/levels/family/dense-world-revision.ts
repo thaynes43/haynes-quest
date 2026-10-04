@@ -1,5 +1,6 @@
 /** New main-route encounter pairs and optional side-route fights for A8/B7. */
 import {
+  applyLevelEditorCommand,
   applyLevelEditorCommands,
   serializeLevelEditorProject,
   validateLevelEditorProject,
@@ -7,6 +8,7 @@ import {
   type LevelEditorCommandBatch,
   type LevelEditorProjectV2,
 } from "../../../src/shared/editor-project.js";
+import { PARODY_CATALOGS } from "../../../src/shared/parody-catalog.js";
 import type {
   AuthoredBonusEncounterSlot,
   AuthoredDecor,
@@ -31,6 +33,10 @@ export interface DenseFightPlacement {
 }
 export interface DenseChapterRevision {
   readonly chapterId: string;
+  /** V12's new action silhouette, paired with the chapter's original foe. */
+  readonly variantId?: string;
+  /** A3 uses Putty opposite its original Lab Robot in two of the six pairs. */
+  readonly variantSlots?: readonly AuthoredExtendedCoreEncounterSlot[];
   readonly guardTool?: Pick<DenseFightPlacement, "platformId" | "dx" | "dz">;
   readonly removeDecorIds?: readonly string[];
   /** Re-space historical core slots in the new immutable template only. */
@@ -41,6 +47,47 @@ export interface DenseChapterRevision {
   readonly extraCore: readonly [DenseFightPlacement, DenseFightPlacement, DenseFightPlacement, DenseFightPlacement];
   /** Optional slots one through four; all supports must be on branches. */
   readonly optional: readonly [DenseFightPlacement, DenseFightPlacement, DenseFightPlacement, DenseFightPlacement];
+}
+
+export function denseCatalogUpgrade(base: LevelEditorProjectV2): LevelEditorProjectV2 {
+  const result = applyLevelEditorCommand(base, {
+    type: "project.catalog.set", catalogVersion: "parody-catalog-v12",
+  });
+  if (!result.ok) throw new Error(`V12 catalog upgrade failed: ${result.issues.map((issue) => issue.message).join("; ")}`);
+  return result.project as LevelEditorProjectV2;
+}
+
+export function denseCatalogUpgradeCommands(base: LevelEditorProjectV2): LevelEditorCommandBatch {
+  return { expectedRevision: base.revision, commands: [{
+    type: "project.catalog.set", catalogVersion: "parody-catalog-v12",
+  }] };
+}
+
+const DEFAULT_VARIANT_SLOTS: readonly AuthoredExtendedCoreEncounterSlot[] = [
+  "ordinary-5", "ordinary-6", "ordinary-7", "ordinary-8", "ordinary-10", "ordinary-12",
+];
+
+function coreCast(
+  revision: DenseChapterRevision,
+  slot: AuthoredExtendedCoreEncounterSlot,
+  original: LevelEditorProjectV2["chapters"][number]["encounterSlots"][SourceSlot],
+) {
+  if (!revision.variantId || !(revision.variantSlots ?? DEFAULT_VARIANT_SLOTS).includes(slot))
+    return original;
+  const entry = PARODY_CATALOGS["parody-catalog-v12"].find((candidate) => candidate.id === revision.variantId);
+  if (!entry || entry.role !== "ordinary") throw new Error(`Unavailable ordinary variant ${revision.variantId}`);
+  return { source: "catalog" as const, catalogEntryId: entry.id, catalogEntryVersion: entry.version };
+}
+
+function coreAnchorKind(
+  revision: DenseChapterRevision,
+  slot: AuthoredExtendedCoreEncounterSlot,
+  anchor: AuthoredEncounterAnchor,
+): AuthoredEncounterAnchor {
+  if (!revision.variantId || !(revision.variantSlots ?? DEFAULT_VARIANT_SLOTS).includes(slot)) return anchor;
+  const entry = PARODY_CATALOGS["parody-catalog-v12"].find((candidate) => candidate.id === revision.variantId);
+  if (!entry || entry.role !== "ordinary" || entry.kind === "boss") throw new Error(`Invalid ordinary variant ${revision.variantId}`);
+  return { ...anchor, kind: entry.kind };
 }
 
 /** Candidate scenery is committed only when the complete cluster clears the route. */
@@ -56,6 +103,24 @@ function addPlantingGroups(
     const trial = structuredClone(level) as AuthoredLevelDocument;
     (trial.decor as AuthoredDecor[]).push(...entries);
     return validateAuthoredLevelDocument(trial).length === 0;
+  };
+  const theatrical = level.theme === "casino" || level.theme === "playroom";
+  const props: readonly [string, number, number][] = theatrical
+    ? [["slim-cypress", -1.8, -0.2], ["slim-cypress", 1.5, -0.3], ["flowering-shrub", -1.1, 1.2], ["flowering-shrub", 1.4, 1.1]]
+    : [["broad-canopy-tree", -1.6, -0.2], ["slim-cypress", 1.5, -0.3], ["flowering-shrub", -1.1, 1.2], ["flowering-shrub", 1.4, 1.1]];
+  const tryGroupAt = (id: string, x: number, y: number, z: number): boolean => {
+    const entries: AuthoredDecor[] = [
+      { id: `${id}-soil`, kitPropId: "storybook-planter-island", position: { x, y, z }, rotationY: 0, scale: 1 },
+      ...props.map(([kitPropId, offsetX, offsetZ], index) => ({
+        id: `${id}-${index + 1}`, kitPropId,
+        position: { x: x + offsetX, y: y + 0.24, z: z + offsetZ },
+        rotationY: index * 0.7, scale: index === 2 ? 0.85 : 1,
+      })),
+    ];
+    if (!trialFits(entries)) return false;
+    decor.push(...entries);
+    commands.push(...entries.map((entry) => author.addDecor(entry)));
+    return true;
   };
   const decks = [
     revision.extraCore[0].platformId, revision.core[0].platformId,
@@ -78,22 +143,7 @@ function addPlantingGroups(
       for (const [dx, dz] of side) {
         const x = deck.center.x + dx;
         const z = deck.center.z + dz;
-        const id = `dense-plant-${groups + 1}`;
-        const theatrical = level.theme === "casino" || level.theme === "playroom";
-        const props: readonly [string, number, number][] = theatrical
-          ? [["slim-cypress", -1.8, -0.2], ["slim-cypress", 1.5, -0.3], ["flowering-shrub", -1.1, 1.2], ["flowering-shrub", 1.4, 1.1]]
-          : [["broad-canopy-tree", -1.6, -0.2], ["slim-cypress", 1.5, -0.3], ["flowering-shrub", -1.1, 1.2], ["flowering-shrub", 1.4, 1.1]];
-        const entries: AuthoredDecor[] = [
-          { id: `${id}-soil`, kitPropId: "storybook-planter-island", position: { x, y: top, z }, rotationY: 0, scale: 1 },
-          ...props.map(([kitPropId, offsetX, offsetZ], index) => ({
-            id: `${id}-${index + 1}`, kitPropId,
-            position: { x: x + offsetX, y: top + 0.24, z: z + offsetZ },
-            rotationY: index * 0.7, scale: index === 2 ? 0.85 : 1,
-          })),
-        ];
-        if (!trialFits(entries)) continue;
-        decor.push(...entries);
-        commands.push(...entries.map((entry) => author.addDecor(entry)));
+        if (!tryGroupAt(`dense-plant-${groups + 1}`, x, top, z)) continue;
         groups++;
         break;
       }
@@ -116,7 +166,24 @@ function addPlantingGroups(
       }
     }
   }
-  if (groups < 3 || beds < 2)
+  // The route groups above begin at the first fight. Put one beside the
+  // opening support so the player sees greenery before reaching that fight.
+  const spawnDeck = level.pieces.find((piece) => piece.id === level.anchors.spawn.platformId);
+  if (!spawnDeck || spawnDeck.type !== "platform") throw new Error(`${level.id}: spawn support must be static`);
+  const spawnTop = spawnDeck.center.y + spawnDeck.size.y / 2;
+  // The full tree/shrub cluster needs more clearance than a lone flower bed.
+  // Search the forward sightline from narrow to wider flank offsets, keeping
+  // every candidate outside the spawn landing and requiring full validation.
+  const openingSides = [1.5, 3.5, 5.5, 7.5].map((margin) => spawnDeck.size.x / 2 + margin);
+  const openingForward = [-12, -9, -15, -6];
+  const openingCandidates = openingSides.flatMap((side) => openingForward.flatMap((dz) => [
+    [spawnDeck.center.x + side, spawnDeck.center.z + dz] as const,
+    [spawnDeck.center.x - side, spawnDeck.center.z + dz] as const,
+  ]));
+  if (!openingCandidates.some(([x, z]) => tryGroupAt(`dense-plant-${groups + 1}`, x, spawnTop, z)))
+    throw new Error(`${level.id}: no safe opening planting group`);
+  groups++;
+  if (groups !== 5 || beds < 6)
     throw new Error(`${level.id}: planting coverage too sparse (${groups} groups, ${beds} beds)`);
 }
 
@@ -259,16 +326,16 @@ export function denseWorldCommands(base: LevelEditorProjectV2, revisions: readon
     for (const [index, placement] of revision.core.entries()) {
       widenFor(placement);
       const slot = `ordinary-${index + 5}` as AuthoredExtendedCoreEncounterSlot;
-      const cast = chapter.encounterSlots[placement.castFrom];
-      const anchor = anchorFor(level, placement, slot);
+      const cast = coreCast(revision, slot, chapter.encounterSlots[placement.castFrom]);
+      const anchor = coreAnchorKind(revision, slot, anchorFor(level, placement, slot));
       (level.anchors.encounters as Record<string, AuthoredEncounterAnchor>)[slot] = anchor;
       commands.push(author.addCore(slot, anchor, cast));
     }
     for (const [index, placement] of revision.extraCore.entries()) {
       widenFor(placement);
       const slot = `ordinary-${index + 9}` as AuthoredExtendedCoreEncounterSlot;
-      const cast = chapter.encounterSlots[placement.castFrom];
-      const anchor = anchorFor(level, placement, slot);
+      const cast = coreCast(revision, slot, chapter.encounterSlots[placement.castFrom]);
+      const anchor = coreAnchorKind(revision, slot, anchorFor(level, placement, slot));
       (level.anchors.encounters as Record<string, AuthoredEncounterAnchor>)[slot] = anchor;
       commands.push(author.addCore(slot, anchor, cast));
     }
@@ -279,7 +346,8 @@ export function denseWorldCommands(base: LevelEditorProjectV2, revisions: readon
 }
 
 export function buildDenseWorld(base: LevelEditorProjectV2, revisions: readonly DenseChapterRevision[]): LevelEditorProjectV2 {
-  const result = applyLevelEditorCommands(base, denseWorldCommands(base, revisions));
+  const upgraded = denseCatalogUpgrade(base);
+  const result = applyLevelEditorCommands(upgraded, denseWorldCommands(upgraded, revisions));
   if (!result.ok) throw new Error(`Dense-world commands failed: ${result.issues.map((issue) => `${issue.path}: ${issue.message}`).join("; ")}`);
   const issues = validateLevelEditorProject(result.project);
   if (issues.length) throw new Error(`Dense world invalid: ${issues.map((issue) => `${issue.path}: ${issue.message}`).join("; ")}`);

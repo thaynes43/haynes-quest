@@ -1,0 +1,379 @@
+{
+  "evidenceVersion": 1,
+  "date": "2026-10-04",
+  "method": {
+    "routeDistance": "Sum horizontal distances between consecutive mainPath piece centers; each fight region uses its shared static support deck center.",
+    "gearOrder": "Pickup mainPath index precedes first fight index; for pickups on the first fight deck, compare pickup and first enemy distances from previous mainPath deck center.",
+    "support": "For every encounter anchor, require static platform, compare arena rectangle with deck bounds, and compare anchor Y with deck top.",
+    "dressing": "Count stable planter-island and flower-bed prop IDs; opening planter is measured horizontally and forward from the chapter spawn. Actual opening-camera visibility remains a browser check.",
+    "oldTemplateBytes": "Current A7/B6 SHA-256 equals the same path at base commit 19ba6f55fbd3b6462ef1dc077831d70f54f66cbc."
+  },
+  "newTemplateSources": [
+    "src/shared/levels/family-world-a-v8.json",
+    "src/shared/levels/family-world-b-v7.json"
+  ],
+  "oldTemplateByteStability": [
+    {
+      "path": "src/shared/levels/family-world-a-v7.json",
+      "sha256": "0d4a81a5432bcce1b595a348a76cfdbab685e144598881e17a814b044735d9ef",
+      "unchangedFromBase19ba6f55": true
+    },
+    {
+      "path": "src/shared/levels/family-world-b-v6.json",
+      "sha256": "c94ffae59434cfa9679ea27fa57eb25f2d827fb3d991c01d15c1fc87e67db2f3",
+      "unchangedFromBase19ba6f55": true
+    }
+  ],
+  "chapters": [
+    {
+      "chapterId": "family-a1",
+      "sourceProject": "src/shared/levels/family-world-a-v8.json",
+      "firstRegionM": 32.27,
+      "largestInterPairGapM": 41.16,
+      "pairedRegionDistancesM": [
+        32.27,
+        68.61,
+        93.4,
+        134.57,
+        165.78,
+        182.3
+      ],
+      "pairSeparationRangeM": [
+        4.5,
+        7.49
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "meadow-start",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "hop-2",
+          "routeIndex": 2,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 0.45,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": 11.5,
+          "y": 0,
+          "z": -12
+        },
+        "horizontalDistanceFromSpawnM": 18.51,
+        "forwardDistanceFromSpawnM": 14.5,
+        "companionProps": 4
+      }
+    },
+    {
+      "chapterId": "family-a2",
+      "sourceProject": "src/shared/levels/family-world-a-v8.json",
+      "firstRegionM": 23.3,
+      "largestInterPairGapM": 40.26,
+      "pairedRegionDistancesM": [
+        23.3,
+        45.94,
+        72.44,
+        112.71,
+        144.44,
+        169.24
+      ],
+      "pairSeparationRangeM": [
+        4.2,
+        7.07
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "hq-dock",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "hq-dock",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 0.45,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": 7.5,
+          "y": 0,
+          "z": -12
+        },
+        "horizontalDistanceFromSpawnM": 16.32,
+        "forwardDistanceFromSpawnM": 14.5,
+        "companionProps": 4
+      }
+    },
+    {
+      "chapterId": "family-a3",
+      "sourceProject": "src/shared/levels/family-world-a-v8.json",
+      "firstRegionM": 29.4,
+      "largestInterPairGapM": 50.57,
+      "pairedRegionDistancesM": [
+        29.4,
+        60.55,
+        111.12,
+        161.2,
+        183.71,
+        196.11
+      ],
+      "pairSeparationRangeM": [
+        5.25,
+        6.26
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "launch-deck",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "elevator-roof",
+          "routeIndex": 2,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 0.45,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": 7.5,
+          "y": 0,
+          "z": -9
+        },
+        "horizontalDistanceFromSpawnM": 14.15,
+        "forwardDistanceFromSpawnM": 12,
+        "companionProps": 4
+      }
+    },
+    {
+      "chapterId": "family-a4",
+      "sourceProject": "src/shared/levels/family-world-a-v8.json",
+      "firstRegionM": 36.61,
+      "largestInterPairGapM": 45.56,
+      "pairedRegionDistancesM": [
+        36.61,
+        56.53,
+        81.73,
+        109.73,
+        153.68,
+        199.24
+      ],
+      "pairSeparationRangeM": [
+        2.25,
+        7.51
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "casino-foyer",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "token-step-two",
+          "routeIndex": 2,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 0.45,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": 10.5,
+          "y": 0,
+          "z": -12
+        },
+        "horizontalDistanceFromSpawnM": 16.71,
+        "forwardDistanceFromSpawnM": 13,
+        "companionProps": 4
+      }
+    },
+    {
+      "chapterId": "family-b1",
+      "sourceProject": "src/shared/levels/family-world-b-v7.json",
+      "firstRegionM": 15,
+      "largestInterPairGapM": 49.8,
+      "pairedRegionDistancesM": [
+        15,
+        53.81,
+        70.31,
+        110.87,
+        160.67,
+        189.7
+      ],
+      "pairSeparationRangeM": [
+        4.3,
+        6.75
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "rug-start",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "rug-runner",
+          "routeIndex": 1,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 1.2,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": 7.5,
+          "y": 0,
+          "z": -11
+        },
+        "horizontalDistanceFromSpawnM": 16.77,
+        "forwardDistanceFromSpawnM": 15,
+        "companionProps": 4
+      }
+    },
+    {
+      "chapterId": "family-b2",
+      "sourceProject": "src/shared/levels/family-world-b-v7.json",
+      "firstRegionM": 22.6,
+      "largestInterPairGapM": 45.17,
+      "pairedRegionDistancesM": [
+        22.6,
+        57.38,
+        86.54,
+        131.72,
+        157.36,
+        176.66
+      ],
+      "pairSeparationRangeM": [
+        4.97,
+        6.62
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "garden-gate",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "garden-path",
+          "routeIndex": 1,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 0.5,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": -19.5,
+          "y": 0,
+          "z": 0
+        },
+        "horizontalDistanceFromSpawnM": 15.23,
+        "forwardDistanceFromSpawnM": 14.2,
+        "companionProps": 4
+      }
+    },
+    {
+      "chapterId": "family-b3",
+      "sourceProject": "src/shared/levels/family-world-b-v7.json",
+      "firstRegionM": 16,
+      "largestInterPairGapM": 49.03,
+      "pairedRegionDistancesM": [
+        16,
+        65.03,
+        100.48,
+        122.29,
+        163.81,
+        206.05
+      ],
+      "pairSeparationRangeM": [
+        3.75,
+        7.5
+      ],
+      "gearBeforeFirstPair": true,
+      "gear": {
+        "attack-tool": {
+          "platformId": "stage-door-plaza",
+          "routeIndex": 0,
+          "beforeFirstPairApproach": true
+        },
+        "guard-tool": {
+          "platformId": "fan-walk",
+          "routeIndex": 1,
+          "beforeFirstPairApproach": true
+        }
+      },
+      "coreOrdinary": 12,
+      "optionalOrdinary": 4,
+      "bossGateOrdinaryWins": 4,
+      "allEncounterAnchorsStatic": true,
+      "minArenaEdgeClearanceM": 0.45,
+      "maxSupportTopHeightErrorM": 0,
+      "planterGroups": 5,
+      "deckFlowerBeds": 6,
+      "openingPlanter": {
+        "id": "dense-plant-5-soil",
+        "position": {
+          "x": 6.5,
+          "y": 0.29999999999999993,
+          "z": -12
+        },
+        "horizontalDistanceFromSpawnM": 14.53,
+        "forwardDistanceFromSpawnM": 13,
+        "companionProps": 4
+      }
+    }
+  ]
+}

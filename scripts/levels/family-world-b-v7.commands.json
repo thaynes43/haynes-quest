@@ -6366,6 +6366,15 @@
     "expectedRevision": 2,
     "commands": [
       {
+        "type": "project.catalog.set",
+        "catalogVersion": "parody-catalog-v12"
+      }
+    ]
+  },
+  {
+    "expectedRevision": 3,
+    "commands": [
+      {
         "type": "anchor.set",
         "chapterId": "family-b1",
         "slot": "pickup.guard-tool",
@@ -6536,7 +6545,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "yes-yes-veggie",
+          "catalogEntryId": "broccoli-bouncer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -6562,7 +6571,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "yes-yes-veggie",
+          "catalogEntryId": "broccoli-bouncer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -6588,7 +6597,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "yes-yes-veggie",
+          "catalogEntryId": "broccoli-bouncer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -6614,7 +6623,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "yes-yes-veggie",
+          "catalogEntryId": "broccoli-bouncer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -6666,7 +6675,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "yes-yes-veggie",
+          "catalogEntryId": "broccoli-bouncer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -6718,7 +6727,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "yes-yes-veggie",
+          "catalogEntryId": "broccoli-bouncer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7118,6 +7127,81 @@
         }
       },
       {
+        "type": "decor.add",
+        "chapterId": "family-b1",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": 7.5,
+            "y": 0,
+            "z": -11
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b1",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 5.7,
+            "y": 0.24,
+            "z": -11.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b1",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 9,
+            "y": 0.24,
+            "z": -11.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b1",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 6.4,
+            "y": 0.24,
+            "z": -9.8
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b1",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 8.9,
+            "y": 0.24,
+            "z": -9.9
+          },
+          "rotationY": 2.0999999999999996,
+          "scale": 1
+        }
+      },
+      {
         "type": "decor.remove",
         "chapterId": "family-b2",
         "decorId": "rest-candle-west"
@@ -7296,7 +7380,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "bin-chicken",
+          "catalogEntryId": "bin-chicken-flower-thief",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7322,7 +7406,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "bin-chicken",
+          "catalogEntryId": "bin-chicken-flower-thief",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7348,7 +7432,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "bin-chicken",
+          "catalogEntryId": "bin-chicken-flower-thief",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7374,7 +7458,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "bin-chicken",
+          "catalogEntryId": "bin-chicken-flower-thief",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7426,7 +7510,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "bin-chicken",
+          "catalogEntryId": "bin-chicken-flower-thief",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7498,7 +7582,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "bin-chicken",
+          "catalogEntryId": "bin-chicken-flower-thief",
           "catalogEntryVersion": "v001"
         }
       },
@@ -7898,6 +7982,81 @@
         }
       },
       {
+        "type": "decor.add",
+        "chapterId": "family-b2",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": -19.5,
+            "y": 0,
+            "z": 0
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b2",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "broad-canopy-tree",
+          "position": {
+            "x": -21.1,
+            "y": 0.24,
+            "z": -0.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b2",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": -18,
+            "y": 0.24,
+            "z": -0.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b2",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": -20.6,
+            "y": 0.24,
+            "z": 1.2
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b2",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": -18.1,
+            "y": 0.24,
+            "z": 1.1
+          },
+          "rotationY": 2.0999999999999996,
+          "scale": 1
+        }
+      },
+      {
         "type": "anchor.set",
         "chapterId": "family-b3",
         "slot": "pickup.guard-tool",
@@ -8089,7 +8248,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "demon-band-idol",
+          "catalogEntryId": "demon-idol-drummer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -8115,7 +8274,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "demon-band-idol",
+          "catalogEntryId": "demon-idol-drummer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -8141,7 +8300,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "demon-band-idol",
+          "catalogEntryId": "demon-idol-drummer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -8167,7 +8326,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "demon-band-idol",
+          "catalogEntryId": "demon-idol-drummer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -8219,7 +8378,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "demon-band-idol",
+          "catalogEntryId": "demon-idol-drummer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -8271,7 +8430,7 @@
         },
         "encounter": {
           "source": "catalog",
-          "catalogEntryId": "demon-band-idol",
+          "catalogEntryId": "demon-idol-drummer",
           "catalogEntryVersion": "v001"
         }
       },
@@ -8667,6 +8826,81 @@
             "z": -2.75
           },
           "rotationY": 0.15,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b3",
+        "decor": {
+          "id": "dense-plant-5-soil",
+          "kitPropId": "storybook-planter-island",
+          "position": {
+            "x": 6.5,
+            "y": 0.29999999999999993,
+            "z": -12
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b3",
+        "decor": {
+          "id": "dense-plant-5-1",
+          "kitPropId": "broad-canopy-tree",
+          "position": {
+            "x": 4.9,
+            "y": 0.5399999999999999,
+            "z": -12.2
+          },
+          "rotationY": 0,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b3",
+        "decor": {
+          "id": "dense-plant-5-2",
+          "kitPropId": "slim-cypress",
+          "position": {
+            "x": 8,
+            "y": 0.5399999999999999,
+            "z": -12.3
+          },
+          "rotationY": 0.7,
+          "scale": 1
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b3",
+        "decor": {
+          "id": "dense-plant-5-3",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 5.4,
+            "y": 0.5399999999999999,
+            "z": -10.8
+          },
+          "rotationY": 1.4,
+          "scale": 0.85
+        }
+      },
+      {
+        "type": "decor.add",
+        "chapterId": "family-b3",
+        "decor": {
+          "id": "dense-plant-5-4",
+          "kitPropId": "flowering-shrub",
+          "position": {
+            "x": 7.9,
+            "y": 0.5399999999999999,
+            "z": -10.9
+          },
+          "rotationY": 2.0999999999999996,
           "scale": 1
         }
       }

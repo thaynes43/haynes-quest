@@ -1,10 +1,10 @@
 /** World B v7: six paired main-route fights and four side-route discoveries. */
 import { writeFile } from "node:fs/promises";
 import { buildFamilyWorldBV6, familyWorldBV6Commands } from "./build-family-world-b-v6.js";
-import { buildDenseWorld, denseWorldCommands, serializeDenseWorld, type DenseChapterRevision } from "./family/dense-world-revision.js";
+import { buildDenseWorld, denseCatalogUpgrade, denseCatalogUpgradeCommands, denseWorldCommands, serializeDenseWorld, type DenseChapterRevision } from "./family/dense-world-revision.js";
 
 export const FAMILY_WORLD_B_V7_REVISIONS: readonly DenseChapterRevision[] = [
-  { chapterId: "family-b1", guardTool: { platformId: "rug-runner", dz: 6 }, relocateRequired: {
+  { chapterId: "family-b1", variantId: "broccoli-bouncer", guardTool: { platformId: "rug-runner", dz: 6 }, relocateRequired: {
     "ordinary-3": { platformId: "book-shelf", castFrom: "ordinary-3", dx: -3 },
     "ordinary-4": { platformId: "music-box", castFrom: "ordinary-4", dx: -3 },
   }, core: [
@@ -23,7 +23,7 @@ export const FAMILY_WORLD_B_V7_REVISIONS: readonly DenseChapterRevision[] = [
     { platformId: "tower-block-1", castFrom: "ordinary-3", minWidth: 8, minDepth: 8 },
     { platformId: "pillow-fort", castFrom: "ordinary-4", dx: 2.3 },
   ] },
-  { chapterId: "family-b2", guardTool: { platformId: "garden-path" },
+  { chapterId: "family-b2", variantId: "bin-chicken-flower-thief", guardTool: { platformId: "garden-path" },
     removeDecorIds: ["rest-candle-west", "rest-candle-east", "stair-candle-west-3", "stair-candle-east-3", "stair-candle-west-4", "stair-candle-east-4"], core: [
     { platformId: "flower-terrace", castFrom: "ordinary-1", dx: 4 },
     { platformId: "veranda-south", castFrom: "ordinary-2", dx: -4 },
@@ -40,7 +40,7 @@ export const FAMILY_WORLD_B_V7_REVISIONS: readonly DenseChapterRevision[] = [
     { platformId: "golden-perch", castFrom: "ordinary-3", dz: 3 },
     { platformId: "golden-perch", castFrom: "ordinary-4", dx: 2.5, minWidth: 10, minDepth: 10 },
   ] },
-  { chapterId: "family-b3", guardTool: { platformId: "fan-walk", dz: 8 }, relocateRequired: {
+  { chapterId: "family-b3", variantId: "demon-idol-drummer", guardTool: { platformId: "fan-walk", dz: 8 }, relocateRequired: {
     "ordinary-1": { platformId: "ribbon-bandstand", castFrom: "ordinary-1", dx: -3 },
     "ordinary-2": { platformId: "raft-dock", castFrom: "ordinary-2", dx: -2 },
     "ordinary-4": { platformId: "sky-bleachers", castFrom: "ordinary-4", dx: -2 },
@@ -64,7 +64,7 @@ export const FAMILY_WORLD_B_V7_REVISIONS: readonly DenseChapterRevision[] = [
 
 export function familyWorldBV7Commands() {
   const base = buildFamilyWorldBV6();
-  return [...familyWorldBV6Commands(), denseWorldCommands(base, FAMILY_WORLD_B_V7_REVISIONS)];
+  return [...familyWorldBV6Commands(), denseCatalogUpgradeCommands(base), denseWorldCommands(denseCatalogUpgrade(base), FAMILY_WORLD_B_V7_REVISIONS)];
 }
 
 export function buildFamilyWorldBV7() {

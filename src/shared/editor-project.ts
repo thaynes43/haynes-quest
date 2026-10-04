@@ -1556,6 +1556,7 @@ interface ChapterCommand {
 
 export type LevelEditorCommand =
   | { readonly type: "project.rename"; readonly name: string }
+  | { readonly type: "project.catalog.set"; readonly catalogVersion: LevelEditorCatalogVersion }
   | {
       readonly type: "project.birthdate.set";
       readonly fictionalBirthDate: string;
@@ -1729,6 +1730,7 @@ const branchIdsSchema = z
 
 export const levelEditorCommandSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("project.rename"), name: displayNameSchema }).strict(),
+  z.object({ type: z.literal("project.catalog.set"), catalogVersion: z.enum(LEVEL_EDITOR_CATALOG_VERSIONS) }).strict(),
   z
     .object({
       type: z.literal("project.birthdate.set"),
@@ -2609,6 +2611,10 @@ function renamePieceReferences(
 function applyCommand(project: MutableProject, command: LevelEditorCommand): void {
   if (command.type === "project.rename") {
     project.name = command.name;
+    return;
+  }
+  if (command.type === "project.catalog.set") {
+    worldProjectForCommand(project).catalogVersion = command.catalogVersion;
     return;
   }
   if (command.type === "project.birthdate.set") {
