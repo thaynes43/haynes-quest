@@ -26,6 +26,50 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 <span id="images-and-models"></span>
 <span id="replacement-parody-direction"></span>
 
+## Action-world construction references
+
+The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds six ordinary enemy variants and three planting props. The following images are the selected construction concepts; their Blender exports are in progress on two isolated scenes.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="action-minions-a" markdown="1">
+
+[![Gadget Hammer Hopper, Mischief Kitten Skater and Lab Robot Sentry construction views](media/catalog-thumbnails/v001/b97170ba8583a265.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/action-minions-a/v001.md)
+
+### [Action minions A](reviews/action-minions-a/v001.md)
+
+<span class="catalog-state">Construction concept · v001 · Blender models in progress</span>
+
+A spring-boot toolbox, skating kitten and radar-eyed robot extend the Clubhouse, Harbor and Hero City casts.
+
+</div>
+
+<div class="catalog-card" data-asset-id="action-minions-b" markdown="1">
+
+[![Broccoli Bouncer, Bin Chicken Flower Thief and Demon Idol Drummer construction views](media/catalog-thumbnails/v001/da7829e30256e45a.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/action-minions-b/v001.md)
+
+### [Action minions B](reviews/action-minions-b/v001.md)
+
+<span class="catalog-state">Construction concept · v001 · Blender models in progress</span>
+
+A bouncing broccoli, flower-stealing bird and fantasy band drummer bring new shapes to the Playroom, Magic House and Big Stage.
+
+</div>
+
+<div class="catalog-card" data-asset-id="storybook-planting-kit" markdown="1">
+
+[![Broad canopy tree, slim cypress and flowering shrub construction views](media/catalog-thumbnails/v001/215d467cf1b1ee60.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-planting-kit/v001.md)
+
+### [Storybook planting kit](reviews/storybook-planting-kit/v001.md)
+
+<span class="catalog-state">Construction concept · v001 · Blender props in progress</span>
+
+Three reusable silhouettes for planted spaces beside the routes.
+
+</div>
+
+</div>
+
 ## Family eras {#family-eras}
 
 Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. Catalog v11 registers the five Hero City, Big Stage and Casino bonus models used by the v5 family worlds. The [current handoff](../../.agents/HANDOFF.md) records the checked live revision and remaining owner reviews.

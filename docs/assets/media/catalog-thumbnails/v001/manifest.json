@@ -10,6 +10,20 @@
       "sha256": "fe81e89c733cf6359898d616beb9b1740d6e705a22e51888a9816012e7cab4ee"
     },
     {
+      "source": "docs/assets/media/action-minions-a/v001/concept.png",
+      "source_sha256": "866f33ef1d08e0c2375e0f65d17939797d4b0be452d852e89e3aee2e97c1bd19",
+      "path": "docs/assets/media/catalog-thumbnails/v001/b97170ba8583a265.webp",
+      "bytes": 29730,
+      "sha256": "38ac14f7a1b72b580aec45272a1a80c8a40a1f3b5046e882d0a2084f39cbdcca"
+    },
+    {
+      "source": "docs/assets/media/action-minions-b/v001/concept.png",
+      "source_sha256": "ca80747a3c64a060c754f378f88471bbad63615b20815b28c0b691be077e950c",
+      "path": "docs/assets/media/catalog-thumbnails/v001/da7829e30256e45a.webp",
+      "bytes": 28006,
+      "sha256": "84d7cb3cc06995b70b1b53b00e0222b84c037850a281a278fa8b677c93e52afa"
+    },
+    {
       "source": "docs/assets/media/arrival-landmark/v001/beauty.png",
       "source_sha256": "2b13751a48433515c12bc303b1280c3f5007cf6eacbdd8e13bcd3c9ccd9e3139",
       "path": "docs/assets/media/catalog-thumbnails/v001/ea05da55c11ace56.webp",
@@ -918,6 +932,13 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/f09b90cfa2723c1a.webp",
       "bytes": 4872,
       "sha256": "990513fc3c39f74e87d21c429ae8e97fd169c1c9a0740533fcdc058fd0c1c946"
+    },
+    {
+      "source": "docs/assets/media/storybook-planting-kit/v001/concept.png",
+      "source_sha256": "cb3123616695ed8d75bb25ba209eec38e420e3beeca0d778ff8958fe0879f964",
+      "path": "docs/assets/media/catalog-thumbnails/v001/215d467cf1b1ee60.webp",
+      "bytes": 26710,
+      "sha256": "d60622a341472dd1703b61b7368ad82b35d80474ae7f45acab9ace27cbcb44dd"
     },
     {
       "source": "docs/assets/media/storybook-reference/v001/environment.png",

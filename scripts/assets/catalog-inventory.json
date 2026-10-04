@@ -2,8 +2,8 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 106,
-    "reference_sheet_entries": 8,
+    "entries": 109,
+    "reference_sheet_entries": 11,
     "model_entries": 77,
     "model_files": 77,
     "concept_only_entries": 2,
@@ -14,6 +14,66 @@
     "owner_approved_entries": 1
   },
   "assets": [
+    {
+      "id": "action-minions-a",
+      "title": "Action minions A",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/action-minions-a/v001.md",
+      "concept_images": [
+        "docs/assets/media/action-minions-a/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction concept; Blender production in progress; awaiting Tom review",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/action-minions-a/v001/concept.png": "866f33ef1d08e0c2375e0f65d17939797d4b0be452d852e89e3aee2e97c1bd19",
+        "docs/assets/media/action-minions-a/v001/prompt.txt": "cf967af0f21e902ca413638c5b729422b3ab5357e69bcdefde567eb87e65011f"
+      }
+    },
+    {
+      "id": "action-minions-b",
+      "title": "Action minions B",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/action-minions-b/v001.md",
+      "concept_images": [
+        "docs/assets/media/action-minions-b/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction concept; Blender production in progress; awaiting Tom review",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/action-minions-b/v001/concept.png": "ca80747a3c64a060c754f378f88471bbad63615b20815b28c0b691be077e950c",
+        "docs/assets/media/action-minions-b/v001/prompt.txt": "f723c2db8a11418e9a44275e41279362364da78aad08018d47b5a266ebd1faae"
+      }
+    },
+    {
+      "id": "storybook-planting-kit",
+      "title": "Storybook planting kit",
+      "category": "reference-sheets",
+      "review": "docs/assets/reviews/storybook-planting-kit/v001.md",
+      "concept_images": [
+        "docs/assets/media/storybook-planting-kit/v001/concept.png"
+      ],
+      "model_images": [],
+      "models": [],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "coordinator-selected construction concept; Blender production in progress; awaiting Tom review",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/storybook-planting-kit/v001/concept.png": "cb3123616695ed8d75bb25ba209eec38e420e3beeca0d778ff8958fe0879f964",
+        "docs/assets/media/storybook-planting-kit/v001/prompt.txt": "0e8d62a8ad60fe7ea9185b6b9dbb2a0afbc52ae768a0d6f3916c7e548db1b6c2"
+      }
+    },
     {
       "id": "clubhouse-bully-cat",
       "title": "Clubhouse Bully Cat",
@@ -35,7 +95,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/clubhouse-bully-cat/v001/clubhouse-bully-cat.blend": "f3d6ee6126bc42cba5fa95a7eb3a0a0cc8fc9e0d7de9718b761fd82bf0572496",
@@ -148,7 +208,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/honk-bus/v001/honk-bus.blend": "645a6f63532559cdf648efa0b32ee8f46cc69cd50ff7f7eb4d86b8fbc87cde00",
@@ -272,7 +332,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/gadget-helper/v001/gadget-helper.blend": "f467492d4dd667a21a3d695925680ffed927b1457d138fe49536372b87011351",
@@ -404,7 +464,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/yes-yes-veggie/v001/yes-yes-veggie.blend": "332d263434c22cdb607f02ba087a20b42c19c6814237a4d40913ab19fcc34672",
@@ -549,7 +609,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/playroom-kit/v001/stacking-block-tower.glb": "52c952ead6190deb1b0f483fbb8c69b68d91b242096dd83cfc663a8b7d79742b",
@@ -602,7 +662,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/playroom-kit/v001/toy-bus-garage.glb": "a227201805d5af12ce7e671471a1a59a1ddc57b0fd75913d4184d22e6c7233ec",
@@ -655,7 +715,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/playroom-kit/v001/crib-rail-fence.glb": "cfbef726a59bda3ffb08f680a5e3d0854e9ee1395537014ab9253a383dca0799",
@@ -708,7 +768,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Sing-Along Playroom scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/playroom-kit/v001/giant-plush-ball.glb": "d777c5c5fed749978974ae1b2750f45d9306e3a10234d63f35026dc040fd6a49",
@@ -762,7 +822,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rival-mayor/v001/rival-mayor.blend": "53dbb763aacb5f6c4272f165d543168c2129fbd592453fd6b53cdb466175799a",
@@ -916,7 +976,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/magic-house/v001/magic-house.blend": "243b36560389175f6d865d957e455d2a666bfb22f612c5b87327e2622f4e38d3",
@@ -1074,7 +1134,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/mischief-kitten/v001/mischief-kitten.blend": "b95c8d0d69d641b48724d8e79331e1f4706df435c3ed3fc6e66e56ed807baaf1",
@@ -1246,7 +1306,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review · used in the family release",
+      "state": "completed model candidate from a Blender reference sheet, no generated concept; Awaiting Tom's review \u00b7 used in the family release",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/bin-chicken/v001/bin-chicken.blend": "1a8b30358de09ac35e6cabbc9f0172942cd9067f4c0451089ffbc9c4c073a8bf",
@@ -2411,7 +2471,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed model candidate; Awaiting Tom exact-version review · prepared for family-world-a@v6",
+      "state": "completed model candidate; Awaiting Tom exact-version review \u00b7 prepared for family-world-a@v6",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/web-slinger-helper/v001/attachment-inspection.json": "a10b78eeeca72c930d6bf877741b45135cfc630b53f1975846103815e509bf6d",
@@ -2675,7 +2735,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review \u00b7 used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/toon-clubhouse-kit/v001/clubhouse-tower-facade.glb": "81172c6b895e753980dac575cd21112e615cc59cfdbdfbcb43d67c996831d6de",
@@ -2721,7 +2781,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review \u00b7 used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/toon-clubhouse-kit/v001/curly-slide.glb": "b9ef3b9003a7bb660f99deaf65a5593642f3bfa5526d1ffa6c12e43803d4a5a0",
@@ -2767,7 +2827,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review \u00b7 used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/toon-clubhouse-kit/v001/gadget-toolbox-stand.glb": "a61811d38f54a62ec5b1594dc8cea5a686bcfbe8fbeaaf8242302d952cd19fc1",
@@ -2813,7 +2873,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review \u00b7 used in the family release; exact v001 placed as scenery in the family world templates Clubhouse to Casino (family world A) chapter 1",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/toon-clubhouse-kit/v001/rounded-hedge.glb": "9978ed900a455e6e4f3d3e54d71f568e87065b1c3c4b3b4e066ec2f0244b7c2f",
@@ -2859,7 +2919,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review · used in the family release; registered in the clubhouse theme kit; no published level places it yet",
+      "state": "completed static model candidate from the Astra concept draft; Awaiting Tom's review \u00b7 used in the family release; registered in the clubhouse theme kit; no published level places it yet",
       "checksums": {
         "docs/assets/media/toon-clubhouse-kit/v001/stage-marker.glb": "7296a1b7dbdc085ef8f6910469252f655ca221f7526bd8027dcdf6df9d7af3ec",
         "docs/assets/media/toon-clubhouse-kit/v001/concept-draft.png": "c1c29cf3bf7c957386e85f3e822f3a5deec9617ee5adc979e495ce8fe4be6cfe",
@@ -2959,7 +3019,7 @@
     },
     {
       "id": "rat-casino-kit",
-      "title": "Rat Casino · environment concept",
+      "title": "Rat Casino \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/rat-casino-kit/v001.md",
       "concept_images": [
@@ -3309,7 +3369,7 @@
     },
     {
       "id": "rat-pit-boss-v001-checkpoint",
-      "title": "Rat Pit Boss · v001 checkpoint",
+      "title": "Rat Pit Boss \u00b7 v001 checkpoint",
       "category": "parody-characters",
       "review": "docs/assets/reviews/rat-pit-boss/v001.md",
       "concept_images": [
@@ -3491,7 +3551,7 @@
     },
     {
       "id": "skyline-toybox-kit",
-      "title": "Skyline toybox · environment concept",
+      "title": "Skyline toybox \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/skyline-toybox-kit/v001.md",
       "concept_images": [
@@ -3509,7 +3569,7 @@
     },
     {
       "id": "midnight-arcade-kit",
-      "title": "Midnight arcade · environment concept",
+      "title": "Midnight arcade \u00b7 environment concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/midnight-arcade-kit/v001.md",
       "concept_images": [
@@ -3598,7 +3658,7 @@
     },
     {
       "id": "bickering-besties",
-      "title": "The Besties · approved joint concept",
+      "title": "The Besties \u00b7 approved joint concept",
       "category": "reference-sheets",
       "review": "docs/assets/reviews/bickering-besties/v001.md",
       "concept_images": [
@@ -4226,7 +4286,7 @@
     },
     {
       "id": "fixture-route-memories",
-      "title": "Fixture route memories · v001",
+      "title": "Fixture route memories \u00b7 v001",
       "category": "fixture-illustrations",
       "review": "docs/assets/reviews/fixture-route-memories/v001.md",
       "concept_images": [],
@@ -4250,7 +4310,7 @@
     },
     {
       "id": "memory-collected",
-      "title": "A memory found · v001",
+      "title": "A memory found \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/memory-collected/v001.md#audition",
       "concept_images": [],
@@ -4271,7 +4331,7 @@
     },
     {
       "id": "ability-unlocked",
-      "title": "A little more possible · v001",
+      "title": "A little more possible \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/ability-unlocked/v001.md#audition",
       "concept_images": [],
@@ -4292,7 +4352,7 @@
     },
     {
       "id": "movement-landed",
-      "title": "Back on the path · v001",
+      "title": "Back on the path \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/movement-landed/v001.md#audition",
       "concept_images": [],
@@ -4313,7 +4373,7 @@
     },
     {
       "id": "ui-confirmed",
-      "title": "A quiet yes · v001",
+      "title": "A quiet yes \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/ui-confirmed/v001.md#audition",
       "concept_images": [],
@@ -4336,7 +4396,7 @@
     },
     {
       "id": "bounce-pad-boing",
-      "title": "Up we spring · v001",
+      "title": "Up we spring \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/bounce-pad-boing/v001.md#audition",
       "concept_images": [],
@@ -4357,7 +4417,7 @@
     },
     {
       "id": "lift-arrival-chime",
-      "title": "The lift has arrived · v001",
+      "title": "The lift has arrived \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/lift-arrival-chime/v001.md#audition",
       "concept_images": [],
@@ -4380,7 +4440,7 @@
     },
     {
       "id": "crumble-crack",
-      "title": "Cookie crumble · v001",
+      "title": "Cookie crumble \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/crumble-crack/v001.md#audition",
       "concept_images": [],
@@ -4401,7 +4461,7 @@
     },
     {
       "id": "double-jump-whoosh",
-      "title": "One more hop · v001",
+      "title": "One more hop \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/double-jump-whoosh/v001.md#audition",
       "concept_images": [],
@@ -4422,7 +4482,7 @@
     },
     {
       "id": "glide-wind",
-      "title": "Riding the breeze · v001",
+      "title": "Riding the breeze \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/glide-wind/v001.md#audition",
       "concept_images": [],
@@ -4447,7 +4507,7 @@
     },
     {
       "id": "golden-ticket-sparkle",
-      "title": "A golden ticket · v001",
+      "title": "A golden ticket \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/golden-ticket-sparkle/v001.md#audition",
       "concept_images": [],
@@ -4468,7 +4528,7 @@
     },
     {
       "id": "honk-bus-honk",
-      "title": "Honk honk · v001",
+      "title": "Honk honk \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/honk-bus-honk/v001.md#audition",
       "concept_images": [],
@@ -4491,7 +4551,7 @@
     },
     {
       "id": "enemy-poof",
-      "title": "Poof, gone · v001",
+      "title": "Poof, gone \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/enemy-poof/v001.md#audition",
       "concept_images": [],
@@ -4516,7 +4576,7 @@
     },
     {
       "id": "jump-scare-sting",
-      "title": "It found you · v001",
+      "title": "It found you \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/jump-scare-sting/v001.md#audition",
       "concept_images": [],
@@ -4541,7 +4601,7 @@
     },
     {
       "id": "servo-creak",
-      "title": "Did it just move? · v001",
+      "title": "Did it just move? \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/servo-creak/v001.md#audition",
       "concept_images": [],
@@ -4564,7 +4624,7 @@
     },
     {
       "id": "light-buzz",
-      "title": "Lights back on · v001",
+      "title": "Lights back on \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/light-buzz/v001.md#audition",
       "concept_images": [],
@@ -4589,7 +4649,7 @@
     },
     {
       "id": "distant-laugh",
-      "title": "Laughter down the hall · v001",
+      "title": "Laughter down the hall \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/distant-laugh/v001.md#audition",
       "concept_images": [],
@@ -4612,7 +4672,7 @@
     },
     {
       "id": "radio-static",
-      "title": "Between stations · v001",
+      "title": "Between stations \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/radio-static/v001.md#audition",
       "concept_images": [],
@@ -4633,7 +4693,7 @@
     },
     {
       "id": "casino-hum",
-      "title": "After hours · v001",
+      "title": "After hours \u00b7 v001",
       "category": "sound-auditions",
       "review": "docs/assets/reviews/casino-hum/v001.md#audition",
       "concept_images": [],
@@ -4677,7 +4737,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Harbor Rescue scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
@@ -4719,7 +4779,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Harbor Rescue scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
@@ -4761,7 +4821,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Harbor Rescue scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
@@ -4804,7 +4864,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Harbor Rescue scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Harbor Rescue scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rescue-harbor-kit/v001/final-verification.json": "08e4cb2a8d8c2e3f9b64f3c37e5e5d7fda81fb4da854ed0493ba4a0c24a596de",
@@ -4847,7 +4907,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Magic House scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
@@ -4891,7 +4951,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Magic House scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
@@ -4935,7 +4995,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Magic House scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/casita-kit/v001/casita-kit.blend": "b88cea7178f0d9ecd2615a43dfbc9bce4c74867e19631e56a1e9957c3f50aa05",
@@ -4978,7 +5038,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Magic House scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Magic House scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/casita-kit/v001/butterfly-arch.glb": "f102c4e4927739e4ee870366dc9228ad0b20e03999d48d05abf94e26ced30ca7",
@@ -5021,7 +5081,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Hero City scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rooftop-city-kit/v001/final-verification.json": "14e120ce2a8d610d00e3d02bdc23fcdb6a328550265155f5271b8cd9f147f047",
@@ -5063,7 +5123,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Hero City scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rooftop-city-kit/v001/final-verification.json": "14e120ce2a8d610d00e3d02bdc23fcdb6a328550265155f5271b8cd9f147f047",
@@ -5105,7 +5165,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Hero City scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rooftop-city-kit/v001/crane-hook.glb": "5ce9c241b45d02a603db49c60bc6564f6219a12ee993375992c8978710faed0f",
@@ -5147,7 +5207,7 @@
       "audio": [],
       "thumbnail": null,
       "version": "v001",
-      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review · used in the family release; replaces the existing Hero City scenery stand-in",
+      "state": "completed static model candidate from coordinator-approved Blender reference sheet; Awaiting Tom's review \u00b7 used in the family release; replaces the existing Hero City scenery stand-in",
       "gameplay_use": "private-candidate",
       "checksums": {
         "docs/assets/media/rooftop-city-kit/v001/billboard-frame.glb": "dc7cd885071e4ccb2bbbb737761664fb4a71a573423376a6b8e8761a21fe12cf",
