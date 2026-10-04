@@ -1,0 +1,588 @@
+{
+  "asset_id": "gadget-hammer-hopper",
+  "version": "v001",
+  "glb_sha256": "ac4f92e0ec57a172272616507cc399fd15e0c791ec768f6adfc4a64bad41530e",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader import of the GLB bytes; every exported skin vertex sampled at 60 Hz in every clip; SkeletonUtils clones driven by the real src/game/enemy-animation.ts adapter. Part clearance uses rest-space boxes of the named bone groups (dominant skin weight), so it is a proxy, not triangle collision. No physical-device claim.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.7398317524327521,
+      -4.657195264773456e-9,
+      -0.3197670288053187
+    ],
+    "max": [
+      0.988675778989351,
+      1.5414782316099696,
+      0.31733155250549794
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -1.052885804324807,
+      -4.2647708400000747e-8,
+      -1.0603327872115473
+    ],
+    "max": [
+      1.332883382150084,
+      1.921143569877078,
+      1.1629698322680662
+    ]
+  },
+  "height_m": 1.5414782316099696,
+  "dimensions_m": [
+    1.7285075314221032,
+    1.5414782362671648,
+    0.6370985813108166
+  ],
+  "body_footprint_y_up": {
+    "min": [
+      -0.46765738725662936,
+      0.45500001311302185,
+      -0.2900000214576765
+    ],
+    "max": [
+      0.46765738725662936,
+      1.0924999713897705,
+      0.31733155250549794
+    ]
+  },
+  "exported_bounds": {
+    "min": [
+      -1.058,
+      -0.006,
+      -1.066
+    ],
+    "max": [
+      1.338,
+      1.927,
+      1.168
+    ]
+  },
+  "root_bone_tracks": [
+    {
+      "clip": "idle",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.scale",
+      "constant": true
+    }
+  ],
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 12096,
+      "max_vertex_displacement_m": 0.22081989946240485,
+      "bounds_y_up": {
+        "min": [
+          -0.7624188495262485,
+          -4.657195264773456e-9,
+          -0.3307830605028841
+        ],
+        "max": [
+          1.050292635576076,
+          1.5453103029341104,
+          0.3298369869655887
+        ]
+      },
+      "loop_seam_max_m": 6.951880125167376e-8,
+      "floor_minimum": {
+        "y": -4.657195264773456e-9,
+        "bone": "boot",
+        "position": [
+          7.155564555000735e-17,
+          -4.657195264773456e-9,
+          -0.2621395138560052
+        ],
+        "time_s": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "move": {
+      "duration_s": 0.699999988079071,
+      "samples": 43,
+      "vertices_per_sample": 12096,
+      "max_vertex_displacement_m": 0.36103914159817835,
+      "bounds_y_up": {
+        "min": [
+          -0.7716922066660223,
+          -1.932864902645184e-8,
+          -0.4449684637666556
+        ],
+        "max": [
+          1.061226369154099,
+          1.783181629422097,
+          0.31985411231164407
+        ]
+      },
+      "loop_seam_max_m": 3.52938578365572e-7,
+      "floor_minimum": {
+        "y": -1.932864902645184e-8,
+        "bone": "boot",
+        "position": [
+          -8.070666525846617e-16,
+          -1.932864902645184e-8,
+          -0.2621395283824285
+        ],
+        "time_s": 0.5666666570163909
+      },
+      "held_defeat_difference_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 12096,
+      "max_vertex_displacement_m": 1.7476249994388122,
+      "bounds_y_up": {
+        "min": [
+          -0.7909993990458374,
+          -4.657195264773456e-9,
+          -1.0603327872115473
+        ],
+        "max": [
+          1.332883382150084,
+          1.921143569877078,
+          0.7299776353931653
+        ]
+      },
+      "loop_seam_max_m": 2.0163779002931777e-7,
+      "floor_minimum": {
+        "y": -4.657195264773456e-9,
+        "bone": "boot",
+        "position": [
+          7.155564555000735e-17,
+          -4.657195264773456e-9,
+          -0.2621395138560052
+        ],
+        "time_s": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "hit": {
+      "duration_s": 0.6000000238418579,
+      "samples": 37,
+      "vertices_per_sample": 12096,
+      "max_vertex_displacement_m": 0.5806458899259774,
+      "bounds_y_up": {
+        "min": [
+          -0.8522388422938476,
+          -4.6571952925290314e-9,
+          -0.33563904782786597
+        ],
+        "max": [
+          1.0816617933488066,
+          1.6271041113030822,
+          0.5812608509608983
+        ]
+      },
+      "loop_seam_max_m": 5.833007268832077e-8,
+      "floor_minimum": {
+        "y": -4.6571952925290314e-9,
+        "bone": "boot",
+        "position": [
+          7.15556457568025e-17,
+          -4.6571952925290314e-9,
+          -0.2621395138560052
+        ],
+        "time_s": 0.38333334856563145
+      },
+      "held_defeat_difference_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 12096,
+      "max_vertex_displacement_m": 2.0672800320671185,
+      "bounds_y_up": {
+        "min": [
+          -1.052885804324807,
+          -4.2647708400000747e-8,
+          -1.035560000697325
+        ],
+        "max": [
+          1.3143353003694096,
+          1.871541392528712,
+          1.1629698322680662
+        ]
+      },
+      "loop_seam_max_m": 1.5962723232165994,
+      "floor_minimum": {
+        "y": -4.2647708400000747e-8,
+        "bone": "boot",
+        "position": [
+          -0.05974998434512124,
+          -4.2647708400000747e-8,
+          -0.2552392688804652
+        ],
+        "time_s": 0.31666667924986946
+      },
+      "held_defeat_difference_m": 3.591242263350988e-7
+    }
+  },
+  "clearance": {
+    "mallet_vs_box": {
+      "pairs": {
+        "of": [
+          "mallet"
+        ],
+        "solid": "box"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "mallet_vs_lid": {
+      "pairs": {
+        "of": [
+          "mallet"
+        ],
+        "solid": "lid"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "fists_vs_box": {
+      "pairs": {
+        "of": [
+          "hand_R",
+          "hand_L"
+        ],
+        "solid": "box"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "fists_vs_lid": {
+      "pairs": {
+        "of": [
+          "hand_R",
+          "hand_L"
+        ],
+        "solid": "lid"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "boot_vs_box": {
+      "pairs": {
+        "of": [
+          "boot"
+        ],
+        "solid": "box"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "boot_vs_lid": {
+      "pairs": {
+        "of": [
+          "boot"
+        ],
+        "solid": "lid"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "wrench_hidden_until_defeat": {
+      "pairs": {
+        "of": [
+          "wrench"
+        ],
+        "solid": "box",
+        "mode": "inside",
+        "clips": [
+          "idle",
+          "move",
+          "attack",
+          "hit"
+        ]
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0
+      }
+    }
+  },
+  "images": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "encoded_bytes": 195681
+    }
+  ],
+  "max_skin_influences": 2,
+  "max_weight_sum_error": 2.9802322387695312e-8,
+  "adapter": {
+    "contact_fraction": 0.625,
+    "probe": "mallet",
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "probe": [
+          0.639999883680078,
+          1.0999999425237652,
+          -0.049999978579100074
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "probe": [
+          0.6782654466084685,
+          1.2507835621672339,
+          -0.13971388747894078
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "probe": [
+          0.3599998170860591,
+          0.3779109180693723,
+          -0.5875662586278462
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "probe": [
+          0.6400000559882366,
+          1.1000002560485596,
+          -0.05000000047112054
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "probe": [
+          0.6400000559882366,
+          1.1000002560485596,
+          -0.05000000047112054
+        ]
+      }
+    ],
+    "direct_contact_probe": [
+      0.3599998170860591,
+      0.3779109180693723,
+      -0.5875662586278462
+    ],
+    "defeat_states": [
+      {
+        "time_s": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.0500000000000003,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.6500000000000004,
+        "visible": true,
+        "vanish": 0.8333330154418934
+      },
+      {
+        "time_s": 2.95,
+        "visible": false,
+        "vanish": 1
+      },
+      {
+        "time_s": 4,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "beats": {
+    "contact": {
+      "mallet_min_y": 0.015933191243976297,
+      "mallet_centre": [
+        0.35999978560576607,
+        0.2741449468535746,
+        -0.7655846345779638
+      ],
+      "mallet_front_z": -1.0409950742698233
+    },
+    "pre_contact_mallet_min_y": 0.6355788230550814,
+    "mallet_height_contact": 0.5164235112191966,
+    "mallet_height_squash": 0.4495740187067299,
+    "move_boot_max_lift_m": 0.11662838819508559,
+    "hit_lid_open_deg": 31.40144547787903,
+    "defeat_held": {
+      "box_up_axis": [
+        0,
+        0,
+        1
+      ],
+      "wrench_min_y": 0.0005005066602312772,
+      "wrench_centre": [
+        -0.6162,
+        0.0165,
+        -0.5476
+      ],
+      "box_min_y": 0.0026684305405814124,
+      "boot_min_y": 0.3980368931304451,
+      "boot_max_y": 0.8789537597255723
+    },
+    "idle0_vs_bind_max_m": 2.721055145355517e-7
+  },
+  "checks": {
+    "five_exact_clips": true,
+    "attack_2_s": true,
+    "all_tracks_resolve_below_scene_root": true,
+    "no_root_motion": true,
+    "all_clips_move_vertices": true,
+    "idle_move_seamless": true,
+    "held_defeat": true,
+    "no_floor_penetration": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "height_1_3_to_1_6_m": true,
+    "standing_on_floor": true,
+    "floor_centred_body": true,
+    "one_1024_atlas": true,
+    "two_draw_primitives": true,
+    "exported_bounds_cover_all_poses": true,
+    "actual_adapter_contact_pose": true,
+    "actual_adapter_defeat_vanish": true,
+    "adapter_root_identity": true,
+    "independent_skeleton_clone": true,
+    "clear_mallet_vs_box": true,
+    "clear_mallet_vs_lid": true,
+    "clear_fists_vs_box": true,
+    "clear_fists_vs_lid": true,
+    "clear_boot_vs_box": true,
+    "clear_boot_vs_lid": true,
+    "clear_wrench_hidden_until_defeat": true,
+    "idle_starts_in_concept_pose": true,
+    "mallet_cap_hits_floor_at_contact": true,
+    "mallet_strikes_in_front": true,
+    "mallet_still_falling_before_contact": true,
+    "mallet_squashes_on_impact": true,
+    "boot_leaves_floor_in_move": true,
+    "lid_pops_on_hit": true,
+    "defeat_lies_on_its_back": true,
+    "wrench_rests_on_floor_in_defeat": true,
+    "boot_kicks_up_in_defeat": true
+  }
+}
