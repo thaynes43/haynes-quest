@@ -41,6 +41,7 @@ const parodyMotion: Record<
   "bin-chicken-flower-thief": { contactFraction: 0.625, height: 1.4803972244262695 },
   "demon-idol-drummer": { contactFraction: 0.625, height: 1.5699700117111206 },
   "mischief-kitten-skater": { contactFraction: 0.625, height: 1.3082286958773262 },
+  "lab-robot-sentry": { contactFraction: 0.625, height: 1.5149998664855957 },
 };
 
 interface ParodyArtworkBase {

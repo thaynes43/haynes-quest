@@ -25,6 +25,7 @@ const deliveredHeights = {
   "bin-chicken-flower-thief": 1.4803972244262695,
   "demon-idol-drummer": 1.5699700117111206,
   "mischief-kitten-skater": 1.3082286958773262,
+  "lab-robot-sentry": 1.5149998664855957,
 } as const;
 
 describe("parody-catalog-v12", () => {

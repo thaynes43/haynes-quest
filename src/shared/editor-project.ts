@@ -541,6 +541,7 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "bin-chicken-flower-thief@v001:bin-chicken-flower-thief@v001",
   "demon-idol-drummer@v001:demon-idol-drummer@v001",
   "mischief-kitten-skater@v001:mischief-kitten-skater@v001",
+  "lab-robot-sentry@v001:lab-robot-sentry@v001",
 ]);
 
 const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
