@@ -16,8 +16,8 @@
  * planner (`planPatientLeg` in `tests/game/family-kid-lib.ts`) from the live
  * game state — waits for sweepers, detours, lift and ferry timing — then
  * executes that plan closed-loop against the live game, re-planning after any
- * fall. It collects both pickups, both minor memories, fights all four
- * ordinaries and the boss, and finishes on the major memory. The optional
+ * fall. It collects both pickups and minor memories, defeats every required
+ * ordinary and the boss, and finishes on the major memory. The optional
  * branches and bonus fights are left for players.
  *
  * Lockstep proves route logic, collisions, combat rules and completion under
@@ -64,6 +64,8 @@
  *   QUEST_E2E_FAMILY_CARD synthetic family card label; uses its real published save instead of an editor playtest
  *   QUEST_E2E_FRIENDLY_ASSET exact friendly asset to exercise; requires UNTIL=friendly and FAMILY_CARD
  *   QUEST_E2E_SKIP_DRAW 1 to skip GPU drawing between captures (simulation and input remain unchanged)
+ *   QUEST_E2E_REALTIME_SAMPLE 1 to sample real frame intervals, draw calls and loaded assets at spawn;
+ *     with UNTIL=first-fight also sample beside the first ordinary (the clock resumes before stopping)
  *
  *   pnpm build && QUEST_EPHEMERAL_PLAYTEST=true QUEST_FIXTURE_MODE=true \
  *     NODE_ENV=development BETTER_AUTH_SECRET=... QUEST_APP_ORIGIN=http://127.0.0.1:3000 \
@@ -121,6 +123,8 @@ assert.ok(
 const familyCard = process.env.QUEST_E2E_FAMILY_CARD ?? "";
 const friendlyAsset = process.env.QUEST_E2E_FRIENDLY_ASSET ?? "";
 const skipDraw = process.env.QUEST_E2E_SKIP_DRAW === "1";
+const realtimeSample = process.env.QUEST_E2E_REALTIME_SAMPLE === "1";
+assert.ok(!realtimeSample || !skipDraw, "real-time sampling requires normal GPU drawing");
 assert.ok(until !== "friendly" || (familyCard && friendlyAsset), "friendly checks require a synthetic family card and exact asset");
 const spawnIdleSeconds = Number(process.env.QUEST_E2E_SPAWN_IDLE ?? 20);
 assert.ok(spawnIdleSeconds >= 0 && spawnIdleSeconds <= 300, "QUEST_E2E_SPAWN_IDLE must be 0 to 300");
@@ -578,6 +582,77 @@ interface LegRecord {
   ok: boolean;
 }
 
+interface RealtimeSample {
+  frames: number;
+  meanFrameMs: number;
+  p95FrameMs: number;
+  fps: number;
+  meanDrawCalls: number;
+  p95DrawCalls: number;
+  totalDrawCalls: number;
+  loadedModels: Array<{ path: string; bytes: number; durationMs: number }>;
+  renderer: string;
+  viewport: { width: number; height: number; deviceScaleFactor: number };
+  deviceEvidence: false;
+}
+
+/** Measure only while page time flows normally; a paused clock cannot provide frame evidence. */
+async function sampleRealtime(
+  page: Page,
+  loadedModels: Array<{ path: string; bytes: number; durationMs: number }>,
+): Promise<RealtimeSample> {
+  const measured = await page.evaluate(`new Promise((resolveSample) => {
+    const drawCounter = window;
+    const intervals = [];
+    const calls = [];
+    let lastTime = 0;
+    let lastCalls = drawCounter.__questDrawCalls || 0;
+    const started = performance.now();
+    const frame = (time) => {
+      if (lastTime > 0) {
+        intervals.push(time - lastTime);
+        const count = drawCounter.__questDrawCalls || 0;
+        calls.push(count - lastCalls);
+        lastCalls = count;
+      }
+      lastTime = time;
+      if (intervals.length < 120 && time - started < 5000) {
+        requestAnimationFrame(frame);
+        return;
+      }
+      const canvas = document.querySelector('canvas[data-quest-canvas=true]');
+      const gl = canvas && (canvas.getContext('webgl2') || canvas.getContext('webgl'));
+      const debug = gl && gl.getExtension('WEBGL_debug_renderer_info');
+      const renderer = debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : 'unavailable';
+      resolveSample({ intervals, calls, renderer });
+    };
+    requestAnimationFrame(frame);
+  })`) as {
+    intervals: number[];
+    calls: number[];
+    renderer: string;
+  };
+  assert.ok(measured.intervals.length >= 10, "too few real-time frames for a sample");
+  const mean = measured.intervals.reduce((sum, value) => sum + value, 0) / measured.intervals.length;
+  const sortedIntervals = [...measured.intervals].sort((a, b) => a - b);
+  const sortedCalls = [...measured.calls].sort((a, b) => a - b);
+  const sumCalls = measured.calls.reduce((sum, value) => sum + value, 0);
+  const p95 = (values: number[]) => values[Math.min(values.length - 1, Math.floor(values.length * 0.95))]!;
+  return {
+    frames: measured.intervals.length,
+    meanFrameMs: Number(mean.toFixed(2)),
+    p95FrameMs: Number(p95(sortedIntervals).toFixed(2)),
+    fps: Number((1_000 / mean).toFixed(1)),
+    meanDrawCalls: Number((sumCalls / measured.calls.length).toFixed(1)),
+    p95DrawCalls: p95(sortedCalls),
+    totalDrawCalls: sumCalls,
+    loadedModels,
+    renderer: measured.renderer,
+    viewport: { ...VIEWPORT, deviceScaleFactor: playScale },
+    deviceEvidence: false,
+  };
+}
+
 interface ChapterReport {
   chapterId: string;
   routeId: string;
@@ -603,6 +678,9 @@ interface ChapterReport {
   consoleErrors: string[];
   responseErrors: string[];
   media: Record<string, number>;
+  assetLoads: Array<{ path: string; bytes: number; durationMs: number }>;
+  frozenProject?: { projectId: string; revision: number; fingerprint: string; schemaVersion: string; theme: string; decorCount: number };
+  realtime?: { spawn: RealtimeSample; firstFight?: RealtimeSample };
   friendly?: Record<string, unknown>;
   drawingBetweenCaptures?: boolean;
   /** DESIGN-027: the declared and live scare levels, counters, events and scare screenshots. */
@@ -980,11 +1058,20 @@ class ChapterPilot {
     onKnockedOut?: () => void,
   ): Promise<void> {
     const role = slot === "boss" ? "boss" : "ordinary";
-    const encounter = [...this.live.encounters]
-      .filter((entry) => entry.role === role)
-      .sort((a, b) => planar(a, anchor.position) - planar(b, anchor.position))[0]!;
+    const encounterId = slot === "boss"
+      ? `${this.chapter.routeId}-boss`
+      : `${this.chapter.routeId}-encounter-${slot.slice("ordinary-".length)}`;
+    const encounter = this.live.encounters.find((entry) => entry.id === encounterId);
+    assert.ok(encounter && encounter.role === role, `${slot}: live required encounter is unavailable`);
     const current = () => this.live.encounters.find((entry) => entry.id === encounter.id)!;
     const record = { slot, encounterId: encounter.id, role, attacks: 0, bashes: 0, defeats: 0 };
+    if (encounter.hp === 0) {
+      // A pair may fall to the same ordinary attack. It is still a distinct
+      // required victory, and the final route assertion checks every ID.
+      this.report.fights.push(record);
+      this.mark("fight:already-won", record);
+      return;
+    }
     let shotTaken = false;
     // A forced knockout (QUEST_E2E_JUMP_SCARE) stands still beside the enemy
     // until its attacks take the player to 0 HP, then fights normally.
@@ -1073,18 +1160,30 @@ class ChapterPilot {
       }
       await this.game.step(FINE_MS);
     }
+    assert.equal(current().hp, 0, `${slot}: required enemy was not defeated`);
     this.report.fights.push(record);
     this.mark("fight:won", record);
   }
 }
-
-const ENCOUNTER_SLOTS = ["ordinary-1", "ordinary-2", "ordinary-3", "ordinary-4", "boss"] as const;
 
 async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport> {
   const started = Date.now();
   const document = chapter.level;
   const level = levels[chapter.routeId];
   assert.ok(level, `${chapter.routeId}: route does not resolve`);
+  const mainIndex = new Map(document.mainPath.map((id, index) => [id, index]));
+  const ordinarySlots = Object.entries(document.anchors.encounters)
+    .filter(([slot]) => /^ordinary-\d+$/.test(slot))
+    .sort(([left, leftAnchor], [right, rightAnchor]) =>
+      (mainIndex.get(leftAnchor.platformId) ?? Infinity) - (mainIndex.get(rightAnchor.platformId) ?? Infinity) ||
+      Number(left.slice("ordinary-".length)) - Number(right.slice("ordinary-".length)))
+    .map(([slot, anchor]) => {
+      assert.ok(mainIndex.has(anchor.platformId), `${slot}: required encounter is outside the main route`);
+      assert.ok(chapter.encounterSlots[slot as keyof typeof chapter.encounterSlots], `${slot}: encounter roster is missing`);
+      return slot;
+    });
+  assert.ok(ordinarySlots.length >= 4, `${chapter.routeId}: expected at least four required ordinaries`);
+  const encounterSlots = [...ordinarySlots, "boss"];
   const startAge = chapter.recoveredAge.fromYears;
   const report: ChapterReport = {
     chapterId: chapter.chapterId,
@@ -1110,6 +1209,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     consoleErrors: [],
     responseErrors: [],
     media: {},
+    assetLoads: [],
     drawingBetweenCaptures: !skipDraw,
     scare: {
       declared: document.scare ?? 0,
@@ -1136,10 +1236,25 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
   let game: LockstepGame | null = null;
   try {
     const context = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: playScale });
+    if (realtimeSample) await context.addInitScript({ content: `(() => {
+      let calls = 0;
+      Object.defineProperty(window, '__questDrawCalls', { get: () => calls });
+      for (const type of [window.WebGLRenderingContext, window.WebGL2RenderingContext]) {
+        if (!type) continue;
+        for (const name of ['drawArrays', 'drawElements', 'drawArraysInstanced', 'drawElementsInstanced', 'drawRangeElements']) {
+          const original = type.prototype[name];
+          if (typeof original !== 'function') continue;
+          type.prototype[name] = function(...args) { calls += 1; return original.apply(this, args); };
+        }
+      }
+    })();` });
     if (familyCard) await context.addCookies([{ name: "quest_test_session", value: "admin", url: url! }]);
     const page = await context.newPage();
     const cdp = await context.newCDPSession(page);
     let latestSave: SaveLike | null = null;
+    let returnedProject: LevelEditorProjectV2 | null = null;
+    let returnedFingerprint = "";
+    const pendingAssetLoads: Promise<void>[] = [];
     page.on("pageerror", (error) => report.pageErrors.push(error.message));
     page.on("console", (message) => {
       if (message.type() === "error") report.consoleErrors.push(message.text());
@@ -1147,11 +1262,26 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     page.on("response", async (response) => {
       const path = new URL(response.url()).pathname;
       if (response.status() >= 400) report.responseErrors.push(`${response.status()} ${path}`);
-      if (path.startsWith("/studio/assets/media/") && path.endsWith(".glb")) report.media[path] = response.status();
+      if (path.startsWith("/studio/assets/media/") && path.endsWith(".glb")) {
+        report.media[path] = response.status();
+        if (realtimeSample && response.ok()) pendingAssetLoads.push((async () => {
+          const bytes = (await response.body()).byteLength;
+          const timing = response.request().timing();
+          report.assetLoads.push({ path, bytes, durationMs: Number((timing.responseEnd - timing.requestStart).toFixed(1)) });
+        })());
+      }
       if (response.request().method() !== "POST" || !response.ok()) return;
       const startsFamily = /^\/api\/children\/[^/]+\/play$/.test(path);
       if (path !== "/api/editor/playtests" && !startsFamily && !/^\/api\/saves\/[^/]+\/actions$/.test(path)) return;
-      const payload = (await response.json().catch(() => null)) as (SaveLike & { save?: SaveLike }) | null;
+      const payload = (await response.json().catch(() => null)) as (SaveLike & {
+        save?: SaveLike;
+        project?: LevelEditorProjectV2;
+        fingerprint?: string;
+      }) | null;
+      if (path === "/api/editor/playtests" && payload?.project) {
+        returnedProject = payload.project;
+        returnedFingerprint = payload.fingerprint ?? "";
+      }
       const save = path === "/api/editor/playtests" || startsFamily ? payload?.save : payload;
       if (save?.id) latestSave = save;
     });
@@ -1197,12 +1327,33 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       assert.ok(Date.now() < readyBy, `${chapter.routeId} did not load`);
       await new Promise((resolveWait) => setTimeout(resolveWait, 250));
     }
+    if (realtimeSample) {
+      await Promise.all(pendingAssetLoads);
+      report.assetLoads.sort((left, right) => left.path.localeCompare(right.path));
+      report.realtime = { spawn: await sampleRealtime(page, report.assetLoads) };
+    }
     await game.pause();
     if (skipDraw) await page.evaluate("globalThis.__questSkipDraw=true");
     const opening = game.live;
     report.growthMoves = opening.growthMoves;
     report.appearanceStage = opening.stage;
     report.mediaFailed = opening.mediaFailed;
+    if (!familyCard) {
+      assert.ok(returnedProject, "the server did not return the frozen editor project");
+      const frozenChapter = (returnedProject as LevelEditorProjectV2).chapters.find(
+        (entry) => entry.chapterId === chapter.chapterId,
+      );
+      assert.ok(frozenChapter, "the frozen chapter is unavailable");
+      assert.deepEqual(frozenChapter.level, document, "the frozen level differs from the checked-in template");
+      report.frozenProject = {
+        projectId: (returnedProject as LevelEditorProjectV2).projectId,
+        revision: (returnedProject as LevelEditorProjectV2).revision,
+        fingerprint: returnedFingerprint,
+        schemaVersion: frozenChapter.level.schemaVersion,
+        theme: frozenChapter.level.theme,
+        decorCount: frozenChapter.level.decor?.length ?? 0,
+      };
+    }
     assert.deepEqual(opening.growthMoves, [...abilitiesForAge(startAge)], "the chapter starts with its age's moves");
     assert.equal(opening.ageYears, startAge);
     assert.equal(opening.mediaFailed, 0, "chapter media failed to load");
@@ -1598,7 +1749,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       ...Object.values(anchors.pickups).map((anchor) => anchor.platformId),
       anchors.memories["minor-one"].platformId,
       anchors.memories["minor-two"].platformId,
-      ...ENCOUNTER_SLOTS.map((slot) => anchors.encounters[slot].platformId),
+      ...encounterSlots.map((slot) => anchors.encounters[slot as keyof typeof anchors.encounters]!.platformId),
       ...(helperAnchor ? [helperAnchor.platformId] : []),
     ]);
     for (const [index, platformId] of mainPath.entries()) {
@@ -1610,8 +1761,8 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
         if (anchor.platformId === platformId) await pilot.collectPickup(kind, anchor);
       for (const slot of ["minor-one", "minor-two"] as const)
         if (anchors.memories[slot].platformId === platformId) await pilot.collectMemory(slot, anchors.memories[slot]);
-      for (const slot of ENCOUNTER_SLOTS) {
-        const anchor = anchors.encounters[slot];
+      for (const slot of encounterSlots) {
+        const anchor = anchors.encounters[slot as keyof typeof anchors.encounters]!;
         if (anchor.platformId === platformId) {
           const jumpsBefore = game.live.scare?.jumpScares ?? 0;
           await pilot.fight(
@@ -1624,6 +1775,11 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
               } else if (!firstOrdinaryShot) {
                 firstOrdinaryShot = true;
                 await shot("02-first-ordinary-fight");
+                if (realtimeSample && until === "first-fight") {
+                  await game!.releaseStick();
+                  await page.clock.resume();
+                  report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads);
+                }
                 if (until === "first-fight") throw new StopAt("first-fight");
               }
             },
@@ -1670,6 +1826,10 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       Boolean(finalSave) &&
       finalSave!.ageYears === chapter.recoveredAge.toYears &&
       (finalSave!.adventure?.completedLevelIds ?? []).includes(chapter.routeId);
+    assert.deepEqual(report.fights.map((fight) => fight.slot), encounterSlots,
+      `${chapter.routeId}: not every required ordinary and boss was defeated`);
+    assert.equal(new Set(report.fights.map((fight) => fight.encounterId)).size, encounterSlots.length,
+      `${chapter.routeId}: every required fight must defeat a distinct enemy`);
     await shot("04-finish");
     assert.ok(report.completed, `${chapter.chapterId} did not complete: ${JSON.stringify(report.completion)}`);
   } catch (error) {
