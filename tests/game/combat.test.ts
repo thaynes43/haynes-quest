@@ -79,6 +79,24 @@ function crossingLevel(save: ReturnType<typeof makeEraSave>): LevelLayout {
   });
 }
 
+function joinedGroundLevel(save: ReturnType<typeof makeEraSave>): LevelLayout {
+  return {
+    ...levelWithFirstOrdinary(save, {
+      position: { x: -2, y: 0, z: 0 },
+      arena: { minX: -2.5, maxX: -1.5, minZ: -1, maxZ: 1 },
+    }),
+    course: {
+      platforms: [
+        { id: "first", center: { x: -2.5, y: -0.3, z: 0 }, size: { x: 5, y: 0.6, z: 4 } },
+        { id: "second", center: { x: 3, y: -0.3, z: 0 }, size: { x: 6, y: 0.6, z: 4 } },
+        { id: "third", center: { x: 9, y: -0.3, z: 0 }, size: { x: 6, y: 0.6, z: 4 } },
+      ],
+      hazards: [],
+      checkpoints: [],
+    },
+  };
+}
+
 describe("enemy combat simulation", () => {
   it("chases, telegraphs, freezes while paused, and damages only during contact", () => {
     const save = makeEraSave();
@@ -173,8 +191,129 @@ describe("enemy combat simulation", () => {
 
     const legacy = new EnemySimulation(levelWithFirstOrdinary(save), save);
     stepMany(legacy, save, playerAcrossGap, 40);
-    expect(legacy.frames()[0]?.position.z).toBeCloseTo(-6.3425, 6);
+    expect(legacy.frames()[0]?.position.z).toBeCloseTo(-3.9, 6);
     expect(legacy.frames()[0]?.position.z).toBeGreaterThan(arena.maxZ);
+  });
+
+  it("pursues a four-metre-per-second runner across connected ground and outside the old arena", () => {
+    const save = makeEraSave();
+    const simulation = new EnemySimulation(joinedGroundLevel(save), save);
+    for (let frame = 0; frame < 40; frame += 1) {
+      simulation.step({
+        player: { x: 3 + frame * 0.2, y: 0, z: 0 },
+        deltaSeconds: 0.05,
+        active: true,
+      }, save);
+    }
+    const enemy = simulation.frames()[0]!;
+    expect(enemy.phase).toBe("chasing");
+    expect(enemy.position.x).toBeGreaterThan(5);
+    expect(enemy.position.x).toBeGreaterThan(-1.5);
+    expect(enemy.position.y).toBe(0);
+  });
+
+  it("returns home after losing a runner without restoring saved HP", () => {
+    const save = makeEraSave();
+    const level = joinedGroundLevel(save);
+    const simulation = new EnemySimulation(level, save);
+    stepMany(simulation, save, { x: 3, y: 0, z: 0 }, 35);
+    const wounded = structuredClone(save);
+    wounded.adventure!.activeLevel!.encounters[0]!.hp = 2;
+    simulation.sync(level, wounded);
+    stepMany(simulation, wounded, { x: 30, y: 0, z: 0 }, 120);
+    expect(simulation.frames()[0]).toMatchObject({
+      phase: "idle",
+      hp: 2,
+      position: { x: -2, y: 0, z: 0 },
+    });
+  });
+
+  it("cancels a boundary windup when the player escapes the spawn leash", () => {
+    const save = makeEraSave();
+    const level = joinedGroundLevel(save);
+    level.course = {
+      ...level.course!,
+      platforms: [{
+        id: "long-safe-floor", center: { x: 10, y: -0.3, z: 0 },
+        size: { x: 30, y: 0.6, z: 4 },
+      }],
+    };
+    const simulation = new EnemySimulation(level, save);
+    let warnedNearLeash = false;
+    for (let frame = 0; frame < 500; frame += 1) {
+      simulation.step({
+        player: { x: Math.min(17.5, 3 + frame * 0.05), y: 0, z: 0 },
+        deltaSeconds: 0.05,
+        active: true,
+      }, save);
+      const enemy = simulation.frames()[0]!;
+      expect(enemy.position.x).toBeLessThanOrEqual(18);
+      if (enemy.phase === "windup" && enemy.position.x > 15) {
+        warnedNearLeash = true;
+        break;
+      }
+    }
+    expect(warnedNearLeash).toBe(true);
+    expect(simulation.step({
+      player: { x: 19.5, y: 0, z: 0 }, deltaSeconds: 0.05, active: true,
+    }, save)).toEqual([]);
+    expect(simulation.frames()[0]!.phase).toBe("idle");
+    expect(simulation.frames()[0]!.position.x).toBeLessThanOrEqual(18);
+  });
+
+  it("will not cross a jump gap or attack from a different elevation", () => {
+    const save = makeEraSave();
+    const level = joinedGroundLevel(save);
+    level.course = {
+      ...level.course!,
+      platforms: [level.course!.platforms[0]!, {
+        id: "across-gap", center: { x: 3.5, y: -0.3, z: 0 },
+        size: { x: 5, y: 0.6, z: 4 },
+      }],
+    };
+    const gap = new EnemySimulation(level, save);
+    stepMany(gap, save, { x: 1.1, y: 0, z: 0 }, 100);
+    expect(gap.frames()[0]).toMatchObject({
+      phase: "idle", position: { x: -2, y: 0, z: 0 },
+    });
+
+    const high = new EnemySimulation(joinedGroundLevel(save), save);
+    stepMany(high, save, { x: 1, y: 2, z: 0 }, 100);
+    expect(high.frames()[0]).toMatchObject({
+      phase: "idle", position: { x: -2, y: 0, z: 0 },
+    });
+  });
+
+  it("does not push a player off a supported deck when an ordinary reaches its edge", () => {
+    const save = makeEraSave();
+    const level = joinedGroundLevel(save);
+    level.encounters[0]!.position = { x: -0.15, y: 0, z: 0 };
+    level.encounters[0]!.arena = { minX: -0.5, maxX: 0, minZ: -1, maxZ: 1 };
+    level.course = { ...level.course!, platforms: [level.course!.platforms[0]!] };
+    const simulation = new EnemySimulation(level, save);
+    const player = { x: 0.1, y: 0, z: 0 };
+    simulation.resolvePlayerCollision(player, level);
+    expect(player).toEqual({ x: 0.1, y: 0, z: 0 });
+  });
+
+  it("lets nearby foes chase while only two ordinary attacks wind up at once", () => {
+    const save = makeEraSave();
+    const third = {
+      ...save.adventure!.activeLevel!.encounters[0]!,
+      id: "third-ordinary",
+    };
+    save.adventure!.activeLevel!.encounters.push(third);
+    const level = createLevelLayout(save);
+    const ordinary = level.encounters.filter((enemy) => enemy.role === "ordinary");
+    level.encounters = [
+      { ...ordinary[0]!, position: { x: -1, y: 0, z: 0 } },
+      { ...ordinary[1]!, position: { x: 0, y: 0, z: -1 } },
+      { ...ordinary[0]!, id: third.id, position: { x: 1, y: 0, z: 0 } },
+    ];
+    const simulation = new EnemySimulation(level, save);
+    stepMany(simulation, save, { x: 0, y: 0, z: 0 }, 3);
+    expect(simulation.frames().filter((enemy) => enemy.phase === "windup")).toHaveLength(2);
+    expect(simulation.frames().filter((enemy) => enemy.phase === "chasing")).toHaveLength(1);
   });
 
   it("intercepts a straight four-metre-per-second crossing after a full visible warning", () => {

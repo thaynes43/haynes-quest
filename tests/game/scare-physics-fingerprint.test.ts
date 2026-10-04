@@ -4,7 +4,7 @@
  * byte-identical across scare settings. A scripted run on a family-style
  * (authored-level-v4) garden chapter records the player, every enemy and every
  * presentation event frame by frame, and hashes the lot. The baseline includes
- * the later authored-enemy pursuit change. A chapter without `scare`, with
+ * the October 4 connected-ground ordinary pursuit change. A chapter without `scare`, with
  * `scare: 0`, and a scary chapter with the parent switch off must all match it.
  */
 import { createHash } from "node:crypto";
@@ -180,8 +180,8 @@ describe("scare level 0 preserves the current combat runtime", () => {
       .digest("hex");
   }
 
-  /** Recorded after authored-enemy pursuit and arena-edge reach were corrected. */
-  const EXPECTED = "609cf12d979b7167de75ede99b05c905b7a12d2d31224df5f5eafb7278ddf7e8";
+  /** Recorded after connected-ground ordinary pursuit; scare-off variants must remain equal. */
+  const EXPECTED = "954575d588a5e3ce2103242ec46e994b5f5c20b38e4ea5a73dd63e97686a0259";
 
   it("matches the current runtime without a scare level", () => {
     const actual = fingerprint({});
