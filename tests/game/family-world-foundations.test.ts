@@ -211,6 +211,11 @@ function glbBounds(file: URL): { min: number[]; max: number[] } {
 
 describe("shared prop kit", () => {
   const sharedIds = [
+    "broad-canopy-tree",
+    "slim-cypress",
+    "flowering-shrub",
+    "storybook-flower-bed",
+    "storybook-planter-island",
     "clearing-tree",
     "clearing-stone",
     "arrival-landmark",
@@ -222,9 +227,11 @@ describe("shared prop kit", () => {
     "midnight-joystick-bollard",
   ];
 
-  it("registers the nine exact GLB props with tight bounds around each measured model", () => {
+  it("registers the shared props and keeps exact GLB bounds for the nine model-backed props", () => {
     expect(sharedThemeKitProps().map((prop) => prop.id)).toEqual(sharedIds);
-    for (const prop of sharedThemeKitProps()) {
+    const modelProps = sharedThemeKitProps().filter((prop) => prop.glb);
+    expect(modelProps.map((prop) => prop.id)).toEqual(sharedIds.slice(5));
+    for (const prop of modelProps) {
       expect(prop.theme).toBe(SHARED_THEME_KIT);
       const file = new URL(`../../docs${prop.glb!.url.replace("/studio", "")}`, import.meta.url);
       expect(createHash("sha256").update(readFileSync(file)).digest("hex")).toBe(prop.glb!.sha256);
