@@ -1,0 +1,328 @@
+{
+  "asset_id": "bin-chicken-flower-thief",
+  "version": "v001",
+  "glb_sha256": "e9189113197c453174eab9c8d0a0f2005ea60fd478befc06c60f0aa8988378b4",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader parse; every exported skin vertex at 60 Hz per clip; SkeletonUtils clones; the actual src/game/enemy-animation.ts adapter driven through idle/chasing/windup/strike/cooldown/hit/defeated. No physical-device claim.",
+  "height_m": 1.4803972244262695,
+  "rest_bounds_y_up": {
+    "min": [
+      -0.6433817744255066,
+      0.0011075148358941078,
+      -0.7100000344216824
+    ],
+    "max": [
+      0.6064319610595703,
+      1.4803972244262695,
+      0.48611218109726906
+    ]
+  },
+  "footprint_below_0_06_m": {
+    "min": [
+      -0.18449319899082184,
+      0.0011075148358941078,
+      -0.18400000035762787
+    ],
+    "max": [
+      0.18449319899082184,
+      0.05917743965983391,
+      0.09399999678134918
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.8376615605186126,
+      0.00010734830514980771,
+      -1.123292494659887
+    ],
+    "max": [
+      0.8774868974843261,
+      1.5856079649782258,
+      0.5756569936561471
+    ]
+  },
+  "exported_envelope": {
+    "min": [
+      -0.843,
+      -0.005,
+      -1.129
+    ],
+    "max": [
+      0.883,
+      1.591,
+      0.581
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 3,
+      "samples": 181,
+      "vertices_per_sample": 8527,
+      "bounds_y_up": {
+        "min": [
+          -0.6456578889553555,
+          0.00010752771049732379,
+          -0.7243270140061026
+        ],
+        "max": [
+          0.6086996356585779,
+          1.4925209186250565,
+          0.5049854116822821
+        ]
+      },
+      "floor": {
+        "y": 0.00010752771049732379,
+        "time_s": 1.1833333333333333
+      },
+      "max_vertex_travel_m": 0.2964818193149326,
+      "loop_seam_m": 7.106033847343808e-9,
+      "held_defeat_motion_m": null
+    },
+    "move": {
+      "duration_s": 0.8999999761581421,
+      "samples": 55,
+      "vertices_per_sample": 8527,
+      "bounds_y_up": {
+        "min": [
+          -0.6012387165350372,
+          0.00010743329861784279,
+          -0.7822364382817368
+        ],
+        "max": [
+          0.5591675283740405,
+          1.5348019347154205,
+          0.56521203974051
+        ]
+      },
+      "floor": {
+        "y": 0.00010743329861784279,
+        "time_s": 0.2499999933772617
+      },
+      "max_vertex_travel_m": 0.5600145830244868,
+      "loop_seam_m": 1.5443940122232826e-8,
+      "held_defeat_motion_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 8527,
+      "bounds_y_up": {
+        "min": [
+          -0.6433817744255066,
+          0.00010734830514980771,
+          -1.123292494659887
+        ],
+        "max": [
+          0.6064319610595703,
+          1.5460376501732322,
+          0.5291144143619405
+        ]
+      },
+      "floor": {
+        "y": 0.00010734830514980771,
+        "time_s": 0.7
+      },
+      "max_vertex_travel_m": 0.9870314215105415,
+      "loop_seam_m": 0,
+      "held_defeat_motion_m": null
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "samples": 43,
+      "vertices_per_sample": 8527,
+      "bounds_y_up": {
+        "min": [
+          -0.6433817744255066,
+          0.0001075277104973793,
+          -0.7100000344216824
+        ],
+        "max": [
+          0.6064319610595703,
+          1.5856079649782258,
+          0.5756569936561471
+        ]
+      },
+      "floor": {
+        "y": 0.0001075277104973793,
+        "time_s": 0
+      },
+      "max_vertex_travel_m": 0.6604978718706503,
+      "loop_seam_m": 0,
+      "held_defeat_motion_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 8527,
+      "bounds_y_up": {
+        "min": [
+          -0.8376615605186126,
+          0.00010749772916985559,
+          -0.7639683361011175
+        ],
+        "max": [
+          0.8774868974843261,
+          1.5856079617931362,
+          0.5756569897033477
+        ]
+      },
+      "floor": {
+        "y": 0.00010749772916985559,
+        "time_s": 0.9500000377496084
+      },
+      "max_vertex_travel_m": 1.0009580022737157,
+      "loop_seam_m": 1.0073295500046715,
+      "held_defeat_motion_m": 3.3306690738754696e-16
+    }
+  },
+  "facing": {
+    "front_bone": "head",
+    "position": [
+      0,
+      1.255108466692726,
+      -0.16906528869543602
+    ]
+  },
+  "strike": {
+    "bone": "head",
+    "idle0": [
+      0,
+      1.255108466692726,
+      -0.16906528869543602
+    ],
+    "telegraph_0_5s": [
+      0,
+      1.2796719663457639,
+      -0.10696501530467817
+    ],
+    "contact_1_25s": [
+      0,
+      1.0497126778577097,
+      -0.6473472162793175
+    ]
+  },
+  "adapter": {
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "strike_bone": [
+          -0.011900102769286311,
+          1.2693627127058005,
+          -0.1693984002596483
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "strike_bone": [
+          -0.014638887701829213,
+          1.2081470761806197,
+          -0.24069772300617148
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "strike_bone": [
+          0,
+          1.0497126778577097,
+          -0.6473472162793175
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "strike_bone": [
+          0,
+          1.25900000333786,
+          -0.16999999806284904
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "strike_bone": [
+          0,
+          1.25900000333786,
+          -0.16999999806284904
+        ]
+      }
+    ],
+    "hit_state": {
+      "visible": true,
+      "vanish": 0
+    },
+    "defeat_states": [
+      {
+        "t": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 2.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 2.55,
+        "visible": true,
+        "vanish": 0.4999996821085601
+      },
+      {
+        "t": 3.05,
+        "visible": false,
+        "vanish": 1
+      },
+      {
+        "t": 4,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "max_influences": 1,
+  "max_weight_error": 0,
+  "materials": [
+    {
+      "name": "Bin Chicken Flower Thief matte",
+      "type": "MeshStandardMaterial",
+      "vertexColors": true,
+      "roughness": 0.6200000047683716
+    },
+    {
+      "name": "Bin Chicken Flower Thief gloss",
+      "type": "MeshStandardMaterial",
+      "vertexColors": true,
+      "roughness": 0.25999999046325684
+    }
+  ],
+  "track_count": 330,
+  "checks": {
+    "five_exact_clips": true,
+    "all_tracks_bind_below_scene_root": true,
+    "every_clip_moves_vertices": true,
+    "seamless_idle_and_move": true,
+    "attack_2s_contact_1_25": true,
+    "defeat_final_pose_held": true,
+    "no_floor_penetration": true,
+    "standing_on_floor_at_rest": true,
+    "height_in_range": true,
+    "footprint_centred": true,
+    "faces_minus_z": true,
+    "strike_drives_forward_at_contact": true,
+    "envelope_covers_all_poses": true,
+    "two_vertex_coloured_standard_materials": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "adapter_constructs_and_vanishes": true,
+    "adapter_windup_holds_contact_pose": true,
+    "adapter_root_untouched": true,
+    "independent_skeleton_clone": true
+  }
+}
