@@ -1,0 +1,371 @@
+{
+  "asset_id": "lab-robot-sentry",
+  "version": "v001",
+  "glb_sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+  "remote_root": "/workspace/haynes-quest/action-worlds/minions-a/v001/lab-robot-sentry",
+  "durable_root": "/home/dev/artifacts/haynes-quest/action-worlds/v001/minions-a/lab-robot-sentry",
+  "files": [
+    {
+      "path": "lab-robot-sentry.glb",
+      "bytes": 1226608,
+      "sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-sentry.blend",
+      "bytes": 1613378,
+      "sha256": "805ba795dfd3cc0ff3bf8bd889d5cf9632ad1414d2c9f2d4c9e1d73faddedd0b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-sentry-construction.blend",
+      "bytes": 596847,
+      "sha256": "73bd45a27c1fedd2a8f40170c9c13055b5aa1bd329b580a3cf4f6a657ef59eef",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "lab-robot-sentry-checkpoint.glb",
+      "bytes": 658060,
+      "sha256": "a19f52294df10957cdc7d10abc6dc38d2facc8bf3077c1122431fcd3e77b00e6",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "pigment.png",
+      "bytes": 112522,
+      "sha256": "8de1dc2ba317ac5145c2c8b8a2801ba22db1f7aa3b22278dd83bce7d2a5b3c53",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "construction.json",
+      "bytes": 14628,
+      "sha256": "7938056828b669b890beb2cb51caf641c67cfb138c42f3b188460b89fbf0e12a",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 4706,
+      "sha256": "0d0b0200bc7b339d982070e7761821a58e8212b6a7e23f4cc229849d9a29a8ed",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "rig-rest.json",
+      "bytes": 4205,
+      "sha256": "178844ec26c21b8e2c31f8ae7c5b90731df35cf027fe83185607a0e045b9d50f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "bounds.json",
+      "bytes": 260,
+      "sha256": "3413e89b096b7abb6bf4317728f7863b0415da9a29393c133b8174ee0c206f7e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "three-inspection.json",
+      "bytes": 12836,
+      "sha256": "fdb7d46a58b3bf8c155f58a7090f0a0edfb89278985235d6274af70f3a407b7f",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "browser-inspection.json",
+      "bytes": 43022,
+      "sha256": "238c9c00023070a13ec691f57992dd72b246ab589979e5acfd56b32afba6a6f8",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 6902,
+      "sha256": "d8ccb002e4ff3168352a6fa62803dd93f4353badfc6590ef2d065c2f0e7929cc",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "concept-row.png",
+      "bytes": 283518,
+      "sha256": "137196d024f92a1a78601f83f9a24e9992f37e6fb3208b9d72593112956a4862",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/attack-contact-front.png",
+      "bytes": 30152,
+      "sha256": "d7896cb93acb6cb370656b07ff2e92a4e4093addf037d3ff8ca57675dedbb1fc",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/attack-contact-side.png",
+      "bytes": 23732,
+      "sha256": "6167ee683f1ea3a1864c2cc497a962a93a901efbe0231a35c9deb049a3b3306b",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/attack-gameplay-scale.png",
+      "bytes": 62632,
+      "sha256": "20cbd19b252bf934a04cf8120ccaed8bf6979b0177e7bd08732af7b762c1d6bf",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/attack-strip.png",
+      "bytes": 59721,
+      "sha256": "92f22c017bd3d0e952da4d3e43c5322ab25eab4353a5c44a9b54e0c7a8d0658e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/attack-windup-side.png",
+      "bytes": 21904,
+      "sha256": "8bdfe1dca024519a19f413a161ccd03849a68fdfe175341bf35d98ed43c399c3",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/back.png",
+      "bytes": 59414,
+      "sha256": "3c27016b944011403ea2d0adba6a6fd981e5ddf70ab487ca608b15cfa503dc9c",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/beauty.png",
+      "bytes": 79835,
+      "sha256": "b6e1bcac1f03367d5a1bee1456c8002cc84f1bfbc012396952a0769569161cda",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/browser-inspection.json",
+      "bytes": 43022,
+      "sha256": "238c9c00023070a13ec691f57992dd72b246ab589979e5acfd56b32afba6a6f8",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/concept-vs-export.png",
+      "bytes": 342752,
+      "sha256": "e9f92d5ba7ac8cf3303f180e41c946afbb1d7ae8b3255f4913275c0e2f8d8bc2",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/defeat-held-front.png",
+      "bytes": 25340,
+      "sha256": "8e6da2393de33821bafc567cca15d213e7208e691a285734d860357a189c49f6",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/defeat-held.png",
+      "bytes": 24834,
+      "sha256": "731445cd4fed936dd71d2ab6ddffd4a82847e84bb13d3baaee8d78a6693d21fd",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/front.png",
+      "bytes": 73192,
+      "sha256": "4f8b601b239df5578ba9c8ace716b7084cae392e94ad9c084ea26c48e1304377",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/motion-contact-sheet.png",
+      "bytes": 265155,
+      "sha256": "30f8f69f35f94b88229c3f42c05f6ee48715d2d16f6692a27904032e516711ff",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/review.webm",
+      "bytes": 786872,
+      "sha256": "3656ae4f5f95d0c86ced4c99fb36088b19665e23958766dfe3985890aa300500",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "preview/side.png",
+      "bytes": 41314,
+      "sha256": "2b681b98d4b74e7bd0c4afd339cabec98765db40a66d17ce5ec135a859ed2963",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "preview/threequarter.png",
+      "bytes": 73936,
+      "sha256": "6b61cc7d7b9ab6e06369da105ea684194d9b6bad3ae39511ada82c397264aa4e",
+      "remote_local_match": true,
+      "verified_by": "HTTP byte round trip"
+    },
+    {
+      "path": "source/assets.mjs",
+      "bytes": 13970,
+      "sha256": "49fac51accabd775e688caef38883b7cc9c93b5bb58720bf5073353494c16d39",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/claim.py",
+      "bytes": 3687,
+      "sha256": "c8f51dfd504a7f69bf134faf24a0be925c362145d96a38f8ac5ab4cd39a74b2a",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/client.py",
+      "bytes": 4194,
+      "sha256": "647fb2d10cef20a1e4bfab7c77a732671cc19dabf46197cea6b362c1082e2e45",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/common.py",
+      "bytes": 26095,
+      "sha256": "c680724013e8c798abbea731aa26d397b4abd7221b8a2fadc3275b67a9333bad",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/cycle.py",
+      "bytes": 1393,
+      "sha256": "b76f1161fa9a709d2d2d392ecfbf78d537fc62cb3512ff2daf92b6e07e46290d",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/deliver.py",
+      "bytes": 9946,
+      "sha256": "e5fe851876501a74834e847e0084f09110abb32e369e9a617c36bb81d038991a",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/hopper_anim.py",
+      "bytes": 24426,
+      "sha256": "b5fe4de2f5578228d0c8b9e2f849e71e219633acc0e84845ca2560dbe0c41019",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/hopper_build.py",
+      "bytes": 16244,
+      "sha256": "d74ea2571fe70ee8d738f1bd38da820a0ecc2f8bd6c8b69d8cd3055035b7253c",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/hopper_rig.py",
+      "bytes": 6345,
+      "sha256": "a7304a6bfe94c818b3d963641a26bc50e2539423824d0ed122facadf2ff05bfa",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/inspect-three.mjs",
+      "bytes": 13442,
+      "sha256": "79a8ed8a9b4b0ce6e3681ae3d3a08de160e1cf9dfcc27959a10b8cd7063455ba",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/kitten_anim.py",
+      "bytes": 19754,
+      "sha256": "2fe272f1b24241a37d22cbf9fdfda4177ebb65879a0da6a5e85fbd2b944a0012",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/kitten_build.py",
+      "bytes": 16916,
+      "sha256": "075e95b329b0799442c5a4231f788e3ff0e24b18ed2ab583121f1a8e2334e929",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/kitten_rig.py",
+      "bytes": 6837,
+      "sha256": "7ee37a60f8942dd9a2de62df9662330b3baf89f3b5b6c8983e5cfdfd9ebbbe72",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/look.mjs",
+      "bytes": 4551,
+      "sha256": "b06f1918d801e09b9e3e57f5bbcc7e46d38a21fd9130ed0ccccded5697d483a5",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/preview.mjs",
+      "bytes": 15796,
+      "sha256": "c3802cea14a7bed2048668ebd569f9ff4f8c0c4e9ddc5c076e19fbdc1ed19281",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/review_draft.py",
+      "bytes": 20289,
+      "sha256": "0d70b975720fb238a280b08c65460a29b0f014a86d342d9cb6ae227275720211",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/robot_anim.py",
+      "bytes": 16300,
+      "sha256": "6ebab5f36dedf27ae279a983e10b28d9d0b43456eea5d2bea59186de0522c74f",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/robot_build.py",
+      "bytes": 11907,
+      "sha256": "eb9fc04e827f08f9ccf95ab7f7c02458abddc9be60bbb16659b034a6f20ef4ab",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/robot_rig.py",
+      "bytes": 4002,
+      "sha256": "0040ded4ac40721d40e400922371646a636154ee23075c076b67751c63c9325f",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/run.py",
+      "bytes": 1034,
+      "sha256": "459f61a9fbf7d20e2afb3b6f5cea884e0670dae4f98dbc6a8e8fd157eaa61d2c",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/run_validate.py",
+      "bytes": 609,
+      "sha256": "7aeb0e35bd793eccf8eae5331a271f9c041725cc3ac9ca41cb48b7186382c9c3",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    },
+    {
+      "path": "source/validate.mjs",
+      "bytes": 3838,
+      "sha256": "cb7657e10c6d274afc9f477f5799f16bc6dca1b62b3f76e3589fc6d2548233af",
+      "remote_local_match": true,
+      "verified_by": "MCP SHA-256 in the pod (the artifact route serves neither sources nor .webm)"
+    }
+  ],
+  "excluded": [
+    "*.blend1 automatic backups",
+    "scene lease/release records live at the pack root"
+  ],
+  "manifest_self_hash": "excluded (recursive)"
+}

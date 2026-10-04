@@ -1,0 +1,192 @@
+{
+  "asset_id": "lab-robot-sentry",
+  "version": "v001",
+  "file": "lab-robot-sentry.glb",
+  "sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+  "bytes": 1226608,
+  "triangles": 11154,
+  "draw_primitives": 2,
+  "materials": [
+    {
+      "name": "Matte painted clay",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6200000047683716
+      }
+    },
+    {
+      "name": "Glossy toy accents",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.25999999046325684
+      }
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "bufferView": 6,
+      "bytes": 112522
+    }
+  ],
+  "joints": [
+    "root",
+    "pelvis",
+    "shell",
+    "eye",
+    "lens",
+    "ant_1",
+    "ant_2",
+    "shoulder_R",
+    "upper_R",
+    "fore_R",
+    "claw_R",
+    "jaw_R_up",
+    "jaw_R_lo",
+    "shoulder_L",
+    "upper_L",
+    "fore_L",
+    "claw_L",
+    "jaw_L_up",
+    "jaw_L_lo",
+    "thigh_R",
+    "shin_R",
+    "thigh_L",
+    "shin_L",
+    "foot_R",
+    "foot_L"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.4,
+      "channels": 75
+    },
+    {
+      "name": "move",
+      "duration_s": 1,
+      "channels": 75
+    },
+    {
+      "name": "attack",
+      "duration_s": 2,
+      "channels": 75
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "channels": 75
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "channels": 75
+    }
+  ],
+  "scene_extras": {
+    "blendermcp_port": 9876,
+    "blendermcp_auto_start_server": 1,
+    "blendermcp_use_polyhaven": 0,
+    "blendermcp_use_hyper3d": 0,
+    "blendermcp_use_sketchfab": 0,
+    "blendermcp_use_polypizza": 0,
+    "blendermcp_use_hunyuan3d": 0,
+    "blendermcp_server_running": 1,
+    "asset_id": "lab-robot-sentry",
+    "asset_version": "v001",
+    "pack": "action-minions-a",
+    "candidate_status": "action-minions-a lab-robot-sentry v001 · Awaiting Tom's review · candidate for the action worlds",
+    "source_reference": "docs/assets/media/action-minions-a/v001/concept.png (coordinator image-generated construction reference, row 3)",
+    "source_concept_sha256": "866f33ef1d08e0c2375e0f65d17939797d4b0be452d852e89e3aee2e97c1bd19",
+    "orientation": "glTF +Y up, forward -Z, floor-centred stationary root, character right +X",
+    "role": "ordinary enemy (DESIGN-029 Hero City cast)",
+    "authoring_model": "claude-opus-5-5 xhigh (Claude Code, Max plan)",
+    "design": "DESIGN-029"
+  },
+  "extensions_used": [
+    "KHR_materials_specular"
+  ],
+  "generator": "Khronos glTF Blender I/O v4.5.51",
+  "checks": {
+    "gltf_2": true,
+    "khronos_no_errors": true,
+    "khronos_no_warnings": true,
+    "scene_identity": true,
+    "no_lease_keys_exported": true,
+    "five_exact_clips": true,
+    "positive_animated_clips": true,
+    "attack_2_s": true,
+    "triangle_budget_15000": true,
+    "material_budget_2": true,
+    "primitive_budget_2": true,
+    "glb_budget_2_mib": true,
+    "one_embedded_atlas": true,
+    "embedded_resources": true,
+    "no_required_extensions": true,
+    "no_compression_extensions": true,
+    "all_have_uvs": true,
+    "single_skin": true,
+    "at_most_4_influences": true,
+    "opaque_surfaces": true
+  },
+  "validator": {
+    "uri": "lab-robot-sentry.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "validatedAt": "2026-10-04T23:23:23.335Z",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "extensionsUsed": [
+        "KHR_materials_specular"
+      ],
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 1135416
+        },
+        {
+          "pointer": "/images/0",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 1024,
+            "height": 1024,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 2,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": true,
+      "hasDefaultScene": true,
+      "drawCallCount": 2,
+      "totalVertexCount": 9010,
+      "totalTriangleCount": 11154,
+      "maxUVs": 1,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

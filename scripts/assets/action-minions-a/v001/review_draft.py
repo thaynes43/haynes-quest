@@ -67,6 +67,30 @@ TEXT = {
             "The legs first overreached their skates by up to 5 cm in `hit` and `defeat`, which would have left gaps. The skates now move with the body and every leg stays attached.",
             "While rearing, the raised front skate dipped into the chest, and the knocked-out head floated 3.7 cm above the floor. Both were corrected and are now checked.",
             "The first skates were tall narrow boots on small wheels. They were rebuilt as the concept's low chunky boots on 5 cm cream wheels, staying under the 15k triangle budget."]},
+
+ 'lab-robot-sentry': {
+  'title': 'Lab Robot Sentry', 'cast': 'Hero City', 'period': 'hero-city-v1', 'window': ['2018-12-14', '2026-12-31'], 'kind': 'ordinary-b',
+  'reference': "the scientist's broad one-eyed sentry robot with pincer hands",
+  'placement': "World A chapter 3, Hero City (`rooftop`): a heavier guard beside the existing Lab Robot and Putty Grunt, under the Monster-inator. It shares the lab robot's era window and `ordinary-b` kind.",
+  'intro': "This broad toy robot is a new ordinary enemy for the Hero City cast in [DESIGN-029](../../../designs/029-action-and-inhabited-worlds.md). It is the bigger, slower guard model of the scientist's [Lab Robot](../lab-robot/v001.md): it stomps after the player and clamps both pincers shut in front of its lens.",
+  'looks': ["a rounded cream shell that is head and body in one, with teal side bands, a teal top visor and a teal bottom band, grey screws and a slatted back vent;",
+            "one big round orange lens with a glint, set in a thick dark bezel and housing, and a springy antenna with a teal ball on top;",
+            "plum shoulder spheres, chunky plum arms with teal joint discs, and big teal C-shaped pincers that open and clamp at the wrists;",
+            "a dark grey pelvis, stocky plum legs with teal knee caps and ankle discs, and big plum boots with teal toe caps and dark soles."],
+  'motion': {
+   'idle': 'from the concept stance it bobs on its knees and scans left and right; the lens glances and pulses, the antenna wobbles on its spring and each pincer snips once.',
+   'move': 'a stompy march in place: each boot lifts, swings forward and plants while the other slides back. The pelvis bobs and sways, the shell counter-rolls, the arms swing, the pincers clack and the antenna bounces.',
+   'attack': 'the tell (to 0.45 s): the lens flares and flickers, the antenna buzzes, it crouches and spreads both pincers wide open. The wind-up (0.45–1.0 s) leans back with both pincers raised high behind its shell. Then it lunges a step forward and swings both pincers down together, clamping shut in front of its lens at **1.25 seconds**, before stepping back to the concept stance.',
+   'hit': 'it jolts back and the lens shrinks to a dot, the antenna whips, and the pincers snap open before it settles.',
+   'defeat': 'it sputters: the shell twitches, the lens flickers and dims and the antenna droops. Its knees buckle and it sits down hard, then tips over onto its back with both boots in the air and the pincers flopped open on the floor. The pose is held from 1.95 s with the lens shrunk and the antenna drooped.'},
+  'departures': ["**Lens.** The model has no emissive glow; the lens is glossy orange and its pulses, flicker and dimming are scale changes inside a dark socket.",
+                 "**Panel detail.** The concept's panel seams and chips are reduced to one seam line, the teal bands and four screws; the pincers are smooth rounded C shapes.",
+                 "**Rigid parts.** It is a robot, so every part except the antenna stem is rigidly skinned to one joint, and the legs are two-bone IK chains that keep the boots planted."],
+  'fixes': ["The first shell was a rounded cube; it was rebuilt as the concept's domed egg with an eye housing, and the teal bands were moved out to the side edges.",
+            "The limb boxes first used a placeholder 1 m length, which put the shins 0.2 m under the floor; they now span their joints.",
+            "The first strike swung one pincer overhead and flung the other sideways, because three arm rotations had inverted signs and the inward swing ran about the arm's own axis. Both pincers now meet in front of the lens at chest height and clamp to under half their open gap; this is checked.",
+            "While sitting in `defeat`, the knees folded through the floor; the knee pole now turns upward as it sits.",
+            "When the lens shrank, the shell showed through the bezel like a fried egg; a dark socket now sits behind the lens, and the lens shrinks toward its face."]},
 }
 
 T = TEXT[asset]; checks_k = [k for k, v in val['checks'].items()]; checks_t = list(ins['checks']); checks_b = list(bro['checks'])
