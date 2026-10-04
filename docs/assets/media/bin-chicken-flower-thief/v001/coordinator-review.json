@@ -1,0 +1,19 @@
+{
+  "asset_id": "bin-chicken-flower-thief",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T22:50:29.462917+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidate",
+  "owner_review": "pending",
+  "glb_sha256": "e9189113197c453174eab9c8d0a0f2005ea60fd478befc06c60f0aa8988378b4",
+  "inspected": [
+    "concept-vs-model.png",
+    "attack-gameplay-scale.png"
+  ],
+  "findings": [
+    "Curved beak, layered wings, coral legs and flower satchel retain the construction direction.",
+    "The neck windup and forward beak jab remain readable at the supplied small scale.",
+    "Accept 16,498 triangles above the provisional 15,000 target for this distinct silhouette and two character draw calls, subject to the full-scene performance check."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}

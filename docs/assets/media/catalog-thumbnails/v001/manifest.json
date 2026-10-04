@@ -59,6 +59,20 @@
       "sha256": "9e830883f6fc081f81f9e83ca658845bea27174472f1cadae47cf01c55e1bf7e"
     },
     {
+      "source": "docs/assets/media/bin-chicken-flower-thief/v001/beauty.png",
+      "source_sha256": "1c1627eafb049616933860ee074618f1762428def8f84fa79f30d15e8989c274",
+      "path": "docs/assets/media/catalog-thumbnails/v001/73571de25bbea044.webp",
+      "bytes": 8732,
+      "sha256": "0979b4ec45e1d46e35b1a99882f7aa944beff6f24eae1910d073ced00dd30f69"
+    },
+    {
+      "source": "docs/assets/media/bin-chicken-flower-thief/v001/concept.png",
+      "source_sha256": "8b966aef032ed2729bd3954ca85f362ca9cea8aa1ace7864c083c6e14b94b7f6",
+      "path": "docs/assets/media/catalog-thumbnails/v001/69ccecf3a880a100.webp",
+      "bytes": 12058,
+      "sha256": "61acaf767624d2eb31d1a81cdee8aff0afb017500fa188a507a1457291ba3c20"
+    },
+    {
       "source": "docs/assets/media/bin-chicken/v001/beauty.png",
       "source_sha256": "a4bb1be1795e62a9b29b865bc679a0138917e105d308ffa0ff78dbbe51fc4339",
       "path": "docs/assets/media/catalog-thumbnails/v001/5d72bbad2559dc5f.webp",
@@ -351,6 +365,20 @@
       "path": "docs/assets/media/catalog-thumbnails/v001/9f143c2b2ec00ffb.webp",
       "bytes": 7794,
       "sha256": "a078ddfeaaf8ec4fc899ab6876d95f457bb47b019bb25a3929bf1047dc3e62ab"
+    },
+    {
+      "source": "docs/assets/media/gadget-hammer-hopper/v001/beauty.png",
+      "source_sha256": "84b2d4aad97b0dfcc8d8af596d53d7efb4348bbb77be89d795a063d91d48e851",
+      "path": "docs/assets/media/catalog-thumbnails/v001/f75d94c817b75121.webp",
+      "bytes": 9582,
+      "sha256": "af6b9fe6eb2032398a163ba1887f0712027b09e148a72d64f494cec12ab19c8e"
+    },
+    {
+      "source": "docs/assets/media/gadget-hammer-hopper/v001/concept-row.png",
+      "source_sha256": "97945986221034ceb0cb563e1c8a06211e92bf96a73c3b10e9bab3058c2fc45e",
+      "path": "docs/assets/media/catalog-thumbnails/v001/622e690b729a8e67.webp",
+      "bytes": 14140,
+      "sha256": "4436fbfc3a3ace7841bf3f3be979966ca65eecb742b0c62979248d6f32767115"
     },
     {
       "source": "docs/assets/media/gadget-helper/v001/beauty.png",

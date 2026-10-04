@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The Magic House garden adds tiled terrace walls, flower planters, patterned doors and butterfly arches. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**76 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**78 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -87,6 +87,29 @@ A bouncing vegetable with a held warning, two-leaf slap and wilting defeat. View
 
 </div>
 
+<div class="catalog-card" data-asset-id="gadget-hammer-hopper" markdown="1">
+
+[![Exact Gadget Hammer Hopper model](media/catalog-thumbnails/v001/f75d94c817b75121.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/gadget-hammer-hopper/v001.md)
+
+### [Gadget Hammer Hopper](reviews/gadget-hammer-hopper/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+
+A spring-legged toolbox raises a rubber mallet, then brings it down in front. Its hop, warning and topple give the Clubhouse another distinct enemy.
+
+</div>
+
+<div class="catalog-card" data-asset-id="bin-chicken-flower-thief" markdown="1">
+
+[![Exact Bin Chicken Flower Thief model](media/catalog-thumbnails/v001/73571de25bbea044.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/bin-chicken-flower-thief/v001.md)
+
+### [Bin Chicken Flower Thief](reviews/bin-chicken-flower-thief/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+
+A long-beaked garden thief struts, coils its neck and jabs while spilling stolen flowers. Its narrow shape and wing flare stand apart from the round vegetable enemies.
+
+</div>
 </div>
 
 ## Family eras {#family-eras}

@@ -1,0 +1,18 @@
+{
+  "asset_id": "gadget-hammer-hopper",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T22:50:29.455043+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidate",
+  "owner_review": "pending",
+  "glb_sha256": "ac4f92e0ec57a172272616507cc399fd15e0c791ec768f6adfc4a64bad41530e",
+  "inspected": [
+    "concept-vs-export.png",
+    "attack-gameplay-scale.png"
+  ],
+  "findings": [
+    "Distinct toolbox, spring, mallet and boot retain the concept silhouette.",
+    "The raised mallet and forward downswing remain readable at the supplied small scale."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}
