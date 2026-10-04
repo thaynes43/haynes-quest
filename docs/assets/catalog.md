@@ -7,7 +7,7 @@ hide:
 
 Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The Magic House garden adds tiled terrace walls, flower planters, patterned doors and butterfly arches. The [playtest guide](playtest.md) describes the artwork currently used in the game.
 
-**75 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**76 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -28,7 +28,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Action-world construction references
 
-The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds six ordinary enemy variants and three planting props. The following images are the selected construction concepts; their Blender exports are in progress on two isolated scenes.
+The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds six ordinary enemy variants and three planting props. The selected concepts and completed candidates appear below; production continues on two isolated Blender scenes.
 
 <div class="catalog-grid" markdown="1">
 
@@ -65,6 +65,25 @@ A bouncing broccoli, flower-stealing bird and fantasy band drummer bring new sha
 <span class="catalog-state">Construction concept · v001 · Blender props in progress</span>
 
 Three reusable silhouettes for planted spaces beside the routes.
+
+</div>
+
+</div>
+
+
+### Completed action-world candidates
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="broccoli-bouncer" markdown="1">
+
+[![Exact Broccoli Bouncer model with a green floret crown, leaf hands and orange sneakers](media/catalog-thumbnails/v001/0734fdfe299cd97f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/broccoli-bouncer/v001.md)
+
+### [Broccoli Bouncer](reviews/broccoli-bouncer/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+
+A bouncing vegetable with a held warning, two-leaf slap and wilting defeat. View the exact export beside its construction reference and inspect all five clips.
 
 </div>
 

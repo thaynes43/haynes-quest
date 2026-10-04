@@ -94,6 +94,20 @@
       "sha256": "5e53412b47c2a4982a2f022e37a19c4eab6eda402c5bf5bcbf3d234ac194aeec"
     },
     {
+      "source": "docs/assets/media/broccoli-bouncer/v001/beauty.png",
+      "source_sha256": "1701685ae4cc5b7a0af1b36192af6fe6b7b4586c287442bdc9a95faf0f43994b",
+      "path": "docs/assets/media/catalog-thumbnails/v001/0734fdfe299cd97f.webp",
+      "bytes": 12792,
+      "sha256": "21afe26e574368f5ae905608d46846337586deef9a3d617ca6de880e8b17c216"
+    },
+    {
+      "source": "docs/assets/media/broccoli-bouncer/v001/concept.png",
+      "source_sha256": "0ea401071e70c1e67f45f4402c48af2eee58bb25bd34cd47ee8a75be721f7b1f",
+      "path": "docs/assets/media/catalog-thumbnails/v001/64be59f8843c829e.webp",
+      "bytes": 16020,
+      "sha256": "0076e3ed4684923b2733fec525455dcb2c93b6c22c543824d81d4115a13da1f7"
+    },
+    {
       "source": "docs/assets/media/buffer-baron/v001/beauty.png",
       "source_sha256": "5be862cace7d88045899e7423bda32b0638d09f669b742ed69e754d7d57d0d66",
       "path": "docs/assets/media/catalog-thumbnails/v001/de0597a895152a79.webp",
