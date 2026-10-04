@@ -39,6 +39,7 @@ const parodyMotion: Record<
   "gadget-hammer-hopper": { contactFraction: 0.625, height: 1.5414782316099696 },
   "broccoli-bouncer": { contactFraction: 0.625, height: 1.527886152267456 },
   "bin-chicken-flower-thief": { contactFraction: 0.625, height: 1.4803972244262695 },
+  "demon-idol-drummer": { contactFraction: 0.625, height: 1.5699700117111206 },
 };
 
 interface ParodyArtworkBase {
