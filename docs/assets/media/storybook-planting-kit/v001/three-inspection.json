@@ -1,0 +1,168 @@
+{
+  "kit_id": "storybook-planting-kit",
+  "version": "v001",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader parse of each GLB; world-space vertex bounds; material and draw-primitive inventory. No physical-device claim.",
+  "props": {
+    "storybook-canopy-tree": {
+      "glb_sha256": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+      "bytes": 206968,
+      "triangles": 6064,
+      "height_m": 3.996110200881958,
+      "size_m": [
+        3.674309015274048,
+        3.996110200881958,
+        2.4600895643234253
+      ],
+      "bounds_y_up": {
+        "min": [
+          -1.8582521677017212,
+          0,
+          -1.2189292907714844
+        ],
+        "max": [
+          1.8160568475723267,
+          3.996110200881958,
+          1.241160273551941
+        ]
+      },
+      "planting_base_below_5cm": {
+        "min": [
+          -0.628017783164978,
+          0,
+          -0.5622056722640991
+        ],
+        "max": [
+          0.628017783164978,
+          0.03910738602280617,
+          0.5622056722640991
+        ]
+      },
+      "material": [
+        {
+          "name": "Storybook planting kit matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7799999713897705
+        }
+      ],
+      "checks": {
+        "one_mesh_one_draw_primitive": true,
+        "node_named_for_prop_identity_transform": true,
+        "vertex_coloured_standard_material_no_maps": true,
+        "no_animation_or_skin": true,
+        "base_on_ground": true,
+        "base_centred": true,
+        "height_in_range": true
+      }
+    },
+    "storybook-cypress": {
+      "glb_sha256": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1",
+      "bytes": 94368,
+      "triangles": 2882,
+      "height_m": 3.080000400543213,
+      "size_m": [
+        0.9285442233085632,
+        3.080000400543213,
+        0.9047290980815887
+      ],
+      "bounds_y_up": {
+        "min": [
+          -0.5488763451576233,
+          0,
+          -0.4512343406677246
+        ],
+        "max": [
+          0.37966787815093994,
+          3.080000400543213,
+          0.45349475741386414
+        ]
+      },
+      "planting_base_below_5cm": {
+        "min": [
+          -0.27666544914245605,
+          0,
+          -0.27666544914245605
+        ],
+        "max": [
+          0.27666544914245605,
+          0.03646130859851837,
+          0.27666544914245605
+        ]
+      },
+      "material": [
+        {
+          "name": "Storybook planting kit matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7799999713897705
+        }
+      ],
+      "checks": {
+        "one_mesh_one_draw_primitive": true,
+        "node_named_for_prop_identity_transform": true,
+        "vertex_coloured_standard_material_no_maps": true,
+        "no_animation_or_skin": true,
+        "base_on_ground": true,
+        "base_centred": true,
+        "height_in_range": true
+      }
+    },
+    "storybook-flowering-shrub": {
+      "glb_sha256": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c",
+      "bytes": 189464,
+      "triangles": 6660,
+      "height_m": 0.8048603534698486,
+      "size_m": [
+        1.1085747480392456,
+        0.8048603534698486,
+        1.0909063220024109
+      ],
+      "bounds_y_up": {
+        "min": [
+          -0.5453208088874817,
+          0,
+          -0.548449695110321
+        ],
+        "max": [
+          0.5632539391517639,
+          0.8048603534698486,
+          0.5424566268920898
+        ]
+      },
+      "planting_base_below_5cm": {
+        "min": [
+          -0.04116412252187729,
+          0,
+          -0.042098671197891235
+        ],
+        "max": [
+          0.04268694296479225,
+          0.01708710938692093,
+          0.043571822345256805
+        ]
+      },
+      "material": [
+        {
+          "name": "Storybook planting kit matte",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "roughness": 0.7799999713897705
+        }
+      ],
+      "checks": {
+        "one_mesh_one_draw_primitive": true,
+        "node_named_for_prop_identity_transform": true,
+        "vertex_coloured_standard_material_no_maps": true,
+        "no_animation_or_skin": true,
+        "base_on_ground": true,
+        "base_centred": true,
+        "height_in_range": true
+      }
+    }
+  },
+  "shared_material_across_kit": true,
+  "material_names": [
+    "Storybook planting kit matte"
+  ]
+}

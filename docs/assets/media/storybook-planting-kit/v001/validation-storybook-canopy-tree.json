@@ -1,0 +1,94 @@
+{
+  "id": "storybook-canopy-tree",
+  "file": "storybook-canopy-tree.glb",
+  "sha256": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+  "bytes": 206968,
+  "triangles": 6064,
+  "vertices": 4694,
+  "primitives": 1,
+  "nodes": 1,
+  "materials": [
+    {
+      "name": "Storybook planting kit matte",
+      "doubleSided": true,
+      "pbr": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7799999713897705
+      }
+    }
+  ],
+  "animations": [],
+  "accessor_bounds_gltf": {
+    "min": [
+      -1.8582521677017212,
+      0,
+      -1.2189292907714844
+    ],
+    "max": [
+      1.8160568475723267,
+      3.996110200881958,
+      1.241160273551941
+    ]
+  },
+  "base_bounds_below_5cm": {
+    "min": [
+      -0.628017783164978,
+      0,
+      -0.5622056722640991
+    ],
+    "max": [
+      0.628017783164978,
+      0.03910738602280617,
+      0.5622056722640991
+    ]
+  },
+  "scene_extras": {
+    "pack_id": "action-minions-b",
+    "asset_id": "storybook-planting-kit",
+    "asset_version": "v001",
+    "work_order": "20261004-opus-action-minions-b",
+    "prop_id": "storybook-canopy-tree",
+    "candidate_status": "storybook-planting-kit v001 · awaiting owner review",
+    "orientation": "glTF +Y up; base centred on the ground origin"
+  },
+  "root_channels": [],
+  "validator": {
+    "name": "Khronos glTF Validator",
+    "version": "2.0.0-dev.3.10",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    }
+  },
+  "checks": {
+    "gltf_2": true,
+    "khronos_zero_errors": true,
+    "khronos_zero_warnings": true,
+    "khronos_zero_infos_or_hints_reported": true,
+    "two_or_fewer_materials": true,
+    "opaque_vertex_colour_pbr_no_textures": true,
+    "no_images_textures_samplers": true,
+    "triangle_primitives_with_normals_and_vertex_colours": true,
+    "embedded_single_buffer": true,
+    "no_extensions": true,
+    "bytes_at_most_1_5_mib": true,
+    "identity_extras": true,
+    "no_lease_or_addon_metadata": true,
+    "floor_at_or_above_zero": true,
+    "triangles_at_most_7000": true,
+    "one_static_mesh_node": true,
+    "identity_node_named_for_prop": true,
+    "no_skin_animation_or_morph": true,
+    "base_at_ground_origin": true,
+    "base_centred_on_origin_within_3cm": true,
+    "silhouette_balanced_within_20_percent": true,
+    "inside_planning_box": true,
+    "recognizable_height": true,
+    "prop_identity": true
+  },
+  "failures": []
+}

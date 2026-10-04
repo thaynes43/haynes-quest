@@ -1,0 +1,182 @@
+{
+  "asset_id": "storybook-planting-kit",
+  "version": "v001",
+  "files": {
+    "browser-inspection.json": {
+      "bytes": 3815,
+      "sha256": "b2e61b1e5efa2633de4fe0221f6bac6ba09c501649cb3d8d9d9f006a3d412b12"
+    },
+    "concept-vs-model.png": {
+      "bytes": 420502,
+      "sha256": "8edfd20e06385cae1ecc62c084304d0afa3dfaf6321fbaba42fe97fb02515270"
+    },
+    "concept.png": {
+      "bytes": 1614267,
+      "sha256": "cb3123616695ed8d75bb25ba209eec38e420e3beeca0d778ff8958fe0879f964"
+    },
+    "construction.json": {
+      "bytes": 2179,
+      "sha256": "9a3b9628e657683a4678e71fe3da96554206cdb2d516e8e7dd5f5ede5dee22ed"
+    },
+    "kit-garden.png": {
+      "bytes": 39765,
+      "sha256": "15270dca8e4d60462fafb75a4539897efeabb99ddb4d5056382765002c0b5039"
+    },
+    "kit-lineup.png": {
+      "bytes": 41502,
+      "sha256": "4011912adcf31f1b3c018d0ac1d8249bf42b6112673ab7fa1b98b721bd0fd993"
+    },
+    "prompt.txt": {
+      "bytes": 1331,
+      "sha256": "0e8d62a8ad60fe7ea9185b6b9dbb2a0afbc52ae768a0d6f3916c7e548db1b6c2"
+    },
+    "provenance.json": {
+      "bytes": 3560,
+      "sha256": "4b9a2df6fb0d89d9208a4558300c218a2a0685b2f40907e0f8f6ee337be94272"
+    },
+    "source/claim.py": {
+      "bytes": 2807,
+      "sha256": "83026e23dac484a9d2d658c8f6345c3a2249add0b63263d00ced5b60aeaecb99"
+    },
+    "source/common.py": {
+      "bytes": 27346,
+      "sha256": "80ee80df8305993e7ae3d4677e20036cd448e36965f98013ef0bd85a6fb22f7b"
+    },
+    "source/compare-kit.mjs": {
+      "bytes": 1650,
+      "sha256": "fd0e903b652db8d7607372504ed57d69ac532bd9f64d89d2d3aac9637553d271"
+    },
+    "source/deliver_kit.py": {
+      "bytes": 5450,
+      "sha256": "cc330a2863a45b163f6c3a5a9ba6b49151c3750764441eba59157717fc11e188"
+    },
+    "source/fetch_look.py": {
+      "bytes": 960,
+      "sha256": "2e8184c0c34c9f0634445b7b5bd3a0f484d32d635806d244f76a27af0ca2b416"
+    },
+    "source/inspect-static.mjs": {
+      "bytes": 3594,
+      "sha256": "091a6bd05973c19e8bfb6d221614685e65431cd7f5dc76d9cede528907ac7657"
+    },
+    "source/kit.py": {
+      "bytes": 14630,
+      "sha256": "0ee649342accaeced36e358018e9d38a259caee5758aac6c76c51cbfbe2bcb99"
+    },
+    "source/look.py": {
+      "bytes": 5708,
+      "sha256": "159f2170459e5bb2e0aef4117ec779a23e6c3517cfbcae0fd48d5de74e98efc2"
+    },
+    "source/preview-kit.mjs": {
+      "bytes": 8107,
+      "sha256": "7580172c8ce7db875c0c192fecd1cedd098b54c49dc49647c1e314fec835e588"
+    },
+    "source/run.py": {
+      "bytes": 1025,
+      "sha256": "2c71659dad1bdf0b0f06535977314c1c0cd377dfb7b478fe6b11426f3af56597"
+    },
+    "source/run_validate.py": {
+      "bytes": 731,
+      "sha256": "4e783a9674b55da32db692fdb198184bbe2c90641159625346abf7f82abf527f"
+    },
+    "source/transfer.py": {
+      "bytes": 4244,
+      "sha256": "4ce93f9d2557418bd10ba690719c76f6ce247deec376ba82afef76821cb1c3fb"
+    },
+    "source/validate.mjs": {
+      "bytes": 8932,
+      "sha256": "579f5a601d9483236109ff31ee814d238b3102986826d24526be576b3b2defc2"
+    },
+    "stills/storybook-canopy-tree-back.png": {
+      "bytes": 70418,
+      "sha256": "9b89957fd950963a29ef839bac9f282c06b4a48ee6270ab8091824d38e466949"
+    },
+    "stills/storybook-canopy-tree-beauty.png": {
+      "bytes": 71382,
+      "sha256": "d215f8e60c8d900539f63efd7423fe63f4b8d3a0aeb9f5c72555b15388761d56"
+    },
+    "stills/storybook-canopy-tree-front.png": {
+      "bytes": 72396,
+      "sha256": "004c6ae2ebd8c8cbb5be272a494b5692022002ce57e84e428b9b381ba8ac68d7"
+    },
+    "stills/storybook-canopy-tree-side.png": {
+      "bytes": 57643,
+      "sha256": "76530b2e2d684d824cddd5d12de390a9cdde87d040de92a908bcf9f07523ec80"
+    },
+    "stills/storybook-canopy-tree-threequarter.png": {
+      "bytes": 65473,
+      "sha256": "022ed2de3b1f42a5c00e7d18b44dba27246a3b70ba88c020b0f852a0de65d614"
+    },
+    "stills/storybook-cypress-back.png": {
+      "bytes": 35853,
+      "sha256": "39e273b7e26e1d72524c5d02c7d42fc7b6e43aee7054db0bbbea00e5bddd4c42"
+    },
+    "stills/storybook-cypress-beauty.png": {
+      "bytes": 33951,
+      "sha256": "2b564df922851c13559c9d88e7bb2299231df6a4fb1eed29937090a4246bfc99"
+    },
+    "stills/storybook-cypress-front.png": {
+      "bytes": 36021,
+      "sha256": "4852df7b1caa50688fa48caf675e305eb6aa85cb907641002e2211de3a6e0d49"
+    },
+    "stills/storybook-cypress-side.png": {
+      "bytes": 35973,
+      "sha256": "cc9f2892ee7151a44b139863bc09a9ddae40bccd347b3b6377e79d7ad9a25a3b"
+    },
+    "stills/storybook-cypress-threequarter.png": {
+      "bytes": 36017,
+      "sha256": "64acb217a5b664c2a93860fb4fb005d4d105d690f4bdd6bc6e8811f116a58394"
+    },
+    "stills/storybook-flowering-shrub-back.png": {
+      "bytes": 65994,
+      "sha256": "f257c0e157677f20a404e26f493c84f0bc9b73e08d22791cade6cacf8a455fb8"
+    },
+    "stills/storybook-flowering-shrub-beauty.png": {
+      "bytes": 81502,
+      "sha256": "8c0acfd200544dcb8e3a13e47ada6b7511f4a3f980ac17dc10caae973049ff66"
+    },
+    "stills/storybook-flowering-shrub-front.png": {
+      "bytes": 68544,
+      "sha256": "c0802a1f24db3c928da9c3bb39576c0d515dcb986e991c9c6f9999b91020135d"
+    },
+    "stills/storybook-flowering-shrub-side.png": {
+      "bytes": 66033,
+      "sha256": "850731fbf937067dae9c860ae6fecefff92d1aebc9cbb1ee749fd159d9e7b86b"
+    },
+    "stills/storybook-flowering-shrub-threequarter.png": {
+      "bytes": 65467,
+      "sha256": "3a6623556e0440d5426a221fba5206a030c8e9ce59da98e70865a9333165470c"
+    },
+    "storybook-canopy-tree.glb": {
+      "bytes": 206968,
+      "sha256": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4"
+    },
+    "storybook-cypress.glb": {
+      "bytes": 94368,
+      "sha256": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1"
+    },
+    "storybook-flowering-shrub.glb": {
+      "bytes": 189464,
+      "sha256": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"
+    },
+    "storybook-planting-kit.blend": {
+      "bytes": 370063,
+      "sha256": "5a77fe0d3d69a4210d5a7bd44fb61596625e4707b353ea597c808cd69823be3c"
+    },
+    "three-inspection.json": {
+      "bytes": 4453,
+      "sha256": "029504da97ba5d23fc31a3c617b3047d5eae7e7cf15cc7360a019badf9ddd5ef"
+    },
+    "validation-storybook-canopy-tree.json": {
+      "bytes": 2483,
+      "sha256": "140cdf3c548fc54e37961c6f30b3322a7bd0f73027ca7b0d53da08b6928e22ca"
+    },
+    "validation-storybook-cypress.json": {
+      "bytes": 2479,
+      "sha256": "9f34f493594ddb352051cadae078a137c2ed0bff89a46fbe23cce76f5be72332"
+    },
+    "validation-storybook-flowering-shrub.json": {
+      "bytes": 2504,
+      "sha256": "ecb9ba043b38105de7047adce14e1bc2d9048182550ae87063079d0ce33673f1"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "asset_id": "storybook-planting-kit",
+  "version": "v001",
+  "props": [
+    "storybook-canopy-tree",
+    "storybook-cypress",
+    "storybook-flowering-shrub"
+  ],
+  "work_order": "20261004-opus-action-minions-b",
+  "design": "DESIGN-029 action and inhabited worlds",
+  "glb_sha256": {
+    "storybook-canopy-tree": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+    "storybook-cypress": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1",
+    "storybook-flowering-shrub": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"
+  },
+  "candidate_status": "Awaiting Tom's exact-version review; technically checked family-release candidate under PRD-004 Q-03",
+  "authoring_agent": "Claude Code, claude-opus-5-5 at xhigh effort, agent-run session on the Max plan (no API key)",
+  "authoring_tool": "Blender MCP execute_blender_code on the isolated second authoring service (blender-authoring-2) through source/transfer.py; instance 1 and the native blender MCP server were not used",
+  "blender_version": "4.5.13 LTS",
+  "concept": {
+    "file": "concept.png",
+    "sha256": "cb3123616695ed8d75bb25ba209eec38e420e3beeca0d778ff8958fe0879f964",
+    "prompt": "prompt.txt",
+    "prompt_sha256": "0e8d62a8ad60fe7ea9185b6b9dbb2a0afbc52ae768a0d6f3916c7e548db1b6c2",
+    "generator": "Coordinator image generation (Codex GPT-6 Astra built-in image tool), October 4, 2026",
+    "use": "Construction reference only; no image pixels are applied to the props"
+  },
+  "source_scripts": {
+    "transfer.py": "4ce93f9d2557418bd10ba690719c76f6ce247deec376ba82afef76821cb1c3fb",
+    "run.py": "2c71659dad1bdf0b0f06535977314c1c0cd377dfb7b478fe6b11426f3af56597",
+    "claim.py": "83026e23dac484a9d2d658c8f6345c3a2249add0b63263d00ced5b60aeaecb99",
+    "common.py": "80ee80df8305993e7ae3d4677e20036cd448e36965f98013ef0bd85a6fb22f7b",
+    "kit.py": "0ee649342accaeced36e358018e9d38a259caee5758aac6c76c51cbfbe2bcb99",
+    "look.py": "159f2170459e5bb2e0aef4117ec779a23e6c3517cfbcae0fd48d5de74e98efc2",
+    "validate.mjs": "579f5a601d9483236109ff31ee814d238b3102986826d24526be576b3b2defc2",
+    "run_validate.py": "4e783a9674b55da32db692fdb198184bbe2c90641159625346abf7f82abf527f",
+    "inspect-static.mjs": "091a6bd05973c19e8bfb6d221614685e65431cd7f5dc76d9cede528907ac7657",
+    "preview-kit.mjs": "7580172c8ce7db875c0c192fecd1cedd098b54c49dc49647c1e314fec835e588",
+    "compare-kit.mjs": "fd0e903b652db8d7607372504ed57d69ac532bd9f64d89d2d3aac9637553d271",
+    "deliver_kit.py": "cc330a2863a45b163f6c3a5a9ba6b49151c3750764441eba59157717fc11e188",
+    "fetch_look.py": "2e8184c0c34c9f0634445b7b5bd3a0f484d32d635806d244f76a27af0ca2b416"
+  },
+  "original_work": [
+    "Every trunk, root flare, limb, shingled leaf crown, cypress scale, shrub leaf, stem and five-petal flower is new procedural Blender Python (source/kit.py).",
+    "One shared vertex-coloured material for all three props; no image texture."
+  ],
+  "excluded_inputs": [
+    "No family photos or likenesses.",
+    "No downloaded meshes, scanned plants, logos or textures."
+  ],
+  "tool_versions": {
+    "blender": "4.5.13 LTS",
+    "khronos_gltf_validator": "2.0.0-dev.3.10",
+    "three": "186",
+    "chromium": "153.0.8010.12"
+  },
+  "orientation": "glTF +Y up; each prop is one identity-transform mesh node named for the prop, its planting base centred on the ground origin; no soil disc, pot or slab.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication, theme placement and user-facing copy; owner exact-version review remains open."
+}
