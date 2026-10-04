@@ -583,6 +583,7 @@ interface LegRecord {
 }
 
 interface RealtimeSample {
+  warmupAfterAssetsMs: number;
   frames: number;
   meanFrameMs: number;
   p95FrameMs: number;
@@ -600,7 +601,11 @@ interface RealtimeSample {
 async function sampleRealtime(
   page: Page,
   loadedModels: Array<{ path: string; bytes: number; durationMs: number }>,
+  assetsReadyAt: number,
 ): Promise<RealtimeSample> {
+  const remainingWarmup = 3_000 - (Date.now() - assetsReadyAt);
+  if (remainingWarmup > 0) await new Promise((wait) => setTimeout(wait, remainingWarmup));
+  const warmupAfterAssetsMs = Date.now() - assetsReadyAt;
   const measured = await page.evaluate(`new Promise((resolveSample) => {
     const drawCounter = window;
     const intervals = [];
@@ -639,6 +644,7 @@ async function sampleRealtime(
   const sumCalls = measured.calls.reduce((sum, value) => sum + value, 0);
   const p95 = (values: number[]) => values[Math.min(values.length - 1, Math.floor(values.length * 0.95))]!;
   return {
+    warmupAfterAssetsMs,
     frames: measured.intervals.length,
     meanFrameMs: Number(mean.toFixed(2)),
     p95FrameMs: Number(p95(sortedIntervals).toFixed(2)),
@@ -1097,6 +1103,26 @@ class ChapterPilot {
         continue;
       }
       if (this.live.nearEncounterId !== encounter.id) {
+        const blockingOrdinary = this.live.encounters.find((entry) =>
+          entry.id === this.live.nearEncounterId && entry.role === "ordinary" && entry.hp > 0);
+        if (role === "ordinary" && blockingOrdinary) {
+          // In a paired group the other ordinary can reach the player first.
+          // Fight it through the same controls, then finish this exact slot.
+          await this.game.move(0, 0);
+          if (!shotTaken) {
+            shotTaken = true;
+            await onReached(role);
+          }
+          if (this.live.attackReady && !this.live.requestBusy) {
+            await this.game.press("f");
+            record.attacks += 1;
+          } else if (this.live.guardReady && !this.live.requestBusy) {
+            await this.game.press("Shift");
+            record.bashes += 1;
+          }
+          await this.game.step(FINE_MS);
+          continue;
+        }
         // Step toward the enemy, never past the deck's edge.
         const deck = sampledPlatform(this.course, anchor.platformId, this.live.time);
         const margin = 0.6;
@@ -1255,6 +1281,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     let returnedProject: LevelEditorProjectV2 | null = null;
     let returnedFingerprint = "";
     const pendingAssetLoads: Promise<void>[] = [];
+    let assetsReadyAt = 0;
     page.on("pageerror", (error) => report.pageErrors.push(error.message));
     page.on("console", (message) => {
       if (message.type() === "error") report.consoleErrors.push(message.text());
@@ -1330,7 +1357,8 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     if (realtimeSample) {
       await Promise.all(pendingAssetLoads);
       report.assetLoads.sort((left, right) => left.path.localeCompare(right.path));
-      report.realtime = { spawn: await sampleRealtime(page, report.assetLoads) };
+      assetsReadyAt = Date.now();
+      report.realtime = { spawn: await sampleRealtime(page, report.assetLoads, assetsReadyAt) };
     }
     await game.pause();
     if (skipDraw) await page.evaluate("globalThis.__questSkipDraw=true");
@@ -1778,7 +1806,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                 if (realtimeSample && until === "first-fight") {
                   await game!.releaseStick();
                   await page.clock.resume();
-                  report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads);
+                  report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads, assetsReadyAt);
                 }
                 if (until === "first-fight") throw new StopAt("first-fight");
               }
