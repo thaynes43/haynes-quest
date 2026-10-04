@@ -1,0 +1,1853 @@
+{
+  "stills": {
+    "front": {
+      "clips": [
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "move",
+          "duration": 0.800000011920929
+        },
+        {
+          "name": "attack",
+          "duration": 2
+        },
+        {
+          "name": "hit",
+          "duration": 0.6000000238418579
+        },
+        {
+          "name": "defeat",
+          "duration": 2.4000000953674316
+        }
+      ],
+      "calls": 3,
+      "triangles": 14686,
+      "glError": 0,
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "pose": {
+        "skate_FR": [
+          0.1,
+          0.235,
+          -0.15
+        ],
+        "skate_FL": [
+          -0.1,
+          0.235,
+          -0.15
+        ],
+        "head": [
+          0,
+          0.68,
+          -0.2
+        ],
+        "hat": [
+          -0.05,
+          1.045,
+          -0.15
+        ],
+        "hips": [
+          0,
+          0.41,
+          0.16
+        ],
+        "tail_5": [
+          0,
+          0.9681,
+          0.4577
+        ]
+      },
+      "raster_sha256": "d3d3f35cebc9b9e05cc850ac46d69b9299fb2e3313fe9b88eb918ae08542d7c7"
+    },
+    "side": {
+      "clips": [
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "move",
+          "duration": 0.800000011920929
+        },
+        {
+          "name": "attack",
+          "duration": 2
+        },
+        {
+          "name": "hit",
+          "duration": 0.6000000238418579
+        },
+        {
+          "name": "defeat",
+          "duration": 2.4000000953674316
+        }
+      ],
+      "calls": 3,
+      "triangles": 14686,
+      "glError": 0,
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "pose": {
+        "skate_FR": [
+          0.1,
+          0.235,
+          -0.15
+        ],
+        "skate_FL": [
+          -0.1,
+          0.235,
+          -0.15
+        ],
+        "head": [
+          0,
+          0.68,
+          -0.2
+        ],
+        "hat": [
+          -0.05,
+          1.045,
+          -0.15
+        ],
+        "hips": [
+          0,
+          0.41,
+          0.16
+        ],
+        "tail_5": [
+          0,
+          0.9681,
+          0.4577
+        ]
+      },
+      "raster_sha256": "45a7cc706ef0214de934052d6cc161f96bdb476a153f67cb3ab199691a966faa"
+    },
+    "back": {
+      "clips": [
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "move",
+          "duration": 0.800000011920929
+        },
+        {
+          "name": "attack",
+          "duration": 2
+        },
+        {
+          "name": "hit",
+          "duration": 0.6000000238418579
+        },
+        {
+          "name": "defeat",
+          "duration": 2.4000000953674316
+        }
+      ],
+      "calls": 3,
+      "triangles": 14686,
+      "glError": 0,
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "pose": {
+        "skate_FR": [
+          0.1,
+          0.235,
+          -0.15
+        ],
+        "skate_FL": [
+          -0.1,
+          0.235,
+          -0.15
+        ],
+        "head": [
+          0,
+          0.68,
+          -0.2
+        ],
+        "hat": [
+          -0.05,
+          1.045,
+          -0.15
+        ],
+        "hips": [
+          0,
+          0.41,
+          0.16
+        ],
+        "tail_5": [
+          0,
+          0.9681,
+          0.4577
+        ]
+      },
+      "raster_sha256": "66b58b0ce34b053a83f67cd79dc06da1b651158f72585fc10a48766a4685d953"
+    },
+    "threequarter": {
+      "clips": [
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "move",
+          "duration": 0.800000011920929
+        },
+        {
+          "name": "attack",
+          "duration": 2
+        },
+        {
+          "name": "hit",
+          "duration": 0.6000000238418579
+        },
+        {
+          "name": "defeat",
+          "duration": 2.4000000953674316
+        }
+      ],
+      "calls": 3,
+      "triangles": 14686,
+      "glError": 0,
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "pose": {
+        "skate_FR": [
+          0.1,
+          0.235,
+          -0.15
+        ],
+        "skate_FL": [
+          -0.1,
+          0.235,
+          -0.15
+        ],
+        "head": [
+          0,
+          0.68,
+          -0.2
+        ],
+        "hat": [
+          -0.05,
+          1.045,
+          -0.15
+        ],
+        "hips": [
+          0,
+          0.41,
+          0.16
+        ],
+        "tail_5": [
+          0,
+          0.9681,
+          0.4577
+        ]
+      },
+      "raster_sha256": "702dc2670d7b7f8141fdef39dda37189a5d6dd98fa25fc8d246cbc4d3dffa77c"
+    },
+    "beauty": {
+      "clips": [
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "move",
+          "duration": 0.800000011920929
+        },
+        {
+          "name": "attack",
+          "duration": 2
+        },
+        {
+          "name": "hit",
+          "duration": 0.6000000238418579
+        },
+        {
+          "name": "defeat",
+          "duration": 2.4000000953674316
+        }
+      ],
+      "calls": 3,
+      "triangles": 14686,
+      "glError": 0,
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "pose": {
+        "skate_FR": [
+          0.1,
+          0.235,
+          -0.15
+        ],
+        "skate_FL": [
+          -0.1,
+          0.235,
+          -0.15
+        ],
+        "head": [
+          0,
+          0.68,
+          -0.2
+        ],
+        "hat": [
+          -0.05,
+          1.045,
+          -0.15
+        ],
+        "hips": [
+          0,
+          0.41,
+          0.16
+        ],
+        "tail_5": [
+          0,
+          0.9681,
+          0.4577
+        ]
+      },
+      "raster_sha256": "cc43f11f6af09b48907b676c20bebaed3acfc3ae751453c7343d4a7ef9209866"
+    }
+  },
+  "clips": {
+    "idle": {
+      "duration_s": 2,
+      "frames": [
+        {
+          "fraction": 0,
+          "label": "concept stance",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.15
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.15
+            ],
+            "head": [
+              0,
+              0.68,
+              -0.2
+            ],
+            "hat": [
+              -0.05,
+              1.045,
+              -0.15
+            ],
+            "hips": [
+              0,
+              0.41,
+              0.16
+            ],
+            "tail_5": [
+              0,
+              0.9681,
+              0.4577
+            ]
+          },
+          "raster_sha256": "623b8d2e693bb3a4e98b81c8c42273821af9d575d1ee67689280f0bc3f5b3203"
+        },
+        {
+          "fraction": 0.31,
+          "label": "ear flick",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.1779
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.1779
+            ],
+            "head": [
+              0.0007,
+              0.6734,
+              -0.2285
+            ],
+            "hat": [
+              -0.0146,
+              1.0417,
+              -0.1798
+            ],
+            "hips": [
+              -0.0002,
+              0.3965,
+              0.1295
+            ],
+            "tail_5": [
+              -0.0135,
+              0.9535,
+              0.3916
+            ]
+          },
+          "raster_sha256": "aef7d0542805fd52a7874f6ec5c6ee312f47e21cfa7dca6bffbae259a5543175"
+        },
+        {
+          "fraction": 0.6,
+          "label": "side-eye",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.1324
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.1324
+            ],
+            "head": [
+              0.005,
+              0.6736,
+              -0.1804
+            ],
+            "hat": [
+              -0.0598,
+              1.0356,
+              -0.1256
+            ],
+            "hips": [
+              0.0005,
+              0.4078,
+              0.1792
+            ],
+            "tail_5": [
+              0.0044,
+              0.9549,
+              0.543
+            ]
+          },
+          "raster_sha256": "452a0cc7f995f55c01e25df8f9db38afa644b4bcd22b9d9e9d4c4800db5e1468"
+        },
+        {
+          "fraction": 0.895,
+          "label": "blink",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.1316
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.1316
+            ],
+            "head": [
+              -0.0175,
+              0.6691,
+              -0.1897
+            ],
+            "hat": [
+              -0.1121,
+              1.0278,
+              -0.166
+            ],
+            "hips": [
+              -0.0005,
+              0.4076,
+              0.18
+            ],
+            "tail_5": [
+              -0.0231,
+              0.9742,
+              0.3952
+            ]
+          },
+          "raster_sha256": "e48c90481e96b099dd3ebca198c14d356b2e70121bc4b0bdbe57061df2d74185"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_frames": [
+        {
+          "fraction": 0,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "ea00c667dcb2fb594d703cd1d2405a4392407ed0d9dce499d29da2b6c47411dd"
+        },
+        {
+          "fraction": 0.31,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "0327df520541e6ecc993bac07265772d1aff693327df7861564bdd7951fa6845"
+        },
+        {
+          "fraction": 0.6,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "33636f56dae2f2c7b486939bea137320ef224c28bff9522f8c705e24867a385c"
+        },
+        {
+          "fraction": 0.895,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "6d8d85c5acb28944cd001a336ccc05b7e4a782b118cd9dac74bb3e3580dc3598"
+        }
+      ],
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 2.0869000000953672,
+          "frames": 48,
+          "distinct_probe_positions": 33,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 2.0752999999523163,
+          "frames": 25,
+          "distinct_probe_positions": 22,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "move": {
+      "duration_s": 0.800000011920929,
+      "frames": [
+        {
+          "fraction": 0,
+          "label": "stroke",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.15
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.15
+            ],
+            "head": [
+              0,
+              0.6257,
+              -0.2384
+            ],
+            "hat": [
+              -0.05,
+              0.9937,
+              -0.2204
+            ],
+            "hips": [
+              0,
+              0.3998,
+              0.1478
+            ],
+            "tail_5": [
+              0.039,
+              0.4972,
+              -0.0136
+            ]
+          },
+          "raster_sha256": "8b3322b3e3db68b82078d12943fa7ed0ce82322e33561c19b0a7da40a7e61613"
+        },
+        {
+          "fraction": 0.25,
+          "label": "push",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.175
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.125
+            ],
+            "head": [
+              -0.0016,
+              0.6457,
+              -0.2278
+            ],
+            "hat": [
+              -0.0752,
+              1.0077,
+              -0.1851
+            ],
+            "hips": [
+              0.0247,
+              0.4157,
+              0.1477
+            ],
+            "tail_5": [
+              -0.0689,
+              0.5063,
+              0.0015
+            ]
+          },
+          "raster_sha256": "f7d7d9a7ae4cfba1e2003fbc0d936b1b6f4511fde0ecdf39e5a715228da5159e"
+        },
+        {
+          "fraction": 0.5,
+          "label": "stroke",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.15
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.15
+            ],
+            "head": [
+              0,
+              0.6257,
+              -0.2384
+            ],
+            "hat": [
+              -0.05,
+              0.9937,
+              -0.2204
+            ],
+            "hips": [
+              0,
+              0.3998,
+              0.1478
+            ],
+            "tail_5": [
+              -0.039,
+              0.4972,
+              -0.0136
+            ]
+          },
+          "raster_sha256": "3058b45c1c7c9bf9ea1b30ada13da6fd2053dc6f9c16498355c07fd076728c9f"
+        },
+        {
+          "fraction": 0.75,
+          "label": "glide",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.125
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.175
+            ],
+            "head": [
+              0.0016,
+              0.6457,
+              -0.2278
+            ],
+            "hat": [
+              -0.0243,
+              1.013,
+              -0.1759
+            ],
+            "hips": [
+              -0.0247,
+              0.4157,
+              0.1477
+            ],
+            "tail_5": [
+              0.0689,
+              0.5063,
+              0.0015
+            ]
+          },
+          "raster_sha256": "622e5f93ab9cc431bc33652a952b4048afe6fe6fc6b05aa990003530aa7cbb8d"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_frames": [
+        {
+          "fraction": 0,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "4cb28e5e013c4ecceccea006b43b78a20bce10647854c3e0eb7022c86f168094"
+        },
+        {
+          "fraction": 0.25,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "7555c5bbd14103e27c8c1cb54c60e604709408b52f1bbb8a714328f136dde6b8"
+        },
+        {
+          "fraction": 0.5,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "1a9a56e017bc8990034eb38811d8177b1b8eb49d07bab5a6669d2c08843964fb"
+        },
+        {
+          "fraction": 0.75,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "0c152a0123ffc93d3d1cf8343063df872208b1a067245644db8c5877a1dc81a3"
+        }
+      ],
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 0.9348999998569488,
+          "frames": 36,
+          "distinct_probe_positions": 29,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 0.9217999999523163,
+          "frames": 13,
+          "distinct_probe_positions": 9,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "attack": {
+      "duration_s": 2,
+      "frames": [
+        {
+          "fraction": 0.15,
+          "label": "tell: crouch, hiss",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.1406
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.1406
+            ],
+            "head": [
+              0.004,
+              0.6508,
+              -0.1711
+            ],
+            "hat": [
+              -0.0418,
+              1.0034,
+              -0.0625
+            ],
+            "hips": [
+              0.0118,
+              0.376,
+              0.1694
+            ],
+            "tail_5": [
+              -0.0488,
+              0.9242,
+              0.2888
+            ]
+          },
+          "raster_sha256": "ef1f4f4d8e68ad7416ff33735a8d0d208858ba28924e0963c9a2fe6d663ed767"
+        },
+        {
+          "fraction": 0.47,
+          "label": "rear up",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.4243,
+              -0.2
+            ],
+            "skate_FL": [
+              -0.1,
+              0.3912,
+              -0.1905
+            ],
+            "head": [
+              0,
+              0.809,
+              -0.0217
+            ],
+            "hat": [
+              -0.05,
+              1.1462,
+              0.1268
+            ],
+            "hips": [
+              0,
+              0.406,
+              0.1928
+            ],
+            "tail_5": [
+              -0.1028,
+              0.2832,
+              0.9187
+            ]
+          },
+          "raster_sha256": "e8687eb76e63104364a1fae37964693426ebebad06a0d927d137356082ebe3ae"
+        },
+        {
+          "fraction": 0.58,
+          "label": "dash",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.2894,
+              -0.4255
+            ],
+            "skate_FL": [
+              -0.1,
+              0.2799,
+              -0.4228
+            ],
+            "head": [
+              0,
+              0.6878,
+              -0.3571
+            ],
+            "hat": [
+              -0.05,
+              1.048,
+              -0.2799
+            ],
+            "hips": [
+              0,
+              0.3947,
+              -0.019
+            ],
+            "tail_5": [
+              -0.0112,
+              0.8702,
+              0.4811
+            ]
+          },
+          "raster_sha256": "e2fc2f25ee15019a9a4b2b019d54bc14586fc94cdd5c0365aa92be7675bf71d9"
+        },
+        {
+          "fraction": 0.625,
+          "label": "stomp 1.25 s",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.49
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.49
+            ],
+            "head": [
+              0,
+              0.6162,
+              -0.4564
+            ],
+            "hat": [
+              -0.05,
+              1.0105,
+              -0.3856
+            ],
+            "hips": [
+              0,
+              0.3962,
+              -0.0832
+            ],
+            "tail_5": [
+              0,
+              0.994,
+              0.1235
+            ]
+          },
+          "raster_sha256": "f5ed524cbba395f9c80b31d5a25657b32602a5cfece7e2035362608e64d0397f"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_frames": [
+        {
+          "fraction": 0.15,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "803a3a064dfea0d667dafb4f64dfc2471b7897deeea21517b08c1643da937902"
+        },
+        {
+          "fraction": 0.47,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "9a1ea949b7b54e15f150d404e7bc40f61914a58f6ef4e87fcb72fd734307839f"
+        },
+        {
+          "fraction": 0.58,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "2a0ff4df32f3322d912e3dd98e7c1e65de0540fdd55cdbcce9246134f77bc9b6"
+        },
+        {
+          "fraction": 0.625,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "93d7e43ae8e97a70ed4e95a9eaba9e12a253aabb7cac0942a28e04b71e852b1f"
+        }
+      ],
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 2.0332000000476835,
+          "frames": 67,
+          "distinct_probe_positions": 56,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 2.000800000190735,
+          "frames": 57,
+          "distinct_probe_positions": 53,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "hit": {
+      "duration_s": 0.6000000238418579,
+      "frames": [
+        {
+          "fraction": 0,
+          "label": "rest",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.15
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.15
+            ],
+            "head": [
+              0,
+              0.68,
+              -0.2
+            ],
+            "hat": [
+              -0.05,
+              1.045,
+              -0.15
+            ],
+            "hips": [
+              0,
+              0.41,
+              0.16
+            ],
+            "tail_5": [
+              0,
+              0.9681,
+              0.4577
+            ]
+          },
+          "raster_sha256": "4bba5b29e5b55a4403f7f69a06f2bbd00af11862e087e5b2d4a685c570718124"
+        },
+        {
+          "fraction": 0.2,
+          "label": "recoil, hat pops",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.0806
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.0806
+            ],
+            "head": [
+              0,
+              0.69,
+              -0.0601
+            ],
+            "hat": [
+              -0.05,
+              1.1235,
+              0.1614
+            ],
+            "hips": [
+              0,
+              0.3885,
+              0.2408
+            ],
+            "tail_5": [
+              0,
+              0.3862,
+              0.9854
+            ]
+          },
+          "raster_sha256": "f5dad5865dc1e59aea859feee3580e2bff4f4b5b98d0df67c838ec9f7261ff9d"
+        },
+        {
+          "fraction": 0.5,
+          "label": "settle",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.1069
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.1069
+            ],
+            "head": [
+              0,
+              0.6859,
+              -0.1305
+            ],
+            "hat": [
+              -0.05,
+              1.055,
+              -0.0278
+            ],
+            "hips": [
+              0,
+              0.4018,
+              0.2076
+            ],
+            "tail_5": [
+              0,
+              0.8374,
+              0.761
+            ]
+          },
+          "raster_sha256": "5adc6839399cd58432aa3aba7b53724fba6caef2be9f7b9ab62cd712c266dc11"
+        },
+        {
+          "fraction": 1,
+          "label": "settled",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.15
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.15
+            ],
+            "head": [
+              0,
+              0.68,
+              -0.2
+            ],
+            "hat": [
+              -0.05,
+              1.045,
+              -0.15
+            ],
+            "hips": [
+              0,
+              0.41,
+              0.16
+            ],
+            "tail_5": [
+              0,
+              0.9681,
+              0.4577
+            ]
+          },
+          "raster_sha256": "35921bbb13cc8689f84bc78412583bb5b36a199586933b11c0e994f08f90c6e8"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_frames": [
+        {
+          "fraction": 0,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "0bb90c19e436c5fd53e421af856d7049fc1d00dc621fa051e1d8c4ccaed9ae19"
+        },
+        {
+          "fraction": 0.2,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "e0b5cd0ac4e31f042f5ad015343c82cc495c6684dfd0742bceb899a1973eb72e"
+        },
+        {
+          "fraction": 0.5,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "ea6f08ff7eb828f1c091588555112728d90fb78c126ae2d7c4ef7873bdd9dfe3"
+        },
+        {
+          "fraction": 1,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "d418d8a8b5ebb98f9068bd82746a07e3c799b334a3a60221b2c93fb937583714"
+        }
+      ],
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 0.6147000000476838,
+          "frames": 38,
+          "distinct_probe_positions": 33,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 0.6352999999523162,
+          "frames": 17,
+          "distinct_probe_positions": 14,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "frames": [
+        {
+          "fraction": 0.06,
+          "label": "hat flies",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1,
+              0.235,
+              -0.1295
+            ],
+            "skate_FL": [
+              -0.1,
+              0.235,
+              -0.1295
+            ],
+            "head": [
+              0,
+              0.692,
+              -0.1413
+            ],
+            "hat": [
+              -0.1038,
+              1.2579,
+              0.0214
+            ],
+            "hips": [
+              0,
+              0.4004,
+              0.1867
+            ],
+            "tail_5": [
+              0.1832,
+              0.7279,
+              0.8
+            ]
+          },
+          "raster_sha256": "3450e315f48585bb37f59c9ac503346eef18772bc47cab913609d266d899c842"
+        },
+        {
+          "fraction": 0.3,
+          "label": "skates slide, spin",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.1424,
+              0.235,
+              0.26
+            ],
+            "skate_FL": [
+              0.2787,
+              0.235,
+              0.0056
+            ],
+            "head": [
+              0.2089,
+              0.6033,
+              0.1319
+            ],
+            "hat": [
+              -0.4695,
+              1.0049,
+              -0.2926
+            ],
+            "hips": [
+              -0.1228,
+              0.34,
+              -0.0458
+            ],
+            "tail_5": [
+              -0.392,
+              0.8981,
+              -0.1774
+            ]
+          },
+          "raster_sha256": "76240f8810e9785f9e6f02829d1104d310c93b408752e8cb31ff21c91dbb89f7"
+        },
+        {
+          "fraction": 0.55,
+          "label": "flop",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.2358,
+              0.3118,
+              -0.229
+            ],
+            "skate_FL": [
+              0.0104,
+              0.5465,
+              -0.229
+            ],
+            "head": [
+              0.356,
+              0.6774,
+              -0.2163
+            ],
+            "hat": [
+              -0.6191,
+              0.0044,
+              -0.42
+            ],
+            "hips": [
+              0.1793,
+              0.4832,
+              0.16
+            ],
+            "tail_5": [
+              0.3167,
+              0.5892,
+              0.0214
+            ]
+          },
+          "raster_sha256": "8c0929e872e1dd1780dbd119e6eedbe072259ded5fb6eacd37fbe89814c6f854"
+        },
+        {
+          "fraction": 1,
+          "label": "held: knocked out",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 2
+            },
+            {
+              "name": "move",
+              "duration": 0.800000011920929
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.6000000238418579
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 14686,
+          "glError": 0,
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "pose": {
+            "skate_FR": [
+              0.285,
+              0.169,
+              -0.23
+            ],
+            "skate_FL": [
+              0.285,
+              0.499,
+              -0.23
+            ],
+            "head": [
+              0.6215,
+              0.3537,
+              -0.2163
+            ],
+            "hat": [
+              -0.62,
+              0.0045,
+              -0.42
+            ],
+            "hips": [
+              0.36,
+              0.334,
+              0.16
+            ],
+            "tail_5": [
+              0.4796,
+              0.334,
+              0.0373
+            ]
+          },
+          "raster_sha256": "fed41d8b7d37163ee8fdc09da86b5bdea0fe27c47e3348c187b0df2493fd3d89"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_frames": [
+        {
+          "fraction": 0.06,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "04264f7fb5a8d8487744def99f10e61dcbebdf154555ade92875a48deb89ca62"
+        },
+        {
+          "fraction": 0.3,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "62542eec19a7aff01414b39cecc99482940d7a25fc288047f339d047531d837a"
+        },
+        {
+          "fraction": 0.55,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "db4550c004b40f1dcccc68e018b559d42cfdc7da04a7867d550229a5f360e975"
+        },
+        {
+          "fraction": 1,
+          "calls": 3,
+          "glError": 0,
+          "raster_sha256": "dd364f6f82cd3a571036ce6994a88917370e57678fbae8825ad437e7f64071fe"
+        }
+      ],
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 2.414700000047684,
+          "frames": 74,
+          "distinct_probe_positions": 52,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 2.4025999999046324,
+          "frames": 80,
+          "distinct_probe_positions": 41,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    }
+  },
+  "video": {
+    "file": "review.webm",
+    "frames": 306,
+    "fps": 30,
+    "codec": "VP8 (libvpx via the Playwright ffmpeg build)",
+    "bytes": 755474,
+    "sha256": "5cc4dfe2c68ef1eb4715fa74fa73799606f50bf06872998fdc4080780e4e8931",
+    "method": "Deterministic frames from the exact GLB at 30 fps (mixer time set per frame), not a screen capture"
+  },
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "requests": [
+    "http://127.0.0.1:34867/",
+    "http://127.0.0.1:34867/three/build/three.module.js",
+    "http://127.0.0.1:34867/three/examples/jsm/loaders/GLTFLoader.js",
+    "http://127.0.0.1:34867/three/examples/jsm/utils/BufferGeometryUtils.js",
+    "http://127.0.0.1:34867/three/examples/jsm/utils/SkeletonUtils.js",
+    "http://127.0.0.1:34867/three/build/three.core.js",
+    "http://127.0.0.1:34867/asset.glb",
+    "blob:http://127.0.0.1:34867/8db688ad-4bce-4fa1-bf8a-f7edb5f75c36"
+  ],
+  "browser": "153.0.8010.12",
+  "glb_sha256": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4",
+  "renderer": "Chromium headless, ANGLE SwiftShader WebGL; no physical-device claim",
+  "checks": {
+    "five_clips": true,
+    "every_clip_changes_raster": true,
+    "every_clip_changes_raster_at_35_percent": true,
+    "realtime_playback_all_clips_both_scales": true,
+    "zero_console_errors": true,
+    "zero_http_errors": true,
+    "zero_webgl_errors": true,
+    "no_external_requests": true,
+    "two_character_draws": true,
+    "review_video_under_2_mib": true
+  }
+}

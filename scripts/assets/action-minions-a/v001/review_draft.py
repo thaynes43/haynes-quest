@@ -42,6 +42,31 @@ TEXT = {
             "Early in the topple, the boot heel dipped 1.7 cm below the floor and the back latches went 1.3 cm under it. The drop is now eased behind the rotation and the box rests 5 cm higher, so nothing goes below the floor.",
             "The first export was 15,780 triangles. Trimming coil, hose, eye and handle resolution brought it under the 15k budget, and the fist, sole and grin pass afterwards keeps it there.",
             "Against the concept the fists were small, the boot slipper-like and the grin narrow; the fists are now 28% chunkier, the sole is thick and lugged, and the grin is 32% wider."]},
+
+ 'mischief-kitten-skater': {
+  'title': 'Mischief Kitten Skater', 'cast': 'Harbor', 'period': 'rescue-harbor-v1', 'window': ['2013-08-12', '2026-12-31'], 'kind': 'ordinary-a',
+  'reference': "one of the rival mayor's mischief kittens, on roller skates",
+  'placement': 'World A chapter 2, Harbor Rescue (`harbor`): a faster skating member of the mischief kitten crew beside the existing Mischief Kitten, under Mayor Humdrum. It shares the kitten\'s era window.',
+  'intro': "This roller-skating kitten is a new ordinary enemy for the Harbor cast in [DESIGN-029](../../../designs/029-action-and-inhabited-worlds.md). It is a bigger, faster member of the mayor's [mischief kitten](../mischief-kitten/v001.md) crew: it skates after the player on four roller skates and stomps them flat.",
+  'looks': ["a lilac tabby with darker purple stripes on its back, tail, forehead and the back of its head, a cream chest and muzzle, and a big chibi head;",
+            "big amber eyes glancing sideways under a dark lash line, naughty arched brows, a pink nose and a smirking open mouth with two tiny fangs and whiskers;",
+            "tall ears with pink insides and white tufts, and a plum mini stovepipe with a raspberry band tilted toward its left ear;",
+            "a raspberry collar with a gold bell, an arched striped tail, and teal roller skates with cream wheels, dark raspberry plates and hubs, and cream laces on all four feet."],
+  'motion': {
+   'idle': 'from the concept stance it rolls a little forward and back on its skates with the wheels turning, bobs, tilts its big head, flicks an ear, side-eyes across, raises a brow, blinks, and sways its tail while the bell swings.',
+   'move': 'it skates: two alternating hind-skate strokes per loop push out and back, lift and return, while the front skates glide. The body leans in and sways with each stroke, all sixteen wheels roll three turns per loop, and the tail streams back with the ears and hat pressed back.',
+   'attack': 'the tell (to 0.45 s): it crouches and wiggles its bottom, the ears flatten, the eyes narrow, the brows drop, it hisses and lashes its tail. The wind-up (0.45–1.0 s) rears it up on its hind skates with the front skates raised. Then it dashes forward on all four skates and stomps both front skates down in front at **1.25 seconds**, mouth wide, before rolling back to the concept stance.',
+   'hit': 'it recoils backwards on its skates with its eyes squeezed shut and ears flat, its tail bristles straight back, and the hat pops up and lands again.',
+   'defeat': 'the hat flies off, its skates slide apart and it spins round dizzily, then flops onto its side with all four skates sticking out. The hat lands upright on the floor; the kitten is cross-eyed with its tongue out. The pose is held from 1.95 s.'},
+  'departures': ["**Head turn.** The concept turns the head toward the viewer; the model faces forward in its rest pose and turns its head in `idle`.",
+                 "**Collar.** The concept's flat collar band is a round raspberry ring with a gold bell; the bell swings in every clip.",
+                 "**Stripes and fur.** Stripes are crisp geometry bands painted from flat atlas tiles; the concept's soft fur texture and cheek tufts are reduced to a few tuft shapes.",
+                 "**Legs.** The legs are short and thick so that a real two-bone leg plugs into each skate; the exported ankle never leaves its skate (the largest measured gap is under 1 µm)."],
+  'fixes': ["The first build was leggy with a small head and an exposed neck; it was re-proportioned to the concept's big-headed chibi kitten, with the head seated on the shoulders and the collar under the chin.",
+            "Bands across the cheeks read as a barcode and were removed; stripes across the back of the head were added to match the concept's back view.",
+            "The legs first overreached their skates by up to 5 cm in `hit` and `defeat`, which would have left gaps. The skates now move with the body and every leg stays attached.",
+            "While rearing, the raised front skate dipped into the chest, and the knocked-out head floated 3.7 cm above the floor. Both were corrected and are now checked.",
+            "The first skates were tall narrow boots on small wheels. They were rebuilt as the concept's low chunky boots on 5 cm cream wheels, staying under the 15k triangle budget."]},
 }
 
 T = TEXT[asset]; checks_k = [k for k, v in val['checks'].items()]; checks_t = list(ins['checks']); checks_b = list(bro['checks'])

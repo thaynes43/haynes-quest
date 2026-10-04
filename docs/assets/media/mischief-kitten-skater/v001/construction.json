@@ -1,0 +1,1284 @@
+{
+  "asset_id": "mischief-kitten-skater",
+  "version": "v001",
+  "work_order": "action-worlds/minions-a",
+  "blender_version": "4.5.13 LTS",
+  "rest_bounds_blender_z_up": {
+    "min": [
+      -0.3479709029197693,
+      -0.5489476919174194,
+      0.0024471748620271683
+    ],
+    "max": [
+      0.3479709029197693,
+      0.4860000014305115,
+      1.308228850364685
+    ]
+  },
+  "height_m": 1.308228850364685,
+  "width_m": 0.6959418058395386,
+  "depth_m": 1.034947693347931,
+  "triangles": 14622,
+  "vertices": 7689,
+  "materials": [
+    "Matte painted clay",
+    "Glossy toy accents"
+  ],
+  "faces_per_material": {
+    "Matte painted clay": 5983,
+    "Glossy toy accents": 1993
+  },
+  "bone_count": 42,
+  "bones": [
+    "root",
+    "hips",
+    "chest",
+    "neck",
+    "head",
+    "jaw",
+    "eye_R",
+    "pupil_R",
+    "brow_R",
+    "ear_R",
+    "eye_L",
+    "pupil_L",
+    "brow_L",
+    "ear_L",
+    "hat",
+    "bell",
+    "tail_0",
+    "tail_1",
+    "tail_2",
+    "tail_3",
+    "tail_4",
+    "tail_5",
+    "leg_FR_up",
+    "leg_FR_lo",
+    "skate_FR",
+    "axle_FR_f",
+    "axle_FR_b",
+    "leg_FL_up",
+    "leg_FL_lo",
+    "skate_FL",
+    "axle_FL_f",
+    "axle_FL_b",
+    "leg_HR_up",
+    "leg_HR_lo",
+    "skate_HR",
+    "axle_HR_f",
+    "axle_HR_b",
+    "leg_HL_up",
+    "leg_HL_lo",
+    "skate_HL",
+    "axle_HL_f",
+    "axle_HL_b"
+  ],
+  "max_influences_blender": 2,
+  "texture": {
+    "file": "pigment.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": "8 x 8 tiles of 128 px; UVs use the centre 72% of each tile",
+    "origin": "Original clay-pigment colour atlas generated with numpy in Blender Python (common.paint_atlas); stripes, cream fur and hubs are bisected geometry bands on flat tiles; no external textures, photos, text or logos.",
+    "tiles": {
+      "lilac": 0,
+      "stripe": 1,
+      "cream": 2,
+      "ear_pink": 3,
+      "nose": 4,
+      "sclera": 5,
+      "iris": 6,
+      "pupil": 7,
+      "highlight": 8,
+      "lash": 9,
+      "mouth": 10,
+      "tongue": 11,
+      "fang": 12,
+      "hat": 13,
+      "hat_band": 14,
+      "collar": 15,
+      "bell": 16,
+      "bell_dark": 17,
+      "skate": 18,
+      "skate_dark": 19,
+      "wheel": 20,
+      "hub": 21,
+      "plate": 22,
+      "lace": 23,
+      "whisker": 24,
+      "lilac_shade": 25
+    }
+  },
+  "parts": [
+    {
+      "name": "striped torso",
+      "triangles": 792,
+      "bones": [
+        "chest",
+        "hips"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cream chest fluff",
+      "triangles": 256,
+      "bones": [
+        "chest"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "neck",
+      "triangles": 64,
+      "bones": [
+        "neck"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "head",
+      "triangles": 1880,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek fluff -1",
+      "triangles": 224,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek tuft -10",
+      "triangles": 80,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek tuft -11",
+      "triangles": 80,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek tuft -12",
+      "triangles": 80,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek fluff +1",
+      "triangles": 224,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek tuft +10",
+      "triangles": 80,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek tuft +11",
+      "triangles": 80,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "cheek tuft +12",
+      "triangles": 80,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "muzzle",
+      "triangles": 256,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "chin",
+      "triangles": 120,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "nose",
+      "triangles": 120,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 4,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "open smirk",
+      "triangles": 148,
+      "bones": [
+        "jaw"
+      ],
+      "atlas_tile": 10,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "tongue",
+      "triangles": 172,
+      "bones": [
+        "jaw"
+      ],
+      "atlas_tile": 11,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "fang -0.026",
+      "triangles": 14,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 12,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "fang +0.026",
+      "triangles": 14,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 12,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "whisker -10",
+      "triangles": 44,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 24,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "whisker -11",
+      "triangles": 44,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 24,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "whisker -12",
+      "triangles": 44,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 24,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "whisker +10",
+      "triangles": 44,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 24,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "whisker +11",
+      "triangles": 44,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 24,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "whisker +12",
+      "triangles": 44,
+      "bones": [
+        "head"
+      ],
+      "atlas_tile": 24,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "eye R",
+      "triangles": 288,
+      "bones": [
+        "eye_R"
+      ],
+      "atlas_tile": 5,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "iris R",
+      "triangles": 168,
+      "bones": [
+        "pupil_R"
+      ],
+      "atlas_tile": 6,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "pupil R",
+      "triangles": 120,
+      "bones": [
+        "pupil_R"
+      ],
+      "atlas_tile": 7,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "glint R",
+      "triangles": 48,
+      "bones": [
+        "pupil_R"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "lash line R",
+      "triangles": 152,
+      "bones": [
+        "eye_R"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "lash flick R",
+      "triangles": 26,
+      "bones": [
+        "eye_R"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "brow R",
+      "triangles": 104,
+      "bones": [
+        "brow_R"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "eye L",
+      "triangles": 288,
+      "bones": [
+        "eye_L"
+      ],
+      "atlas_tile": 5,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "iris L",
+      "triangles": 168,
+      "bones": [
+        "pupil_L"
+      ],
+      "atlas_tile": 6,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "pupil L",
+      "triangles": 120,
+      "bones": [
+        "pupil_L"
+      ],
+      "atlas_tile": 7,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "glint L",
+      "triangles": 48,
+      "bones": [
+        "pupil_L"
+      ],
+      "atlas_tile": 8,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "lash line L",
+      "triangles": 152,
+      "bones": [
+        "eye_L"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "lash flick L",
+      "triangles": 26,
+      "bones": [
+        "eye_L"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "brow L",
+      "triangles": 104,
+      "bones": [
+        "brow_L"
+      ],
+      "atlas_tile": 9,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear outer R",
+      "triangles": 156,
+      "bones": [
+        "ear_R"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear inner R",
+      "triangles": 136,
+      "bones": [
+        "ear_R"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear tuft R0",
+      "triangles": 80,
+      "bones": [
+        "ear_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear tuft R1",
+      "triangles": 80,
+      "bones": [
+        "ear_R"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear outer L",
+      "triangles": 156,
+      "bones": [
+        "ear_L"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear inner L",
+      "triangles": 136,
+      "bones": [
+        "ear_L"
+      ],
+      "atlas_tile": 3,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear tuft L0",
+      "triangles": 80,
+      "bones": [
+        "ear_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "ear tuft L1",
+      "triangles": 80,
+      "bones": [
+        "ear_L"
+      ],
+      "atlas_tile": 2,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "hat brim",
+      "triangles": 160,
+      "bones": [
+        "hat"
+      ],
+      "atlas_tile": 13,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "hat crown",
+      "triangles": 158,
+      "bones": [
+        "hat"
+      ],
+      "atlas_tile": 13,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "hat band",
+      "triangles": 120,
+      "bones": [
+        "hat"
+      ],
+      "atlas_tile": 14,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "collar",
+      "triangles": 240,
+      "bones": [
+        "neck"
+      ],
+      "atlas_tile": 15,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "bell",
+      "triangles": 308,
+      "bones": [
+        "bell"
+      ],
+      "atlas_tile": 16,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "bell loop",
+      "triangles": 58,
+      "bones": [
+        "bell"
+      ],
+      "atlas_tile": 16,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "striped tail",
+      "triangles": 458,
+      "bones": [
+        "tail_0",
+        "tail_1",
+        "tail_2",
+        "tail_3",
+        "tail_4",
+        "tail_5"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "leg FR",
+      "triangles": 256,
+      "bones": [
+        "leg_FR_lo",
+        "leg_FR_up",
+        "skate_FR"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate foot FR",
+      "triangles": 188,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate toe FR",
+      "triangles": 80,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate ankle FR",
+      "triangles": 64,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate cuff FR",
+      "triangles": 128,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 19,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate lace FR0-1",
+      "triangles": 44,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace FR0+1",
+      "triangles": 44,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace FR1-1",
+      "triangles": 44,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace FR1+1",
+      "triangles": 44,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate plate FR",
+      "triangles": 44,
+      "bones": [
+        "skate_FR"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck FRf",
+      "triangles": 44,
+      "bones": [
+        "axle_FR_f"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FRf-1",
+      "triangles": 80,
+      "bones": [
+        "axle_FR_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FRf+1",
+      "triangles": 80,
+      "bones": [
+        "axle_FR_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck FRb",
+      "triangles": 44,
+      "bones": [
+        "axle_FR_b"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FRb-1",
+      "triangles": 80,
+      "bones": [
+        "axle_FR_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FRb+1",
+      "triangles": 80,
+      "bones": [
+        "axle_FR_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "leg FL",
+      "triangles": 256,
+      "bones": [
+        "leg_FL_lo",
+        "leg_FL_up",
+        "skate_FL"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate foot FL",
+      "triangles": 188,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate toe FL",
+      "triangles": 80,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate ankle FL",
+      "triangles": 64,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate cuff FL",
+      "triangles": 128,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 19,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate lace FL0-1",
+      "triangles": 44,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace FL0+1",
+      "triangles": 44,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace FL1-1",
+      "triangles": 44,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace FL1+1",
+      "triangles": 44,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate plate FL",
+      "triangles": 44,
+      "bones": [
+        "skate_FL"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck FLf",
+      "triangles": 44,
+      "bones": [
+        "axle_FL_f"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FLf-1",
+      "triangles": 80,
+      "bones": [
+        "axle_FL_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FLf+1",
+      "triangles": 80,
+      "bones": [
+        "axle_FL_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck FLb",
+      "triangles": 44,
+      "bones": [
+        "axle_FL_b"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FLb-1",
+      "triangles": 80,
+      "bones": [
+        "axle_FL_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel FLb+1",
+      "triangles": 80,
+      "bones": [
+        "axle_FL_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "leg HR",
+      "triangles": 256,
+      "bones": [
+        "leg_HR_lo",
+        "leg_HR_up",
+        "skate_HR"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate foot HR",
+      "triangles": 188,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate toe HR",
+      "triangles": 80,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate ankle HR",
+      "triangles": 64,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate cuff HR",
+      "triangles": 128,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 19,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate lace HR0-1",
+      "triangles": 44,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace HR0+1",
+      "triangles": 44,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace HR1-1",
+      "triangles": 44,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace HR1+1",
+      "triangles": 44,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate plate HR",
+      "triangles": 44,
+      "bones": [
+        "skate_HR"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck HRf",
+      "triangles": 44,
+      "bones": [
+        "axle_HR_f"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HRf-1",
+      "triangles": 80,
+      "bones": [
+        "axle_HR_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HRf+1",
+      "triangles": 80,
+      "bones": [
+        "axle_HR_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck HRb",
+      "triangles": 44,
+      "bones": [
+        "axle_HR_b"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HRb-1",
+      "triangles": 80,
+      "bones": [
+        "axle_HR_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HRb+1",
+      "triangles": 80,
+      "bones": [
+        "axle_HR_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "leg HL",
+      "triangles": 256,
+      "bones": [
+        "leg_HL_lo",
+        "leg_HL_up",
+        "skate_HL"
+      ],
+      "atlas_tile": 0,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate foot HL",
+      "triangles": 188,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate toe HL",
+      "triangles": 80,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate ankle HL",
+      "triangles": 64,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 18,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate cuff HL",
+      "triangles": 128,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 19,
+      "material": "Glossy toy accents"
+    },
+    {
+      "name": "skate lace HL0-1",
+      "triangles": 44,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace HL0+1",
+      "triangles": 44,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace HL1-1",
+      "triangles": 44,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate lace HL1+1",
+      "triangles": 44,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 23,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "skate plate HL",
+      "triangles": 44,
+      "bones": [
+        "skate_HL"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck HLf",
+      "triangles": 44,
+      "bones": [
+        "axle_HL_f"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HLf-1",
+      "triangles": 80,
+      "bones": [
+        "axle_HL_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HLf+1",
+      "triangles": 80,
+      "bones": [
+        "axle_HL_f"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "truck HLb",
+      "triangles": 44,
+      "bones": [
+        "axle_HL_b"
+      ],
+      "atlas_tile": 22,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HLb-1",
+      "triangles": 80,
+      "bones": [
+        "axle_HL_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    },
+    {
+      "name": "wheel HLb+1",
+      "triangles": 80,
+      "bones": [
+        "axle_HL_b"
+      ],
+      "atlas_tile": 20,
+      "material": "Matte painted clay"
+    }
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.0,
+      "loop": true,
+      "frames": 121,
+      "fps": 60
+    },
+    {
+      "name": "move",
+      "duration_s": 0.8,
+      "loop": true,
+      "frames": 49,
+      "fps": 60
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "frames": 121,
+      "fps": 60,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "tell_s": [
+        0.0,
+        0.45
+      ],
+      "windup_s": [
+        0.45,
+        1.0
+      ],
+      "strike_s": [
+        1.0,
+        1.25
+      ]
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.6,
+      "loop": false,
+      "frames": 37,
+      "fps": 60
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "frames": 145,
+      "fps": 60,
+      "held_final_pose_from_s": 1.95,
+      "hat_flight_s": [
+        0.06,
+        0.95
+      ],
+      "spin_s": [
+        0.35,
+        0.95
+      ],
+      "flop_s": [
+        1.0,
+        1.4
+      ]
+    }
+  ],
+  "max_bone_shear": 4.172325134277344e-07,
+  "rest_reproduction_error": 6.239861249923706e-08,
+  "idle0_reproduction_error": 6.239861249923706e-08,
+  "fps": 60,
+  "scaled_bones": [
+    "eye_L",
+    "eye_R",
+    "jaw"
+  ],
+  "ik_max_overreach_m": {
+    "idle": -0.01714607983121927,
+    "move": -0.005124123755367721,
+    "attack": -0.0015665226147873468,
+    "hit": -0.01596354047559928,
+    "defeat": -0.00925514505953301
+  },
+  "files": {
+    "mischief-kitten-skater.blend": {
+      "bytes": 2371945,
+      "sha256": "d7fc8fbf767f508259ecdf2ea43a1ff7963de847a1a3cae024db41e2a6388930"
+    },
+    "mischief-kitten-skater.glb": {
+      "bytes": 1831636,
+      "sha256": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4"
+    },
+    "pigment.png": {
+      "bytes": 195780,
+      "sha256": "93aec61e424c80257b80bb318d1a9dcefca1f1883488b080c456ec5b8977e582"
+    }
+  }
+}
