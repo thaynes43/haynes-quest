@@ -1,0 +1,23 @@
+{
+  "asset_id": "storybook-planting-kit",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T23:24:04.984088+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidates",
+  "owner_review": "pending",
+  "glb_sha256": {
+    "storybook-canopy-tree.glb": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+    "storybook-cypress.glb": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1",
+    "storybook-flowering-shrub.glb": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"
+  },
+  "inspected": [
+    "concept-vs-model.png",
+    "kit-garden.png"
+  ],
+  "findings": [
+    "Layered leaf canopies, crooked trunks and small raspberry-and-cream flowers retain the construction direction.",
+    "Broad tree, slim cypress and low shrub give groups distinct heights and silhouettes.",
+    "All three exact exports pass authored planning-box checks and use one material/draw call each; full level placement is checked separately."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}

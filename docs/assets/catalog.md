@@ -11,7 +11,7 @@ The new family world revisions place sixteen ordinary enemies in each chapter: t
 
 The catalog also includes the earlier era casts, equipment, keepsakes, themed scenery and sound auditions. The [playtest guide](playtest.md) records earlier trials; the [current handoff](../../.agents/HANDOFF.md) records release and publication checkpoints.
 
-**80 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**81 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -62,13 +62,15 @@ A bouncing broccoli, flower-stealing bird and fantasy band drummer bring new sha
 
 <div class="catalog-card" data-asset-id="storybook-planting-kit" markdown="1">
 
-[![Broad canopy tree, slim cypress and flowering shrub construction views](media/catalog-thumbnails/v001/215d467cf1b1ee60.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-planting-kit/v001.md)
+[![Three exact planting props beside Broccoli Bouncer for scale](media/catalog-thumbnails/v001/396e642f79d9841f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-planting-kit/v001.md)
 
 ### [Storybook planting kit](reviews/storybook-planting-kit/v001.md)
 
-<span class="catalog-state">Construction concept · v001 · Blender props in progress</span>
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · family integration in progress</span>
 
-Three reusable silhouettes for planted spaces beside the routes.
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/215d467cf1b1ee60.webp" alt="Selected original tree, cypress and flowering-shrub construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A broad canopy, slim cypress and low flowering shrub form varied planted groups beside the route. Orbit all three exact exports and view their construction comparison.
 
 </div>
 

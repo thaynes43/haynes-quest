@@ -68,15 +68,15 @@ export type ParodyArtwork = SingleParodyArtwork | DuoParodyArtwork;
 export const storybookPlantingKit = Object.freeze({
   "broad-canopy-tree": {
     id: "broad-canopy-tree",
-    url: "/studio/assets/media/storybook-planting-kit/v001/models/broad-canopy-tree.glb",
+    url: "/studio/assets/media/storybook-planting-kit/v001/storybook-canopy-tree.glb",
   },
   "slim-cypress": {
     id: "slim-cypress",
-    url: "/studio/assets/media/storybook-planting-kit/v001/models/slim-cypress.glb",
+    url: "/studio/assets/media/storybook-planting-kit/v001/storybook-cypress.glb",
   },
   "flowering-shrub": {
     id: "flowering-shrub",
-    url: "/studio/assets/media/storybook-planting-kit/v001/models/flowering-shrub.glb",
+    url: "/studio/assets/media/storybook-planting-kit/v001/storybook-flowering-shrub.glb",
   },
 } as const);
 

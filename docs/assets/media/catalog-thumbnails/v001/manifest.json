@@ -1011,6 +1011,13 @@
       "sha256": "d60622a341472dd1703b61b7368ad82b35d80474ae7f45acab9ace27cbcb44dd"
     },
     {
+      "source": "docs/assets/media/storybook-planting-kit/v001/kit-lineup.png",
+      "source_sha256": "4011912adcf31f1b3c018d0ac1d8249bf42b6112673ab7fa1b98b721bd0fd993",
+      "path": "docs/assets/media/catalog-thumbnails/v001/396e642f79d9841f.webp",
+      "bytes": 9648,
+      "sha256": "a0cc4fb2a0c564e2efcb5af43d8329c1b0bb33fac239e7be57d0c609bf4c7b77"
+    },
+    {
       "source": "docs/assets/media/storybook-reference/v001/environment.png",
       "source_sha256": "f21b9b7c4a7473634350c30050419cca395a22156b791f2ea1d609688f639908",
       "path": "docs/assets/media/catalog-thumbnails/v001/2d37bec7a280121c.webp",

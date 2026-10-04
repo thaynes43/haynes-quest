@@ -74,17 +74,17 @@ const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
   entries: 114,
-  reference_sheet_entries: 11,
-  model_entries: 82,
-  model_files: 82,
-  completed_model_candidates: 80,
+  reference_sheet_entries: 10,
+  model_entries: 83,
+  model_files: 85,
+  completed_model_candidates: 81,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 18,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 162;
+const expectedThumbnailFiles = 163;
 const integratedAssetIds = [
   "water-tower",
   "rooftop-ac-unit",
