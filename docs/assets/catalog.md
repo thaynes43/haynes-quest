@@ -83,6 +83,8 @@ Three reusable silhouettes for planted spaces beside the routes.
 
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
 
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/64be59f8843c829e.webp" alt="Selected original Broccoli Bouncer construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
 A bouncing vegetable with a held warning, two-leaf slap and wilting defeat. View the exact export beside its construction reference and inspect all five clips.
 
 </div>
@@ -95,6 +97,8 @@ A bouncing vegetable with a held warning, two-leaf slap and wilting defeat. View
 
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
 
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/622e690b729a8e67.webp" alt="Selected original Gadget Hammer Hopper construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
 A spring-legged toolbox raises a rubber mallet, then brings it down in front. Its hop, warning and topple give the Clubhouse another distinct enemy.
 
 </div>
@@ -106,6 +110,8 @@ A spring-legged toolbox raises a rubber mallet, then brings it down in front. It
 ### [Bin Chicken Flower Thief](reviews/bin-chicken-flower-thief/v001.md)
 
 <span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/69ccecf3a880a100.webp" alt="Selected original Bin Chicken Flower Thief construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
 
 A long-beaked garden thief struts, coils its neck and jabs while spilling stolen flowers. Its narrow shape and wing flare stand apart from the round vegetable enemies.
 
