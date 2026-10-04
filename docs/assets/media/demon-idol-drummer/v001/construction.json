@@ -1,0 +1,1324 @@
+{
+  "asset_id": "demon-idol-drummer",
+  "version": "v001",
+  "triangles": 17946,
+  "vertices": 9213,
+  "parts": 128,
+  "bones": 27,
+  "clips": [
+    {
+      "name": "idle",
+      "duration_s": 2.0,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 121,
+      "fps": 60
+    },
+    {
+      "name": "move",
+      "duration_s": 0.8,
+      "loop": true,
+      "clamp_when_finished": false,
+      "frames": 49,
+      "fps": 60
+    },
+    {
+      "name": "attack",
+      "duration_s": 2.0,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 121,
+      "fps": 60,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "telegraph_s": [
+        0.25,
+        1.12
+      ]
+    },
+    {
+      "name": "hit",
+      "duration_s": 0.7,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 43,
+      "fps": 60
+    },
+    {
+      "name": "defeat",
+      "duration_s": 2.4,
+      "loop": false,
+      "clamp_when_finished": true,
+      "frames": 145,
+      "fps": 60,
+      "held_final_pose_from_s": 1.8
+    }
+  ],
+  "bounds_gltf_y_up": {
+    "rest": {
+      "min": [
+        -0.47710174322128296,
+        0.0,
+        -0.3958950638771057
+      ],
+      "max": [
+        0.47710174322128296,
+        1.5699700117111206,
+        0.24969696998596191
+      ]
+    },
+    "clips": {
+      "idle": {
+        "min": [
+          -0.4161394238471985,
+          -5.960464477539063e-08,
+          -0.396810382604599
+        ],
+        "max": [
+          0.4113856554031372,
+          1.5742757320404053,
+          0.248710036277771
+        ]
+      },
+      "move": {
+        "min": [
+          -0.41042453050613403,
+          -1.2777724123225198e-07,
+          -0.3958941400051117
+        ],
+        "max": [
+          0.41042453050613403,
+          1.5447075366973877,
+          0.2598799467086792
+        ]
+      },
+      "attack": {
+        "min": [
+          -0.8803583383560181,
+          -1.3112997976350016e-07,
+          -1.1179509162902832
+        ],
+        "max": [
+          0.8803583383560181,
+          1.5699700117111206,
+          0.5963528156280518
+        ]
+      },
+      "hit": {
+        "min": [
+          -0.42257487773895264,
+          -1.1183825421312577e-07,
+          -0.3958950638771057
+        ],
+        "max": [
+          0.42244356870651245,
+          1.5699700117111206,
+          0.5815442204475403
+        ]
+      },
+      "defeat": {
+        "min": [
+          -0.5568481683731079,
+          -6.83968011117031e-08,
+          -0.6498063802719116
+        ],
+        "max": [
+          0.7869393825531006,
+          1.5699700117111206,
+          0.7033026218414307
+        ]
+      }
+    },
+    "all": {
+      "min": [
+        -0.8803583383560181,
+        -1.3112997976350016e-07,
+        -1.1179509162902832
+      ],
+      "max": [
+        0.8803583383560181,
+        1.5742757320404053,
+        0.7033026218414307
+      ]
+    },
+    "envelope": {
+      "min": [
+        -0.886,
+        -0.006,
+        -1.123
+      ],
+      "max": [
+        0.886,
+        1.58,
+        0.709
+      ]
+    }
+  },
+  "height_m": 1.5699700117111206,
+  "parts_detail": [
+    {
+      "index": 0,
+      "name": "head",
+      "bone": "head",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 288,
+      "triangles": 572
+    },
+    {
+      "index": 1,
+      "name": "neck",
+      "bone": "neck",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "index": 2,
+      "name": "sclera -1",
+      "bone": "eye_L",
+      "colour": "sclera",
+      "gloss": true,
+      "vertices": 128,
+      "triangles": 252
+    },
+    {
+      "index": 3,
+      "name": "iris -1",
+      "bone": "eye_L",
+      "colour": "iris",
+      "gloss": true,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 4,
+      "name": "pupil -1",
+      "bone": "eye_L",
+      "colour": "pupil",
+      "gloss": true,
+      "vertices": 52,
+      "triangles": 100
+    },
+    {
+      "index": 5,
+      "name": "shine -1",
+      "bone": "eye_L",
+      "colour": "shine",
+      "gloss": true,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 6,
+      "name": "lid -1",
+      "bone": "eye_L",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 7,
+      "name": "lash -1",
+      "bone": "eye_L",
+      "colour": "lash",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 8,
+      "name": "brow -1",
+      "bone": "brow_L",
+      "colour": "brow",
+      "gloss": false,
+      "vertices": 80,
+      "triangles": 156
+    },
+    {
+      "index": 9,
+      "name": "blush -1",
+      "bone": "head",
+      "colour": "blush",
+      "gloss": false,
+      "vertices": 52,
+      "triangles": 100
+    },
+    {
+      "index": 10,
+      "name": "ear -1",
+      "bone": "head",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 105,
+      "triangles": 206
+    },
+    {
+      "index": 11,
+      "name": "sclera +1",
+      "bone": "eye_R",
+      "colour": "sclera",
+      "gloss": true,
+      "vertices": 128,
+      "triangles": 252
+    },
+    {
+      "index": 12,
+      "name": "iris +1",
+      "bone": "eye_R",
+      "colour": "iris",
+      "gloss": true,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 13,
+      "name": "pupil +1",
+      "bone": "eye_R",
+      "colour": "pupil",
+      "gloss": true,
+      "vertices": 52,
+      "triangles": 100
+    },
+    {
+      "index": 14,
+      "name": "shine +1",
+      "bone": "eye_R",
+      "colour": "shine",
+      "gloss": true,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 15,
+      "name": "lid +1",
+      "bone": "eye_R",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 16,
+      "name": "lash +1",
+      "bone": "eye_R",
+      "colour": "lash",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 17,
+      "name": "brow +1",
+      "bone": "brow_R",
+      "colour": "brow",
+      "gloss": false,
+      "vertices": 80,
+      "triangles": 156
+    },
+    {
+      "index": 18,
+      "name": "blush +1",
+      "bone": "head",
+      "colour": "blush",
+      "gloss": false,
+      "vertices": 52,
+      "triangles": 100
+    },
+    {
+      "index": 19,
+      "name": "ear +1",
+      "bone": "head",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 105,
+      "triangles": 206
+    },
+    {
+      "index": 20,
+      "name": "nose",
+      "bone": "head",
+      "colour": "skin_shade",
+      "gloss": false,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 21,
+      "name": "mouth",
+      "bone": "mouth",
+      "colour": "mouth",
+      "gloss": false,
+      "vertices": 100,
+      "triangles": 196
+    },
+    {
+      "index": 22,
+      "name": "teeth",
+      "bone": "mouth",
+      "colour": "teeth",
+      "gloss": true,
+      "vertices": 62,
+      "triangles": 120
+    },
+    {
+      "index": 23,
+      "name": "fang",
+      "bone": "mouth",
+      "colour": "teeth",
+      "gloss": false,
+      "vertices": 31,
+      "triangles": 58
+    },
+    {
+      "index": 24,
+      "name": "hair cap",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 222,
+      "triangles": 440
+    },
+    {
+      "index": 25,
+      "name": "bang 0",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 26,
+      "name": "bang 1",
+      "bone": "hair",
+      "colour": "hair_dark",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 27,
+      "name": "bang 2",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 28,
+      "name": "bang 3",
+      "bone": "hair",
+      "colour": "hair_dark",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 29,
+      "name": "bang 4",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 30,
+      "name": "spike 0",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 31,
+      "name": "spike 1",
+      "bone": "hair",
+      "colour": "hair_dark",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 32,
+      "name": "spike 2",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 33,
+      "name": "spike 3",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 34,
+      "name": "spike 4",
+      "bone": "hair",
+      "colour": "hair_dark",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 35,
+      "name": "spike 5",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 36,
+      "name": "spike 6",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 37,
+      "name": "spike 7",
+      "bone": "hair",
+      "colour": "hair_dark",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 38,
+      "name": "spike 8",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 39,
+      "name": "spike 9",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 40,
+      "name": "spike 10",
+      "bone": "hair",
+      "colour": "hair_dark",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 41,
+      "name": "spike 11",
+      "bone": "hair",
+      "colour": "hair",
+      "gloss": false,
+      "vertices": 57,
+      "triangles": 110
+    },
+    {
+      "index": 42,
+      "name": "horn -1",
+      "bone": "hair",
+      "colour": "horn",
+      "gloss": true,
+      "vertices": 91,
+      "triangles": 178
+    },
+    {
+      "index": 43,
+      "name": "horn +1",
+      "bone": "hair",
+      "colour": "horn",
+      "gloss": true,
+      "vertices": 91,
+      "triangles": 178
+    },
+    {
+      "index": 44,
+      "name": "pelvis",
+      "bone": "hips",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 146,
+      "triangles": 288
+    },
+    {
+      "index": 45,
+      "name": "belt",
+      "bone": "hips",
+      "colour": "belt",
+      "gloss": false,
+      "vertices": 98,
+      "triangles": 192
+    },
+    {
+      "index": 46,
+      "name": "buckle",
+      "bone": "hips",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 47,
+      "name": "shirt",
+      "bone": "chest",
+      "colour": "shirt",
+      "gloss": false,
+      "vertices": 200,
+      "triangles": 396
+    },
+    {
+      "index": 48,
+      "name": "star",
+      "bone": "chest",
+      "colour": "star",
+      "gloss": true,
+      "vertices": 22,
+      "triangles": 40
+    },
+    {
+      "index": 49,
+      "name": "jacket",
+      "bone": "chest",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 288,
+      "triangles": 572
+    },
+    {
+      "index": 50,
+      "name": "lapel -1",
+      "bone": "chest",
+      "colour": "jacket_lite",
+      "gloss": false,
+      "vertices": 80,
+      "triangles": 156
+    },
+    {
+      "index": 51,
+      "name": "collar -1",
+      "bone": "chest",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 89,
+      "triangles": 174
+    },
+    {
+      "index": 52,
+      "name": "strap front -1",
+      "bone": "chest",
+      "colour": "strap",
+      "gloss": false,
+      "vertices": 84,
+      "triangles": 164
+    },
+    {
+      "index": 53,
+      "name": "strap back -1",
+      "bone": "chest",
+      "colour": "strap",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 54,
+      "name": "strap buckle -1",
+      "bone": "chest",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 55,
+      "name": "lapel +1",
+      "bone": "chest",
+      "colour": "jacket_lite",
+      "gloss": false,
+      "vertices": 80,
+      "triangles": 156
+    },
+    {
+      "index": 56,
+      "name": "collar +1",
+      "bone": "chest",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 89,
+      "triangles": 174
+    },
+    {
+      "index": 57,
+      "name": "strap front +1",
+      "bone": "chest",
+      "colour": "strap",
+      "gloss": false,
+      "vertices": 84,
+      "triangles": 164
+    },
+    {
+      "index": 58,
+      "name": "strap back +1",
+      "bone": "chest",
+      "colour": "strap",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 59,
+      "name": "strap buckle +1",
+      "bone": "chest",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 60,
+      "name": "collar back",
+      "bone": "chest",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 89,
+      "triangles": 174
+    },
+    {
+      "index": 61,
+      "name": "shoulder -1",
+      "bone": "upperarm_L",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 62,
+      "name": "sleeve -1",
+      "bone": "upperarm_L",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "index": 63,
+      "name": "upper arm -1",
+      "bone": "upperarm_L",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 64,
+      "name": "elbow -1",
+      "bone": "forearm_L",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 52,
+      "triangles": 100
+    },
+    {
+      "index": 65,
+      "name": "forearm -1",
+      "bone": "forearm_L",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 66,
+      "name": "wristband -1",
+      "bone": "forearm_L",
+      "colour": "band",
+      "gloss": false,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "index": 67,
+      "name": "stud -1.0",
+      "bone": "forearm_L",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 68,
+      "name": "stud -1.1",
+      "bone": "forearm_L",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 69,
+      "name": "stud -1.2",
+      "bone": "forearm_L",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 70,
+      "name": "stud -1.3",
+      "bone": "forearm_L",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 71,
+      "name": "fist -1",
+      "bone": "hand_L",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 72,
+      "name": "thumb -1",
+      "bone": "hand_L",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 73,
+      "name": "stick -1",
+      "bone": "hand_L",
+      "colour": "stick",
+      "gloss": false,
+      "vertices": 48,
+      "triangles": 92
+    },
+    {
+      "index": 74,
+      "name": "stick tip -1",
+      "bone": "hand_L",
+      "colour": "stick_tip",
+      "gloss": false,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 75,
+      "name": "shoulder +1",
+      "bone": "upperarm_R",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 76,
+      "name": "sleeve +1",
+      "bone": "upperarm_R",
+      "colour": "jacket",
+      "gloss": false,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "index": 77,
+      "name": "upper arm +1",
+      "bone": "upperarm_R",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 78,
+      "name": "elbow +1",
+      "bone": "forearm_R",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 52,
+      "triangles": 100
+    },
+    {
+      "index": 79,
+      "name": "forearm +1",
+      "bone": "forearm_R",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 60,
+      "triangles": 116
+    },
+    {
+      "index": 80,
+      "name": "wristband +1",
+      "bone": "forearm_R",
+      "colour": "band",
+      "gloss": false,
+      "vertices": 72,
+      "triangles": 140
+    },
+    {
+      "index": 81,
+      "name": "stud +1.0",
+      "bone": "forearm_R",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 82,
+      "name": "stud +1.1",
+      "bone": "forearm_R",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 83,
+      "name": "stud +1.2",
+      "bone": "forearm_R",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 84,
+      "name": "stud +1.3",
+      "bone": "forearm_R",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 20,
+      "triangles": 36
+    },
+    {
+      "index": 85,
+      "name": "fist +1",
+      "bone": "hand_R",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 86,
+      "name": "thumb +1",
+      "bone": "hand_R",
+      "colour": "skin",
+      "gloss": false,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 87,
+      "name": "stick +1",
+      "bone": "hand_R",
+      "colour": "stick",
+      "gloss": false,
+      "vertices": 48,
+      "triangles": 92
+    },
+    {
+      "index": 88,
+      "name": "stick tip +1",
+      "bone": "hand_R",
+      "colour": "stick_tip",
+      "gloss": false,
+      "vertices": 42,
+      "triangles": 80
+    },
+    {
+      "index": 89,
+      "name": "thigh -1",
+      "bone": "thigh_L",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 140,
+      "triangles": 276
+    },
+    {
+      "index": 90,
+      "name": "knee -1",
+      "bone": "shin_L",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 91,
+      "name": "shin -1",
+      "bone": "shin_L",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 140,
+      "triangles": 276
+    },
+    {
+      "index": 92,
+      "name": "cuff -1",
+      "bone": "shin_L",
+      "colour": "pants_dark",
+      "gloss": false,
+      "vertices": 96,
+      "triangles": 192
+    },
+    {
+      "index": 93,
+      "name": "boot shaft -1",
+      "bone": "foot_L",
+      "colour": "boot",
+      "gloss": false,
+      "vertices": 66,
+      "triangles": 128
+    },
+    {
+      "index": 94,
+      "name": "boot foot -1",
+      "bone": "foot_L",
+      "colour": "boot",
+      "gloss": false,
+      "vertices": 96,
+      "triangles": 188
+    },
+    {
+      "index": 95,
+      "name": "boot toe -1",
+      "bone": "foot_L",
+      "colour": "boot",
+      "gloss": false,
+      "vertices": 100,
+      "triangles": 196
+    },
+    {
+      "index": 96,
+      "name": "boot sole -1",
+      "bone": "foot_L",
+      "colour": "sole",
+      "gloss": false,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "index": 97,
+      "name": "boot lace -1.0",
+      "bone": "foot_L",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 98,
+      "name": "boot lace -1.1",
+      "bone": "foot_L",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 99,
+      "name": "boot lace -1.2",
+      "bone": "foot_L",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 100,
+      "name": "boot strap -1",
+      "bone": "foot_L",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 90,
+      "triangles": 180
+    },
+    {
+      "index": 101,
+      "name": "thigh +1",
+      "bone": "thigh_R",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 140,
+      "triangles": 276
+    },
+    {
+      "index": 102,
+      "name": "knee +1",
+      "bone": "shin_R",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 86,
+      "triangles": 168
+    },
+    {
+      "index": 103,
+      "name": "shin +1",
+      "bone": "shin_R",
+      "colour": "pants",
+      "gloss": false,
+      "vertices": 140,
+      "triangles": 276
+    },
+    {
+      "index": 104,
+      "name": "cuff +1",
+      "bone": "shin_R",
+      "colour": "pants_dark",
+      "gloss": false,
+      "vertices": 96,
+      "triangles": 192
+    },
+    {
+      "index": 105,
+      "name": "boot shaft +1",
+      "bone": "foot_R",
+      "colour": "boot",
+      "gloss": false,
+      "vertices": 66,
+      "triangles": 128
+    },
+    {
+      "index": 106,
+      "name": "boot foot +1",
+      "bone": "foot_R",
+      "colour": "boot",
+      "gloss": false,
+      "vertices": 96,
+      "triangles": 188
+    },
+    {
+      "index": 107,
+      "name": "boot toe +1",
+      "bone": "foot_R",
+      "colour": "boot",
+      "gloss": false,
+      "vertices": 100,
+      "triangles": 196
+    },
+    {
+      "index": 108,
+      "name": "boot sole +1",
+      "bone": "foot_R",
+      "colour": "sole",
+      "gloss": false,
+      "vertices": 56,
+      "triangles": 108
+    },
+    {
+      "index": 109,
+      "name": "boot lace +1.0",
+      "bone": "foot_R",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 110,
+      "name": "boot lace +1.1",
+      "bone": "foot_R",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 111,
+      "name": "boot lace +1.2",
+      "bone": "foot_R",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 112,
+      "name": "boot strap +1",
+      "bone": "foot_R",
+      "colour": "lace",
+      "gloss": false,
+      "vertices": 90,
+      "triangles": 180
+    },
+    {
+      "index": 113,
+      "name": "drum shell",
+      "bone": "drum",
+      "colour": "drum",
+      "gloss": false,
+      "vertices": 58,
+      "triangles": 112
+    },
+    {
+      "index": 114,
+      "name": "drum head",
+      "bone": "drum",
+      "colour": "drumhead",
+      "gloss": false,
+      "vertices": 58,
+      "triangles": 112
+    },
+    {
+      "index": 115,
+      "name": "drum rim -0.06",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 168,
+      "triangles": 336
+    },
+    {
+      "index": 116,
+      "name": "drum rim +0.06",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 168,
+      "triangles": 336
+    },
+    {
+      "index": 117,
+      "name": "drum lug 0",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 118,
+      "name": "drum lug 1",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 119,
+      "name": "drum lug 2",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 120,
+      "name": "drum lug 3",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 121,
+      "name": "drum lug 4",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 122,
+      "name": "drum lug 5",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 123,
+      "name": "drum lug 6",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 124,
+      "name": "drum lug 7",
+      "bone": "drum",
+      "colour": "gold",
+      "gloss": true,
+      "vertices": 24,
+      "triangles": 44
+    },
+    {
+      "index": 125,
+      "name": "drum band",
+      "bone": "drum",
+      "colour": "drum_dark",
+      "gloss": false,
+      "vertices": 58,
+      "triangles": 112
+    },
+    {
+      "index": 126,
+      "name": "beat ring",
+      "bone": "beat",
+      "colour": "ring",
+      "gloss": true,
+      "vertices": 168,
+      "triangles": 336
+    },
+    {
+      "index": 127,
+      "name": "beat ring 2",
+      "bone": "beat2",
+      "colour": "ring",
+      "gloss": true,
+      "vertices": 168,
+      "triangles": 336
+    }
+  ],
+  "files": {
+    "demon-idol-drummer.blend": {
+      "bytes": 795250,
+      "sha256": "b2cacb153150896419a0c60c5ef9ffcf5e942c6629dc7170299cf19118b74380"
+    },
+    "demon-idol-drummer.glb": {
+      "bytes": 1174024,
+      "sha256": "a2d4a6bdf78b2990d45ade28c49d70602b96cfaa040156cbec5b41c788c1610b"
+    }
+  },
+  "blender_version": "4.5.13 LTS",
+  "created_utc": "2026-10-04T22:58:19.053797+00:00"
+}
