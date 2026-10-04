@@ -479,6 +479,20 @@
       "sha256": "e82badd5c24b5755c67b4c5a7f822d9e5ba5c6506c2c3c6ccbb6431e3e53911a"
     },
     {
+      "source": "docs/assets/media/lab-robot-sentry/v001/beauty.png",
+      "source_sha256": "b6e1bcac1f03367d5a1bee1456c8002cc84f1bfbc012396952a0769569161cda",
+      "path": "docs/assets/media/catalog-thumbnails/v001/9ca023ea84989bab.webp",
+      "bytes": 12022,
+      "sha256": "b2ef771a50c55dfe0569ab19e18f43fc6d0dde3f0ff37b7f472d34dbbb855773"
+    },
+    {
+      "source": "docs/assets/media/lab-robot-sentry/v001/concept-row.png",
+      "source_sha256": "137196d024f92a1a78601f83f9a24e9992f37e6fb3208b9d72593112956a4862",
+      "path": "docs/assets/media/catalog-thumbnails/v001/d5988c795942c2d3.webp",
+      "bytes": 16216,
+      "sha256": "fde0117f2085faea158a37271b03a44c27897359251927255c8dce0a2a4b6bc3"
+    },
+    {
       "source": "docs/assets/media/lab-robot/v001/beauty.png",
       "source_sha256": "28ea9fe8195affd3dadbb3583198eb7144c3d86359a7ad910f83d75f7ac99cc4",
       "path": "docs/assets/media/catalog-thumbnails/v001/66e5a644067784b0.webp",

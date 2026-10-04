@@ -2,14 +2,14 @@
   "schema_version": 1,
   "path_base": "repository-root",
   "counts": {
-    "entries": 114,
+    "entries": 115,
     "reference_sheet_entries": 10,
-    "model_entries": 83,
-    "model_files": 85,
+    "model_entries": 84,
+    "model_files": 86,
     "concept_only_entries": 2,
     "audio_entries": 18,
     "fixture_illustration_sets": 1,
-    "completed_model_candidates": 81,
+    "completed_model_candidates": 82,
     "paused_partial_model_candidates": 2,
     "owner_approved_entries": 1
   },
@@ -5611,6 +5611,66 @@
         "docs/assets/media/mischief-kitten-skater/v001/three-inspection.json": "e76d41223809ac07a412038257c00ccbce64fa594890c986238c3cc5dd90ebe4",
         "docs/assets/media/mischief-kitten-skater/v001/threequarter.png": "d0901fad0367c8f0279b551d1c95a4d3b1c7e4791de4c67f993b7434b43a681b",
         "docs/assets/media/mischief-kitten-skater/v001/validation.json": "61f12ff4efaf7abb4ed54093875d2f7de3fee5882c9b8c3525dcb659d7e070d4"
+      }
+    },
+    {
+      "id": "lab-robot-sentry",
+      "title": "Lab Robot Sentry",
+      "category": "family-eras",
+      "review": "docs/assets/reviews/lab-robot-sentry/v001.md",
+      "concept_images": [
+        "docs/assets/media/lab-robot-sentry/v001/concept-row.png"
+      ],
+      "model_images": [
+        "docs/assets/media/lab-robot-sentry/v001/beauty.png",
+        "docs/assets/media/lab-robot-sentry/v001/front.png",
+        "docs/assets/media/lab-robot-sentry/v001/side.png",
+        "docs/assets/media/lab-robot-sentry/v001/back.png",
+        "docs/assets/media/lab-robot-sentry/v001/threequarter.png",
+        "docs/assets/media/lab-robot-sentry/v001/motion-contact-sheet.png",
+        "docs/assets/media/lab-robot-sentry/v001/attack-gameplay-scale.png",
+        "docs/assets/media/lab-robot-sentry/v001/concept-vs-export.png"
+      ],
+      "models": [
+        "docs/assets/media/lab-robot-sentry/v001/lab-robot-sentry.glb"
+      ],
+      "videos": [
+        "docs/assets/media/lab-robot-sentry/v001/review.webm"
+      ],
+      "audio": [],
+      "thumbnail": null,
+      "version": "v001",
+      "state": "completed model candidate; coordinator-selected; Awaiting Tom review; family integration in progress",
+      "gameplay_use": "none",
+      "checksums": {
+        "docs/assets/media/lab-robot-sentry/v001/attack-contact-front.png": "d7896cb93acb6cb370656b07ff2e92a4e4093addf037d3ff8ca57675dedbb1fc",
+        "docs/assets/media/lab-robot-sentry/v001/attack-contact-side.png": "6167ee683f1ea3a1864c2cc497a962a93a901efbe0231a35c9deb049a3b3306b",
+        "docs/assets/media/lab-robot-sentry/v001/attack-gameplay-scale.png": "20cbd19b252bf934a04cf8120ccaed8bf6979b0177e7bd08732af7b762c1d6bf",
+        "docs/assets/media/lab-robot-sentry/v001/attack-strip.png": "92f22c017bd3d0e952da4d3e43c5322ab25eab4353a5c44a9b54e0c7a8d0658e",
+        "docs/assets/media/lab-robot-sentry/v001/attack-windup-side.png": "8bdfe1dca024519a19f413a161ccd03849a68fdfe175341bf35d98ed43c399c3",
+        "docs/assets/media/lab-robot-sentry/v001/back.png": "3c27016b944011403ea2d0adba6a6fd981e5ddf70ab487ca608b15cfa503dc9c",
+        "docs/assets/media/lab-robot-sentry/v001/beauty.png": "b6e1bcac1f03367d5a1bee1456c8002cc84f1bfbc012396952a0769569161cda",
+        "docs/assets/media/lab-robot-sentry/v001/bounds.json": "3413e89b096b7abb6bf4317728f7863b0415da9a29393c133b8174ee0c206f7e",
+        "docs/assets/media/lab-robot-sentry/v001/browser-inspection.json": "238c9c00023070a13ec691f57992dd72b246ab589979e5acfd56b32afba6a6f8",
+        "docs/assets/media/lab-robot-sentry/v001/catalog-intake.json": "e76a596381256d4ffc3577de191fee33c928eb212c54193c7044c12c94b8aabf",
+        "docs/assets/media/lab-robot-sentry/v001/concept-row.png": "137196d024f92a1a78601f83f9a24e9992f37e6fb3208b9d72593112956a4862",
+        "docs/assets/media/lab-robot-sentry/v001/concept-vs-export.png": "e9f92d5ba7ac8cf3303f180e41c946afbb1d7ae8b3255f4913275c0e2f8d8bc2",
+        "docs/assets/media/lab-robot-sentry/v001/construction.json": "7938056828b669b890beb2cb51caf641c67cfb138c42f3b188460b89fbf0e12a",
+        "docs/assets/media/lab-robot-sentry/v001/coordinator-review.json": "0ba328b4b1664ee864aab83eb595e7ddbfb486da5b9745952ea46c966b17b62d",
+        "docs/assets/media/lab-robot-sentry/v001/defeat-held-front.png": "8e6da2393de33821bafc567cca15d213e7208e691a285734d860357a189c49f6",
+        "docs/assets/media/lab-robot-sentry/v001/defeat-held.png": "731445cd4fed936dd71d2ab6ddffd4a82847e84bb13d3baaee8d78a6693d21fd",
+        "docs/assets/media/lab-robot-sentry/v001/front.png": "4f8b601b239df5578ba9c8ace716b7084cae392e94ad9c084ea26c48e1304377",
+        "docs/assets/media/lab-robot-sentry/v001/lab-robot-sentry.blend": "805ba795dfd3cc0ff3bf8bd889d5cf9632ad1414d2c9f2d4c9e1d73faddedd0b",
+        "docs/assets/media/lab-robot-sentry/v001/lab-robot-sentry.glb": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+        "docs/assets/media/lab-robot-sentry/v001/motion-contact-sheet.png": "30f8f69f35f94b88229c3f42c05f6ee48715d2d16f6692a27904032e516711ff",
+        "docs/assets/media/lab-robot-sentry/v001/pigment.png": "8de1dc2ba317ac5145c2c8b8a2801ba22db1f7aa3b22278dd83bce7d2a5b3c53",
+        "docs/assets/media/lab-robot-sentry/v001/provenance.json": "d8ccb002e4ff3168352a6fa62803dd93f4353badfc6590ef2d065c2f0e7929cc",
+        "docs/assets/media/lab-robot-sentry/v001/review.webm": "3656ae4f5f95d0c86ced4c99fb36088b19665e23958766dfe3985890aa300500",
+        "docs/assets/media/lab-robot-sentry/v001/sha256-manifest.json": "9c6519eea2ccc3975b82836cb4d502ec70b89b128624a8640bef277d611ee26e",
+        "docs/assets/media/lab-robot-sentry/v001/side.png": "2b681b98d4b74e7bd0c4afd339cabec98765db40a66d17ce5ec135a859ed2963",
+        "docs/assets/media/lab-robot-sentry/v001/three-inspection.json": "fdb7d46a58b3bf8c155f58a7090f0a0edfb89278985235d6274af70f3a407b7f",
+        "docs/assets/media/lab-robot-sentry/v001/threequarter.png": "6b61cc7d7b9ab6e06369da105ea684194d9b6bad3ae39511ada82c397264aa4e",
+        "docs/assets/media/lab-robot-sentry/v001/validation.json": "0d0b0200bc7b339d982070e7761821a58e8212b6a7e23f4cc229849d9a29a8ed"
       }
     }
   ],

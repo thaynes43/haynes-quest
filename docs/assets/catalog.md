@@ -11,7 +11,7 @@ The new family world revisions place sixteen ordinary enemies in each chapter: t
 
 The catalog also includes the earlier era casts, equipment, keepsakes, themed scenery and sound auditions. The [playtest guide](playtest.md) records earlier trials; the [current handoff](../../.agents/HANDOFF.md) records release and publication checkpoints.
 
-**81 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+**82 completed 3D candidates · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -32,7 +32,7 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 
 ## Action-world construction references
 
-The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds six ordinary enemy variants and three planting props. The selected concepts and completed candidates appear below; production continues on two isolated Blender scenes.
+The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds six ordinary enemy variants and three planting props. All six animated minions and the three planting props have been authored on two isolated Blender scenes and technically checked. Their concepts, exact exports and pending owner reviews appear below.
 
 <div class="catalog-grid" markdown="1">
 
@@ -148,11 +148,24 @@ A mischievous drummer raises both sticks, slams the snare and bursts a golden be
 A four-footed roller skater crouches, rears up and stomps forward. Its large ears, striped tail and tiny top hat give Harbor fights another clear silhouette.
 
 </div>
+<div class="catalog-card" data-asset-id="lab-robot-sentry" markdown="1">
+
+[![Exact Lab Robot Sentry with an orange eye and teal clamps](media/catalog-thumbnails/v001/9ca023ea84989bab.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/lab-robot-sentry/v001.md)
+
+### [Lab Robot Sentry](reviews/lab-robot-sentry/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · family integration in progress</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d5988c795942c2d3.webp" alt="Selected original Lab Robot Sentry construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+An orange-eyed robot raises its arms and clamps forward, then flinches and shuts down when beaten. Its broad shoulders and teal claws add another shape to Hero City.
+
+</div>
 </div>
 
 ## Family eras {#family-eras}
 
-Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. Catalog v11 registers the five Hero City, Big Stage and Casino bonus models used by the v5 family worlds. The [current handoff](../../.agents/HANDOFF.md) records the checked live revision and remaining owner reviews.
+Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. Catalog v12 adds six animated ordinary variants for World A v8 and World B v7; earlier casts and frozen catalogs remain available. The [current handoff](../../.agents/HANDOFF.md) records the checked live revision and remaining owner reviews.
 
 ### World A · Chapter 1
 
