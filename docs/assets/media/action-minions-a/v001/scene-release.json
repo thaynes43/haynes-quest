@@ -1,0 +1,83 @@
+{
+  "work_order": "action-worlds/minions-a",
+  "pack": "action-minions-a",
+  "version": "v001",
+  "blender_instance": "blender-authoring (instance 1, primary); host blender-authoring-845d777df7-77r4h",
+  "released_utc": "2026-10-04T23:25:17.851933+00:00",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "live_scene_file": "/workspace/haynes-quest/action-worlds/minions-a/v001/live-scene-release.blend",
+  "saved_live_scene_sha256": "7edb72e022b7548da3eda6df286579643c3ac4877c3fb4342e3cbfd57927284b",
+  "pack_master": "/workspace/haynes-quest/action-worlds/minions-a/v001/action-minions-a-pack.blend",
+  "pack_master_sha256": "2af7dc395da7387567f339768c68aae46568c74652e2ae88e37b50a63ac29163",
+  "pack_contents": {
+    "gadget-hammer-hopper": {
+      "rig": "Gadget_Hammer_Hopper_Rig",
+      "skin": "Gadget_Hammer_Hopper_Skin",
+      "offset_x_m": -2.2,
+      "clips": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "source_master_sha256": "a621c554ddce82297c290bcf1e81aef271879007124b1f777425ba16994ce1d2"
+    },
+    "mischief-kitten-skater": {
+      "rig": "Mischief_Kitten_Skater_Rig",
+      "skin": "Mischief_Kitten_Skater_Skin",
+      "offset_x_m": 0.0,
+      "clips": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "source_master_sha256": "d7fc8fbf767f508259ecdf2ea43a1ff7963de847a1a3cae024db41e2a6388930"
+    },
+    "lab-robot-sentry": {
+      "rig": "Lab_Robot_Sentry_Rig",
+      "skin": "Lab_Robot_Sentry_Skin",
+      "offset_x_m": 2.2,
+      "clips": [
+        "idle",
+        "move",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "source_master_sha256": "805ba795dfd3cc0ff3bf8bd889d5cf9632ad1414d2c9f2d4c9e1d73faddedd0b"
+    }
+  },
+  "assets": {
+    "gadget-hammer-hopper": {
+      "glb_sha256": "ac4f92e0ec57a172272616507cc399fd15e0c791ec768f6adfc4a64bad41530e",
+      "editable_master_sha256": "a621c554ddce82297c290bcf1e81aef271879007124b1f777425ba16994ce1d2",
+      "construction_master_sha256": "5564a3ae721508d78c3bc730f243048047f72487b460f3820c97e3f4632fc939"
+    },
+    "mischief-kitten-skater": {
+      "glb_sha256": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4",
+      "editable_master_sha256": "d7fc8fbf767f508259ecdf2ea43a1ff7963de847a1a3cae024db41e2a6388930",
+      "construction_master_sha256": "2d9039a8b5881ce9867dd48df45ec40a224f93ef1e9015cbccd20f0f229536e1"
+    },
+    "lab-robot-sentry": {
+      "glb_sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+      "editable_master_sha256": "805ba795dfd3cc0ff3bf8bd889d5cf9632ad1414d2c9f2d4c9e1d73faddedd0b",
+      "construction_master_sha256": "73bd45a27c1fedd2a8f40170c9c13055b5aa1bd329b580a3cf4f6a657ef59eef"
+    }
+  },
+  "claim_checkpoint_sha256": "d1206ede3160fe85045cccf601fbe4a8b4c2b324a5cbbc399e273e94a5633e3c",
+  "scene_before_claim": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/live-scene-release.blend",
+  "prior_workspace_files_checked": 5796,
+  "prior_workspace_files_changed": [],
+  "author_jobs_running": false,
+  "job_checks": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "scope": "Candidate technical delivery only; the coordinator owns catalog publication and runtime integration. Awaiting Tom's review; no physical-device acceptance."
+}
