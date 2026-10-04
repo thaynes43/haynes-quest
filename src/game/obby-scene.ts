@@ -3,6 +3,40 @@ import { sampleObby, type ObbyCourse, type ObbySample } from "./obby";
 import { groundRing, material, shapeMesh } from "./scene-art";
 import type { ObbyVisualPalette } from "./world-themes";
 
+/**
+ * BoxGeometry has six indexed face groups. Five use the same side material,
+ * but WebGL renders each group separately. Keep every triangle and vertex
+ * attribute, placing the five side index ranges before the top range so the
+ * slab needs two draw groups instead of six.
+ */
+function slabFloor(
+  width: number,
+  depth: number,
+  length: number,
+  side: THREE.Material,
+  top: THREE.Material,
+): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(width, depth, length);
+  const index = geometry.getIndex();
+  const groups = geometry.groups;
+  if (!index || groups.length !== 6 ||
+    groups.some((group, face) => group.materialIndex !== face)) {
+    return shapeMesh(geometry, [side, side, top, side, side, side]);
+  }
+  const sides: number[] = [];
+  const topFace: number[] = [];
+  for (const [face, group] of groups.entries()) {
+    const destination = face === 2 ? topFace : sides;
+    for (let offset = group.start; offset < group.start + group.count; offset++)
+      destination.push(index.getX(offset));
+  }
+  geometry.setIndex([...sides, ...topFace]);
+  geometry.clearGroups();
+  geometry.addGroup(0, sides.length, 0);
+  geometry.addGroup(sides.length, topFace.length, 1);
+  return shapeMesh(geometry, [side, top]);
+}
+
 /** Course surfaces and hazards use the exact sampled collision dimensions. */
 export class ObbyScene {
   readonly root = new THREE.Group();
@@ -24,14 +58,7 @@ export class ObbyScene {
       const { x: width, y: depth, z: length } = platform.size;
       const side = material(ferry ? palette.ferrySide : palette.platformSide);
       const top = material(ferry ? palette.ferryTop : palette.platformTop);
-      const floor = shapeMesh(new THREE.BoxGeometry(width, depth, length), [
-        side,
-        side,
-        top,
-        side,
-        side,
-        side,
-      ]);
+      const floor = slabFloor(width, depth, length, side, top);
       root.add(floor);
       // Painted edge strips sit on the box top, leaving the gap fully visible.
       for (const z of [-length / 2 + 0.08, length / 2 - 0.08]) {
