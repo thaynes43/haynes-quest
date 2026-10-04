@@ -1,0 +1,52 @@
+{
+  "work_order": "action-worlds/minions-a",
+  "pack": "action-minions-a",
+  "version": "v001",
+  "assets": [
+    "gadget-hammer-hopper@v001",
+    "mischief-kitten-skater@v001",
+    "lab-robot-sentry@v001"
+  ],
+  "task": "Three ordinary enemy models from the coordinator concept sheet: build, UV, rig, five clips, export, evidence",
+  "blender_instance": "blender-authoring (instance 1, primary); host blender-authoring-845d777df7-77r4h",
+  "blender_version": "4.5.13 LTS",
+  "scene_owner": "none",
+  "scene_lease": "released",
+  "status": "released",
+  "claimed_utc": "2026-10-04T22:06:00.237835+00:00",
+  "scene_before_claim": {
+    "file": "/workspace/haynes-quest/family-eras/web-slinger-helper/v001/live-scene-release.blend",
+    "file_sha256": "b376de7563d366366c8984678c7763e9a46db2c4f2f1eafd586d686643141f4d",
+    "dirty": false,
+    "object_count": 61,
+    "props": {
+      "work_order": "WO111",
+      "scene_owner": "none",
+      "scene_lease": "released",
+      "asset_id": "web-slinger-helper",
+      "asset_version": "v001",
+      "authoring_model": "gpt-6-astra max",
+      "candidate_status": "WO111 web-slinger-helper v001 \u00b7 Awaiting Tom's review \u00b7 used in the family release",
+      "source_reference": "Blender reference sheet, no generated concept",
+      "source_sheet_sha256": "54b756f6b8f2753990a1de0d348cc4f0692e470520030dea3ecc4fb44b3c8deb",
+      "source_blockout_sha256": "68b4e49d2b9ab8d2d26740ffd61b2c45abdb20cbef0ac772dcd9c06ed23bc505",
+      "orientation": "Blender +Z up/+Y forward; glTF +Y up/-Z forward; stationary identity floor root; character right = +X",
+      "role": "friendly helper (DESIGN-013): heals the player; never an enemy"
+    }
+  },
+  "claim_checkpoint": "/workspace/haynes-quest/action-worlds/minions-a/v001/claim-checkpoint.blend",
+  "claim_checkpoint_sha256": "d1206ede3160fe85045cccf601fbe4a8b4c2b324a5cbbc399e273e94a5633e3c",
+  "jobs_at_claim": {
+    "RENDER": false,
+    "RENDER_PREVIEW": false,
+    "OBJECT_BAKE": false,
+    "COMPOSITE": false
+  },
+  "readyz_at_claim": {
+    "ready": true,
+    "busy": false
+  },
+  "prior_workspace_files": 5796,
+  "released_utc": "2026-10-04T23:25:17.851933+00:00",
+  "author_jobs_running": false
+}
