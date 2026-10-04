@@ -1,0 +1,126 @@
+{
+  "props": {
+    "storybook-canopy-tree": {
+      "front": {
+        "calls": 2,
+        "triangles": 6112,
+        "glError": 0,
+        "raster_sha256": "ce1ce44c0825fad31d69c50eda6824512e87dc042e5427b83c9e3eb78baf6922"
+      },
+      "side": {
+        "calls": 2,
+        "triangles": 6112,
+        "glError": 0,
+        "raster_sha256": "ff8b9e540dc85066994e50bcfe07b3584ccdf427f8620418326a1acb38540bd2"
+      },
+      "back": {
+        "calls": 2,
+        "triangles": 6112,
+        "glError": 0,
+        "raster_sha256": "4cc95a8ed051f2e037ab36973f9b91ab5e5d0c4efe5503c313ccbc9f94e09393"
+      },
+      "threequarter": {
+        "calls": 2,
+        "triangles": 6112,
+        "glError": 0,
+        "raster_sha256": "cffb598c0ebe24d58e0366c364bd8eb8bb00aa4615687970c3682f3364611344"
+      },
+      "beauty": {
+        "calls": 2,
+        "triangles": 6112,
+        "glError": 0,
+        "raster_sha256": "5ac75e81a62c1bef28d8e6043d0a4911c8bea2a78f42ebe0907fb4124770515d"
+      }
+    },
+    "storybook-cypress": {
+      "front": {
+        "calls": 2,
+        "triangles": 2930,
+        "glError": 0,
+        "raster_sha256": "2ded33076c6b31b02bff44d6e02d9aa1f05cb4cb2d093b74fa07f5941b6e06fa"
+      },
+      "side": {
+        "calls": 2,
+        "triangles": 2930,
+        "glError": 0,
+        "raster_sha256": "e181ff249585f8e1fa493269e64f3d91a507e0d7169b52eb5a03f1eb0e0a71f4"
+      },
+      "back": {
+        "calls": 2,
+        "triangles": 2930,
+        "glError": 0,
+        "raster_sha256": "1d4c9ddb9b90ebc11a871e90356aeffb578ab69c2eddc2e78347791fc1888ad5"
+      },
+      "threequarter": {
+        "calls": 2,
+        "triangles": 2930,
+        "glError": 0,
+        "raster_sha256": "90689de9df921d6765c6fd34f895b8f8ff18ddd8ffad742039cf1ba97e9fbd60"
+      },
+      "beauty": {
+        "calls": 2,
+        "triangles": 2930,
+        "glError": 0,
+        "raster_sha256": "60f013053d2e6bb7b3c6c9cb313e05e59cf741ba26af4c7e1c347ad3aaa4049c"
+      }
+    },
+    "storybook-flowering-shrub": {
+      "front": {
+        "calls": 2,
+        "triangles": 6708,
+        "glError": 0,
+        "raster_sha256": "09a01d185ca5734b8eb593be23292d1a3295e38e321064fdc49d55ad59e73fa3"
+      },
+      "side": {
+        "calls": 2,
+        "triangles": 6708,
+        "glError": 0,
+        "raster_sha256": "e141fdffdb7220c6b7408912bb00f551eab0c3cd64d329a536fb302747b699e3"
+      },
+      "back": {
+        "calls": 2,
+        "triangles": 6708,
+        "glError": 0,
+        "raster_sha256": "576cb9273730d65d3d694923136ebf94a408d7b52e37f0bbc5605db10d7f1e1a"
+      },
+      "threequarter": {
+        "calls": 2,
+        "triangles": 6708,
+        "glError": 0,
+        "raster_sha256": "96396b06d8a3f7b3718768dac49e13023bd06cfeb273a0f44915a1224265a16d"
+      },
+      "beauty": {
+        "calls": 2,
+        "triangles": 6708,
+        "glError": 0,
+        "raster_sha256": "d46e4c17532e020f774075f361ae200d3fc4c008eae90ab2070dd2aab85aeeff"
+      }
+    }
+  },
+  "lineup": {
+    "calls": 6,
+    "triangles": 35092,
+    "glError": 0
+  },
+  "garden": {
+    "calls": 10,
+    "triangles": 44592,
+    "glError": 0
+  },
+  "errors": [],
+  "httpErrors": [],
+  "browser": "153.0.8010.12",
+  "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster, ACESFilmic exposure 1.15 like src/game/scene.ts; no physical device claim",
+  "glb_sha256": {
+    "storybook-canopy-tree": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+    "storybook-cypress": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1",
+    "storybook-flowering-shrub": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"
+  },
+  "checks": {
+    "one_draw_call_per_prop": true,
+    "zero_console_errors": true,
+    "zero_http_errors": true,
+    "zero_webgl_errors": true,
+    "no_external_requests": true
+  }
+}
