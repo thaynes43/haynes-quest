@@ -57,7 +57,7 @@
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
  *   QUEST_E2E_SCALE      device scale while playing (default 0.25; screenshots use 1)
  *   QUEST_E2E_VIEWPORT   CSS viewport, e.g. 390x844 for portrait (default 1280x760)
- *   QUEST_E2E_UNTIL      complete (default), first-fight, chase-probe, boss-arena, spawn or watcher-probe
+ *   QUEST_E2E_UNTIL      complete (default), first-fight, chase-probe, boss-arena, spawn, watcher-probe or pattern-probe
  *   QUEST_E2E_SPAWN_IDLE seconds of page time to stand at spawn for QUEST_E2E_UNTIL=spawn (default 20)
  *   QUEST_E2E_SCARY_MOMENTS on (default) or off
  *   QUEST_E2E_JUMP_SCARE encounter slot to be knocked out by (default none)
@@ -122,7 +122,7 @@ const playScale = Number(process.env.QUEST_E2E_SCALE ?? 0.25);
 assert.ok(playScale >= 0.1 && playScale <= 1, "QUEST_E2E_SCALE must be 0.1 to 1");
 const until = process.env.QUEST_E2E_UNTIL ?? "complete";
 assert.ok(
-  ["complete", "first-fight", "chase-probe", "boss-arena", "spawn", "watcher-probe", "friendly"].includes(until),
+  ["complete", "first-fight", "chase-probe", "boss-arena", "spawn", "watcher-probe", "friendly", "pattern-probe", "combo-probe"].includes(until),
   "QUEST_E2E_UNTIL must be complete, first-fight, chase-probe, boss-arena, spawn, watcher-probe or friendly",
 );
 const familyCard = process.env.QUEST_E2E_FAMILY_CARD ?? "";
@@ -142,6 +142,10 @@ const scaryMoments = process.env.QUEST_E2E_SCARY_MOMENTS ?? "on";
 assert.ok(scaryMoments === "on" || scaryMoments === "off", "QUEST_E2E_SCARY_MOMENTS must be on or off");
 const jumpScareSlot = process.env.QUEST_E2E_JUMP_SCARE ?? "";
 const watcherProbe = process.env.QUEST_E2E_WATCHER_PROBE === "1" || until === "watcher-probe";
+const patternProbe = until === "pattern-probe";
+const comboProbe = until === "combo-probe";
+const patternAction = process.env.QUEST_E2E_PATTERN_ACTION ?? "hit";
+assert.ok(["hit", "jump", "sidestep", "combo"].includes(patternAction), "invalid pattern action");
 /** `Scene.adjustCamera`: a mouse drag turns the camera yaw by -0.006 rad per CSS pixel. */
 const CAMERA_YAW_PER_PIXEL = 0.006;
 
@@ -206,6 +210,10 @@ interface LiveEncounter {
   pose: number | null;
   /** The local enemy phase (idle, chase, windup …), where the game reports it. */
   phase: string | null;
+  attackPattern?: "charge" | "bolt" | "agile";
+  windupProgress?: number;
+  attackTarget?: { x: number; y: number; z: number };
+  projectile?: { x: number; y: number; z: number };
 }
 
 interface Live {
@@ -255,7 +263,7 @@ interface PageInspection {
     mediaFailed: number;
   };
   input: Live["input"];
-  enemies?: Array<{ id: string; facing: number; pose?: number }>;
+  enemies?: Array<{ id: string; facing: number; pose?: number; attackPattern?: LiveEncounter["attackPattern"]; windupProgress: number; attackTarget?: LiveEncounter["attackTarget"]; projectile?: LiveEncounter["projectile"] }>;
   level: {
     authored?: { id: string };
     encounterPositions: Array<Omit<LiveEncounter, "facing" | "pose" | "phase"> & { localPhase?: string }>;
@@ -289,8 +297,9 @@ interface SaveLike {
     completedLevelIds?: string[];
     playerHp?: number;
     maxPlayerHp?: number;
+    attackComboStep?: 1 | 2 | 3;
     activeLevel?: {
-      encounters?: Array<{ id: string; role: string; content?: { assetId?: string; placeholder?: string } }>;
+      encounters?: Array<{ id: string; role: string; hp?: number; content?: { assetId?: string; placeholder?: string } }>;
       friendlies?: FriendlyView[];
     };
   };
@@ -359,6 +368,10 @@ function inspectInPage(draw: boolean): Live | null {
       facing: frames.find((frame) => frame.id === entry.id)?.facing ?? null,
       pose: frames.find((frame) => frame.id === entry.id)?.pose ?? null,
       phase: entry.localPhase ?? null,
+      attackPattern: frames.find((frame) => frame.id === entry.id)?.attackPattern,
+      windupProgress: frames.find((frame) => frame.id === entry.id)?.windupProgress,
+      attackTarget: frames.find((frame) => frame.id === entry.id)?.attackTarget,
+      projectile: frames.find((frame) => frame.id === entry.id)?.projectile,
     })),
     memories: level.memoryPositions.map((entry) => ({
       id: entry.id,
@@ -874,6 +887,22 @@ interface ChapterReport {
   portraitLayout?: { viewport: { width: number; height: number }; controls: Record<string, { x: number; y: number; width: number; height: number }>; scrollWidth: number };
   chase?: ChaseProbe;
   friendly?: Record<string, unknown>;
+  patternProbe?: {
+    target: { slot: string; id: string; pattern: string };
+    action: string;
+    events: Array<{ time: number; phase: string | null; progress: number | null; target: LiveEncounter["attackTarget"]; projectile: LiveEncounter["projectile"]; playerHp: number; player: Live["position"] }>;
+    screenshots: string[];
+    actions: Array<{ type: string; encounterId: string | null; playerHp: number | null; encounterHp: number | null; comboStep: number | null }>;
+    playerHpAtStart: number;
+    playerHpAtEnd: number | null;
+    retreat?: { startGap: number; endGap: number; playerTravel: number; enemyTravel: number; startPhase: string | null; endPhase: string | null };
+    resolution?: { startHp: number; endHp: number; firstWarning: number; finalPhase: string | null; jumpUsed: boolean; sidestepUsed: boolean };
+  };
+  comboProbe?: {
+    actions: Array<{ type: string; encounterId: string | null; playerHp: number | null; encounterHp: number | null; comboStep: number | null }>;
+    confirmed: boolean;
+    screenshots: string[];
+  };
   drawingBetweenCaptures?: boolean;
   /** DESIGN-027: the declared and live scare levels, counters, events and scare screenshots. */
   scare: {
@@ -1368,7 +1397,7 @@ class ChapterPilot {
           if (this.live.attackReady && !this.live.requestBusy) {
             await this.game.press("f");
             record.attacks += 1;
-          } else if (this.live.guardReady && !this.live.requestBusy) {
+          } else if (!patternProbe && !comboProbe && this.live.guardReady && !this.live.requestBusy) {
             await this.game.press("Shift");
             record.bashes += 1;
           }
@@ -1432,7 +1461,7 @@ class ChapterPilot {
       if (this.live.attackReady && !this.live.requestBusy) {
         await this.game.press("f");
         record.attacks += 1;
-      } else if (this.live.guardReady && !this.live.requestBusy) {
+      } else if (!patternProbe && !comboProbe && this.live.guardReady && !this.live.requestBusy) {
         await this.game.press("Shift");
         record.bashes += 1;
       }
@@ -1552,7 +1581,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
         }
       }
     })();` });
-    if (familyCard) await context.addCookies([{ name: "quest_test_session", value: "admin", url: url! }]);
+    if (familyCard || patternProbe) await context.addCookies([{ name: "quest_test_session", value: "admin", url: url! }]);
     const page = await context.newPage();
     const cdp = await context.newCDPSession(page);
     let latestSave: SaveLike | null = null;
@@ -1589,6 +1618,16 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
         returnedFingerprint = payload.fingerprint ?? "";
       }
       const save = path === "/api/editor/playtests" || startsFamily ? payload?.save : payload;
+      if (/^\/api\/saves\/[^/]+\/actions$/.test(path) && save?.id && (report.patternProbe || report.comboProbe)) {
+        const request = JSON.parse(response.request().postData() ?? "{}") as { action?: { type?: string; encounterId?: string } };
+        const targetId = request.action?.encounterId ?? null;
+        const actionRecord = { type: request.action?.type ?? "unknown", encounterId: targetId,
+          playerHp: save.adventure?.playerHp ?? null,
+          encounterHp: save.adventure?.activeLevel?.encounters?.find((entry) => entry.id === targetId)?.hp ?? null,
+          comboStep: save.adventure?.attackComboStep ?? null };
+        report.patternProbe?.actions.push(actionRecord);
+        report.comboProbe?.actions.push(actionRecord);
+      }
       if (save?.id) latestSave = save;
     });
     if (scaryMoments === "off")
@@ -1642,6 +1681,19 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     await game.pause();
     if (skipDraw) await page.evaluate("globalThis.__questSkipDraw=true");
     const opening = game.live;
+    if (patternProbe) {
+      const slot = ordinarySlots.find((candidate) => {
+        const id = `${chapter.routeId}-encounter-${candidate.slice("ordinary-".length)}`;
+        const pattern = opening.encounters.find((entry) => entry.id === id)?.attackPattern;
+        return pattern === "charge" || pattern === "bolt";
+      });
+      assert.ok(slot, `${chapter.chapterId}: no charge or bolt on the required route`);
+      const id = `${chapter.routeId}-encounter-${slot.slice("ordinary-".length)}`;
+      const pattern = opening.encounters.find((entry) => entry.id === id)!.attackPattern!;
+      report.patternProbe = { target: { slot, id, pattern }, action: patternAction, events: [], screenshots: [], actions: [],
+        playerHpAtStart: opening.playerHp, playerHpAtEnd: null };
+    }
+    if (comboProbe) report.comboProbe = { actions: [], confirmed: false, screenshots: [] };
     report.growthMoves = opening.growthMoves;
     report.appearanceStage = opening.stage;
     report.mediaFailed = opening.mediaFailed;
@@ -1809,6 +1861,33 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     /** While the spawn watcher probe runs, it takes the watcher screenshots itself. */
     let probing = false;
     game.onFrame = async (live) => {
+      const combo = report.comboProbe;
+      if (combo && !combo.confirmed && combo.actions.some((action) => action.type === "attack" && action.comboStep === 3)) {
+        combo.confirmed = true;
+        const file = `${shotDirectory}/${chapter.chapterId}-confirmed-third-hit.png`;
+        combo.screenshots.push(file);
+        await game!.screenshot(file);
+        report.screenshots.push(file);
+        throw new StopAt("combo-probe");
+      }
+      const probe = report.patternProbe;
+      const foe = probe && live.encounters.find((entry) => entry.id === probe.target.id);
+      if (probe && foe && (foe.phase === "windup" || foe.phase === "strike" || foe.projectile)) {
+        const previous = probe.events.at(-1);
+        if (!previous || previous.phase !== foe.phase || Boolean(previous.projectile) !== Boolean(foe.projectile))
+          probe.events.push({ time: Number(live.time.toFixed(3)), phase: foe.phase,
+            progress: foe.windupProgress ?? null, target: foe.attackTarget,
+            projectile: foe.projectile, playerHp: live.playerHp, player: { ...live.position } });
+        const name = foe.phase === "windup" && foe.attackTarget && (foe.windupProgress ?? 0) >= 0.24 ? "charge-or-bolt-warning"
+          : foe.projectile && planar(foe.projectile, live.position) < 2.4 ? "bolt-near"
+            : foe.projectile ? "bolt-in-flight" : null;
+        if (name && !probe.screenshots.some((file) => file.endsWith(`${name}.png`))) {
+          const file = `${shotDirectory}/${chapter.chapterId}-${name}.png`;
+          probe.screenshots.push(file);
+          await game!.screenshot(file);
+          report.screenshots.push(file);
+        }
+      }
       const state = live.scare;
       if (!state) return;
       for (const spot of document.scriptedScares ?? []) {
@@ -2112,6 +2191,84 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       for (const slot of encounterSlots) {
         const anchor = anchors.encounters[slot as keyof typeof anchors.encounters]!;
         if (anchor.platformId === platformId) {
+          if (patternProbe && slot === report.patternProbe?.target.slot) {
+            const probe = report.patternProbe;
+            const foe = () => game!.live.encounters.find((entry) => entry.id === probe.target.id)!;
+            const steer = async (x: number, z: number) => {
+              const distance = Math.hypot(x, z);
+              await game!.move(distance > 0 ? x / distance : 0, distance > 0 ? -z / distance : 0);
+              await game!.step(FINE_MS);
+            };
+            // Wake the actual enemy with ordinary stick input before measuring pursuit.
+            for (let tick = 0; tick < 240 && foe().phase === "idle"; tick += 1)
+              await steer(foe().x - game.live.position.x, foe().z - game.live.position.z);
+            assert.notEqual(foe().phase, "idle", `${slot}: special never aggroed`);
+            const start = { player: { ...game.live.position }, enemy: { ...foe() }, gap: planar(game.live.position, foe()) };
+            const deck = sampledPlatform(level.course, platformId, game.live.time);
+            const away = { x: start.player.x - start.enemy.x, z: start.player.z - start.enemy.z };
+            const magnitude = Math.hypot(away.x, away.z) || 1;
+            const candidate = { x: start.player.x + away.x / magnitude * 2.5, z: start.player.z + away.z / magnitude * 2.5 };
+            const target = {
+              x: Math.max(deck.center.x - deck.size.x / 2 + 0.7, Math.min(deck.center.x + deck.size.x / 2 - 0.7, candidate.x)),
+              z: Math.max(deck.center.z - deck.size.z / 2 + 0.7, Math.min(deck.center.z + deck.size.z / 2 - 0.7, candidate.z)),
+            };
+            for (let tick = 0; tick < 55; tick += 1) {
+              if (planar(game.live.position, target) < 0.15 || foe().phase === "windup") break;
+              await steer(target.x - game.live.position.x, target.z - game.live.position.z);
+            }
+            await game.move(0, 0);
+            const after = foe();
+            probe.retreat = {
+              startGap: Number(start.gap.toFixed(2)), endGap: Number(planar(game.live.position, after).toFixed(2)),
+              playerTravel: Number(planar(start.player, game.live.position).toFixed(2)),
+              enemyTravel: Number(planar(start.enemy, after).toFixed(2)),
+              startPhase: start.enemy.phase, endPhase: after.phase,
+            };
+            mark("pattern:retreat", probe.retreat);
+            if (patternAction !== "combo") {
+              // Re-enter range and let one whole warning/attack resolve without a strike.
+              for (let tick = 0; tick < 300 && foe().phase !== "windup"; tick += 1) {
+                const gap = planar(game.live.position, foe());
+                if (gap > (probe.target.pattern === "bolt" ? 4.2 : 3.2))
+                  await steer(foe().x - game.live.position.x, foe().z - game.live.position.z);
+                else { await game.move(0, 0); await game.step(FINE_MS); }
+              }
+              assert.equal(foe().phase, "windup", `${slot}: special warning did not start`);
+              const startHp = game.live.playerHp;
+              const firstWarning = game.live.time;
+              let jumpUsed = false;
+              let sidestepUsed = false;
+              let sawStrike = false;
+              for (let tick = 0; tick < 200; tick += 1) {
+                if (patternAction === "jump" && !jumpUsed &&
+                    ((probe.target.pattern === "charge" && foe().phase === "windup" && (foe().windupProgress ?? 0) >= 0.7) ||
+                     (probe.target.pattern === "bolt" && foe().projectile && planar(foe().projectile!, game.live.position) < 1.7))) {
+                  await game.press("Space"); jumpUsed = true;
+                }
+                if (patternAction === "sidestep" && foe().attackTarget && foe().phase === "windup" && (foe().windupProgress ?? 0) >= 0.24) {
+                  const aim = foe().attackTarget!;
+                  const dx = aim.x - foe().x, dz = aim.z - foe().z;
+                  const length = Math.hypot(dx, dz) || 1;
+                  const side = dx >= 0 ? { x: -dz / length, z: dx / length } : { x: dz / length, z: -dx / length };
+                  const sideTarget = { x: game.live.position.x + side.x, z: game.live.position.z + side.z };
+                  const within = sideTarget.x > deck.center.x - deck.size.x / 2 + 0.4 && sideTarget.x < deck.center.x + deck.size.x / 2 - 0.4 &&
+                    sideTarget.z > deck.center.z - deck.size.z / 2 + 0.4 && sideTarget.z < deck.center.z + deck.size.z / 2 - 0.4;
+                  if (within) { await steer(side.x, side.z); sidestepUsed = true; continue; }
+                }
+                await game.move(0, 0);
+                await game.step(FINE_MS);
+                if (foe().phase === "strike" || foe().projectile) sawStrike = true;
+                if (game.live.playerHp < startHp ||
+                    (sawStrike && foe().phase === "windup" && game.live.time - firstWarning > 1) ||
+                    (sawStrike && foe().phase === "chasing" && game.live.time - firstWarning > 1.4)) break;
+              }
+              probe.playerHpAtEnd = game.live.playerHp;
+              probe.resolution = { startHp, endHp: game.live.playerHp, firstWarning, finalPhase: foe().phase,
+                jumpUsed, sidestepUsed };
+              assert.ok(probe.events.some((event) => event.phase === "windup"), `${slot}: warning not observed`);
+              throw new StopAt("pattern-probe");
+            }
+          }
           const jumpsBefore = game.live.scare?.jumpScares ?? 0;
           await pilot.fight(
             slot,
@@ -2121,6 +2278,64 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                 await shot("03-boss-arena");
                 if (until === "boss-arena") throw new StopAt("boss-arena");
               } else await captureFirstOrdinary(game!.live.nearEncounterId);
+              if (comboProbe && (slot === ordinarySlots[0] || role === "boss")) {
+                  // The server's combo window uses wall time. Resume the page
+                  // clock and use only normal keyboard attacks for this probe.
+                  await page.clock.resume();
+                  const combo = report.comboProbe!;
+                  const targetId = role === "boss" ? `${chapter.routeId}-boss`
+                    : `${chapter.routeId}-encounter-${slot.slice("ordinary-".length)}`;
+                  const sameDeckAlternates = Object.entries(anchors.encounters)
+                    .filter(([candidate, candidateAnchor]) => candidate !== slot && candidateAnchor.platformId === anchor.platformId && /^ordinary-\d+$/.test(candidate))
+                    .map(([candidate]) => `${chapter.routeId}-encounter-${candidate.slice("ordinary-".length)}`);
+                  for (let strike = 0; strike < 8 && !combo.actions.some((action) => action.type === "attack" && action.comboStep === 3); strike += 1) {
+                    const readyBy = Date.now() + 8_000;
+                    for (;;) {
+                      const live = await game!.read(false);
+                      assert.ok(Date.now() < readyBy, "combo attack did not become ready");
+                      assert.ok(live.playerHp > 0, "player fell during combo probe");
+                      const firstStillAlive = (live.encounters.find((entry) => entry.id === targetId)?.hp ?? 0) > 0;
+                      const currentTarget = firstStillAlive ? targetId : sameDeckAlternates
+                        .map((id) => live.encounters.find((entry) => entry.id === id))
+                        .filter((entry): entry is LiveEncounter => Boolean(entry && entry.hp > 0))
+                        .sort((left, right) => planar(left, live.position) - planar(right, live.position))[0]?.id;
+                      assert.ok(currentTarget, "no live same-deck target remains for third strike");
+                      if (live.attackReady && !live.requestBusy && live.nearEncounterId === currentTarget) {
+                        await game!.move(0, 0);
+                        break;
+                      }
+                      if (strike >= 2 && live.nearEncounterId !== currentTarget) {
+                        const foe = live.encounters.find((entry) => entry.id === currentTarget)!;
+                        const dx = foe.x - live.position.x, dz = foe.z - live.position.z;
+                        const gap = Math.hypot(dx, dz);
+                        if (gap > 0.1) await game!.move(dx / gap, -dz / gap);
+                      }
+                      await new Promise((wait) => setTimeout(wait, 25));
+                    }
+                    const previous = combo.actions.filter((action) => action.type === "attack").length;
+                    await game!.press("f");
+                    const responseBy = Date.now() + 8_000;
+                    while (combo.actions.filter((action) => action.type === "attack").length === previous) {
+                      assert.ok(Date.now() < responseBy, "combo attack did not receive a server response");
+                      await new Promise((wait) => setTimeout(wait, 30));
+                    }
+                  }
+                  const attacks = combo.actions.filter((action) => action.type === "attack");
+                  assert.equal(attacks.at(-1)?.comboStep, 3, "third strike was not server-confirmed as combo finisher");
+                  const file = `${shotDirectory}/${chapter.chapterId}-confirmed-third-hit.png`;
+                  if (skipDraw) {
+                    await page.evaluate("globalThis.__questSkipDraw=false");
+                    await new Promise((wait) => setTimeout(wait, 80));
+                  }
+                  await cdp.send("Emulation.setDeviceMetricsOverride", { ...VIEWPORT, deviceScaleFactor: 1, mobile: false });
+                  await page.evaluate(() => window.dispatchEvent(new Event("resize")));
+                  const { data } = await cdp.send("Page.captureScreenshot", { format: "png" });
+                  await writeFile(file, Buffer.from(data, "base64"));
+                  combo.screenshots.push(file);
+                  combo.confirmed = true;
+                  report.screenshots.push(file);
+                  throw new StopAt("combo-probe");
+              }
             },
             slot === jumpScareSlot && !knockoutForced
               ? () => {
@@ -2129,6 +2344,12 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                 }
               : undefined,
           );
+          if (patternProbe && slot === report.patternProbe?.target.slot) {
+            report.patternProbe.playerHpAtEnd = game.live.playerHp;
+            assert.ok(report.patternProbe.events.some((event) => event.phase === "windup"),
+              `${slot}: special never displayed its locked warning`);
+            throw new StopAt("pattern-probe");
+          }
           // At level 2 the forced knockout had to become a lunge (D-05).
           if (slot === jumpScareSlot && report.scare.live === 2)
             assert.ok(
