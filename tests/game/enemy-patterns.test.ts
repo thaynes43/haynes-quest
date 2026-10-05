@@ -103,7 +103,12 @@ describe("DESIGN-030 ordinary attack patterns", () => {
     run(straight.simulation, straight.save, { x: 4, y: 0, z: 1 }, 10);
     expect(straight.simulation.frames()[0]?.attackTarget).toEqual(target);
     expect(straight.simulation.frames()[0]?.position.x).toBe(0);
-    expect(run(straight.simulation, straight.save, flatPlayer, 35)).toContain("ordinary-1");
+    let contacts: string[] = [];
+    for (let tick = 0; tick < 35 && contacts.length === 0; tick++) {
+      contacts = run(straight.simulation, straight.save, flatPlayer, 1);
+    }
+    expect(contacts).toContain("ordinary-1");
+    expect(straight.simulation.frames()[0]?.phase).toBe("cooldown");
     expect(straight.simulation.frames()[0]?.projectile).toBeUndefined();
 
     const jump = make();

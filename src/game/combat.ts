@@ -761,6 +761,11 @@ export class EnemySimulation {
               this.hitCooldownSeconds <= 0) {
               contacts.push(enemy.id);
               enemy.contactedDuringStrike = true;
+              if (bolt) {
+                this.stopPatternAttack(enemy, false);
+                ordinaryAttackers -= 1;
+                break;
+              }
             }
             if (enemy.attackTravel >= maxTravel - distanceEpsilon) {
               this.stopPatternAttack(enemy, false);
