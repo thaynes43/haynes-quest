@@ -57,7 +57,8 @@
  *   QUEST_E2E_SHOTS      screenshot folder (default the report folder)
  *   QUEST_E2E_SCALE      device scale while playing (default 0.25; screenshots use 1)
  *   QUEST_E2E_VIEWPORT   CSS viewport, e.g. 390x844 for portrait (default 1280x760)
- *   QUEST_E2E_UNTIL      complete (default), first-fight, chase-probe, boss-arena, spawn, watcher-probe or pattern-probe
+ *   QUEST_E2E_UNTIL      complete (default), first-fight, chase-probe, boss-arena, spawn, watcher-probe, pattern-probe or combo-probe
+ *   QUEST_E2E_COMBO_HOLD 1 to check continuous primary input and release in combo-probe
  *   QUEST_E2E_SPAWN_IDLE seconds of page time to stand at spawn for QUEST_E2E_UNTIL=spawn (default 20)
  *   QUEST_E2E_SCARY_MOMENTS on (default) or off
  *   QUEST_E2E_JUMP_SCARE encounter slot to be knocked out by (default none)
@@ -144,6 +145,7 @@ const jumpScareSlot = process.env.QUEST_E2E_JUMP_SCARE ?? "";
 const watcherProbe = process.env.QUEST_E2E_WATCHER_PROBE === "1" || until === "watcher-probe";
 const patternProbe = until === "pattern-probe";
 const comboProbe = until === "combo-probe";
+const comboHoldProbe = comboProbe && process.env.QUEST_E2E_COMBO_HOLD === "1";
 const patternAction = process.env.QUEST_E2E_PATTERN_ACTION ?? "hit";
 assert.ok(["hit", "jump", "sidestep", "combo"].includes(patternAction), "invalid pattern action");
 /** `Scene.adjustCamera`: a mouse drag turns the camera yaw by -0.006 rad per CSS pixel. */
@@ -880,6 +882,7 @@ interface ChapterReport {
   pageErrors: string[];
   consoleErrors: string[];
   responseErrors: string[];
+  actionFailures: Array<{ status: number; actionType: string; code: string }>;
   media: Record<string, number>;
   assetLoads: LoadedModel[];
   frozenProject?: { projectId: string; revision: number; fingerprint: string; schemaVersion: string; theme: string; decorCount: number };
@@ -892,16 +895,18 @@ interface ChapterReport {
     action: string;
     events: Array<{ time: number; phase: string | null; progress: number | null; target: LiveEncounter["attackTarget"]; projectile: LiveEncounter["projectile"]; playerHp: number; player: Live["position"] }>;
     screenshots: string[];
-    actions: Array<{ type: string; encounterId: string | null; playerHp: number | null; encounterHp: number | null; comboStep: number | null }>;
+    actions: Array<{ type: string; encounterId: string | null; playerHp: number | null; encounterHp: number | null; comboStep: number | null; responseWallMs: number; requestDurationMs: number }>;
     playerHpAtStart: number;
     playerHpAtEnd: number | null;
     retreat?: { startGap: number; endGap: number; playerTravel: number; enemyTravel: number; startPhase: string | null; endPhase: string | null };
     resolution?: { startHp: number; endHp: number; firstWarning: number; finalPhase: string | null; jumpUsed: boolean; sidestepUsed: boolean };
   };
   comboProbe?: {
-    actions: Array<{ type: string; encounterId: string | null; playerHp: number | null; encounterHp: number | null; comboStep: number | null }>;
+    actions: Array<{ type: string; encounterId: string | null; playerHp: number | null; encounterHp: number | null; comboStep: number | null; responseWallMs: number; requestDurationMs: number }>;
     confirmed: boolean;
     screenshots: string[];
+    holdStartedWallMs?: number;
+    heldInput?: { attacksAtRelease: number; attacksAfterWait: number; waitMs: number; confirmedSteps: Array<number | null> };
   };
   drawingBetweenCaptures?: boolean;
   /** DESIGN-027: the declared and live scare levels, counters, events and scare screenshots. */
@@ -1527,6 +1532,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     pageErrors: [],
     consoleErrors: [],
     responseErrors: [],
+    actionFailures: [],
     media: {},
     assetLoads: [],
     drawingBetweenCaptures: !skipDraw,
@@ -1595,7 +1601,15 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     });
     page.on("response", async (response) => {
       const path = new URL(response.url()).pathname;
-      if (response.status() >= 400) report.responseErrors.push(`${response.status()} ${path}`);
+      if (response.status() >= 400) {
+        report.responseErrors.push(`${response.status()} ${path}`);
+        if (/^\/api\/saves\/[^/]+\/actions$/.test(path)) {
+          const request = JSON.parse(response.request().postData() ?? "{}") as { action?: { type?: string } };
+          const body = await response.json().catch(() => null) as { error?: { code?: string } | string; code?: string } | null;
+          report.actionFailures.push({ status: response.status(), actionType: request.action?.type ?? "unknown",
+            code: typeof body?.error === "string" ? body.error : body?.error?.code ?? body?.code ?? "unknown" });
+        }
+      }
       if (path.startsWith("/studio/assets/media/") && path.endsWith(".glb")) {
         report.media[path] = response.status();
         if (realtimeSample && response.ok()) pendingAssetLoads.push((async () => {
@@ -1621,10 +1635,12 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       if (/^\/api\/saves\/[^/]+\/actions$/.test(path) && save?.id && (report.patternProbe || report.comboProbe)) {
         const request = JSON.parse(response.request().postData() ?? "{}") as { action?: { type?: string; encounterId?: string } };
         const targetId = request.action?.encounterId ?? null;
+        const timing = response.request().timing();
         const actionRecord = { type: request.action?.type ?? "unknown", encounterId: targetId,
           playerHp: save.adventure?.playerHp ?? null,
           encounterHp: save.adventure?.activeLevel?.encounters?.find((entry) => entry.id === targetId)?.hp ?? null,
-          comboStep: save.adventure?.attackComboStep ?? null };
+          comboStep: save.adventure?.attackComboStep ?? null,
+          responseWallMs: Date.now(), requestDurationMs: Math.max(0, timing.responseEnd - timing.requestStart) };
         report.patternProbe?.actions.push(actionRecord);
         report.comboProbe?.actions.push(actionRecord);
       }
@@ -2288,7 +2304,46 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                   const sameDeckAlternates = Object.entries(anchors.encounters)
                     .filter(([candidate, candidateAnchor]) => candidate !== slot && candidateAnchor.platformId === anchor.platformId && /^ordinary-\d+$/.test(candidate))
                     .map(([candidate]) => `${chapter.routeId}-encounter-${candidate.slice("ordinary-".length)}`);
-                  for (let strike = 0; strike < 8 && !combo.actions.some((action) => action.type === "attack" && action.comboStep === 3); strike += 1) {
+                  if (comboHoldProbe) {
+                    const first = game!.live.encounters.find((entry) => entry.id === targetId)!;
+                    const other = sameDeckAlternates.map((id) => game!.live.encounters.find((entry) => entry.id === id))
+                      .filter((entry): entry is LiveEncounter => Boolean(entry && entry.hp > 0))
+                      .sort((left, right) => planar(left, game!.live.position) - planar(right, game!.live.position))[0];
+                    assert.ok(other, "held primary probe needs a second same-deck foe");
+                    const midpoint = { x: (first.x + other.x) / 2, z: (first.z + other.z) / 2 };
+                    try {
+                      for (let tick = 0; tick < 150; tick += 1) {
+                        const live = await game!.read(false);
+                        const dx = midpoint.x - live.position.x, dz = midpoint.z - live.position.z;
+                        const gap = Math.hypot(dx, dz);
+                        if (gap < 0.35) break;
+                        assert.equal(live.supportId, anchor.platformId, "held primary setup left the arena deck");
+                        await game!.move(dx / gap, -dz / gap);
+                        await new Promise((wait) => setTimeout(wait, 25));
+                      }
+                      await game!.move(0, 0);
+                      combo.holdStartedWallMs = Date.now();
+                      await game!.hold("f", true);
+                      const finishBy = Date.now() + 10_000;
+                      while (combo.actions.filter((action) => action.type === "attack").length < 3) {
+                        const live = await game!.read(false);
+                        assert.ok(Date.now() < finishBy, "held primary did not repeat three times");
+                        assert.ok(live.playerHp > 0, "player fell during held primary probe");
+                        if ((live.encounters.find((entry) => entry.id === targetId)?.hp ?? 0) === 0) {
+                          const remaining = live.encounters.find((entry) => entry.id === other.id);
+                          if (remaining?.hp) {
+                            const dx = remaining.x - live.position.x, dz = remaining.z - live.position.z;
+                            const gap = Math.hypot(dx, dz);
+                            if (gap > 0.2) await game!.move(dx / gap, -dz / gap);
+                          } else await game!.move(0, 0);
+                        } else await game!.move(0, 0);
+                        await new Promise((wait) => setTimeout(wait, 120));
+                      }
+                    } finally {
+                      await game!.hold("f", false);
+                      await game!.move(0, 0);
+                    }
+                  } else for (let strike = 0; strike < 8 && !combo.actions.some((action) => action.type === "attack" && action.comboStep === 3); strike += 1) {
                     const readyBy = Date.now() + 8_000;
                     for (;;) {
                       const live = await game!.read(false);
@@ -2321,8 +2376,10 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                     }
                   }
                   const attacks = combo.actions.filter((action) => action.type === "attack");
-                  assert.equal(attacks.at(-1)?.comboStep, 3, "third strike was not server-confirmed as combo finisher");
-                  const file = `${shotDirectory}/${chapter.chapterId}-confirmed-third-hit.png`;
+                  if (!comboHoldProbe)
+                    assert.equal(attacks.at(-1)?.comboStep, 3, "third strike was not server-confirmed as combo finisher");
+                  else assert.ok(attacks.length >= 3, "held primary did not repeat three times");
+                  const file = `${shotDirectory}/${chapter.chapterId}-${comboHoldProbe ? "held-primary-release" : "confirmed-third-hit"}.png`;
                   if (skipDraw) {
                     await page.evaluate("globalThis.__questSkipDraw=false");
                     await new Promise((wait) => setTimeout(wait, 80));
@@ -2332,8 +2389,16 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
                   const { data } = await cdp.send("Page.captureScreenshot", { format: "png" });
                   await writeFile(file, Buffer.from(data, "base64"));
                   combo.screenshots.push(file);
-                  combo.confirmed = true;
+                  combo.confirmed = attacks.some((action) => action.comboStep === 3);
                   report.screenshots.push(file);
+                  if (comboHoldProbe) {
+                    const attacksAtRelease = combo.actions.filter((action) => action.type === "attack").length;
+                    await new Promise((wait) => setTimeout(wait, 1_500));
+                    const attacksAfterWait = combo.actions.filter((action) => action.type === "attack").length;
+                    combo.heldInput = { attacksAtRelease, attacksAfterWait, waitMs: 1_500,
+                      confirmedSteps: attacks.map((action) => action.comboStep) };
+                    assert.equal(attacksAfterWait, attacksAtRelease, "held primary repeated after release");
+                  }
                   throw new StopAt("combo-probe");
               }
             },
