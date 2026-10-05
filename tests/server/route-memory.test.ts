@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import {
   ENEMY_HIT_COOLDOWN_MS,
+  PRIMARY_COMBO_WINDOW_MS,
   ROUTE_ATTACK_COOLDOWN_MS,
   SECONDARY_ATTACK_COOLDOWN_MS,
   createAdventurePlan,
@@ -123,6 +124,116 @@ function saveRecord(plan = routePlan()): SaveRecord {
 }
 
 describe('route-memory plan v3', () => {
+  it('chains only accepted primary enemy hits, adds one on the third, and then starts over', () => {
+    const plan = routePlan();
+    const level = plan.levels[0]!;
+    const [firstEnemy, nextEnemy] = level.encounters;
+    const attack = (state: AdventureState, encounterId: string, nowMs: number) =>
+      apply(plan, state, { type: 'attack', levelId: level.id, encounterId }, nowMs);
+    const first = attack(createInitialAdventureState(plan), firstEnemy!.id, 0);
+    expect(first.encounters[firstEnemy!.id]!.hp).toBe(firstEnemy!.maxHp - 1);
+    expect(toAdventureView(plan, first, 0)).toMatchObject({
+      attackComboStep: 1,
+      attackComboRemainingMs: PRIMARY_COMBO_WINDOW_MS,
+      attackCooldownRemainingMs: ROUTE_ATTACK_COOLDOWN_MS,
+    });
+    expect(() => attack(first, firstEnemy!.id, ROUTE_ATTACK_COOLDOWN_MS - 1))
+      .toThrow('ATTACK_COOLDOWN');
+    const second = attack(first, firstEnemy!.id, ROUTE_ATTACK_COOLDOWN_MS);
+    expect(second.encounters[firstEnemy!.id]!.hp).toBe(firstEnemy!.maxHp - 2);
+    expect(toAdventureView(plan, second, ROUTE_ATTACK_COOLDOWN_MS).attackComboStep).toBe(2);
+    const third = attack(second, firstEnemy!.id, ROUTE_ATTACK_COOLDOWN_MS * 2);
+    expect(third.encounters[firstEnemy!.id]!.hp).toBe(firstEnemy!.maxHp - 4);
+    expect(toAdventureView(plan, third, ROUTE_ATTACK_COOLDOWN_MS * 2).attackComboStep).toBe(3);
+    const restarted = attack(third, nextEnemy!.id, ROUTE_ATTACK_COOLDOWN_MS * 3);
+    expect(restarted.encounters[nextEnemy!.id]!.hp).toBe(nextEnemy!.maxHp - 1);
+    expect(restarted.attackCombo?.step).toBe(1);
+  });
+
+  it('expires on the server clock while keeping the attack tool a larger upgrade', () => {
+    const plan = routePlan();
+    const level = plan.levels[0]!;
+    const [firstEnemy, nextEnemy] = level.encounters;
+    const attack = (state: AdventureState, encounterId: string, nowMs: number) =>
+      apply(plan, state, { type: 'attack', levelId: level.id, encounterId }, nowMs);
+    const first = attack(createInitialAdventureState(plan), firstEnemy!.id, 0);
+    expect(toAdventureView(plan, first, PRIMARY_COMBO_WINDOW_MS + 1).attackComboStep)
+      .toBeUndefined();
+    const expired = attack(first, firstEnemy!.id, PRIMARY_COMBO_WINDOW_MS + 1);
+    expect(expired.attackCombo?.step).toBe(1);
+
+    const tool = level.pickups.find((pickup) => pickup.kind === 'attack-tool')!;
+    const equipped = collect(plan, createInitialAdventureState(plan), 'attack-tool');
+    const toolOne = attack(equipped, firstEnemy!.id, 0);
+    const toolTwo = attack(toolOne, firstEnemy!.id, ROUTE_ATTACK_COOLDOWN_MS);
+    const toolFinish = attack(toolTwo, nextEnemy!.id, ROUTE_ATTACK_COOLDOWN_MS * 2);
+    expect(toolFinish.encounters[nextEnemy!.id]!.hp).toBe(nextEnemy!.maxHp - tool.damage - 1);
+  });
+
+  it('resets the chain on a secondary, a friendly strike, a fall and retry', () => {
+    const plan = routePlan();
+    const level = plan.levels[0]!;
+    const enemy = level.encounters[0]!;
+    const attack = (state: AdventureState, nowMs: number) =>
+      apply(plan, state, { type: 'attack', levelId: level.id, encounterId: enemy.id }, nowMs);
+    const first = attack(createInitialAdventureState(plan), 0);
+    const guarded = collect(plan, first, 'guard-tool');
+    const secondary = apply(plan, guarded, {
+      type: 'secondary-attack', levelId: level.id, encounterId: enemy.id,
+    }, ROUTE_ATTACK_COOLDOWN_MS);
+    expect(secondary.attackCombo).toBeUndefined();
+    expect(attack(secondary, ROUTE_ATTACK_COOLDOWN_MS * 2).attackCombo?.step).toBe(1);
+
+    const equipped = collect(plan, createInitialAdventureState(plan), 'attack-tool');
+    const toolHit = attack(equipped, 0);
+    const friendlyId = friendlyDefinitionsForLevel(level.id, level.index)[0]!.id;
+    const friendlyHit = reduceFriendlyAction(plan, toolHit, createInitialFriendlyState(plan), {
+      type: 'attack-friendly', levelId: level.id, friendlyId,
+    }, ROUTE_ATTACK_COOLDOWN_MS);
+    expect(friendlyHit.adventureState.attackCombo).toBeUndefined();
+    expect(attack(friendlyHit.adventureState, ROUTE_ATTACK_COOLDOWN_MS * 2).attackCombo?.step).toBe(1);
+
+    const nearDeath = { ...first, playerHp: enemy.attackDamage };
+    const fallen = apply(plan, nearDeath, {
+      type: 'take-hit', levelId: level.id, encounterId: enemy.id,
+    }, ENEMY_HIT_COOLDOWN_MS);
+    expect(fallen.phase).toBe('fallen');
+    expect(fallen.attackCombo).toBeUndefined();
+    const retried = apply(plan, fallen, { type: 'retry-level', levelId: level.id },
+      ENEMY_HIT_COOLDOWN_MS + 1);
+    expect(retried.attackCombo).toBeUndefined();
+    expect(attack(retried, ENEMY_HIT_COOLDOWN_MS + 1).attackCombo?.step).toBe(1);
+  });
+
+  it('loads a pre-combo save and replays a third-hit receipt without extra damage', () => {
+    const initial = saveRecord();
+    const plan = initial.adventurePlan!;
+    const level = plan.levels[0]!;
+    const enemy = level.encounters[0]!;
+    expect(parseStoredAdventure(plan, initial.adventureState!).state.attackCombo).toBeUndefined();
+    let save = initial;
+    const startMs = Date.parse('2026-09-12T00:00:01.000Z');
+    let thirdRequest: GameplayActionRequest | null = null;
+    for (let hit = 0; hit < 3; hit += 1) {
+      const request: GameplayActionRequest = {
+        actionId: randomUUID(),
+        expectedRevision: save.revision,
+        action: { type: 'attack', levelId: level.id, encounterId: enemy.id },
+      };
+      if (hit === 2) thirdRequest = request;
+      save = applyGameplayActionToSave(save, request,
+        new Date(startMs + hit * ROUTE_ATTACK_COOLDOWN_MS)).save;
+      expect(parseStoredAdventure(plan, structuredClone(save.adventureState!)).state.attackCombo?.step)
+        .toBe((hit + 1) as 1 | 2 | 3);
+    }
+    const replay = applyGameplayActionToSave(save, thirdRequest!, new Date(startMs + 2_000));
+    expect(replay.replay).toBe(true);
+    expect(replay.save.revision).toBe(3);
+    expect(replay.save.adventureState!.encounters[enemy.id]!.hp).toBe(enemy.maxHp - 4);
+    expect(toSaveView(save, new Date(startMs + 2_200)).adventure!.attackComboStep)
+      .toBeUndefined();
+  });
+
   it('allows a one-damage basic attack, then upgrades damage from the frozen pickup', () => {
     const plan = routePlan();
     const level = plan.levels[0]!;

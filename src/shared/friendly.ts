@@ -295,5 +295,6 @@ export function reduceFriendlyAction(
     );
   }
   adventureState.attackReadyAtMs = nowMs + attackCooldownMs;
+  delete adventureState.attackCombo;
   return { adventureState, friendlyState };
 }

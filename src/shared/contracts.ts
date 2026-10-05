@@ -142,6 +142,9 @@ export interface AdventureView {
   playerHp: number;
   maxPlayerHp: number;
   attackCooldownRemainingMs: number;
+  /** Last accepted primary hit in a route-memory chain, while its window remains open. */
+  attackComboStep?: 1 | 2 | 3;
+  attackComboRemainingMs?: number;
   /** Present for route-memory plans, whose guard tool acts as an offhand attack. */
   secondaryCooldownRemainingMs?: number;
   guardActiveRemainingMs: number;

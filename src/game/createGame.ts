@@ -132,6 +132,8 @@ interface RuntimeScene {
   bouncePad?(platformId: string): void;
   expectHit?(encounterId: string): void;
   anticipateHit?(encounterId: string, at: PositionSnapshot): void;
+  /** Larger finish, played only after the server confirms the third enemy hit. */
+  finishCombo?(encounterId: string): void;
   celebrate?(encounterId: string, boss: boolean): void;
   /**
    * DESIGN-027 watchers only change while this reports false: whether a body
@@ -319,6 +321,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     encounterId: string;
     kind: AttackKind;
   } | null = null;
+  let pendingComboAttack: { encounterId: string; expectedRevision: number } | null = null;
   let attackSentAt = Number.NEGATIVE_INFINITY;
   let secondarySentAt = Number.NEGATIVE_INFINITY;
   /** The server-owned action currently awaiting its reply, if any. */
@@ -433,6 +436,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let attackAnimationUntil = 0;
   let attackAnimationKind: "primary" | "secondary" = "primary";
   let attackTargetId: string | null = null;
+  let attackAnimationComboStep: 1 | 2 | 3 | null = null;
+  let comboPresentationStep: 1 | 2 | 3 | null =
+    requireAdventure(save).attackComboStep ?? null;
+  let comboPresentationUntil =
+    lastTime + (requireAdventure(save).attackComboRemainingMs ?? 0);
   let bestiesHitActorId: BestieActorId | null = null;
   let interactionAnimationUntil = 0;
   let interactionSequence = 0;
@@ -824,6 +832,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     targetId: string | null,
   ): void => {
     attackAnimationKind = kind;
+    if (kind === "primary" && isRouteMemoryAdventure(save)) {
+      const lastStep = windowTarget.performance.now() <= comboPresentationUntil
+        ? comboPresentationStep
+        : null;
+      attackAnimationComboStep = lastStep === 1 ? 2 : lastStep === 2 ? 3 : 1;
+    } else {
+      attackAnimationComboStep = null;
+    }
     attackAnimationUntil =
       windowTarget.performance.now() +
       (kind === "primary"
@@ -1050,6 +1066,21 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const previousRecoveredIds = new Set(save.recoveredIds);
     const nextIdentity = levelIdentity(nextSave);
     const nextAdventure = nextSave.adventure;
+    const pendingCombo = pendingComboAttack;
+    const confirmedComboAttack = pendingCombo !== null &&
+      requestState.requestState === "idle" &&
+      nextSave.revision === pendingCombo.expectedRevision &&
+      previousIdentity === nextIdentity &&
+      (nextAdventure.activeLevel?.encounters.find(
+        (candidate) => candidate.id === pendingCombo.encounterId,
+      )?.hp ?? Number.POSITIVE_INFINITY) <
+        (previousAdventure.activeLevel?.encounters.find(
+          (candidate) => candidate.id === pendingCombo.encounterId,
+        )?.hp ?? Number.NEGATIVE_INFINITY);
+    const confirmedComboTarget = confirmedComboAttack
+      ? pendingCombo.encounterId
+      : null;
+    pendingComboAttack = null;
     const recoveredMinor =
       previousIdentity === nextIdentity &&
       nextAdventure.phase === "exploring" &&
@@ -1146,6 +1177,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       courseTime = 0;
       traversalRecoveries = 0;
       attackAnimationUntil = 0;
+      attackAnimationComboStep = null;
       attackTargetId = null;
       bestiesHitActorId = null;
       interactionAnimationUntil = 0;
@@ -1197,6 +1229,16 @@ export function createGame(options: CreateGameOptions): GameHandle {
       scene.updateProgress(sceneSave);
     }
     const now = windowTarget.performance.now();
+    comboPresentationStep = nextAdventure.attackComboStep ?? null;
+    comboPresentationUntil = now + (nextAdventure.attackComboRemainingMs ?? 0);
+    if (confirmedComboTarget) {
+      attackAnimationComboStep = nextAdventure.attackComboStep ?? null;
+      if (nextAdventure.attackComboStep === 3) {
+        scene.finishCombo?.(confirmedComboTarget);
+        hitStop.trigger(0.11);
+        shake.add(0.45);
+      }
+    }
     attackCooldownUntil = now + nextSave.adventure.attackCooldownRemainingMs;
     guardActiveUntil = now + nextSave.adventure.guardActiveRemainingMs;
     guardCooldownUntil = now + nextSave.adventure.guardCooldownRemainingMs;
@@ -1247,6 +1289,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     onState: (state) => {
       requestState = state;
       if (state.requestState !== "acting") inFlightAction = null;
+      if (state.requestState === "error") pendingComboAttack = null;
       if (state.requestState === "error" && autoInteractionKey) {
         autoInteractionRetryAt =
           windowTarget.performance.now() + autoInteractionRetryMs;
@@ -1438,6 +1481,17 @@ export function createGame(options: CreateGameOptions): GameHandle {
     }
     const accepted = coordinator.perform(action);
     if (accepted) inFlightAction = action.type;
+    if (accepted &&
+      (action.type === "secondary-attack" || action.type === "attack-friendly")) {
+      comboPresentationStep = null;
+      comboPresentationUntil = 0;
+    }
+    if (accepted && action.type === "attack") {
+      pendingComboAttack = {
+        encounterId: action.encounterId,
+        expectedRevision: save.revision + 1,
+      };
+    }
     if (
       action.type === "attack" ||
       action.type === "secondary-attack" ||
@@ -1578,6 +1632,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
         controller.facing = target.facing;
         performAction({ type: "attack", levelId, encounterId: target.id });
       } else {
+        comboPresentationStep = null;
+        comboPresentationUntil = 0;
         beginAttackAnimation("primary", null);
         recordAttackFeedback("no-target");
       }
@@ -1960,6 +2016,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       attackSequence: attackFeedbackSequence,
       secondaryAttacking:
         attackAnimationKind === "secondary" && now < attackAnimationUntil,
+      ...(attackAnimationKind === "primary" && now < attackAnimationUntil &&
+        attackAnimationComboStep !== null
+        ? { attackComboStep: attackAnimationComboStep }
+        : {}),
       attackTargetId: now < attackAnimationUntil ? attackTargetId : null,
       interacting: now < interactionAnimationUntil,
       guarding: now < guardActiveUntil,

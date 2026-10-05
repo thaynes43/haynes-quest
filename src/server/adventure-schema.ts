@@ -5,6 +5,7 @@ import {
   appearanceForAge,
   isAuthoredWorldPlan,
   memoryIdsForLevel,
+  usesRouteMemoryRules,
   type AdventurePlan,
   type AdventurePlanV2,
   type AdventurePlanV3,
@@ -281,6 +282,10 @@ const stateSchema = z.object({
   abilities: z.array(abilitySchema).min(2).max(FAMILY_ABILITIES.length),
   appearanceStage: z.enum(['infant', 'child']),
   attackReadyAtMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
+  attackCombo: z.object({
+    step: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    expiresAtMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
+  }).strict().optional(),
   guardActiveUntilMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
   guardReadyAtMs: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
   actionReceipts: z.array(receiptSchema).max(128),
@@ -703,6 +708,8 @@ function validState(plan: AdventurePlan, state: AdventureState): boolean {
   const expectedAbilities = abilitiesForPlanAge(plan, expectedAge);
   const expectedAppearance = appearanceForAge(expectedAge);
   if (
+    (state.attackCombo !== undefined &&
+      (!usesRouteMemoryRules(plan) || state.phase === 'fallen' || state.phase === 'complete')) ||
     hasDuplicates(state.inventoryIds) ||
     hasDuplicates(state.collectedPickupIds) ||
     hasDuplicates(state.revealedMemoryIds) ||

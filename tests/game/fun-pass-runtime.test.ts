@@ -30,6 +30,7 @@ const runtimeState = vi.hoisted(() => ({
     expected: string[];
     anticipated: Array<{ id: string; at: PositionSnapshot }>;
     celebrated: Array<{ id: string; boss: boolean }>;
+    comboFinishes: string[];
   }>,
 }));
 
@@ -64,6 +65,7 @@ vi.mock("../../src/game/scene", () => ({
       expected: [] as string[],
       anticipated: [] as Array<{ id: string; at: PositionSnapshot }>,
       celebrated: [] as Array<{ id: string; boss: boolean }>,
+      comboFinishes: [] as string[],
     };
     constructor(container: HTMLElement) {
       container.append(this.canvas);
@@ -92,6 +94,9 @@ vi.mock("../../src/game/scene", () => ({
     }
     celebrate(id: string, boss: boolean): void {
       this.state.celebrated.push({ id, boss });
+    }
+    finishCombo(id: string): void {
+      this.state.comboFinishes.push(id);
     }
     render(_p: unknown, _f: number, _e: number, frame?: SceneFrame): void {
       if (frame) this.state.frames.push(frame);
@@ -176,10 +181,15 @@ describe("fun pass runtime", () => {
   /** Starts an equipped game beside the first ordinary enemy. */
   function besideFirstEnemy(options: {
     cooldownMs?: number;
+    comboStep?: 1 | 2 | 3;
     onAction: (request: GameplayActionRequest) => Promise<SaveView>;
     feedback: GameFeedbackEvent[];
   }) {
     const save = equippedSave(options.cooldownMs);
+    if (options.comboStep) {
+      save.adventure!.attackComboStep = options.comboStep;
+      save.adventure!.attackComboRemainingMs = 1_300;
+    }
     const anchor = garden.anchors.encounters["ordinary-1"].position;
     runtimeState.spawnOverrides.push({
       x: anchor.x,
@@ -259,6 +269,44 @@ describe("fun pass runtime", () => {
       encounterId: targetId,
       boss: false,
     });
+    game.dispose();
+  });
+
+  it("uses the third strike pose immediately but only finishes after server damage confirms it", async () => {
+    let reply!: (save: SaveView) => void;
+    const onAction = vi.fn(
+      (_request: GameplayActionRequest) =>
+        new Promise<SaveView>((resolve) => {
+          reply = resolve;
+        }),
+    );
+    const feedback: GameFeedbackEvent[] = [];
+    const { game, save, targetId } = besideFirstEnemy({
+      comboStep: 2, onAction, feedback,
+    });
+    game.setInput("attack", true);
+    game.setInput("attack", false);
+    advance();
+    expect((scene().frames.at(-1) as SceneFrame & { attackComboStep?: number }).attackComboStep)
+      .toBe(3);
+    advance(100);
+    expect(scene().comboFinishes).toEqual([]);
+    expect(feedback.filter((event) => event.type === "hit")).toHaveLength(1);
+
+    const damaged = structuredClone(save);
+    damaged.revision += 1;
+    damaged.adventure!.activeLevel!.encounters.find(
+      (enemy) => enemy.id === targetId,
+    )!.hp -= 1;
+    damaged.adventure!.attackComboStep = 3;
+    damaged.adventure!.attackComboRemainingMs = 1_300;
+    reply(damaged);
+    await flush();
+    expect(scene().comboFinishes).toEqual([targetId]);
+    expect(feedback.filter((event) => event.type === "hit")).toHaveLength(1);
+    advance();
+    expect((scene().frames.at(-1) as SceneFrame & { attackComboStep?: number }).attackComboStep)
+      .toBe(3);
     game.dispose();
   });
 
