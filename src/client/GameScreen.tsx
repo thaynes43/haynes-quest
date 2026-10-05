@@ -25,7 +25,7 @@ import {
 } from "./feedback-sounds";
 import { MemoryImage } from "./MemoryImage";
 import { readScaryMoments } from "./scary-moments";
-import { draftEncounterLabel, equipmentName, eraStory } from "./era";
+import { draftEncounterLabel, encounterLabel, equipmentName, eraStory } from "./era";
 
 // Touch and pen activate the browser on release; starting a resume promise on
 // pointerdown can strand it before the valid gesture reaches the audio engine.
@@ -929,6 +929,7 @@ function Adventure({
           >
             <strong>
               {draftTargetName ??
+                encounterLabel(target) ??
                 target.content?.displayName ??
                 story.enemies[target.kind]}
             </strong>
