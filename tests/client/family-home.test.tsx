@@ -63,7 +63,7 @@ describe("family home", () => {
     expect(button.textContent).toContain("Test Child B");
     expect(button.textContent).toContain("Besties Obby · Age 4");
     expect(container.textContent).not.toContain("Family setup");
-    expect(container.textContent).not.toContain("New photos are published");
+    expect(container.textContent).not.toContain("A new quest version is ready");
     await act(async () => button.click());
     await flush();
     expect(requests.at(-1)).toMatchObject({ method: "POST", path: `/api/children/${CHILD}/play`, body: {} });
@@ -77,7 +77,7 @@ describe("family home", () => {
     });
     await act(async () => root.render(<FamilyHome session={session("admin")} onPlay={vi.fn()} />));
     await flush();
-    expect(container.textContent).toContain("New photos are published");
+    expect(container.textContent).toContain("A new quest version is ready");
     const setup = [...container.querySelectorAll("button")].find((entry) => entry.textContent === "Family setup")!;
     await act(async () => setup.click());
     await flush();
