@@ -3,6 +3,8 @@ on:
   pull_request:
   push:
     branches: [main]
+  repository_dispatch:
+    types: [rebuild-main-image]
 permissions:
   contents: read
 jobs:
@@ -53,7 +55,7 @@ jobs:
           cache-to: type=gha,mode=max
   image:
     needs: verify
-    if: github.event_name == 'push'
+    if: (github.event_name == 'push' || github.event_name == 'repository_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
