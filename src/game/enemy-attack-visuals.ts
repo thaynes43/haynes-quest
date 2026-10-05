@@ -13,13 +13,13 @@ export class EnemyAttackVisuals {
   private readonly lane = new THREE.Mesh(new THREE.BoxGeometry(1, 0.018, 1), this.laneMaterial);
   private readonly bolt = new THREE.Group();
   private readonly core = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(0.17, 0),
-    new THREE.MeshBasicMaterial({ color: 0xffed8c }),
+    new THREE.IcosahedronGeometry(0.24, 0),
+    new THREE.MeshBasicMaterial({ color: 0xff8068 }),
   );
   private readonly glow = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(0.26, 0),
+    new THREE.IcosahedronGeometry(0.35, 0),
     new THREE.MeshBasicMaterial({
-      color: 0xffb95c, transparent: true, opacity: 0.28, depthWrite: false,
+      color: 0xff456b, transparent: true, opacity: 0.35, depthWrite: false,
     }),
   );
 
