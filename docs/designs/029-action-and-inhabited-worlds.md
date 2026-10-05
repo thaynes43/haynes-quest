@@ -30,6 +30,12 @@ The three planting props bind their exact checked GLBs in the runtime kit; measu
 
 Physical play with the children remains the measure of fun. Browser tests establish mechanics and rendering; they do not substitute for that feedback.
 
+## Smaller in-game memory photos
+
+The scene draws each memory photo into a 512-pixel-wide canvas (848 pixels tall for the current keepsake), but the private media route previously supplied the same up-to-1600-by-1600 preview used by the album. The next runtime correction adds a bounded `size=texture` variant to that existing route. It produces a metadata-free WebP within 512 by 1024 pixels, preserving aspect ratio and avoiding enlargement. The album and enlarged photo view retain the existing default preview.
+
+Both variants require the same save access scope, released-memory checks and current source permission validation. Family saves remain accessible within their admitted household. They retain private, no-store delivery and bounded decode/output limits; unknown size values fail with 400. No derivative is written to public storage or the asset studio. Fixture media stays synthetic. Validate dimensions, byte reduction on a synthetic image, authorization, revocation and browser delivery before publishing. This reduces transferred photo bytes and the image dimensions decoded by the browser. The server still decodes the upstream preview; canvas texture dimensions and draw calls stay the same. These checks do not establish a phone frame-rate improvement.
+
 ## Verification and release record
 
 The [browser record](../../.agents/evidence/action-worlds/a8-b7-browser-verification.md) preserves the route and assembled-scene checks. All seven new chapters completed synthetic normal-control journeys with twelve core foes, the boss and three memories. The full local suite passed 1,957 tests at the preview/save compatibility fix, and the final planting integration passed 47 focused checks plus typecheck, lint, production build and all 21 level validations. The [check record](../../.agents/evidence/action-worlds/local-checks-20261004.json), [render comparison](../../.agents/evidence/action-worlds/a7-render-cost.md) and [navigation timings](../../.agents/evidence/action-worlds/enemy-navigation-2026-10-04.md) state the source versions and limits. Required CI runs against the final PR head with PostgreSQL 16.

@@ -46,7 +46,7 @@ This historical checkpoint recorded World A on v6 and World B on v5, with device
   - World B `family-world-b@v5`, "Playroom to Big Stage": Sing-Along Playroom → Magic House → Besties' Big Stage; ages 0→2→4→6.
 - **Moves:** big boss memories unlock high jump at 2, double jump at 4 and glide at 8. The A4 DESIGN-027 scare level has two authored v5 jump-scare spots, blackouts and watchers; A3 and B3 use level 1. The family-home switch turns scares off per device. Eight mechanic and six scare cues are wired in.
 - **Cast and props:** catalog v11 places exact v001 Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman as labeled private candidates alongside the previously landed era and Rat Casino/Besties casts. The Toon Clubhouse, Playroom, Rescue Harbor, Casita and Rooftop City kits are merged and live on the signed image above. Web-slinger Helper's hosted GLB matches its exact SHA-256 and its five clips load in the hosted studio viewer. Skinned-mesh culling, fitted lunge eyes and A4 marquee camera occlusion are fixed (#103, #118, #119).
-- **Tom's access:** he signs in as `thaynes`; `thomashaynes620` is in neither admitted group. **Family setup → Memories** swaps photos and captions. **Update world** selects a newer template; **Start fresh** restarts a run on its latest publication.
+- **Family access:** admission uses the configured Admins and family groups. **Family setup → Memories** swaps photos and captions. **Update world** selects a newer template; **Start fresh** restarts a run on its latest publication.
 
 ### Operating notes recorded then
 
