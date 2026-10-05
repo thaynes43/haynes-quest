@@ -2,12 +2,12 @@
 
 ## BL-07: Shared level authoring and publication
 
-- **Status:** The fictional editor and shared agent CLI are deployed under [PLAN012](../.agents/plans/completed/012-level-editor-mvp.md) and [completed PLAN014](../.agents/plans/completed/014-complete-world-builder.md). Rat Casino is the first checked-in and hosted private candidate world. Parent admission and shared publication remain future work.
+- **Status:** The fictional editor and shared agent CLI are deployed under [PLAN012](../.agents/plans/completed/012-level-editor-mvp.md) and [completed PLAN014](../.agents/plans/completed/014-complete-world-builder.md). Parent admission and checked-template family publication are deployed under [PLAN-019](../.agents/plans/019-first-family-release.md); promotion of arbitrary editor exports remains future work.
 - **Contract:** [DESIGN016](designs/016-authored-levels.md), [DESIGN020](designs/020-complete-world-builder.md), PRD R-44–R-45.
 
 Humans and agents now use the same versioned level document to place platforms, obby sections, checkpoints, equipment, encounters, friends and fictional memories. The World panel and agent CLI can add, reorder and validate one to eight chapters, create named enemy candidates and assign them to encounter slots. A new candidate previews with neutral placeholder art until its exact asset version is approved and registered. Current drafts remain browser-local, with JSON export for backup or transfer; the private full-world preview is ephemeral. Keep the youngest child's opening forgiving; later recovered ages can support more demanding content.
 
-The next stage needs an owner-scoped promotion path for validated exported worlds, parent-selected media, approved exact model/audio versions and immutable published revisions. The private Rat Casino trial supplies its own `parody-catalog-v6` period/date window, editor-ready identities, Rat Pit Boss `v002` asset mapping and prepared environment kit while keeping v5 project exports readable from their pinned catalog. Tom's review prompted this fictional trial; physical-device and final art acceptance remain open. Preserve source dates and private media access throughout later publication.
+The remaining stage needs an owner-scoped promotion path for arbitrary validated editor exports. Family publication already combines checked templates with parent-selected media and immutable published revisions. The private Rat Casino trial supplies its own `parody-catalog-v6` period/date window, editor-ready identities, Rat Pit Boss `v002` asset mapping and prepared environment kit while keeping v5 project exports readable from their pinned catalog. Tom's review prompted this fictional trial; physical-device and final art acceptance remain open. Preserve source dates and private media access throughout later publication.
 
 The current equipment, enemies and bosses are required by [PLAN-005](../.agents/plans/completed/005-era-combat-loop.md), following Tom’s September 11 correction. The broader items below do not replace that work. BL-01 defers automatic generation while authored age/likeness evolution remains product direction; the later gameplay/content items can return within the family project after the core loop is evaluated.
 
@@ -32,7 +32,7 @@ Later, design the complete private references → geometry → rig/animation →
 
 ## BL-02: Combat, bosses, and encounter content
 
-- **Status:** Current two-period equipment/combat/boss implementation is in PLAN-005; broader production and final balance remain future work
+- **Status:** Equipment/combat/boss progression is implemented under PLAN-005. [DESIGN-030](designs/030-active-fights-and-attack-chains.md) is the active charge, bolt, combo and encounter-pacing release; broader content and final balance remain future work.
 - **Revisit after:** The corrected equipment → boss → memories → age/period loop is playable and evaluated
 - **References:** PRD-001 R-27–R-29, R-33; DESIGN-005 and DESIGN-006
 
