@@ -26,6 +26,26 @@ export class EnemyAttackVisuals {
   constructor() {
     this.root.name = "enemy-attack-pattern";
     this.lane.name = "locked-attack-lane";
+    const arrow = new THREE.Shape();
+    arrow.moveTo(-0.3, -0.08);
+    arrow.lineTo(0, 0.05);
+    arrow.lineTo(0.3, -0.08);
+    arrow.lineTo(0.3, -0.01);
+    arrow.lineTo(0, 0.12);
+    arrow.lineTo(-0.3, -0.01);
+    arrow.closePath();
+    const arrowGeometry = new THREE.ShapeGeometry(arrow);
+    arrowGeometry.rotateX(Math.PI / 2);
+    const arrowMaterial = new THREE.MeshBasicMaterial({
+      color: 0xfff5d6, side: THREE.DoubleSide, transparent: true,
+      opacity: 0.9, depthWrite: false,
+    });
+    for (const z of [-0.3, 0, 0.3]) {
+      const mark = new THREE.Mesh(arrowGeometry, arrowMaterial);
+      mark.name = "locked-attack-arrow";
+      mark.position.set(0, 0.015, z);
+      this.lane.add(mark);
+    }
     this.bolt.name = "enemy-bolt";
     this.bolt.add(this.glow, this.core);
     this.root.add(this.lane, this.bolt);
@@ -44,7 +64,7 @@ export class EnemyAttackVisuals {
       this.lane.rotation.y = Math.atan2(dx, dz);
       this.lane.scale.set(enemy.attackPattern === "charge" ? 1.3 : 0.7, 1, Math.max(0.01, length));
       this.laneMaterial.color.setHex(enemy.attackPattern === "charge" ? 0xff815b : 0xffd26c);
-      this.laneMaterial.opacity = enemy.phase === "strike" ? 0.7 : 0.25 + enemy.windupProgress * 0.35;
+      this.laneMaterial.opacity = enemy.phase === "strike" ? 0.7 : 0.35 + enemy.windupProgress * 0.35;
     }
     this.bolt.visible = Boolean(enemy.projectile) && enemy.phase !== "defeated";
     if (enemy.projectile) {
