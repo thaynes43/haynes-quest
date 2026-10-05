@@ -359,7 +359,7 @@ describe("fun pass runtime", () => {
     game.dispose();
   });
 
-  it("does not restart the server cooldown when a confirmed hit reply arrives late", async () => {
+  it("waits for the server-reported cooldown after a delayed reply before repeating", async () => {
     let releaseFirst!: () => void;
     const firstReplyGate = new Promise<void>((resolve) => { releaseFirst = resolve; });
     let authoritative!: SaveView;
@@ -392,18 +392,21 @@ describe("fun pass runtime", () => {
     game.setInput("attack", true);
     advance();
     expect(onAction).toHaveBeenCalledTimes(1);
-    // The server accepted step 1 immediately, but its response spends 1.381 s
-    // in transit. The next held hit lands 1.431 s after the first: inside the
-    // child-paced 2 s chain, while the request remains serialized.
-    advance(1_381);
+    // The first response takes a second. The next held request must still
+    // wait the full 400 ms reported by the server, then chain within 2 s.
+    advance(1_000);
     expect(onAction).toHaveBeenCalledTimes(1);
     releaseFirst();
     await flush();
-    advance(50);
+    advance(399);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    advance(1);
     await flush();
     expect(onAction).toHaveBeenCalledTimes(2);
     expect(serverStep).toBe(2);
-    advance(400);
+    advance(399);
+    expect(onAction).toHaveBeenCalledTimes(2);
+    advance(1);
     await flush();
     expect(onAction).toHaveBeenCalledTimes(3);
     expect(serverStep).toBe(3);
