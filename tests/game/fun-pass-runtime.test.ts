@@ -358,6 +358,57 @@ describe("fun pass runtime", () => {
     game.dispose();
   });
 
+  it("does not restart the server cooldown when a confirmed hit reply arrives late", async () => {
+    let releaseFirst!: () => void;
+    const firstReplyGate = new Promise<void>((resolve) => { releaseFirst = resolve; });
+    let authoritative!: SaveView;
+    let lastServerHitAt = Number.NEGATIVE_INFINITY;
+    let serverStep = 0;
+    const onAction = vi.fn(async (request: GameplayActionRequest) => {
+      if (request.action.type !== "attack") throw new Error("Expected a primary attack");
+      const sentAt = now;
+      serverStep = sentAt - lastServerHitAt <= 1_300
+        ? (serverStep === 3 ? 1 : serverStep + 1)
+        : 1;
+      lastServerHitAt = sentAt;
+      const next = structuredClone(authoritative);
+      next.revision += 1;
+      next.adventure!.attackCooldownRemainingMs = 400;
+      next.adventure!.attackComboStep = serverStep as 1 | 2 | 3;
+      next.adventure!.attackComboRemainingMs = 1_300;
+      const encounterId = request.action.encounterId;
+      const enemy = next.adventure!.activeLevel!.encounters.find(
+        (entry) => entry.id === encounterId,
+      )!;
+      enemy.hp = Math.max(0, enemy.hp - (serverStep === 3 ? 2 : 1));
+      enemy.defeated = enemy.hp === 0;
+      authoritative = next;
+      if (next.revision === 1) await firstReplyGate;
+      return next;
+    });
+    const { game, save, targetId } = besideFirstEnemy({ onAction, feedback: [] });
+    authoritative = save;
+    game.setInput("attack", true);
+    advance();
+    expect(onAction).toHaveBeenCalledTimes(1);
+    // The server accepted step 1 immediately, but its response spends one
+    // second in transit while the held button must not send a second request.
+    advance(1_000);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    releaseFirst();
+    await flush();
+    advance(50);
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(2);
+    expect(serverStep).toBe(2);
+    advance(400);
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(3);
+    expect(serverStep).toBe(3);
+    expect(scene().comboFinishes).toEqual([targetId]);
+    game.dispose();
+  });
+
   it("never repeats a held attack while its request is busy or after pause and blur", async () => {
     let reply!: (save: SaveView) => void;
     const onAction = vi.fn((_request: GameplayActionRequest) =>

@@ -1242,8 +1242,18 @@ export function createGame(options: CreateGameOptions): GameHandle {
       scene.updateProgress(sceneSave);
     }
     const now = windowTarget.performance.now();
+    // The server reports remaining time when it creates the response. A slow
+    // return trip must not start a fresh combo/cooldown window on receipt.
+    // This only compensates a confirmed primary hit from this client; a
+    // remote update has no matching send timestamp and keeps its own view.
+    const primaryResponseAge = confirmedComboAttack &&
+      isRouteMemoryAdventure(nextSave)
+      ? Math.max(0, now - attackSentAt)
+      : 0;
     comboPresentationStep = nextAdventure.attackComboStep ?? null;
-    comboPresentationUntil = now + (nextAdventure.attackComboRemainingMs ?? 0);
+    comboPresentationUntil = now + Math.max(
+      0, (nextAdventure.attackComboRemainingMs ?? 0) - primaryResponseAge,
+    );
     if (confirmedComboTarget) {
       attackAnimationComboStep = nextAdventure.attackComboStep ?? null;
       if (nextAdventure.attackComboStep === 3) {
@@ -1252,7 +1262,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
         shake.add(0.45);
       }
     }
-    attackCooldownUntil = now + nextSave.adventure.attackCooldownRemainingMs;
+    attackCooldownUntil = now + Math.max(
+      0, nextSave.adventure.attackCooldownRemainingMs - primaryResponseAge,
+    );
     guardActiveUntil = now + nextSave.adventure.guardActiveRemainingMs;
     guardCooldownUntil = now + nextSave.adventure.guardCooldownRemainingMs;
     secondaryCooldownUntil =
