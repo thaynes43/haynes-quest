@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-10-05T00:31:24Z",
+  "recordedAt": "2026-10-05T00:54:33.915691Z",
   "sourceCommit": "014ba65dbad10092e99c7356bbe37c6b62ad179c",
   "local": {
     "typecheck": "passed",
@@ -31,14 +31,19 @@
     },
     "build": "passed",
     "docsBuild": {
-      "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
+      "sourceCommit": "a4560ec48082b94db9cdedd51e52e02b277308e9",
       "result": "passed",
-      "preparedFiles": 4692,
-      "checkedMarkdownFiles": 345
+      "preparedFiles": 4700,
+      "checkedMarkdownFiles": 346
     },
     "docsPrepareRegressionTests": {
       "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
       "passed": 2
+    },
+    "familyHomeUpdateNotice": {
+      "sourceCommit": "6f11aef",
+      "passed": 3,
+      "testFile": "tests/client/family-home.test.tsx"
     }
   },
   "ci": {
@@ -59,5 +64,6 @@
     "The 1,957-pass local full suite ran at d6a292c before the final planting bindings; the final source received focused preservation, runtime binding, schema/save and asset-bounds checks, while exact-head CI runs the full suite with PostgreSQL 16.",
     "Local PostgreSQL integration cases were skipped because no disposable local PostgreSQL service was available; the earlier CI verify job used its isolated PostgreSQL 16 service.",
     "Browser and physical-device performance are recorded separately."
-  ]
+  ],
+  "browserEvidence": ".agents/evidence/action-worlds/a8-b7-browser-verification.json"
 }
