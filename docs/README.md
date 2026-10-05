@@ -20,7 +20,7 @@ Read [PROCESS.md](PROCESS.md) for the workflow and the [project brief](prds/001-
 
 The resume point is [`.agents/HANDOFF.md`](../.agents/HANDOFF.md). Plans live only in `.agents/plans/`; sequences belong in designs. The application CI builds, verifies and publishes immutable images; deployment uses checked haynes-ops GitOps PRs.
 
-Completed private milestone: [Overnight MVP with deferred OAuth](../.agents/plans/completed/004-overnight-mvp.md). Follow [PLAN-002](../.agents/plans/002-foundation-prototype.md) and the handoff for the remaining player-admission, owner-review and device gates. Adapter source notes: [AppDaemon Immich reference](reference/immich-appdaemon.md).
+Completed private milestone: [Overnight MVP with deferred OAuth](../.agents/plans/completed/004-overnight-mvp.md). The admitted family release is now deployed; follow [PLAN-019](../.agents/plans/019-first-family-release.md) and the current handoff for the remaining owner art, listening and physical-device checks. Adapter source notes: [AppDaemon Immich reference](reference/immich-appdaemon.md).
 
 ## Build and preview the site
 

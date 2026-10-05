@@ -1,5 +1,13 @@
 # Current handoff
 
+## Usage reset and Blender routing · October 5, 2026
+
+Tom now permits fresh native GPT-6.1 Sol (`gpt-6.1-sol`, `xhigh`) authors for useful remaining Blender work. This supersedes the older Codex Astra-only rule; the driving Astra session retains concepts, art direction and final visual review. [TEAM.md](TEAM.md), the contributor guide, process and active PLAN-019 now carry the same routing. An exclusive scene owner and a bounded work order remain required. Automatic Quest advisory reviews stay on Sonnet 5.5.
+
+The denser A8/B7 encounters, six new animated enemy variants, three planting models and smaller private photo textures are already deployed, as recorded below. Check their existing candidates and live release evidence before starting further modeling. Exact-version owner art review, listening and physical play with the children remain separate PLAN-019 criteria; technical checks do not establish those outcomes.
+
+The October 5 read-only gameplay and asset audits found no missing model delivery for this release. Distinct ordinary-enemy attack patterns can use the existing animation sets; broader behavior work remains [BL-02](../docs/BACKLOG.md#bl-02-combat-bosses-and-encounter-content). Richer Playroom/Casita prop kits and the older party theme's automatic planting remain [BL-08](../docs/BACKLOG.md#bl-08-family-world-dressing), whose next input is World B play feedback. No additional Blender job or gameplay change was selected from the usage reset alone.
+
 ## Photo texture delivery and quota direction · October 5, 2026
 
 Tom asked to continue while conserving Opus 5.5's remaining weekly allowance. The current [team direction](TEAM.md) uses native Codex Sol for bounded work; automatic Quest advisory reviews now pin Sonnet 5.5. No additional Opus or Blender authoring session was started for this correction.
