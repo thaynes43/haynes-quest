@@ -209,7 +209,7 @@ describe('Immich photo source', () => {
     const revoked = source(new QueueCaller([
       json(asset('source-asset', { isTrashed: true })),
     ]), sanitizer);
-    await expect(revoked.fetchMedia(memory)).rejects.toMatchObject({ code: 'MEDIA_REVOKED' });
+    await expect(revoked.fetchMedia(memory, { size: 'texture' })).rejects.toMatchObject({ code: 'MEDIA_REVOKED' });
   });
 
   it('requires a sanitizer and enforces media byte limits', async () => {

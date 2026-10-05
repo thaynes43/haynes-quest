@@ -27,6 +27,7 @@ import type {
   SceneVisualInspection,
 } from "./types";
 import { disposeTree, modelUrls, SceneAssets } from "./scene-assets";
+import { photoTextureUrl } from "./photo-texture-url";
 import {
   createEncounterStudy,
   groundRing,
@@ -1420,7 +1421,7 @@ export class GardenScene {
     state.controller = new AbortController();
     // Fetch through the owned media route before decoding. A document-origin
     // blob also avoids opaque SVG origins when a browser uploads to WebGL.
-    void fetch(state.url, {
+    void fetch(photoTextureUrl(state.url), {
       credentials: "same-origin",
       cache: "no-store",
       signal: state.controller.signal,

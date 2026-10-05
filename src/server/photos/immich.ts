@@ -131,7 +131,7 @@ export interface AuthorizedImmichCaller {
 }
 
 export interface ImageSanitizer {
-  sanitize(input: Uint8Array, contentType: string, maxOutputBytes: number): Promise<{ bytes: Uint8Array; contentType: string }>;
+  sanitize(input: Uint8Array, contentType: string, maxOutputBytes: number, size?: 'preview' | 'texture'): Promise<{ bytes: Uint8Array; contentType: string }>;
 }
 
 export interface ImmichLimits {
@@ -441,7 +441,7 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
 
   async fetchMedia(
     memory: FrozenMemory,
-    options: { size?: 'thumbnail' | 'preview' } = {},
+    options: { size?: 'thumbnail' | 'preview' | 'texture' } = {},
   ): Promise<{ bytes: Uint8Array; contentType: string }> {
     if (memory.source.kind !== 'immich') throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
     if (!this.sanitizer) throw new AppError(503, 'MEDIA_SANITIZER_REQUIRED', 'Media unavailable');
@@ -468,7 +468,10 @@ export class ImmichPhotoSource implements JourneyPhotoSource, FamilyPhotoLibrary
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(contentType)) throw upstreamInvalid();
     const raw = await readLimited(response, this.limits.mediaBytes);
     validateImageSignature(raw, contentType);
-    const sanitized = await this.sanitizer.sanitize(raw, contentType, this.limits.mediaBytes);
+    const sanitized = await this.sanitizer.sanitize(
+      raw, contentType, this.limits.mediaBytes,
+      options.size === 'texture' ? 'texture' : 'preview',
+    );
     if (sanitized.bytes.byteLength > this.limits.mediaBytes) throw upstreamInvalid();
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(sanitized.contentType)) throw upstreamInvalid();
     validateImageSignature(sanitized.bytes, sanitized.contentType);
