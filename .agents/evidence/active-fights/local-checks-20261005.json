@@ -10,9 +10,9 @@
     "database": "Local run has no isolated PostgreSQL; final required CI supplies PostgreSQL 16"
   },
   "finalTimingCorrection": {
-    "sourceRevision": "20ffc47",
-    "focusedPassedTests": 32,
-    "delayedResponseRegression": "A 1000 ms delayed reply does not restart a full client cooldown; held primary reaches server combo steps 2 and 3",
+    "sourceRevision": "fef6137",
+    "focusedPassedTests": 45,
+    "delayedResponseRegression": "After a 1000 ms delayed reply, held primary sends nothing for 399 ms, then respects the full reported 400 ms cooldown; server combo steps 2 and 3 remain within the two-second window",
     "typecheck": "passed",
     "lint": "passed",
     "productionBuild": "passed"
