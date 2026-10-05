@@ -9,7 +9,7 @@
   "method": {
     "browser": "Playwright headless Chromium",
     "controls": "ordinary on-screen joystick plus Space, F and Shift",
-    "strictCompletion": "12 distinct required ordinary anchors plus boss defeated; three memories collected; next age/level save; four optional encounters present, boss gate four; exact frozen chapter returned; zero media/page/console/HTTP errors",
+    "strictCompletion": "12 distinct core ordinary anchors plus boss defeated; three memories collected; next age/level save; four optional encounters present, boss gate four; exact frozen chapter returned; zero media/page/console/HTTP errors",
     "journeyDrawing": "WebGL calls suppressed only between captures in full lockstep journeys; game simulation, controls, asset loading and screenshot draws active",
     "limit": "Chromium synthetic browser cannot establish Safari or physical phone/tablet behavior"
   },
@@ -71,7 +71,7 @@
       "decorCount": 102,
       "completed": true,
       "nextLevel": "family-a2-harbor",
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 35,
@@ -96,7 +96,7 @@
       "decorCount": 103,
       "completed": true,
       "nextLevel": "family-a3-rooftop",
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 30,
@@ -121,7 +121,7 @@
       "decorCount": 181,
       "completed": true,
       "nextLevel": "family-a4-casino",
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 37,
@@ -146,7 +146,7 @@
       "decorCount": 93,
       "completed": true,
       "nextLevel": null,
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 36,
@@ -171,7 +171,7 @@
       "decorCount": 81,
       "completed": true,
       "nextLevel": "family-b2-casita",
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 28,
@@ -196,7 +196,7 @@
       "decorCount": 111,
       "completed": true,
       "nextLevel": "family-b3-stage",
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 29,
@@ -221,7 +221,7 @@
       "decorCount": 93,
       "completed": true,
       "nextLevel": null,
-      "requiredOrdinaryDefeated": 12,
+      "coreOrdinaryDefeated": 12,
       "bossDefeated": true,
       "memoriesCollected": 3,
       "legs": 33,
@@ -239,9 +239,9 @@
     }
   ],
   "diagnostics": {
-    "b2BlockingFoe": "Initial memory-first route stalled when ordinary-9 pursued into a narrow path. The normal-key pilot now attacks the required foe opportunistically. A strict corrected-source B2 rerun passed with two early attacks and one combat knockout.",
+    "b2BlockingFoe": "Initial memory-first route stalled when ordinary-9 pursued into a narrow path. The normal-key pilot now attacks the blocking ordinary foe opportunistically. A strict corrected-source B2 rerun passed with two early attacks and one combat knockout.",
     "a4RaisedSide": "A8 high-board overlaps its lower source deck by 1.4m and rises 0.6m. The pilot previously walked into its wall; normal jump from safe source takeoff landed on high-board in about 0.69s. Strict A4 rerun passed.",
-    "a3MemoryOrder": "At putty-plaza, required foes share the memory deck; fighting them before the memory avoids body blocking. Strict A3 rerun passed."
+    "a3MemoryOrder": "At putty-plaza, core foes share the memory deck; fighting them before the memory avoids body blocking. Strict A3 rerun passed."
   },
   "portrait": {
     "a1": {
