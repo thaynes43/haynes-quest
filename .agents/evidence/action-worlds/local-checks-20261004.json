@@ -1,0 +1,47 @@
+{
+  "recordedAt": "2026-10-05T00:07:40Z",
+  "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
+  "local": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "test": {
+      "passed": 1956,
+      "skipped": 34,
+      "passedFiles": 170,
+      "skippedFiles": 3,
+      "questTestDatabaseUrl": "unset"
+    },
+    "levelsValidate": {
+      "result": "passed",
+      "projects": 21,
+      "commandReplay": "matched"
+    },
+    "build": "passed",
+    "docsBuild": {
+      "result": "passed",
+      "preparedFiles": 4692,
+      "checkedMarkdownFiles": 345
+    },
+    "docsPrepareRegressionTests": {
+      "passed": 2
+    }
+  },
+  "ci": {
+    "runId": 37245752272,
+    "headCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
+    "verifyJob": "success",
+    "postgresService": "postgres:16-alpine",
+    "stepsPassed": [
+      "Initialize containers",
+      "Run pnpm typecheck",
+      "Run pnpm lint",
+      "Run pnpm test",
+      "Run pnpm levels:validate",
+      "Run pnpm build"
+    ]
+  },
+  "limitations": [
+    "Local PostgreSQL integration cases were skipped because no disposable local PostgreSQL service was available; the exact-head CI verify job used its isolated PostgreSQL 16 service.",
+    "Browser and physical-device performance are recorded separately."
+  ]
+}
