@@ -1,0 +1,182 @@
+{
+  "asset_id": "mischief-kitten-skater",
+  "version": "v001",
+  "pack": "action-minions-a",
+  "design": "DESIGN-029 (action and inhabited worlds)",
+  "work_order": "/home/dev/work/hq-action-worlds-1004/.agents/work-orders/20261004-opus-action-minions-a.md",
+  "review_state": "Awaiting Tom's review (PRD-004 Q-03 family-release candidate); coordinator review and owner approval are separate",
+  "concept": {
+    "file": "docs/assets/media/action-minions-a/v001/concept.png",
+    "sha256": "866f33ef1d08e0c2375e0f65d17939797d4b0be452d852e89e3aee2e97c1bd19",
+    "row_crop": "docs/assets/media/mischief-kitten-skater/v001/concept-row.png",
+    "row_crop_sha256": "e99bb67c50b7ecd858b9a40742735cae57e613c16332bec619e48b9011e0908b",
+    "origin": "Coordinator-generated construction reference supplied in the lead worktree; used as build direction only. No image is projected or pasted onto the model."
+  },
+  "authoring": {
+    "tool": "Claude Code (agent-run headless task session, Max plan; no API key)",
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "worktree": "/home/dev/work/haynes-quest-1004-180133 (branch agent/haynes-quest-1004-180133)",
+    "scene_owner": "claude-opus-5-5 xhigh action-minions-a author (agent-run haynes-quest-1004-180133)"
+  },
+  "blender": {
+    "version": "4.5.13 LTS",
+    "build_hash": "daeeeca98fb0",
+    "gltf_exporter": "4.5.51",
+    "service": "blender-authoring (instance 1) over streamable-HTTP MCP execute_blender_code",
+    "pod": "blender-authoring-845d777df7-77r4h",
+    "method": "Procedural Blender Python only: bevelled boxes, lathes, ellipsoids, swept tubes and extruded plates per part, per-face atlas tiles, one joined skin, armature with tent-weighted chains, poses baked from world-space deltas at 60 fps into five muted NLA tracks. No sculpt, no downloaded or copied meshes, logos or textures."
+  },
+  "export_settings": {
+    "format": "GLB",
+    "export_yup": true,
+    "export_animation_mode": "NLA_TRACKS",
+    "export_optimize_animation_size": false,
+    "export_skins": true,
+    "export_def_bones": false,
+    "export_armature_object_remove": true,
+    "export_influence_nb": 4,
+    "export_apply": false,
+    "export_tangents": false,
+    "export_image_format": "AUTO",
+    "export_extras": true,
+    "scene_extras": "identity keys only (asset_id, asset_version, pack, candidate_status, source_reference, source_concept_sha256, orientation, role, authoring_model, design)"
+  },
+  "checks_tools": {
+    "khronos": "gltf-validator 2.0.0-dev.3.10 in the Blender pod",
+    "three": "three r186 via tsx with the real src/game/enemy-animation.ts",
+    "browser": "Chromium 153.0.8010.12 headless, ANGLE SwiftShader"
+  },
+  "budgets": {
+    "triangles": 14622,
+    "triangle_budget": 15000,
+    "materials": 2,
+    "material_budget": 2,
+    "draw_primitives": 2,
+    "glb_bytes": 1831636,
+    "glb_budget_bytes": 2097152,
+    "atlas": "1024 x 1024 PNG, 195780 bytes embedded",
+    "joints": 42,
+    "max_influences": 2
+  },
+  "size_m": {
+    "height": 1.3082,
+    "rest_bounds_y_up": {
+      "min": [
+        -0.34797092361771603,
+        0.0024471794050176894,
+        -0.485999979202768
+      ],
+      "max": [
+        0.3479709236177135,
+        1.3082286958773262,
+        0.5489477162959876
+      ]
+    },
+    "all_animation_bounds_y_up": {
+      "min": [
+        -0.7257421323085799,
+        -1.7116662476279743e-08,
+        -0.7385614192484015
+      ],
+      "max": [
+        1.2593831709401861,
+        1.642894282907709,
+        1.1079493980650346
+      ]
+    }
+  },
+  "clips": {
+    "idle": {
+      "duration_s": 2.0,
+      "loop": true,
+      "frames": 121,
+      "fps": 60
+    },
+    "move": {
+      "duration_s": 0.8,
+      "loop": true,
+      "frames": 49,
+      "fps": 60
+    },
+    "attack": {
+      "duration_s": 2.0,
+      "loop": false,
+      "frames": 121,
+      "fps": 60,
+      "contact_time_s": 1.25,
+      "contact_fraction": 0.625,
+      "tell_s": [
+        0.0,
+        0.45
+      ],
+      "windup_s": [
+        0.45,
+        1.0
+      ],
+      "strike_s": [
+        1.0,
+        1.25
+      ]
+    },
+    "hit": {
+      "duration_s": 0.6,
+      "loop": false,
+      "frames": 37,
+      "fps": 60
+    },
+    "defeat": {
+      "duration_s": 2.4,
+      "loop": false,
+      "frames": 145,
+      "fps": 60,
+      "held_final_pose_from_s": 1.95,
+      "hat_flight_s": [
+        0.06,
+        0.95
+      ],
+      "spin_s": [
+        0.35,
+        0.95
+      ],
+      "flop_s": [
+        1.0,
+        1.4
+      ]
+    }
+  },
+  "adapter_mapping": {
+    "idle": "idle",
+    "chasing": "move",
+    "windup/strike": "attack (contact at 1.25 s, contactFraction 0.625)",
+    "hit (HP drop)": "hit",
+    "defeated": "defeat (held pose, then the adapter vanish)"
+  },
+  "scene_catalog_motion": {
+    "contactFraction": 0.625,
+    "height": 1.308229
+  },
+  "source_scripts": {
+    "assets.mjs": "64823e5b9449d9e0212d53cbc862b4231b1ecd1617922f92b62faba722735800",
+    "claim.py": "c8f51dfd504a7f69bf134faf24a0be925c362145d96a38f8ac5ab4cd39a74b2a",
+    "client.py": "647fb2d10cef20a1e4bfab7c77a732671cc19dabf46197cea6b362c1082e2e45",
+    "common.py": "c680724013e8c798abbea731aa26d397b4abd7221b8a2fadc3275b67a9333bad",
+    "cycle.py": "b76f1161fa9a709d2d2d392ecfbf78d537fc62cb3512ff2daf92b6e07e46290d",
+    "deliver.py": "e5fe851876501a74834e847e0084f09110abb32e369e9a617c36bb81d038991a",
+    "hopper_anim.py": "b5fe4de2f5578228d0c8b9e2f849e71e219633acc0e84845ca2560dbe0c41019",
+    "hopper_build.py": "d74ea2571fe70ee8d738f1bd38da820a0ecc2f8bd6c8b69d8cd3055035b7253c",
+    "hopper_rig.py": "a7304a6bfe94c818b3d963641a26bc50e2539423824d0ed122facadf2ff05bfa",
+    "inspect-three.mjs": "79a8ed8a9b4b0ce6e3681ae3d3a08de160e1cf9dfcc27959a10b8cd7063455ba",
+    "kitten_anim.py": "2fe272f1b24241a37d22cbf9fdfda4177ebb65879a0da6a5e85fbd2b944a0012",
+    "kitten_build.py": "075e95b329b0799442c5a4231f788e3ff0e24b18ed2ab583121f1a8e2334e929",
+    "kitten_rig.py": "7ee37a60f8942dd9a2de62df9662330b3baf89f3b5b6c8983e5cfdfd9ebbbe72",
+    "look.mjs": "b06f1918d801e09b9e3e57f5bbcc7e46d38a21fd9130ed0ccccded5697d483a5",
+    "preview.mjs": "c3802cea14a7bed2048668ebd569f9ff4f8c0c4e9ddc5c076e19fbdc1ed19281",
+    "review_draft.py": "a939841b98241d4a0de2387f56793da5507300a56db782d87fdf1544a96a8931",
+    "run.py": "459f61a9fbf7d20e2afb3b6f5cea884e0670dae4f98dbc6a8e8fd157eaa61d2c",
+    "run_validate.py": "7aeb0e35bd793eccf8eae5331a271f9c041725cc3ac9ca41cb48b7186382c9c3",
+    "validate.mjs": "cb7657e10c6d274afc9f477f5799f16bc6dca1b62b3f76e3589fc6d2548233af"
+  },
+  "glb_sha256": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4",
+  "created_utc": "2026-10-04T23:08:54.651293+00:00"
+}

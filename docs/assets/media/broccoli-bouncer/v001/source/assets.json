@@ -1,0 +1,104 @@
+{
+  "broccoli-bouncer": {
+    "title": "Broccoli Bouncer",
+    "front_bone": "mouth",
+    "strike_bone": "hand_R",
+    "height": [
+      1.3,
+      1.6
+    ],
+    "beats": {
+      "idle": [
+        [
+          0,
+          "rest: sly grin"
+        ],
+        [
+          0.3,
+          "bounce + smirk"
+        ],
+        [
+          0.55,
+          "brow waggle"
+        ],
+        [
+          0.74,
+          "blink"
+        ]
+      ],
+      "move": [
+        [
+          0,
+          "landing"
+        ],
+        [
+          0.25,
+          "hop up, right leg forward"
+        ],
+        [
+          0.5,
+          "landing"
+        ],
+        [
+          0.75,
+          "hop up, left leg forward"
+        ]
+      ],
+      "attack": [
+        [
+          0.125,
+          "spots you: brows down"
+        ],
+        [
+          0.45,
+          "crouches, leaves cocked back"
+        ],
+        [
+          0.625,
+          "BOING slap 1.25 s"
+        ],
+        [
+          0.86,
+          "hops home"
+        ]
+      ],
+      "hit": [
+        [
+          0,
+          "rest"
+        ],
+        [
+          0.2,
+          "ow! squashed"
+        ],
+        [
+          0.5,
+          "wobbles"
+        ],
+        [
+          1,
+          "recovered"
+        ]
+      ],
+      "defeat": [
+        [
+          0.2,
+          "dizzy spin"
+        ],
+        [
+          0.5,
+          "wilts"
+        ],
+        [
+          0.65,
+          "topples back"
+        ],
+        [
+          1,
+          "held: feet in the air"
+        ]
+      ]
+    },
+    "defeat_hold_s": 1.8
+  }
+}

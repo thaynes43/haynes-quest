@@ -5,9 +5,13 @@ hide:
 
 # Browse all assets
 
-Choose a picture to review its inspiration, 3D model and available animations. The longer garden and Besties playgrounds reuse the current cast, equipment and scenery. Each chapter has four ordinary enemy encounters, friendly residents and a boss. The revised courses add safe raised practice areas and memory checkpoints; the Besties can take hits throughout their routine. The private Rat Casino level now trials the exact worn mascot cast and three scenic Blender props. The family world template Clubhouse to Casino places the toybox tower, rail and lantern, the arcade cabinet and joystick bollard, and the clearing tree, stone and lantern gateway as scenery; the arcade ticket arch remains studio-only. Its first chapter also shows the Toon Clubhouse tower facade, curly slide, toolbox stand and hedges. The Sing-Along Playroom uses the pastel stacking blocks, open bus garage, crib rails and plush balls. The Magic House garden adds tiled terrace walls, flower planters, patterned doors and butterfly arches. The [playtest guide](playtest.md) describes the artwork currently used in the game.
+Choose a picture to review its construction reference, exact 3D model and available animations.
 
-**75 completed models · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
+The new family world revisions place sixteen ordinary enemies in each chapter: twelve in six route fight areas and four on optional paths. Four distinct victories unlock the boss. Friendly residents, equipment and memory checkpoints remain part of the journey. The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds varied animated minions and planting beside the playable route.
+
+The catalog also includes the earlier era casts, equipment, keepsakes, themed scenery and sound auditions. The [playtest guide](playtest.md) records earlier trials; the [current handoff](../../.agents/HANDOFF.md) records release and publication checkpoints.
+
+**82 completed 3D candidates · 2 partial models · 2 concepts awaiting models · 18 sound auditions · 6 fictional memory pictures**
 
 The joint Besties concept is approved. Exact model and sound candidates remain available for review. [See what is in the playtest](playtest.md).
 
@@ -26,9 +30,142 @@ The joint Besties concept is approved. Exact model and sound candidates remain a
 <span id="images-and-models"></span>
 <span id="replacement-parody-direction"></span>
 
+## Action-world construction references
+
+The [October 4 direction](../designs/029-action-and-inhabited-worlds.md) adds six ordinary enemy variants and three planting props. All six animated minions and the three planting props have been authored on two isolated Blender scenes and technically checked. Their concepts, exact exports and pending owner reviews appear below.
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="action-minions-a" markdown="1">
+
+[![Gadget Hammer Hopper, Mischief Kitten Skater and Lab Robot Sentry construction views](media/catalog-thumbnails/v001/b97170ba8583a265.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/action-minions-a/v001.md)
+
+### [Action minions A](reviews/action-minions-a/v001.md)
+
+<span class="catalog-state">Construction concept · v001 · three Blender models delivered</span>
+
+A spring-boot toolbox, skating kitten and radar-eyed robot extend the Clubhouse, Harbor and Hero City casts.
+
+</div>
+
+<div class="catalog-card" data-asset-id="action-minions-b" markdown="1">
+
+[![Broccoli Bouncer, Bin Chicken Flower Thief and Demon Idol Drummer construction views](media/catalog-thumbnails/v001/da7829e30256e45a.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/action-minions-b/v001.md)
+
+### [Action minions B](reviews/action-minions-b/v001.md)
+
+<span class="catalog-state">Construction concept · v001 · three Blender models delivered</span>
+
+A bouncing broccoli, flower-stealing bird and fantasy band drummer bring new shapes to the Playroom, Magic House and Big Stage.
+
+</div>
+
+<div class="catalog-card" data-asset-id="storybook-planting-kit" markdown="1">
+
+[![Three exact planting props beside Broccoli Bouncer for scale](media/catalog-thumbnails/v001/396e642f79d9841f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/storybook-planting-kit/v001.md)
+
+### [Storybook planting kit](reviews/storybook-planting-kit/v001.md)
+
+<span class="catalog-state">3D scenery · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/215d467cf1b1ee60.webp" alt="Selected original tree, cypress and flowering-shrub construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A broad canopy, slim cypress and low flowering shrub form varied planted groups beside the route. Orbit all three exact exports and view their construction comparison.
+
+</div>
+
+</div>
+
+
+### Completed action-world candidates
+
+<div class="catalog-grid" markdown="1">
+
+<div class="catalog-card" data-asset-id="broccoli-bouncer" markdown="1">
+
+[![Exact Broccoli Bouncer model with a green floret crown, leaf hands and orange sneakers](media/catalog-thumbnails/v001/0734fdfe299cd97f.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/broccoli-bouncer/v001.md)
+
+### [Broccoli Bouncer](reviews/broccoli-bouncer/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/64be59f8843c829e.webp" alt="Selected original Broccoli Bouncer construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A bouncing vegetable with a held warning, two-leaf slap and wilting defeat. View the exact export beside its construction reference and inspect all five clips.
+
+</div>
+
+<div class="catalog-card" data-asset-id="gadget-hammer-hopper" markdown="1">
+
+[![Exact Gadget Hammer Hopper model](media/catalog-thumbnails/v001/f75d94c817b75121.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/gadget-hammer-hopper/v001.md)
+
+### [Gadget Hammer Hopper](reviews/gadget-hammer-hopper/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/622e690b729a8e67.webp" alt="Selected original Gadget Hammer Hopper construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A spring-legged toolbox raises a rubber mallet, then brings it down in front. Its hop, warning and topple give the Clubhouse another distinct enemy.
+
+</div>
+
+<div class="catalog-card" data-asset-id="bin-chicken-flower-thief" markdown="1">
+
+[![Exact Bin Chicken Flower Thief model](media/catalog-thumbnails/v001/73571de25bbea044.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/bin-chicken-flower-thief/v001.md)
+
+### [Bin Chicken Flower Thief](reviews/bin-chicken-flower-thief/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/69ccecf3a880a100.webp" alt="Selected original Bin Chicken Flower Thief construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A long-beaked garden thief struts, coils its neck and jabs while spilling stolen flowers. Its narrow shape and wing flare stand apart from the round vegetable enemies.
+
+</div>
+<div class="catalog-card" data-asset-id="demon-idol-drummer" markdown="1">
+
+[![Exact Demon Idol Drummer model with magenta hair, a teal jacket and strapped snare drum](media/catalog-thumbnails/v001/45c2e43700737359.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/demon-idol-drummer/v001.md)
+
+### [Demon Idol Drummer](reviews/demon-idol-drummer/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/804398e0f60380f7.webp" alt="Selected original Demon Idol Drummer construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A mischievous drummer raises both sticks, slams the snare and bursts a golden beat ring. His march and dizzy defeat add a new silhouette to the Big Stage.
+
+</div>
+<div class="catalog-card" data-asset-id="mischief-kitten-skater" markdown="1">
+
+[![Exact lilac Mischief Kitten Skater with four teal roller skates](media/catalog-thumbnails/v001/f370a3dbdece76d8.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/mischief-kitten-skater/v001.md)
+
+### [Mischief Kitten Skater](reviews/mischief-kitten-skater/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/566dba64177bfd57.webp" alt="Selected original Mischief Kitten Skater construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+A four-footed roller skater crouches, rears up and stomps forward. Its large ears, striped tail and tiny top hat give Harbor fights another clear silhouette.
+
+</div>
+<div class="catalog-card" data-asset-id="lab-robot-sentry" markdown="1">
+
+[![Exact Lab Robot Sentry with an orange eye and teal clamps](media/catalog-thumbnails/v001/9ca023ea84989bab.webp){ .catalog-preview loading="lazy" decoding="async" width="640" height="480" }](reviews/lab-robot-sentry/v001.md)
+
+### [Lab Robot Sentry](reviews/lab-robot-sentry/v001.md)
+
+<span class="catalog-state">3D ordinary enemy · v001 · Awaiting Tom's review · used in the family release</span>
+
+<div class="catalog-inspiration"><img src="media/catalog-thumbnails/v001/d5988c795942c2d3.webp" alt="Selected original Lab Robot Sentry construction reference" loading="lazy" decoding="async" width="68" height="50"><span>Current inspiration included</span></div>
+
+An orange-eyed robot raises its arms and clamps forward, then flinches and shuts down when beaten. Its broad shoulders and teal claws add another shape to Hero City.
+
+</div>
+</div>
+
 ## Family eras {#family-eras}
 
-Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. Catalog v11 registers the five Hero City, Big Stage and Casino bonus models used by the v5 family worlds. The [current handoff](../../.agents/HANDOFF.md) records the checked live revision and remaining owner reviews.
+Original characters and scenery for the [locked chapter roster](../designs/026-personal-era-casts.md). Each candidate includes its construction concept, or a coordinator-reviewed Blender reference sheet where no concept was generated, plus its exact model and review evidence. Tom has permitted these candidates in the family release while his exact-version review remains open. Catalog v12 adds six animated ordinary variants for World A v8 and World B v7; earlier casts and frozen catalogs remain available. The [current handoff](../../.agents/HANDOFF.md) records the checked live revision and remaining owner reviews.
 
 ### World A · Chapter 1
 

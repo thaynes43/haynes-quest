@@ -1,0 +1,729 @@
+{
+  "clips": {
+    "idle": {
+      "duration_s": 3,
+      "frames": [
+        {
+          "fraction": 0,
+          "text": "rest: grumpy side-eye",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "89b7d3743b778280d72e76989f26d7df122144247cc96708bfc56d2ee94a7a37"
+        },
+        {
+          "fraction": 0.27,
+          "text": "suspicious look",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "269c146ba7c77a80200e69dd7e43bd7c95ca3dcdb01bb09f20d801fc45e1cdc5"
+        },
+        {
+          "fraction": 0.6,
+          "text": "look back",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "350986e67bc1655d85011d0518da6a3f2539239e261c0cc366043a751d9f4cb1"
+        },
+        {
+          "fraction": 0.75,
+          "text": "blink",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "c0743c05ca158cd25d93cd5e1aa298b6021cf3a621b9c25edf40a0c2d2fa8e1d"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 3.014,
+          "frames": 114,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 3.0032999999523162,
+          "frames": 129,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "move": {
+      "duration_s": 0.8999999761581421,
+      "frames": [
+        {
+          "fraction": 0,
+          "text": "left foot planted",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "9cc1718dbd4a32384b45bf6143715719c2c87437fe5e0629091d77839b7f5ea3"
+        },
+        {
+          "fraction": 0.25,
+          "text": "high step, head bob",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "9d8dc6b4035cc890028a7f30c057d6ee7b70dbfe7483520eacf8e2261af71c23"
+        },
+        {
+          "fraction": 0.5,
+          "text": "right foot planted",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "49a92e9f04bdc5a1bcf9fb04a841fd4f349dc5be66eeb57135c81161e7f68039"
+        },
+        {
+          "fraction": 0.75,
+          "text": "high step",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "380fc2fed5fac130a4932acd7267ca4c2d67d28a86f2a94a86c2fd5b124f6872"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 0.9302999999523163,
+          "frames": 53,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 0.9203999998569489,
+          "frames": 33,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "attack": {
+      "duration_s": 2,
+      "frames": [
+        {
+          "fraction": 0.15,
+          "text": "spots you: crest up",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "ad915ef5de0536d053a56a9d24d804da82ec93999dc5a98268d6ded5f6e99b8c"
+        },
+        {
+          "fraction": 0.5,
+          "text": "rears back, wings flared",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "1ee9e5712b6742d16312f1574c137a3198bbd27569eba8d1618f75fb151de639"
+        },
+        {
+          "fraction": 0.625,
+          "text": "BEAK JAB + flowers 1.25 s",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "3bc48d55dd1896e68f56994ae061843baba4145faf13709371d3c0dc6853cb5a"
+        },
+        {
+          "fraction": 0.8,
+          "text": "follow-through",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "a58774325fd488de081800d22739a5541afec2ea5a62c9f1829dd647f1b042c0"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 2.0259000000953673,
+          "frames": 75,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 2.014600000143051,
+          "frames": 44,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "frames": [
+        {
+          "fraction": 0,
+          "text": "rest",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "4e3af34bcfcaa2469a4257bb88be9363c015098bc21d5d81aadd3e3770d61189"
+        },
+        {
+          "fraction": 0.15,
+          "text": "feathers puffed",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "ebf7cb4873d80eb57ff2f6460754c062211b5a6669233e5ca221eb4378ad0dbb"
+        },
+        {
+          "fraction": 0.45,
+          "text": "settling",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "376740644e45d3cac3c04869dd8843087d64cd2c1383f0b3705945dc852e9ea5"
+        },
+        {
+          "fraction": 1,
+          "text": "recovered",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "4e3af34bcfcaa2469a4257bb88be9363c015098bc21d5d81aadd3e3770d61189"
+        }
+      ],
+      "distinct_rasters": 3,
+      "small_distinct_rasters": 3,
+      "realtime_playback": [
+        {
+          "elapsed_s": 0.7056000001430511,
+          "frames": 36,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 0.7188000001907349,
+          "frames": 13,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "frames": [
+        {
+          "fraction": 0.25,
+          "text": "dizzy wobble",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "481e62a232b29fcdfdeb99a945a88c42ab9a05afb0d67d80b60b0787cf8c6d17"
+        },
+        {
+          "fraction": 0.5,
+          "text": "stagger",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "1cd322370fcd6b50a0e69e3507d7313551016a82c4bcd5658392f0f8d6d7bd40"
+        },
+        {
+          "fraction": 0.62,
+          "text": "plops down",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "8b791974644e386c3188d25133d237f88ff4d19c026c0cacb586241fa7134fe8"
+        },
+        {
+          "fraction": 1,
+          "text": "held: sitting, flowers spilled",
+          "clips": [
+            {
+              "name": "idle",
+              "duration": 3
+            },
+            {
+              "name": "move",
+              "duration": 0.8999999761581421
+            },
+            {
+              "name": "attack",
+              "duration": 2
+            },
+            {
+              "name": "hit",
+              "duration": 0.699999988079071
+            },
+            {
+              "name": "defeat",
+              "duration": 2.4000000953674316
+            }
+          ],
+          "calls": 3,
+          "triangles": 16546,
+          "glError": 0,
+          "raster_sha256": "2b4d65c42284072144da2aa731f41a9859485a0b5335a2f530aca58026590864"
+        }
+      ],
+      "distinct_rasters": 4,
+      "small_distinct_rasters": 4,
+      "realtime_playback": [
+        {
+          "elapsed_s": 2.4022999999523162,
+          "frames": 69,
+          "glError": 0,
+          "scale": 1
+        },
+        {
+          "elapsed_s": 2.4270999999046325,
+          "frames": 53,
+          "glError": 0,
+          "scale": 0.35
+        }
+      ]
+    }
+  },
+  "calls": 3,
+  "triangles": 16546,
+  "glError": 0,
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "browser": "153.0.8010.12",
+  "glb_sha256": "e9189113197c453174eab9c8d0a0f2005ea60fd478befc06c60f0aa8988378b4",
+  "renderer": "Chromium headless ANGLE SwiftShader, real WebGL raster, ACESFilmic exposure 1.15 like src/game/scene.ts; no physical device claim",
+  "checks": {
+    "five_clips": true,
+    "every_clip_changes_raster": true,
+    "every_clip_changes_raster_at_35_percent": true,
+    "realtime_playback_all_clips_both_scales": true,
+    "zero_console_errors": true,
+    "zero_http_errors": true,
+    "zero_webgl_errors": true,
+    "no_external_requests": true,
+    "character_draw_calls_2": true
+  }
+}

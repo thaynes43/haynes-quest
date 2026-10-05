@@ -10,6 +10,7 @@ import {
   parseLevelEditorProjectJson,
 } from "../../src/shared/editor-project";
 import { EDITOR_STORAGE_KEY } from "../../src/client/editor/editor-storage";
+import familyWorldAV8 from "../../src/shared/levels/family-world-a-v8.json";
 
 vi.mock("../../src/client/editor/EditorViewport", async () => {
   const ReactModule = await import("react");
@@ -90,6 +91,20 @@ afterEach(async () => {
 });
 
 describe("complete world editor", () => {
+  it("removes the last route enemy through the editor and offers its contiguous slot again", async () => {
+    window.localStorage.setItem(EDITOR_STORAGE_KEY, JSON.stringify(familyWorldAV8));
+    await act(async () => root.render(<EditorWorkspace onPlaytest={vi.fn(async () => {})} />));
+    expect(button("Remove enemy")).toBeTruthy();
+    await press("Remove enemy");
+    await settleAutosave();
+    const saved = parseLevelEditorProjectJson(window.localStorage.getItem(EDITOR_STORAGE_KEY)!);
+    if (!isLevelEditorProjectV2(saved)) throw new Error("Expected a world project");
+    expect(saved.chapters[0]!.encounterSlots["ordinary-12"]).toBeUndefined();
+    expect(saved.chapters[0]!.encounterSlots["ordinary-11"]).toBeDefined();
+    expect(button("Add route enemy")).toBeTruthy();
+    await press("Undo");
+    expect(button("Remove enemy")).toBeTruthy();
+  });
   it("adds an independent level and stores its new theme in the v2 project", async () => {
     await act(async () => root.render(<EditorWorkspace onPlaytest={vi.fn(async () => {})} />));
     await press("Add level");

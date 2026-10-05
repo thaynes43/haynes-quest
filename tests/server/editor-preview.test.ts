@@ -20,6 +20,7 @@ import { parseStoredAdventure } from '../../src/server/adventure-schema.js';
 import { prepareEditorPreview, prepareEditorWorld } from '../../src/server/editor-preview.js';
 import { shiftAuthoredLevelX } from '../editor-project-fixtures.js';
 import ratCasinoBonusProjectSource from '../../src/shared/levels/rat-casino-world-v2.json';
+import familyWorldAV8Source from '../../src/shared/levels/family-world-a-v8.json';
 
 const ORIGIN = 'https://quest.test';
 const SECRET = 'fixture-session-secret-that-is-at-least-32-characters';
@@ -509,6 +510,46 @@ describe('POST /api/editor/playtests', () => {
         { role: 'ordinary', entry: 'moth-projectionist', asset: 'moth-projectionist@v001' },
         { role: 'boss', entry: 'rat-pit-boss', asset: 'rat-pit-boss@v002' },
       ]);
+    });
+
+    it('stores an extended-core v12 world without bonus encounters as editor plan v2', async () => {
+      const draft = structuredClone(familyWorldAV8Source);
+      for (const chapter of draft.chapters) {
+        for (const slot of ['bonus-1', 'bonus-2', 'bonus-3', 'bonus-4']) {
+          delete (chapter.encounterSlots as Record<string, unknown>)[slot];
+          delete (chapter.level.anchors.encounters as Record<string, unknown>)[slot];
+        }
+      }
+      const project = parseLevelEditorProject(draft);
+      if (!isLevelEditorProjectV2(project)) throw new Error('Expected a v12 world project');
+      const prepared = prepareEditorPreview(project);
+      if (!prepared.ok || !prepared.bundle.world) throw new Error('Expected a valid v12 preview');
+      const plan = prepared.bundle.world.plan;
+      expect(plan.version).toBe('editor-world-plan-v2');
+      if (plan.version !== 'editor-world-plan-v2') throw new Error('Expected a v2 editor plan');
+      expect(plan.levels.every((level) => level.optionalEncounterIds.length === 0)).toBe(true);
+      expect(plan.levels.map((level) => level.encounters.length)).toEqual([13, 13, 13, 13]);
+
+      const { app, store } = makeApp();
+      const { cookie, playerId } = await openSession(app);
+      const response = await preview(app, cookie, {
+        project,
+        chapterId: project.chapters[0]!.chapterId,
+        scope: 'adventure',
+      });
+      expect(response.status, await response.clone().text()).toBe(201);
+      const body = await response.json();
+      expect(body.save.adventure.planVersion).toBe('editor-world-plan-v2');
+      expect(body.save.adventure.activeLevel.encounters).toHaveLength(13);
+      const stored = await store.getSave(playerId, body.save.id);
+      if (!stored) throw new Error('Preview save was not stored');
+      const reloaded = parseStoredAdventure(
+        JSON.parse(JSON.stringify(stored.adventurePlan)),
+        JSON.parse(JSON.stringify(stored.adventureState)),
+        { allowEditorPreviewPlan: true },
+      );
+      expect(reloaded.plan).toEqual(plan);
+      expect(reloaded.state).toEqual(stored.adventureState);
     });
 
     it('freezes Golden as an explicit optional sixth encounter in editor world plan v2', async () => {

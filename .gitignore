@@ -20,3 +20,7 @@ site/
 .DS_Store
 
 # Agent plans and handoff notes are project records and remain tracked.
+
+# Generated Python caches
+__pycache__/
+*.pyc

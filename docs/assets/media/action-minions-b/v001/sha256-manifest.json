@@ -1,0 +1,30 @@
+{
+  "pack": "action-minions-b",
+  "version": "v001",
+  "files": {
+    "claim-checkpoint.blend": {
+      "bytes": 499098,
+      "sha256": "398e6cbeb8485993b016dff0a8ff5f6141aaeb5a2ce0782481b5d89cc309f6a7"
+    },
+    "concept.png": {
+      "bytes": 1824886,
+      "sha256": "ca80747a3c64a060c754f378f88471bbad63615b20815b28c0b691be077e950c"
+    },
+    "live-scene-release.blend": {
+      "bytes": 2104061,
+      "sha256": "64384fbc1667ccc8ad2511e2bf43cce1f28c378d9d1793873458d9a363ba71c5"
+    },
+    "prompt.txt": {
+      "bytes": 1568,
+      "sha256": "f723c2db8a11418e9a44275e41279362364da78aad08018d47b5a266ebd1faae"
+    },
+    "scene-lease.json": {
+      "bytes": 15697,
+      "sha256": "81d3684ec8baab391c6f617fe91fa69b393a01464e8579b9bb4d41336ec54248"
+    },
+    "scene-release.json": {
+      "bytes": 3187,
+      "sha256": "d9ddf13a7678e49019727937367715d9f6c463db407177824f796261e840f335"
+    }
+  }
+}

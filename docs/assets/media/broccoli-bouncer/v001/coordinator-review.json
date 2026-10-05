@@ -1,0 +1,19 @@
+{
+  "asset_id": "broccoli-bouncer",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T22:36:24.836828+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidate",
+  "owner_review": "pending",
+  "glb_sha256": "164a54763e764b4f6ac0d751a4bbe4e4ce1e58bcd98c23107eeb2255747b5bf9",
+  "inspected": [
+    "concept-vs-model.png",
+    "attack-gameplay-scale.png"
+  ],
+  "findings": [
+    "Distinct broccoli silhouette, face and orange shoes match the construction direction.",
+    "Windup and two-leaf strike remain readable at the supplied small scale.",
+    "Author reports 19,438 triangles and two character draw calls; accept above the provisional 15,000-triangle target for this candidate, subject to the full-scene performance check."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}

@@ -1,0 +1,146 @@
+{
+  "asset_id": "demon-idol-drummer",
+  "version": "v001",
+  "files": {
+    "action-contact.png": {
+      "bytes": 50115,
+      "sha256": "465df1d88ec231a12e9ddfd0e63c2c710099012c0588ebad3ed691b56c21e6fd"
+    },
+    "action-defeat.png": {
+      "bytes": 41091,
+      "sha256": "e8cb13531962eee080803a25fb024ca605053143df2ee73293ec822110da2fde"
+    },
+    "action-hit.png": {
+      "bytes": 46666,
+      "sha256": "69ab92324b2ea463b45ec69d3acab7e7441071ec841c4c4a2ee3d2b80c8f16cd"
+    },
+    "action-windup.png": {
+      "bytes": 47204,
+      "sha256": "3cd7aee852ab4c8e02a68b1b093c41c448026df02df4ad445d3584117503cb49"
+    },
+    "attack-gameplay-scale.png": {
+      "bytes": 35498,
+      "sha256": "c9096c19e512bab5924e025ef60d6530d5e3cc7a2968103f04e7b7f36614b371"
+    },
+    "back.png": {
+      "bytes": 37792,
+      "sha256": "55058eb654242580df191a7a33559dd66890299e6c7613be22915f252d55d67b"
+    },
+    "beauty.png": {
+      "bytes": 45987,
+      "sha256": "84a645938a82fde999d4cf7cfe8ff1a4c5a76fed8875bf588c2997beb678bc71"
+    },
+    "browser-inspection.json": {
+      "bytes": 18439,
+      "sha256": "4ac1690f00e6890315bb48f857d68bbfeb26acd2dddb2398b5948ba139255733"
+    },
+    "concept-vs-model.png": {
+      "bytes": 250807,
+      "sha256": "1d25ac67a7f87132dc06712b12c9679c9a7b996abbb41f5d6ef87188844b9013"
+    },
+    "concept.png": {
+      "bytes": 901118,
+      "sha256": "f60eff5515d05efee7eab080a926ceddb1ea85754dd87f8113b05846ddee7619"
+    },
+    "construction.json": {
+      "bytes": 25836,
+      "sha256": "70f484348257f3612cd6a2b1d01747e3e0beeaa34d9ebc5c97f90d017cae3963"
+    },
+    "demon-idol-drummer.blend": {
+      "bytes": 795250,
+      "sha256": "b2cacb153150896419a0c60c5ef9ffcf5e942c6629dc7170299cf19118b74380"
+    },
+    "demon-idol-drummer.glb": {
+      "bytes": 1174024,
+      "sha256": "a2d4a6bdf78b2990d45ade28c49d70602b96cfaa040156cbec5b41c788c1610b"
+    },
+    "front.png": {
+      "bytes": 42020,
+      "sha256": "a5a70a9aade8226536191584a191d09e7d3e2e2051871a423267de1e5af59cfd"
+    },
+    "motion-contact-sheet.png": {
+      "bytes": 206083,
+      "sha256": "feb00c6e47792b31e9b7aff37cb1dd93cb596f2b7b243221e8205a9a3ba45212"
+    },
+    "provenance.json": {
+      "bytes": 3772,
+      "sha256": "b0c246ddc3b3ab73a3715c5ee2ead5b428c34eb4052685af57168efcb38e6e48"
+    },
+    "side.png": {
+      "bytes": 32417,
+      "sha256": "aae7f1c0b6ab8c68923431b21dd9241c49ebe74ba596312fe88b150c6179624f"
+    },
+    "source/assets.json": {
+      "bytes": 4844,
+      "sha256": "db6bfd5a50147c03d3a6584a2e9139d3cf8dbab2f54b4bdbad5f4f9de8a8a49f"
+    },
+    "source/claim.py": {
+      "bytes": 2807,
+      "sha256": "83026e23dac484a9d2d658c8f6345c3a2249add0b63263d00ced5b60aeaecb99"
+    },
+    "source/common.py": {
+      "bytes": 27346,
+      "sha256": "80ee80df8305993e7ae3d4677e20036cd448e36965f98013ef0bd85a6fb22f7b"
+    },
+    "source/compare.mjs": {
+      "bytes": 1429,
+      "sha256": "bd0c19d52b8b5c239f59ff3b21e9c59adb636ed45a976f8c490b3e6da904a61b"
+    },
+    "source/deliver.py": {
+      "bytes": 6512,
+      "sha256": "972f1e8d266b971e295ff8b42790ab26c56fc5b773e9cc04a884e5832af1d98d"
+    },
+    "source/diag.py": {
+      "bytes": 1471,
+      "sha256": "4c53e24f7a97375536810d67c060334f62d16e245b2a04c1e0ae43bbf67f1163"
+    },
+    "source/drummer.py": {
+      "bytes": 28900,
+      "sha256": "41d4d301bfc491a431794edcc1cfac5026b656b6bb04f2c0f4d37f85e4991238"
+    },
+    "source/fetch_look.py": {
+      "bytes": 960,
+      "sha256": "2e8184c0c34c9f0634445b7b5bd3a0f484d32d635806d244f76a27af0ca2b416"
+    },
+    "source/inspect-three.mjs": {
+      "bytes": 9726,
+      "sha256": "730f3699fd01d6dca30d5b2ca190f6766b929a158e72a9e200cf3ab51deac532"
+    },
+    "source/look.py": {
+      "bytes": 5489,
+      "sha256": "5560805c1f21ea9e232a89f3fefe203c9a445284d565a04f74e41bf1723a93c9"
+    },
+    "source/preview.mjs": {
+      "bytes": 11397,
+      "sha256": "1cbae36a73782c02e326df4e5e8656c817abb9d122b92c113493b51fcb97ecb5"
+    },
+    "source/run.py": {
+      "bytes": 1025,
+      "sha256": "2c71659dad1bdf0b0f06535977314c1c0cd377dfb7b478fe6b11426f3af56597"
+    },
+    "source/run_validate.py": {
+      "bytes": 731,
+      "sha256": "4e783a9674b55da32db692fdb198184bbe2c90641159625346abf7f82abf527f"
+    },
+    "source/transfer.py": {
+      "bytes": 4244,
+      "sha256": "4ce93f9d2557418bd10ba690719c76f6ce247deec376ba82afef76821cb1c3fb"
+    },
+    "source/validate.mjs": {
+      "bytes": 7915,
+      "sha256": "9c37a035c76bd2cb111067055d691fef67101d6608d42d3e5dd886d06860a44e"
+    },
+    "three-inspection.json": {
+      "bytes": 7713,
+      "sha256": "b55cda34ddbeef8a58360c4f209b206184c70d379baecacfc74595b98ed2d215"
+    },
+    "threequarter.png": {
+      "bytes": 42595,
+      "sha256": "0691e656c48658f1b7aac133c2faab7295ef9c068cb6d22b258720ad2aaa827d"
+    },
+    "validation.json": {
+      "bytes": 4006,
+      "sha256": "cb59e9b91e4d40361135906b1b7f9db8bb33758ea85d15210e142704b6f0d0ee"
+    }
+  }
+}

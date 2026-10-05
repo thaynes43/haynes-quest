@@ -1,0 +1,555 @@
+{
+  "asset_id": "lab-robot-sentry",
+  "version": "v001",
+  "glb_sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader import of the GLB bytes; every exported skin vertex sampled at 60 Hz in every clip; SkeletonUtils clones driven by the real src/game/enemy-animation.ts adapter. Part clearance uses rest-space boxes of the named bone groups (dominant skin weight), so it is a proxy, not triangle collision. No physical-device claim.",
+  "rest_bounds_y_up": {
+    "min": [
+      -0.8153853620451815,
+      -2.274388027117121e-9,
+      -0.3472360643947417
+    ],
+    "max": [
+      0.8153853620451775,
+      1.5149998664855957,
+      0.3370000123977714
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -1.161407783837535,
+      -3.6948739102872587e-9,
+      -0.9014565727016991
+    ],
+    "max": [
+      1.1614075595632265,
+      1.5156973745791407,
+      1.003162070344362
+    ]
+  },
+  "height_m": 1.5149998664855957,
+  "dimensions_m": [
+    1.630770724090359,
+    1.5149998687599837,
+    0.6842360767925131
+  ],
+  "body_footprint_y_up": {
+    "min": [
+      -0.3750000000000056,
+      0.5649999380111694,
+      -0.3149999976158188
+    ],
+    "max": [
+      0.3750000000000057,
+      1.2949999570846558,
+      0.3370000123977714
+    ]
+  },
+  "exported_bounds": {
+    "min": [
+      -1.167,
+      -0.006,
+      -0.907
+    ],
+    "max": [
+      1.167,
+      1.521,
+      1.009
+    ]
+  },
+  "root_bone_tracks": [
+    {
+      "clip": "idle",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "idle",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "move",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "attack",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "hit",
+      "track": "root.scale",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.position",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.quaternion",
+      "constant": true
+    },
+    {
+      "clip": "defeat",
+      "track": "root.scale",
+      "constant": true
+    }
+  ],
+  "animations": {
+    "idle": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 9010,
+      "max_vertex_displacement_m": 0.2932281618790843,
+      "bounds_y_up": {
+        "min": [
+          -0.8735196810225191,
+          -2.2743880548726967e-9,
+          -0.3918488046753289
+        ],
+        "max": [
+          0.8570366011721446,
+          1.5149998664856412,
+          0.35599985263586437
+        ]
+      },
+      "loop_seam_max_m": 4.843943213271228e-8,
+      "floor_minimum": {
+        "y": -2.2743880548726967e-9,
+        "bone": "foot_R",
+        "position": [
+          0.10900001279747555,
+          -2.2743880548726967e-9,
+          0.12850000106285972
+        ],
+        "time_s": 0.38333334856563145
+      },
+      "held_defeat_difference_m": null
+    },
+    "move": {
+      "duration_s": 1,
+      "samples": 61,
+      "vertices_per_sample": 9010,
+      "max_vertex_displacement_m": 0.2478538355908157,
+      "bounds_y_up": {
+        "min": [
+          -0.9367918385828296,
+          -3.6948739102872587e-9,
+          -0.3824999655959055
+        ],
+        "max": [
+          0.9367922004548108,
+          1.5065919583481946,
+          0.3205153520508362
+        ]
+      },
+      "loop_seam_max_m": 1.0901223882999378e-7,
+      "floor_minimum": {
+        "y": -3.6948739102872587e-9,
+        "bone": "foot_R",
+        "position": [
+          0.10900002078141882,
+          -3.6948739102872587e-9,
+          -0.1484999787999907
+        ],
+        "time_s": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 9010,
+      "max_vertex_displacement_m": 1.1249275838636958,
+      "bounds_y_up": {
+        "min": [
+          -1.161407783837535,
+          -2.274388027117121e-9,
+          -0.9014565727016991
+        ],
+        "max": [
+          1.1614075595632265,
+          1.5149998664855957,
+          0.5907609694834822
+        ]
+      },
+      "loop_seam_max_m": 0.0028124563848306353,
+      "floor_minimum": {
+        "y": -2.274388027117121e-9,
+        "bone": "foot_R",
+        "position": [
+          0.10900001279747555,
+          -2.274388027117121e-9,
+          0.12850000106285972
+        ],
+        "time_s": 0
+      },
+      "held_defeat_difference_m": null
+    },
+    "hit": {
+      "duration_s": 0.6000000238418579,
+      "samples": 37,
+      "vertices_per_sample": 9010,
+      "max_vertex_displacement_m": 0.5767740981987928,
+      "bounds_y_up": {
+        "min": [
+          -1.1416185570628277,
+          -2.2743880548726967e-9,
+          -0.3472360643947417
+        ],
+        "max": [
+          1.141618566002301,
+          1.5149998664855957,
+          0.4379424898073475
+        ]
+      },
+      "loop_seam_max_m": 4.843943213271228e-8,
+      "floor_minimum": {
+        "y": -2.2743880548726967e-9,
+        "bone": "foot_R",
+        "position": [
+          0.10900001279747555,
+          -2.2743880548726967e-9,
+          0.12850000106285972
+        ],
+        "time_s": 0.38333334856563145
+      },
+      "held_defeat_difference_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 9010,
+      "max_vertex_displacement_m": 1.6663916860315484,
+      "bounds_y_up": {
+        "min": [
+          -1.112230363984723,
+          -2.2743880548726967e-9,
+          -0.574151150603323
+        ],
+        "max": [
+          1.1122304541340535,
+          1.5156973745791407,
+          1.003162070344362
+        ]
+      },
+      "loop_seam_max_m": 1.6663916852834968,
+      "floor_minimum": {
+        "y": -2.2743880548726967e-9,
+        "bone": "foot_R",
+        "position": [
+          0.10900001279747555,
+          -2.2743880548726967e-9,
+          0.12850000106285972
+        ],
+        "time_s": 0.38333334856563145
+      },
+      "held_defeat_difference_m": 5.66076893463926e-8
+    }
+  },
+  "clearance": {
+    "pincers_vs_shell": {
+      "pairs": {
+        "of": [
+          "jaw_R_up",
+          "jaw_R_lo",
+          "jaw_L_up",
+          "jaw_L_lo",
+          "claw_R",
+          "claw_L"
+        ],
+        "solid": "shell"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "pincers_vs_pelvis": {
+      "pairs": {
+        "of": [
+          "jaw_R_up",
+          "jaw_R_lo",
+          "jaw_L_up",
+          "jaw_L_lo",
+          "claw_R",
+          "claw_L"
+        ],
+        "solid": "pelvis"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "forearms_vs_shell": {
+      "pairs": {
+        "of": [
+          "fore_R",
+          "fore_L"
+        ],
+        "solid": "shell"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "boots_vs_shell": {
+      "pairs": {
+        "of": [
+          "foot_R",
+          "foot_L"
+        ],
+        "solid": "shell"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    },
+    "boots_vs_pelvis": {
+      "pairs": {
+        "of": [
+          "foot_R",
+          "foot_L"
+        ],
+        "solid": "pelvis"
+      },
+      "inside_vertices_max": 0,
+      "first": null,
+      "per_clip": {
+        "idle": 0,
+        "move": 0,
+        "attack": 0,
+        "hit": 0,
+        "defeat": 0
+      }
+    }
+  },
+  "images": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "encoded_bytes": 112522
+    }
+  ],
+  "max_skin_influences": 2,
+  "max_weight_sum_error": 2.9802322387695312e-8,
+  "adapter": {
+    "contact_fraction": 0.625,
+    "probe": "claw_R",
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "probe": [
+          0.6923448338145561,
+          0.659194893656027,
+          -0.1713135202432467
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "probe": [
+          0.727348988899344,
+          0.6591354330531562,
+          -0.09309716909590277
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "probe": [
+          0.37207967520854174,
+          0.936489856724969,
+          -0.6993108094921138
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "probe": [
+          0.6999999441460665,
+          0.6700001107279621,
+          -0.07000000435053752
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "probe": [
+          0.6999999441460665,
+          0.6700001107279621,
+          -0.07000000435053752
+        ]
+      }
+    ],
+    "direct_contact_probe": [
+      0.37207967520854174,
+      0.936489856724969,
+      -0.6993108094921138
+    ],
+    "defeat_states": [
+      {
+        "time_s": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.0500000000000003,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "time_s": 2.6500000000000004,
+        "visible": true,
+        "vanish": 0.8333330154418934
+      },
+      {
+        "time_s": 2.95,
+        "visible": false,
+        "vanish": 1
+      },
+      {
+        "time_s": 4,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "beats": {
+    "contact": {
+      "claws_min_z": -0.8934721585678309,
+      "claws_centre_y": 0.9090065665641226,
+      "claw_gap_x_m": 0.13695659902810042,
+      "right_centre": [
+        0.24401023685989492,
+        0.9090064353620535,
+        -0.7433295684030817
+      ],
+      "left_centre": [
+        -0.24401016318166452,
+        0.9090067136071556,
+        -0.7433296806313807
+      ]
+    },
+    "rest_jaw_tip_gap_m": 0.26950313303047424,
+    "jaw_tip_gap_ratio_at_0_95_s": 2.114430498166834,
+    "jaw_tip_gap_ratio_at_contact": 0.4405822233271144,
+    "claws_max_y_at_0_95_s": 1.2887462461608132,
+    "rest_claws_min_z": -0.12499998627568083,
+    "hit_lens_scale": 0.550000011920929,
+    "move_boot_max_lift_m": 0.07990644195652719,
+    "defeat_held": {
+      "shell_min_y": 7.486663650135839e-8,
+      "boots_min_y": 0.4571198778672639,
+      "lens_scale": 0.44999998807907104,
+      "antenna_tip_y": 0.29839305722041426
+    },
+    "idle0_vs_bind_max_m": 1.055912255878086e-7
+  },
+  "checks": {
+    "five_exact_clips": true,
+    "attack_2_s": true,
+    "all_tracks_resolve_below_scene_root": true,
+    "no_root_motion": true,
+    "all_clips_move_vertices": true,
+    "idle_move_seamless": true,
+    "held_defeat": true,
+    "no_floor_penetration": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "height_1_3_to_1_6_m": true,
+    "standing_on_floor": true,
+    "floor_centred_body": true,
+    "one_1024_atlas": true,
+    "two_draw_primitives": true,
+    "exported_bounds_cover_all_poses": true,
+    "actual_adapter_contact_pose": true,
+    "actual_adapter_defeat_vanish": true,
+    "adapter_root_identity": true,
+    "independent_skeleton_clone": true,
+    "clear_pincers_vs_shell": true,
+    "clear_pincers_vs_pelvis": true,
+    "clear_forearms_vs_shell": true,
+    "clear_boots_vs_shell": true,
+    "clear_boots_vs_pelvis": true,
+    "idle_starts_in_concept_stance": true,
+    "pincers_raised_high_in_wind_up": true,
+    "pincers_open_wide_before_strike": true,
+    "pincers_clamp_shut_at_contact": true,
+    "pincers_meet_in_front_at_contact": true,
+    "pincers_at_chest_height_at_contact": true,
+    "lens_shrinks_on_hit": true,
+    "boot_lifts_in_move": true,
+    "defeat_lies_on_its_back_feet_up": true,
+    "defeat_lens_dimmed": true
+  }
+}

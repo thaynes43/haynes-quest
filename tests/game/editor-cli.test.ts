@@ -380,16 +380,17 @@ describe("level editor CLI", () => {
 
       const baseline = inspectProject(projectPath);
       expect(baseline.limits).toEqual({ ...AUTHORED_LEVEL_LIMITS });
+      const frozenTemplateSlots = LEVEL_EDITOR_ANCHOR_SLOTS.filter((slot) =>
+        !slot.startsWith("encounter.bonus-") &&
+        (!slot.startsWith("encounter.ordinary-") ||
+          Number(slot.slice("encounter.ordinary-".length)) <= 4),
+      );
 
       const garden = baseline.chapters[0];
       expect(garden.spatial.platforms).toHaveLength(garden.platforms);
       expect(garden.spatial.connections).toHaveLength(garden.connections);
       expect(garden.spatial.routes.branches).toHaveLength(garden.branches);
-      expect(garden.spatial.anchors.map((anchor) => anchor.slot)).toEqual(
-        LEVEL_EDITOR_ANCHOR_SLOTS.filter(
-          (slot) => !slot.startsWith("encounter.bonus-"),
-        ),
-      );
+      expect(garden.spatial.anchors.map((anchor) => anchor.slot)).toEqual(frozenTemplateSlots);
       expect(
         garden.spatial.connections.map((connection) => connection.index),
       ).toEqual(garden.spatial.connections.map((_, index) => index));
@@ -639,9 +640,7 @@ describe("level editor CLI", () => {
       expect(brokenGarden.spatial.platforms).toHaveLength(
         elevatedGarden.spatial.platforms.length,
       );
-      expect(brokenGarden.spatial.anchors).toHaveLength(
-        LEVEL_EDITOR_ANCHOR_SLOTS.filter((slot) => !slot.startsWith("encounter.bonus-")).length,
-      );
+      expect(brokenGarden.spatial.anchors).toHaveLength(frozenTemplateSlots.length);
 
       const malformedPath = join(directory, "malformed.json");
       await writeFile(malformedPath, "{", "utf8");

@@ -19,6 +19,14 @@ export const EDITOR_ANCHOR_SLOTS = [
   "encounter.ordinary-2",
   "encounter.ordinary-3",
   "encounter.ordinary-4",
+  "encounter.ordinary-5",
+  "encounter.ordinary-6",
+  "encounter.ordinary-7",
+  "encounter.ordinary-8",
+  "encounter.ordinary-9",
+  "encounter.ordinary-10",
+  "encounter.ordinary-11",
+  "encounter.ordinary-12",
   "encounter.bonus-1",
   "encounter.bonus-2",
   "encounter.bonus-3",
@@ -37,9 +45,9 @@ export function editorAnchorSlotsFor(
 ): readonly EditorAnchorSlot[] {
   return EDITOR_ANCHOR_SLOTS.filter(
     (slot) =>
-      !slot.startsWith("encounter.bonus-") ||
+      (!slot.startsWith("encounter.bonus-") && !/^encounter\.ordinary-(?:[5-9]|1[0-2])$/.test(slot)) ||
       Boolean(document.anchors.encounters[
-        slot.slice("encounter.".length) as "bonus-1" | "bonus-2" | "bonus-3" | "bonus-4"
+        slot.slice("encounter.".length) as keyof typeof document.anchors.encounters
       ]),
   );
 }
@@ -139,6 +147,14 @@ export function labelForAnchor(slot: EditorAnchorSlot): string {
     "encounter.ordinary-2": "Enemy · Ordinary two",
     "encounter.ordinary-3": "Enemy · Ordinary three",
     "encounter.ordinary-4": "Enemy · Ordinary four",
+    "encounter.ordinary-5": "Enemy · Ordinary five",
+    "encounter.ordinary-6": "Enemy · Ordinary six",
+    "encounter.ordinary-7": "Enemy · Ordinary seven",
+    "encounter.ordinary-8": "Enemy · Ordinary eight",
+    "encounter.ordinary-9": "Enemy · Ordinary nine",
+    "encounter.ordinary-10": "Enemy · Ordinary ten",
+    "encounter.ordinary-11": "Enemy · Ordinary eleven",
+    "encounter.ordinary-12": "Enemy · Ordinary twelve",
     "encounter.bonus-1": "Enemy · Optional bonus",
     "encounter.bonus-2": "Enemy · Optional bonus two",
     "encounter.bonus-3": "Enemy · Optional bonus three",

@@ -35,6 +35,13 @@ const parodyMotion: Record<
   "demon-band-idol": { contactFraction: 0.625, height: 1.3958640411922474 },
   "radio-host-showman": { contactFraction: 0.625, height: 2.0030001423669983 },
   "lab-robot": { contactFraction: 0.625, height: 1.2918970584869385 },
+  // parody-catalog-v12: exported Three.js heights and 1.25 s / 2.0 s contact.
+  "gadget-hammer-hopper": { contactFraction: 0.625, height: 1.5414782316099696 },
+  "broccoli-bouncer": { contactFraction: 0.625, height: 1.527886152267456 },
+  "bin-chicken-flower-thief": { contactFraction: 0.625, height: 1.4803972244262695 },
+  "demon-idol-drummer": { contactFraction: 0.625, height: 1.5699700117111206 },
+  "mischief-kitten-skater": { contactFraction: 0.625, height: 1.3082286958773262 },
+  "lab-robot-sentry": { contactFraction: 0.625, height: 1.5149998664855957 },
 };
 
 interface ParodyArtworkBase {
@@ -57,6 +64,22 @@ export interface DuoParodyArtwork extends ParodyArtworkBase {
 }
 
 export type ParodyArtwork = SingleParodyArtwork | DuoParodyArtwork;
+
+/** Static storybook planting props for authored scenery (DESIGN-029). */
+export const storybookPlantingKit = Object.freeze({
+  "broad-canopy-tree": {
+    id: "broad-canopy-tree",
+    url: "/studio/assets/media/storybook-planting-kit/v001/storybook-canopy-tree.glb",
+  },
+  "slim-cypress": {
+    id: "slim-cypress",
+    url: "/studio/assets/media/storybook-planting-kit/v001/storybook-cypress.glb",
+  },
+  "flowering-shrub": {
+    id: "flowering-shrub",
+    url: "/studio/assets/media/storybook-planting-kit/v001/storybook-flowering-shrub.glb",
+  },
+} as const);
 
 /** Candidate identities are frozen by the server; legacy saves retain their old renderer. */
 export function parodyArtwork(

@@ -1,0 +1,19 @@
+{
+  "asset_id": "demon-idol-drummer",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T23:04:34.363372+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidate",
+  "owner_review": "pending",
+  "glb_sha256": "a2d4a6bdf78b2990d45ade28c49d70602b96cfaa040156cbec5b41c788c1610b",
+  "inspected": [
+    "concept-vs-model.png",
+    "attack-gameplay-scale.png"
+  ],
+  "findings": [
+    "Magenta hair, small horns, teal jacket, broad boots and strapped drum retain the construction direction.",
+    "Overhead sticks, drum contact and beat-ring burst remain readable at the supplied small scale.",
+    "Accept 17,946 triangles above the provisional 15,000 target for this distinct silhouette and two character draw calls, subject to the full-scene performance check."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}

@@ -1,0 +1,335 @@
+{
+  "asset_id": "demon-idol-drummer",
+  "version": "v001",
+  "glb_sha256": "a2d4a6bdf78b2990d45ade28c49d70602b96cfaa040156cbec5b41c788c1610b",
+  "three_revision": "186",
+  "method": "Exact GLTFLoader parse; every exported skin vertex at 60 Hz per clip; SkeletonUtils clones; the actual src/game/enemy-animation.ts adapter driven through idle/chasing/windup/strike/cooldown/hit/defeated. No physical-device claim.",
+  "height_m": 1.5699700117111206,
+  "rest_bounds_y_up": {
+    "min": [
+      -0.47710174322128296,
+      0,
+      -0.3958950638771057
+    ],
+    "max": [
+      0.47710174322128296,
+      1.5699700117111206,
+      0.24969696998596191
+    ]
+  },
+  "footprint_below_0_06_m": {
+    "min": [
+      -0.22370874881744385,
+      0,
+      -0.23015499114990234
+    ],
+    "max": [
+      0.22370874881744385,
+      0.04941710829734802,
+      0.12987998127937317
+    ]
+  },
+  "all_animation_bounds_y_up": {
+    "min": [
+      -0.8803583315554281,
+      -1.611585973428304e-7,
+      -1.1179508658963118
+    ],
+    "max": [
+      0.8803583315554281,
+      1.5742758502336662,
+      0.7033026063926416
+    ]
+  },
+  "exported_envelope": {
+    "min": [
+      -0.886,
+      -0.006,
+      -1.123
+    ],
+    "max": [
+      0.886,
+      1.58,
+      0.709
+    ]
+  },
+  "animations": {
+    "idle": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 9272,
+      "bounds_y_up": {
+        "min": [
+          -0.4161394067609342,
+          -3.264110484174206e-8,
+          -0.39681039705395005
+        ],
+        "max": [
+          0.41138580809386815,
+          1.5742758502336662,
+          0.24871007587645136
+        ]
+      },
+      "floor": {
+        "y": -3.264110484174206e-8,
+        "time_s": 1.1833333333333333
+      },
+      "max_vertex_travel_m": 0.19363154919950953,
+      "loop_seam_m": 6.483038043154524e-8,
+      "held_defeat_motion_m": null
+    },
+    "move": {
+      "duration_s": 0.800000011920929,
+      "samples": 49,
+      "vertices_per_sample": 9272,
+      "bounds_y_up": {
+        "min": [
+          -0.4104246180028067,
+          -1.2802250976130448e-7,
+          -0.3958941514966233
+        ],
+        "max": [
+          0.41042461799074537,
+          1.5447074113560468,
+          0.2598799988246865
+        ]
+      },
+      "floor": {
+        "y": -1.2802250976130448e-7,
+        "time_s": 0.3333333383003871
+      },
+      "max_vertex_travel_m": 0.26000013324179555,
+      "loop_seam_m": 3.0760579283905e-8,
+      "held_defeat_motion_m": null
+    },
+    "attack": {
+      "duration_s": 2,
+      "samples": 121,
+      "vertices_per_sample": 9272,
+      "bounds_y_up": {
+        "min": [
+          -0.8803583315554281,
+          -1.611585973428304e-7,
+          -1.1179508658963118
+        ],
+        "max": [
+          0.8803583315554281,
+          1.5699700117111206,
+          0.5963528413075282
+        ]
+      },
+      "floor": {
+        "y": -1.611585973428304e-7,
+        "time_s": 1.7
+      },
+      "max_vertex_travel_m": 0.9144150018176119,
+      "loop_seam_m": 3.168598892765502e-8,
+      "held_defeat_motion_m": null
+    },
+    "hit": {
+      "duration_s": 0.699999988079071,
+      "samples": 43,
+      "vertices_per_sample": 9272,
+      "bounds_y_up": {
+        "min": [
+          -0.4225749152410494,
+          -8.824547621288144e-8,
+          -0.3958950638771057
+        ],
+        "max": [
+          0.42244353056460926,
+          1.5699700117111206,
+          0.5815440230424986
+        ]
+      },
+      "floor": {
+        "y": -8.824547621288144e-8,
+        "time_s": 0.666666655313401
+      },
+      "max_vertex_travel_m": 0.49247656341442014,
+      "loop_seam_m": 1.2677302727570056e-8,
+      "held_defeat_motion_m": null
+    },
+    "defeat": {
+      "duration_s": 2.4000000953674316,
+      "samples": 145,
+      "vertices_per_sample": 9272,
+      "bounds_y_up": {
+        "min": [
+          -0.5568482082613082,
+          -1.4915636824574236e-7,
+          -0.6498062664350575
+        ],
+        "max": [
+          0.7869394262263292,
+          1.5699700117111206,
+          0.7033026063926416
+        ]
+      },
+      "floor": {
+        "y": -1.4915636824574236e-7,
+        "time_s": 0.20000000794728598
+      },
+      "max_vertex_travel_m": 1.0194131385385945,
+      "loop_seam_m": 0.8102966026602494,
+      "held_defeat_motion_m": 4.611102534756203e-16
+    }
+  },
+  "facing": {
+    "front_bone": "mouth",
+    "position": [
+      -0.003623981766384816,
+      1.1840603087638488,
+      -0.13332950867977128
+    ]
+  },
+  "strike": {
+    "bone": "drum",
+    "idle0": [
+      0,
+      0.7639999985694885,
+      -0.19099999964237213
+    ],
+    "telegraph_0_5s": [
+      0,
+      0.741699755863243,
+      -0.15748504380567768
+    ],
+    "contact_1_25s": [
+      0,
+      0.5991335157195791,
+      -0.29939503724400623
+    ],
+    "burst_bone": "beat",
+    "burst_world_scale": {
+      "idle0": 1,
+      "windup": 1,
+      "contact": 7.479151812421961
+    }
+  },
+  "adapter": {
+    "phases": [
+      {
+        "phase": "idle",
+        "visible": true,
+        "strike_bone": [
+          4.598666090393362e-18,
+          0.7639999985694885,
+          -0.19099999964237213
+        ]
+      },
+      {
+        "phase": "chasing",
+        "visible": true,
+        "strike_bone": [
+          -0.0253513445912048,
+          0.7136703884147613,
+          -0.19430590500683467
+        ]
+      },
+      {
+        "phase": "windup",
+        "visible": true,
+        "strike_bone": [
+          0,
+          0.5991335157195791,
+          -0.29939503724400623
+        ]
+      },
+      {
+        "phase": "strike",
+        "visible": true,
+        "strike_bone": [
+          0,
+          0.7639999985694885,
+          -0.19099999964237213
+        ]
+      },
+      {
+        "phase": "cooldown",
+        "visible": true,
+        "strike_bone": [
+          0,
+          0.7639999985694885,
+          -0.19099999964237213
+        ]
+      }
+    ],
+    "hit_state": {
+      "visible": true,
+      "vanish": 0
+    },
+    "defeat_states": [
+      {
+        "t": 0.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 1.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 2.05,
+        "visible": true,
+        "vanish": 0
+      },
+      {
+        "t": 2.55,
+        "visible": true,
+        "vanish": 0.4999996821085601
+      },
+      {
+        "t": 3.05,
+        "visible": false,
+        "vanish": 1
+      },
+      {
+        "t": 4,
+        "visible": false,
+        "vanish": 1
+      }
+    ]
+  },
+  "max_influences": 1,
+  "max_weight_error": 0,
+  "materials": [
+    {
+      "name": "Demon Idol Drummer matte",
+      "type": "MeshStandardMaterial",
+      "vertexColors": true,
+      "roughness": 0.6200000047683716
+    },
+    {
+      "name": "Demon Idol Drummer gloss",
+      "type": "MeshStandardMaterial",
+      "vertexColors": true,
+      "roughness": 0.25999999046325684
+    }
+  ],
+  "track_count": 405,
+  "checks": {
+    "five_exact_clips": true,
+    "all_tracks_bind_below_scene_root": true,
+    "every_clip_moves_vertices": true,
+    "seamless_idle_and_move": true,
+    "attack_2s_contact_1_25": true,
+    "defeat_final_pose_held": true,
+    "no_floor_penetration": true,
+    "standing_on_floor_at_rest": true,
+    "height_in_range": true,
+    "footprint_centred": true,
+    "faces_minus_z": true,
+    "strike_drives_forward_at_contact": true,
+    "burst_opens_only_at_contact": true,
+    "envelope_covers_all_poses": true,
+    "two_vertex_coloured_standard_materials": true,
+    "at_most_four_influences": true,
+    "normalized_weights": true,
+    "adapter_constructs_and_vanishes": true,
+    "adapter_windup_holds_contact_pose": true,
+    "adapter_root_untouched": true,
+    "independent_skeleton_clone": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "asset_id": "lab-robot-sentry",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T23:28:24.522422+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidate",
+  "owner_review": "pending",
+  "glb_sha256": "7d353adf7f8c8ab2795cfff3b66f2a665aa49a4396967f9621a46f6a1b18e2d0",
+  "inspected": [
+    "concept-vs-export.png",
+    "attack-gameplay-scale.png"
+  ],
+  "findings": [
+    "Orange eye, cream torso, plum limbs and teal clamps retain the construction direction.",
+    "Lens warning, raised arms and forward two-clamp strike remain readable at the supplied small scale."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}

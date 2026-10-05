@@ -880,6 +880,21 @@ export function EditorWorkspace({
                   return false;
                 return runCommand(command, { type: "anchor", slot: `encounter.${slot}` });
               }}
+              onAddCoreEncounter={(slot, anchor, encounter) => {
+                const command = { type: "encounter.core.add", chapterId: cursor.chapterId, slot, anchor, encounter } as const;
+                const current = latestHistory.current.present.project;
+                const preview = applyLevelEditorCommand(current, command);
+                if (!preview.ok) return false;
+                const existing = new Set(
+                  validateLevelEditorProject(current).map((issue) => `${issue.path}:${issue.code}`),
+                );
+                if (preview.issues.some((issue) => !existing.has(`${issue.path}:${issue.code}`)))
+                  return false;
+                return runCommand(command, { type: "anchor", slot: `encounter.${slot}` });
+              }}
+              onRemoveCoreEncounter={(slot) => {
+                runCommand({ type: "encounter.core.remove", chapterId: cursor.chapterId, slot }, null);
+              }}
               onRemoveBonusEncounter={(slot) => {
                 runCommand(
                   { type: "encounter.bonus.remove", chapterId: cursor.chapterId, slot },

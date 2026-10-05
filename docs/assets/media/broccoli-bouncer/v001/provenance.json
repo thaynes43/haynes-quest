@@ -1,0 +1,59 @@
+{
+  "asset_id": "broccoli-bouncer",
+  "version": "v001",
+  "title": "Broccoli Bouncer",
+  "work_order": "20261004-opus-action-minions-b",
+  "design": "DESIGN-029 action and inhabited worlds",
+  "glb_sha256": "164a54763e764b4f6ac0d751a4bbe4e4ce1e58bcd98c23107eeb2255747b5bf9",
+  "candidate_status": "Awaiting Tom's exact-version review; technically checked family-release candidate under PRD-004 Q-03",
+  "authoring_agent": "Claude Code, claude-opus-5-5 at xhigh effort, agent-run session on the Max plan (no API key)",
+  "authoring_tool": "Blender MCP execute_blender_code on the isolated second authoring service (blender-authoring-2) through source/transfer.py; instance 1 and the native blender MCP server were not used",
+  "blender_version": "4.5.13 LTS",
+  "concept": {
+    "file": "concept.png",
+    "sha256": "0ea401071e70c1e67f45f4402c48af2eee58bb25bd34cd47ee8a75be721f7b1f",
+    "source_sheet": "docs/assets/media/action-minions-b/v001/concept.png",
+    "source_sheet_sha256": "ca80747a3c64a060c754f378f88471bbad63615b20815b28c0b691be077e950c",
+    "crop_rows_px": [
+      0,
+      392
+    ],
+    "generator": "Coordinator image generation (Codex GPT-6 Astra built-in image tool), October 4, 2026; prompt in the pack directory prompt.txt",
+    "use": "Construction reference only; no image pixels are applied to the model"
+  },
+  "source_scripts": {
+    "transfer.py": "4ce93f9d2557418bd10ba690719c76f6ce247deec376ba82afef76821cb1c3fb",
+    "run.py": "2c71659dad1bdf0b0f06535977314c1c0cd377dfb7b478fe6b11426f3af56597",
+    "claim.py": "83026e23dac484a9d2d658c8f6345c3a2249add0b63263d00ced5b60aeaecb99",
+    "common.py": "4e28bfc2177eb4fe72619a748f04b22b109c3fa0beec86d0978573c919914b1f",
+    "broccoli.py": "33894eb9f9d0ae779fdb687f7bc310e02df8a9346f6035a28bd86c92ed1eacaa",
+    "look.py": "5560805c1f21ea9e232a89f3fefe203c9a445284d565a04f74e41bf1723a93c9",
+    "diag.py": "4c53e24f7a97375536810d67c060334f62d16e245b2a04c1e0ae43bbf67f1163",
+    "validate.mjs": "9c37a035c76bd2cb111067055d691fef67101d6608d42d3e5dd886d06860a44e",
+    "run_validate.py": "4e783a9674b55da32db692fdb198184bbe2c90641159625346abf7f82abf527f",
+    "inspect-three.mjs": "5358097a0c9d739d5cbdc5a3d53413dba5ae29a873a833ed811134f7867cef7c",
+    "preview.mjs": "1cbae36a73782c02e326df4e5e8656c817abb9d122b92c113493b51fcb97ecb5",
+    "compare.mjs": "bd0c19d52b8b5c239f59ff3b21e9c59adb636ed45a976f8c490b3e6da904a61b",
+    "assets.json": "56441ce7f1585c66526413f20e2f5c45f7d2e3ec9da5c1720c6aaaa09c840c1d",
+    "deliver.py": "972f1e8d266b971e295ff8b42790ab26c56fc5b773e9cc04a884e5832af1d98d",
+    "fetch_look.py": "2e8184c0c34c9f0634445b7b5bd3a0f484d32d635806d244f76a27af0ca2b416"
+  },
+  "original_work": [
+    "All topology, flat vertex colours, the rigid 1-influence skin, bone layout and the five procedural clips are new Blender Python in source/.",
+    "Faces, brows, mouths, shoes and props are modelled geometry; the GLB carries no image texture.",
+    "The instance-2 transfer client follows the rooftop-city-kit v001 transfer.py; validation and preview harnesses follow the WO111 demon-band-idol / web-slinger-helper patterns."
+  ],
+  "excluded_inputs": [
+    "No family photos, names, birthdays or likenesses.",
+    "No downloaded meshes, franchise logos, costumes, lettering, recordings or textures."
+  ],
+  "tool_versions": {
+    "blender": "4.5.13 LTS",
+    "khronos_gltf_validator": "2.0.0-dev.3.10",
+    "three": "186",
+    "chromium": "153.0.8010.12",
+    "node": "v24.21.0"
+  },
+  "rights_note": "Original authored parody study; no exclusive-rights or franchise-endorsement claim.",
+  "scope": "Technical candidate delivery. The coordinator owns catalog publication, runtime registration and user-facing copy; owner exact-version and physical-device review remain open."
+}

@@ -1,0 +1,18 @@
+{
+  "asset_id": "mischief-kitten-skater",
+  "version": "v001",
+  "reviewed_utc": "2026-10-04T23:14:33.353945+00:00",
+  "reviewer": "Codex driving session",
+  "decision": "selected coherent family candidate",
+  "owner_review": "pending",
+  "glb_sha256": "8ae3f8dc4f7f1596c694a6769d474226b784c9bfa37d90975f618a82a9a74bf4",
+  "inspected": [
+    "concept-vs-export.png",
+    "attack-gameplay-scale.png"
+  ],
+  "findings": [
+    "Lilac tabby, large ears, tilted hat, striped tail and four teal skates retain the construction direction.",
+    "Crouch, rear-up and forward skate stomp remain readable at the supplied small scale."
+  ],
+  "gameplay_permission": "PRD-004 Q-03; candidate review is not owner approval"
+}

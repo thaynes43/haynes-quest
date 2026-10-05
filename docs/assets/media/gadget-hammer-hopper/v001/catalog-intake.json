@@ -1,0 +1,116 @@
+{
+  "id": "gadget-hammer-hopper",
+  "title": "Gadget Hammer Hopper",
+  "category": "action-minions",
+  "review": "docs/assets/reviews/gadget-hammer-hopper/v001.md",
+  "concept_images": [
+    "docs/assets/media/action-minions-a/v001/concept.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/concept-row.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/concept-vs-export.png"
+  ],
+  "model_images": [
+    "docs/assets/media/gadget-hammer-hopper/v001/beauty.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/front.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/side.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/back.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/threequarter.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/motion-contact-sheet.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/attack-gameplay-scale.png",
+    "docs/assets/media/gadget-hammer-hopper/v001/defeat-held.png"
+  ],
+  "models": [
+    "docs/assets/media/gadget-hammer-hopper/v001/gadget-hammer-hopper.glb"
+  ],
+  "videos": [
+    "docs/assets/media/gadget-hammer-hopper/v001/review.webm"
+  ],
+  "audio": [],
+  "thumbnail": null,
+  "version": "v001",
+  "state": "completed model candidate from the coordinator's action-minions-a concept (row 1); technically checked; awaiting Tom's exact-version review",
+  "gameplay_use": "private-candidate",
+  "description": "a runaway cartoon toolbox gadget on a pogo spring with a giant rubber mallet",
+  "checksums": {
+    "docs/assets/media/gadget-hammer-hopper/v001/gadget-hammer-hopper.glb": "ac4f92e0ec57a172272616507cc399fd15e0c791ec768f6adfc4a64bad41530e",
+    "docs/assets/media/gadget-hammer-hopper/v001/gadget-hammer-hopper.blend": "a621c554ddce82297c290bcf1e81aef271879007124b1f777425ba16994ce1d2",
+    "docs/assets/media/gadget-hammer-hopper/v001/pigment.png": "05b5bbe3748e8a1b842b406a6a0481fa7e4b49bcd972879de670f73f9819b376",
+    "docs/assets/media/gadget-hammer-hopper/v001/construction.json": "ee2ac8b9202f96c111ad5e15ce59b9cf2a22a5e2ddb6a29ff13f7cc9d07f0868",
+    "docs/assets/media/gadget-hammer-hopper/v001/validation.json": "6b2ed07a78cd8ac67285996e6b083aee16a5957dcef01e19f4367748f4ece9be",
+    "docs/assets/media/gadget-hammer-hopper/v001/bounds.json": "7c544cc687ed4ab5c38eaf970fabb3138f635bbf4f92d0e50c71f1b3e1421b98",
+    "docs/assets/media/gadget-hammer-hopper/v001/three-inspection.json": "4f38a76f9ccfb4e2875ea7c6541e8d9c24e61744f25e8dadf5d8a0f8254651ed",
+    "docs/assets/media/gadget-hammer-hopper/v001/browser-inspection.json": "f7e2ce13c0a99729743d82c11f24493d2bb63350bcd5700dba5c35af6ccb56c2",
+    "docs/assets/media/gadget-hammer-hopper/v001/provenance.json": "689aef4947a149068b6962a395854d07c8d264848f03b386f76110fec441f092",
+    "docs/assets/media/gadget-hammer-hopper/v001/concept-row.png": "97945986221034ceb0cb563e1c8a06211e92bf96a73c3b10e9bab3058c2fc45e",
+    "docs/assets/media/gadget-hammer-hopper/v001/attack-contact-front.png": "5aad805caaaf8a6ed7874a1dc096273bff75687565ece3975a55e4dc2c9b18c1",
+    "docs/assets/media/gadget-hammer-hopper/v001/attack-contact-side.png": "7e542694b0f580ca09648690ce0f0efa769f7a2d69513f19b37fb5ee2203b94b",
+    "docs/assets/media/gadget-hammer-hopper/v001/attack-gameplay-scale.png": "ac05862e145cd06f63f5c8fb547361bef35bf956e368a10fb4fbda518a07941b",
+    "docs/assets/media/gadget-hammer-hopper/v001/attack-strip.png": "db809856d24667ef5a89dc40d4b0236ca324f83fee6a0a815d5244ecf1da1f89",
+    "docs/assets/media/gadget-hammer-hopper/v001/attack-windup-side.png": "2e86ba4cc8809a5c9749649201123fa915b6cad2a04a84e9eba673272ecc8230",
+    "docs/assets/media/gadget-hammer-hopper/v001/back.png": "4f6bf7e5c282d85cbc5d6203f061f768d89222104b80579775f09b63b2e3ab60",
+    "docs/assets/media/gadget-hammer-hopper/v001/beauty.png": "84b2d4aad97b0dfcc8d8af596d53d7efb4348bbb77be89d795a063d91d48e851",
+    "docs/assets/media/gadget-hammer-hopper/v001/concept-vs-export.png": "2c3ee93b81d01f5ea7d2058d8904bf19be59dab0a7749f727106da94510682a2",
+    "docs/assets/media/gadget-hammer-hopper/v001/defeat-held-front.png": "1345d3f8af37d0a145482f9622e95cde987e1226235c554690896a7c74f0cb58",
+    "docs/assets/media/gadget-hammer-hopper/v001/defeat-held.png": "fbdf8dda1ef93ca8c2099a1612fcb7279f20bd32cb7bddc5938b4cb15ece13da",
+    "docs/assets/media/gadget-hammer-hopper/v001/front.png": "ccf154b79d770534191d460263aa10397f170d6469663c338b734bc3beeac780",
+    "docs/assets/media/gadget-hammer-hopper/v001/motion-contact-sheet.png": "5aeefb61c09409cf001f8403642a8e1fdfde93c321b846f8681d2cd7a43816c6",
+    "docs/assets/media/gadget-hammer-hopper/v001/review.webm": "0ac6a77d988bcfaeb68e29f36a34c6dfb75d8aa40b928e0c19847e2c67e82bd2",
+    "docs/assets/media/gadget-hammer-hopper/v001/side.png": "aa6d74c66a812a99302e1d25f9d77f717e2507861ab2bc585fd5f881b19341a2",
+    "docs/assets/media/gadget-hammer-hopper/v001/threequarter.png": "4c1d5d87aaa3f29a38adc7c6bf4b0ceb4bd3995711b7fca651b8c7b1391082b1"
+  },
+  "parody_catalog_suggestion": {
+    "id": "gadget-hammer-hopper",
+    "title": "Gadget Hammer Hopper",
+    "reference": "a runaway cartoon toolbox gadget on a pogo spring with a giant rubber mallet",
+    "role": "ordinary",
+    "kind": "ordinary-a",
+    "periodId": "toon-clubhouse-v1",
+    "eligibleFrom": "2006-05-05",
+    "eligibleThrough": "2016-11-06",
+    "assetVersion": "v001"
+  },
+  "scene_catalog_motion": {
+    "gadget-hammer-hopper": {
+      "contactFraction": 0.625,
+      "height": 1.5414782316099696
+    }
+  },
+  "clip_mapping": {
+    "idle": "idle",
+    "chasing": "move",
+    "windup": "attack (0 \u2192 1.25 s contact)",
+    "strike": "attack",
+    "hit": "hit",
+    "defeated": "defeat"
+  },
+  "clips": {
+    "idle": {
+      "duration_s": 2.0,
+      "loop": true
+    },
+    "move": {
+      "duration_s": 0.7,
+      "loop": true
+    },
+    "attack": {
+      "duration_s": 2.0,
+      "loop": false
+    },
+    "hit": {
+      "duration_s": 0.6,
+      "loop": false
+    },
+    "defeat": {
+      "duration_s": 2.4,
+      "loop": false
+    }
+  },
+  "suggested_placement": "World A chapter 1, Clubhouse Capers (`clubhouse`): the Toon Clubhouse ordinaries beside the existing Runaway Gadget, under Captain Bully Cat. It shares the gadget helper's era window.",
+  "glb_sha256": "ac4f92e0ec57a172272616507cc399fd15e0c791ec768f6adfc4a64bad41530e",
+  "master_sha256": "a621c554ddce82297c290bcf1e81aef271879007124b1f777425ba16994ce1d2",
+  "triangles": 13912,
+  "glb_bytes": 1475240,
+  "height_m": 1.5414782316099696,
+  "review_page_sha256": "a6e265d35fb9a06bd60d4f5c832c895efd01a930cb6c13fcf4582c5a8f12a54c",
+  "review_state": "Awaiting Tom's review (PRD-004 Q-03)",
+  "durable_root": "/home/dev/artifacts/haynes-quest/action-worlds/v001/minions-a/gadget-hammer-hopper"
+}

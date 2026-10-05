@@ -1,0 +1,569 @@
+{
+  "title": "A8/B7 dense family-world synthetic browser verification",
+  "dateUtc": "2026-10-05T00:50:47.982Z",
+  "fixture": {
+    "mode": "isolated synthetic ephemeral editor playtest",
+    "url": "http://127.0.0.1:3016",
+    "data": "isolated synthetic project and images only; no family photos, credentials, database, or private API"
+  },
+  "method": {
+    "browser": "Playwright headless Chromium",
+    "controls": "ordinary on-screen joystick plus Space, F and Shift",
+    "strictCompletion": "12 distinct core ordinary anchors plus boss defeated; three memories collected; next age/level save; four optional encounters present, boss gate four; exact frozen chapter returned; zero media/page/console/HTTP errors",
+    "journeyDrawing": "WebGL calls suppressed only between captures in full lockstep journeys; game simulation, controls, asset loading and screenshot draws active",
+    "limit": "Chromium synthetic browser cannot establish Safari or physical phone/tablet behavior"
+  },
+  "routeSource": {
+    "initialDenseCommit": "0f6a693",
+    "correctedB2Commit": "c29cba1",
+    "levelDefinitions": [
+      {
+        "id": "family-a1",
+        "levelSha256At0f6a693": "6753e6984061f62514a5daa67faa420fc83ea9ef08996f04696058ce526e6900",
+        "levelSha256Atc29cba1": "6753e6984061f62514a5daa67faa420fc83ea9ef08996f04696058ce526e6900",
+        "identical": true
+      },
+      {
+        "id": "family-a2",
+        "levelSha256At0f6a693": "c809df420750c7bcae6482a6e25699fed56c83cb4f0e02f80c8a0ff58dea1e6f",
+        "levelSha256Atc29cba1": "c809df420750c7bcae6482a6e25699fed56c83cb4f0e02f80c8a0ff58dea1e6f",
+        "identical": true
+      },
+      {
+        "id": "family-a3",
+        "levelSha256At0f6a693": "bfe44be565ed2f925dda221ae32d48c31f46a7cc26fd1cbb58911f7b346a7d2a",
+        "levelSha256Atc29cba1": "bfe44be565ed2f925dda221ae32d48c31f46a7cc26fd1cbb58911f7b346a7d2a",
+        "identical": true
+      },
+      {
+        "id": "family-a4",
+        "levelSha256At0f6a693": "7156512af29958764002e621878de3e198e2c6001ba3b21f5d10211f6f7ef1df",
+        "levelSha256Atc29cba1": "7156512af29958764002e621878de3e198e2c6001ba3b21f5d10211f6f7ef1df",
+        "identical": true
+      },
+      {
+        "id": "family-b1",
+        "levelSha256At0f6a693": "4bce7f4be67533820bdc3c9b86998b1a69838c2e8020fa7af521822ccda725dc",
+        "levelSha256Atc29cba1": "4bce7f4be67533820bdc3c9b86998b1a69838c2e8020fa7af521822ccda725dc",
+        "identical": true
+      },
+      {
+        "id": "family-b2",
+        "levelSha256At0f6a693": "993392d1d0ee5ba5dea830820354ce291f83a2900432ecdf40d75f0421037d09",
+        "levelSha256Atc29cba1": "e65eb574b8bd29304370412869f6154e1c6d11efcc3b094a76d6854666259b59",
+        "identical": false
+      },
+      {
+        "id": "family-b3",
+        "levelSha256At0f6a693": "83766dad20b7baf2a5ad33141e42b929bdf5cd534bdb944aae72714a4fbed930",
+        "levelSha256Atc29cba1": "83766dad20b7baf2a5ad33141e42b929bdf5cd534bdb944aae72714a4fbed930",
+        "identical": true
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "id": "family-a1",
+      "sourceCommit": "0f6a693",
+      "projectRevision": 4,
+      "projectFingerprint": "cbac866a0878c3e50210626218420ad539b9084b11b8fc44249d508dd05c1ea9",
+      "theme": "clubhouse",
+      "decorCount": 102,
+      "completed": true,
+      "nextLevel": "family-a2-harbor",
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 35,
+      "fallRecoveries": 0,
+      "combatKnockouts": null,
+      "earlyNormalAttacks": 0,
+      "wallSeconds": 90,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-a1-complete/family-a1.json"
+    },
+    {
+      "id": "family-a2",
+      "sourceCommit": "0f6a693",
+      "projectRevision": 4,
+      "projectFingerprint": "cbac866a0878c3e50210626218420ad539b9084b11b8fc44249d508dd05c1ea9",
+      "theme": "harbor",
+      "decorCount": 103,
+      "completed": true,
+      "nextLevel": "family-a3-rooftop",
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 30,
+      "fallRecoveries": 0,
+      "combatKnockouts": null,
+      "earlyNormalAttacks": 0,
+      "wallSeconds": 84,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-a2-a4-complete/family-a2.json"
+    },
+    {
+      "id": "family-a3",
+      "sourceCommit": "0f6a693",
+      "projectRevision": 4,
+      "projectFingerprint": "cbac866a0878c3e50210626218420ad539b9084b11b8fc44249d508dd05c1ea9",
+      "theme": "rooftop",
+      "decorCount": 181,
+      "completed": true,
+      "nextLevel": "family-a4-casino",
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 37,
+      "fallRecoveries": 0,
+      "combatKnockouts": 0,
+      "earlyNormalAttacks": 0,
+      "wallSeconds": 122,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-a3-complete-v2/family-a3.json"
+    },
+    {
+      "id": "family-a4",
+      "sourceCommit": "0f6a693",
+      "projectRevision": 4,
+      "projectFingerprint": "cbac866a0878c3e50210626218420ad539b9084b11b8fc44249d508dd05c1ea9",
+      "theme": "casino",
+      "decorCount": 93,
+      "completed": true,
+      "nextLevel": null,
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 36,
+      "fallRecoveries": 0,
+      "combatKnockouts": 0,
+      "earlyNormalAttacks": 0,
+      "wallSeconds": 142,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-a4-complete-v2/family-a4.json"
+    },
+    {
+      "id": "family-b1",
+      "sourceCommit": "0f6a693",
+      "projectRevision": 4,
+      "projectFingerprint": "68bd090975b4cd0e8966e4d4179db5d3d9ab60c9edd601da3bc3291948787440",
+      "theme": "playroom",
+      "decorCount": 81,
+      "completed": true,
+      "nextLevel": "family-b2-casita",
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 28,
+      "fallRecoveries": 0,
+      "combatKnockouts": null,
+      "earlyNormalAttacks": 0,
+      "wallSeconds": 62,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-b1-complete/family-b1.json"
+    },
+    {
+      "id": "family-b2",
+      "sourceCommit": "c29cba1",
+      "projectRevision": 4,
+      "projectFingerprint": "825952eade1ebb83f96556d21db90ccba61554d94c4b5085163eff83c5f7ce52",
+      "theme": "casita",
+      "decorCount": 111,
+      "completed": true,
+      "nextLevel": "family-b3-stage",
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 29,
+      "fallRecoveries": 0,
+      "combatKnockouts": 1,
+      "earlyNormalAttacks": 2,
+      "wallSeconds": 99,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-b2-c29cba1/family-b2.json"
+    },
+    {
+      "id": "family-b3",
+      "sourceCommit": "0f6a693",
+      "projectRevision": 4,
+      "projectFingerprint": "68bd090975b4cd0e8966e4d4179db5d3d9ab60c9edd601da3bc3291948787440",
+      "theme": "party",
+      "decorCount": 93,
+      "completed": true,
+      "nextLevel": null,
+      "coreOrdinaryDefeated": 12,
+      "bossDefeated": true,
+      "memoriesCollected": 3,
+      "legs": 33,
+      "fallRecoveries": 0,
+      "combatKnockouts": 0,
+      "earlyNormalAttacks": 0,
+      "wallSeconds": 105,
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "originalReport": "test-results/family-world-lockstep/action-final-b3-complete/family-b3.json"
+    }
+  ],
+  "diagnostics": {
+    "b2BlockingFoe": "Initial memory-first route stalled when ordinary-9 pursued into a narrow path. The normal-key pilot now attacks the blocking ordinary foe opportunistically. A strict corrected-source B2 rerun passed with two early attacks and one combat knockout.",
+    "a4RaisedSide": "A8 high-board overlaps its lower source deck by 1.4m and rises 0.6m. The pilot previously walked into its wall; normal jump from safe source takeoff landed on high-board in about 0.69s. Strict A4 rerun passed.",
+    "a3MemoryOrder": "At putty-plaza, core foes share the memory deck; fighting them before the memory avoids body blocking. Strict A3 rerun passed."
+  },
+  "portrait": {
+    "a1": {
+      "layout": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "controls": {
+          "move": {
+            "x": 12,
+            "y": 644.40625,
+            "width": 171.59375,
+            "height": 171.59375
+          },
+          "jump": {
+            "x": 282,
+            "y": 720,
+            "width": 96,
+            "height": 96
+          },
+          "attack": {
+            "x": 202.5,
+            "y": 634,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "scrollWidth": 390
+      },
+      "plantHttp200": [
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-canopy-tree.glb",
+          "status": 200
+        },
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-cypress.glb",
+          "status": 200
+        },
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-flowering-shrub.glb",
+          "status": 200
+        }
+      ],
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "stoppedAt": "first-fight"
+    },
+    "b1": {
+      "layout": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "controls": {
+          "move": {
+            "x": 12,
+            "y": 644.40625,
+            "width": 171.59375,
+            "height": 171.59375
+          },
+          "jump": {
+            "x": 282,
+            "y": 720,
+            "width": 96,
+            "height": 96
+          },
+          "attack": {
+            "x": 202.5,
+            "y": 634,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "scrollWidth": 390
+      },
+      "plantHttp200": [
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-cypress.glb",
+          "status": 200
+        },
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-flowering-shrub.glb",
+          "status": 200
+        }
+      ],
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "stoppedAt": "first-fight"
+    }
+  },
+  "studio": {
+    "smoke": {
+      "result": "passed",
+      "pages": 12,
+      "models": 9,
+      "clips": 7,
+      "audio": 4,
+      "touchOrbits": 2,
+      "media": 113,
+      "pageErrors": 0,
+      "siteBuild": "strict MkDocs site after concept review fixes 2bdfc2b",
+      "browser": "Chromium 153 SwiftShader"
+    },
+    "catalog": {
+      "result": "passed",
+      "inventoryEntries": 115,
+      "thumbnailFiles": 165,
+      "desktopCards": 115,
+      "phoneCards": 115,
+      "modelDeliveries": 86,
+      "reviewPages": 81,
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "badResponses": 0,
+      "failedRequests": 0,
+      "externalRequests": 0,
+      "expectedCancelledVideoMetadataPreloads": 14,
+      "fullIgnoredReport": "test-results/visual-catalog/report.json",
+      "physicalSafari": "not tested"
+    }
+  },
+  "render": {
+    "sourceCommit": "66f9c31 bound exact planting GLBs (app build 7b481b4)",
+    "method": {
+      "browser": "Playwright Chromium 153, ANGLE SwiftShader",
+      "viewport": "1280x760 CSS, device scale 0.25; screenshots at scale 1",
+      "allCriticalAssetsLoadedBeforeWarmup": true,
+      "warmupMinimumMs": 3000,
+      "sampleDurationTargetMs": 5000,
+      "webglCounts": "intercepted drawArrays/drawElements including instanced variants per requestAnimationFrame; triangle estimates include repeated shadow-pass geometry",
+      "limitation": "busy shared software renderer; no physical-device FPS or Safari claim"
+    },
+    "a1": {
+      "projectFingerprint": "cbac866a0878c3e50210626218420ad539b9084b11b8fc44249d508dd05c1ea9",
+      "loadedGlbCount": 22,
+      "loadedGlbBytes": 9088076,
+      "maxLocalModelResponseMs": 68.6,
+      "plantResponses": [
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-canopy-tree.glb",
+          "bytes": 206968,
+          "sha256": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+          "durationMs": 48.2
+        },
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-cypress.glb",
+          "bytes": 94368,
+          "sha256": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1",
+          "durationMs": 46.1
+        },
+        {
+          "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-flowering-shrub.glb",
+          "bytes": 189464,
+          "sha256": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c",
+          "durationMs": 49.5
+        }
+      ],
+      "spawn": {
+        "warmupAfterAssetsMs": 3000,
+        "durationMs": 4642,
+        "frames": 41,
+        "meanFrameMs": 113.22,
+        "p95FrameMs": 472,
+        "meanDrawCalls": 394.4,
+        "p95DrawCalls": 385,
+        "meanTriangles": 628086,
+        "p95Triangles": 613132,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1280,
+          "height": 760,
+          "deviceScaleFactor": 0.25
+        },
+        "deviceEvidence": false
+      },
+      "firstFight": {
+        "warmupAfterAssetsMs": 237110,
+        "durationMs": 5169,
+        "frames": 57,
+        "meanFrameMs": 90.68,
+        "p95FrameMs": 918,
+        "meanDrawCalls": 469.9,
+        "p95DrawCalls": 464,
+        "meanTriangles": 729122,
+        "p95Triangles": 718003,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1280,
+          "height": 760,
+          "deviceScaleFactor": 0.25
+        },
+        "deviceEvidence": false
+      },
+      "errors": {
+        "page": 0,
+        "console": 0,
+        "http": 0,
+        "media": 0
+      },
+      "note": "render sample is valid; same run later failed side-gap escape after a combat reset"
+    },
+    "preBindingDiagnostic": {
+      "source": "c29cba1 before 66f9c31",
+      "plantGlbRequests": 0,
+      "spawnMeanDrawCalls": 397.5,
+      "spawnMeanTriangles": 521089,
+      "firstFightMeanDrawCalls": 471.6,
+      "firstFightMeanTriangles": 621719,
+      "interpretation": "pre-binding screenshots used procedural planting stand-ins; this diagnostic is not final visual proof"
+    }
+  },
+  "exactPlantAssets": [
+    {
+      "id": "broad-canopy-tree",
+      "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-canopy-tree.glb",
+      "bytes": 206968,
+      "sha256": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4"
+    },
+    {
+      "id": "slim-cypress",
+      "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-cypress.glb",
+      "bytes": 94368,
+      "sha256": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1"
+    },
+    {
+      "id": "flowering-shrub",
+      "path": "/studio/assets/media/storybook-planting-kit/v001/storybook-flowering-shrub.glb",
+      "bytes": 189464,
+      "sha256": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"
+    }
+  ],
+  "renderSource": {
+    "boundPlantCommit": "66f9c31",
+    "integratedAppBuild": "7b481b4",
+    "webglInstrumentationCommit": "06aedac"
+  },
+  "screenshots": [
+    {
+      "path": ".agents/evidence/action-worlds/a8-a1-spawn-bound.png",
+      "bytes": 368247,
+      "sha256": "30ea556a377508441bdcc85c2654ac0191094fe59580763b1c19bdb776ad5daf",
+      "data": "synthetic fixture only"
+    },
+    {
+      "path": ".agents/evidence/action-worlds/a8-a1-first-fight-bound.png",
+      "bytes": 415362,
+      "sha256": "689f4ce150e9b3d2733f40ce349726770d8925980581064806db342df8677682",
+      "data": "synthetic fixture only"
+    },
+    {
+      "path": ".agents/evidence/action-worlds/b7-b1-spawn-bound.png",
+      "bytes": 313601,
+      "sha256": "ba41f2eb8427954ec3b54da30469901b2de1af5cb10eafd5216b0a71f5aaebb6",
+      "data": "synthetic fixture only"
+    },
+    {
+      "path": ".agents/evidence/action-worlds/a8-a1-portrait-spawn.png",
+      "bytes": 156304,
+      "sha256": "b40cb1714f768a4bf95e1aba2e2c8edc23016c3dd18e531ccab800a2bba12552",
+      "data": "synthetic fixture only"
+    },
+    {
+      "path": ".agents/evidence/action-worlds/a8-a1-portrait-fight.png",
+      "bytes": 221146,
+      "sha256": "981b7d2fdef9f8f659564d9988052aa2652de0d9c869cc28339dbb68153462da",
+      "data": "synthetic fixture only"
+    },
+    {
+      "path": ".agents/evidence/action-worlds/b7-b1-portrait-spawn.png",
+      "bytes": 126860,
+      "sha256": "45239c7ec1a29564ebaafc0636198f18271f8d879c3ac756615b11853bf0c221",
+      "data": "synthetic fixture only"
+    },
+    {
+      "path": ".agents/evidence/action-worlds/b7-b1-portrait-fight.png",
+      "bytes": 150007,
+      "sha256": "9c511c4e7c12629be8d4ff61d4f3c57b7ae031ed2204c3a64d0e29ccc71bab7b",
+      "data": "synthetic fixture only"
+    }
+  ],
+  "pursuit": {
+    "a8SameFloor": {
+      "chapter": "family-a1",
+      "enemySlot": "ordinary-10",
+      "runs": [
+        {
+          "label": "with 5s first-fight sample",
+          "wallSeconds": 386,
+          "fallRecoveries": 0,
+          "failureSummary": "ordinary-10: the side-gap escape did not recover at a checkpoint ({\"start\":{\"x\":4.170199208866768,\"y\":0.29999999999999993,\"z\":-26.47836541532281},\"end\":{\"x\":0,\"y\":0,\"z\":2.5},\"supportId\":\"meadow-start\",\"phase\":\"exploring\",\"hp\":10,\"recoveries\":0,\"minX\":0,\"maxX\":4.426199208866768})",
+          "ignoredFullReport": "test-results/family-world-lockstep/action-final-a1-bound-chase/family-a1.json"
+        },
+        {
+          "label": "separate without stationary first-fight exposure",
+          "wallSeconds": 151,
+          "fallRecoveries": 0,
+          "failureSummary": "ordinary-10: the side-gap escape did not recover at a checkpoint ({\"start\":{\"x\":3.3219987553749113,\"y\":0.29999999999999993,\"z\":-27.579475630639955},\"end\":{\"x\":0,\"y\":0,\"z\":2.5},\"supportId\":\"meadow-start\",\"phase\":\"exploring\",\"hp\":10,\"recoveries\":0,\"minX\":0,\"maxX\":4.55799875537491})",
+          "ignoredFullReport": "test-results/family-world-lockstep/action-final-a1-bound-chase-separate/family-a1.json"
+        }
+      ],
+      "sameFloorPursuitChecksPassedBeforeGap": true,
+      "gapRecoveryPassed": false,
+      "interpretation": "A8 pursuer left the spawn arena and remained on its deck in the real-time same-floor checks. During side-gap escape the player reset to spawn from combat before a fall; a distinct A8 gap-recovery pass is not claimed."
+    },
+    "a7EstablishedGap": {
+      "evidence": ".agents/evidence/action-worlds/a7-chase-portrait.json",
+      "chapter": "family-a1 on earlier A7 source c17f40a",
+      "enemyMovedMeters": 2.48,
+      "enemyExitedArenaMeters": 3,
+      "sameFloorSamples": 4,
+      "gapRecovery": true,
+      "enemyStayedOnOriginalFloor": true
+    }
+  },
+  "sourceNote": "A1/A2/A3/A4/B1/B3 level objects are byte-identical under canonical JSON between 0f6a693 and c29cba1; B2 decor differs and was strictly rerun on c29cba1. Later binding commit 66f9c31 changed scenic model mapping/bounds, not authored route geometry or collision."
+}

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it, vi } from "vitest";
 import * as THREE from "three";
@@ -6,6 +7,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { CasinoScene } from "../../src/game/casino-scene";
 import { planCasinoCollectibles } from "../../src/game/casino-tokens";
 import { DecorScene } from "../../src/game/decor-scene";
+import { storybookPlantingKit } from "../../src/game/scene-catalog";
 import type { LevelLayout } from "../../src/game/level";
 import { SceneAssets } from "../../src/game/scene-assets";
 import {
@@ -16,9 +18,9 @@ import {
 } from "../../src/game/theme-kits";
 import { TokenScene } from "../../src/game/token-scene";
 import { WORLD_THEMES } from "../../src/game/world-themes";
-import { AUTHORED_LEVEL_V4_ONLY_THEMES } from "../../src/shared/authored-level";
+import { AUTHORED_LEVEL_V4_ONLY_THEMES, type AuthoredDecor } from "../../src/shared/authored-level";
 import { resolveLevelEditorProject } from "../../src/shared/editor-project";
-import { decorWorldBounds, THEME_KIT_PROPS, themeKitPropsFor } from "../../src/shared/theme-kits";
+import { decorWorldBounds, THEME_KIT_PROPS, themeKitProp, themeKitPropsFor } from "../../src/shared/theme-kits";
 
 const demo = resolveLevelEditorProject(
   JSON.parse(
@@ -81,6 +83,56 @@ describe("theme-kit registry (DESIGN-025 D-05)", () => {
 });
 
 describe("placed decor rendering", () => {
+  it("loads the reviewed planting GLBs for actual A8 decor and hides their stand-ins", () => {
+    const expected = [
+      ["broad-canopy-tree", "storybook-canopy-tree.glb", "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4"],
+      ["slim-cypress", "storybook-cypress.glb", "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1"],
+      ["flowering-shrub", "storybook-flowering-shrub.glb", "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"],
+    ] as const;
+    const project = JSON.parse(readFileSync(new URL("../../src/shared/levels/family-world-a-v8.json", import.meta.url), "utf8")) as {
+      chapters: Array<{ chapterId: string; level: { decor: AuthoredDecor[] } }>;
+    };
+    const inspection = JSON.parse(readFileSync(new URL("../../docs/assets/media/storybook-planting-kit/v001/three-inspection.json", import.meta.url), "utf8")) as {
+      props: Record<string, { bounds_y_up: { min: [number, number, number]; max: [number, number, number] } }>;
+    };
+    const a1 = project.chapters.find((chapter) => chapter.chapterId === "family-a1")!;
+    const planting = a1.level.decor.filter((entry) =>
+      expected.some(([id]) => entry.kitPropId === id) ||
+      entry.kitPropId === "storybook-flower-bed" || entry.kitPropId === "storybook-planter-island");
+    const requests: Array<{ url: string; count: number }> = [];
+    const assets = {
+      attachInstances: (url: string, target: THREE.Object3D, matrices: readonly THREE.Matrix4[]) => {
+        requests.push({ url, count: matrices.length });
+        target.add(new THREE.Group()); // completed load, as SceneAssets does
+      },
+    };
+    const scene = new DecorScene(planting, assets, () => true);
+    scene.update();
+    for (const [id, filename, sha256] of expected) {
+      const prop = themeKitProp(id)!;
+      const url = `/studio/assets/media/storybook-planting-kit/v001/${filename}`;
+      expect(prop.glb).toEqual({ url, sha256 });
+      expect(storybookPlantingKit[id].url).toBe(url);
+      const file = new URL(`../../docs${url.replace("/studio", "")}`, import.meta.url);
+      expect(createHash("sha256").update(readFileSync(file)).digest("hex")).toBe(sha256);
+      const measured = inspection.props[filename.slice(0, -4)]!.bounds_y_up;
+      const registeredMin = [prop.bounds.min.x, prop.bounds.min.y, prop.bounds.min.z];
+      const registeredMax = [prop.bounds.max.x, prop.bounds.max.y, prop.bounds.max.z];
+      for (let axis = 0; axis < 3; axis++) {
+        expect(registeredMin[axis]!, `${id} min ${axis}`).toBeLessThanOrEqual(measured.min[axis]!);
+        expect(registeredMax[axis]!, `${id} max ${axis}`).toBeGreaterThanOrEqual(measured.max[axis]!);
+      }
+      expect(requests).toContainEqual({
+        url,
+        count: planting.filter((entry) => entry.kitPropId === id).length,
+      });
+      expect(scene.root.getObjectByName(`decor-fallback-${id}`)?.visible).toBe(false);
+    }
+    expect(requests).toHaveLength(3);
+    expect(scene.root.getObjectByName("decor-fallback-storybook-flower-bed")?.visible).toBe(true);
+    expect(scene.root.getObjectByName("decor-fallback-storybook-planter-island")?.visible).toBe(true);
+  });
+
   it("draws procedural stand-ins sized to each prop and swaps in a loaded model", () => {
     const requests: Array<{ url: string; matrices: readonly THREE.Matrix4[]; target: THREE.Object3D }> = [];
     const assets = {

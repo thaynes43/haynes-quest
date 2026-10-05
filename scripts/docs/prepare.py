@@ -49,6 +49,13 @@ def source_files() -> dict[Path, Path]:
             fail(f"refusing to copy symlink from .agents: {source.relative_to(REPO_ROOT)}")
         mappings[source.resolve()] = Path("project") / source.relative_to(agents_root)
 
+    # Evidence screenshots linked by project records must remain local media in
+    # the staged site, just like images linked from docs/ Markdown.
+    for source in sorted((agents_root / "evidence").rglob("*.png")):
+        if source.is_symlink():
+            fail(f"refusing to copy symlink from .agents: {source.relative_to(REPO_ROOT)}")
+        mappings[source.resolve()] = Path("project") / source.relative_to(agents_root)
+
     contributor_guide = (REPO_ROOT / "AGENTS.md").resolve()
     if contributor_guide.exists():
         mappings[contributor_guide] = Path("project/contributor-guide.md")

@@ -1,0 +1,146 @@
+{
+  "asset_id": "bin-chicken-flower-thief",
+  "version": "v001",
+  "files": {
+    "action-contact.png": {
+      "bytes": 41065,
+      "sha256": "6cd3fa8ad2adf8a7073befeed81405719f6e882be94de627cabd0efaa7a8e90f"
+    },
+    "action-defeat.png": {
+      "bytes": 30896,
+      "sha256": "b2f3ad1d77bc419e73239e99aaf24e78fdd6ab67b166c6ca214228c3b6f5479b"
+    },
+    "action-hit.png": {
+      "bytes": 44112,
+      "sha256": "eba37ce89da3f6506a9d85120afb688892c834a2b707b324bd9d477bdbadcd2f"
+    },
+    "action-windup.png": {
+      "bytes": 47589,
+      "sha256": "7f1b4b61d461ad674940f72e3cb246aab2917c267602a1ba02252c9dfa279e0f"
+    },
+    "attack-gameplay-scale.png": {
+      "bytes": 33488,
+      "sha256": "749c151622a3b4847b44f9675b8ae868f8288ed7e0e5729b79bcef722bba3d23"
+    },
+    "back.png": {
+      "bytes": 52160,
+      "sha256": "14c3759dc057c0c5acef8141184b768fe763e47c20f8da1d94a582e96c19e569"
+    },
+    "beauty.png": {
+      "bytes": 45246,
+      "sha256": "1c1627eafb049616933860ee074618f1762428def8f84fa79f30d15e8989c274"
+    },
+    "bin-chicken-flower-thief.blend": {
+      "bytes": 735885,
+      "sha256": "77027bdac7ae218cf68d30ba9bebe7e34018e34e2c58939b42a5f629ba2f2706"
+    },
+    "bin-chicken-flower-thief.glb": {
+      "bytes": 1066968,
+      "sha256": "e9189113197c453174eab9c8d0a0f2005ea60fd478befc06c60f0aa8988378b4"
+    },
+    "browser-inspection.json": {
+      "bytes": 18485,
+      "sha256": "972b0725bba16964b8e38f2f542862d23bc84731309f2ff97ab6483d306ee9ce"
+    },
+    "concept-vs-model.png": {
+      "bytes": 326653,
+      "sha256": "b5dce3e08adae3d7ae2a45c9fac4150ca2e7d81fd502ef872f262caad4d1baab"
+    },
+    "concept.png": {
+      "bytes": 628396,
+      "sha256": "8b966aef032ed2729bd3954ca85f362ca9cea8aa1ace7864c083c6e14b94b7f6"
+    },
+    "construction.json": {
+      "bytes": 28633,
+      "sha256": "3052bd2fdebd092822bb2f3241287eaa560c2b6014dbc8929419b523e75ec954"
+    },
+    "front.png": {
+      "bytes": 49557,
+      "sha256": "0546f254ae4c9d3e1df976bfe2045bbef19e021c01aeaf44e760abbb8416f243"
+    },
+    "motion-contact-sheet.png": {
+      "bytes": 213374,
+      "sha256": "7122f72b596f24e41092a7660a8c144af80f78332d90bb5a8413b886b5bd86c8"
+    },
+    "provenance.json": {
+      "bytes": 3780,
+      "sha256": "14d57bb0043bf4be9ee6ab46ea9fe2ced0787736fc46d33957b1c7af6496eb2b"
+    },
+    "side.png": {
+      "bytes": 42111,
+      "sha256": "9896efefb7b2861ae67eb5f75cdf5b2c78fccca0b41fecc295479b988f197c5a"
+    },
+    "source/assets.json": {
+      "bytes": 3191,
+      "sha256": "2602dca443a2a72fe97d835345236cd945cf49d95f08c5ac546fee128c5435f5"
+    },
+    "source/claim.py": {
+      "bytes": 2807,
+      "sha256": "83026e23dac484a9d2d658c8f6345c3a2249add0b63263d00ced5b60aeaecb99"
+    },
+    "source/common.py": {
+      "bytes": 27346,
+      "sha256": "80ee80df8305993e7ae3d4677e20036cd448e36965f98013ef0bd85a6fb22f7b"
+    },
+    "source/compare.mjs": {
+      "bytes": 1429,
+      "sha256": "bd0c19d52b8b5c239f59ff3b21e9c59adb636ed45a976f8c490b3e6da904a61b"
+    },
+    "source/deliver.py": {
+      "bytes": 6512,
+      "sha256": "972f1e8d266b971e295ff8b42790ab26c56fc5b773e9cc04a884e5832af1d98d"
+    },
+    "source/diag.py": {
+      "bytes": 1471,
+      "sha256": "4c53e24f7a97375536810d67c060334f62d16e245b2a04c1e0ae43bbf67f1163"
+    },
+    "source/fetch_look.py": {
+      "bytes": 960,
+      "sha256": "2e8184c0c34c9f0634445b7b5bd3a0f484d32d635806d244f76a27af0ca2b416"
+    },
+    "source/ibis.py": {
+      "bytes": 18524,
+      "sha256": "ed15be3af225c4e5f381b8345e44e6264e956ea849cd07081bf2f9411cece679"
+    },
+    "source/inspect-three.mjs": {
+      "bytes": 9278,
+      "sha256": "fdd9dee23b1a01c1aac2159b3b902fca8c49e854570c1d9c3e0a0e4b8c6c6c84"
+    },
+    "source/look.py": {
+      "bytes": 5489,
+      "sha256": "5560805c1f21ea9e232a89f3fefe203c9a445284d565a04f74e41bf1723a93c9"
+    },
+    "source/preview.mjs": {
+      "bytes": 11397,
+      "sha256": "1cbae36a73782c02e326df4e5e8656c817abb9d122b92c113493b51fcb97ecb5"
+    },
+    "source/run.py": {
+      "bytes": 1025,
+      "sha256": "2c71659dad1bdf0b0f06535977314c1c0cd377dfb7b478fe6b11426f3af56597"
+    },
+    "source/run_validate.py": {
+      "bytes": 731,
+      "sha256": "4e783a9674b55da32db692fdb198184bbe2c90641159625346abf7f82abf527f"
+    },
+    "source/transfer.py": {
+      "bytes": 4244,
+      "sha256": "4ce93f9d2557418bd10ba690719c76f6ce247deec376ba82afef76821cb1c3fb"
+    },
+    "source/validate.mjs": {
+      "bytes": 7915,
+      "sha256": "9c37a035c76bd2cb111067055d691fef67101d6608d42d3e5dd886d06860a44e"
+    },
+    "three-inspection.json": {
+      "bytes": 7512,
+      "sha256": "dccb22c47135f118452738a5d5c6eb9005cb8ee893c29f713ed86d5b1245e4ef"
+    },
+    "threequarter.png": {
+      "bytes": 46864,
+      "sha256": "06740c615c63b035026f755e881ecd69a438277a3f94d96ae970a5074618bd26"
+    },
+    "validation.json": {
+      "bytes": 4060,
+      "sha256": "b18131ca84adb0497d403c176211d8bff002a2829283358bf3f6d7eae45ea4d4"
+    }
+  }
+}

@@ -80,7 +80,7 @@ export function FamilyHome({
                 : "Tap to start your quest"}
             </span>
             {admin && journey.newerPublication && (
-              <small>New photos are published. Use Start fresh in Family setup to play with them.</small>
+              <small>A new quest version is ready. Use Start fresh in Family setup to play it.</small>
             )}
           </button>
         ))}

@@ -221,6 +221,8 @@ function validateCast(
       (level.bossPrerequisiteDefeats ?? 0) < 0 ||
       (level.bossPrerequisiteDefeats ?? 0) > 4)
     fail('level.boss-prerequisite');
+  const coreCount = level.encounters.length - optionalIds.length - 1;
+  if (coreCount < 4 || coreCount > 12) fail('level.core-encounters');
   // Ordinary slots take either ordinary kind (a chapter with one ordinary
   // identity uses its kind in all four, DESIGN-026); stats follow the
   // encounter's actual kind.
@@ -229,6 +231,10 @@ function validateCast(
     { id: `${level.id}-encounter-2`, role: 'ordinary', kind: null, optional: false },
     { id: `${level.id}-encounter-3`, role: 'ordinary', kind: null, optional: false },
     { id: `${level.id}-encounter-4`, role: 'ordinary', kind: null, optional: false },
+    ...Array.from({ length: Math.max(0, coreCount - 4) }, (_, offset) => ({
+      id: `${level.id}-encounter-${offset + 5}`, role: 'ordinary' as const,
+      kind: null, optional: false,
+    })),
     { id: `${level.id}-boss`, role: 'boss', kind: 'boss', optional: false },
     ...optionalIds.map((id) => ({ id, role: 'ordinary' as const, kind: null, optional: true })),
   ];

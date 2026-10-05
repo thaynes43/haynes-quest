@@ -89,6 +89,7 @@ describe("parody-catalog-v8", () => {
       "parody-catalog-v9",
       "parody-catalog-v10",
       "parody-catalog-v11",
+      "parody-catalog-v12",
     ]);
     const v7 = PARODY_CATALOGS["parody-catalog-v7"];
     const v8 = PARODY_CATALOGS["parody-catalog-v8"];
@@ -147,6 +148,7 @@ describe("parody-catalog-v8", () => {
       "parody-catalog-v9",
       "parody-catalog-v10",
       "parody-catalog-v11",
+      "parody-catalog-v12",
     ]);
     const ids = (entries: readonly ParodyCatalogEntry[]) => entries.map((entry) => entry.id);
     expect(ids(levelEditorPreparedEnemies("parody-catalog-v8"))).toEqual([

@@ -78,17 +78,25 @@ export const AUTHORED_REQUIRED_ENCOUNTER_SLOTS = [
   "ordinary-4",
   "boss",
 ] as const;
+/** Additional main-route fights. Older frozen routes legitimately have only four. */
+export const AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS = [
+  "ordinary-5", "ordinary-6", "ordinary-7", "ordinary-8",
+  "ordinary-9", "ordinary-10", "ordinary-11", "ordinary-12",
+] as const;
 export const AUTHORED_BONUS_ENCOUNTER_SLOTS = [
   "bonus-1", "bonus-2", "bonus-3", "bonus-4",
 ] as const;
 export const AUTHORED_ENCOUNTER_SLOTS = [
   ...AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
+  ...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS,
   ...AUTHORED_BONUS_ENCOUNTER_SLOTS,
 ] as const;
 export type AuthoredRequiredEncounterSlot =
   (typeof AUTHORED_REQUIRED_ENCOUNTER_SLOTS)[number];
 export type AuthoredBonusEncounterSlot =
   (typeof AUTHORED_BONUS_ENCOUNTER_SLOTS)[number];
+export type AuthoredExtendedCoreEncounterSlot =
+  (typeof AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS)[number];
 export type AuthoredEncounterSlot = (typeof AUTHORED_ENCOUNTER_SLOTS)[number];
 
 export interface AuthoredPosition {
@@ -265,6 +273,7 @@ export interface AuthoredLevelAnchors {
   >;
   readonly encounters: Readonly<
     Record<AuthoredRequiredEncounterSlot, AuthoredEncounterAnchor> &
+      Partial<Record<AuthoredExtendedCoreEncounterSlot, AuthoredEncounterAnchor>> &
       Partial<Record<AuthoredBonusEncounterSlot, AuthoredEncounterAnchor>>
   >;
   readonly friendlies: Readonly<
@@ -706,6 +715,14 @@ const authoredLevelV3AnchorsSchema = authoredLevelAnchorsSchema
   .extend({
     encounters: authoredLevelAnchorsSchema.shape.encounters
       .extend({
+        "ordinary-5": encounterAnchorSchema.optional(),
+        "ordinary-6": encounterAnchorSchema.optional(),
+        "ordinary-7": encounterAnchorSchema.optional(),
+        "ordinary-8": encounterAnchorSchema.optional(),
+        "ordinary-9": encounterAnchorSchema.optional(),
+        "ordinary-10": encounterAnchorSchema.optional(),
+        "ordinary-11": encounterAnchorSchema.optional(),
+        "ordinary-12": encounterAnchorSchema.optional(),
         "bonus-1": encounterAnchorSchema.optional(),
         "bonus-2": encounterAnchorSchema.optional(),
         "bonus-3": encounterAnchorSchema.optional(),
@@ -2158,10 +2175,26 @@ function validateSemantic(document: AuthoredLevelDocument): AuthoredLevelIssue[]
     "ordinary-3",
     "ordinary-4",
   ] as const).map((slot) => document.anchors.encounters[slot]);
+  const extendedAnchors: AuthoredEncounterAnchor[] = [];
+  for (const slot of AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS) {
+    const anchor = document.anchors.encounters[slot];
+    if (anchor) {
+      extendedAnchors.push(anchor);
+      if (!mainIndex.has(anchor.platformId))
+        issue(issues, `$.anchors.encounters[${JSON.stringify(slot)}].platformId`,
+          "ordering.main-path", "Core encounter must be on the main path");
+    }
+  }
   const ordinaryIndexes = ordinaryAnchors.map(indexOf);
-  const firstFight = Math.min(...ordinaryIndexes);
+  const firstFight = Math.min(...ordinaryIndexes, ...extendedAnchors.map(indexOf));
   const boss = document.anchors.encounters.boss;
   const bossIndex = indexOf(boss);
+  for (const slot of AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS) {
+    const anchor = document.anchors.encounters[slot];
+    if (anchor && indexOf(anchor) >= bossIndex)
+      issue(issues, `$.anchors.encounters[${JSON.stringify(slot)}].platformId`,
+        "ordering.core-before-boss", "Core encounter must precede the boss");
+  }
   for (const slot of AUTHORED_BONUS_ENCOUNTER_SLOTS) {
     const bonus = document.anchors.encounters[slot];
     if (!bonus) continue;
@@ -2572,6 +2605,9 @@ interface ProtectedVolume {
   readonly floor: number;
   /** The highest standing (or launch apex) height inside the volume. */
   readonly highest: number;
+  readonly platformId?: string;
+  /** Extra objective/hazard clearance for low planting exempted from its support deck. */
+  readonly groundcoverOnly?: true;
 }
 
 /**
@@ -2593,6 +2629,7 @@ function validateDecor(
     const range = authoredSurfaceTopRange(platform);
     volumes.push({
       label: `the walkable space above ${JSON.stringify(platform.id)}`,
+      platformId: platform.id,
       bounds: platformBounds(platform),
       floor: range.min,
       highest:
@@ -2631,6 +2668,32 @@ function validateDecor(
       highest: platformTop(support),
     });
   }
+  // Low beds may decorate a deck corner, but never an arrival, objective,
+  // recovery point or hazard sweep. These volumes remain protected even when
+  // the supporting deck's general walkable volume is exempted below.
+  const protectedPoints = [
+    ["spawn", document.anchors.spawn],
+    ["finish", document.anchors.finish],
+    ["reward respawn", document.anchors.rewardRespawn],
+    ...Object.entries(document.anchors.pickups),
+    ...Object.entries(document.anchors.memories),
+    ...Object.entries(document.anchors.friendlies),
+    ...document.pieces.filter((piece) => piece.type === "checkpoint").map((piece) => [piece.id, piece] as const),
+  ] as const;
+  for (const [label, anchor] of protectedPoints) {
+    const position = anchor.position;
+    const radius = 1.6;
+    volumes.push({ label: `${label} landing`, bounds: {
+      minX: position.x - radius, maxX: position.x + radius,
+      minZ: position.z - radius, maxZ: position.z + radius,
+    }, floor: position.y, highest: position.y, groundcoverOnly: true });
+  }
+  for (const piece of document.pieces) {
+    if (piece.type !== "sweeper") continue;
+    volumes.push({ label: `${piece.id} hazard`, bounds: hazardEnvelope(piece),
+      floor: piece.center.y - piece.radius, highest: piece.center.y + piece.radius,
+      groundcoverOnly: true });
+  }
 
   const seen = new Map<string, number>();
   decor.forEach((entry, index) => {
@@ -2668,8 +2731,16 @@ function validateDecor(
       minZ: world.min.z,
       maxZ: world.max.z,
     };
+    const groundcoverSupport = prop.surfaceGroundcover && world.max.y - world.min.y <= 0.8 + EPSILON
+      ? [...staticPlatforms.values()].find((platform) =>
+          Math.abs(world.min.y - platformTop(platform)) <= 0.08 &&
+          rectangleContains(staticPlatformBounds(platform), footprint, AUTHORED_LEVEL_LIMITS.supportEdgeClearance),
+        )
+      : undefined;
     const blocked = volumes.find(
       (volume) =>
+        (volume.groundcoverOnly !== true || prop.surfaceGroundcover === true) &&
+        (groundcoverSupport === undefined || volume.platformId !== groundcoverSupport.id) &&
         rectanglesHaveInteriorOverlap(footprint, volume.bounds) &&
         world.max.y > volume.floor + EPSILON &&
         world.min.y <

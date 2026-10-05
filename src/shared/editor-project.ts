@@ -5,6 +5,7 @@ import bestiesTemplate from "./levels/besties-playground-v2.json";
 import {
   AUTHORED_BONUS_ENCOUNTER_SLOTS,
   AUTHORED_ENCOUNTER_SLOTS,
+  AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS,
   AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
   AUTHORED_LEVEL_LIMITS,
   AUTHORED_LEVEL_SCHEMA_VERSION_V2,
@@ -22,6 +23,7 @@ import {
   type AuthoredAnchor,
   type AuthoredArena,
   type AuthoredBonusEncounterSlot,
+  type AuthoredExtendedCoreEncounterSlot,
   type AuthoredConnection,
   type AuthoredDecor,
   type AuthoredEncounterAnchor,
@@ -75,6 +77,7 @@ export const LEVEL_EDITOR_CATALOG_VERSIONS = [
   "parody-catalog-v9",
   "parody-catalog-v10",
   "parody-catalog-v11",
+  "parody-catalog-v12",
 ] as const satisfies readonly ParodyCatalogVersion[];
 export type LevelEditorCatalogVersion =
   (typeof LEVEL_EDITOR_CATALOG_VERSIONS)[number];
@@ -179,6 +182,7 @@ export type LevelEditorEncounterSlot = AuthoredEncounterSlot;
 
 export type LevelEditorEncounterSlots = Readonly<
   Record<AuthoredRequiredEncounterSlot, LevelEditorEncounterReference> &
+    Partial<Record<AuthoredExtendedCoreEncounterSlot, LevelEditorEncounterReference>> &
     Partial<Record<AuthoredBonusEncounterSlot, LevelEditorEncounterReference>>
 >;
 
@@ -418,6 +422,14 @@ export const levelEditorEncounterSlotsSchema = z
     "ordinary-2": levelEditorEncounterReferenceSchema,
     "ordinary-3": levelEditorEncounterReferenceSchema,
     "ordinary-4": levelEditorEncounterReferenceSchema,
+    "ordinary-5": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-6": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-7": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-8": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-9": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-10": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-11": levelEditorEncounterReferenceSchema.optional(),
+    "ordinary-12": levelEditorEncounterReferenceSchema.optional(),
     boss: levelEditorEncounterReferenceSchema,
     "bonus-1": levelEditorEncounterReferenceSchema.optional(),
     "bonus-2": levelEditorEncounterReferenceSchema.optional(),
@@ -523,6 +535,13 @@ const LEVEL_EDITOR_READY_IDENTITIES = new Set([
   "demon-band-idol@v001:demon-band-idol@v001",
   "radio-host-showman@v001:radio-host-showman@v001",
   "lab-robot@v001:lab-robot@v001",
+  // DESIGN-029 family variants with delivered, inspected v001 GLBs.
+  "gadget-hammer-hopper@v001:gadget-hammer-hopper@v001",
+  "broccoli-bouncer@v001:broccoli-bouncer@v001",
+  "bin-chicken-flower-thief@v001:bin-chicken-flower-thief@v001",
+  "demon-idol-drummer@v001:demon-idol-drummer@v001",
+  "mischief-kitten-skater@v001:mischief-kitten-skater@v001",
+  "lab-robot-sentry@v001:lab-robot-sentry@v001",
 ]);
 
 const LEVEL_EDITOR_BONUS_READY_IDENTITIES = new Set([
@@ -1064,7 +1083,7 @@ function validateWorldProject(
         );
     }
 
-    for (const slot of AUTHORED_BONUS_ENCOUNTER_SLOTS) {
+    for (const slot of [...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS, ...AUTHORED_BONUS_ENCOUNTER_SLOTS]) {
       const bonusAnchor = chapter.level.anchors.encounters[slot];
       const bonusReference = chapter.encounterSlots[slot];
       if (bonusAnchor !== undefined && bonusReference === undefined)
@@ -1074,8 +1093,16 @@ function validateWorldProject(
         issues.push(issue("semantic", `${prefix}.level.anchors.encounters[${JSON.stringify(slot)}]`,
           "encounter.bonus-pair", "The bonus encounter anchor and assignment must be present together"));
     }
+    let coreGap = false;
+    for (const slot of AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS) {
+      const present = chapter.level.anchors.encounters[slot] !== undefined;
+      if (!present) coreGap = true;
+      else if (coreGap)
+        issues.push(issue("semantic", `${prefix}.level.anchors.encounters[${JSON.stringify(slot)}]`,
+          "encounter.core-contiguous", "Additional core encounters must fill ordinary slots in order"));
+    }
 
-    const ordinaryCount = 4 + AUTHORED_BONUS_ENCOUNTER_SLOTS.filter(
+    const ordinaryCount = 4 + [...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS, ...AUTHORED_BONUS_ENCOUNTER_SLOTS].filter(
       (slot) => chapter.encounterSlots[slot] !== undefined,
     ).length;
     if ((chapter.bossPrerequisiteDefeats ?? 0) > ordinaryCount)
@@ -1084,6 +1111,8 @@ function validateWorldProject(
 
     const slots: readonly LevelEditorEncounterSlot[] = [
       ...AUTHORED_REQUIRED_ENCOUNTER_SLOTS,
+      ...AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS.filter((slot) =>
+        chapter.level.anchors.encounters[slot] !== undefined && chapter.encounterSlots[slot] !== undefined),
       ...AUTHORED_BONUS_ENCOUNTER_SLOTS.filter((slot) =>
         chapter.level.anchors.encounters[slot] !== undefined && chapter.encounterSlots[slot] !== undefined),
     ];
@@ -1497,6 +1526,14 @@ export const LEVEL_EDITOR_ANCHOR_SLOTS = [
   "encounter.ordinary-2",
   "encounter.ordinary-3",
   "encounter.ordinary-4",
+  "encounter.ordinary-5",
+  "encounter.ordinary-6",
+  "encounter.ordinary-7",
+  "encounter.ordinary-8",
+  "encounter.ordinary-9",
+  "encounter.ordinary-10",
+  "encounter.ordinary-11",
+  "encounter.ordinary-12",
   "encounter.boss",
   "encounter.bonus-1",
   "encounter.bonus-2",
@@ -1519,6 +1556,7 @@ interface ChapterCommand {
 
 export type LevelEditorCommand =
   | { readonly type: "project.rename"; readonly name: string }
+  | { readonly type: "project.catalog.set"; readonly catalogVersion: LevelEditorCatalogVersion }
   | {
       readonly type: "project.birthdate.set";
       readonly fictionalBirthDate: string;
@@ -1576,6 +1614,13 @@ export type LevelEditorCommand =
       readonly recoveredAge: LevelEditorRecoveredAge;
       readonly previewMemories: LevelEditorChapterV2["previewMemories"];
     } & ChapterCommand)
+  | ({
+      readonly type: "encounter.core.add";
+      readonly slot: AuthoredExtendedCoreEncounterSlot;
+      readonly anchor: AuthoredEncounterAnchor;
+      readonly encounter: LevelEditorEncounterReference;
+    } & ChapterCommand)
+  | ({ readonly type: "encounter.core.remove"; readonly slot: AuthoredExtendedCoreEncounterSlot } & ChapterCommand)
   | ({
       readonly type: "encounter.bonus.add";
       readonly slot?: AuthoredBonusEncounterSlot;
@@ -1685,6 +1730,7 @@ const branchIdsSchema = z
 
 export const levelEditorCommandSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("project.rename"), name: displayNameSchema }).strict(),
+  z.object({ type: z.literal("project.catalog.set"), catalogVersion: z.enum(LEVEL_EDITOR_CATALOG_VERSIONS) }).strict(),
   z
     .object({
       type: z.literal("project.birthdate.set"),
@@ -1781,6 +1827,22 @@ export const levelEditorCommandSchema = z.discriminatedUnion("type", [
         previewMemorySchema("minor-two"),
         previewMemorySchema("major"),
       ]),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("encounter.core.add"),
+      ...chapterIdField,
+      slot: z.enum(AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS),
+      anchor: encounterAnchorSchema,
+      encounter: levelEditorEncounterReferenceSchema,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("encounter.core.remove"),
+      ...chapterIdField,
+      slot: z.enum(AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS),
     })
     .strict(),
   z
@@ -2336,6 +2398,19 @@ function anchorFor(level: MutableLevel, slot: LevelEditorAnchorSlot): MutableAnc
       return level.anchors.encounters["ordinary-3"];
     case "encounter.ordinary-4":
       return level.anchors.encounters["ordinary-4"];
+    case "encounter.ordinary-5":
+    case "encounter.ordinary-6":
+    case "encounter.ordinary-7":
+    case "encounter.ordinary-8":
+    case "encounter.ordinary-9":
+    case "encounter.ordinary-10":
+    case "encounter.ordinary-11":
+    case "encounter.ordinary-12": {
+      const coreSlot = slot.slice("encounter.".length) as AuthoredExtendedCoreEncounterSlot;
+      const anchor = level.anchors.encounters[coreSlot];
+      if (!anchor) commandError("$.slot", "encounter.slot-missing", `Encounter slot ${coreSlot} has no authored anchor`);
+      return anchor;
+    }
     case "encounter.boss":
       return level.anchors.encounters.boss;
     case "encounter.bonus-1":
@@ -2404,6 +2479,20 @@ function setAnchor(
     case "encounter.ordinary-4":
       level.anchors.encounters["ordinary-4"] = cloned as MutableEncounterAnchor;
       break;
+    case "encounter.ordinary-5":
+    case "encounter.ordinary-6":
+    case "encounter.ordinary-7":
+    case "encounter.ordinary-8":
+    case "encounter.ordinary-9":
+    case "encounter.ordinary-10":
+    case "encounter.ordinary-11":
+    case "encounter.ordinary-12": {
+      const coreSlot = slot.slice("encounter.".length) as AuthoredExtendedCoreEncounterSlot;
+      if (!level.anchors.encounters[coreSlot])
+        commandError("$.slot", "encounter.slot-missing", `Encounter slot ${coreSlot} has no authored anchor`);
+      level.anchors.encounters[coreSlot] = cloned as MutableEncounterAnchor;
+      break;
+    }
     case "encounter.boss":
       level.anchors.encounters.boss = cloned as MutableEncounterAnchor;
       break;
@@ -2522,6 +2611,10 @@ function renamePieceReferences(
 function applyCommand(project: MutableProject, command: LevelEditorCommand): void {
   if (command.type === "project.rename") {
     project.name = command.name;
+    return;
+  }
+  if (command.type === "project.catalog.set") {
+    worldProjectForCommand(project).catalogVersion = command.catalogVersion;
     return;
   }
   if (command.type === "project.birthdate.set") {
@@ -2681,6 +2774,28 @@ function applyCommand(project: MutableProject, command: LevelEditorCommand): voi
       worldChapter.previewMemories = cloneJson(
         command.previewMemories,
       ) as unknown as MutableWorldChapter["previewMemories"];
+      return;
+    }
+    case "encounter.core.add": {
+      const world = worldProjectForCommand(project);
+      const worldChapter = worldChapterForCommand(chapter);
+      const { slot } = command;
+      if (worldChapter.level.anchors.encounters[slot] || worldChapter.encounterSlots[slot])
+        commandError("$.slot", "encounter.core-exists", `This chapter already has encounter ${slot}`);
+      if (command.anchor.kind === "boss")
+        commandError("$.anchor.kind", "encounter.core-kind", "A core encounter must be ordinary");
+      assertEncounterReferenceFitsAnchor(world, slot, command.encounter, command.anchor, "$.encounter");
+      worldChapter.level.anchors.encounters[slot] = cloneJson(command.anchor);
+      worldChapter.encounterSlots[slot] = cloneJson(command.encounter);
+      return;
+    }
+    case "encounter.core.remove": {
+      const worldChapter = worldChapterForCommand(chapter);
+      const { slot } = command;
+      if (!worldChapter.level.anchors.encounters[slot] && !worldChapter.encounterSlots[slot])
+        commandError("$.slot", "encounter.core-missing", `This chapter has no encounter ${slot}`);
+      delete worldChapter.level.anchors.encounters[slot];
+      delete worldChapter.encounterSlots[slot];
       return;
     }
     case "encounter.bonus.add": {

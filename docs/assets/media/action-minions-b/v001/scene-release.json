@@ -1,0 +1,35 @@
+{
+  "work_order": "20261004-opus-action-minions-b",
+  "released_utc": "2026-10-04T23:14:04.396690+00:00",
+  "released_by": "claude-opus-5-5/action-minions-b",
+  "blender_instance": "blender-authoring-2",
+  "predecessor_files_checked": 89,
+  "predecessor_files_unchanged": true,
+  "claimed_from": "/workspace/haynes-quest/family-eras/rooftop-city-kit/v001/live-scene-release.blend",
+  "pack_master": "/workspace/haynes-quest/action-worlds/minions-b/v001/live-scene-release.blend",
+  "separate_masters": {
+    "broccoli-bouncer": "/workspace/haynes-quest/action-worlds/minions-b/v001/broccoli-bouncer/broccoli-bouncer.blend",
+    "bin-chicken-flower-thief": "/workspace/haynes-quest/action-worlds/minions-b/v001/bin-chicken-flower-thief/bin-chicken-flower-thief.blend",
+    "demon-idol-drummer": "/workspace/haynes-quest/action-worlds/minions-b/v001/demon-idol-drummer/demon-idol-drummer.blend",
+    "storybook-planting-kit": "/workspace/haynes-quest/action-worlds/minions-b/v001/storybook-planting-kit/storybook-planting-kit.blend"
+  },
+  "outputs_sha256": {
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/bin-chicken-flower-thief/bin-chicken-flower-thief.blend": "77027bdac7ae218cf68d30ba9bebe7e34018e34e2c58939b42a5f629ba2f2706",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/bin-chicken-flower-thief/bin-chicken-flower-thief.glb": "e9189113197c453174eab9c8d0a0f2005ea60fd478befc06c60f0aa8988378b4",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/broccoli-bouncer/broccoli-bouncer.blend": "e2bb7e3dc343cbdeafd79f7b009237bf02b8c968112e0bf217a7561841289b9a",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/broccoli-bouncer/broccoli-bouncer.glb": "164a54763e764b4f6ac0d751a4bbe4e4ce1e58bcd98c23107eeb2255747b5bf9",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/claim-checkpoint.blend": "398e6cbeb8485993b016dff0a8ff5f6141aaeb5a2ce0782481b5d89cc309f6a7",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/demon-idol-drummer/demon-idol-drummer.blend": "b2cacb153150896419a0c60c5ef9ffcf5e942c6629dc7170299cf19118b74380",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/demon-idol-drummer/demon-idol-drummer.glb": "a2d4a6bdf78b2990d45ade28c49d70602b96cfaa040156cbec5b41c788c1610b",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/storybook-planting-kit/storybook-canopy-tree.glb": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/storybook-planting-kit/storybook-cypress.glb": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/storybook-planting-kit/storybook-flowering-shrub.glb": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c",
+    "/workspace/haynes-quest/action-worlds/minions-b/v001/storybook-planting-kit/storybook-planting-kit.blend": "5a77fe0d3d69a4210d5a7bd44fb61596625e4707b353ea597c808cd69823be3c"
+  },
+  "scene_after_release": {
+    "scene_owner": "none",
+    "scene_lease": "released"
+  },
+  "pack_master_sha256": "64384fbc1667ccc8ad2511e2bf43cce1f28c378d9d1793873458d9a363ba71c5",
+  "open_file_dirty_after_save": false
+}

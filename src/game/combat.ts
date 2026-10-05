@@ -1,18 +1,22 @@
 import type { EncounterView, SaveView } from "../shared/contracts";
 import { bossIsAvailable } from "../shared/encounter-availability";
+import { EnemyGroundNavigation } from "./enemy-navigation";
 import type { EncounterPlacement, LevelLayout } from "./level";
 import type { EnemyFrame, EnemyPhase, PositionSnapshot } from "./types";
 
 type RuntimeEncounterView = EncounterView & { available?: boolean };
 
 export const enemyActivationRadius = 6;
-/** Authored arenas let a foe notice an approach before the player enters strike reach. */
-const authoredActivationRadius = 6.5;
-const authoredPursuitRadius = 9;
-const authoredPursuitMargin = 4;
+const ordinaryActivationRadius = 8;
+const ordinaryPursuitRadius = 14;
+const ordinarySpawnLeash = 20;
+const maxOrdinaryAttackers = 2;
+const waitingStopRange = 2.1;
+const friendlyHealingRadius = 1.7;
+const friendlySafetyRadius = 3.2;
 const pursuitLeadSeconds = 0.4;
 const maxLeadDistance = 1.6;
-const windupClosingSpeed = 3;
+const windupClosingSpeed = 4;
 const windupStopRange = 0.9;
 export const enemyStrikeSeconds = 0.18;
 export const enemyCooldownSeconds = 1.4;
@@ -50,6 +54,7 @@ interface LocalEnemy {
   scripted: boolean;
   /** Has chased the player since it last spawned (DESIGN-027 watchers sleep until then). */
   awake: boolean;
+  returning: boolean;
   /** DESIGN-027 D-04 idle pose; 0 is the authored stance. */
   pose: number;
 }
@@ -73,8 +78,8 @@ export interface EnemyStepOptions {
 }
 
 const ordinaryTuning: EnemyTuning = {
-  speed: 2.5,
-  legacySpeed: 0.85,
+  speed: 4.4,
+  legacySpeed: 4.4,
   stopRange: 1.1,
   attackRange: 1.35,
   windupSeconds: 0.8,
@@ -171,6 +176,13 @@ function encounterMap(save: SaveView): Map<string, RuntimeEncounterView> {
   );
 }
 
+function friendlyPositionsFor(level: LevelLayout): PositionSnapshot[] {
+  return [
+    ...Object.values(level.authored?.anchors.friendlies ?? {}).map((anchor) => ({ ...anchor.position })),
+    ...(level.friendlies ?? []).map((friendly) => ({ ...friendly.position })),
+  ];
+}
+
 export function bossIsActive(save: SaveView): boolean {
   const level = save.adventure?.activeLevel;
   const encounters = level?.encounters ?? [];
@@ -185,6 +197,8 @@ export function bossIsActive(save: SaveView): boolean {
 
 export class EnemySimulation {
   private enemies = new Map<string, LocalEnemy>();
+  private groundNavigation: EnemyGroundNavigation | null = null;
+  private friendlyPositions: PositionSnapshot[] = [];
   private hitCooldownSeconds = 0;
   private lastPlayer: PositionSnapshot | null = null;
   /**
@@ -200,6 +214,8 @@ export class EnemySimulation {
 
   reset(level: LevelLayout, save: SaveView): void {
     this.enemies.clear();
+    this.groundNavigation = level.course ? new EnemyGroundNavigation(level.course) : null;
+    this.friendlyPositions = friendlyPositionsFor(level);
     this.lastPlayer = null;
     const authoritative = encounterMap(save);
     for (const placement of level.encounters) {
@@ -211,6 +227,8 @@ export class EnemySimulation {
   }
 
   sync(level: LevelLayout, save: SaveView): void {
+    this.groundNavigation = level.course ? new EnemyGroundNavigation(level.course) : null;
+    this.friendlyPositions = friendlyPositionsFor(level);
     const authoritative = encounterMap(save);
     const placementById = new Map(
       level.encounters.map((placement) => [placement.id, placement]),
@@ -230,7 +248,7 @@ export class EnemySimulation {
       current.arena = copyArena(placement.arena);
       if (current.arena) {
         current.spawn = spawnFor(placement, current.arena);
-        clampToArena(current.position, current.arena);
+        if (current.role === "boss") clampToArena(current.position, current.arena);
       }
       const revived = current.defeated && !encounter.defeated;
       current.hp = encounter.hp;
@@ -246,6 +264,7 @@ export class EnemySimulation {
         current.position = { ...current.spawn };
         current.facing = 0;
         current.awake = false;
+        current.returning = false;
         current.pose = 0;
         current.phase = "idle";
         current.phaseSeconds = 0;
@@ -302,6 +321,7 @@ export class EnemySimulation {
       this.watchers &&
       enemy.role === "ordinary" &&
       !enemy.awake &&
+      !enemy.returning &&
       !enemy.defeated &&
       !enemy.scripted &&
       enemy.phase === "idle"
@@ -330,6 +350,7 @@ export class EnemySimulation {
           enemy.windupTarget = null;
           enemy.contactedDuringStrike = false;
           enemy.awake = false;
+          enemy.returning = false;
           enemy.pose = 0;
         }
       }
@@ -363,6 +384,10 @@ export class EnemySimulation {
     this.hitCooldownSeconds = Math.max(0, this.hitCooldownSeconds - dt);
     const contacts: string[] = [];
     const bossActive = bossIsActive(save);
+    let ordinaryAttackers = [...this.enemies.values()].filter((enemy) =>
+      enemy.role === "ordinary" && !enemy.defeated &&
+      (enemy.phase === "windup" || enemy.phase === "strike")
+    ).length;
     for (const enemy of this.enemies.values()) {
       if (enemy.defeated) {
         enemy.phase = "defeated";
@@ -379,102 +404,110 @@ export class EnemySimulation {
       if (enemy.scripted) continue;
       const tuning = tuningFor(enemy.role);
       const playerDistance = distance(enemy.position, options.player);
-      const authoredOrdinary = enemy.role === "ordinary" && enemy.arena;
-      const pursuitReachable =
-        canReachPlayer(
-          options.player,
-          enemy.arena,
-          authoredOrdinary ? authoredPursuitMargin : tuning.attackRange,
-        ) &&
-        (!authoredOrdinary ||
-          verticalDistance(enemy.position, options.player) <= 1.25);
-      const activationRadius = authoredOrdinary
-        ? authoredActivationRadius
-        : enemyActivationRadius;
-      const pursuitRadius = authoredOrdinary
-        ? authoredPursuitRadius
-        : enemyActivationRadius;
+      const ordinary = enemy.role === "ordinary";
+      const activationRadius = ordinary ? ordinaryActivationRadius : enemyActivationRadius;
+      const pursuitRadius = ordinary ? ordinaryPursuitRadius : enemyActivationRadius;
+      const outsideLeash = ordinary && distance(enemy.spawn, options.player) > ordinarySpawnLeash;
+      const needsGroundRoute = !outsideLeash && (
+        enemy.phase === "windup" ||
+        (enemy.phase === "idle" && playerDistance <= activationRadius) ||
+        ((enemy.phase === "chasing" || enemy.phase === "cooldown") &&
+          playerDistance <= pursuitRadius)
+      );
+      const groundTarget = ordinary && this.groundNavigation && needsGroundRoute
+        ? this.groundNavigation.next(enemy.position, options.player)
+        : null;
+      const pursuitReachable = ordinary && this.groundNavigation
+        ? groundTarget !== null && verticalDistance(enemy.position, options.player) <= 1.25 &&
+          !this.nearFriendly(options.player, friendlyHealingRadius)
+        : canReachPlayer(options.player, enemy.arena,
+          ordinary ? tuning.attackRange + 2.5 : tuning.attackRange) &&
+          (!ordinary || !enemy.arena ||
+            verticalDistance(enemy.position, options.player) <= 1.25);
       const sleeping = this.isDormantWatcher(enemy);
-      if (!sleeping) enemy.facing = facingToward(enemy.position, options.player);
+      if (!sleeping && !enemy.returning) enemy.facing = facingToward(enemy.position, options.player);
       switch (enemy.phase) {
         case "idle":
-          if (playerDistance <= activationRadius && pursuitReachable) {
+          if (playerDistance <= activationRadius && !outsideLeash && pursuitReachable) {
             enemy.phase = "chasing";
             enemy.phaseSeconds = 0;
             enemy.awake = true;
+            enemy.returning = false;
             if (sleeping) {
               enemy.facing = facingToward(enemy.position, options.player);
+              enemy.pose = 0;
+            }
+          } else if (enemy.returning) {
+            const reached = this.moveToward(enemy, enemy.spawn, tuning.speed * dt);
+            enemy.facing = facingToward(enemy.position, enemy.spawn);
+            if (reached) {
+              enemy.position = { ...enemy.spawn };
+              enemy.returning = false;
+              enemy.awake = false;
               enemy.pose = 0;
             }
           }
           break;
         case "chasing":
-          if (playerDistance > pursuitRadius || !pursuitReachable) {
+          if (playerDistance > pursuitRadius || outsideLeash || !pursuitReachable) {
             enemy.phase = "idle";
             enemy.phaseSeconds = 0;
             enemy.windupTarget = null;
+            enemy.returning = ordinary;
           } else if (
-            playerDistance <= tuning.stopRange + distanceEpsilon ||
+            (ordinaryAttackers < maxOrdinaryAttackers || !ordinary) &&
+            (playerDistance <= tuning.stopRange + distanceEpsilon ||
             // Outside the arena, the clamped approach can converge on the
             // preferred stopping distance for seconds. Use the visible strike
             // area there so reaching the edge produces a full warning promptly.
             (playerDistance <= tuning.attackRange &&
-              !canReachPlayer(options.player, enemy.arena, 0))
+              !canReachPlayer(options.player, enemy.arena, 0)))
           ) {
             enemy.phase = "windup";
             enemy.phaseSeconds = 0;
-            if (enemy.role === "ordinary" && enemy.arena) {
+            if (ordinary) ordinaryAttackers += 1;
+            if (ordinary) {
               enemy.windupTarget = {
                 x: options.player.x + (pursuitTarget.x - options.player.x) * 2,
-                y: enemy.position.y,
+                y: options.player.y,
                 z: options.player.z + (pursuitTarget.z - options.player.z) * 2,
               };
+              if (this.groundNavigation && !this.groundNavigation.next(enemy.position, enemy.windupTarget)) {
+                enemy.windupTarget = { ...options.player };
+              }
             }
           } else {
-            const target =
-              enemy.role === "ordinary" && enemy.arena
-                ? { ...pursuitTarget }
-                : { ...options.player };
-            const targetDistance = distance(enemy.position, target);
-            const travel = Math.min(
-              (enemy.arena ? tuning.speed : tuning.legacySpeed) * dt,
-              Math.max(0, targetDistance - tuning.stopRange),
-            );
-            if (targetDistance > 0) {
-              enemy.position.x +=
-                ((target.x - enemy.position.x) / targetDistance) * travel;
-              enemy.position.z +=
-                ((target.z - enemy.position.z) / targetDistance) * travel;
-              clampToArena(enemy.position, enemy.arena);
-            }
+            const target = ordinary &&
+              (!this.groundNavigation || this.groundNavigation.next(enemy.position, pursuitTarget))
+              ? pursuitTarget : options.player;
+            const waitForAttackSlot = ordinary && ordinaryAttackers >= maxOrdinaryAttackers;
+            this.moveToward(enemy, target,
+              Math.max(0, Math.min((enemy.arena ? tuning.speed : tuning.legacySpeed) * dt,
+                waitForAttackSlot
+                  ? playerDistance - waitingStopRange
+                  : distance(enemy.position, target) - tuning.stopRange)));
           }
           break;
         case "windup":
-          if (
+          if (ordinary && (outsideLeash || !pursuitReachable)) {
+            enemy.phase = "idle";
+            enemy.phaseSeconds = 0;
+            enemy.windupTarget = null;
+            enemy.returning = true;
+            ordinaryAttackers -= 1;
+          } else if (
             (enemy.role === "boss" || !enemy.arena) &&
             playerDistance > tuning.attackRange
           ) {
             enemy.phase = "chasing";
             enemy.phaseSeconds = 0;
+            if (ordinary) ordinaryAttackers -= 1;
           } else {
             if (enemy.windupTarget) {
-              const targetDistance = distance(
-                enemy.position,
-                enemy.windupTarget,
-              );
-              const travel = Math.min(
-                windupClosingSpeed * dt,
-                Math.max(0, targetDistance - windupStopRange),
-              );
-              if (targetDistance > 0) {
-                enemy.position.x +=
-                  ((enemy.windupTarget.x - enemy.position.x) / targetDistance) *
-                  travel;
-                enemy.position.z +=
-                  ((enemy.windupTarget.z - enemy.position.z) / targetDistance) *
-                  travel;
-                clampToArena(enemy.position, enemy.arena);
-              }
+              const targetDistance = distance(enemy.position, enemy.windupTarget);
+              this.moveToward(enemy, enemy.windupTarget,
+                Math.min(windupClosingSpeed * dt,
+                  Math.max(0, targetDistance - windupStopRange)));
             }
             enemy.phaseSeconds += dt;
             if (enemy.phaseSeconds >= tuning.windupSeconds) {
@@ -488,7 +521,11 @@ export class EnemySimulation {
           if (
             !enemy.contactedDuringStrike &&
             playerDistance <= tuning.attackRange &&
+            (!ordinary || !outsideLeash) &&
             withinEnemyStrikeHeight(options.player, enemy.position) &&
+            (!ordinary || !this.nearFriendly(options.player, friendlyHealingRadius)) &&
+            (!ordinary || !this.groundNavigation ||
+              this.groundNavigation.canStrike(enemy.position, options.player)) &&
             this.hitCooldownSeconds <= 0
           ) {
             contacts.push(enemy.id);
@@ -498,15 +535,17 @@ export class EnemySimulation {
           if (enemy.phaseSeconds >= enemyStrikeSeconds) {
             enemy.phase = "cooldown";
             enemy.phaseSeconds = 0;
+            if (ordinary) ordinaryAttackers -= 1;
           }
           break;
         case "cooldown":
           enemy.phaseSeconds += dt;
           if (enemy.phaseSeconds >= enemyCooldownSeconds) {
             enemy.phase =
-              playerDistance <= pursuitRadius && pursuitReachable
+              playerDistance <= pursuitRadius && !outsideLeash && pursuitReachable
                 ? "chasing"
                 : "idle";
+            enemy.returning = ordinary && enemy.phase === "idle";
             enemy.phaseSeconds = 0;
           }
           break;
@@ -519,6 +558,39 @@ export class EnemySimulation {
 
   noteHitDispatched(): void {
     this.hitCooldownSeconds = playerHitCooldownSeconds;
+  }
+
+  private nearFriendly(position: PositionSnapshot, radius: number): boolean {
+    return this.friendlyPositions.some((friendly) =>
+      verticalDistance(position, friendly) <= maxEnemyContactFeetDelta &&
+      distance(position, friendly) < radius
+    );
+  }
+
+  private moveToward(enemy: LocalEnemy, goal: PositionSnapshot, travel: number): boolean {
+    const target = enemy.role === "ordinary" && this.groundNavigation
+      ? this.groundNavigation.next(enemy.position, goal)
+      : goal;
+    if (!target) return false;
+    const remaining = distance(enemy.position, target);
+    if (remaining <= distanceEpsilon) return distance(enemy.position, goal) <= 0.1;
+    const move = Math.min(travel, remaining);
+    const candidate = {
+      x: enemy.position.x + (target.x - enemy.position.x) / remaining * move,
+      y: enemy.role === "ordinary" && this.groundNavigation
+        ? target.y : enemy.position.y,
+      z: enemy.position.z + (target.z - enemy.position.z) / remaining * move,
+    };
+    if (enemy.role === "ordinary" && this.groundNavigation) {
+      if (!this.groundNavigation.canWalk(enemy.position, candidate)) return false;
+      if (this.nearFriendly(candidate, friendlySafetyRadius)) return false;
+    } else {
+      clampToArena(candidate, enemy.arena);
+    }
+    if (enemy.role === "ordinary" &&
+      distance(candidate, enemy.spawn) > ordinarySpawnLeash) return false;
+    enemy.position = candidate;
+    return distance(enemy.position, goal) <= 0.1;
   }
 
   frames(): EnemyFrame[] {
@@ -553,14 +625,17 @@ export class EnemySimulation {
       if (currentDistance >= minimumDistance) continue;
       const normalX = currentDistance > 0.0001 ? dx / currentDistance : 0;
       const normalZ = currentDistance > 0.0001 ? dz / currentDistance : 1;
-      position.x = Math.max(
-        level.minX,
-        Math.min(level.maxX, enemy.position.x + normalX * minimumDistance),
-      );
-      position.z = Math.max(
-        level.minZ,
-        Math.min(level.maxZ, enemy.position.z + normalZ * minimumDistance),
-      );
+      const resolved = {
+        x: Math.max(level.minX,
+          Math.min(level.maxX, enemy.position.x + normalX * minimumDistance)),
+        y: position.y,
+        z: Math.max(level.minZ,
+          Math.min(level.maxZ, enemy.position.z + normalZ * minimumDistance)),
+      };
+      if (this.groundNavigation && enemy.role === "ordinary" &&
+        !this.groundNavigation.canWalk(position, resolved)) continue;
+      position.x = resolved.x;
+      position.z = resolved.z;
     }
   }
 
@@ -586,6 +661,7 @@ export class EnemySimulation {
       defeated: encounter.defeated,
       scripted: encounter.content?.assetId === "bickering-besties",
       awake: false,
+      returning: false,
       pose: 0,
     });
   }

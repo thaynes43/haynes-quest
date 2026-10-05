@@ -1,0 +1,95 @@
+{
+  "kit_id": "storybook-planting-kit",
+  "version": "v001",
+  "props": {
+    "storybook-canopy-tree": {
+      "triangles": 6064,
+      "vertices": 3226,
+      "parts": 97,
+      "bounds_blender_z_up": {
+        "min": [
+          -1.8582521677017212,
+          -1.241160273551941,
+          0.0
+        ],
+        "max": [
+          1.8160568475723267,
+          1.2189292907714844,
+          3.996110200881958
+        ]
+      }
+    },
+    "storybook-cypress": {
+      "triangles": 2882,
+      "vertices": 1539,
+      "parts": 49,
+      "bounds_blender_z_up": {
+        "min": [
+          -0.5488763451576233,
+          -0.45349475741386414,
+          0.0
+        ],
+        "max": [
+          0.37966787815093994,
+          0.4512343406677246,
+          3.080000400543213
+        ]
+      }
+    },
+    "storybook-flowering-shrub": {
+      "triangles": 6660,
+      "vertices": 3628,
+      "parts": 149,
+      "bounds_blender_z_up": {
+        "min": [
+          -0.5453208088874817,
+          -0.5424566268920898,
+          0.0
+        ],
+        "max": [
+          0.5632539391517639,
+          0.548449695110321,
+          0.8048603534698486
+        ]
+      }
+    }
+  },
+  "material": "Storybook planting kit matte",
+  "blender_version": "4.5.13 LTS",
+  "created_utc": "2026-10-04T23:11:26.147304+00:00",
+  "files": {
+    "storybook-planting-kit.blend": {
+      "bytes": 370063,
+      "sha256": "5a77fe0d3d69a4210d5a7bd44fb61596625e4707b353ea597c808cd69823be3c"
+    },
+    "storybook-canopy-tree.glb": {
+      "bytes": 206968,
+      "sha256": "c37b8ebd55c7bcf31c9db769f974c465df26a5502b6da702ade17f34b74008a4"
+    },
+    "storybook-cypress.glb": {
+      "bytes": 94368,
+      "sha256": "4446ad06c4e3ccd09cd8cef61471453eb54291f4e578a0d020b4a4ce025248a1"
+    },
+    "storybook-flowering-shrub.glb": {
+      "bytes": 189464,
+      "sha256": "5d01c42466237fd3dea99509eb762660955b22e40988b152baf71970a2644d2c"
+    }
+  },
+  "planning_boxes_half_x_height_half_z": {
+    "storybook-canopy-tree": [
+      1.95,
+      4.4,
+      1.95
+    ],
+    "storybook-cypress": [
+      0.85,
+      3.2,
+      0.85
+    ],
+    "storybook-flowering-shrub": [
+      0.7,
+      0.9,
+      0.7
+    ]
+  }
+}

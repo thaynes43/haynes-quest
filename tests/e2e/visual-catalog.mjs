@@ -73,19 +73,30 @@ const mascotCandidateIds = [
 const expectedPartialModelIds = ["nap-captain", "rat-pit-boss-v001-checkpoint"];
 const modelMime = /^(?:model\/gltf-binary|application\/octet-stream)(?:;|$)/i;
 const expectedInventoryCounts = {
-  entries: 106,
-  reference_sheet_entries: 8,
-  model_entries: 77,
-  model_files: 77,
-  completed_model_candidates: 75,
+  entries: 115,
+  reference_sheet_entries: 10,
+  model_entries: 84,
+  model_files: 86,
+  completed_model_candidates: 82,
   paused_partial_model_candidates: 2,
   concept_only_entries: 2,
   audio_entries: 18,
   fixture_illustration_sets: 1,
   owner_approved_entries: 1,
 };
-const expectedThumbnailFiles = 149;
+const expectedThumbnailFiles = 165;
+const actionWorldAssetIds = [
+  "gadget-hammer-hopper",
+  "mischief-kitten-skater",
+  "lab-robot-sentry",
+  "broccoli-bouncer",
+  "bin-chicken-flower-thief",
+  "demon-idol-drummer",
+  "storybook-planting-kit",
+];
+
 const integratedAssetIds = [
+  ...actionWorldAssetIds,
   "water-tower",
   "rooftop-ac-unit",
   "crane-hook",
@@ -656,7 +667,7 @@ async function inspectLanding(
       const cardState = cardInspections.find((entry) => entry.id === id)?.state;
       assert.match(
         cardState ?? "",
-        asset.category === "family-eras"
+        asset.category === "family-eras" || actionWorldAssetIds.includes(id)
           ? /Awaiting Tom's review · used in the family release/i
           : /in (?:private (?:Rat Casino )?)?playtest/i,
         `${scope}: ${id} card records current gameplay use`,

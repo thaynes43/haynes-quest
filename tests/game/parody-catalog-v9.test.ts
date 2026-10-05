@@ -25,9 +25,9 @@ describe("parody-catalog-v9", () => {
   const v8 = PARODY_CATALOGS["parody-catalog-v8"];
   const v9 = PARODY_CATALOGS["parody-catalog-v9"];
 
-  it("is an editor catalog preserved before v10 and v11", () => {
-    expect(PARODY_CATALOG_VERSIONS.slice(-3)).toEqual(["parody-catalog-v9", "parody-catalog-v10", "parody-catalog-v11"]);
-    expect(LEVEL_EDITOR_CATALOG_VERSIONS.slice(-3)).toEqual(["parody-catalog-v9", "parody-catalog-v10", "parody-catalog-v11"]);
+  it("is an editor catalog preserved before later versions", () => {
+    expect(PARODY_CATALOG_VERSIONS.slice(-4)).toEqual(["parody-catalog-v9", "parody-catalog-v10", "parody-catalog-v11", "parody-catalog-v12"]);
+    expect(LEVEL_EDITOR_CATALOG_VERSIONS.slice(-4)).toEqual(["parody-catalog-v9", "parody-catalog-v10", "parody-catalog-v11", "parody-catalog-v12"]);
   });
 
   it("is v8 with only the Besties' window widened to their reference date", () => {

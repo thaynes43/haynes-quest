@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-05T00:54:33.915691Z",
+  "sourceCommit": "014ba65dbad10092e99c7356bbe37c6b62ad179c",
+  "local": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "test": {
+      "sourceCommit": "d6a292c0dcc13a6bd87b8b1e0a80053d0bc672b0",
+      "passed": 1957,
+      "skipped": 34,
+      "passedFiles": 170,
+      "skippedFiles": 3,
+      "durationSeconds": 265.67,
+      "questTestDatabaseUrl": "unset"
+    },
+    "finalPlantIntegrationFocused": {
+      "sourceCommit": "014ba65dbad10092e99c7356bbe37c6b62ad179c",
+      "passed": 47,
+      "testFiles": 4,
+      "suites": [
+        "tests/game/family-world-foundations.test.ts",
+        "tests/game/theme-kit-identity.test.ts",
+        "tests/game/theme-kit-registry.test.ts",
+        "tests/server/family/family-worlds-dense-v8-v7.test.ts"
+      ]
+    },
+    "levelsValidate": {
+      "result": "passed",
+      "projects": 21,
+      "commandReplay": "matched"
+    },
+    "build": "passed",
+    "docsBuild": {
+      "sourceCommit": "a4560ec48082b94db9cdedd51e52e02b277308e9",
+      "result": "passed",
+      "preparedFiles": 4700,
+      "checkedMarkdownFiles": 346
+    },
+    "docsPrepareRegressionTests": {
+      "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
+      "passed": 2
+    },
+    "familyHomeUpdateNotice": {
+      "sourceCommit": "6f11aef",
+      "passed": 3,
+      "testFile": "tests/client/family-home.test.tsx"
+    }
+  },
+  "ci": {
+    "runId": 37245752272,
+    "headCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
+    "verifyJob": "success",
+    "postgresService": "postgres:16-alpine",
+    "stepsPassed": [
+      "Initialize containers",
+      "Run pnpm typecheck",
+      "Run pnpm lint",
+      "Run pnpm test",
+      "Run pnpm levels:validate",
+      "Run pnpm build"
+    ]
+  },
+  "limitations": [
+    "The 1,957-pass local full suite ran at d6a292c before the final planting bindings; the final source received focused preservation, runtime binding, schema/save and asset-bounds checks, while exact-head CI runs the full suite with PostgreSQL 16.",
+    "Local PostgreSQL integration cases were skipped because no disposable local PostgreSQL service was available; the earlier CI verify job used its isolated PostgreSQL 16 service.",
+    "Browser and physical-device performance are recorded separately."
+  ],
+  "browserEvidence": ".agents/evidence/action-worlds/a8-b7-browser-verification.json"
+}

@@ -211,6 +211,11 @@ function glbBounds(file: URL): { min: number[]; max: number[] } {
 
 describe("shared prop kit", () => {
   const sharedIds = [
+    "broad-canopy-tree",
+    "slim-cypress",
+    "flowering-shrub",
+    "storybook-flower-bed",
+    "storybook-planter-island",
     "clearing-tree",
     "clearing-stone",
     "arrival-landmark",
@@ -222,9 +227,12 @@ describe("shared prop kit", () => {
     "midnight-joystick-bollard",
   ];
 
-  it("registers the nine exact GLB props with tight bounds around each measured model", () => {
+  it("registers twelve model-backed shared props with bounds enclosing their exact GLBs", () => {
     expect(sharedThemeKitProps().map((prop) => prop.id)).toEqual(sharedIds);
-    for (const prop of sharedThemeKitProps()) {
+    const modelProps = sharedThemeKitProps().filter((prop) => prop.glb);
+    const legacyExactIds = sharedIds.slice(5);
+    expect(modelProps.map((prop) => prop.id)).toEqual([...sharedIds.slice(0, 3), ...legacyExactIds]);
+    for (const prop of modelProps) {
       expect(prop.theme).toBe(SHARED_THEME_KIT);
       const file = new URL(`../../docs${prop.glb!.url.replace("/studio", "")}`, import.meta.url);
       expect(createHash("sha256").update(readFileSync(file)).digest("hex")).toBe(prop.glb!.sha256);
@@ -233,9 +241,12 @@ describe("shared prop kit", () => {
       for (let axis = 0; axis < 3; axis += 1) {
         expect(registered[0]![axis]!, `${prop.id} min ${axis}`).toBeLessThanOrEqual(measured.min[axis]! + 1e-6);
         expect(registered[1]![axis]!, `${prop.id} max ${axis}`).toBeGreaterThanOrEqual(measured.max[axis]! - 1e-6);
-        // Rounded outward to the millimetre, never padded further.
-        expect(measured.min[axis]! - registered[0]![axis]!).toBeLessThan(0.0011);
-        expect(registered[1]![axis]! - measured.max[axis]!).toBeLessThan(0.0011);
+        // The older shared props keep their millimetre-tight bounds. Planting
+        // props retain larger authored fallback envelopes around the new GLBs.
+        if (legacyExactIds.includes(prop.id)) {
+          expect(measured.min[axis]! - registered[0]![axis]!).toBeLessThan(0.0011);
+          expect(registered[1]![axis]! - measured.max[axis]!).toBeLessThan(0.0011);
+        }
       }
     }
   });

@@ -1,0 +1,59 @@
+{
+  "scope": "Synthetic A7 preview only; final A8/B7 verification is separate",
+  "dateUtc": "2026-10-04",
+  "fixture": {
+    "project": "src/shared/levels/family-world-a-v7.json",
+    "projectId": "family-world-a",
+    "revision": 2,
+    "fingerprint": "5d8773fa545c019944b4a022cf978ddfb9349e5e9f9c22bbf13ad6d344df4850",
+    "theme": "clubhouse",
+    "decorCount": 71
+  },
+  "chase": {
+    "builtSourceCommit": "c17f40a3e7e46139d3a6fa0db15932d4a27bc531",
+    "testMode": "ephemeral fixture, Playwright Chromium, normal joystick movement; skip GPU draws only during lockstep route, restore draws before real-time chase",
+    "chapter": "family-a1",
+    "slot": "ordinary-1",
+    "encounterId": "family-a1-clubhouse-encounter-1",
+    "mainRouteLegs": 12,
+    "lockstepFrames": 802,
+    "wallSeconds": 60,
+    "sameFloorSamples": 4,
+    "enemyMovedMeters": 2.48,
+    "enemyExitedArenaMeters": 3.0,
+    "playerStayedOnDeckDuringChase": true,
+    "gapRecovery": true,
+    "enemyStayedOnOriginalFloorThroughGap": true,
+    "recoveries": 1,
+    "playerHpAfter": 8,
+    "mediaFailed": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "responseErrors": [],
+    "screenshot": "a7-chase-gap-recovery.png"
+  },
+  "portrait": {
+    "builtSourceCommit": "c17f40a3e7e46139d3a6fa0db15932d4a27bc531",
+    "testMode": "ephemeral fixture, Playwright Chromium, 390x844 CSS viewport, spawn smoke",
+    "viewport": { "width": 390, "height": 844 },
+    "scrollWidth": 390,
+    "controls": {
+      "move": { "x": 12, "y": 644.40625, "width": 171.59375, "height": 171.59375 },
+      "jump": { "x": 282, "y": 720, "width": 96, "height": 96 },
+      "attack": { "x": 202.5, "y": 634, "width": 80, "height": 80 }
+    },
+    "allControlsWithinViewport": true,
+    "mediaFailed": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "responseErrors": [],
+    "screenshot": "a7-portrait-spawn.png"
+  },
+  "firstProbeDiagnostic": {
+    "result": "Harness failure: ordinary-1 side-gap escape did not recover at a checkpoint",
+    "cause": "The probe released the joystick on a transient loss of deck support before the character had cleared the edge.",
+    "correction": "Continue steering toward open space until checkpoint recovery or the bounded timeout, with the same recovery assertion.",
+    "screenshot": "a7-gap-initial-probe-failure.png"
+  },
+  "limits": "Chromium on SwiftShader is not physical mobile or Safari FPS evidence. The A7 chase probe stops at first foe and does not establish completion of a dense A8/B7 chapter."
+}

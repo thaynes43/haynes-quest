@@ -218,6 +218,29 @@ describe("decor (validator)", () => {
     expect(codes(withDecor(prop("fight-arch", "party-arch", 0, 2.5, -35.8)))).toContain("decor.clearance");
   });
 
+  it("protects the connecting gap while allowing low planting only in safe deck space", () => {
+    const clearance = (entry: AuthoredDecor) =>
+      validateAuthoredLevelDocument(withDecor(entry)).filter((issue) => issue.code === "decor.clearance");
+
+    // This narrow gap has no platform beneath it, so only the connection volume can reject the post.
+    expect(clearance(prop("gap-post", "party-balloon-post", 0, 0, -39.3, 0.25))).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("connection 3") }),
+    ]);
+
+    // A low bed can occupy a supported deck corner. Exempting that deck must
+    // still protect the spawn landing, the fight area and the moving hazard.
+    expect(clearance(prop("safe-bed", "storybook-flower-bed", 3, 0, 2))).toEqual([]);
+    for (const [id, x, z, protectedArea] of [
+      ["spawn-bed", 0, 1, "spawn landing"],
+      ["fight-bed", 2, -35.3, "ordinary-1 fight area"],
+      ["hazard-bed", -3, -43.3, "ribbon-padded-bar hazard"],
+    ] as const) {
+      expect(clearance(prop(id, "storybook-flower-bed", x, 0, z))).toEqual([
+        expect.objectContaining({ message: expect.stringContaining(protectedArea) }),
+      ]);
+    }
+  });
+
   it("allows overhead trim at least 3 m above the highest standing height and props below a surface", () => {
     const overhead = prop("overhead", "party-arch", 0, 3.01, -35.8);
     expect(codes(withDecor(overhead))).not.toContain("decor.clearance");
