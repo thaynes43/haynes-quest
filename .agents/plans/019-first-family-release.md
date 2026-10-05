@@ -18,11 +18,11 @@ Private names, birthdays and photos never enter git, PRs, logs, docs or test art
 
 ## Team and lanes
 
-A Claude Code session (`claude-opus-5-5`) started by Tom drives this plan. It keeps architecture, UX and all user-visible copy, integration and final review.
+Tom started this plan in a Claude Code session on September 25. The lane table below records those original assignments and start conditions. Current sessions follow [TEAM.md](../TEAM.md), including the October 5 Codex Blender exception; the driving coordinator retains architecture, UX, user-visible copy, integration and final review.
 
-- **Bounded code lanes:** native Opus 5.5 subagents (`claude-opus-5-5`, xhigh), each in its own `~/work/<slug>` worktree on an `agent/<slug>` branch.
-- **Concept images and all Blender work:** a separate Codex **Astra** art-lead session, `gpt-6-astra` at `max`, via `agent-run`. After its September 26 usage limit, Claude Opus 5.5 Blender authors continue, one scene lease at a time, per Tom's clarified [TEAM.md](../TEAM.md) rule. It generates concepts serially and dispatches fresh native Astra `max` Blender subagents, one per exclusive scene lease.
-- **Adversarial review:** a native Opus 5.5 reviewer at the end.
+- **Bounded code lanes:** native GPT-6 Sol (`gpt-6-sol`, `xhigh`) from a Codex driver or Sonnet 5.5 from Claude Code, each in a task worktree under `/home/dev/work` on an `agent/<slug>` branch.
+- **Concept images and Blender work:** the driving Astra session owns sequential concepts, art direction and final visual review. Tom's October 5 [TEAM.md](../TEAM.md) ruling now permits fresh native GPT-6.1 Sol (`gpt-6.1-sol`, `xhigh`) authors for useful remaining Blender work, one exclusive scene lease per bounded work order. Historical Astra/Opus assignments below record prior deliveries, not the current Codex routing.
+- **Review:** use the current driving provider's bounded review lane in TEAM.md, followed by coordinator review. Do not routinely start another Opus session under the current quota direction.
 
 | Lane | Work order | Owner | Owned paths | Starts |
 | --- | --- | --- | --- | --- |
