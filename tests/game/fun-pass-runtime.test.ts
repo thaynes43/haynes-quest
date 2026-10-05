@@ -19,6 +19,7 @@ import type {
   GameplayActionRequest,
   SaveView,
 } from "../../src/shared/contracts";
+import { PRIMARY_COMBO_WINDOW_MS } from "../../src/shared/adventure";
 import { makeAuthoredSave } from "./authored-fixtures";
 
 const runtimeState = vi.hoisted(() => ({
@@ -188,7 +189,7 @@ describe("fun pass runtime", () => {
     const save = equippedSave(options.cooldownMs);
     if (options.comboStep) {
       save.adventure!.attackComboStep = options.comboStep;
-      save.adventure!.attackComboRemainingMs = 1_300;
+      save.adventure!.attackComboRemainingMs = PRIMARY_COMBO_WINDOW_MS;
     }
     const anchor = garden.anchors.encounters["ordinary-1"].position;
     runtimeState.spawnOverrides.push({
@@ -299,7 +300,7 @@ describe("fun pass runtime", () => {
       (enemy) => enemy.id === targetId,
     )!.hp -= 1;
     damaged.adventure!.attackComboStep = 3;
-    damaged.adventure!.attackComboRemainingMs = 1_300;
+    damaged.adventure!.attackComboRemainingMs = PRIMARY_COMBO_WINDOW_MS;
     reply(damaged);
     await flush();
     expect(scene().comboFinishes).toEqual([targetId]);
@@ -320,7 +321,7 @@ describe("fun pass runtime", () => {
       step = step === 3 ? 1 : step + 1;
       next.adventure!.attackCooldownRemainingMs = 400;
       next.adventure!.attackComboStep = step as 1 | 2 | 3;
-      next.adventure!.attackComboRemainingMs = 1_300;
+      next.adventure!.attackComboRemainingMs = PRIMARY_COMBO_WINDOW_MS;
       const encounterId = request.action.encounterId;
       const target = next.adventure!.activeLevel!.encounters.find(
         (enemy) => enemy.id === encounterId,
@@ -367,7 +368,7 @@ describe("fun pass runtime", () => {
     const onAction = vi.fn(async (request: GameplayActionRequest) => {
       if (request.action.type !== "attack") throw new Error("Expected a primary attack");
       const sentAt = now;
-      serverStep = sentAt - lastServerHitAt <= 1_300
+      serverStep = sentAt - lastServerHitAt <= PRIMARY_COMBO_WINDOW_MS
         ? (serverStep === 3 ? 1 : serverStep + 1)
         : 1;
       lastServerHitAt = sentAt;
@@ -375,7 +376,7 @@ describe("fun pass runtime", () => {
       next.revision += 1;
       next.adventure!.attackCooldownRemainingMs = 400;
       next.adventure!.attackComboStep = serverStep as 1 | 2 | 3;
-      next.adventure!.attackComboRemainingMs = 1_300;
+      next.adventure!.attackComboRemainingMs = PRIMARY_COMBO_WINDOW_MS;
       const encounterId = request.action.encounterId;
       const enemy = next.adventure!.activeLevel!.encounters.find(
         (entry) => entry.id === encounterId,
@@ -391,9 +392,10 @@ describe("fun pass runtime", () => {
     game.setInput("attack", true);
     advance();
     expect(onAction).toHaveBeenCalledTimes(1);
-    // The server accepted step 1 immediately, but its response spends one
-    // second in transit while the held button must not send a second request.
-    advance(1_000);
+    // The server accepted step 1 immediately, but its response spends 1.381 s
+    // in transit. The next held hit lands 1.431 s after the first: inside the
+    // child-paced 2 s chain, while the request remains serialized.
+    advance(1_381);
     expect(onAction).toHaveBeenCalledTimes(1);
     releaseFirst();
     await flush();
@@ -422,7 +424,7 @@ describe("fun pass runtime", () => {
     const damaged = structuredClone(save);
     damaged.revision += 1;
     damaged.adventure!.attackComboStep = 1;
-    damaged.adventure!.attackComboRemainingMs = 1_300;
+    damaged.adventure!.attackComboRemainingMs = PRIMARY_COMBO_WINDOW_MS;
     damaged.adventure!.activeLevel!.encounters[0]!.hp -= 1;
     reply(damaged);
     await flush();

@@ -34,7 +34,7 @@ import {
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
 export const ROUTE_ATTACK_COOLDOWN_MS = 400;
-export const PRIMARY_COMBO_WINDOW_MS = 1_300;
+export const PRIMARY_COMBO_WINDOW_MS = 2_000;
 export const SECONDARY_ATTACK_COOLDOWN_MS = 1_000;
 export const ENEMY_HIT_COOLDOWN_MS = 900;
 export const GUARD_ACTIVE_MS = 800;

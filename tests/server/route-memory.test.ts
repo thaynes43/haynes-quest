@@ -157,6 +157,10 @@ describe('route-memory plan v3', () => {
     const attack = (state: AdventureState, encounterId: string, nowMs: number) =>
       apply(plan, state, { type: 'attack', levelId: level.id, encounterId }, nowMs);
     const first = attack(createInitialAdventureState(plan), firstEnemy!.id, 0);
+    const childPaced = attack(first, firstEnemy!.id, 1_431);
+    expect(childPaced.attackCombo?.step).toBe(2);
+    const atBoundary = attack(first, firstEnemy!.id, PRIMARY_COMBO_WINDOW_MS);
+    expect(atBoundary.attackCombo?.step).toBe(2);
     expect(toAdventureView(plan, first, PRIMARY_COMBO_WINDOW_MS + 1).attackComboStep)
       .toBeUndefined();
     const expired = attack(first, firstEnemy!.id, PRIMARY_COMBO_WINDOW_MS + 1);
@@ -230,7 +234,8 @@ describe('route-memory plan v3', () => {
     expect(replay.replay).toBe(true);
     expect(replay.save.revision).toBe(3);
     expect(replay.save.adventureState!.encounters[enemy.id]!.hp).toBe(enemy.maxHp - 4);
-    expect(toSaveView(save, new Date(startMs + 2_200)).adventure!.attackComboStep)
+    expect(toSaveView(save, new Date(startMs + 2 * ROUTE_ATTACK_COOLDOWN_MS + PRIMARY_COMBO_WINDOW_MS + 1))
+      .adventure!.attackComboStep)
       .toBeUndefined();
   });
 
