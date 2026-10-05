@@ -330,6 +330,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
   } | null = null;
   let pendingComboAttack: { encounterId: string; expectedRevision: number } | null = null;
   let attackSentAt = Number.NEGATIVE_INFINITY;
+  /** Held primary misses still get one visible swing per route cooldown. */
+  let heldPrimaryRetryAt = 0;
   let secondarySentAt = Number.NEGATIVE_INFINITY;
   /** The server-owned action currently awaiting its reply, if any. */
   let inFlightAction: GameplayAction["type"] | null = null;
@@ -1048,6 +1050,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const returnLocally = (position: PositionSnapshot, checkpointId: string | null): void => {
     input.clear();
     attackBuffer.clear();
+    heldPrimaryRetryAt = 0;
     checkpoint = { ...position };
     resetController(checkpoint, checkpointId);
     emitStatus(true);
@@ -1181,6 +1184,9 @@ export function createGame(options: CreateGameOptions): GameHandle {
       }
     }
     if (identityChanged || retried) {
+      // A key or touch held through a level switch must be pressed again.
+      input.clearActions();
+      heldPrimaryRetryAt = 0;
       courseTime = 0;
       traversalRecoveries = 0;
       attackAnimationUntil = 0;
@@ -1609,6 +1615,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
 
   const pressAttack = (kind: AttackKind, levelId: string): void => {
     if (kind === "primary") {
+      if (isRouteMemoryAdventure(save) && input.snapshot().attack)
+        heldPrimaryRetryAt = windowTarget.performance.now() + ROUTE_ATTACK_COOLDOWN_MS;
       const target = nearestEncounter(true);
       if (target) {
         controller.facing = target.facing;
@@ -1755,7 +1763,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
     elapsed += deltaSeconds;
     // Status includes asynchronous media state, which can change while gameplay is paused.
     timeSinceStatus += rawDeltaSeconds;
-    if (!worldActive) input.clear();
+    if (!worldActive) {
+      input.clear();
+      attackBuffer.clear();
+      heldPrimaryRetryAt = 0;
+    }
     const currentInput = input.snapshot();
     const pointerLook = input.consumePointerLook();
     // A save/resume frame resets the clock. Keep a quick tap until physics can step.
@@ -1839,6 +1851,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
             besties.restartThreatenedTrick();
             if (isRouteMemoryAdventure(save)) input.clearActions();
             else input.clear();
+            heldPrimaryRetryAt = 0;
             pendingHit = null;
             enemies.restartThreatenedAttacks();
           }
@@ -1969,6 +1982,23 @@ export function createGame(options: CreateGameOptions): GameHandle {
         attackBuffer.clear();
         pressAttack(buffered, levelId);
       }
+      if (
+        canAct &&
+        adventure.phase === "exploring" &&
+        isRouteMemoryAdventure(save) &&
+        input.snapshot().attack &&
+        !actions.attack &&
+        !actions.guard &&
+        !buffered &&
+        !collectedByContact &&
+        controller.recoveryRemaining <= 0 &&
+        levelId &&
+        requestState.requestState === "idle" &&
+        now >= attackReadyAt("primary") &&
+        now >= heldPrimaryRetryAt
+      ) {
+        pressAttack("primary", levelId);
+      }
     } else {
       setGliding(false);
       enemies.step(
@@ -2042,6 +2072,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
       paused = value;
       worldWasActive = false;
       input.clear();
+      attackBuffer.clear();
+      heldPrimaryRetryAt = 0;
       if (paused) {
         pendingHit = null;
         combatNeedsFreshTelegraph = true;
@@ -2052,6 +2084,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     },
     clearInput(): void {
       input.clear();
+      attackBuffer.clear();
+      heldPrimaryRetryAt = 0;
     },
     performAction(action): boolean {
       return !disposed && performAction(action);

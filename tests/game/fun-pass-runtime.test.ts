@@ -310,6 +310,153 @@ describe("fun pass runtime", () => {
     game.dispose();
   });
 
+  it("repeats a held primary at the route cooldown and confirms a three-hit combo", async () => {
+    let authoritative!: SaveView;
+    let step = 0;
+    const onAction = vi.fn(async (request: GameplayActionRequest) => {
+      if (request.action.type !== "attack") throw new Error("Expected a primary attack");
+      const next = structuredClone(authoritative);
+      next.revision += 1;
+      step = step === 3 ? 1 : step + 1;
+      next.adventure!.attackCooldownRemainingMs = 400;
+      next.adventure!.attackComboStep = step as 1 | 2 | 3;
+      next.adventure!.attackComboRemainingMs = 1_300;
+      const encounterId = request.action.encounterId;
+      const target = next.adventure!.activeLevel!.encounters.find(
+        (enemy) => enemy.id === encounterId,
+      )!;
+      target.hp = Math.max(0, target.hp - (step === 3 ? 2 : 1));
+      target.defeated = target.hp === 0;
+      authoritative = next;
+      return next;
+    });
+    const { game, save, targetId } = besideFirstEnemy({ onAction, feedback: [] });
+    authoritative = save;
+    game.setInput("attack", true);
+    advance();
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(1);
+    expect(scene().frames.at(-1)?.attackComboStep).toBe(1);
+    advance(399);
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(1);
+    advance(1);
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(2);
+    expect(scene().frames.at(-1)?.attackComboStep).toBe(2);
+    advance(399);
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(2);
+    advance(1);
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(3);
+    expect(scene().frames.at(-1)?.attackComboStep).toBe(3);
+    expect(scene().comboFinishes).toEqual([targetId]);
+    game.setInput("attack", false);
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(3);
+    game.dispose();
+  });
+
+  it("never repeats a held attack while its request is busy or after pause and blur", async () => {
+    let reply!: (save: SaveView) => void;
+    const onAction = vi.fn((_request: GameplayActionRequest) =>
+      new Promise<SaveView>((resolve) => { reply = resolve; }));
+    const { game, save } = besideFirstEnemy({ onAction, feedback: [] });
+    window.dispatchEvent(new KeyboardEvent("keydown", { code: "KeyF" }));
+    advance();
+    expect(onAction).toHaveBeenCalledTimes(1);
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    const damaged = structuredClone(save);
+    damaged.revision += 1;
+    damaged.adventure!.attackComboStep = 1;
+    damaged.adventure!.attackComboRemainingMs = 1_300;
+    damaged.adventure!.activeLevel!.encounters[0]!.hp -= 1;
+    reply(damaged);
+    await flush();
+    game.setPaused(true);
+    game.setPaused(false);
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    // OS key repeats cannot restore a key cleared by pause or focus loss.
+    window.dispatchEvent(new KeyboardEvent("keydown", { code: "KeyF", repeat: true }));
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    window.dispatchEvent(new KeyboardEvent("keyup", { code: "KeyF" }));
+    window.dispatchEvent(new KeyboardEvent("keydown", { code: "KeyF" }));
+    advance();
+    expect(onAction).toHaveBeenCalledTimes(2);
+    window.dispatchEvent(new Event("blur"));
+    reply(structuredClone(damaged));
+    await flush();
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(2);
+    game.dispose();
+  });
+
+  it("paces held misses locally without sending damage requests", () => {
+    const save = equippedSave();
+    for (const enemy of save.adventure!.activeLevel!.encounters) {
+      enemy.hp = 0;
+      enemy.defeated = true;
+      enemy.available = false;
+    }
+    const onAction = vi.fn(async () => save);
+    const game = createGame({
+      container: document.createElement("div"), save, onAction,
+      onRefresh: async () => save,
+    });
+    advance();
+    game.setInput("attack", true);
+    advance();
+    const first = game.inspect().status.attackFeedback?.sequence ?? 0;
+    expect(game.inspect().status.attackFeedback?.outcome).toBe("no-target");
+    for (let frame = 0; frame < 20; frame++) advance(50);
+    const attempts = (game.inspect().status.attackFeedback?.sequence ?? 0) - first;
+    expect(attempts).toBeGreaterThanOrEqual(2);
+    expect(attempts).toBeLessThanOrEqual(3);
+    expect(onAction).not.toHaveBeenCalled();
+    game.clearInput();
+    advance(800);
+    expect(game.inspect().status.attackFeedback?.sequence).toBe(first + attempts);
+    game.dispose();
+  });
+
+  it("drops a held attack across a level reset", async () => {
+    const onAction = vi.fn(async (_request: GameplayActionRequest) => {
+      const next = equippedSave();
+      next.revision = 1;
+      return next;
+    });
+    const { game } = besideFirstEnemy({ onAction, feedback: [] });
+    game.setInput("attack", true);
+    advance();
+    await flush();
+    expect(onAction).toHaveBeenCalledTimes(1);
+    game.updateSave(makeAuthoredSave({
+      routeId: ROUTE, levelId: "new-route-level", revision: 2,
+    }));
+    expect(game.inspect().input.attack).toBe(false);
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    game.dispose();
+  });
+
+  it("does not retry a rejected request just because Attack remains held", async () => {
+    const onAction = vi.fn(async (_request: GameplayActionRequest): Promise<SaveView> => {
+      throw { code: "ATTACK_COOLDOWN" };
+    });
+    const { game } = besideFirstEnemy({ onAction, feedback: [] });
+    game.setInput("attack", true);
+    advance();
+    await flush();
+    expect(game.inspect().status.requestState).toBe("error");
+    advance(800);
+    expect(onAction).toHaveBeenCalledTimes(1);
+    game.dispose();
+  });
+
   it("keeps the camera still and animation running under reduced motion", () => {
     Object.defineProperty(window, "matchMedia", {
       configurable: true,
