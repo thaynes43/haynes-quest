@@ -454,7 +454,7 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
   ) return false;
   const preparedCatalog = levelEditorPreparedEnemies(plan.catalogVersion);
   const bonusCatalog = levelEditorPreparedBonusEnemies(plan.catalogVersion);
-  let hasOptionalEncounter = false;
+  let hasV2Encounter = false;
   for (const level of plan.levels) {
     const optionalEncounterIds = 'optionalEncounterIds' in level
       ? level.optionalEncounterIds
@@ -464,9 +464,9 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       .filter((id) => optionalEncounterIds.includes(id));
     if (optionalEncounterIds.length > 4 ||
       JSON.stringify(optionalEncounterIds) !== JSON.stringify(expectedOptionalIds)) return false;
-    hasOptionalEncounter ||= optionalEncounterIds.length > 0;
     const coreCount = level.encounters.length - optionalEncounterIds.length - 1;
     if (coreCount < 4 || coreCount > 12) return false;
+    hasV2Encounter ||= optionalEncounterIds.length > 0 || coreCount > 4;
     const expectedEncounters: Array<{
       id: string;
       role: 'ordinary' | 'boss';
@@ -570,9 +570,9 @@ function validEditorWorldPlan(plan: EditorWorldAdventurePlan | FamilyWorldAdvent
       ) return false;
     }
   }
-  // An editor v2 plan exists only to carry an optional encounter; a family
-  // plan freezes whatever its template has.
-  return plan.version !== 'editor-world-plan-v2' || hasOptionalEncounter;
+  // Editor v2 freezes extended core and optional encounters; an unchanged
+  // four-core world stays on the exact five-encounter v1 contract.
+  return plan.version !== 'editor-world-plan-v2' || hasV2Encounter;
 }
 
 function validParodyPlan(plan: AdventurePlanV2 | AdventurePlanV3): boolean {

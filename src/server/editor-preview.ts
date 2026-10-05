@@ -170,10 +170,12 @@ export function prepareEditorWorld(
       });
     }
   }
-  const hasOptionalEncounter = project.chapters.some(
-    (chapter) => AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) => chapter.encounterSlots[slot] !== undefined),
+  const hasV2Encounter = project.chapters.some(
+    (chapter) =>
+      AUTHORED_EXTENDED_CORE_ENCOUNTER_SLOTS.some((slot) => chapter.encounterSlots[slot] !== undefined) ||
+      AUTHORED_BONUS_ENCOUNTER_SLOTS.some((slot) => chapter.encounterSlots[slot] !== undefined),
   );
-  const plan: EditorWorldAdventurePlan = hasOptionalEncounter
+  const plan: EditorWorldAdventurePlan = hasV2Encounter
     ? {
         version: 'editor-world-plan-v2',
         catalogVersion: project.catalogVersion,
