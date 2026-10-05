@@ -8,6 +8,8 @@ The implementation is in [source PR #149](https://github.com/thaynes43/haynes-qu
 
 The [GitOps release record](https://github.com/thaynes43/haynes-ops/blob/main/.agents/evidence/quest-active-fights-20261005-release.json) records the exact signed image, both live services and A9/B8 publication counts. Check that record and the live pins before treating the source checks as deployment. Photo assignments carry forward without fetching private photo bytes or resetting existing saves. Runtime combat changes apply after refresh; new course placements apply to a fresh adventure. The optional persisted combo field requires a combo-aware rollback image; pre-combo images reject saves containing it. Both deployments use `Recreate`, and both HelmRelease upgrades use `RetryOnFailure` to prevent an automatic rollback to that older reader after new saves are written.
 
+For a cancelled main image job, use the [main-image retry runbook](runbooks/rebuild-main-image.md). Its repository-dispatch trigger rebuilds current main through the same verification and signing steps using the app's existing permissions.
+
 ## Usage reset and Blender routing · October 5, 2026
 
 Tom now permits fresh native GPT-6.1 Sol (`gpt-6.1-sol`, `xhigh`) authors for useful remaining Blender work. This supersedes the older Codex Astra-only rule; the driving Astra session retains concepts, art direction and final visual review. [TEAM.md](TEAM.md), the contributor guide, process and active PLAN-019 now carry the same routing. An exclusive scene owner and a bounded work order remain required. Automatic Quest advisory reviews stay on Sonnet 5.5.
