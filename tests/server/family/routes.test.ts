@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { GameplayAction, SaveView } from '../../../src/shared/contracts.js';
 import type {
   AdminChildSummary,
@@ -293,13 +293,30 @@ describe('family journey routes (DESIGN-024 D-08)', () => {
     await act({ type: 'collect-equipment', levelId: level.id, pickupId: level.pickups[0]!.pickupId });
     for (const memoryId of level.minorMemoryIds!) await act({ type: 'recover-memory', levelId: level.id, memoryId });
     const minor = save.memories.find((memory) => memory.id === level.minorMemoryIds![0])!;
+    const fetchMedia = vi.spyOn(harness.library, 'fetchMedia');
     const media = await harness.request(minor.mediaUrl!, { as: 'member' });
     expect(media.status).toBe(200);
     expect(media.headers.get('content-type')).toBe('image/webp');
     expect(media.headers.get('cache-control')).toMatch(/^no-store/);
+    expect(fetchMedia).toHaveBeenLastCalledWith(expect.any(Object), { size: 'preview' });
+    const texture = await harness.request(`${minor.mediaUrl}?size=texture`, { as: 'member' });
+    expect(texture.status).toBe(200);
+    expect(texture.headers.get('content-type')).toBe('image/webp');
+    expect(texture.headers.get('cache-control')).toMatch(/^no-store/);
+    expect(fetchMedia).toHaveBeenLastCalledWith(expect.any(Object), { size: 'texture' });
+    expect(harness.immich.thumbnailCalls().at(-1)?.path).toContain('size=preview');
+    const callsBeforeInvalid = fetchMedia.mock.calls.length;
+    const invalid = await harness.request(`${minor.mediaUrl}?size=original`, { as: 'member' });
+    expect(invalid.status).toBe(400);
+    expect((await invalid.json() as { error: { code: string } }).error.code).toBe('INVALID_MEDIA_SIZE');
+    expect(fetchMedia).toHaveBeenCalledTimes(callsBeforeInvalid);
+    const duplicate = await harness.request(`${minor.mediaUrl}?size=texture&size=preview`, { as: 'member' });
+    expect(duplicate.status).toBe(400);
+    expect(fetchMedia).toHaveBeenCalledTimes(callsBeforeInvalid);
+    expect((await harness.request(`${minor.mediaUrl}?size=texture`, { as: null })).status).toBe(401);
     const major = save.memories.find((memory) => memory.id === level.majorMemoryId)!;
     expect(major.mediaUrl).toBeUndefined();
-    expect((await harness.request(`/api/saves/${save.id}/media/${level.majorMemoryId}`, { as: 'member' })).status).toBe(409);
+    expect((await harness.request(`/api/saves/${save.id}/media/${level.majorMemoryId}?size=texture`, { as: 'member' })).status).toBe(409);
     while (!save.adventure!.activeLevel!.encounters.find((encounter) => encounter.id === level.bossId)!.defeated) {
       await act({ type: 'attack', levelId: level.id, encounterId: level.bossId });
     }

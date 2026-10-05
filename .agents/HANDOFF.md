@@ -1,5 +1,13 @@
 # Current handoff
 
+## Photo texture delivery and quota direction · October 5, 2026
+
+Tom asked to continue while conserving Opus 5.5's remaining weekly allowance. The current [team direction](TEAM.md) uses native Codex Sol for bounded work; automatic Quest advisory reviews now pin Sonnet 5.5. No additional Opus or Blender authoring session was started for this correction.
+
+The game now requests `size=texture` from its existing private media route, producing a metadata-free WebP within 512×1024 pixels for the in-world keepsake. Album and enlarged-photo views retain their default preview. Admitted-household save access, released-memory checks, current Immich permission revalidation and private no-store delivery remain intact. Unknown or duplicate size parameters fail before fetching source bytes. Published worlds, photos and started saves are unchanged.
+
+[Synthetic evidence](evidence/action-worlds/photo-texture-2026-10-05.json) records 55 focused tests plus typecheck, lint and production build. A patterned portrait produced an 800×1600 preview of 676,778 bytes and a 512×1024 texture of 312,136 bytes (53.9% less). Actual photo savings depend on content; neither family photo bytes nor private identifiers were read. Browser image decode dimensions decrease, while server upstream decode, canvas dimensions and draw calls stay the same. The [GitOps release record](https://github.com/thaynes43/haynes-ops/blob/main/.agents/evidence/quest-photo-textures-20261005-release.json) is the rollout audit; an implementation check alone is not a live deployment claim.
+
 ## Action and planted worlds · October 4–5, 2026 · implementation verified
 
 Tom requested denser action, enemies that acquire and pursue the player, more enemy silhouettes, and vegetation. [DESIGN-029](../docs/designs/029-action-and-inhabited-worlds.md) records the implemented direction. All task work used worktrees under `/home/dev/work`; canonical clones remained fetch-only.
@@ -46,7 +54,7 @@ This historical checkpoint recorded World A on v6 and World B on v5, with device
   - World B `family-world-b@v5`, "Playroom to Big Stage": Sing-Along Playroom → Magic House → Besties' Big Stage; ages 0→2→4→6.
 - **Moves:** big boss memories unlock high jump at 2, double jump at 4 and glide at 8. The A4 DESIGN-027 scare level has two authored v5 jump-scare spots, blackouts and watchers; A3 and B3 use level 1. The family-home switch turns scares off per device. Eight mechanic and six scare cues are wired in.
 - **Cast and props:** catalog v11 places exact v001 Inator Monster, Putty Grunt, Lab Robot, Demon Band Idol and Radio Host Showman as labeled private candidates alongside the previously landed era and Rat Casino/Besties casts. The Toon Clubhouse, Playroom, Rescue Harbor, Casita and Rooftop City kits are merged and live on the signed image above. Web-slinger Helper's hosted GLB matches its exact SHA-256 and its five clips load in the hosted studio viewer. Skinned-mesh culling, fitted lunge eyes and A4 marquee camera occlusion are fixed (#103, #118, #119).
-- **Tom's access:** he signs in as `thaynes`; `thomashaynes620` is in neither admitted group. **Family setup → Memories** swaps photos and captions. **Update world** selects a newer template; **Start fresh** restarts a run on its latest publication.
+- **Family access:** admission uses the configured Admins and family groups. **Family setup → Memories** swaps photos and captions. **Update world** selects a newer template; **Start fresh** restarts a run on its latest publication.
 
 ### Operating notes recorded then
 

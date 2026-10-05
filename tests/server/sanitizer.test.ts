@@ -23,6 +23,23 @@ describe("private image sanitization", () => {
     expect(metadata.exif).toBeUndefined();
     expect(metadata.icc).toBeUndefined();
   });
+  it("bounds the game texture below the default preview while retaining portrait detail", async () => {
+    const input = await sharp({
+      create: { width: 1000, height: 2000, channels: 3, background: "#557363" },
+    }).jpeg().toBuffer();
+    const sanitizer = new SharpImageSanitizer();
+    const preview = await sanitizer.sanitize(input, "image/jpeg", 500000);
+    const texture = await sanitizer.sanitize(input, "image/jpeg", 500000, "texture");
+    const textureMetadata = await sharp(texture.bytes).metadata();
+    expect(await sharp(preview.bytes).metadata()).toMatchObject({
+      width: 800, height: 1600, format: "webp",
+    });
+    expect(textureMetadata).toMatchObject({
+      width: 512, height: 1024, format: "webp",
+    });
+    expect(textureMetadata.exif).toBeUndefined();
+    expect(texture.bytes.byteLength).toBeLessThan(preview.bytes.byteLength);
+  });
   it("rejects corrupt payloads and oversize output", async () => {
     const sanitizer = new SharpImageSanitizer();
     await expect(

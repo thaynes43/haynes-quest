@@ -8,6 +8,7 @@ export class SharpImageSanitizer implements ImageSanitizer {
     input: Uint8Array,
     _contentType: string,
     maxOutputBytes: number,
+    size: "preview" | "texture" = "preview",
   ): Promise<{ bytes: Uint8Array; contentType: string }> {
     try {
       const bytes = await sharp(input, {
@@ -17,8 +18,8 @@ export class SharpImageSanitizer implements ImageSanitizer {
       })
         .rotate()
         .resize({
-          width: 1600,
-          height: 1600,
+          width: size === "texture" ? 512 : 1600,
+          height: size === "texture" ? 1024 : 1600,
           fit: "inside",
           withoutEnlargement: true,
         })

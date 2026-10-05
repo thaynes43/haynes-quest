@@ -1246,6 +1246,9 @@ describe('POST /api/editor/playtests', () => {
       expect(fixtureMedia.status).toBe(200);
       expect(fixtureMedia.headers.get('content-type')).toContain('image/svg+xml');
       expect(await fixtureMedia.text()).toContain('Fictional illustration');
+      const fixtureTexture = await app.request(`${activeFixtureMemory.mediaUrl}?size=texture`, { headers: { cookie } });
+      expect(fixtureTexture.status).toBe(200);
+      expect(fixtureTexture.headers.get('content-type')).toContain('image/svg+xml');
       expect(selectedBody.save.adventure.activeLevel.encounters).toEqual(
         expect.arrayContaining([
           expect.objectContaining({

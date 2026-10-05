@@ -1,0 +1,33 @@
+{
+  "dateUtc": "2026-10-05",
+  "scope": "Synthetic private-media variant check; no family photo bytes or identifiers were read",
+  "implementation": {
+    "route": "/api/saves/:id/media/:memoryId?size=texture",
+    "defaultMaxPixels": [1600, 1600],
+    "textureMaxPixels": [512, 1024],
+    "upstreamImmichSize": "preview",
+    "output": "metadata-free WebP with existing input/output byte limits",
+    "delivery": "no-store; authorization and current asset-person eligibility checked on each request",
+    "renderingLimit": "The scene still draws its 512-pixel-wide canvas texture; this change does not establish a draw-call, GPU-memory or phone frame-time improvement"
+  },
+  "syntheticMeasurement": {
+    "input": {
+      "description": "Deterministically patterned RGB portrait, JPEG quality 90",
+      "width": 1000,
+      "height": 2000,
+      "bytes": 1524916
+    },
+    "defaultPreview": { "width": 800, "height": 1600, "bytes": 676778 },
+    "gameTexture": { "width": 512, "height": 1024, "bytes": 312136 },
+    "outputByteReductionPercent": 53.9,
+    "limitation": "One synthetic image; actual family-image savings depend on source dimensions and content"
+  },
+  "checks": {
+    "focused": "pnpm exec vitest run tests/server/sanitizer.test.ts tests/server/immich.test.ts tests/server/family/routes.test.ts tests/server/editor-preview.test.ts tests/game/photo-texture-url.test.ts — 55 passed",
+    "afterFinalAssertion": "pnpm exec vitest run tests/server/sanitizer.test.ts — 3 passed",
+    "typecheck": "pnpm typecheck — passed",
+    "lint": "pnpm lint — passed",
+    "build": "pnpm build — passed with existing large-chunk warning",
+    "diff": "git diff --check — passed"
+  }
+}

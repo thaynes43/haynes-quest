@@ -419,6 +419,12 @@ export function createApp(options: AppOptions): Hono {
     if (!canAccessSaveMemory(save, memory.id)) {
       throw new AppError(409, 'MEDIA_LOCKED', 'Memory is locked');
     }
+    const requestedSizes = context.req.queries('size');
+    if (requestedSizes && (requestedSizes.length !== 1 ||
+      (requestedSizes[0] !== 'preview' && requestedSizes[0] !== 'texture'))) {
+      throw new AppError(400, 'INVALID_MEDIA_SIZE', 'Invalid media size');
+    }
+    const size = requestedSizes?.[0] === 'texture' ? 'texture' : 'preview';
     if (memory.source.kind === 'fixture') {
       if (!options.fixtureMode) throw new AppError(404, 'MEDIA_NOT_FOUND', 'Media not found');
       const svg = fixtureSvg(memory.source.key);
@@ -426,7 +432,7 @@ export function createApp(options: AppOptions): Hono {
       return context.body(svg, 200, fixtureMediaHeaders());
     }
     if (!options.privateMedia) throw new AppError(503, 'MEDIA_UNAVAILABLE', 'Media unavailable');
-    const media = await options.privateMedia.fetchMedia(memory);
+    const media = await options.privateMedia.fetchMedia(memory, { size });
     return context.body(new Uint8Array(media.bytes), 200, privateMediaHeaders(media.contentType));
   });
 
