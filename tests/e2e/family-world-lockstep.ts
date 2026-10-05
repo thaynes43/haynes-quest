@@ -66,6 +66,8 @@
  *   QUEST_E2E_FRIENDLY_ASSET exact friendly asset to exercise; requires UNTIL=friendly and FAMILY_CARD
  *   QUEST_E2E_SKIP_DRAW 1 to skip GPU drawing between captures (simulation and input remain unchanged)
  *   QUEST_E2E_EXPECT_DENSE_WORLD 1 to require 12 main-route ordinaries, 4 bonus foes and a four-win boss gate
+ *   QUEST_E2E_DEBUG_HEARTBEAT 1 to print support, target, health and nearest foe every 240 stepped frames
+ *   QUEST_E2E_DEBUG_WALL_SECONDS optional per-chapter diagnostic wall limit (0 means no limit)
  *   QUEST_E2E_REALTIME_SAMPLE 1 to sample real frame intervals, draw calls and loaded assets at spawn;
  *     with UNTIL=first-fight also sample beside the first ordinary (the clock resumes before stopping)
  *
@@ -125,6 +127,10 @@ assert.ok(
 const familyCard = process.env.QUEST_E2E_FAMILY_CARD ?? "";
 const friendlyAsset = process.env.QUEST_E2E_FRIENDLY_ASSET ?? "";
 const skipDraw = process.env.QUEST_E2E_SKIP_DRAW === "1";
+const debugHeartbeat = process.env.QUEST_E2E_DEBUG_HEARTBEAT === "1";
+const debugWallLimitMs = Number(process.env.QUEST_E2E_DEBUG_WALL_SECONDS ?? 0) * 1_000;
+assert.ok(Number.isFinite(debugWallLimitMs) && debugWallLimitMs >= 0,
+  "QUEST_E2E_DEBUG_WALL_SECONDS must be a nonnegative number");
 const expectDenseWorld = process.env.QUEST_E2E_EXPECT_DENSE_WORLD === "1";
 const realtimeSample = process.env.QUEST_E2E_REALTIME_SAMPLE === "1";
 assert.ok(!realtimeSample || !skipDraw, "real-time sampling requires normal GPU drawing");
@@ -399,6 +405,10 @@ interface FrameStats {
 /** The page, its clock, its stick and keyboard, one rendered frame at a time. */
 class LockstepGame {
   live!: Live;
+  combatKnockouts = 0;
+  debugLeg: string | null = null;
+  debugTarget: Point | null = null;
+  private readonly startedWall = Date.now();
   /** Vertical speed over the last frame, from the feet position. */
   verticalSpeed = 0;
   readonly stats: FrameStats = { frames: 0, fineFrames: 0, pageMs: 0, wallMs: 0 };
@@ -445,14 +455,31 @@ class LockstepGame {
   async step(milliseconds: number): Promise<Live> {
     assert.ok(milliseconds % FINE_MS === 0 && milliseconds >= FINE_MS);
     const started = Date.now();
-    const previousY = this.live?.position.y ?? null;
+    const previous = this.live;
+    const previousY = previous?.position.y ?? null;
     if (milliseconds === FINE_MS) await this.page.clock.runFor(milliseconds);
     else await this.page.clock.fastForward(milliseconds);
     const live = await this.read(true);
+    if (previous && live.time < previous.time - 0.5 && live.recoveries === previous.recoveries)
+      this.combatKnockouts += 1;
     this.stats.frames += 1;
     if (milliseconds === FINE_MS) this.stats.fineFrames += 1;
     this.stats.pageMs += milliseconds;
     this.stats.wallMs += Date.now() - started;
+    if (debugHeartbeat && this.stats.frames % 240 === 0) {
+      const near = [...live.encounters]
+        .sort((left, right) => planar(left, live.position) - planar(right, live.position))[0];
+      console.log(`[debug] ${JSON.stringify({ frames: this.stats.frames, pageTime: live.time,
+        leg: this.debugLeg, target: this.debugTarget, position: live.position,
+        supportId: live.supportId, phase: live.phase, hp: live.playerHp,
+        recoveries: live.recoveries, input: live.input,
+        nearestEnemy: near ? { id: near.id, hp: near.hp, distance: Number(planar(near, live.position).toFixed(2)) } : null })}`);
+    }
+    if (debugWallLimitMs > 0 && Date.now() - this.startedWall > debugWallLimitMs)
+      throw new Error(`diagnostic wall limit reached after ${this.stats.frames} frames on ${this.debugLeg}: ${JSON.stringify({
+        target: this.debugTarget, position: live.position, supportId: live.supportId,
+        phase: live.phase, hp: live.playerHp, recoveries: live.recoveries, input: live.input,
+      })}`);
     this.verticalSpeed = previousY === null ? 0 : (live.position.y - previousY) / (milliseconds / 1_000);
     // A pause or a fall clears held game input; the stick must send it again.
     const active = ACTIVE_PHASES.has(live.phase);
@@ -802,6 +829,8 @@ interface ChapterReport {
   identities: Array<{ id: string; role: string; asset: string | null }>;
   legs: LegRecord[];
   recoveries: number;
+  combatKnockouts: number;
+  routeBlockers: Array<{ id: string; leg: string | null; action: "attack" | "bash"; time: number }>;
   fights: Array<{ slot: string; encounterId: string; role: string; attacks: number; bashes: number; defeats: number }>;
   pickups: string[];
   memories: Array<{ slot: string; id: string }>;
@@ -847,6 +876,7 @@ class ChapterPilot {
   private readonly mainIndex: Map<string, number>;
   /** Runs after each leg `reach` completes, standing on its landing. */
   afterLeg: (() => Promise<void>) | null = null;
+  onBlockedEncounter: ((encounterId: string) => Promise<void>) | null = null;
 
   constructor(
     private readonly game: LockstepGame,
@@ -924,13 +954,40 @@ class ChapterPilot {
     target: Point,
     { tolerance = 0.08, maxSeconds = 14, fine = false, until }: { tolerance?: number; maxSeconds?: number; fine?: boolean; until?: () => boolean } = {},
   ): Promise<boolean> {
+    this.game.debugTarget = target;
     const recoveries = this.live.recoveries;
     const deadline = this.live.time + maxSeconds;
     let stalled = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+    let noProgressFrames = 0;
     while (this.live.time < deadline && stalled < 600) {
       const distance = planar(this.live.position, target);
       if (distance <= tolerance || until?.()) return true;
       if (this.live.recoveries > recoveries) return false;
+      if (distance < bestDistance - 0.1) {
+        bestDistance = distance;
+        noProgressFrames = 0;
+      } else noProgressFrames += 1;
+      if (noProgressFrames >= 45) {
+        const blocker = this.live.encounters.find((entry) =>
+          entry.id === this.live.nearEncounterId && entry.role === "ordinary" && entry.hp > 0 &&
+          /-encounter-\d+$/.test(entry.id));
+        if (blocker) {
+          await this.game.move(0, 0);
+          await this.onBlockedEncounter?.(blocker.id);
+          const action: "attack" | "bash" | null = this.live.attackReady && !this.live.requestBusy ? "attack"
+            : this.live.guardReady && !this.live.requestBusy ? "bash" : null;
+          if (action) {
+            await this.game.press(action === "attack" ? "f" : "Shift");
+            const event = { id: blocker.id, leg: this.game.debugLeg, action, time: this.live.time };
+            this.report.routeBlockers.push(event);
+            this.mark("route:blocker-hit", event);
+          }
+          await this.game.step(FINE_MS);
+          noProgressFrames = 0;
+          continue;
+        }
+      }
       if (!ACTIVE_PHASES.has(this.live.phase)) {
         await this.game.move(0, 0);
         await this.game.step(CRUISE_MS);
@@ -951,6 +1008,42 @@ class ChapterPilot {
     const directionX = (to.x - from.x) / distance;
     const directionZ = (to.z - from.z) / distance;
     return { x: aim.x - directionZ * lateral, z: aim.z + directionX * lateral };
+  }
+
+  /** Keep a jump takeoff outside a raised destination's solid side wall. */
+  private raisedTakeoff(connection: AuthoredConnection, entry: Point): Point {
+    if (!jumpsAcross(connection)) return entry;
+    const from = sampledPlatform(this.course, connection.from, this.live.time);
+    const to = sampledPlatform(this.course, connection.to, this.live.time);
+    const fromTop = from.center.y + from.size.y / 2;
+    const toTop = to.center.y + to.size.y / 2;
+    if (toTop - fromTop <= 0.2) return entry;
+    const clearance = 0.4;
+    const insideRaisedWall = (point: Point) =>
+      point.x >= to.center.x - to.size.x / 2 - clearance &&
+      point.x <= to.center.x + to.size.x / 2 + clearance &&
+      point.z >= to.center.z - to.size.z / 2 - clearance &&
+      point.z <= to.center.z + to.size.z / 2 + clearance;
+    if (!insideRaisedWall(entry)) return entry;
+    const dx = to.center.x - from.center.x;
+    const dz = to.center.z - from.center.z;
+    const length = Math.hypot(dx, dz);
+    assert.ok(length > 0, `${connection.from}->${connection.to}: coincident jump platforms`);
+    for (let step = 1; step <= 80; step += 1) {
+      const takeoff = { x: entry.x - dx / length * step * 0.1, z: entry.z - dz / length * step * 0.1 };
+      if (insideRaisedWall(takeoff)) continue;
+      const sourceMargin = 0.3;
+      assert.ok(
+        takeoff.x >= from.center.x - from.size.x / 2 + sourceMargin &&
+        takeoff.x <= from.center.x + from.size.x / 2 - sourceMargin &&
+        takeoff.z >= from.center.z - from.size.z / 2 + sourceMargin &&
+        takeoff.z <= from.center.z + from.size.z / 2 - sourceMargin,
+        `${connection.from}->${connection.to}: no supported takeoff before raised wall`,
+      );
+      this.mark("leg:raised-takeoff", { from: connection.from, to: connection.to, entry, takeoff });
+      return takeoff;
+    }
+    throw new Error(`${connection.from}->${connection.to}: raised wall extends beyond takeoff search`);
   }
 
   /** Crosses one connection from the current state, steering every frame (performConnection). */
@@ -1011,7 +1104,8 @@ class ChapterPilot {
         );
       } else {
         for (const point of plan.waypoints ?? []) if (!(await this.walkTo(point))) return false;
-        const entry = edgeEntry(this.course, connection, this.live.time, inset, lateral);
+        const entry = this.raisedTakeoff(connection,
+          edgeEntry(this.course, connection, this.live.time, inset, lateral));
         if (!(await this.walkTo(entry))) return false;
         if (this.isLift(to)) {
           const fromTop = this.top(from.id, this.live.time);
@@ -1076,6 +1170,7 @@ class ChapterPilot {
   /** Crosses one connection, re-planning from the source after a fall there. */
   async cross(connection: AuthoredConnection): Promise<boolean> {
     const label = `${connection.from}->${connection.to}`;
+    this.game.debugLeg = label;
     for (let attempt = 1; attempt <= 4; attempt += 1) {
       if (this.live.supportId === connection.to) return true;
       // A pad's leg starts in the air, straight after its launch.
@@ -1366,6 +1461,8 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     identities: [],
     legs: [],
     recoveries: 0,
+    combatKnockouts: 0,
+    routeBlockers: [],
     fights: [],
     pickups: [],
     memories: [],
@@ -1786,6 +1883,31 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     };
     let firstOrdinaryShot = false;
     const anchors = document.anchors;
+    const captureFirstOrdinary = async (firstTargetId: string | null) => {
+      if (firstOrdinaryShot) return;
+      firstOrdinaryShot = true;
+      await shot("02-first-ordinary-fight");
+      if (until === "chase-probe") {
+        assert.ok(firstTargetId, "first ordinary was not in contact range");
+        const number = /-encounter-(\d+)$/.exec(firstTargetId)?.[1];
+        assert.ok(number, "first target is not a required ordinary");
+        const chaseSlot = `ordinary-${number}`;
+        const chaseAnchor = anchors.encounters[chaseSlot as keyof typeof anchors.encounters];
+        assert.ok(chaseAnchor, `${chaseSlot}: missing chase anchor`);
+        report.chase = await probeRealtimeChase(game!, level, chaseSlot, chaseAnchor, firstTargetId);
+        const file = `${shotDirectory}/${chapter.chapterId}-03-chase-gap-recovery.png`;
+        await page.screenshot({ path: file });
+        report.screenshots.push(file);
+        throw new StopAt("chase-probe");
+      }
+      if (realtimeSample && until === "first-fight") {
+        await game!.releaseStick();
+        await page.clock.resume();
+        report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads, assetsReadyAt);
+      }
+      if (until === "first-fight") throw new StopAt("first-fight");
+    };
+    pilot.onBlockedEncounter = captureFirstOrdinary;
     const helper = friendlyAsset ? opening.friendlies.find((friend) => friend.assetId === friendlyAsset) : null;
     const helperAnchor = helper
       ? Object.values(anchors.friendlies).find((anchor) => planar(anchor.position, helper) < 0.01)
@@ -1948,8 +2070,6 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       if (index === midIndex) await shot("02-mid-climb");
       for (const [kind, anchor] of Object.entries(anchors.pickups))
         if (anchor.platformId === platformId) await pilot.collectPickup(kind, anchor);
-      for (const slot of ["minor-one", "minor-two"] as const)
-        if (anchors.memories[slot].platformId === platformId) await pilot.collectMemory(slot, anchors.memories[slot]);
       for (const slot of encounterSlots) {
         const anchor = anchors.encounters[slot as keyof typeof anchors.encounters]!;
         if (anchor.platformId === platformId) {
@@ -1961,30 +2081,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
               if (role === "boss") {
                 await shot("03-boss-arena");
                 if (until === "boss-arena") throw new StopAt("boss-arena");
-              } else if (!firstOrdinaryShot) {
-                firstOrdinaryShot = true;
-                const firstTargetId = game!.live.nearEncounterId;
-                await shot("02-first-ordinary-fight");
-                if (until === "chase-probe") {
-                  assert.ok(firstTargetId, "first ordinary was not in contact range");
-                  const number = /-encounter-(\d+)$/.exec(firstTargetId)?.[1];
-                  assert.ok(number, "first target is not a required ordinary");
-                  const chaseSlot = `ordinary-${number}`;
-                  const chaseAnchor = anchors.encounters[chaseSlot as keyof typeof anchors.encounters];
-                  assert.ok(chaseAnchor, `${chaseSlot}: missing chase anchor`);
-                  report.chase = await probeRealtimeChase(game!, level, chaseSlot, chaseAnchor, firstTargetId);
-                  const file = `${shotDirectory}/${chapter.chapterId}-03-chase-gap-recovery.png`;
-                  await page.screenshot({ path: file });
-                  report.screenshots.push(file);
-                  throw new StopAt("chase-probe");
-                }
-                if (realtimeSample && until === "first-fight") {
-                  await game!.releaseStick();
-                  await page.clock.resume();
-                  report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads, assetsReadyAt);
-                }
-                if (until === "first-fight") throw new StopAt("first-fight");
-              }
+              } else await captureFirstOrdinary(game!.live.nearEncounterId);
             },
             slot === jumpScareSlot && !knockoutForced
               ? () => {
@@ -2001,6 +2098,9 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
             );
         }
       }
+      // Clear required threats before walking toward a memory on their deck.
+      for (const slot of ["minor-one", "minor-two"] as const)
+        if (anchors.memories[slot].platformId === platformId) await pilot.collectMemory(slot, anchors.memories[slot]);
       if (until === "friendly" && helperAnchor?.platformId === platformId) {
         await exerciseFriend();
         throw new StopAt("friendly");
@@ -2049,6 +2149,7 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     }
   } finally {
     report.recoveries = game?.live?.recoveries ?? 0;
+    report.combatKnockouts = game?.combatKnockouts ?? 0;
     report.frames = game ? { ...game.stats } : null;
     report.wallSeconds = Math.round((Date.now() - started) / 1_000);
     await browser.close();
