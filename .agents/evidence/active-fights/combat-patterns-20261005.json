@@ -28,6 +28,23 @@
     "framesBeforeRealtimeInput": 523,
     "finisherScreenshot": "combo-finisher-390x844.png"
   },
+  "heldPrimary": {
+    "chapter": "A1",
+    "candidate": "fef6137",
+    "input": "one real-time F keydown, then release",
+    "serverConfirmedSteps": [1, 2, 3],
+    "acceptedAttacks": 3,
+    "attackRequestDurationMs": [13.4, 19.2, 13.2],
+    "attacksAtRelease": 3,
+    "attacksAfter1500Ms": 3,
+    "attackCooldownErrors": 0,
+    "actionFailures": 0,
+    "apiErrors": 0,
+    "browserErrors": 0,
+    "recoveries": 0,
+    "framesBeforeStop": 396,
+    "wallTimeSeconds": 193
+  },
   "renderSample": {
     "chapter": "B1 spawn",
     "durationMs": 5000,
@@ -40,10 +57,10 @@
     "renderer": "SwiftShader",
     "deviceEvidence": false
   },
-  "selectedCombatRuns": 5,
+  "selectedCombatRuns": 6,
   "renderSampleRuns": 1,
   "selectedRunBrowserErrors": 0,
   "selectedRunApiErrors": 0,
   "selectedRunRecoveries": 0,
-  "limitations": "Synthetic fixture in emulated Chromium; sampled FPS is software-renderer evidence, not physical-phone performance. Movement and warning checks used a paused browser clock; combo inputs ran in real time against the server clock."
+  "limitations": "Synthetic fixture in emulated Chromium; sampled FPS is software-renderer evidence, not physical-phone performance. Movement and warning checks used a paused browser clock; combo inputs ran in real time against the server clock. Held-primary proof is one bounded arena run; severe software-renderer or network stalls can still exceed the server combo window."
 }
