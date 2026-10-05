@@ -1,15 +1,28 @@
 {
-  "recordedAt": "2026-10-05T00:07:40Z",
-  "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
+  "recordedAt": "2026-10-05T00:31:24Z",
+  "sourceCommit": "014ba65dbad10092e99c7356bbe37c6b62ad179c",
   "local": {
     "typecheck": "passed",
     "lint": "passed",
     "test": {
-      "passed": 1956,
+      "sourceCommit": "d6a292c0dcc13a6bd87b8b1e0a80053d0bc672b0",
+      "passed": 1957,
       "skipped": 34,
       "passedFiles": 170,
       "skippedFiles": 3,
+      "durationSeconds": 265.67,
       "questTestDatabaseUrl": "unset"
+    },
+    "finalPlantIntegrationFocused": {
+      "sourceCommit": "014ba65dbad10092e99c7356bbe37c6b62ad179c",
+      "passed": 47,
+      "testFiles": 4,
+      "suites": [
+        "tests/game/family-world-foundations.test.ts",
+        "tests/game/theme-kit-identity.test.ts",
+        "tests/game/theme-kit-registry.test.ts",
+        "tests/server/family/family-worlds-dense-v8-v7.test.ts"
+      ]
     },
     "levelsValidate": {
       "result": "passed",
@@ -18,11 +31,13 @@
     },
     "build": "passed",
     "docsBuild": {
+      "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
       "result": "passed",
       "preparedFiles": 4692,
       "checkedMarkdownFiles": 345
     },
     "docsPrepareRegressionTests": {
+      "sourceCommit": "c29cba13239485f546c903384a1bc35d21a5618a",
       "passed": 2
     }
   },
@@ -41,7 +56,8 @@
     ]
   },
   "limitations": [
-    "Local PostgreSQL integration cases were skipped because no disposable local PostgreSQL service was available; the exact-head CI verify job used its isolated PostgreSQL 16 service.",
+    "The 1,957-pass local full suite ran at d6a292c before the final planting bindings; the final source received focused preservation, runtime binding, schema/save and asset-bounds checks, while exact-head CI runs the full suite with PostgreSQL 16.",
+    "Local PostgreSQL integration cases were skipped because no disposable local PostgreSQL service was available; the earlier CI verify job used its isolated PostgreSQL 16 service.",
     "Browser and physical-device performance are recorded separately."
   ]
 }
