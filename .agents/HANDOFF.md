@@ -1,12 +1,18 @@
 # Current handoff
 
+## Active fights and attack chains · October 5, 2026 · implementing
+
+Tom clarified that the usage reset was permission to continue improving the game, and that the preceding guidance-only turn did not address its dull combat. [DESIGN-030](../docs/designs/030-active-fights-and-attack-chains.md) now defines the active release: locked charge lanes, visible slow bolts, faster melee variants, server-owned three-hit primary chains, and closer mixed-role encounters in immutable A9/B8 courses. Existing models are sufficient for these mechanics. Runtime attack variety also applies to earlier started family rosters after refresh; new placements apply to fresh adventures without resetting existing saves.
+
+The implementation is in `agent/hq-combat-variety-1005` under `/home/dev/work/hq-next-content-1005`. Complete the combined checks, seven synthetic chapter journeys, rendered pattern/combo playtests, independent review and signed GitOps deployment to both services before marking this section released. Carry photo assignments into A9/B8 publications without fetching private photo bytes. Earlier release evidence below does not establish deployment of these changes.
+
 ## Usage reset and Blender routing · October 5, 2026
 
 Tom now permits fresh native GPT-6.1 Sol (`gpt-6.1-sol`, `xhigh`) authors for useful remaining Blender work. This supersedes the older Codex Astra-only rule; the driving Astra session retains concepts, art direction and final visual review. [TEAM.md](TEAM.md), the contributor guide, process and active PLAN-019 now carry the same routing. An exclusive scene owner and a bounded work order remain required. Automatic Quest advisory reviews stay on Sonnet 5.5.
 
 The denser A8/B7 encounters, six new animated enemy variants, three planting models and smaller private photo textures are already deployed, as recorded below. Check their existing candidates and live release evidence before starting further modeling. Exact-version owner art review, listening and physical play with the children remain separate PLAN-019 criteria; technical checks do not establish those outcomes.
 
-The October 5 read-only gameplay and asset audits found no missing model delivery for this release. Distinct ordinary-enemy attack patterns can use the existing animation sets; broader behavior work remains [BL-02](../docs/BACKLOG.md#bl-02-combat-bosses-and-encounter-content). Richer Playroom/Casita prop kits and the older party theme's automatic planting remain [BL-08](../docs/BACKLOG.md#bl-08-family-world-dressing), whose next input is World B play feedback. No additional Blender job or gameplay change was selected from the usage reset alone.
+The initial October 5 read-only audits found no missing model delivery. Tom subsequently rejected a guidance-only result and requested further gameplay improvements, now tracked in DESIGN-030 above. Richer Playroom/Casita prop kits and the older party theme's automatic planting remain [BL-08](../docs/BACKLOG.md#bl-08-family-world-dressing); combat backlog context remains [BL-02](../docs/BACKLOG.md#bl-02-combat-bosses-and-encounter-content).
 
 ## Photo texture delivery and quota direction · October 5, 2026
 
