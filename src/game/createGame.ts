@@ -32,11 +32,9 @@ import {
 import { ActionCoordinator, type ActionRequestState } from "./actions";
 import {
   bossIsActive,
-  enemyAttackRange,
   EnemySimulation,
   findAttackTarget,
   playerAttackRange,
-  withinEnemyStrikeHeight,
 } from "./combat";
 import { getAvatarProportions, stepController } from "./controller";
 import { foregroundSimulationSteps } from "./frame-step";
@@ -157,6 +155,15 @@ interface RuntimeScene {
 }
 
 type AttackKind = "primary" | "secondary";
+
+/** Issued only by this runtime after a simulated enemy or Besties contact. */
+interface PendingSimulationContact {
+  levelId: string;
+  encounterId: string;
+  expiresAtMs: number;
+}
+
+const pendingContactLifetimeMs = 1_000;
 
 /** A take-hit that brings the player to 0 HP within this long can become a jump scare. */
 const lethalHitWindowMs = 3_000;
@@ -424,7 +431,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       withinFightHeight,
     );
   };
-  let pendingHit: { levelId: string; encounterId: string } | null = null;
+  let pendingHit: PendingSimulationContact | null = null;
   let disposed = false;
   let paused = false;
   let combatNeedsFreshTelegraph = false;
@@ -1301,30 +1308,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const flushPendingHit = (): void => {
     if (!pendingHit || requestState.requestState === "acting") return;
     const hit = pendingHit;
-    const adventure = requireAdventure(save);
-    const encounter = adventure.activeLevel?.encounters.find(
-      (candidate) => candidate.id === hit.encounterId,
-    );
-    if (
-      adventure.phase !== "exploring" ||
-      adventure.currentLevelId !== hit.levelId ||
-      !encounter ||
-      encounter.defeated ||
-      (encounter as { available?: boolean }).available === false ||
-      (encounter.role === "boss" && !bossIsActive(save))
-    ) {
-      pendingHit = null;
-      return;
-    }
-    if (
-      coordinator.perform({
-        type: "take-hit",
-        levelId: hit.levelId,
-        encounterId: hit.encounterId,
-      })
-    ) {
-      inFlightAction = "take-hit";
-      pendingHit = null;
+    if (performAction({
+      type: "take-hit",
+      levelId: hit.levelId,
+      encounterId: hit.encounterId,
+    }, hit)) {
       enemies.noteHitDispatched();
       lastTakeHit = {
         encounterId: hit.encounterId,
@@ -1338,29 +1326,27 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const validLevelAction = (action: GameplayAction): boolean =>
     action.levelId === requireAdventure(save).currentLevelId;
 
-  const validStrike = (encounterId: string): boolean => {
-    if (controller.recoveryRemaining > 0) return false;
-    const encounter = requireAdventure(save).activeLevel?.encounters.find(
-      (candidate) => candidate.id === encounterId,
+  const validSimulationContact = (
+    action: Extract<GameplayAction, { type: "take-hit" }>,
+    token: PendingSimulationContact | undefined,
+  ): boolean => {
+    if (!token || token !== pendingHit || controller.recoveryRemaining > 0) return false;
+    if (action.levelId !== token.levelId || action.encounterId !== token.encounterId) return false;
+    if (Math.max(lastTime, windowTarget.performance.now()) > token.expiresAtMs) return false;
+    const adventure = requireAdventure(save);
+    const encounter = adventure.activeLevel?.encounters.find(
+      (candidate) => candidate.id === token.encounterId,
     );
-    const frame = enemyFrames().find(
-      (candidate) => candidate.id === encounterId,
-    );
-    if (
-      !encounter ||
-      !frame ||
-      frame.phase !== "strike" ||
-      encounter.defeated
-    ) {
-      return false;
-    }
-    if (!withinEnemyStrikeHeight(controller.position, frame.position))
-      return false;
-    const range = enemyAttackRange(encounter.role);
-    return horizontalDistance(controller.position, frame.position) <= range;
+    return adventure.phase === "exploring" &&
+      adventure.currentLevelId === token.levelId &&
+      Boolean(encounter && !encounter.defeated && encounter.available !== false &&
+        (encounter.role !== "boss" || bossIsActive(save)));
   };
 
-  const performAction = (action: GameplayAction): boolean => {
+  const performAction = (
+    action: GameplayAction,
+    simulationContact?: PendingSimulationContact,
+  ): boolean => {
     const adventure = requireAdventure(save);
     const attackKind =
       action.type === "secondary-attack"
@@ -1434,12 +1420,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         break;
       }
       case "take-hit":
-        if (
-          adventure.phase !== "exploring" ||
-          !validStrike(action.encounterId)
-        ) {
-          return false;
-        }
+        if (!validSimulationContact(action, simulationContact)) return false;
         break;
       case "guard":
         if (
@@ -1481,6 +1462,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     }
     const accepted = coordinator.perform(action);
     if (accepted) inFlightAction = action.type;
+    if (accepted && action.type === "take-hit") pendingHit = null;
     if (accepted &&
       (action.type === "secondary-attack" || action.type === "attack-friendly")) {
       comboPresentationStep = null;
@@ -1901,12 +1883,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
           pendingHit = {
             levelId: adventure.currentLevelId,
             encounterId: duo.id,
+            expiresAtMs: now + pendingContactLifetimeMs,
           };
         }
         if (!pendingHit && contacts[0] && adventure.currentLevelId) {
           pendingHit = {
             levelId: adventure.currentLevelId,
             encounterId: contacts[0],
+            expiresAtMs: now + pendingContactLifetimeMs,
           };
         }
       }
