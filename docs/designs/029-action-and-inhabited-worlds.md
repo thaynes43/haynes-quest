@@ -1,6 +1,6 @@
 # DESIGN-029: Action and inhabited worlds
 
-- Status: In progress
+- Status: Implemented; rollout audit linked below
 - Requested: October 4, 2026
 - Builds on: [DESIGN-028](028-memory-rescue-and-fights.md), [DESIGN-026](026-personal-era-casts.md)
 
@@ -14,11 +14,11 @@ Ordinary enemies acquire within 8 m when a same-height ground route exists. They
 
 ## Cast and scenery
 
-Claude Code Opus 5.5 authors two isolated Blender scenes in parallel from image-generated construction references. Six additional ordinary silhouettes extend the locked era cast: Gadget Hammer Hopper, Mischief Kitten Skater, Lab Robot Sentry, Broccoli Bouncer, Bin Chicken Flower Thief and Demon Idol Drummer. Existing bosses remain the chapter leads. These are original parody minions with no copied logos or downloaded franchise meshes.
+Two Claude Code Opus 5.5 sessions authored models in isolated Blender scenes in parallel from image-generated construction references. Six additional ordinary silhouettes extend the locked era cast: Gadget Hammer Hopper, Mischief Kitten Skater, Lab Robot Sentry, Broccoli Bouncer, Bin Chicken Flower Thief and Demon Idol Drummer. Existing bosses remain the chapter leads. These are original parody minions with no copied logos or downloaded franchise meshes.
 
 A broad canopy tree, a slim cypress and a flowering shrub supplement existing scenery. Planting uses visible groups beside safe route pads and larger silhouettes behind them. Garden chapters get green beds and trees; rooftops get planters; the casino and stage get themed potted or theatrical greenery. Decor stays outside movement corridors and does not hide enemies, memories or landing areas. Repeated props should read as a place, rather than a border around an empty platform.
 
-Each model has a versioned concept, editable master, GLB, rendered views, animation and engine checks where applicable, and a current studio review page. The family-release candidate permission in [PRD-004 Q-03](../prds/004-family-release.md#owner-decisions) applies: technically checked candidates may appear in the children's levels while labeled awaiting review in the studio. A rejected candidate can revert to its predecessor. Coordinator review and actual owner approval remain separate.
+The three planting props bind their exact checked GLBs in the runtime kit; measured raw bounds also enclose the canopy’s 1.86 m X half-width. Each model has a versioned concept, editable master, GLB, rendered views, animation and engine checks where applicable, and a current studio review page. The family-release candidate permission in [PRD-004 Q-03](../prds/004-family-release.md#owner-decisions) applies: technically checked candidates may appear in the children's levels while labeled awaiting review in the studio. A rejected candidate can revert to its predecessor. Coordinator review and actual owner approval remain separate.
 
 ## Acceptance
 
@@ -29,3 +29,9 @@ Each model has a versioned concept, editable master, GLB, rendered views, animat
 - Merge checked changes, deploy the signed image to both services, and publish the new family templates without resetting started saves or reading private photos.
 
 Physical play with the children remains the measure of fun. Browser tests establish mechanics and rendering; they do not substitute for that feedback.
+
+## Verification and release record
+
+The [browser record](../../.agents/evidence/action-worlds/a8-b7-browser-verification.md) preserves the route and assembled-scene checks. All seven new chapters completed synthetic normal-control journeys with twelve core foes, the boss and three memories. The full local suite passed 1,957 tests at the preview/save compatibility fix, and the final planting integration passed 47 focused checks plus typecheck, lint, production build and all 21 level validations. The [check record](../../.agents/evidence/action-worlds/local-checks-20261004.json), [render comparison](../../.agents/evidence/action-worlds/a7-render-cost.md) and [navigation timings](../../.agents/evidence/action-worlds/enemy-navigation-2026-10-04.md) state the source versions and limits. Required CI runs against the final PR head with PostgreSQL 16.
+
+[Source PR #146](https://github.com/thaynes43/haynes-quest/pull/146) and [GitOps PR #3361](https://github.com/thaynes43/haynes-ops/pull/3361) track the release. The [GitOps audit](https://github.com/thaynes43/haynes-ops/blob/main/.agents/evidence/quest-action-worlds-20261004-release.json) records the exact deployed image and carried publication counts after rollout. New adventures and an explicitly selected **Start fresh** receive A8/B7; existing started runs preserve their frozen roster and progress. Exact-version owner art review and physical play remain open PLAN-019 criteria.
