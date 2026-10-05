@@ -18,13 +18,24 @@
     "productionBuild": "passed"
   },
   "strictDocumentationBuild": "passed",
+  "childPacedComboWindow": {
+    "sourceRevision": "5438652",
+    "windowMs": 2000,
+    "focusedPassedTests": 45,
+    "boundaries": "1431 ms and exactly 2000 ms advance the chain; 2001 ms resets it",
+    "attackCooldownMs": 400,
+    "extraFinisherDamage": 1,
+    "typecheck": "passed",
+    "lint": "passed",
+    "productionBuild": "passed"
+  },
   "levelValidation": { "passed": 23 },
   "browserEvidence": [
     "a9-b8-routes-20261005.json",
     "combat-patterns-20261005.json"
   ],
   "limits": [
-    "The full local suite preceded the final response-timing correction; final CI checks the complete submitted revision",
+    "The full local suite preceded the final response-timing correction and two-second combo window; final CI checks the complete submitted revision",
     "Browser play uses synthetic photos and emulated Chromium, not private media or a physical child-used device",
     "Implementation checks do not establish live deployment; the separate GitOps release record records promotion and publication"
   ]
