@@ -8,11 +8,13 @@ Tom's latest feedback is that the game is still terribly boring. Checking comple
 
 ## Enemy patterns
 
-Select ordinary-enemy patterns from frozen asset identities, without changing their saved health, damage, defeat flags or catalog entries. The family cast gets readable roles:
+Select ordinary-enemy patterns from frozen asset identities, without changing their saved health, damage, defeat flags or catalog entries. The new family minions get readable roles:
 
-- Gadget Hammer Hopper, Runaway Gadget, Broccoli Bouncer and Yes-Yes Veggie charge. They stop to aim for about 0.95 seconds, lock a visible narrow lane, then rush along it at about 7.5 m/s for at most 4 m. The target stays fixed; a side-step or jump avoids contact. A roughly 1.6-second recovery leaves a clear opportunity to hit back.
-- Lab Robot Sentry, Lab Robot, Demon Idol Drummer, Demon Idol and Radio Showman fire a slow bolt from about 5 m. A one-second stationary windup locks the shot direction, then a visible projectile moves at about 4.5 m/s for at most 6 m. It hits once and expires. A side-step or jump dodges it; the enemy cannot immediately fire again.
-- Mischief Kitten Skater, Mischief Kitten, Bin Chicken Flower Thief and Bin Chicken use faster melee approaches with a longer recovery after a miss. They still show a full windup and do not deal extra damage.
+- Gadget Hammer Hopper and Broccoli Bouncer charge. They stop to aim for about 0.95 seconds, lock a visible narrow lane, then rush along it at about 7.5 m/s for at most 4 m. The target stays fixed; a side-step or jump avoids contact. A roughly 1.6-second recovery leaves a clear opportunity to hit back.
+- Lab Robot Sentry, Lab Robot, Demon Idol Drummer and Radio Showman fire a slow bolt from about 5 m. A one-second stationary windup locks the shot direction, then a visible projectile moves at about 4.5 m/s for at most 6 m. It hits once and expires; its ground warning covers the full collision width (about 0.7 m). A side-step or jump dodges it; the enemy cannot immediately fire again.
+- Mischief Kitten Skater and Bin Chicken Flower Thief use faster melee approaches with a longer recovery after a miss. They still show a full windup and do not deal extra damage.
+
+In chapters containing the new variants, their older Gadget, Veggie, Kitten, Bird and Demon counterparts retain baseline melee so pairs mix roles. Earlier started family rosters without the new variants alternate a matched legacy asset's special role and baseline melee using stable encounter order; this gives existing runs variety without changing their frozen roster. Bosses stay unchanged.
 
 All patterns retain the current two-attacker limit, hit cooldown, same-floor contact rule, navigation, leash and friendly healing protection. A fired bolt occupies its attack slot until it expires. Swept movement/contact checks prevent large frames from tunneling through a player or a gap. Charge and bolt paths cannot cross disconnected ground, moving supports or floor changes. Defeat, level change, recovery and loss of a valid attack path cancel hazards. Pausing cannot leave an invisible hazard advancing. Existing bosses and unrelated ordinary assets retain their current behavior.
 

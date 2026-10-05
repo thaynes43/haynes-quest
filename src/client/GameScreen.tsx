@@ -240,6 +240,7 @@ function Adventure({
     encounterId: string;
     amount: number;
     revision: number;
+    combo?: boolean;
   } | null>(null);
   useEffect(() => {
     if (!lastDamage) return;
@@ -438,7 +439,10 @@ function Adventure({
           damagedEnemy &&
           (action?.type === "attack" || action?.type === "secondary-attack")
         )
-          setLastDamage({ ...damagedEnemy, revision: next.revision });
+          setLastDamage({
+            ...damagedEnemy, revision: next.revision,
+            combo: action.type === "attack" && next.adventure?.attackComboStep === 3,
+          });
         // A player's own hit already sounded at contact (DESIGN-022).
         const hitPlayedAtContact =
           action?.type === "attack" || action?.type === "secondary-attack";
@@ -910,7 +914,7 @@ function Adventure({
                 key={lastDamage.revision}
                 aria-hidden="true"
               >
-                −{lastDamage.amount}
+                {lastDamage.combo ? "Combo! " : ""}−{lastDamage.amount}
               </b>
             )}
           </div>
@@ -943,7 +947,7 @@ function Adventure({
                 key={lastDamage.revision}
                 aria-hidden="true"
               >
-                −{lastDamage.amount}
+                {lastDamage.combo ? "Combo! " : ""}−{lastDamage.amount}
               </b>
             )}
           </div>
@@ -1211,7 +1215,10 @@ function Adventure({
             practice jump lands on safe ground.
           </p>
           <p>
-            Attack hits a nearby enemy. Your second button, Bash, uses a shield
+            {routeMemories
+              ? "Land three quick Attacks for a stronger finish. Step beside a charge lane or jump over a bolt."
+              : "Attack hits a nearby enemy."}{" "}
+            Your second button, Bash, uses a shield
             for a close-range second hit. Step out of danger while it recharges.
             The Besties take turns with obstacle tricks. You can hit them
             whenever they are in range. Each little memory is a checkpoint: if

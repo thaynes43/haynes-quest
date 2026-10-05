@@ -47,6 +47,7 @@ import {
 import { effectiveScareLevel, type ScareLunge } from "./scare";
 import { modelFrameBounds, ScareVisuals, watcherPoseRoll } from "./scare-scene";
 import { ScenicCameraOcclusion } from "./camera-occlusion";
+import { EnemyAttackVisuals } from "./enemy-attack-visuals";
 
 type PhotoState = {
   url: string;
@@ -62,6 +63,7 @@ type EncounterVisual = {
   root: THREE.Group;
   model: THREE.Group;
   warning: THREE.Mesh;
+  attackVisuals?: EnemyAttackVisuals;
   marker: THREE.Mesh;
   hp: THREE.Mesh;
   boss: boolean;
@@ -1001,6 +1003,16 @@ export class GardenScene {
     this.effects.emit(boss ? "boss-defeat" : "defeat", { x, y: y + 1, z });
   }
 
+  /** The server confirmed the third hit; give the finish a distinct contact burst. */
+  finishCombo(encounterId: string): void {
+    const visual = this.enemies.get(encounterId);
+    if (!visual) return;
+    visual.hitUntil = this.visualTime + 0.3;
+    const { x, y, z } = visual.root.position;
+    this.effects.emit("hit", { x: x - 0.15, y: y + 0.8, z });
+    this.effects.emit("hit", { x: x + 0.15, y: y + 1.1, z });
+  }
+
   retryMedia(): void {
     this.assets.retry();
     for (const [id, state] of this.photos)
@@ -1069,8 +1081,11 @@ export class GardenScene {
     const secondaryLean = Math.sin(
       Math.min(1, Math.max(0, secondaryTime / 0.4)) * Math.PI,
     );
-    this.avatarVisual.rotation.x = -0.15 * (attackLean + secondaryLean);
-    this.avatarVisual.rotation.z = 0.1 * (attackLean - secondaryLean);
+    const comboStep = frame?.attackComboStep ?? 1;
+    const heavyFinish = comboStep === 3;
+    const sweepSide = comboStep === 2 ? -1 : 1;
+    this.avatarVisual.rotation.x = -(heavyFinish ? 0.27 : 0.15) * attackLean - 0.15 * secondaryLean;
+    this.avatarVisual.rotation.z = 0.1 * (attackLean * sweepSide - secondaryLean);
     const airborneStretch = frame && !frame.grounded ? 1.06 : 1;
     this.avatarVisual.scale.set(
       1 / Math.sqrt(airborneStretch),
@@ -1090,11 +1105,12 @@ export class GardenScene {
     if (this.attackStreak.visible) {
       const reach = Math.min(1, attackTime / 0.09);
       this.attackStreak.position.set(
-        -0.18 + reach * 0.36,
+        (-0.18 + reach * 0.36) * sweepSide,
         strikeHeight,
         -0.35 - reach * 0.62,
       );
-      this.attackStreak.scale.set(1, 0.35 + reach * 1.05, 1);
+      this.attackStreak.scale.set(heavyFinish ? 1.8 : 1, 0.35 + reach * (heavyFinish ? 1.35 : 1.05), 1);
+      (this.attackStreak.material as THREE.MeshBasicMaterial).color.setHex(heavyFinish ? 0xfff1a5 : 0xffd578);
       (this.attackStreak.material as THREE.MeshBasicMaterial).opacity =
         0.85 * Math.min(1, (0.32 - attackTime) / 0.14);
     }
@@ -1174,7 +1190,7 @@ export class GardenScene {
     this.playClip(desiredClip);
     this.clips.get("move")?.setEffectiveTimeScale(1.3);
     this.mixer?.update(dt);
-    this.equipment?.pose(attackTime, frame?.guarding ?? false, secondaryTime);
+    this.equipment?.pose(attackTime, frame?.guarding ?? false, secondaryTime, comboStep);
     const dimensions = getAvatarProportions(this.stage);
     this.target.set(
       position.x,
@@ -1566,8 +1582,14 @@ export class GardenScene {
       animation ? 1 - animation.vanish : elapsed < visual.hitUntil ? 0.9 : 1,
     );
     visual.marker.visible = targeted && !defeated;
+    if (enemy.attackPattern && !visual.attackVisuals) {
+      visual.attackVisuals = new EnemyAttackVisuals();
+      visual.root.add(visual.attackVisuals.root);
+    }
+    visual.attackVisuals?.update(enemy, elapsed);
     visual.warning.visible =
-      enemy.phase === "windup" || enemy.phase === "strike";
+      enemy.attackPattern !== "charge" && enemy.attackPattern !== "bolt" &&
+      (enemy.phase === "windup" || enemy.phase === "strike");
     // Show the entire danger area from the start of the warning.
     visual.warning.scale.setScalar(1);
     (visual.warning.material as THREE.MeshBasicMaterial).opacity =
