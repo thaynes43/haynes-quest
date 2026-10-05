@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-05",
+  "scope": "Active enemy patterns, attack chains, held primary input and A9/B8 courses",
+  "fullSuite": {
+    "sourceRevision": "3016fab",
+    "passedFiles": 175,
+    "skippedFiles": 3,
+    "passedTests": 1990,
+    "skippedTests": 34,
+    "database": "Local run has no isolated PostgreSQL; final required CI supplies PostgreSQL 16"
+  },
+  "finalTimingCorrection": {
+    "sourceRevision": "20ffc47",
+    "focusedPassedTests": 32,
+    "delayedResponseRegression": "A 1000 ms delayed reply does not restart a full client cooldown; held primary reaches server combo steps 2 and 3",
+    "typecheck": "passed",
+    "lint": "passed",
+    "productionBuild": "passed"
+  },
+  "strictDocumentationBuild": "passed",
+  "levelValidation": { "passed": 23 },
+  "browserEvidence": [
+    "a9-b8-routes-20261005.json",
+    "combat-patterns-20261005.json"
+  ],
+  "limits": [
+    "The full local suite preceded the final response-timing correction; final CI checks the complete submitted revision",
+    "Browser play uses synthetic photos and emulated Chromium, not private media or a physical child-used device",
+    "Implementation checks do not establish live deployment; the separate GitOps release record records promotion and publication"
+  ]
+}

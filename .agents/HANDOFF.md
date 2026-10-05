@@ -1,10 +1,12 @@
 # Current handoff
 
-## Active fights and attack chains · October 5, 2026 · implementing
+## Active fights and attack chains · October 5, 2026 · implementation checked
 
 Tom clarified that the usage reset was permission to continue improving the game, and that the preceding guidance-only turn did not address its dull combat. [DESIGN-030](../docs/designs/030-active-fights-and-attack-chains.md) now defines the active release: locked charge lanes, visible slow bolts, faster melee variants, server-owned three-hit primary chains, and closer mixed-role encounters in immutable A9/B8 courses. Existing models are sufficient for these mechanics. Runtime attack variety also applies to earlier started family rosters after refresh; new placements apply to fresh adventures without resetting existing saves.
 
-The implementation is in `agent/hq-combat-variety-1005` under `/home/dev/work/hq-next-content-1005`. Complete the combined checks, seven synthetic chapter journeys, rendered pattern/combo playtests, independent review and signed GitOps deployment to both services before marking this section released. Carry photo assignments into A9/B8 publications without fetching private photo bytes. Earlier release evidence below does not establish deployment of these changes.
+The implementation is in [source PR #149](https://github.com/thaynes43/haynes-quest/pull/149). [All seven synthetic chapter journeys](evidence/active-fights/a9-b8-routes-20261005.json) completed twelve core fights, the boss, two tools and three memories each; B3 needed one traversal recovery. [Combat browser evidence](evidence/active-fights/combat-patterns-20261005.json) covers pursuit, charge and bolt damage, successful dodges and a server-confirmed three-hit finisher. Browser play also exposed edge-only held input; the release adds repetition and corrects a response-sensitive cooldown using a delayed-reply regression. [Local check evidence](evidence/active-fights/local-checks-20261005.json) distinguishes the full suite from the final timing correction. These checks establish mechanics on an emulated browser, not physical-device feel or the children's response.
+
+The [GitOps release record](https://github.com/thaynes43/haynes-ops/blob/main/.agents/evidence/quest-active-fights-20261005-release.json) records the exact signed image, both live services and A9/B8 publication counts. Check that record and the live pins before treating the source checks as deployment. Photo assignments carry forward without fetching private photo bytes or resetting existing saves. Runtime combat changes apply after refresh; new course placements apply to a fresh adventure. The optional persisted combo field requires a combo-aware rollback image; pre-combo images reject saves containing it. Both services use a single pod version during the schema handover.
 
 ## Usage reset and Blender routing · October 5, 2026
 

@@ -1,6 +1,6 @@
 # DESIGN-030: Active fights and attack chains
 
-- Status: Implementing
+- Status: Implemented; deployment recorded separately
 - Requested: October 5, 2026
 - Builds on: [Action and inhabited worlds](029-action-and-inhabited-worlds.md), [Memory rescue and fights](028-memory-rescue-and-fights.md)
 
@@ -22,7 +22,7 @@ Optional enemy frame fields expose the pattern, locked target and active project
 
 ## Primary attack chain
 
-Repeated successful primary enemy hits build a three-hit chain on route-memory adventures. The third hit adds one damage to the equipped tool's normal damage, or to the existing basic strike when no tool is equipped. A tool remains the larger upgrade. Existing attack cooldowns still apply; holding Attack uses the existing repeat behavior. No new button is required.
+Repeated successful primary enemy hits build a three-hit chain on route-memory adventures. The third hit adds one damage to the equipped tool's normal damage, or to the existing basic strike when no tool is equipped. A tool remains the larger upgrade. Holding the touch Attack button or F repeats primary attacks at the existing cooldown, without repeating secondary attacks. Releasing, pausing, losing input focus or recovering clears the held attack. Canvas clicks retain their short-click versus drag behavior. No new button is required. Browser play exposed that the previous edge-only input did not actually repeat; the held-input behavior is part of this release.
 
 The server counts accepted primary enemy hits using its clock. A gap longer than 1.3 seconds between accepted hits expires the chain. Secondary attacks, friendly attacks, death/retry and level changes reset it. The third hit completes the chain; the next begins at one. A missed local swing clears presentation, and no damage request is invented for a miss. Server state remains authoritative; clients cannot submit a combo count or bypass cooldowns. Store only bounded optional combo state so older saves load with an empty chain and existing frozen plans remain intact.
 
@@ -37,3 +37,7 @@ Build new immutable A9/B8 templates if placement changes are needed. Measure rou
 Meaningful tests cover each hit and dodge, locked aim, swept contact, gap/floor/friendly safety, the two-attacker cap, hazard cancellation, combo timing/cooldown/idempotency and older saves. Browser play shows the actual charge lane, bolt, melee approach and three-hit finish using normal controls. Complete the seven new chapter journeys and validate authored placements, preserved older templates and photo slots. Record draw calls and limits without claiming physical phone performance from emulation.
 
 Merge the checked implementation, deploy its signed image to the family service and isolated fixture, and carry existing photo assignments into any new publications without reading private photo bytes. Record the live image and health checks. Physical child play remains the measure of fun, but it does not block this authorized gameplay improvement.
+
+The [seven synthetic chapter journeys](../../.agents/evidence/active-fights/a9-b8-routes-20261005.json) completed twelve core fights, the boss, two tools and three memories each. One B3 traversal required recovery and then finished. [Rendered combat evidence](../../.agents/evidence/active-fights/combat-patterns-20261005.json) records pursuit, grounded charge/bolt damage, successful sidestep/jump dodges and a real-time server-confirmed 5/5/6 wand chain. The screenshots also cover directional warnings, visible coral bolts and the confirmed finisher. These are emulated browser checks, not physical-device acceptance.
+
+The new optional persisted `attackCombo` is readable by this release and older saves load without it. A pre-combo image's strict stored-state schema rejects saves containing that field. The GitOps promotion uses one pod/schema version at a time; rollback must retain the combo-aware schema rather than return to the pre-combo image. Exact image, rollout and carried publication counts belong in the [GitOps release record](https://github.com/thaynes43/haynes-ops/blob/main/.agents/evidence/quest-active-fights-20261005-release.json).

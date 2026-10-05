@@ -1217,7 +1217,7 @@ function Adventure({
           </p>
           <p>
             {routeMemories
-              ? "Land three quick Attacks for a stronger finish. Step beside a charge lane or jump over a bolt."
+              ? "Hold Attack to chain hits into a stronger third hit. Step beside a charge lane or jump over a bolt."
               : "Attack hits a nearby enemy."}{" "}
             Your second button, Bash, uses a shield
             for a close-range second hit. Step out of danger while it recharges.
