@@ -1167,13 +1167,16 @@ export class GardenScene {
         );
         for (const mesh of [this.spellCore, this.spellGlow]) {
           mesh.position.y = length / 2;
-          mesh.scale.y = length;
+          mesh.scale.set(heavyFinish ? 1.7 : 1, length, heavyFinish ? 1.7 : 1);
         }
         const fade = Math.min(1, (0.28 - attackTime) / 0.1);
+        this.spellCore.material.color.setHex(heavyFinish ? 0xfff1a5 : 0xf4eaff);
+        this.spellGlow.material.color.setHex(heavyFinish ? 0xffdc77 : 0xad78ff);
+        this.spellImpact.material.color.setHex(heavyFinish ? 0xfff1a5 : 0xffedab);
         this.spellCore.material.opacity = fade;
-        this.spellGlow.material.opacity = fade * 0.3;
+        this.spellGlow.material.opacity = fade * (heavyFinish ? 0.45 : 0.3);
         this.spellImpact.position.y = length;
-        this.spellImpact.scale.setScalar(0.7 + Math.sin(attackTime * 22) * 0.3);
+        this.spellImpact.scale.setScalar((0.7 + Math.sin(attackTime * 22) * 0.3) * (heavyFinish ? 1.8 : 1));
         this.spellImpact.material.opacity = fade;
       }
     }
