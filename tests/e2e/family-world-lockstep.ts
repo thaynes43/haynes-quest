@@ -69,7 +69,7 @@
  *   QUEST_E2E_DEBUG_HEARTBEAT 1 to print support, target, health and nearest foe every 240 stepped frames
  *   QUEST_E2E_DEBUG_WALL_SECONDS optional per-chapter diagnostic wall limit (0 means no limit)
  *   QUEST_E2E_REALTIME_SAMPLE 1 to sample real frame intervals, draw calls and loaded assets at spawn;
- *     with UNTIL=first-fight also sample beside the first ordinary (the clock resumes before stopping)
+ *     with UNTIL=first-fight or chase-probe also sample beside the first ordinary
  *
  *   pnpm build && QUEST_EPHEMERAL_PLAYTEST=true QUEST_FIXTURE_MODE=true \
  *     NODE_ENV=development BETTER_AUTH_SECRET=... QUEST_APP_ORIGIN=http://127.0.0.1:3000 \
@@ -77,6 +77,7 @@
  *   QUEST_E2E_URL=http://127.0.0.1:3000 pnpm exec tsx tests/e2e/family-world-lockstep.ts
  */
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium, type CDPSession, type Page } from "playwright";
@@ -615,8 +616,16 @@ interface LegRecord {
   ok: boolean;
 }
 
+interface LoadedModel {
+  path: string;
+  bytes: number;
+  sha256: string;
+  durationMs: number;
+}
+
 interface RealtimeSample {
   warmupAfterAssetsMs: number;
+  durationMs: number;
   frames: number;
   meanFrameMs: number;
   p95FrameMs: number;
@@ -624,7 +633,10 @@ interface RealtimeSample {
   meanDrawCalls: number;
   p95DrawCalls: number;
   totalDrawCalls: number;
-  loadedModels: Array<{ path: string; bytes: number; durationMs: number }>;
+  meanTriangles: number;
+  p95Triangles: number;
+  totalTriangles: number;
+  loadedModels: LoadedModel[];
   renderer: string;
   viewport: { width: number; height: number; deviceScaleFactor: number };
   deviceEvidence: false;
@@ -645,7 +657,7 @@ interface ChaseProbe {
 /** Measure only while page time flows normally; a paused clock cannot provide frame evidence. */
 async function sampleRealtime(
   page: Page,
-  loadedModels: Array<{ path: string; bytes: number; durationMs: number }>,
+  loadedModels: LoadedModel[],
   assetsReadyAt: number,
 ): Promise<RealtimeSample> {
   const remainingWarmup = 3_000 - (Date.now() - assetsReadyAt);
@@ -655,8 +667,10 @@ async function sampleRealtime(
     const drawCounter = window;
     const intervals = [];
     const calls = [];
+    const triangles = [];
     let lastTime = 0;
     let lastCalls = drawCounter.__questDrawCalls || 0;
+    let lastTriangles = drawCounter.__questDrawTriangles || 0;
     const started = performance.now();
     const frame = (time) => {
       if (lastTime > 0) {
@@ -664,9 +678,12 @@ async function sampleRealtime(
         const count = drawCounter.__questDrawCalls || 0;
         calls.push(count - lastCalls);
         lastCalls = count;
+        const triangleCount = drawCounter.__questDrawTriangles || 0;
+        triangles.push(triangleCount - lastTriangles);
+        lastTriangles = triangleCount;
       }
       lastTime = time;
-      if (intervals.length < 120 && time - started < 5000) {
+      if (time - started < 5000) {
         requestAnimationFrame(frame);
         return;
       }
@@ -674,22 +691,26 @@ async function sampleRealtime(
       const gl = canvas && (canvas.getContext('webgl2') || canvas.getContext('webgl'));
       const debug = gl && gl.getExtension('WEBGL_debug_renderer_info');
       const renderer = debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : 'unavailable';
-      resolveSample({ intervals, calls, renderer });
+      resolveSample({ intervals, calls, triangles, renderer });
     };
     requestAnimationFrame(frame);
   })`) as {
     intervals: number[];
     calls: number[];
+    triangles: number[];
     renderer: string;
   };
   assert.ok(measured.intervals.length >= 10, "too few real-time frames for a sample");
   const mean = measured.intervals.reduce((sum, value) => sum + value, 0) / measured.intervals.length;
   const sortedIntervals = [...measured.intervals].sort((a, b) => a - b);
   const sortedCalls = [...measured.calls].sort((a, b) => a - b);
+  const sortedTriangles = [...measured.triangles].sort((a, b) => a - b);
   const sumCalls = measured.calls.reduce((sum, value) => sum + value, 0);
+  const sumTriangles = measured.triangles.reduce((sum, value) => sum + value, 0);
   const p95 = (values: number[]) => values[Math.min(values.length - 1, Math.floor(values.length * 0.95))]!;
   return {
     warmupAfterAssetsMs,
+    durationMs: Number(measured.intervals.reduce((sum, value) => sum + value, 0).toFixed(1)),
     frames: measured.intervals.length,
     meanFrameMs: Number(mean.toFixed(2)),
     p95FrameMs: Number(p95(sortedIntervals).toFixed(2)),
@@ -697,6 +718,9 @@ async function sampleRealtime(
     meanDrawCalls: Number((sumCalls / measured.calls.length).toFixed(1)),
     p95DrawCalls: p95(sortedCalls),
     totalDrawCalls: sumCalls,
+    meanTriangles: Math.round(sumTriangles / measured.triangles.length),
+    p95Triangles: p95(sortedTriangles),
+    totalTriangles: sumTriangles,
     loadedModels,
     renderer: measured.renderer,
     viewport: { ...VIEWPORT, deviceScaleFactor: playScale },
@@ -844,7 +868,7 @@ interface ChapterReport {
   consoleErrors: string[];
   responseErrors: string[];
   media: Record<string, number>;
-  assetLoads: Array<{ path: string; bytes: number; durationMs: number }>;
+  assetLoads: LoadedModel[];
   frozenProject?: { projectId: string; revision: number; fingerprint: string; schemaVersion: string; theme: string; decorCount: number };
   realtime?: { spawn: RealtimeSample; firstFight?: RealtimeSample };
   portraitLayout?: { viewport: { width: number; height: number }; controls: Record<string, { x: number; y: number; width: number; height: number }>; scrollWidth: number };
@@ -1504,13 +1528,27 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
     const context = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: playScale });
     if (realtimeSample) await context.addInitScript({ content: `(() => {
       let calls = 0;
+      let triangles = 0;
       Object.defineProperty(window, '__questDrawCalls', { get: () => calls });
+      Object.defineProperty(window, '__questDrawTriangles', { get: () => triangles });
       for (const type of [window.WebGLRenderingContext, window.WebGL2RenderingContext]) {
         if (!type) continue;
         for (const name of ['drawArrays', 'drawElements', 'drawArraysInstanced', 'drawElementsInstanced', 'drawRangeElements']) {
           const original = type.prototype[name];
           if (typeof original !== 'function') continue;
-          type.prototype[name] = function(...args) { calls += 1; return original.apply(this, args); };
+          type.prototype[name] = function(...args) {
+            calls += 1;
+            const count = name === 'drawArrays' || name === 'drawArraysInstanced' ? args[2]
+              : name === 'drawRangeElements' ? args[3] : args[1];
+            const instances = name === 'drawArraysInstanced' ? args[3]
+              : name === 'drawElementsInstanced' ? args[4] : 1;
+            if (Number.isFinite(count) && Number.isFinite(instances)) {
+              if (args[0] === this.TRIANGLES) triangles += Math.floor(count / 3) * instances;
+              else if (args[0] === this.TRIANGLE_STRIP || args[0] === this.TRIANGLE_FAN)
+                triangles += Math.max(0, count - 2) * instances;
+            }
+            return original.apply(this, args);
+          };
         }
       }
     })();` });
@@ -1532,9 +1570,10 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       if (path.startsWith("/studio/assets/media/") && path.endsWith(".glb")) {
         report.media[path] = response.status();
         if (realtimeSample && response.ok()) pendingAssetLoads.push((async () => {
-          const bytes = (await response.body()).byteLength;
+          const body = await response.body();
+          const bytes = body.byteLength;
           const timing = response.request().timing();
-          report.assetLoads.push({ path, bytes, durationMs: Number((timing.responseEnd - timing.requestStart).toFixed(1)) });
+          report.assetLoads.push({ path, bytes, sha256: createHash("sha256").update(body).digest("hex"), durationMs: Number((timing.responseEnd - timing.requestStart).toFixed(1)) });
         })());
       }
       if (response.request().method() !== "POST" || !response.ok()) return;
@@ -1887,6 +1926,11 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
       if (firstOrdinaryShot) return;
       firstOrdinaryShot = true;
       await shot("02-first-ordinary-fight");
+      if (realtimeSample && (until === "first-fight" || until === "chase-probe")) {
+        await game!.releaseStick();
+        await page.clock.resume();
+        report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads, assetsReadyAt);
+      }
       if (until === "chase-probe") {
         assert.ok(firstTargetId, "first ordinary was not in contact range");
         const number = /-encounter-(\d+)$/.exec(firstTargetId)?.[1];
@@ -1899,11 +1943,6 @@ async function playChapter(chapter: LevelEditorChapterV2): Promise<ChapterReport
         await page.screenshot({ path: file });
         report.screenshots.push(file);
         throw new StopAt("chase-probe");
-      }
-      if (realtimeSample && until === "first-fight") {
-        await game!.releaseStick();
-        await page.clock.resume();
-        report.realtime!.firstFight = await sampleRealtime(page, report.assetLoads, assetsReadyAt);
       }
       if (until === "first-fight") throw new StopAt("first-fight");
     };
