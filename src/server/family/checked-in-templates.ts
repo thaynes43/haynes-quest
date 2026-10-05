@@ -12,6 +12,7 @@ import familyWorldAV4 from '../../shared/levels/family-world-a-v4.json';
 import familyWorldAV5 from '../../shared/levels/family-world-a-v5.json';
 import familyWorldAV7 from '../../shared/levels/family-world-a-v7.json';
 import familyWorldAV8 from '../../shared/levels/family-world-a-v8.json';
+import familyWorldAV9 from '../../shared/levels/family-world-a-v9.json';
 import type { FriendlyCatalogVersion } from '../../shared/friendly.js';
 import familyWorldBV1 from '../../shared/levels/family-world-b-v1.json';
 import familyWorldBV2 from '../../shared/levels/family-world-b-v2.json';
@@ -20,6 +21,7 @@ import familyWorldBV4 from '../../shared/levels/family-world-b-v4.json';
 import familyWorldBV5 from '../../shared/levels/family-world-b-v5.json';
 import familyWorldBV6 from '../../shared/levels/family-world-b-v6.json';
 import familyWorldBV7 from '../../shared/levels/family-world-b-v7.json';
+import familyWorldBV8 from '../../shared/levels/family-world-b-v8.json';
 
 export interface FamilyTemplateSource {
   readonly id: string;
@@ -51,6 +53,7 @@ export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Obje
   { id: 'family-world-a', version: 'v6', project: familyWorldAV5, friendlyCatalogVersion: 'friendly-catalog-v2' },
   { id: 'family-world-a', version: 'v7', project: familyWorldAV7, friendlyCatalogVersion: 'friendly-catalog-v2' },
   { id: 'family-world-a', version: 'v8', project: familyWorldAV8, friendlyCatalogVersion: 'friendly-catalog-v2' },
+  { id: 'family-world-a', version: 'v9', project: familyWorldAV9, friendlyCatalogVersion: 'friendly-catalog-v2' },
   { id: 'family-world-b', version: 'v1', project: familyWorldBV1 },
   { id: 'family-world-b', version: 'v2', project: familyWorldBV2 },
   { id: 'family-world-b', version: 'v3', project: familyWorldBV3 },
@@ -58,4 +61,5 @@ export const CHECKED_IN_FAMILY_TEMPLATES: readonly FamilyTemplateSource[] = Obje
   { id: 'family-world-b', version: 'v5', project: familyWorldBV5 },
   { id: 'family-world-b', version: 'v6', project: familyWorldBV6 },
   { id: 'family-world-b', version: 'v7', project: familyWorldBV7 },
+  { id: 'family-world-b', version: 'v8', project: familyWorldBV8 },
 ]);

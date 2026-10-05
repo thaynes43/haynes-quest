@@ -126,6 +126,7 @@ describe('family template registry', () => {
       'family-world-b@v5',
       'family-world-b@v6',
       'family-world-b@v7',
+      'family-world-b@v8',
     ]);
     expect(registry.offeredFor(TEST_CHILD_A.birthDate, TODAY)).toEqual([]);
     expect(registry.offeredFor('2021-06-01', TODAY)).toEqual([]);
