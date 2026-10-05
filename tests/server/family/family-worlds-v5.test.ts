@@ -51,7 +51,7 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
 
   it("replays the new command history and keeps v1–v4 fingerprints", () => {
     expect(registry.list().filter((entry) => entry.id === world).map((entry) => entry.version)).toEqual(
-      world === 'family-world-a' ? ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8"] : ["v1", "v2", "v3", "v4", "v5", "v6", "v7"],
+      world === 'family-world-a' ? ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9"] : ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8"],
     );
     for (const [index, fingerprint] of FROZEN[world].entries())
       expect(registry.require(world, `v${index + 1}`).fingerprint).toBe(fingerprint);
@@ -132,7 +132,7 @@ describe.each(Object.entries(WORLDS) as [keyof typeof WORLDS, (typeof WORLDS)[ke
       expect(validateFamilyWorldPlan(tampered, { birthDate: after.birthDate, memories: after.memories })).toContain("plan.geometry-fingerprint");
     }
     expect(registry.newestUpgrade(world, "v5", spec.child.birthDate, HARNESS_TODAY)?.version ?? null).toBe(
-      world === 'family-world-a' ? 'v8' : 'v7',
+      world === 'family-world-a' ? 'v9' : 'v8',
     );
   });
 });

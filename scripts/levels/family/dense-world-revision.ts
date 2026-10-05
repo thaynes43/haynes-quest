@@ -223,7 +223,7 @@ function retryCheckpoint(level: AuthoredLevelDocument, platformId: string, x: nu
   return retry.id;
 }
 
-function anchorFor(
+export function anchorFor(
   level: AuthoredLevelDocument,
   placement: DenseFightPlacement,
   slot: SourceSlot | AuthoredExtendedCoreEncounterSlot | AuthoredBonusEncounterSlot,

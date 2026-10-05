@@ -271,7 +271,7 @@ describe('family-world-a@v2 template (World A)', () => {
     const harness = worldAHarness();
     const { childId } = await publishChildC(harness, 'v1');
     const expectedRevision = (await harness.familyStore.getDraft(childId))!.revision;
-    for (const [templateId, templateVersion] of [['family-world-a', 'v9'], ['family-world-b', 'v2'], ['family-world-a', 'v1']]) {
+    for (const [templateId, templateVersion] of [['family-world-a', 'v10'], ['family-world-b', 'v2'], ['family-world-a', 'v1']]) {
       await expect(harness.service.upgradeTemplate(childId, { templateId: templateId!, templateVersion: templateVersion!, expectedRevision }, null))
         .rejects.toMatchObject({ code: 'TEMPLATE_UPGRADE_UNAVAILABLE' });
     }

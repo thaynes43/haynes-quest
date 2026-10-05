@@ -1,0 +1,335 @@
+{
+  "purpose": "A9/B8 synthetic full-route browser verification for active fights",
+  "recordedAtUtc": "2026-10-05T18:08:46+00:00",
+  "mechanicsAndWorldRevision": "72d8a6b",
+  "visualRevisionCaveat": "Seven full-route runs verified mechanics and placements at 72d8a6b. Later 063065c visual-warning and ef0da4b exact-target-label changes were not replayed across all seven chapters; ef0da4b received a fresh bounded A4 first-fight browser check.",
+  "playthrough": {
+    "server": "node dist/server/index.js",
+    "serverConfiguration": {
+      "PORT": 4280,
+      "QUEST_APP_ORIGIN": "http://127.0.0.1:4280",
+      "QUEST_FIXTURE_MODE": true,
+      "QUEST_EPHEMERAL_PLAYTEST": true,
+      "NODE_ENV": "development",
+      "store": "in-memory",
+      "familyPhotos": "none"
+    },
+    "projectFiles": [
+      "src/shared/levels/family-world-a-v9.json",
+      "src/shared/levels/family-world-b-v8.json"
+    ],
+    "input": "Normal analog movement, Space jump/glide, F attack, Shift secondary; no position, damage, or game-state edits",
+    "clock": "Browser lockstep; WebGL drawing skipped between full-render screenshots",
+    "parallelWorkersAtMost": 2,
+    "denseWorldAssertion": "12 core, 4 optional, boss gate after 4 wins; optional fights were not played",
+    "limitations": "Lockstep verifies route, collision, combat, and completion, not real-time frame rate or player feel"
+  },
+  "chapters": [
+    {
+      "chapter": "family-a1",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 0,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 92,
+      "steppedFrames": 3051,
+      "interPairGapMetersBefore": [
+        36.3,
+        24.8,
+        41.2,
+        31.2,
+        16.5
+      ],
+      "interPairGapMetersAfter": [
+        36.3,
+        24.8,
+        26.3,
+        14.9,
+        31.2
+      ],
+      "maxGapMetersBefore": 41.2,
+      "maxGapMetersAfter": 36.3
+    },
+    {
+      "chapter": "family-a2",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 0,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 92,
+      "steppedFrames": 2774,
+      "interPairGapMetersBefore": [
+        22.6,
+        26.5,
+        40.3,
+        31.7,
+        24.8
+      ],
+      "interPairGapMetersAfter": [
+        22.6,
+        26.5,
+        26.1,
+        27.6,
+        18.3
+      ],
+      "maxGapMetersBefore": 40.3,
+      "maxGapMetersAfter": 27.6
+    },
+    {
+      "chapter": "family-a3",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 0,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 102,
+      "steppedFrames": 3578,
+      "interPairGapMetersBefore": [
+        31.1,
+        50.6,
+        50.1,
+        22.5,
+        12.4
+      ],
+      "interPairGapMetersAfter": [
+        31.1,
+        50.6,
+        50.1,
+        22.5,
+        12.4
+      ],
+      "maxGapMetersBefore": 50.6,
+      "maxGapMetersAfter": 50.6
+    },
+    {
+      "chapter": "family-a4",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 0,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 166,
+      "steppedFrames": 3769,
+      "interPairGapMetersBefore": [
+        19.9,
+        25.2,
+        28.0,
+        44.0,
+        45.5
+      ],
+      "interPairGapMetersAfter": [
+        19.9,
+        25.2,
+        28.0,
+        44.0,
+        45.5
+      ],
+      "maxGapMetersBefore": 45.5,
+      "maxGapMetersAfter": 45.5
+    },
+    {
+      "chapter": "family-b1",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 0,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 77,
+      "steppedFrames": 2918,
+      "interPairGapMetersBefore": [
+        38.8,
+        16.5,
+        40.6,
+        49.8,
+        29.0
+      ],
+      "interPairGapMetersAfter": [
+        38.8,
+        29.0,
+        28.1,
+        35.8,
+        43.0
+      ],
+      "maxGapMetersBefore": 49.8,
+      "maxGapMetersAfter": 43.0
+    },
+    {
+      "chapter": "family-b2",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 0,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 116,
+      "steppedFrames": 2654,
+      "interPairGapMetersBefore": [
+        34.8,
+        29.1,
+        45.2,
+        25.7,
+        19.3
+      ],
+      "interPairGapMetersAfter": [
+        34.8,
+        29.1,
+        19.9,
+        38.4,
+        31.9
+      ],
+      "maxGapMetersBefore": 45.2,
+      "maxGapMetersAfter": 38.4
+    },
+    {
+      "chapter": "family-b3",
+      "complete": true,
+      "coreFights": 12,
+      "bossFights": 1,
+      "pickups": 2,
+      "memories": 3,
+      "routeRecoveriesAtFinish": 1,
+      "browserErrors": {
+        "page": 0,
+        "console": 0,
+        "http": 0
+      },
+      "failedMedia": 0,
+      "wallSeconds": 135,
+      "steppedFrames": 4582,
+      "interPairGapMetersBefore": [
+        49.0,
+        35.5,
+        21.8,
+        41.5,
+        42.3
+      ],
+      "interPairGapMetersAfter": [
+        29.5,
+        55.0,
+        21.8,
+        41.5,
+        42.3
+      ],
+      "maxGapMetersBefore": 49.0,
+      "maxGapMetersAfter": 55.0
+    }
+  ],
+  "pacingNotes": [
+    "A3 and A4 stations stay in place because their longer intervals contain moving or vertical traversal; A4 cast becomes more varied.",
+    "B3 first inter-pair gap shortens from 49.0 m to 29.5 m; the following 55.0 m interval contains relay hops, bounce, and a moving raft, so its maximum linear interval increases.",
+    "The first A1 and A4 fights stay past their narrow tutorial jumps and equipment pickups."
+  ],
+  "previousImmutableTemplateHashes": {
+    "family-world-a-v8": {
+      "commandsSha256": "7569776e1eef46c8b6dd8f6321fce880273357ab2433c140ec8a631c5b45377f",
+      "projectSha256": "5279b6e3c92b8a8ebf590414094fc6014523d61428e6b8a7b9017a309794f8b0"
+    },
+    "family-world-b-v7": {
+      "commandsSha256": "1a4dfc06a36b6f26ac9b03f061c39c6ba1e786bfdcd6a419e76336e5a7ca8cc1",
+      "projectSha256": "7bd4cee88eaf678b098abcd2c39a8d198065405d93aebfaa7b24f051ae6d8abf"
+    }
+  },
+  "startupOnlyFailures": [
+    {
+      "server": "tests/e2e/serve-family.ts",
+      "chapters": [
+        "family-a1",
+        "family-b1"
+      ],
+      "reason": "family-auth server returned 401 /api/session before the template CTA; zero gameplay frames",
+      "rawReportDirs": [
+        "setup-mismatch-a1",
+        "setup-mismatch-b1"
+      ]
+    },
+    {
+      "server": "tests/e2e/serve-fixture.ts without ephemeralPlaytest opt-in",
+      "chapters": [
+        "family-a2",
+        "family-b2"
+      ],
+      "reason": "fixture home omitted the template CTA; zero gameplay frames",
+      "rawReportDirs": [
+        "fixture-wrapper-mismatch-a2",
+        "fixture-wrapper-mismatch-b2"
+      ]
+    },
+    {
+      "server": "tests/e2e/serve-fixture.ts with flag but non-ephemeral InMemoryQuestStore",
+      "chapters": [
+        "family-a1"
+      ],
+      "reason": "editor playtest POST returned 404; zero gameplay frames because the ephemeral store constructor is required",
+      "rawReportDirs": [
+        "helper-first-attempt"
+      ]
+    }
+  ],
+  "helperCorrection": "tests/e2e/serve-fixture.ts now uses InMemoryQuestStore.ephemeral() and passes ephemeralPlaytest to createApp when QUEST_EPHEMERAL_PLAYTEST=true; default mode stays unchanged.",
+  "selectedScreenshots": [
+    "a9-a1-first-fight.png",
+    "b8-b1-first-fight.png",
+    "a9-a4-first-fight.png",
+    "a9-a4-mid-climb.png"
+  ],
+  "helperSmoke": {
+    "commandMode": "serve-fixture.ts with QUEST_EPHEMERAL_PLAYTEST=true",
+    "chapter": "family-a1",
+    "stoppedAt": "spawn",
+    "browserErrors": 0,
+    "result": "passed with canvas loaded and frozen A9 chapter; full routes were run on built fixture+ephemeral server"
+  },
+  "hudLabelVerification": {
+    "fixCommit": "ef0da4b",
+    "method": "Fresh synthetic fixture+ephemeral A9 chapter stopped before the first strike; the normal-control route reached the first fight.",
+    "frozenEncounter": "family-a4 ordinary-1",
+    "assetId": "chick-flia",
+    "observedTargetLabel": "Chick-flia",
+    "screenshot": "a9-a4-first-fight.png",
+    "result": "Exact target name matches the visible Chick-flia model; nearby ordinary-5 is Radio Showman.",
+    "fullCourseReplayedAfterFix": false
+  }
+}

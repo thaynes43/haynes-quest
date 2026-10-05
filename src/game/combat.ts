@@ -2,7 +2,7 @@ import type { EncounterView, SaveView } from "../shared/contracts";
 import { bossIsAvailable } from "../shared/encounter-availability";
 import { EnemyGroundNavigation } from "./enemy-navigation";
 import type { EncounterPlacement, LevelLayout } from "./level";
-import type { EnemyFrame, EnemyPhase, PositionSnapshot } from "./types";
+import type { EnemyAttackPattern, EnemyFrame, EnemyPhase, PositionSnapshot } from "./types";
 
 type RuntimeEncounterView = EncounterView & { available?: boolean };
 
@@ -18,6 +18,12 @@ const pursuitLeadSeconds = 0.4;
 const maxLeadDistance = 1.6;
 const windupClosingSpeed = 4;
 const windupStopRange = 0.9;
+const chargeDistance = 4;
+const chargeSpeed = 7.5;
+const chargeHitRadius = 0.65;
+const boltDistance = 6;
+const boltSpeed = 4.5;
+const boltHitRadius = 0.35;
 export const enemyStrikeSeconds = 0.18;
 export const enemyCooldownSeconds = 1.4;
 export const playerHitCooldownSeconds = 0.9;
@@ -35,6 +41,7 @@ interface EnemyTuning {
   attackRange: number;
   windupSeconds: number;
   collisionRadius: number;
+  cooldownSeconds: number;
 }
 
 interface LocalEnemy {
@@ -57,6 +64,12 @@ interface LocalEnemy {
   returning: boolean;
   /** DESIGN-027 D-04 idle pose; 0 is the authored stance. */
   pose: number;
+  pattern: EnemyAttackPattern | null;
+  /** Locked, straight attack lane; its end does not track the player. */
+  attackTarget: PositionSnapshot | null;
+  attackDirection: { x: number; z: number } | null;
+  attackTravel: number;
+  projectile: PositionSnapshot | null;
 }
 
 /** A sleeping ordinary enemy that DESIGN-027 watcher rules may change unseen. */
@@ -84,6 +97,27 @@ const ordinaryTuning: EnemyTuning = {
   attackRange: 1.35,
   windupSeconds: 0.8,
   collisionRadius: 0.42,
+  cooldownSeconds: enemyCooldownSeconds,
+};
+const chargeTuning: EnemyTuning = {
+  ...ordinaryTuning,
+  stopRange: 3.8,
+  attackRange: chargeDistance,
+  windupSeconds: 0.95,
+  cooldownSeconds: 1.6,
+};
+const boltTuning: EnemyTuning = {
+  ...ordinaryTuning,
+  stopRange: 4.7,
+  attackRange: 5.2,
+  windupSeconds: 1,
+  cooldownSeconds: 1.8,
+};
+const agileTuning: EnemyTuning = {
+  ...ordinaryTuning,
+  speed: 5.5,
+  legacySpeed: 5.5,
+  cooldownSeconds: 1.8,
 };
 const bossTuning: EnemyTuning = {
   speed: 1.4,
@@ -95,10 +129,72 @@ const bossTuning: EnemyTuning = {
   attackRange: 2.25,
   windupSeconds: 1.2,
   collisionRadius: 0.68,
+  cooldownSeconds: enemyCooldownSeconds,
 };
 
 function tuningFor(role: EncounterView["role"]): EnemyTuning {
   return role === "boss" ? bossTuning : ordinaryTuning;
+}
+
+const newPatternAssets = new Set([
+  "gadget-hammer-hopper", "broccoli-bouncer", "lab-robot-sentry",
+  "demon-idol-drummer", "mischief-kitten-skater", "bin-chicken-flower-thief",
+]);
+
+function patternForAsset(assetId: string | undefined): EnemyAttackPattern | null {
+  switch (assetId) {
+    case "gadget-hammer-hopper":
+    case "gadget-helper":
+    case "broccoli-bouncer":
+    case "yes-yes-veggie":
+      return "charge";
+    case "lab-robot-sentry":
+    case "lab-robot":
+    case "demon-idol-drummer":
+    case "demon-band-idol":
+    case "radio-host-showman":
+      return "bolt";
+    case "mischief-kitten-skater":
+    case "mischief-kitten":
+    case "bin-chicken-flower-thief":
+    case "bin-chicken":
+      return "agile";
+    default:
+      return null;
+  }
+}
+
+/** Keep every new/old family pair mechanically distinct, including frozen v11 runs. */
+function patternsForRoster(encounters: readonly EncounterView[]): Map<string, EnemyAttackPattern> {
+  const hasNewVariant = encounters.some((encounter) =>
+    encounter.role === "ordinary" && newPatternAssets.has(encounter.content?.assetId ?? "")
+  );
+  const seenLegacy = new Map<string, number>();
+  const patterns = new Map<string, EnemyAttackPattern>();
+  for (const encounter of encounters) {
+    if (encounter.role !== "ordinary") continue;
+    const assetId = encounter.content?.assetId;
+    const pattern = patternForAsset(assetId);
+    if (!pattern || !assetId) continue;
+    if (!newPatternAssets.has(assetId) && assetId !== "lab-robot" &&
+      assetId !== "radio-host-showman") {
+      if (hasNewVariant) continue;
+      const previous = seenLegacy.get(assetId) ?? 0;
+      seenLegacy.set(assetId, previous + 1);
+      if (previous % 2 === 1) continue;
+    }
+    patterns.set(encounter.id, pattern);
+  }
+  return patterns;
+}
+
+function tuningForEnemy(enemy: LocalEnemy): EnemyTuning {
+  switch (enemy.pattern) {
+    case "charge": return chargeTuning;
+    case "bolt": return boltTuning;
+    case "agile": return agileTuning;
+    default: return tuningFor(enemy.role);
+  }
 }
 
 /** Shared by contact checks and the visible full-reach attack warning. */
@@ -167,6 +263,21 @@ function normalizedAngle(angle: number): number {
   return result;
 }
 
+/** Closest horizontal approach during a movement step, including both ends. */
+function sweptDistance(
+  from: PositionSnapshot,
+  to: PositionSnapshot,
+  point: PositionSnapshot,
+): number {
+  const dx = to.x - from.x;
+  const dz = to.z - from.z;
+  const lengthSquared = dx * dx + dz * dz;
+  const progress = lengthSquared > distanceEpsilon
+    ? Math.max(0, Math.min(1, ((point.x - from.x) * dx + (point.z - from.z) * dz) / lengthSquared))
+    : 0;
+  return Math.hypot(point.x - (from.x + dx * progress), point.z - (from.z + dz * progress));
+}
+
 function encounterMap(save: SaveView): Map<string, RuntimeEncounterView> {
   return new Map(
     (save.adventure?.activeLevel?.encounters ?? []).map((encounter) => [
@@ -218,10 +329,11 @@ export class EnemySimulation {
     this.friendlyPositions = friendlyPositionsFor(level);
     this.lastPlayer = null;
     const authoritative = encounterMap(save);
+    const patterns = patternsForRoster(save.adventure?.activeLevel?.encounters ?? []);
     for (const placement of level.encounters) {
       const encounter = authoritative.get(placement.id);
       if (!encounter) continue;
-      this.addEnemy(placement, encounter);
+      this.addEnemy(placement, encounter, patterns.get(placement.id) ?? null);
     }
     this.hitCooldownSeconds = 0;
   }
@@ -230,6 +342,7 @@ export class EnemySimulation {
     this.groundNavigation = level.course ? new EnemyGroundNavigation(level.course) : null;
     this.friendlyPositions = friendlyPositionsFor(level);
     const authoritative = encounterMap(save);
+    const patterns = patternsForRoster(save.adventure?.activeLevel?.encounters ?? []);
     const placementById = new Map(
       level.encounters.map((placement) => [placement.id, placement]),
     );
@@ -242,9 +355,10 @@ export class EnemySimulation {
       const placement = placementById.get(id);
       if (!placement) continue;
       if (!current) {
-        this.addEnemy(placement, encounter);
+        this.addEnemy(placement, encounter, patterns.get(id) ?? null);
         continue;
       }
+      current.pattern = patterns.get(id) ?? null;
       current.arena = copyArena(placement.arena);
       if (current.arena) {
         current.spawn = spawnFor(placement, current.arena);
@@ -259,6 +373,7 @@ export class EnemySimulation {
         current.phaseSeconds = 0;
         current.windupTarget = null;
         current.contactedDuringStrike = false;
+        this.clearPatternAttack(current);
       } else if (revived) {
         current.spawn = spawnFor(placement, current.arena);
         current.position = { ...current.spawn };
@@ -270,6 +385,7 @@ export class EnemySimulation {
         current.phaseSeconds = 0;
         current.windupTarget = null;
         current.contactedDuringStrike = false;
+        this.clearPatternAttack(current);
         this.hitCooldownSeconds = 0;
       }
     }
@@ -335,12 +451,60 @@ export class EnemySimulation {
       enemy.phaseSeconds = 0;
       enemy.windupTarget = null;
       enemy.contactedDuringStrike = false;
+      this.clearPatternAttack(enemy);
     }
+  }
+
+  private clearPatternAttack(enemy: LocalEnemy): void {
+    enemy.attackTarget = null;
+    enemy.attackDirection = null;
+    enemy.attackTravel = 0;
+    enemy.projectile = null;
+  }
+
+  private lockPatternAttack(enemy: LocalEnemy, player: PositionSnapshot): void {
+    const dx = player.x - enemy.position.x;
+    const dz = player.z - enemy.position.z;
+    const length = Math.hypot(dx, dz);
+    // A zero-distance attack still gets a stable forward direction.
+    const direction = length > distanceEpsilon
+      ? { x: dx / length, z: dz / length }
+      : { x: -Math.sin(enemy.facing), z: -Math.cos(enemy.facing) };
+    const range = enemy.pattern === "charge" ? chargeDistance : boltDistance;
+    enemy.attackDirection = direction;
+    enemy.attackTarget = {
+      x: enemy.position.x + direction.x * range,
+      y: enemy.position.y,
+      z: enemy.position.z + direction.z * range,
+    };
+    enemy.attackTravel = 0;
+    enemy.projectile = null;
+    enemy.facing = facingToward(enemy.position, enemy.attackTarget);
+  }
+
+  private stopPatternAttack(enemy: LocalEnemy, returning: boolean): void {
+    this.clearPatternAttack(enemy);
+    enemy.windupTarget = null;
+    enemy.contactedDuringStrike = false;
+    enemy.phase = returning ? "idle" : "cooldown";
+    enemy.phaseSeconds = 0;
+    enemy.returning = returning;
   }
 
   step(options: EnemyStepOptions, save: SaveView): string[] {
     if (!options.active) {
       this.lastPlayer = null;
+      // Pausing or leaving combat discards special hazards. The next attempt
+      // must show a complete warning; old enemies retain their frozen behavior.
+      if (!options.recovering) {
+        for (const enemy of this.enemies.values()) {
+          if (!enemy.pattern || (enemy.phase !== "windup" && enemy.phase !== "strike")) continue;
+          this.clearPatternAttack(enemy);
+          enemy.phase = "idle";
+          enemy.phaseSeconds = 0;
+          enemy.contactedDuringStrike = false;
+        }
+      }
       if (options.recovering) {
         for (const enemy of this.enemies.values()) {
           if (enemy.defeated || enemy.scripted) continue;
@@ -349,6 +513,7 @@ export class EnemySimulation {
           enemy.phaseSeconds = 0;
           enemy.windupTarget = null;
           enemy.contactedDuringStrike = false;
+          this.clearPatternAttack(enemy);
           enemy.awake = false;
           enemy.returning = false;
           enemy.pose = 0;
@@ -402,7 +567,7 @@ export class EnemySimulation {
         continue;
       }
       if (enemy.scripted) continue;
-      const tuning = tuningFor(enemy.role);
+      const tuning = tuningForEnemy(enemy);
       const playerDistance = distance(enemy.position, options.player);
       const ordinary = enemy.role === "ordinary";
       const activationRadius = ordinary ? ordinaryActivationRadius : enemyActivationRadius;
@@ -410,6 +575,7 @@ export class EnemySimulation {
       const outsideLeash = ordinary && distance(enemy.spawn, options.player) > ordinarySpawnLeash;
       const needsGroundRoute = !outsideLeash && (
         enemy.phase === "windup" ||
+        (enemy.pattern !== null && enemy.phase === "strike") ||
         (enemy.phase === "idle" && playerDistance <= activationRadius) ||
         ((enemy.phase === "chasing" || enemy.phase === "cooldown") &&
           playerDistance <= pursuitRadius)
@@ -424,8 +590,23 @@ export class EnemySimulation {
           ordinary ? tuning.attackRange + 2.5 : tuning.attackRange) &&
           (!ordinary || !enemy.arena ||
             verticalDistance(enemy.position, options.player) <= 1.25);
+      // A jump does not erase a locked lane, but a gap or disconnected floor
+      // beneath the player does. The actual shot/charge remains straight.
+      const lockedPatternReachable =
+        (enemy.pattern !== "charge" && enemy.pattern !== "bolt") ||
+        (enemy.phase !== "windup" && enemy.phase !== "strike") ||
+        !this.groundNavigation ||
+        this.groundNavigation.next(enemy.position, {
+          x: options.player.x,
+          y: enemy.position.y,
+          z: options.player.z,
+        }) !== null;
       const sleeping = this.isDormantWatcher(enemy);
-      if (!sleeping && !enemy.returning) enemy.facing = facingToward(enemy.position, options.player);
+      const lockedAim = (enemy.pattern === "charge" || enemy.pattern === "bolt") &&
+        (enemy.phase === "windup" || enemy.phase === "strike");
+      if (!sleeping && !enemy.returning && !lockedAim) {
+        enemy.facing = facingToward(enemy.position, options.player);
+      }
       switch (enemy.phase) {
         case "idle":
           if (playerDistance <= activationRadius && !outsideLeash && pursuitReachable) {
@@ -453,6 +634,7 @@ export class EnemySimulation {
             enemy.phase = "idle";
             enemy.phaseSeconds = 0;
             enemy.windupTarget = null;
+            this.clearPatternAttack(enemy);
             enemy.returning = ordinary;
           } else if (
             (ordinaryAttackers < maxOrdinaryAttackers || !ordinary) &&
@@ -466,7 +648,9 @@ export class EnemySimulation {
             enemy.phase = "windup";
             enemy.phaseSeconds = 0;
             if (ordinary) ordinaryAttackers += 1;
-            if (ordinary) {
+            if (enemy.pattern === "charge" || enemy.pattern === "bolt") {
+              this.lockPatternAttack(enemy, options.player);
+            } else if (ordinary) {
               enemy.windupTarget = {
                 x: options.player.x + (pursuitTarget.x - options.player.x) * 2,
                 y: options.player.y,
@@ -484,17 +668,34 @@ export class EnemySimulation {
             this.moveToward(enemy, target,
               Math.max(0, Math.min((enemy.arena ? tuning.speed : tuning.legacySpeed) * dt,
                 waitForAttackSlot
-                  ? playerDistance - waitingStopRange
+                  ? playerDistance - Math.max(waitingStopRange, tuning.stopRange)
                   : distance(enemy.position, target) - tuning.stopRange)));
           }
           break;
         case "windup":
-          if (ordinary && (outsideLeash || !pursuitReachable)) {
+          // A committed straight attack keeps its fixed lane when the player
+          // jumps. It still checks every actual travel segment against ground.
+          if (ordinary && (outsideLeash ||
+            (!pursuitReachable && enemy.pattern !== "charge" && enemy.pattern !== "bolt") ||
+            ((enemy.pattern === "charge" || enemy.pattern === "bolt") &&
+              !lockedPatternReachable) ||
+            ((enemy.pattern === "charge" || enemy.pattern === "bolt") &&
+              this.nearFriendly(options.player, friendlyHealingRadius)))) {
             enemy.phase = "idle";
             enemy.phaseSeconds = 0;
             enemy.windupTarget = null;
+            this.clearPatternAttack(enemy);
             enemy.returning = true;
             ordinaryAttackers -= 1;
+          } else if (enemy.pattern === "charge" || enemy.pattern === "bolt") {
+            if (!enemy.attackTarget) this.lockPatternAttack(enemy, options.player);
+            enemy.phaseSeconds += dt;
+            if (enemy.phaseSeconds >= tuning.windupSeconds) {
+              enemy.phase = "strike";
+              enemy.phaseSeconds = 0;
+              enemy.contactedDuringStrike = false;
+              if (enemy.pattern === "bolt") enemy.projectile = { ...enemy.position };
+            }
           } else if (
             (enemy.role === "boss" || !enemy.arena) &&
             playerDistance > tuning.attackRange
@@ -518,6 +719,60 @@ export class EnemySimulation {
           }
           break;
         case "strike":
+          if (enemy.pattern === "charge" || enemy.pattern === "bolt") {
+            if (outsideLeash || !lockedPatternReachable || !enemy.attackDirection ||
+              this.nearFriendly(options.player, friendlyHealingRadius)) {
+              this.stopPatternAttack(enemy, true);
+              ordinaryAttackers -= 1;
+              break;
+            }
+            const bolt = enemy.pattern === "bolt";
+            const from = bolt ? enemy.projectile : enemy.position;
+            if (!from) {
+              this.stopPatternAttack(enemy, false);
+              ordinaryAttackers -= 1;
+              break;
+            }
+            const maxTravel = bolt ? boltDistance : chargeDistance;
+            const move = Math.min((bolt ? boltSpeed : chargeSpeed) * dt,
+              maxTravel - enemy.attackTravel);
+            const to: PositionSnapshot = {
+              x: from.x + enemy.attackDirection.x * move,
+              y: from.y,
+              z: from.z + enemy.attackDirection.z * move,
+            };
+            const safeGround = !this.groundNavigation || this.groundNavigation.canWalk(from, to);
+            const safeFriend = !this.nearFriendly(to, friendlySafetyRadius);
+            const safeLeash = distance(to, enemy.spawn) <= ordinarySpawnLeash;
+            if (!safeGround || !safeFriend || !safeLeash) {
+              this.stopPatternAttack(enemy, false);
+              ordinaryAttackers -= 1;
+              break;
+            }
+            if (bolt) enemy.projectile = to;
+            else enemy.position = to;
+            enemy.attackTravel += move;
+            enemy.phaseSeconds += dt;
+            if (!enemy.contactedDuringStrike &&
+              sweptDistance(from, to, options.player) <= (bolt ? boltHitRadius : chargeHitRadius) &&
+              withinEnemyStrikeHeight(options.player, from) &&
+              !this.nearFriendly(options.player, friendlyHealingRadius) &&
+              (!this.groundNavigation || this.groundNavigation.canStrike(to, options.player)) &&
+              this.hitCooldownSeconds <= 0) {
+              contacts.push(enemy.id);
+              enemy.contactedDuringStrike = true;
+              if (bolt) {
+                this.stopPatternAttack(enemy, false);
+                ordinaryAttackers -= 1;
+                break;
+              }
+            }
+            if (enemy.attackTravel >= maxTravel - distanceEpsilon) {
+              this.stopPatternAttack(enemy, false);
+              ordinaryAttackers -= 1;
+            }
+            break;
+          }
           if (
             !enemy.contactedDuringStrike &&
             playerDistance <= tuning.attackRange &&
@@ -540,7 +795,7 @@ export class EnemySimulation {
           break;
         case "cooldown":
           enemy.phaseSeconds += dt;
-          if (enemy.phaseSeconds >= enemyCooldownSeconds) {
+          if (enemy.phaseSeconds >= tuning.cooldownSeconds) {
             enemy.phase =
               playerDistance <= pursuitRadius && !outsideLeash && pursuitReachable
                 ? "chasing"
@@ -595,7 +850,7 @@ export class EnemySimulation {
 
   frames(): EnemyFrame[] {
     return [...this.enemies.values()].map((enemy) => {
-      const tuning = tuningFor(enemy.role);
+      const tuning = tuningForEnemy(enemy);
       return {
         id: enemy.id,
         position: { ...enemy.position },
@@ -607,6 +862,9 @@ export class EnemySimulation {
             : 0,
         hp: enemy.hp,
         maxHp: enemy.maxHp,
+        ...(enemy.pattern ? { attackPattern: enemy.pattern } : {}),
+        ...(enemy.attackTarget ? { attackTarget: { ...enemy.attackTarget } } : {}),
+        ...(enemy.projectile ? { projectile: { ...enemy.projectile } } : {}),
         // Only scare levels 1+ report a pose, so level 0 frames are unchanged.
         ...(this.watchers ? { pose: enemy.pose } : {}),
       };
@@ -618,7 +876,7 @@ export class EnemySimulation {
       if (enemy.defeated || enemy.scripted) continue;
       if (verticalDistance(position, enemy.position) > maxEnemyContactFeetDelta)
         continue;
-      const minimumDistance = tuningFor(enemy.role).collisionRadius + 0.25;
+      const minimumDistance = tuningForEnemy(enemy).collisionRadius + 0.25;
       const dx = position.x - enemy.position.x;
       const dz = position.z - enemy.position.z;
       const currentDistance = Math.hypot(dx, dz);
@@ -642,6 +900,7 @@ export class EnemySimulation {
   private addEnemy(
     placement: EncounterPlacement,
     encounter: EncounterView,
+    pattern: EnemyAttackPattern | null,
   ): void {
     const arena = copyArena(placement.arena);
     const spawn = spawnFor(placement, arena);
@@ -663,6 +922,11 @@ export class EnemySimulation {
       awake: false,
       returning: false,
       pose: 0,
+      pattern,
+      attackTarget: null,
+      attackDirection: null,
+      attackTravel: 0,
+      projectile: null,
     });
   }
 }

@@ -1,0 +1,66 @@
+{
+  "fixture": "in-memory synthetic playtest",
+  "viewport": { "width": 390, "height": 844, "deviceScaleFactor": 0.25 },
+  "controls": "ordinary joystick, jump, and primary attack inputs",
+  "charge": {
+    "chapter": "B1",
+    "retreatAfterAggroMeters": { "startGap": 7.96, "endGap": 7.72, "playerTravel": 2.37, "enemyTravel": 2.6 },
+    "groundedContact": { "firstHp": 10, "afterFirstContactHp": 8, "warningAndStrikeObserved": true, "frames": 525 },
+    "perpendicularSidestep": { "lockedTargetX": 0.107, "playerXAtStrike": 1.131, "hpBefore": 10, "hpAfter": 10, "takeHitResponses": 0, "frames": 518 },
+    "warningScreenshot": "charge-warning-390x844.png"
+  },
+  "bolt": {
+    "chapter": "A3",
+    "groundedContact": { "source": "bolt encounter ordinary-10", "serverTakeHitResponses": 1, "hpBefore": 10, "hpAfter": 6, "damage": 4, "frames": 638 },
+    "timedJump": { "projectileObserved": true, "jumpUsed": true, "hpBefore": 10, "hpAfter": 10, "takeHitResponses": 0, "frames": 718 },
+    "nearProjectileScreenshot": "bolt-near-390x844.png"
+  },
+  "primaryCombo": {
+    "chapter": "A4",
+    "inputClock": "real time after lockstep route traversal",
+    "serverConfirmedAttacks": [
+      { "step": 1, "target": "first ordinary", "targetHpBefore": 10, "targetHpAfter": 5, "damage": 5 },
+      { "step": 2, "target": "first ordinary", "targetHpBefore": 5, "targetHpAfter": 0, "damage": 5 },
+      { "step": 3, "target": "nearby ordinary", "targetHpBefore": 10, "targetHpAfter": 4, "damage": 6 }
+    ],
+    "bonusDamage": 1,
+    "feedback": "rendered Combo! -6 with confetti and Prism wand equipped",
+    "framesBeforeRealtimeInput": 523,
+    "finisherScreenshot": "combo-finisher-390x844.png"
+  },
+  "heldPrimary": {
+    "chapter": "A1",
+    "candidate": "fef6137",
+    "input": "one real-time F keydown, then release",
+    "serverConfirmedSteps": [1, 2, 3],
+    "acceptedAttacks": 3,
+    "attackRequestDurationMs": [13.4, 19.2, 13.2],
+    "attacksAtRelease": 3,
+    "attacksAfter1500Ms": 3,
+    "attackCooldownErrors": 0,
+    "actionFailures": 0,
+    "apiErrors": 0,
+    "browserErrors": 0,
+    "recoveries": 0,
+    "framesBeforeStop": 396,
+    "wallTimeSeconds": 193
+  },
+  "renderSample": {
+    "chapter": "B1 spawn",
+    "durationMs": 5000,
+    "frames": 59,
+    "fps": 11.1,
+    "meanDrawCallsPerFrame": 258.3,
+    "p95DrawCallsPerFrame": 254,
+    "totalDrawCalls": 15240,
+    "meanTrianglesPerFrame": 670824,
+    "renderer": "SwiftShader",
+    "deviceEvidence": false
+  },
+  "selectedCombatRuns": 6,
+  "renderSampleRuns": 1,
+  "selectedRunBrowserErrors": 0,
+  "selectedRunApiErrors": 0,
+  "selectedRunRecoveries": 0,
+  "limitations": "Synthetic fixture in emulated Chromium; sampled FPS is software-renderer evidence, not physical-phone performance. Movement and warning checks used a paused browser clock; combo inputs ran in real time against the server clock. Held-primary proof is one bounded arena run; severe software-renderer or network stalls can still exceed the server combo window."
+}

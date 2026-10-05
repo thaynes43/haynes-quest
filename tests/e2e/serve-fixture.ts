@@ -4,13 +4,15 @@ import { createApp } from "../../src/server/app";
 import { InMemoryQuestStore } from "../../src/server/db/memory-store";
 import { PostgresQuestStore } from "../../src/server/db/postgres-store";
 const port = Number(process.env.QUEST_E2E_PORT ?? 4173);
+const ephemeralPlaytest = process.env.QUEST_EPHEMERAL_PLAYTEST === "true";
 const store = process.env.QUEST_TEST_DATABASE_URL
   ? PostgresQuestStore.connect(process.env.QUEST_TEST_DATABASE_URL)
-  : new InMemoryQuestStore();
+  : ephemeralPlaytest ? InMemoryQuestStore.ephemeral() : new InMemoryQuestStore();
 if (store instanceof PostgresQuestStore) await store.migrate();
 const app = createApp({
   store,
   fixtureMode: true,
+  ephemeralPlaytest,
   sessionSecret: randomBytes(32).toString("hex"),
   appOrigin: `http://127.0.0.1:${port}`,
   clientDir: "dist/client",

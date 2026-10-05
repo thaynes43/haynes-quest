@@ -1,12 +1,20 @@
 # Current handoff
 
+## Active fights and attack chains · October 5, 2026 · implementation checked
+
+Tom clarified that the usage reset was permission to continue improving the game, and that the preceding guidance-only turn did not address its dull combat. [DESIGN-030](../docs/designs/030-active-fights-and-attack-chains.md) now defines the active release: locked charge lanes, visible slow bolts, faster melee variants, server-owned three-hit primary chains, and closer mixed-role encounters in immutable A9/B8 courses. Existing models are sufficient for these mechanics. Runtime attack variety also applies to earlier started family rosters after refresh; new placements apply to fresh adventures without resetting existing saves.
+
+The implementation is in [source PR #149](https://github.com/thaynes43/haynes-quest/pull/149). [All seven synthetic chapter journeys](evidence/active-fights/a9-b8-routes-20261005.json) completed twelve core fights, the boss, two tools and three memories each; B3 needed one traversal recovery. [Combat browser evidence](evidence/active-fights/combat-patterns-20261005.json) covers pursuit, charge and bolt damage, successful dodges and a server-confirmed three-hit finisher. Browser play also exposed edge-only held input; the release adds repetition and corrects a response-sensitive cooldown using a delayed-reply regression. [Local check evidence](evidence/active-fights/local-checks-20261005.json) distinguishes the full suite from the final timing correction. These checks establish mechanics on an emulated browser, not physical-device feel or the children's response.
+
+The [GitOps release record](https://github.com/thaynes43/haynes-ops/blob/main/.agents/evidence/quest-active-fights-20261005-release.json) records the exact signed image, both live services and A9/B8 publication counts. Check that record and the live pins before treating the source checks as deployment. Photo assignments carry forward without fetching private photo bytes or resetting existing saves. Runtime combat changes apply after refresh; new course placements apply to a fresh adventure. The optional persisted combo field requires a combo-aware rollback image; pre-combo images reject saves containing it. Both services use a single pod version during the schema handover.
+
 ## Usage reset and Blender routing · October 5, 2026
 
 Tom now permits fresh native GPT-6.1 Sol (`gpt-6.1-sol`, `xhigh`) authors for useful remaining Blender work. This supersedes the older Codex Astra-only rule; the driving Astra session retains concepts, art direction and final visual review. [TEAM.md](TEAM.md), the contributor guide, process and active PLAN-019 now carry the same routing. An exclusive scene owner and a bounded work order remain required. Automatic Quest advisory reviews stay on Sonnet 5.5.
 
 The denser A8/B7 encounters, six new animated enemy variants, three planting models and smaller private photo textures are already deployed, as recorded below. Check their existing candidates and live release evidence before starting further modeling. Exact-version owner art review, listening and physical play with the children remain separate PLAN-019 criteria; technical checks do not establish those outcomes.
 
-The October 5 read-only gameplay and asset audits found no missing model delivery for this release. Distinct ordinary-enemy attack patterns can use the existing animation sets; broader behavior work remains [BL-02](../docs/BACKLOG.md#bl-02-combat-bosses-and-encounter-content). Richer Playroom/Casita prop kits and the older party theme's automatic planting remain [BL-08](../docs/BACKLOG.md#bl-08-family-world-dressing), whose next input is World B play feedback. No additional Blender job or gameplay change was selected from the usage reset alone.
+The initial October 5 read-only audits found no missing model delivery. Tom subsequently rejected a guidance-only result and requested further gameplay improvements, now tracked in DESIGN-030 above. Richer Playroom/Casita prop kits and the older party theme's automatic planting remain [BL-08](../docs/BACKLOG.md#bl-08-family-world-dressing); combat backlog context remains [BL-02](../docs/BACKLOG.md#bl-02-combat-bosses-and-encounter-content).
 
 ## Photo texture delivery and quota direction · October 5, 2026
 

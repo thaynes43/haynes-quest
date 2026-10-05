@@ -257,7 +257,7 @@ describe("World B: Playroom to Big Stage (family-world-b@v4)", () => {
       CHECKED_IN_FAMILY_TEMPLATES.filter((entry) => entry.id === "family-world-b").map(
         (entry) => entry.version,
       ),
-    ).toEqual(["v1", "v2", "v3", "v4", "v5", "v6", "v7"]);
+    ).toEqual(["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8"]);
     const registry = new FamilyTemplateRegistry();
     const template = registry.require("family-world-b", "v4");
     expect(template.project).toEqual(project);

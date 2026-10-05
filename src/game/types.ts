@@ -46,6 +46,8 @@ export type RequestError = GameplayAction["type"] | null;
 export type EnemyPhase =
   "idle" | "chasing" | "windup" | "strike" | "cooldown" | "defeated";
 
+export type EnemyAttackPattern = "charge" | "bolt" | "agile";
+
 export interface EnemyFrame {
   id: string;
   position: PositionSnapshot;
@@ -54,6 +56,12 @@ export interface EnemyFrame {
   windupProgress: number;
   hp: number;
   maxHp: number;
+  /** DESIGN-030 patterns are opt-in by frozen model identity. */
+  attackPattern?: EnemyAttackPattern;
+  /** Fixed ground-space end of a charge lane or aimed bolt. */
+  attackTarget?: PositionSnapshot;
+  /** An active bolt's ground-space position; render its centre 0.2 m higher. */
+  projectile?: PositionSnapshot;
   /**
    * DESIGN-027 D-04 watcher idle pose (0 is the authored stance). Present only
    * on scare levels 1+, so level 0 frames are exactly as before.
@@ -69,6 +77,8 @@ export interface SceneFrame {
   attackTargetId: string | null;
   guarding: boolean;
   attackSequence?: number;
+  /** Confirmed route-memory primary chain, for the matching strike animation. */
+  attackComboStep?: 1 | 2 | 3;
   secondaryAttacking?: boolean;
   interacting?: boolean;
   enemies: EnemyFrame[];
@@ -103,7 +113,7 @@ export interface SceneFrame {
  * so every older route reports exactly the events it did before.
  */
 export type GameFeedbackEvent =
-  | { type: "hit"; encounterId: string; kind: "primary" | "secondary" }
+  | { type: "hit"; encounterId: string; kind: "primary" | "secondary"; comboStep?: 1 | 2 | 3 }
   | {
       type: "defeat";
       encounterId: string;

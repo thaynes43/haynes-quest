@@ -32,11 +32,9 @@ import {
 import { ActionCoordinator, type ActionRequestState } from "./actions";
 import {
   bossIsActive,
-  enemyAttackRange,
   EnemySimulation,
   findAttackTarget,
   playerAttackRange,
-  withinEnemyStrikeHeight,
 } from "./combat";
 import { getAvatarProportions, stepController } from "./controller";
 import { foregroundSimulationSteps } from "./frame-step";
@@ -132,6 +130,8 @@ interface RuntimeScene {
   bouncePad?(platformId: string): void;
   expectHit?(encounterId: string): void;
   anticipateHit?(encounterId: string, at: PositionSnapshot): void;
+  /** Larger finish, played only after the server confirms the third enemy hit. */
+  finishCombo?(encounterId: string): void;
   celebrate?(encounterId: string, boss: boolean): void;
   /**
    * DESIGN-027 watchers only change while this reports false: whether a body
@@ -155,6 +155,15 @@ interface RuntimeScene {
 }
 
 type AttackKind = "primary" | "secondary";
+
+/** Issued only by this runtime after a simulated enemy or Besties contact. */
+interface PendingSimulationContact {
+  levelId: string;
+  encounterId: string;
+  expiresAtMs: number;
+}
+
+const pendingContactLifetimeMs = 1_000;
 
 /** A take-hit that brings the player to 0 HP within this long can become a jump scare. */
 const lethalHitWindowMs = 3_000;
@@ -319,7 +328,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
     encounterId: string;
     kind: AttackKind;
   } | null = null;
+  let pendingComboAttack: { encounterId: string; expectedRevision: number } | null = null;
   let attackSentAt = Number.NEGATIVE_INFINITY;
+  /** Held primary misses still get one visible swing per route cooldown. */
+  let heldPrimaryRetryAt = 0;
   let secondarySentAt = Number.NEGATIVE_INFINITY;
   /** The server-owned action currently awaiting its reply, if any. */
   let inFlightAction: GameplayAction["type"] | null = null;
@@ -421,7 +433,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
       withinFightHeight,
     );
   };
-  let pendingHit: { levelId: string; encounterId: string } | null = null;
+  let pendingHit: PendingSimulationContact | null = null;
   let disposed = false;
   let paused = false;
   let combatNeedsFreshTelegraph = false;
@@ -433,6 +445,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   let attackAnimationUntil = 0;
   let attackAnimationKind: "primary" | "secondary" = "primary";
   let attackTargetId: string | null = null;
+  let attackAnimationComboStep: 1 | 2 | 3 | null = null;
+  let comboPresentationStep: 1 | 2 | 3 | null =
+    requireAdventure(save).attackComboStep ?? null;
+  let comboPresentationUntil =
+    lastTime + (requireAdventure(save).attackComboRemainingMs ?? 0);
   let bestiesHitActorId: BestieActorId | null = null;
   let interactionAnimationUntil = 0;
   let interactionSequence = 0;
@@ -824,6 +841,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
     targetId: string | null,
   ): void => {
     attackAnimationKind = kind;
+    if (kind === "primary" && isRouteMemoryAdventure(save)) {
+      const lastStep = windowTarget.performance.now() <= comboPresentationUntil
+        ? comboPresentationStep
+        : null;
+      attackAnimationComboStep = lastStep === 1 ? 2 : lastStep === 2 ? 3 : 1;
+    } else {
+      attackAnimationComboStep = null;
+    }
     attackAnimationUntil =
       windowTarget.performance.now() +
       (kind === "primary"
@@ -1025,6 +1050,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const returnLocally = (position: PositionSnapshot, checkpointId: string | null): void => {
     input.clear();
     attackBuffer.clear();
+    heldPrimaryRetryAt = 0;
     checkpoint = { ...position };
     resetController(checkpoint, checkpointId);
     emitStatus(true);
@@ -1050,6 +1076,21 @@ export function createGame(options: CreateGameOptions): GameHandle {
     const previousRecoveredIds = new Set(save.recoveredIds);
     const nextIdentity = levelIdentity(nextSave);
     const nextAdventure = nextSave.adventure;
+    const pendingCombo = pendingComboAttack;
+    const confirmedComboAttack = pendingCombo !== null &&
+      requestState.requestState === "idle" &&
+      nextSave.revision === pendingCombo.expectedRevision &&
+      previousIdentity === nextIdentity &&
+      (nextAdventure.activeLevel?.encounters.find(
+        (candidate) => candidate.id === pendingCombo.encounterId,
+      )?.hp ?? Number.POSITIVE_INFINITY) <
+        (previousAdventure.activeLevel?.encounters.find(
+          (candidate) => candidate.id === pendingCombo.encounterId,
+        )?.hp ?? Number.NEGATIVE_INFINITY);
+    const confirmedComboTarget = confirmedComboAttack
+      ? pendingCombo.encounterId
+      : null;
+    pendingComboAttack = null;
     const recoveredMinor =
       previousIdentity === nextIdentity &&
       nextAdventure.phase === "exploring" &&
@@ -1143,9 +1184,13 @@ export function createGame(options: CreateGameOptions): GameHandle {
       }
     }
     if (identityChanged || retried) {
+      // A key or touch held through a level switch must be pressed again.
+      input.clearActions();
+      heldPrimaryRetryAt = 0;
       courseTime = 0;
       traversalRecoveries = 0;
       attackAnimationUntil = 0;
+      attackAnimationComboStep = null;
       attackTargetId = null;
       bestiesHitActorId = null;
       interactionAnimationUntil = 0;
@@ -1197,6 +1242,18 @@ export function createGame(options: CreateGameOptions): GameHandle {
       scene.updateProgress(sceneSave);
     }
     const now = windowTarget.performance.now();
+    comboPresentationStep = nextAdventure.attackComboStep ?? null;
+    comboPresentationUntil = now + (nextAdventure.attackComboRemainingMs ?? 0);
+    if (confirmedComboTarget) {
+      attackAnimationComboStep = nextAdventure.attackComboStep ?? null;
+      if (nextAdventure.attackComboStep === 3) {
+        scene.finishCombo?.(confirmedComboTarget);
+        hitStop.trigger(0.11);
+        shake.add(0.45);
+      }
+    }
+    // The response has no timestamp for server acceptance. Waiting its full
+    // reported remainder prevents held input from racing the server clock.
     attackCooldownUntil = now + nextSave.adventure.attackCooldownRemainingMs;
     guardActiveUntil = now + nextSave.adventure.guardActiveRemainingMs;
     guardCooldownUntil = now + nextSave.adventure.guardCooldownRemainingMs;
@@ -1247,6 +1304,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
     onState: (state) => {
       requestState = state;
       if (state.requestState !== "acting") inFlightAction = null;
+      if (state.requestState === "error") pendingComboAttack = null;
       if (state.requestState === "error" && autoInteractionKey) {
         autoInteractionRetryAt =
           windowTarget.performance.now() + autoInteractionRetryMs;
@@ -1258,30 +1316,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const flushPendingHit = (): void => {
     if (!pendingHit || requestState.requestState === "acting") return;
     const hit = pendingHit;
-    const adventure = requireAdventure(save);
-    const encounter = adventure.activeLevel?.encounters.find(
-      (candidate) => candidate.id === hit.encounterId,
-    );
-    if (
-      adventure.phase !== "exploring" ||
-      adventure.currentLevelId !== hit.levelId ||
-      !encounter ||
-      encounter.defeated ||
-      (encounter as { available?: boolean }).available === false ||
-      (encounter.role === "boss" && !bossIsActive(save))
-    ) {
-      pendingHit = null;
-      return;
-    }
-    if (
-      coordinator.perform({
-        type: "take-hit",
-        levelId: hit.levelId,
-        encounterId: hit.encounterId,
-      })
-    ) {
-      inFlightAction = "take-hit";
-      pendingHit = null;
+    if (performAction({
+      type: "take-hit",
+      levelId: hit.levelId,
+      encounterId: hit.encounterId,
+    }, hit)) {
       enemies.noteHitDispatched();
       lastTakeHit = {
         encounterId: hit.encounterId,
@@ -1295,29 +1334,27 @@ export function createGame(options: CreateGameOptions): GameHandle {
   const validLevelAction = (action: GameplayAction): boolean =>
     action.levelId === requireAdventure(save).currentLevelId;
 
-  const validStrike = (encounterId: string): boolean => {
-    if (controller.recoveryRemaining > 0) return false;
-    const encounter = requireAdventure(save).activeLevel?.encounters.find(
-      (candidate) => candidate.id === encounterId,
+  const validSimulationContact = (
+    action: Extract<GameplayAction, { type: "take-hit" }>,
+    token: PendingSimulationContact | undefined,
+  ): boolean => {
+    if (!token || token !== pendingHit || controller.recoveryRemaining > 0) return false;
+    if (action.levelId !== token.levelId || action.encounterId !== token.encounterId) return false;
+    if (Math.max(lastTime, windowTarget.performance.now()) > token.expiresAtMs) return false;
+    const adventure = requireAdventure(save);
+    const encounter = adventure.activeLevel?.encounters.find(
+      (candidate) => candidate.id === token.encounterId,
     );
-    const frame = enemyFrames().find(
-      (candidate) => candidate.id === encounterId,
-    );
-    if (
-      !encounter ||
-      !frame ||
-      frame.phase !== "strike" ||
-      encounter.defeated
-    ) {
-      return false;
-    }
-    if (!withinEnemyStrikeHeight(controller.position, frame.position))
-      return false;
-    const range = enemyAttackRange(encounter.role);
-    return horizontalDistance(controller.position, frame.position) <= range;
+    return adventure.phase === "exploring" &&
+      adventure.currentLevelId === token.levelId &&
+      Boolean(encounter && !encounter.defeated && encounter.available !== false &&
+        (encounter.role !== "boss" || bossIsActive(save)));
   };
 
-  const performAction = (action: GameplayAction): boolean => {
+  const performAction = (
+    action: GameplayAction,
+    simulationContact?: PendingSimulationContact,
+  ): boolean => {
     const adventure = requireAdventure(save);
     const attackKind =
       action.type === "secondary-attack"
@@ -1391,12 +1428,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
         break;
       }
       case "take-hit":
-        if (
-          adventure.phase !== "exploring" ||
-          !validStrike(action.encounterId)
-        ) {
-          return false;
-        }
+        if (!validSimulationContact(action, simulationContact)) return false;
         break;
       case "guard":
         if (
@@ -1438,6 +1470,18 @@ export function createGame(options: CreateGameOptions): GameHandle {
     }
     const accepted = coordinator.perform(action);
     if (accepted) inFlightAction = action.type;
+    if (accepted && action.type === "take-hit") pendingHit = null;
+    if (accepted &&
+      (action.type === "secondary-attack" || action.type === "attack-friendly")) {
+      comboPresentationStep = null;
+      comboPresentationUntil = 0;
+    }
+    if (accepted && action.type === "attack") {
+      pendingComboAttack = {
+        encounterId: action.encounterId,
+        expectedRevision: save.revision + 1,
+      };
+    }
     if (
       action.type === "attack" ||
       action.type === "secondary-attack" ||
@@ -1573,11 +1617,15 @@ export function createGame(options: CreateGameOptions): GameHandle {
 
   const pressAttack = (kind: AttackKind, levelId: string): void => {
     if (kind === "primary") {
+      if (isRouteMemoryAdventure(save) && input.snapshot().attack)
+        heldPrimaryRetryAt = windowTarget.performance.now() + ROUTE_ATTACK_COOLDOWN_MS;
       const target = nearestEncounter(true);
       if (target) {
         controller.facing = target.facing;
         performAction({ type: "attack", levelId, encounterId: target.id });
       } else {
+        comboPresentationStep = null;
+        comboPresentationUntil = 0;
         beginAttackAnimation("primary", null);
         recordAttackFeedback("no-target");
       }
@@ -1717,7 +1765,11 @@ export function createGame(options: CreateGameOptions): GameHandle {
     elapsed += deltaSeconds;
     // Status includes asynchronous media state, which can change while gameplay is paused.
     timeSinceStatus += rawDeltaSeconds;
-    if (!worldActive) input.clear();
+    if (!worldActive) {
+      input.clear();
+      attackBuffer.clear();
+      heldPrimaryRetryAt = 0;
+    }
     const currentInput = input.snapshot();
     const pointerLook = input.consumePointerLook();
     // A save/resume frame resets the clock. Keep a quick tap until physics can step.
@@ -1801,6 +1853,7 @@ export function createGame(options: CreateGameOptions): GameHandle {
             besties.restartThreatenedTrick();
             if (isRouteMemoryAdventure(save)) input.clearActions();
             else input.clear();
+            heldPrimaryRetryAt = 0;
             pendingHit = null;
             enemies.restartThreatenedAttacks();
           }
@@ -1845,12 +1898,14 @@ export function createGame(options: CreateGameOptions): GameHandle {
           pendingHit = {
             levelId: adventure.currentLevelId,
             encounterId: duo.id,
+            expiresAtMs: now + pendingContactLifetimeMs,
           };
         }
         if (!pendingHit && contacts[0] && adventure.currentLevelId) {
           pendingHit = {
             levelId: adventure.currentLevelId,
             encounterId: contacts[0],
+            expiresAtMs: now + pendingContactLifetimeMs,
           };
         }
       }
@@ -1929,6 +1984,23 @@ export function createGame(options: CreateGameOptions): GameHandle {
         attackBuffer.clear();
         pressAttack(buffered, levelId);
       }
+      if (
+        canAct &&
+        adventure.phase === "exploring" &&
+        isRouteMemoryAdventure(save) &&
+        input.snapshot().attack &&
+        !actions.attack &&
+        !actions.guard &&
+        !buffered &&
+        !collectedByContact &&
+        controller.recoveryRemaining <= 0 &&
+        levelId &&
+        requestState.requestState === "idle" &&
+        now >= attackReadyAt("primary") &&
+        now >= heldPrimaryRetryAt
+      ) {
+        pressAttack("primary", levelId);
+      }
     } else {
       setGliding(false);
       enemies.step(
@@ -1960,6 +2032,10 @@ export function createGame(options: CreateGameOptions): GameHandle {
       attackSequence: attackFeedbackSequence,
       secondaryAttacking:
         attackAnimationKind === "secondary" && now < attackAnimationUntil,
+      ...(attackAnimationKind === "primary" && now < attackAnimationUntil &&
+        attackAnimationComboStep !== null
+        ? { attackComboStep: attackAnimationComboStep }
+        : {}),
       attackTargetId: now < attackAnimationUntil ? attackTargetId : null,
       interacting: now < interactionAnimationUntil,
       guarding: now < guardActiveUntil,
@@ -1998,6 +2074,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
       paused = value;
       worldWasActive = false;
       input.clear();
+      attackBuffer.clear();
+      heldPrimaryRetryAt = 0;
       if (paused) {
         pendingHit = null;
         combatNeedsFreshTelegraph = true;
@@ -2008,6 +2086,8 @@ export function createGame(options: CreateGameOptions): GameHandle {
     },
     clearInput(): void {
       input.clear();
+      attackBuffer.clear();
+      heldPrimaryRetryAt = 0;
     },
     performAction(action): boolean {
       return !disposed && performAction(action);

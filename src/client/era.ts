@@ -9,6 +9,19 @@ import {
   PARODY_PERIODS,
 } from "../shared/parody-catalog";
 
+/** Resolve the selected foe's frozen identity, even when its kind is repeated. */
+export function encounterLabel(encounter: EncounterView | undefined): string | undefined {
+  const identity = encounter?.content;
+  if (!identity) return undefined;
+  if (identity.placeholder === "neutral-candidate-v1") return identity.displayName;
+  return ALL_PARODY_CANDIDATES.find(
+    (candidate) => candidate.id === identity.catalogEntryId &&
+      candidate.version === identity.catalogEntryVersion &&
+      candidate.assetId === identity.assetId &&
+      candidate.assetVersion === identity.assetVersion,
+  )?.title;
+}
+
 /** Candidate names follow the frozen encounter ID, including repeated kinds. */
 export function draftEncounterLabel(
   encounters: readonly EncounterView[] | undefined,

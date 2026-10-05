@@ -34,6 +34,7 @@ import {
 export const AGE_THRESHOLDS = [4, 8, 13, 18, 25, 35, 50, 65] as const;
 export const ATTACK_COOLDOWN_MS = 600;
 export const ROUTE_ATTACK_COOLDOWN_MS = 400;
+export const PRIMARY_COMBO_WINDOW_MS = 2_000;
 export const SECONDARY_ATTACK_COOLDOWN_MS = 1_000;
 export const ENEMY_HIT_COOLDOWN_MS = 900;
 export const GUARD_ACTIVE_MS = 800;
@@ -207,6 +208,8 @@ export interface AdventureState {
   abilities: Ability[];
   appearanceStage: AppearanceStage;
   attackReadyAtMs: number;
+  /** Last accepted route-memory primary hit; absent on older saves and after a reset. */
+  attackCombo?: { step: 1 | 2 | 3; expiresAtMs: number };
   guardActiveUntilMs: number;
   guardReadyAtMs: number;
   actionReceipts: ActionReceipt[];
@@ -473,6 +476,15 @@ export function boundedRemainingMs(deadlineMs: number, nowMs: number, maxDuratio
   return remainingMs;
 }
 
+function currentComboStep(state: AdventureState, nowMs: number): 1 | 2 | 3 | null {
+  const combo = state.attackCombo;
+  if (!combo) return null;
+  const remainingMs = combo.expiresAtMs - nowMs;
+  return remainingMs >= 0 && remainingMs <= PRIMARY_COMBO_WINDOW_MS
+    ? combo.step
+    : null;
+}
+
 export function reduceAdventureAction(
   plan: AdventurePlan,
   current: AdventureState,
@@ -488,6 +500,7 @@ export function reduceAdventureAction(
     state.phase = 'exploring';
     state.playerHp = state.maxPlayerHp;
     state.attackReadyAtMs = 0;
+    delete state.attackCombo;
     state.guardActiveUntilMs = 0;
     state.guardReadyAtMs = 0;
     for (const encounter of level.encounters) {
@@ -542,6 +555,12 @@ export function reduceAdventureAction(
       }
       damage = equipment.damage;
     }
+    if (usesRouteMemoryRules(plan)) {
+      const previousStep = currentComboStep(state, nowMs);
+      const step = previousStep === 1 ? 2 : previousStep === 2 ? 3 : 1;
+      if (step === 3) damage += 1;
+      state.attackCombo = { step, expiresAtMs: nowMs + PRIMARY_COMBO_WINDOW_MS };
+    }
     const progress = state.encounters[encounter.id]!;
     progress.hp = Math.max(0, progress.hp - damage);
     progress.defeated = progress.hp === 0;
@@ -565,6 +584,7 @@ export function reduceAdventureAction(
     }
     const guard = strongestGuard(plan, state.inventoryIds);
     if (!guard) throw new AdventureRuleError('GUARD_TOOL_REQUIRED');
+    delete state.attackCombo;
     const progress = state.encounters[encounter.id]!;
     progress.hp = Math.max(0, progress.hp - (guard.tier + 1));
     progress.defeated = progress.hp === 0;
@@ -585,7 +605,10 @@ export function reduceAdventureAction(
     const reduction = guard && guardActive ? guard.guardReduction : 0;
     state.playerHp = Math.max(0, state.playerHp - Math.max(0, encounter.attackDamage - reduction));
     progress.nextReportedHitAtMs = nowMs + ENEMY_HIT_COOLDOWN_MS;
-    if (state.playerHp === 0) state.phase = 'fallen';
+    if (state.playerHp === 0) {
+      state.phase = 'fallen';
+      delete state.attackCombo;
+    }
     return state;
   }
 
@@ -659,6 +682,7 @@ export function toAdventureView(
   const attackCooldownMs = usesRouteMemoryRules(plan)
     ? ROUTE_ATTACK_COOLDOWN_MS
     : ATTACK_COOLDOWN_MS;
+  const comboStep = usesRouteMemoryRules(plan) ? currentComboStep(state, nowMs) : null;
   return {
     planVersion: plan.version,
     ...(plan.version !== 'era-level-plan-v1' ? { catalogVersion: plan.catalogVersion } : {}),
@@ -673,6 +697,12 @@ export function toAdventureView(
     playerHp: state.playerHp,
     maxPlayerHp: state.maxPlayerHp,
     attackCooldownRemainingMs: boundedRemainingMs(state.attackReadyAtMs, nowMs, attackCooldownMs),
+    ...(comboStep !== null && state.attackCombo
+      ? {
+          attackComboStep: comboStep,
+          attackComboRemainingMs: Math.max(0, state.attackCombo.expiresAtMs - nowMs),
+        }
+      : {}),
     guardActiveRemainingMs: boundedRemainingMs(state.guardActiveUntilMs, nowMs, GUARD_ACTIVE_MS),
     guardCooldownRemainingMs: usesRouteMemoryRules(plan)
       ? 0
@@ -744,6 +774,7 @@ function completeLevel(
   state.appearanceStage = appearanceForAge(state.ageYears);
   state.playerHp = state.maxPlayerHp;
   state.attackReadyAtMs = 0;
+  delete state.attackCombo;
   state.guardActiveUntilMs = 0;
   state.guardReadyAtMs = 0;
 
